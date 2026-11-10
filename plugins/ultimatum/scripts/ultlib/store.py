@@ -20,6 +20,8 @@ CHUNK = 40
 
 def _db() -> sqlite3.Connection:
     path = state_dir() / "index.db"
+    if path.is_symlink():
+        raise SystemExit(f"[ult] refusing to open {path}: it is a symlink")
     con = sqlite3.connect(path)
     con.execute(
         "CREATE VIRTUAL TABLE IF NOT EXISTS docs USING fts5("

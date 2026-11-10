@@ -311,8 +311,13 @@ def iter_files(target: Path, root: Path, only: set[str] | None, skipped: dict):
         yield p, rel, data.decode("utf-8", "replace")
 
 
+SECRET_KV = F(r"(?i)([\"']?[A-Za-z0-9_.-]*(?:token|secret|passw(?:or)?d|passwd|pwd|api[_-]?key|private[_-]?key|access[_-]?key|auth|credential|_pat|_key)[A-Za-z0-9_.-]*[\"']?\s*[:=]\s*[\"'])"
+              r"(?!\$\{|\$[A-Za-z_]|<|env:|\[REDACTED)([^\"'\s]{6,})([\"'])")
+
+
 def _snippet(line: str) -> str:
     s = redact(line.strip())
+    s = SECRET_KV.sub(lambda m: f"{m.group(1)}[REDACTED:assigned:{m.group(2)[-4:]}]{m.group(3)}", s)
     return s[:200] + ("…" if len(s) > 200 else "")
 
 
@@ -450,7 +455,7 @@ def scan_agent_config(rel: str, lines: list[str]) -> list[dict]:
     for i, l in enumerate(lines, 1):
         for rid, cls, sev, pat, why, std in rules:
             if pat.search(l):
-                out.append(_lead(rid, cls, sev, rel, i, _snippet(_mask_literal(l) if rid == "mcp-inline-secret" else l), why, std))
+                out.append(_lead(rid, cls, sev, rel, i, _snippet(l), why, std))
     return out
 
 

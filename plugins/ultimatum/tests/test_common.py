@@ -172,3 +172,37 @@ class TestRedactNegative(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+import os  # noqa: E402
+
+
+class TestSymlinkSafety(unittest.TestCase):
+    """A repository-planted `.ultimatum/map.json -> victim` must not be written through."""
+
+    def test_map_build_refuses_planted_symlink(self):
+        import subprocess, tempfile, sys
+        from pathlib import Path
+        root = Path(tempfile.mkdtemp())
+        victim = Path(tempfile.mkdtemp()) / "victim.txt"
+        victim.write_text("ORIGINAL")
+        (root / ".ultimatum").mkdir()
+        (root / ".ultimatum" / "map.json").symlink_to(victim)
+        (root / "a.py").write_text("x = 1\n")
+        ult = Path(__file__).resolve().parents[1] / "scripts" / "ult"
+        env = {**os.environ, "ULTIMATUM_ROOT": str(root)}
+        r = subprocess.run([sys.executable, str(ult), "map", "build"], cwd=root, env=env, capture_output=True, text=True)
+        self.assertNotEqual(r.returncode, 0)
+        self.assertEqual(victim.read_text(), "ORIGINAL")
+
+    def test_state_dir_symlink_refused(self):
+        import subprocess, tempfile, sys
+        from pathlib import Path
+        root = Path(tempfile.mkdtemp())
+        elsewhere = Path(tempfile.mkdtemp())
+        (root / ".ultimatum").symlink_to(elsewhere, target_is_directory=True)
+        ult = Path(__file__).resolve().parents[1] / "scripts" / "ult"
+        env = {**os.environ, "ULTIMATUM_ROOT": str(root)}
+        r = subprocess.run([sys.executable, str(ult), "run", "--", "true"], cwd=root, env=env, capture_output=True, text=True)
+        self.assertNotEqual(r.returncode, 0)
+        self.assertEqual(list(elsewhere.iterdir()), [])

@@ -46,7 +46,7 @@ for (const [w, h] of [[375, 812], [1280, 800]]) {
     await confirm.click();
     await page.waitForTimeout(400);
     out.checks[`${tag}_confirm_removes_row`] = (await rows.count()) === before - 1;
-    out.checks[`${tag}_toast_shown`] = await page.locator('[role="status"], [role="alert"], .toast').first().isVisible().catch(() => false);
+    out.checks[`${tag}_toast_shown`] = await page.locator('[role="status"], [role="alert"], .toast, .ui-toast, [aria-live] > *').first().isVisible().catch(() => false);
   } else {
     out.checks[`${tag}_confirm_removes_row`] = false;
     out.notes.push(`${tag}: no confirm button found in dialog`);

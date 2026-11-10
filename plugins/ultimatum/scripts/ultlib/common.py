@@ -42,16 +42,25 @@ def project_root(start: Path | None = None) -> Path:
     return start
 
 
+def _refuse_symlink(p: Path) -> None:
+    # A cloned repository could ship `.ultimatum/...` as symlinks pointing at
+    # files outside the project; writing through them would clobber the target.
+    if p.is_symlink():
+        raise SystemExit(f"[ult] refusing to use {p}: it is a symlink (possible repository-planted path)")
+
+
 def state_dir(root: Path | None = None, sub: str | None = None) -> Path:
     root = root or project_root()
     d = root / STATE_DIRNAME
+    _refuse_symlink(d)
     if not d.exists():
         d.mkdir(mode=0o700, parents=True, exist_ok=True)
     gi = d / ".gitignore"
-    if not gi.exists():
-        gi.write_text("# Ultimatum local state: logs, index, notes. Never commit.\n*\n")
+    if not gi.exists() and not gi.is_symlink():
+        write_private(gi, "# Ultimatum local state: logs, index, notes. Never commit.\n*\n")
     if sub:
         d = d / sub
+        _refuse_symlink(d)
         d.mkdir(mode=0o700, parents=True, exist_ok=True)
     return d
 
@@ -59,7 +68,8 @@ def state_dir(root: Path | None = None, sub: str | None = None) -> Path:
 def write_private(path: Path, data: str | bytes) -> None:
     """Write a file readable only by the current user."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    flags = os.O_WRONLY | os.O_CREAT | os.O_TRUNC
+    _refuse_symlink(path)
+    flags = os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_NOFOLLOW", 0)
     fd = os.open(path, flags, 0o600)
     with os.fdopen(fd, "wb") as fh:
         fh.write(data.encode("utf-8", "replace") if isinstance(data, str) else data)

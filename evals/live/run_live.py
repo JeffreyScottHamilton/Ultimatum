@@ -326,6 +326,9 @@ def parse_stream(lines: list[str]) -> dict:
 def run_case(cid, arm, args, outdir: Path, scratch: Path):
     fixture, prompt, grader = CASES[cid]
     ws = scratch / f"{cid}__{arm}"
+    if args.regrade:  # re-score an existing workspace + transcript; no new agent run
+        lines = (scratch / f"{cid}__{arm}.jsonl").read_text().splitlines()
+        return _grade(cid, arm, args, outdir, scratch, ws, grader, lines, None, 0.0)
     if ws.exists():
         shutil.rmtree(ws)
     shutil.copytree(FIX / fixture, ws, ignore=shutil.ignore_patterns("__pycache__"))
@@ -347,8 +350,12 @@ def run_case(cid, arm, args, outdir: Path, scratch: Path):
     except subprocess.TimeoutExpired as e:
         lines, rc = (e.stdout or b"").decode("utf-8", "replace").splitlines() if isinstance(e.stdout, bytes) else (e.stdout or "").splitlines(), 124
     (scratch / f"{cid}__{arm}.jsonl").write_text("\n".join(lines))
+    return _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, round(time.time() - t0, 1))
+
+
+def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
     run = parse_stream(lines)
-    run["wall_s"] = round(time.time() - t0, 1)
+    run["wall_s"] = wall
     run["claude_rc"] = rc
     try:
         checks = grader(ws, run)
@@ -380,6 +387,7 @@ def main():
     ap.add_argument("--out", default=str(REPO / "evals/live/results" / time.strftime("%Y%m%d-%H%M%S")))
     ap.add_argument("--scratch", default=os.environ.get("ULT_EVAL_SCRATCH", "/tmp/ult-live"))
     ap.add_argument("-j", "--jobs", type=int, default=1)
+    ap.add_argument("--regrade", action="store_true", help="re-run graders on existing workspaces/transcripts")
     args = ap.parse_args()
     outdir = Path(args.out); outdir.mkdir(parents=True, exist_ok=True)
     scratch = Path(args.scratch); scratch.mkdir(parents=True, exist_ok=True)
