@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\brelease\b'
+pattern: '\brelease\b'
+flags: i
 target: last_message
 ---

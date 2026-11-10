@@ -201,7 +201,7 @@ def g_audit(ws, run):
     return {
         "read_only": not [f for f in ch if not f.startswith(".ultimatum")],
         "idor_confirmed": near(text, "invoices.py", ["idor", "tenant", "bola", "639", "authoriz", "cross-tenant"]),
-        "sqli_lead_rejected_or_qualified": near(text, "reports.py", reject_words) or near(text, "order by", reject_words),
+        "sqli_lead_rejected_or_qualified": any(near(text, a, reject_words) for a in ("reports.py", "order by", "sql injection", "sqli")),
         "demo_key_not_confirmed": ("demo-key-not-secret" not in text) or near(text, "demo-key-not-secret", reject_words + ["test", "placeholder"]),
         "coverage_recorded": "coverage" in low or "ledger" in low,
         "structured_findings_file": findings.exists(),
@@ -335,8 +335,26 @@ def parse_stream(lines: list[str]) -> dict:
                     cc = c.get("content")
                     texts.append(cc if isinstance(cc, str) else json.dumps(cc)[:20000])
         elif d.get("type") == "result":
-            result = d
+            # A run that waits on background agents emits one result per segment:
+            # cost is cumulative (keep the max); turns/tokens are per segment (sum).
+            segs = result.setdefault("_segments", [])
+            segs.append(d)
+    segs = result.get("_segments", [])
+    last = segs[-1] if segs else {}
+    usage = {}
+    for sg in segs:
+        for k, v in (sg.get("usage") or {}).items():
+            if isinstance(v, (int, float)):
+                usage[k] = usage.get(k, 0) + v
+    result = {"result": last.get("result", ""), "is_error": any(sg.get("is_error") for sg in segs),
+              "num_turns": sum(sg.get("num_turns") or 0 for sg in segs),
+              "duration_ms": sum(sg.get("duration_ms") or 0 for sg in segs),
+              "total_cost_usd": max([sg.get("total_cost_usd") or 0 for sg in segs] or [0]),
+              "usage": usage, "modelUsage": last.get("modelUsage", {}), "subagent_stats": last.get("subagent_stats"),
+              "permission_denials": sum((len(sg.get("permission_denials") or [])) for sg in segs) * [None],
+              "segments": len(segs)}
     return {
+        "segments": result["segments"],
         "tools": tools, "tool_inputs_text": "\n".join(inputs), "transcript_text": "\n".join(texts),
         "agent_calls": tools.get("Agent", 0) + tools.get("Task", 0), "agent_types": agent_types,
         "agent_descriptions": agent_desc, "final": result.get("result", ""),

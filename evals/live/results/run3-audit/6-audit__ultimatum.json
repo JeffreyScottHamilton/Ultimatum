@@ -1,0 +1,88 @@
+{
+  "case": "6-audit",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": true,
+    "states_missing_scanners": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 10,
+    "Agent": 1
+  },
+  "agent_calls": 1,
+  "agent_types": [
+    "ultimatum:security-verifier"
+  ],
+  "agent_descriptions": [
+    "Verify IDOR candidate"
+  ],
+  "final": "Audit is done. I confirmed one high-severity vulnerability: a cross-tenant invoice read in `get_invoice` (F-001). The independent verifier agreed and rated it high with high confidence. The ledger closed 18 of 18 items and `ult findings validate` passed. No tracked files changed, and the `__pycache__` folders from my own test run are deleted.\n\n## Confirmed\n\n| Severity | ID | Location | Flaw |\n|---|---|---|---|\n| **High** | F-001 | `invoicer/handlers/invoices.py:21` | `GET /api/invoices/{id}` queries `WHERE id = ?` with no `tenant_id` filter, so any logged-in user can read any tenant's invoices. |\n\n- **Actor and impact:** any user with a valid token for any tenant can read other tenants' invoice customer, amount, date and notes. IDs are sequential, so they can be enumerated.\n- **Proof:** I ran an in-memory snippet against the test fixtures. Tenant A's token on `/api/invoices/3` returned 200 with tenant B's \"Initech\" row.\n- **Why the tests miss it:** the existing tests (`tests/test_invoices.py:15`) cover only the list endpoint, so they pass without noticing.\n- **Sibling handlers:** the list handler (`invoices.py:12`), the create handler (`invoices.py:38`) and the report (`reports.py:18`) all filter by the caller's tenant, so the missing filter is an omission.\n- **Fix:** add `AND tenant_id = ?` with `user[\"tenant_id\"]`, return 404 on a miss, and add a cross-tenant negative test.\n\n## Rejected leads\n- **F-002, SQL f-string at `reports.py:18` (scanner \"high\"):** the sort column and direction come only from the allowlist dicts at `reports.py:6-11`, with fallback defaults (FP-01). The tenant id is parameterized.\n- **F-003, `DEMO_API_KEY` at `tests/fixtures.py:12`:** a documented placeholder for a throwaway in-memory database (FP-05).\n- **Report HTML (XSS):** `templates.py:10,12` escapes customer and created.\n- **Non-object JSON body:** it raises an uncaught `TypeError` and a 500 for that single request, with no shared impact (FP-11).\n\n## Notes, not findings\n- `admin/tenants` returns all tenants to any admin because the admin role is global. The README documents it as admin-only, so confirm that is intended.\n- `amount_cents` accepts negative or huge values. The repo defines no business rule for it.\n- Tokens are stored in plaintext and issued outside this repo. I couldn't assess that part.\n\n## Coverage\n- **Checked (12):** authentication, authorization (function-level and object-level), injection, XSS, parsing, business logic, data exposure, secrets, crypto, config and dependencies.\n- **Not applicable (6), each with a reason:** session, files, SSRF, CI/CD, deploy/IaC and AI-agent.\n- **Not run:** semgrep, gitleaks and osv-scanner aren't installed, so dependency advisories are unknown. The repo is stdlib-only with no manifests.\n- **Limits:** this was a static review plus the local tests (`python3 -m unittest`: 10 tests, OK, exit 0) and one in-memory snippet. A deployed system, a live proxy and token issuance were out of scope. This is not evidence of absence.\n\nFiles are in `.ultimatum/security/`:\n- `report.md`\n- `findings.json`\n- `ledger.json`\n\nI can start remediation of F-001 if you want it.",
+  "is_error": false,
+  "num_turns": 9,
+  "duration_ms": 55046,
+  "cost_usd": 0.27287320000000004,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 33278,
+    "cache_read_input_tokens": 400851,
+    "output_tokens": 5837
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 24,
+      "outputTokens": 7322,
+      "cacheReadInputTokens": 424807,
+      "cacheCreationInputTokens": 42883,
+      "webSearchRequests": 0,
+      "costUSD": 0.27287320000000004,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 516,
+      "cacheCreationEphemeral5mInputTokens": 9605,
+      "cacheCreationEphemeral1hInputTokens": 33278,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 1
+    },
+    "started_in_background": 1,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "ultimatum:security-verifier": 1
+    }
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live3/6-audit__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live3/6-audit__ultimatum.jsonl"
+}

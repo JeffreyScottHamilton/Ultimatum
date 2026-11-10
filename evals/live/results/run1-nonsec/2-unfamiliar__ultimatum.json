@@ -1,0 +1,82 @@
+{
+  "case": "2-unfamiliar",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "summary_runs": true,
+    "amounts_correct": true,
+    "reuses_format_money": true,
+    "reuses_outstanding_for": true,
+    "no_legacy_decoy": true,
+    "test_added": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3,
+    "bash": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I added a `summary` subcommand that prints one line per customer with their outstanding total formatted as money. `python3 -m unittest` passes (10 tests, exit OK). Running `python3 -m billing.cli summary` prints:\n\n```\nAcme Corp: $1,999.50\nGlobex GmbH: €49.99\nInitech: $0.00\n```\n\n- **`billing/reports.py`**: new `render_summary(ledger)`. It reuses `invoices.outstanding_for` and `money.format_money`, and formats each total in the customer's own currency.\n- **`billing/cli.py`**: registers the `summary` subparser and prints `render_summary`.\n- **`billing/tests/test_cli.py`**: new `test_summary`, which checks the exit code, that \"Acme Corp\" appears, and that each total looks like money.\n- **`README.md`**: added the usage line.\n\nI used `billing/money.py` for formatting, not `legacy/old_money.py`, which is marked deprecated.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 16875,
+  "cost_usd": 0.08399200000000001,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 12615,
+    "cache_read_input_tokens": 186320,
+    "output_tokens": 1488
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1488,
+      "cacheReadInputTokens": 186320,
+      "cacheCreationInputTokens": 12615,
+      "webSearchRequests": 0,
+      "costUSD": 0.08399200000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 12615,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/2-unfamiliar__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/2-unfamiliar__ultimatum.jsonl"
+}

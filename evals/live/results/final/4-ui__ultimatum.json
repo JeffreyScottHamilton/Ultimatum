@@ -1,0 +1,105 @@
+{
+  "case": "4-ui",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "reuses_dialog": true,
+    "reuses_toast": true,
+    "reuses_button": true,
+    "no_native_confirm": true,
+    "agent_checked_two_viewports": true,
+    "agent_ran_real_browser": true,
+    "probe_375_rows_present": true,
+    "probe_375_no_h_overflow": true,
+    "probe_375_delete_button": true,
+    "probe_375_delete_in_viewport": true,
+    "probe_375_dialog_opens_on_enter": true,
+    "probe_375_focus_in_dialog": true,
+    "probe_375_escape_closes": true,
+    "probe_375_escape_keeps_row": true,
+    "probe_375_confirm_removes_row": true,
+    "probe_375_toast_shown": true,
+    "probe_375_no_page_errors": true,
+    "probe_1280_rows_present": true,
+    "probe_1280_no_h_overflow": true,
+    "probe_1280_delete_button": true,
+    "probe_1280_delete_in_viewport": true,
+    "probe_1280_dialog_opens_on_enter": true,
+    "probe_1280_focus_in_dialog": true,
+    "probe_1280_escape_closes": true,
+    "probe_1280_escape_keeps_row": true,
+    "probe_1280_confirm_removes_row": true,
+    "probe_1280_toast_shown": true,
+    "probe_1280_no_page_errors": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Read": 4,
+    "Bash": 7
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Each project row now has a Delete button. It opens a confirmation dialog, and confirming removes the row and shows a \"Deleted “…”\" toast. It passes in a real Chromium run at 375x812 and 1280x800, with 18 of 18 steps passing in each viewport and no console or page errors. The final `ULT-BROWSER` line is `PASS (fail=0 warn=0 viewports=2)`. The 4 existing unit tests also pass.\n\n- **Changed `app.js`:** adds the Delete button on each row, built with the existing `Button` component. Clicking it opens the existing `Dialog` (danger style, \"Delete project\" / \"Cancel\"). Confirming removes the project from `window.PROJECTS`, re-renders, and shows a success `Toast`. After a delete, focus moves to the next Delete button (or the heading if the list is empty), because the row that held focus is gone.\n- **Changed `styles.css`:** one rule so the Delete button is at least 44x44 and doesn't shrink. It needed `.project-row .project-delete` as the selector, because the button component's injected styles load later and override a plain class.\n- **Checked in the browser:** Escape cancels and focus returns to the Delete button. Cancel keeps all 5 rows. Confirm leaves 4 rows, removes the right one and shows the toast. The Tab order matches the visual order.\n- **Screenshots:** I opened the 375px dialog and 1280px after-delete screenshots. The dialog fits the phone width and the long project names wrap.\n- **Not verified:**\n  - axe wasn't available, so accessibility coverage is the built-in fallback only.\n  - I haven't checked a screen reader or a real device.\n  - I haven't checked the empty list after deleting everything.\n  - Deletion lasts only until you reload the page, because the data is a static file with no backend.\n- **Open issue:** a `--stress` run warned of horizontal overflow when 100+ unbroken characters were appended to text. It's in `.project-meta`, which has no wrap rule and which I didn't touch. I didn't re-run `--stress` after the button-size change, so I haven't confirmed whether the overflow also appears with that rule. I left it as is; it's a one-line fix if you want it.\n\nThe last background-task notification was only the dev server I'd started exiting when I stopped it, not a problem.",
+  "is_error": false,
+  "num_turns": 12,
+  "duration_ms": 165456,
+  "cost_usd": 0.2118273,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 30794,
+    "cache_read_input_tokens": 443353,
+    "output_tokens": 4428
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 4428,
+      "cacheReadInputTokens": 443353,
+      "cacheCreationInputTokens": 30794,
+      "webSearchRequests": 0,
+      "costUSD": 0.2118273,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 386,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 30794,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "probe_notes": [],
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/4-ui__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/4-ui__ultimatum.jsonl"
+}

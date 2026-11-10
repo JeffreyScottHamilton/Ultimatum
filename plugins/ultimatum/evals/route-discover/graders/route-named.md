@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\bdiscover\b'
+pattern: '\bdiscover\b'
+flags: i
 target: last_message
 ---

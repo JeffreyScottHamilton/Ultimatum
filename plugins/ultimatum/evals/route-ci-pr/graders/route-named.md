@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\bci-pr\b'
+pattern: '\bci-pr\b'
+flags: i
 target: last_message
 ---

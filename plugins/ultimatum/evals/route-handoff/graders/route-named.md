@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\bhandoff\b'
+pattern: '\bhandoff\b'
+flags: i
 target: last_message
 ---

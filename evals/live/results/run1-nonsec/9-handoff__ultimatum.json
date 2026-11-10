@@ -1,0 +1,79 @@
+{
+  "case": "9-handoff",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "scope_kept": true,
+    "tests_not_edited": true,
+    "read_handoff": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Read": 1,
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Per-key burst overrides now work: `Config.override_for(key)` returns the key's override, or `burst` if it has none, and `Limiter` uses it. The full suite passes (`python3 -m unittest discover -s tests -t .`, exit 0, 6 tests OK). That includes `test_burst_override_applies`, which was the failing one.\n\nThe repo matched the handoff before I started: same files and the same one failing test. The three \"referenced file missing\" warnings from `ult handoff show` were false alarms. They flagged identifiers like `config.py` and `Config.burst` that the check couldn't map to a path.\n\n**Changed:**\n- `ratelimit/config.py`: added `override_for(key)` as `burst_overrides.get(key, burst)` and removed the TODO.\n- `ratelimit/limiter.py`: `_bucket_for` now uses `self.config.override_for(key)` instead of `self.config.burst`, and the TODO is gone.\n\n**Not verified:** an override of 0 still creates a bucket that never allows. The handoff said to leave that as is unless asked. An override added after a key's bucket exists still doesn't resize it, which was also accepted.\n\n**Next:** nothing is left unfinished. `.ultimatum/handoff.md` is tracked in git and now describes finished work. I left it in place, so delete it if you don't want it kept.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 21844,
+  "cost_usd": 0.08810139999999998,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 13178,
+    "cache_read_input_tokens": 188194,
+    "output_tokens": 1655
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1655,
+      "cacheReadInputTokens": 188194,
+      "cacheCreationInputTokens": 13178,
+      "webSearchRequests": 0,
+      "costUSD": 0.08810139999999998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 196,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 13178,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/9-handoff__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/9-handoff__ultimatum.jsonl"
+}

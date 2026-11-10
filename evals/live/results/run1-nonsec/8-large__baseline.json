@@ -1,0 +1,94 @@
+{
+  "case": "8-large",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "export_md_runs": true,
+    "export_json_runs": true,
+    "export_csv_runs": true,
+    "bogus_format_fails": true,
+    "readme_documents_export": true,
+    "parallel_workers_used": true,
+    "integrated_review": false
+  },
+  "passed": false,
+  "score": 0.875,
+  "segments": 1,
+  "tools": {
+    "Bash": 15,
+    "Agent": 3,
+    "Monitor": 1
+  },
+  "agent_calls": 3,
+  "agent_types": [
+    "general-purpose",
+    "general-purpose",
+    "general-purpose"
+  ],
+  "agent_descriptions": [
+    "Markdown exporter",
+    "JSON exporter",
+    "CSV exporter"
+  ],
+  "final": "`notes export --format md|json|csv` now works, with tests for each format and a README section. The full suite passes (22 tests), and I ran all three formats against a sample note with a comma, quotes and a newline, and each came out correct.\n\n- **How it was built:** three parallel subagents each wrote one exporter and its tests. I wrote the wiring: an `EXPORTERS` registry in `notes/export/__init__.py`, the `export` subcommand in `notes/cli.py`, CLI tests in `tests/test_export_cli.py`, and the README update.\n- **Exporters:** they are `md.py`, `jsonfmt.py` and `csvfmt.py` in `notes/export/`. I avoided the names `json.py` and `csv.py` so they don't shadow the standard library.\n- **CSV:** a title, body or tags cell starting with `=`, `+`, `-` or `@` gets a leading `'` to block spreadsheet formula injection. That is a change to the cell text, and it's noted in the README.\n- **Review:** I read the three exporters and checked the real CLI output. I found no bugs, but two limits remain:\n  - The Markdown exporter doesn't escape Markdown characters in titles or bodies.\n  - `export --format md` on an empty store prints a blank line.\n\nI haven't committed anything.",
+  "is_error": false,
+  "num_turns": 12,
+  "duration_ms": 40245,
+  "cost_usd": 0.3000392,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 16135,
+    "cache_read_input_tokens": 381055,
+    "output_tokens": 3575
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 42,
+      "outputTokens": 8075,
+      "cacheReadInputTokens": 609527,
+      "cacheCreationInputTokens": 53620,
+      "webSearchRequests": 0,
+      "costUSD": 0.3000392,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 168,
+      "cacheCreationEphemeral5mInputTokens": 37485,
+      "cacheCreationEphemeral1hInputTokens": 16135,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 3,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 3
+    },
+    "started_in_background": 3,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 3,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "general-purpose": 3
+    }
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/8-large__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/8-large__baseline.jsonl"
+}

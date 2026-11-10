@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\boptimize\b'
+pattern: '\boptimize\b'
+flags: i
 target: last_message
 ---

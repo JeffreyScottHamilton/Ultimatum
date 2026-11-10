@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\bsec-fix\b'
+pattern: '\bsec-fix\b'
+flags: i
 target: last_message
 ---

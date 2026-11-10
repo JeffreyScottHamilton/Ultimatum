@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\blarge\b'
+pattern: '\blarge\b'
+flags: i
 target: last_message
 ---

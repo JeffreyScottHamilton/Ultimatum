@@ -1,0 +1,81 @@
+{
+  "case": "6-audit",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": false,
+    "states_missing_scanners": false
+  },
+  "passed": false,
+  "score": 0.714,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "**Result:** I confirmed one vulnerability: a cross-tenant invoice read (IDOR) at `invoicer/handlers/invoices.py:162`. I found no other exploitable issues. This is a static review of all 316 lines plus a local run. I did not use subagents because the repo is tiny. I did not write `.ultimatum/` ledger or report files, because you said not to modify files.\n\n## Confirmed\n**F-1: `GET /api/invoices/<id>` has no tenant check. Severity: high. Confidence: high.**\n- **Location:** `invoicer/handlers/invoices.py:162-168`. The query is `SELECT ... FROM invoices WHERE id = ?`. It has no `AND tenant_id = ?`, and `user[\"tenant_id\"]` is never compared to `row[\"tenant_id\"]`.\n- **Contrast:** The sibling handlers do scope by tenant. `list_invoices` (line 154) filters on `tenant_id`, and `invoice_report` (`invoicer/handlers/reports.py:201`) does too.\n- **Actor:** any authenticated user of any tenant. The README says the app is multi-tenant.\n- **Input:** the numeric id in the path. The route regex `(\\d+)` at `invoicer/app.py:32` allows any integer, and ids are sequential, so they are easy to enumerate.\n- **Impact:** the response returns another tenant's `customer`, `amount_cents` and `notes`. The fixture's own notes field holds \"A: confidential rate card\".\n- **Proof:** I ran this against the in-memory test fixture, with no files written.\n  - `call(app,'GET','/api/invoices/3', DEMO_API_KEY)`, where the token is tenant A's and invoice 3 belongs to tenant B, returned `200 {\"id\": 3, \"tenant_id\": 2, \"customer\": \"Initech\", \"amount_cents\": 9900, ..., \"notes\": \"B: first invoice\"}`.\n- **Tests:** the existing suite passes (`python3 -m unittest`, 10 tests OK, exit 0), but nothing tests cross-tenant access to `/api/invoices/<id>`.\n- **Fix, if you want one:** add `AND tenant_id = ?` with `user[\"tenant_id\"]` and return 404 on a miss. Add a negative test for it.\n- **Refs:** CWE-639, ASVS V8, WSTG-ATHZ-04.\n\n## Rejected leads\n- **SQL injection in the report ORDER BY** (`reports.py:201`): this is an f-string. However, `sort_col` and `direction` only come from the fixed `SORT_COLUMNS` and `DIRECTIONS` maps, with defaults on a miss. I sent `sort=x;drop&dir=zz` and got 200 with the default ordering (FP-01). The tenant value is bound as a parameter.\n- **XSS in the HTML report** (`templates.py`): `customer` and `created` are passed through `html.escape`, and the amount is a formatted number. `notes` is not rendered.\n- **Admin authorization** (`admin.py:137`): the role is checked server-side from the DB row. The query is static. The `tenants` list is meant to be cross-tenant for admins (FP-08).\n- **Unhandled errors in `create_invoice`**: a non-dict body or a null `amount_cents` raises `TypeError`, which is not caught and returns a 500 with no stack trace. This only affects the individual request, with no shared impact (FP-11). It is a robustness issue, not a security one.\n- **Negative `CONTENT_LENGTH`**: `read(-1)` reads the whole body, but the WSGI server bounds it. I treated it as unreachable.\n- **\"Secrets\" in `tests/fixtures.py`**: these are documented demo tokens in a test-only in-memory database (FP-04, FP-05).\n- **Token comparison**: it is a parameterized equality lookup in SQLite, so I could not demonstrate a timing attack.\n\n## Hardening notes (not findings)\n- Tokens are stored in plaintext in the `users` table, which the README documents. Hashing them would limit the damage if the database leaked.\n- Negative `amount_cents` is accepted when creating an invoice. It is a business-rule gap, but the caller can only affect their own tenant.\n- There is no rate limiting, token expiry or HTTPS enforcement. Deployment is outside this repo, so I left these as needs-owner.\n\n## Coverage\nI read all source files. By area:\n- **Checked:** authn, authz-function, authz-object (F-1), injection, output-xss, data-exposure, parsing, business-logic, secrets and config.\n- **Not applicable (no such code):** files, SSRF, crypto, CI/CD, IaC and deploy, AI agent, sessions, JWT and OAuth.\n- **Dependencies:** none declared.\n- **Not checked:** advisories (no manifest, no online lookup), and any deployed environment.\n\nRunning the tests created untracked `__pycache__/` directories. That is the only change to the working tree, and `git status` shows no tracked files modified.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 30680,
+  "cost_usd": 0.1550681,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 25907,
+    "cache_read_input_tokens": 222701,
+    "output_tokens": 2915
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 2915,
+      "cacheReadInputTokens": 222701,
+      "cacheCreationInputTokens": 25907,
+      "webSearchRequests": 0,
+      "costUSD": 0.1550681,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 234,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 25907,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/6-audit__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/6-audit__ultimatum.jsonl"
+}

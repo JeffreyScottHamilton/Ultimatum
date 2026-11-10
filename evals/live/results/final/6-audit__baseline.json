@@ -1,0 +1,81 @@
+{
+  "case": "6-audit",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": false,
+    "states_missing_scanners": false
+  },
+  "passed": false,
+  "score": 0.714,
+  "segments": 1,
+  "tools": {
+    "Bash": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I found one confirmed vulnerability: a cross-tenant read in `GET /api/invoices/<id>`. I ran the 10 existing tests, which pass, and wrote a few small throwaway scripts to confirm the findings. I changed no tracked files. Running the tests did leave untracked `__pycache__/` directories in the repo, which you can delete.\n\n## Confirmed\n\n**1. High: cross-tenant invoice read (IDOR).** The bug is in `invoicer/handlers/invoices.py:18-26`.\n- `get_invoice` selects by `id` only and never checks `tenant_id` against `user[\"tenant_id\"]`. The list, report and create handlers all scope by tenant, so this one is the odd one out.\n- I confirmed it by running the app against the test fixtures. Tenant B's token fetching `/api/invoices/2` returned 200 with Tenant A's `\"notes\": \"A: confidential rate card\"`. Tenant A's token fetching `/api/invoices/3` returned Tenant B's invoice.\n- Invoice IDs are sequential integers, so any authenticated user can walk the IDs and read every tenant's invoices, including notes.\n- The existing tests only fetch the caller's own invoice, so they don't catch it.\n- Suggested fix: add `AND tenant_id = ?` to the query and return 404 for other tenants' invoices.\n\n**2. Low: unhandled exceptions in `POST /api/invoices` (`invoices.py:30-34`).** The handler only catches `ValueError` and `KeyError`, but these bodies raise other errors:\n- `{\"amount_cents\": Infinity}` raises `OverflowError`.\n- `{\"amount_cents\": 2**70}` raises `OverflowError`.\n- `{\"amount_cents\": null}` raises `TypeError`.\n- A JSON array as the body raises `TypeError`.\n- I confirmed all four escape the WSGI app uncaught. They need a valid token, and the result is a 500 or a traceback depending on the server. Fix by catching `(ValueError, KeyError, TypeError, OverflowError)`.\n\n## Hardening, not confirmed exploits\n- The request body is read with no size cap, using the client-supplied `CONTENT_LENGTH` (`invoices.py:31-32`). A negative value makes `read(-1)` read everything. This is a memory-exhaustion risk for authenticated users. I didn't test it, and the server in front may enforce a limit.\n- Token lookup is a plain SQL equality match with no rate limiting. Tokens are stored in plaintext, and the README says they're looked up in the `users` table.\n- There is no top-level error handler in `app.py`, so internal exceptions propagate to the server.\n\n## Rejected leads\n- **SQL injection via the report `sort` and `dir` parameters.** The query is built with an f-string, but both values go through allowlist dicts and fall back to defaults. I sent `sort=amount;DROP TABLE invoices`, and it fell back to the default sort and returned only that tenant's rows. The tenant filter is bound as a parameter.\n- **XSS in the HTML report.** `templates.py` escapes customer and created values, and the amount is formatted from a number. `notes` isn't rendered. The `.format` use is safe because the user data goes in as values, not as the template.\n- **Admin authorization.** `list_tenants` checks the role server-side, and the role comes from the DB row, not from the request. The admin endpoint is by design cross-tenant.\n- **Hardcoded secrets.** The tokens in `tests/fixtures.py` are test-only, are documented as such, and are applied to an in-memory DB. Nothing in the app seeds them.\n- **Auth bypass.** A missing, malformed or unknown token returns 401. `parse_qs` and the route regexes (`\\d+`) look safe, and the `int()` on the path ID can't fail. The 405 case falls through to 404, which is harmless.\n- **Route-matching quirk.** A matched path with the wrong method keeps iterating and ends in 404. It's functional, not a security issue.\n\n## Coverage\nI read all 15 tracked files, about 316 lines: the router, auth, db schema, http helpers, templates, the three handlers, the tests and fixtures, and the README. I did not cover deployment or server configuration, because none is in the repo. I also did not look at dependencies, because the repo has no third-party dependencies or manifest.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 28176,
+  "cost_usd": 0.0903189,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 12506,
+    "cache_read_input_tokens": 139189,
+    "output_tokens": 2636
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2636,
+      "cacheReadInputTokens": 139189,
+      "cacheCreationInputTokens": 12506,
+      "webSearchRequests": 0,
+      "costUSD": 0.0903189,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 419,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 12506,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/6-audit__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/6-audit__baseline.jsonl"
+}

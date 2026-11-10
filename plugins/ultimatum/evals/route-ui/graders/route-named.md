@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\bui\b'
+pattern: '\bui\b'
+flags: i
 target: last_message
 ---

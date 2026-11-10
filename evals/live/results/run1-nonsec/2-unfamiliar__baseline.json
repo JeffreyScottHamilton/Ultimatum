@@ -1,0 +1,81 @@
+{
+  "case": "2-unfamiliar",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "summary_runs": true,
+    "amounts_correct": true,
+    "reuses_format_money": true,
+    "reuses_outstanding_for": true,
+    "no_legacy_decoy": true,
+    "test_added": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I added a `summary` subcommand in `billing/cli.py`. It prints each customer's name and outstanding total, tab-separated, formatted with `format_money` in that customer's own currency. The full suite passes with the new test, and I ran it against the seed data:\n\n```\nAcme Corp\t$1,999.50\nGlobex GmbH\t€49.99\nInitech\t$0.00\n```\n\nI also added `test_summary` to `billing/tests/test_cli.py`.\n\nThe existing `list` command prints to `sys.stdout` and ignores the `out` argument. I left that alone, and `summary` writes to `out`.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 10470,
+  "cost_usd": 0.0517873,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 7589,
+    "cache_read_input_tokens": 133653,
+    "output_tokens": 805
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 805,
+      "cacheReadInputTokens": 133653,
+      "cacheCreationInputTokens": 7589,
+      "webSearchRequests": 0,
+      "costUSD": 0.0517873,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7589,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/2-unfamiliar__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/2-unfamiliar__baseline.jsonl"
+}

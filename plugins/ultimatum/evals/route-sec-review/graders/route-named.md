@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\bsec-review\b'
+pattern: '\bsec-review\b'
+flags: i
 target: last_message
 ---

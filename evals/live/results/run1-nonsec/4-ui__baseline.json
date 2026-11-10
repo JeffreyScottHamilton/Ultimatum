@@ -1,0 +1,105 @@
+{
+  "case": "4-ui",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "reuses_dialog": true,
+    "reuses_toast": true,
+    "reuses_button": true,
+    "no_native_confirm": true,
+    "agent_checked_two_viewports": true,
+    "agent_ran_real_browser": true,
+    "probe_375_rows_present": true,
+    "probe_375_no_h_overflow": true,
+    "probe_375_delete_button": true,
+    "probe_375_delete_in_viewport": true,
+    "probe_375_dialog_opens_on_enter": true,
+    "probe_375_focus_in_dialog": true,
+    "probe_375_escape_closes": true,
+    "probe_375_escape_keeps_row": true,
+    "probe_375_confirm_removes_row": true,
+    "probe_375_toast_shown": true,
+    "probe_375_no_page_errors": true,
+    "probe_1280_rows_present": true,
+    "probe_1280_no_h_overflow": true,
+    "probe_1280_delete_button": true,
+    "probe_1280_delete_in_viewport": true,
+    "probe_1280_dialog_opens_on_enter": true,
+    "probe_1280_focus_in_dialog": true,
+    "probe_1280_escape_closes": true,
+    "probe_1280_escape_keeps_row": true,
+    "probe_1280_confirm_removes_row": true,
+    "probe_1280_toast_shown": true,
+    "probe_1280_no_page_errors": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 11,
+    "Read": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Each project row now has a Delete button. It opens a confirmation dialog, and confirming removes the row and shows a toast. I checked it in headless Chrome at 375×667 (phone) and 1280×800 (desktop).\n\n**What changed**\n- `app.js` adds the Delete button to each row, using the existing `Button`, `Dialog` and `Toast` components, and the confirm handler that removes the row.\n- The dialog is titled \"Delete project?\" and names the project. Its Delete button is the danger variant.\n- Confirming removes the row and shows the toast `Deleted \"<name>\"`. Focus then moves to the next Delete button.\n- Deleting is in-memory only, so a page reload brings the projects back.\n- `styles.css` has one added line so the button keeps its size next to long project names.\n\n**Verified in the browser, at both widths**\n- The page has no horizontal scroll and every Delete button is fully inside the viewport, including next to the very long project names. Those names wrap in the row.\n- Cancel and Escape both close the dialog and leave all 5 rows.\n- Confirming on the long-named row leaves 4 rows and shows the toast.\n- Deleting every row shows \"No projects yet.\"\n- No JS errors in either run.\n- The existing 4 unit tests pass.\n\nThe first browser run actually hit a different copy of the app (`4-ui__ultimatum`) that was already serving on port 8765, so I redid the check on port 8791 against this directory. Everything above is from that second run.\n\nMy throwaway test script and screenshots are in the scratchpad, for example `/tmp/claude-0/-tmp-claude-0--home-user-Ultimatum-c051b7f5-1efa-5745-8c75-fc5201ebb861-scratchpad-live-4-ui--baseline/839baeb3-2044-43e2-91ce-e1b85ebc3e2d/scratchpad/phone-toast.png`. Nothing is committed.",
+  "is_error": false,
+  "num_turns": 15,
+  "duration_ms": 119117,
+  "cost_usd": 0.1899404,
+  "usage": {
+    "input_tokens": 28,
+    "cache_creation_input_tokens": 19741,
+    "cache_read_input_tokens": 586804,
+    "output_tokens": 5224
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 28,
+      "outputTokens": 5224,
+      "cacheReadInputTokens": 586804,
+      "cacheCreationInputTokens": 19741,
+      "webSearchRequests": 0,
+      "costUSD": 0.1899404,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 668,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 19741,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "probe_notes": [],
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/4-ui__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/4-ui__baseline.jsonl"
+}

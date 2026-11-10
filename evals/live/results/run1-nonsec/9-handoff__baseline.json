@@ -1,0 +1,78 @@
+{
+  "case": "9-handoff",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "scope_kept": true,
+    "tests_not_edited": true,
+    "read_handoff": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 5
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I finished the per-key burst override that was left half-done, and all 6 tests now pass.\n\nThere was no earlier conversation to go on. The repo's `TODO(handoff)` markers and the one failing test showed what was left.\n\n- **`ratelimit/config.py`**: I added `Config.override_for(key)`. It returns the key's entry in `burst_overrides` if there is one, and the default `burst` otherwise.\n- **`ratelimit/limiter.py`**: `Limiter._bucket_for` now calls `override_for(key)` to size a new bucket. Before, it always used the default burst, so the \"vip\" key got 2 tokens instead of 5.\n\nI haven't committed anything.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 18042,
+  "cost_usd": 0.0614661,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 7964,
+    "cache_read_input_tokens": 204661,
+    "output_tokens": 912
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 912,
+      "cacheReadInputTokens": 204661,
+      "cacheCreationInputTokens": 7964,
+      "webSearchRequests": 0,
+      "costUSD": 0.0614661,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 32,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7964,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/9-handoff__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/9-handoff__baseline.jsonl"
+}

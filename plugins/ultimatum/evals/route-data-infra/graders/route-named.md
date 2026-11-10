@@ -1,5 +1,6 @@
 ---
 type: regex
-pattern: '(?i)\bdata-infra\b'
+pattern: '\bdata-infra\b'
+flags: i
 target: last_message
 ---
