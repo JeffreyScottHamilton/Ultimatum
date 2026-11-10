@@ -1,0 +1,10 @@
+{
+  "name": "ultimatum",
+  "version": "0.1.0",
+  "description": "One developer skill for Claude Code: /ultimatum:work <task> routes to focused workflows for small changes, features, hard bugs, UI, secure implementation, security review and audits, releases, optimization and handoffs. Local-first, no hooks, no telemetry.",
+  "author": { "name": "Jeffrey Scott Hamilton" },
+  "homepage": "https://github.com/JeffreyScottHamilton/Ultimatum",
+  "repository": "https://github.com/JeffreyScottHamilton/Ultimatum",
+  "license": "MIT",
+  "keywords": ["workflow", "security-audit", "code-review", "debugging", "ui", "tdd", "handoff", "token-efficiency"]
+}

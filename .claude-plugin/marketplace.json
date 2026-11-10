@@ -1,0 +1,16 @@
+{
+  "name": "ultimatum",
+  "owner": { "name": "Jeffrey Scott Hamilton" },
+  "metadata": {
+    "description": "Ultimatum: one developer skill for Claude Code — discovery, changes, debugging, UI, security, release, handoff."
+  },
+  "plugins": [
+    {
+      "name": "ultimatum",
+      "source": "./plugins/ultimatum",
+      "description": "One command, /ultimatum:work <task>, that routes to focused workflows for code changes, debugging, UI, security review and audits, releases, optimization and handoffs.",
+      "category": "development",
+      "tags": ["workflow", "security", "debugging", "ui", "code-review", "token-efficiency"]
+    }
+  ]
+}

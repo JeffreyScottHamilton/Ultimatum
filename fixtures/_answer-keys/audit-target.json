@@ -1,0 +1,42 @@
+{
+  "fixture": "audit-target",
+  "baseline_test_command": "cd fixtures/audit-target && python3 -m unittest",
+  "baseline_exit_code": 0,
+  "exploit_script": "_answer-keys/audit-target_exploit.py",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "Broken object-level authorization (IDOR) on invoice read",
+      "status": "confirmed",
+      "file": "invoicer/handlers/invoices.py",
+      "line": 21,
+      "function_lines": [18, 26],
+      "cwe": "CWE-639",
+      "severity": "high",
+      "conditions": "Any authenticated user can GET /api/invoices/<id> for an invoice belonging to another tenant; query filters by id only, never by user.tenant_id.",
+      "poc": "token demo-key-tenant-b -> GET /api/invoices/2 returns 200 with tenant 1 data",
+      "not_sqli": "query is parameterized"
+    },
+    {
+      "id": "F2",
+      "title": "SQL injection via ORDER BY f-string",
+      "status": "rejected",
+      "file": "invoicer/handlers/reports.py",
+      "line": 18,
+      "cwe": "CWE-89",
+      "conditions": "Not exploitable: sort_col comes from SORT_COLUMNS allowlist dict .get(key, 'created'); direction from DIRECTIONS two-value dict with default 'ASC'. Neither can carry user text into SQL. tenant_id is bound via '?'."
+    },
+    {
+      "id": "F3",
+      "title": "Hard-coded API key",
+      "status": "rejected",
+      "file": "tests/fixtures.py",
+      "line": 12,
+      "cwe": "CWE-798",
+      "conditions": "DEMO_API_KEY='demo-key-not-secret' is a documented non-secret test value, only used in tests against a throwaway in-memory sqlite DB."
+    }
+  ],
+  "expected_confirmed_count": 1,
+  "expected_rejected_count": 2,
+  "must_not_report_as_confirmed": ["F2", "F3"]
+}
