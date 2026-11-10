@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ultimatum.local/schemas/coverage-ledger.schema.json",
+  "title": "Ultimatum security coverage ledger",
+  "description": "Shape of .ultimatum/security/ledger.json. Created by `ult findings ledger init`, updated by `ledger mark`, enforced by `ledger check` (scripts/ultlib/findings.py), which also fails on duplicate ids, unredacted secrets, and any item that is not closed: checked needs evidence; not-applicable and blocked need a reason; not-started and in-progress are open.",
+  "type": "object",
+  "required": ["items"],
+  "properties": {
+    "version": {"const": 1},
+    "profile": {"enum": ["quick", "standard", "deep"]},
+    "scope": {"type": "string"},
+    "created": {"type": "string"},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "state"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,120}$"},
+          "area": {"type": "string", "description": "Attack area, e.g. authorization, injection, ci, ai-agent."},
+          "title": {"type": "string"},
+          "standards": {"type": "array", "items": {"type": "string"}, "description": "Tags only, e.g. 'ASVS:V8', 'WSTG-ATHZ-04'."},
+          "paths": {"type": "array", "items": {"type": "string"}},
+          "owner": {"type": "string", "description": "Hunter or agent that worked the item."},
+          "state": {"enum": ["not-started", "in-progress", "checked", "not-applicable", "blocked"]},
+          "evidence": {"type": "string", "description": "Required for checked: file:line read, command + exit code, test name."},
+          "reason": {"type": "string", "description": "Required for not-applicable and blocked."},
+          "updated": {"type": "string"}
+        },
+        "allOf": [
+          {"if": {"properties": {"state": {"const": "checked"}}}, "then": {"required": ["evidence"], "properties": {"evidence": {"minLength": 1}}}},
+          {"if": {"properties": {"state": {"enum": ["not-applicable", "blocked"]}}}, "then": {"required": ["reason"], "properties": {"reason": {"minLength": 1}}}}
+        ]
+      }
+    }
+  }
+}

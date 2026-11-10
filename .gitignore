@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 /.ultimatum/
 plugins/ultimatum/evals/results/
+evals/live/results/*/
+!evals/live/results/.keep

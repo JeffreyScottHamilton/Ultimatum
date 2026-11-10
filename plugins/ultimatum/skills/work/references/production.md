@@ -70,3 +70,16 @@ Say "fix deployed, not yet confirmed" until items 2-3 show data. Never claim res
 - Fix + guard + test; blast radius and any data repair needed.
 - Post-deploy checklist with what was and was not verified.
 - Redactions made; actions not taken because they need authorization.
+
+## 8. Anti-patterns
+
+- Fixing from the error message alone without checking the frames against the deployed code.
+- Pasting a real production payload into a test, a note, or a worker brief.
+- Marking an issue resolved, restarting a service, or replaying a queue "to see if it helps".
+- Treating one quiet hour after deploy as confirmation.
+- Silencing the error with a broad catch so the monitor goes green; the failure still happens, it is just invisible.
+- Chasing the most frequent error when a rarer one carries the data loss; rank by impact, not count.
+
+## 9. Without any monitoring tool
+
+If the user pastes only a stack trace or log excerpt, do all of §2-§5 from it. State the evidence gaps plainly (no release, no frequency, no user impact) and ask for the one item that would change the plan. Local `ult search` on the exact error string finds where it is raised; `ult refs` finds callers.

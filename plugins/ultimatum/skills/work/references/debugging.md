@@ -70,3 +70,16 @@ If the evidence comes from prod errors, logs, or traces, read `production.md` to
 - Hypotheses rejected (one line each) if they cost time.
 - What was not verified (other environments, prod).
 Include the root cause in the commit message body when the user asks you to commit.
+
+## 10. Quick decision table
+
+| Situation | Move |
+|---|---|
+| Test fails in the suite, passes alone | Order or shared state: run with the preceding tests, bisect the test list, look for leaked globals, files, env |
+| Works locally, fails in CI | `debugging.md` §7: diff versions, env, parallelism, clock |
+| Worked yesterday | `git bisect run` with the loop, then read the first bad commit's diff |
+| Wrong output, no error | Add an assertion at each boundary; compare against a known-good input or the previous version (differential) |
+| Crash with a stack trace | Read the frame at the top that is your code; find what produced the bad value, not where it was used |
+| Hang or timeout | Dump stacks/threads at the hang (`py-spy dump`, `jstack`, `kill -QUIT`), look for locks, missing await, unbounded loops |
+| Memory or CPU growth | Profile before guessing; compare two snapshots over time |
+| User report with no repro | Ask for the redacted artifact; do not patch speculatively |

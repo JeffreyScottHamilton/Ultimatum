@@ -8,7 +8,7 @@ argument-hint: "<task>"
 
 Task: $ARGUMENTS
 
-Toolbelt (Python stdlib, local, no network): `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ult" <cmd>`. Below, `ult` means that command.
+Toolbelt (Python stdlib, local, no network): `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ult" <cmd>`. Below, `ult` means that command. When briefing a subagent, pass this full command, already substituted; agents cannot resolve plugin variables.
 References live in `${CLAUDE_SKILL_DIR}/references/`. Read a reference only when its route applies, and read it once per task.
 
 ## 1. Rules that always hold

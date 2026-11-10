@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ultimatum.local/schemas/findings.schema.json",
+  "title": "Ultimatum security findings",
+  "description": "Shape of .ultimatum/security/findings.json. Enforced by `ult findings validate` (scripts/ultlib/findings.py); that validator is the contract and additionally rejects duplicate ids/fingerprints, found_by == verified_by, unsafe paths, and any value that redact() would change (an unredacted secret). Unknown fields are allowed but reported as warnings.",
+  "oneOf": [
+    {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    {
+      "type": "object",
+      "required": ["findings"],
+      "properties": {
+        "version": {"const": 1},
+        "scope": {"description": "What was reviewed: target, ref, environment, constraints.", "type": ["string", "object"]},
+        "source_ref": {"type": "string", "description": "git ref reviewed, with a note if the tree was dirty"},
+        "tools": {"description": "Tools that ran / did not run, from `ult scan` output.", "type": ["string", "array", "object"]},
+        "authorization": {"type": "string", "description": "What the user authorized (read-only by default)."},
+        "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}}
+      }
+    }
+  ],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "textOrList": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "array", "minItems": 1, "items": {"type": ["string", "object"]}}]},
+    "severity": {"enum": ["critical", "high", "medium", "low", "info"]},
+    "finding": {
+      "type": "object",
+      "required": ["id", "title", "status", "file", "boundary"],
+      "properties": {
+        "id": {"type": "string", "description": "F-001 style; auto-assigned by `ult findings add`."},
+        "title": {"type": "string", "minLength": 1, "maxLength": 120},
+        "status": {"enum": ["confirmed", "needs-validation", "rejected"]},
+        "file": {"type": "string", "description": "Repo-relative path: no leading '/', no '..', no control characters.", "pattern": "^(?![/\\\\])(?![A-Za-z]:)[^\\u0000-\\u001f]+$"},
+        "line": {"type": "integer", "minimum": 1},
+        "endpoint": {"type": "string", "description": "Route, CLI command, job, or message handler, e.g. 'GET /docs/{id}'."},
+        "entry_point": {"$ref": "#/$defs/text"},
+        "actor": {"type": "string", "description": "Who attacks and what they start with (e.g. 'any logged-in user of tenant A')."},
+        "input": {"type": "string", "description": "The value the actor controls."},
+        "boundary": {"type": "string", "description": "The rule that should hold and fails, e.g. 'users read only their own account's documents'."},
+        "preconditions": {"$ref": "#/$defs/textOrList", "description": "Role, config, flag, timing; 'none beyond a normal account' is a valid value."},
+        "impact": {"type": "string", "description": "What was shown: which data/actions, whose."},
+        "evidence": {"$ref": "#/$defs/textOrList", "description": "file:line quotes, commands with exit codes, test names. Include the strongest control that was checked."},
+        "missing_evidence": {"$ref": "#/$defs/textOrList", "description": "needs-validation only: the exact fact that would settle it."},
+        "validation_plan": {"$ref": "#/$defs/textOrList"},
+        "rejection_reason": {"type": "string", "description": "rejected only: the control or fact that refutes the claim."},
+        "rejected_by_pattern": {"type": "string", "pattern": "^FP-[0-9]{2}$"},
+        "severity": {"oneOf": [{"$ref": "#/$defs/severity"}, {"const": "unrated"}]},
+        "suggested_severity": {"oneOf": [{"$ref": "#/$defs/severity"}, {"const": "unrated"}]},
+        "confidence": {"enum": ["high", "medium", "low"]},
+        "cwe": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+        "refs": {"type": "object", "properties": {"asvs": {"type": "array", "items": {"type": "string"}}, "wstg": {"type": "array", "items": {"type": "string"}}}},
+        "reproduction": {"type": ["string", "object", "array"]},
+        "remediation": {"type": ["string", "object"]},
+        "fix_proof": {"type": ["string", "object"]},
+        "variants": {"type": ["string", "array"]},
+        "found_by": {"type": "string"},
+        "verified_by": {"type": "string"},
+        "verification_notes": {"type": "string"},
+        "fingerprint": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+-]*$"},
+        "summary": {"type": "string"},
+        "notes": {"type": "string"},
+        "source": {"type": "string"},
+        "area": {"type": "string"},
+        "trace": {"type": "array"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "confirmed"}}},
+          "then": {
+            "required": ["entry_point", "actor", "input", "boundary", "preconditions", "impact", "evidence", "severity", "confidence"],
+            "properties": {"severity": {"$ref": "#/$defs/severity"}}
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "needs-validation"}}},
+          "then": {"required": ["missing_evidence"], "properties": {"severity": {"const": "unrated"}}}
+        },
+        {
+          "if": {"properties": {"status": {"const": "rejected"}}},
+          "then": {"required": ["rejection_reason"], "properties": {"severity": {"const": "unrated"}}}
+        }
+      ]
+    }
+  }
+}

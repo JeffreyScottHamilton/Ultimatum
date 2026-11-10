@@ -68,3 +68,20 @@ Changing policies is a security-relevant change: apply the overlay.
 ## 5. Report
 
 Per change: what is reversible, the exact commands run with exit codes, plan/EXPLAIN evidence, RLS checks (1-11) with pass/fail/not checked, anything applied to a real environment (should be nothing without authorization), rollback steps.
+
+## 6. Quick commands (adapt to the project's tools; read-only unless stated)
+
+- Tables without RLS: `select schemaname, tablename from pg_tables where schemaname = 'public' and not rowsecurity;`
+- Policies listing: `select schemaname, tablename, policyname, cmd, roles, qual, with_check from pg_policies;`
+- FKs without an index: join `pg_constraint` (contype 'f') against `pg_index` on the leading columns; report the table, column, and constraint name.
+- Slow statements: `pg_stat_statements` ordered by `total_exec_time`; use it to choose what to tune.
+- Supabase CLI: discover flags with `supabase --help` and `supabase db --help`; advisors and `db lint` if the installed version has them. Verify any fix by re-running the query as the test identity.
+- Stop retrying the same failing command after 2-3 attempts; read the error and the docs for the installed version.
+
+## 7. When to stop and ask
+
+- A migration would lock a large table for an unknown time.
+- A change drops, truncates, or rewrites data.
+- A plan shows destroy or replace on a stateful resource.
+- An RLS check fails and the fix would widen access.
+- The only way to verify requires production credentials.

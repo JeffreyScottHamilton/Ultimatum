@@ -66,3 +66,21 @@ Lead with the result and the verbatim goal. Then:
 - What was not measured (other hardware, production load).
 - Ledger path `.ultimatum/opt/<name>.tsv`, branch, and best-commit sha. Nothing pushed.
 Do not state a gain without the baseline numbers and the variance beside it.
+
+## 7. Choosing hypotheses
+
+- Profile or trace before iteration 1 and list the top three costs; spend iterations in that order.
+- Prefer changes that remove work (skip, batch, cache with correct invalidation, better algorithm) over changes that merely shift it.
+- Keep each change small enough to attribute the delta to one cause; if two ideas are coupled, try them as separate iterations first.
+- Record rejected ideas in the TSV description so a restart does not retry them.
+- If a gain looks too good, suspect the measurement: rerun the baseline and the best commit back to back.
+
+## 8. Example ledger
+
+```
+iter	time	commit	metric_median	delta_vs_best	guard	status	description
+0	10:02	a1b2c3d	412.0	0	pass	keep	baseline (5 runs, spread 408-419)
+1	10:09	b2c3d4e	371.0	-41.0	pass	keep	reuse parsed regex across calls
+2	10:16	c3d4e5f	369.5	-1.5	pass	discard	within noise margin (5.0)
+3	10:23	d4e5f6a	330.0	-41.0	fail	guard-fail	skip validation; output differs on empty input
+```

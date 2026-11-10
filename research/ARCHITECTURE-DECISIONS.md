@@ -1,0 +1,21 @@
+# Ultimatum architecture decisions
+
+Made by the main agent after reading `platform.md`, `context-efficiency.md`, `engineering-delivery.md`, `ui-browser.md` and `security.md`.
+
+| # | Decision | Why (evidence) |
+|---|---|---|
+| 1 | One plugin `ultimatum` with one skill `work`, invoked as `/ultimatum:work <task>`. No `commands/` directory. | `platform.md` §2: plugin skills are namespaced `<plugin>:<skill>`, and `$ARGUMENTS` was verified under `claude -p`. Skills replace commands. |
+| 2 | SKILL.md is a compact router of about 110 lines, with a route table that points to references loaded on demand. | Only the description is always on. The body loads on invoke and references load through Read (`platform.md` §3). Keeps the per-task cost small: `claude plugin details` reports the actual token figure (TEST-REPORT). |
+| 3 | The security overlay is a trigger list in SKILL.md and is free for non-sensitive edits. | User requirement: "Ordinary edits should pay for only the security checks relevant to the change." |
+| 4 | The toolbelt is `scripts/ult` (Python stdlib, no network) and is addressed as `${CLAUDE_PLUGIN_ROOT}/scripts/ult`. | `${CLAUDE_PLUGIN_ROOT}` is expanded inline in SKILL.md. Python 3 is near-universal, and stdlib only means nothing to install. |
+| 5 | `ult run` stores raw output before it filters anything, returns the original exit code, prints verbatim blocks with line numbers, and flags ZERO_RUN and non-zero exits it doesn't recognize. | Merges RTK's per-command filters, RTK's tee recovery, and Context Mode's "no lossy cut" rule. Fixes the evidence losses `context-efficiency.md` §5 found in RTK's eslint, pytest and npm filters. |
+| 6 | `ult find` uses a local SQLite FTS5 store. Hits point back to the source or log range. | Context Mode's idea, reimplemented. Context Mode itself is ELv2, so none of its code is used. |
+| 7 | `ult map` and `ult symbols/refs` are regex-based, capped, and queried rather than dumped. Their output is labeled as leads to confirm in source. | Graphify and Serena ideas. Serena's application is GPL, so its code is not used. The MCP versions are optional upgrades. |
+| 8 | There are five plugin agents with a static model per role: scout (haiku), worker, reviewer and hunter (sonnet), and verifier (inherit). | `platform.md` §4: plugin agents support `model:`, and `hooks`/`permissionMode` are ignored. Cheap models for bounded read-only work, the session model for adversarial verification. |
+| 9 | Security has three verdicts: confirmed, needs-validation and rejected. A coverage ledger is kept, with hunters plus a fresh verifier. `ult findings` validates the artifacts deterministically. | Cloudflare's process merged with Trail of Bits' fp-check and patch-validation ideas, written in original wording. The ASVS/WSTG IDs come from `security.md`. |
+| 10 | `ult scan` wraps semgrep, gitleaks and osv-scanner when they are present. Built-in leads cover secrets and risky sinks only. Advisory status is `unknown` without osv-scanner. | `security.md` §9: a built-in advisory list would go stale and give false assurance. |
+| 11 | `ult-browser.mjs` uses Playwright and runs axe-core when it is installed. Otherwise it runs a built-in DOM check set and lists which criteria remain manual. | `ui-browser.md` §9. axe is MPL-2.0, so it is invoked, never vendored. |
+| 12 | The default install has no hooks, MCP servers, telemetry, proxy or hosted model routing. | User requirement, and `engineering-delivery.md` rec. 10. Every integration is opt-in and named before use. |
+| 13 | Fixtures and evals live in the repository (`fixtures/`, `evals/`) outside the shipped plugin dir. Unit tests ship with the plugin. | Keeps a deliberately vulnerable app out of the installed plugin cache. Evals target the plugin by path. |
+| 14 | No upstream text or code is copied. Credits and license notes live in `docs/CREDITS.md`. | Several upstreams are CC BY-SA, ELv2, GPL or BUSL, and some have no LICENSE file (`REVISIONS.md`). Original wording avoids all of these obligations. |
+| 15 | Local commits only. Nothing is pushed or published until the user asks. | User instruction: "Keep the build local until I ask you to publish." |
