@@ -4,6 +4,20 @@ Use this only when the user asks for an audit or "find vulnerabilities". You are
 
 Outputs live in `.ultimatum/security/`: `ledger.json`, `findings.json`, `report.md`, and `scan-last.json`.
 
+**Read-only means the project's files.** `.ultimatum/` is git-ignored audit state, so writing there is allowed in a read-only audit. Only skip it if the user explicitly forbids *any* writes. In that case, print the findings JSON and the coverage ledger in the reply instead.
+
+**Minimum for every audit, however small the repository.** These steps are required:
+1. `ult scan`
+2. `ult findings ledger init`
+3. one ledger mark per area, with evidence or a reason
+4. `findings.json` that passes `ult findings validate`
+5. `ult findings render`
+6. a fresh `ultimatum:security-verifier` on every confirmed finding rated high or critical
+
+Hunters are optional below ~2k lines of code. The verifier is not optional.
+
+**Line numbers** come from `grep -n`, `ult search`, or a Read of that single file. Never take them from concatenated output (`cat a b | cat -n`). Re-check every cited `file:line` before writing the report.
+
 ## 0. Intake: scope and authorization
 
 Settle these before you read code. Ask only for what you can't default:
@@ -30,7 +44,7 @@ Write the answers as the scope line. It goes into `ult findings ledger init --sc
    - **External services:** payment, email, storage, LLM APIs, internal HTTP calls.
    - **Dependencies:** manifests and lockfiles.
    - **Deploy surfaces:** Dockerfile, compose, k8s, Terraform, CI workflows, agent configs (`.mcp.json`, `.claude/`).
-3. Run `ult scan` (built-ins plus installed tools in offline-safe mode). Read which commands ran and which tools did not run. Keep the leads for the hunters.
+3. Run `ult scan`. This is required: it runs the built-in checks plus any installed tools in offline-safe mode. Read which commands ran and which tools did not run, and state both in the report, including "dependency advisories: unknown" when osv-scanner is absent. Keep the leads for the hunters and resolve every lead in the ledger or the findings.
 
 ## 2. Trust-boundary map
 

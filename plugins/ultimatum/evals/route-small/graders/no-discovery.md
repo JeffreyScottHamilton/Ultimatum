@@ -1,7 +1,7 @@
 ---
 type: tool_used
 tool: Read
-input_match: 'references/discovery\\.md'
+input_match: 'references/discovery\.md'
 min: 0
 max: 0
 ---
