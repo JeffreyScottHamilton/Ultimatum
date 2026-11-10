@@ -54,7 +54,7 @@ def list_files(root: Path, scope: str | None = None, glob: str | None = None) ->
         pass
     if not files:
         for dp, dns, fns in os.walk(base):
-            dns[:] = [d for d in dns if d not in SKIP_DIRS and not d.startswith(".")]
+            dns[:] = [d for d in dns if d not in SKIP_DIRS and d not in {".idea", ".vscode", ".cache"}]
             files.extend(Path(dp) / f for f in fns)
     files = [f for f in files if not (set(f.relative_to(root).parts) & SKIP_DIRS)]
     if glob:

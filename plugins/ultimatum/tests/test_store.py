@@ -84,21 +84,18 @@ class TestStore(UltCase):
         r = self.ult("get", "note:999")
         self.assertEqual(r.code, 1)
 
-    @unittest.expectedFailure
     def test_get_missing_log_no_traceback(self):
         # BUG: store.py:87 `ult get log:nonexistent:1-2` -> uncaught FileNotFoundError traceback
         # (expected: "not found" message and exit 1).
         r = self.ult("get", "log:nonexistent:1-2")
         self.assertNotIn("Traceback", r.err, r.err)
 
-    @unittest.expectedFailure
     def test_get_malformed_log_ref_no_traceback(self):
         # BUG: store.py:83-85 `ult get log:bad` / `log:x:a-b` -> uncaught ValueError traceback.
         for ref in ("log:bad", "log:x:a-b", "log:x:5"):
             r = self.ult("get", ref)
             self.assertNotIn("Traceback", r.err, f"{ref}: {r.err[-200:]}")
 
-    @unittest.expectedFailure
     def test_get_log_path_traversal(self):
         outside = self.tmp.parent / "ult-outside-secret.log"
         outside.write_text("TOP SECRET OUTSIDE\n")

@@ -19,9 +19,10 @@ import subprocess
 import sys
 import time
 from collections import Counter
+from glob import escape as glob_escape
 from pathlib import Path
 
-from .common import dump_json, new_id, redact, sha256_bytes, state_dir, write_private
+from .common import dump_json, new_id, raw_lines, redact, safe_id, sha256_bytes, state_dir, write_private
 
 # --------------------------------------------------------------------------
 # Command families. Each has: detector (on argv), "block start" patterns whose
@@ -108,6 +109,32 @@ CONTENT_SNIFF = [
     ("go", F(r"^(--- FAIL: |ok\s+\S+\s+[\d.]+s)", re.M)),
     ("cargo", F(r"^test result: ", re.M)),
     ("tsc", F(r"error TS\d+:")),
+]
+
+
+ANSI = re.compile(r"\x1b\[[0-9;?]*[ -/]*[@-~]|\x1b\][^\x07]*\x07")
+
+
+def display_lines(text: str) -> list[str]:
+    """Lines as a terminal would show them: ANSI stripped, CR redraws resolved.
+
+    Only used for selection/printing; the raw log keeps the original bytes.
+    """
+    out = []
+    for line in ANSI.sub("", text).split("\n"):
+        if "\r" in line:
+            parts = [p for p in line.split("\r") if p != ""]
+            line = parts[-1] if parts else ""
+        out.append(line)
+    if out and out[-1] == "":
+        out.pop()
+    return out
+
+
+ZERO_RUN = [
+    F(r"^Ran 0 tests? in"), F(r"\bno tests ran\b"), F(r"^collected 0 items"),
+    F(r"No tests found"), F(r"\b0 passing\b"), F(r"^testing: warning: no tests to run"),
+    F(r"running 0 tests"),
 ]
 
 
@@ -229,7 +256,16 @@ def render(lines, ranges, noise, headers, meta) -> str:
         out.append(f"[ult run] counted {total} warning/noise line(s); top:")
         for k, v in noise.most_common(3):
             out.append(f"  ×{v} {k}")
-    out.append(f"[ult run] raw: ult log {meta['id']} --lines A:B | --grep RE  (exact output)")
+    shown_bytes = sum(len(lines[k]) + 1 for a, b, _ in ranges for k in range(a, b + 1))
+    tier = "passthrough" if ranges == [(0, len(lines) - 1, "head")] else ("structured" if headers or meta["family"] != "generic" else "pattern")
+    if any(p.search(l) for p in ZERO_RUN for l in lines[-60:]):
+        out.append("[ult run] WARNING: zero tests ran — this is not a pass (check test selection/discovery)")
+    if meta["exit_code"] != 0 and not headers and not any(t in ("block", "signal", "summary") for _, _, t in ranges) and tier != "passthrough":
+        out.append("[ult run] non-zero exit but no recognised failure pattern — read the tail above or `ult log` it; do not assume success")
+    if meta.get("timed_out"):
+        out.append("[ult run] TIMED OUT — output above is partial")
+    out.append(f"[ult run] exit={meta['exit_code']} tier={tier} shown={shown_bytes}B of {meta['bytes']}B "
+               f"raw: ult log {meta['id']} --lines A:B | --grep RE")
     return redact("\n".join(out))
 
 
@@ -266,8 +302,10 @@ def cmd_run(args) -> int:
         timed_out = True
     raw = b"".join(chunks)
     code = proc.returncode if not timed_out else 124
+    if code < 0:  # killed by signal N -> shell convention 128+N
+        code = 128 - code
     text = raw.decode("utf-8", "replace")
-    lines = text.splitlines()
+    lines = display_lines(text)
     family = args.family or detect_family(argv, text)
     meta = {
         "id": rid,
@@ -302,9 +340,13 @@ def _resolve_log(lid: str) -> Path:
         if not metas:
             raise SystemExit("no logs yet")
         return metas[-1].with_suffix(".log")
+    try:
+        safe_id(lid)
+    except ValueError:
+        raise SystemExit(f"invalid log id: {lid!r}")
     p = logs / f"{lid}.log"
     if not p.exists():
-        cands = sorted(logs.glob(f"*{lid}*.log"))
+        cands = sorted(logs.glob(f"*{glob_escape(lid)}*.log"))
         if len(cands) == 1:
             return cands[0]
         raise SystemExit(f"log not found: {lid}")
@@ -313,7 +355,12 @@ def _resolve_log(lid: str) -> Path:
 
 def cmd_log(args) -> int:
     p = _resolve_log(args.id)
-    lines = p.read_text("utf-8", "replace").splitlines()
+    data = p.read_bytes()
+    if args.raw and not (args.lines or args.grep or args.number or args.meta):
+        sys.stdout.flush()
+        sys.stdout.buffer.write(data)  # byte-exact
+        return 0
+    lines = raw_lines(data.decode("utf-8", "replace"))
     if args.meta:
         print(p.with_suffix(".json").read_text())
         return 0

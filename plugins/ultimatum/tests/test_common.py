@@ -91,7 +91,6 @@ class TestRedactPositive(unittest.TestCase):
         self.assertRedacted("s3cr3tValue99", "password: 's3cr3tValue99'")
         self.assertRedacted("s3cr3tValue99", '{"password": "s3cr3tValue99"}')
 
-    @unittest.expectedFailure
     def test_prefixed_env_var_names(self):
         # BUG: common.py assigned-secret pattern has lookbehind (?<![A-Za-z0-9_]) so names with a
         # prefix such as DB_PASSWORD="...", MY_API_KEY="...", STRIPE_SECRET_KEY="..." are NOT redacted.
@@ -161,7 +160,6 @@ class TestRedactNegative(unittest.TestCase):
         # a word merely ending in "sk" followed by a long slug must not match (\b prevents)
         self.assertUnchanged("disk-usage-report-for-the-whole-cluster-nodes")
 
-    @unittest.expectedFailure
     def test_slug_containing_sk_segment(self):
         # BUG: openai-key regex \bsk-[A-Za-z0-9_-]{32,} matches the "sk-" segment inside an ordinary
         # hyphenated slug/path such as "my-sk-this-is-a-long-kebab-case-identifier-name".

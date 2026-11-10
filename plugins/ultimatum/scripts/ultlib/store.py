@@ -8,11 +8,12 @@ a file path that must be read before it is relied on.
 """
 from __future__ import annotations
 
+import re
 import sqlite3
 import time
 from pathlib import Path
 
-from .common import redact, state_dir
+from .common import raw_lines, redact, safe_id, state_dir
 
 CHUNK = 40
 
@@ -81,10 +82,18 @@ def find(q: str, kind: str | None = None, limit: int = 10) -> list[tuple]:
 
 def get(ref: str) -> str | None:
     if ref.startswith("log:"):
-        _, rid, rng = ref.split(":", 2)
-        a, b = (int(x) for x in rng.split("-"))
+        m = re.match(r"^log:([^:]+):(\d+)-(\d+)$", ref)
+        if not m:
+            return None
+        try:
+            rid = safe_id(m.group(1))
+        except ValueError:
+            return None
+        a, b = int(m.group(2)), int(m.group(3))
         p = state_dir(sub="logs") / f"{rid}.log"
-        lines = p.read_text("utf-8", "replace").splitlines()
+        if not p.is_file():
+            return None
+        lines = raw_lines(p.read_bytes().decode("utf-8", "replace"))
         return "\n".join(f"{i}\t{lines[i - 1]}" for i in range(a, min(b, len(lines)) + 1))
     con = _db()
     row = con.execute("SELECT kind, title, body, created FROM docs WHERE ref = ?", (ref,)).fetchone()

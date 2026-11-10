@@ -1,9 +1,10 @@
 import hashlib
+import subprocess
 import os
 import stat
 import unittest
 
-from _harness import UltCase, PY
+from _harness import UltCase, PY, ULT
 
 
 def pyc(code, *extra):
@@ -26,7 +27,6 @@ class TestRun(UltCase):
         self.assertEqual(r.code, 124, r.all)
         self.assertEqual(self.last_meta()["timed_out"], True)
 
-    @unittest.expectedFailure
     def test_signal_death_exit_code(self):
         # BUG: run.py cmd_run returns proc.returncode (-9 for SIGKILL): prints "exit=-9" and the
         # process exits 247 (-9 & 0xff). Expected shell convention 128+9=137 and a non-negative exit=.
@@ -59,10 +59,9 @@ class TestRun(UltCase):
         r = self.ult(*pyc("import sys; sys.stdout.write('a\\x0cb\\r\\nc\\n')"))
         meta = self.last_meta()
         raw = (self.logs_dir() / f"{meta['id']}.log").read_bytes()
-        got = self.ult("log", meta["id"], "--raw")
-        self.assertEqual(got.out.encode(), raw)
-
-    test_log_raw_exact_with_odd_line_separators = unittest.expectedFailure(test_log_raw_exact_with_odd_line_separators)
+        got = subprocess.run([PY, ULT, "log", meta["id"], "--raw"], cwd=str(self.root), env=self.env(),
+                             capture_output=True, timeout=60)
+        self.assertEqual(got.stdout, raw)
 
     def test_buried_failure_verbatim(self):
         code = ("for i in range(2000):\n"

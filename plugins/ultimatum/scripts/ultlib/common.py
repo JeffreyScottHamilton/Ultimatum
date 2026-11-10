@@ -71,6 +71,25 @@ def new_id(prefix: str) -> str:
     return f"{prefix}-{stamp}-{salt}"
 
 
+SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,120}$")
+
+
+def safe_id(value: str) -> str:
+    """Reject ids that could escape .ultimatum/ (path separators, '..')."""
+    if not SAFE_ID.match(value) or ".." in value:
+        raise ValueError(f"invalid id: {value!r}")
+    return value
+
+
+def raw_lines(text: str) -> list[str]:
+    """Split on '\n' only, so line numbers match `wc -l`/editors and nothing else
+    (form feeds, lone CR, unicode separators) is treated as a line break."""
+    parts = text.split("\n")
+    if parts and parts[-1] == "":
+        parts.pop()
+    return parts
+
+
 def sha256_bytes(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
 
@@ -93,7 +112,7 @@ SECRET_PATTERNS: list[tuple[str, re.Pattern]] = [
     ("slack-webhook", re.compile(r"https://hooks\.slack\.com/services/[A-Za-z0-9/_-]+")),
     ("stripe-key", re.compile(r"\b(?:sk|rk)_(?:live|test)_[A-Za-z0-9]{16,}\b")),
     ("anthropic-key", re.compile(r"\bsk-ant-[A-Za-z0-9_\-]{20,}\b")),
-    ("openai-key", re.compile(r"\bsk-(?:proj-|svcacct-)?[A-Za-z0-9_\-]{32,}\b")),
+    ("openai-key", re.compile(r"(?<![A-Za-z0-9_-])sk-(?:proj-|svcacct-)?[A-Za-z0-9_\-]{32,}\b")),
     ("google-api-key", re.compile(r"\bAIza[0-9A-Za-z_\-]{35}\b")),
     ("npm-token", re.compile(r"\bnpm_[A-Za-z0-9]{36}\b")),
     ("sendgrid-key", re.compile(r"\bSG\.[A-Za-z0-9_\-]{22}\.[A-Za-z0-9_\-]{43}\b")),
@@ -102,8 +121,11 @@ SECRET_PATTERNS: list[tuple[str, re.Pattern]] = [
     ("bearer", re.compile(r"(?i)(?<=authorization: bearer )[A-Za-z0-9._\-]{16,}")),
     # key = "value" assignments for names that strongly imply a secret
     ("assigned-secret", re.compile(
-        r"(?i)(?<![A-Za-z0-9_])((?:api[_-]?key|secret[_-]?key|client[_-]?secret|access[_-]?token|auth[_-]?token|password|passwd|private[_-]?key)"
+        r"(?i)(?<![A-Za-z0-9])((?:[A-Za-z0-9]+[_-])*(?:api[_-]?key|secret[_-]?key|client[_-]?secret|access[_-]?token|auth[_-]?token|password|passwd|private[_-]?key)"
         r"[\"']?\s*[:=]\s*[\"'])([^\"'\s]{8,})([\"'])")),
+    # .env style: UPPER_NAME_WITH_SECRET_WORD=value (unquoted)
+    ("env-secret", re.compile(
+        r"(?m)^(\s*(?:export\s+)?[A-Z0-9_]*(?:API_KEY|SECRET|TOKEN|PASSWORD|PASSWD|PRIVATE_KEY)[A-Z0-9_]*=)([^\s\"'#]{8,})()")),
 ]
 
 
@@ -116,7 +138,7 @@ def redact(text: str) -> str:
     if not text:
         return text
     for kind, pat in SECRET_PATTERNS:
-        if kind == "assigned-secret":
+        if kind in ("assigned-secret", "env-secret"):
             text = pat.sub(lambda m: f"{m.group(1)}[REDACTED:{kind}:{m.group(2)[-4:]}]{m.group(3)}", text)
         elif kind == "private-key":
             text = pat.sub(f"[REDACTED:{kind}]", text)

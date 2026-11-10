@@ -16,7 +16,7 @@ import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from .common import dump_json, project_root, state_dir, write_private
+from .common import dump_json, project_root, redact, state_dir, write_private
 from .search import EXT_LANG, list_files
 
 MANIFESTS = {"package.json", "pnpm-lock.yaml", "package-lock.json", "yarn.lock", "requirements.txt", "pyproject.toml",
@@ -43,8 +43,8 @@ LINE_RULES: dict[str, list[re.Pattern]] = {
         re.compile(r"(?i)\b(create table|alter table)\b"),
     ],
     "auth": [
-        re.compile(r"(?i)\b(authenticate|authoriz\w*|login|logout|session|jwt|oauth|bearer|api[_-]?key|csrf|"
-                   r"permission|is_admin|role|tenant|owner_id|account_id|current_user|require_\w+|middleware)\b"),
+        re.compile(r"(?i)(?<![a-z0-9])(authenticate|authoriz\w*|login|logout|sessions?|jwt|oauth|bearer|api[_-]?key|csrf|"
+                   r"permissions?|is_admin|roles?|tenant|tenant_id|owner_id|account_id|current_user|require_\w+|middleware)(?![a-z0-9])"),
     ],
     "sinks": [
         re.compile(r"\b(subprocess\.|os\.system|exec\(|eval\(|child_process|execSync|spawn\(|pickle\.loads|yaml\.load\(|"
@@ -109,7 +109,7 @@ def build(root: Path) -> dict:
                         auth_files[rel] += 1
                         if auth_files[rel] > 6:
                             continue
-                    m[sect].append(f"{rel}:{i}: {line.strip()[:160]}")
+                    m[sect].append(redact(f"{rel}:{i}: {line.strip()[:160]}"))
     m["languages"] = dict(langs.most_common())
     m["auth_hotspots"] = [f"{f} ({n})" for f, n in auth_files.most_common(15)]
     return m

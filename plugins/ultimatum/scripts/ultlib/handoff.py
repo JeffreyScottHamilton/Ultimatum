@@ -16,10 +16,12 @@ from pathlib import Path
 from .common import project_root, redact, state_dir, write_private
 
 
-def _git(root: Path, *a: str) -> str:
+def _git(root: Path, *a: str, strip: bool = True) -> str:
     try:
         r = subprocess.run(["git", "-C", str(root), *a], capture_output=True, text=True, timeout=20)
-        return r.stdout.strip() if r.returncode == 0 else ""
+        if r.returncode != 0:
+            return ""
+        return r.stdout.strip() if strip else r.stdout.rstrip("\n")
     except (OSError, subprocess.SubprocessError):
         return ""
 
@@ -38,7 +40,7 @@ def _recent_runs(n: int = 6) -> list[dict]:
 def compose(root: Path, a) -> str:
     branch = _git(root, "rev-parse", "--abbrev-ref", "HEAD") or "(no git)"
     head = _git(root, "rev-parse", "--short", "HEAD") or "(none)"
-    changed = _git(root, "status", "--short").splitlines()
+    changed = _git(root, "status", "--short", strip=False).splitlines()
     parts = [f"# Handoff — {time.strftime('%Y-%m-%d %H:%M')}", "",
              f"<!-- ult: branch={branch} head={head} -->", "",
              "## Goal", a.goal or "(unstated)", "",
