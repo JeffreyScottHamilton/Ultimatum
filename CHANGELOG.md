@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.1.1] - 2026-11-11
+
+### Fixed
+- `ult search` crashed with a traceback on an invalid regex and on a `--path` outside the project when ripgrep was not installed. Found by the first CI run (CI runners have no ripgrep). Both now exit with a clear error, on both the ripgrep and pure-Python paths.
+
+### Added
+- CI on every push: unit tests on Python 3.9, 3.11 and 3.13 (without ripgrep, so the fallback search path is covered) and `claude plugin validate --strict`.
+
 ## [0.1.0] - 2026-11-11 (preview)
 
 First public preview. Tested on small fixture projects only; see `docs/TEST-REPORT.md` for exactly what was and was not tested.
@@ -13,10 +21,6 @@ First public preview. Tested on small fixture projects only; see `docs/TEST-REPO
 - `ult` toolbelt (Python 3.9+ standard library, no network): `run`/`log` with raw-log recovery, `search`/`symbols`/`refs`, `map`, `note`/`find`/`get`, `handoff`, `scan` (wraps Semgrep, Gitleaks and OSV-Scanner when installed), `findings`, `doctor`.
 - `ult-browser.mjs`: Playwright-based viewport, interaction, and accessibility checks, with axe-core when installed.
 - `ULTIMATUM_STATE_DIR` to keep all state outside the repository for strict read-only work.
-- CI: unit tests on Python 3.9, 3.11 and 3.13, plus `claude plugin validate --strict`.
-
-### Fixed before release
-- `ult search` crashed with a traceback on an invalid regex and on a `--path` outside the project when ripgrep was not installed. Found by the first CI run (CI runners have no ripgrep); both now exit with a clear error, on both the ripgrep and pure-Python paths.
 
 ### Known limitations
 - Not yet tested on large real-world repositories or with models other than `sonnet`.
