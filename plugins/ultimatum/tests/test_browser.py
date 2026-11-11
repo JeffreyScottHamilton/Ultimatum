@@ -117,6 +117,58 @@ class TestFixtureApp(BrowserCase):
         self.assertIn("stress-overflow", ids, r.stdout)
 
 
+INTERACTIVE = """<!doctype html><html lang="en"><head><title>Interactive</title>
+<style>button{min-width:48px;min-height:48px;font-size:16px}#dlg{display:none}#dlg.open{display:block}</style></head>
+<body><h1>Items</h1><ul id="list"><li class="row">one</li><li class="row">two</li></ul>
+<button id="open">Remove first</button>
+<div id="dlg" role="dialog" aria-modal="true" aria-label="Confirm removal">
+<button id="cancel">Cancel</button><button id="ok">Remove</button></div>
+<script>
+const dlg=document.getElementById('dlg'),open=document.getElementById('open');
+open.onclick=()=>{dlg.classList.add('open');document.getElementById('cancel').focus();};
+const close=()=>{dlg.classList.remove('open');open.focus();};
+document.getElementById('cancel').onclick=close;
+document.getElementById('ok').onclick=()=>{document.querySelector('.row').remove();close();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+</script></body></html>"""
+
+
+class TestInteractionSteps(BrowserCase):
+    """click / press / focused / count steps against a real interactive page."""
+
+    def run_steps(self, steps):
+        page = self.tmp / "i.html"
+        page.write_text(INTERACTIVE)
+        sf = self.tmp / "steps.json"
+        sf.write_text(json.dumps(steps))
+        out = self.tmp / "out"
+        r = run_browser(page.as_uri(), "--viewports", "375x812,1280x800", "--steps", str(sf), "--out", str(out))
+        return r, json.loads((out / "report.json").read_text())
+
+    def test_keyboard_dialog_flow(self):
+        r, rep = self.run_steps([
+            {"click": "#open"},
+            {"expect": {"selector": "[role=dialog]", "visible": True}},
+            {"expect": {"selector": "#cancel", "focused": True}},
+            {"press": "Escape"},
+            {"expect": {"selector": "[role=dialog]", "visible": False}},
+            {"expect": {"selector": "#open", "focused": True}},
+            {"expect": {"selector": ".row", "count": 2}},
+            {"click": "#open"},
+            {"press": "Tab"},
+            {"press": "Enter"},
+            {"expect": {"selector": ".row", "count": 1}},
+        ])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(len(rep["viewports"]), 2)
+        self.assertIn("steps: 11/11 ok", r.stdout)
+
+    def test_wrong_focus_expectation_fails(self):
+        r, _ = self.run_steps([{"click": "#open"}, {"expect": {"selector": "#ok", "focused": True}}])
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("focused expected true got false", r.stdout)
+
+
 class TestBrokenPage(BrowserCase):
     def test_detects_defects(self):
         page = self.tmp / "broken.html"

@@ -206,3 +206,19 @@ class TestSymlinkSafety(unittest.TestCase):
         r = subprocess.run([sys.executable, str(ult), "run", "--", "true"], cwd=root, env=env, capture_output=True, text=True)
         self.assertNotEqual(r.returncode, 0)
         self.assertEqual(list(elsewhere.iterdir()), [])
+
+
+class TestExternalStateDir(unittest.TestCase):
+    def test_state_dir_env_keeps_project_untouched(self):
+        import subprocess, tempfile, sys
+        from pathlib import Path
+        root = Path(tempfile.mkdtemp())
+        ext = Path(tempfile.mkdtemp()) / "state"
+        ult = Path(__file__).resolve().parents[1] / "scripts" / "ult"
+        env = {**os.environ, "ULTIMATUM_ROOT": str(root), "ULTIMATUM_STATE_DIR": str(ext)}
+        r = subprocess.run([sys.executable, str(ult), "run", "--", "echo", "hi"], cwd=root, env=env, capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0)
+        self.assertEqual(list(root.iterdir()), [])
+        self.assertTrue(list((ext / "logs").glob("*.log")))
+        r = subprocess.run([sys.executable, str(ult), "log", "last"], cwd=root, env=env, capture_output=True, text=True)
+        self.assertIn("hi", r.stdout)

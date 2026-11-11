@@ -4,7 +4,11 @@ Use this only when the user asks for an audit or "find vulnerabilities". You are
 
 Outputs live in `.ultimatum/security/`: `ledger.json`, `findings.json`, `report.md`, and `scan-last.json`.
 
-**Read-only means the project's files.** `.ultimatum/` is git-ignored audit state, so writing there is allowed in a read-only audit. Only skip it if the user explicitly forbids *any* writes. In that case, print the findings JSON and the coverage ledger in the reply instead.
+**Read-only and audit state.** A read-only audit never changes the project's own files. The audit state still has to exist, so pick where it lives:
+- **Default:** `.ultimatum/security/` in the project. It is git-ignored local state, not a project file.
+- **If the user says "do not modify files", "don't write anything", or similar:** keep the state outside the repository. Run `export ULTIMATUM_STATE_DIR="$(mktemp -d)/ultimatum"` once and prefix every `ult` command in the audit with that variable. The full workflow still runs, the repository stays untouched, and you give the user the directory path in the report.
+
+Never skip the ledger, findings file, or report because of a read-only instruction. Move them instead.
 
 **Minimum for every audit, however small the repository.** These steps are required:
 1. `ult scan`

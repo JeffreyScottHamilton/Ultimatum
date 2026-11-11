@@ -297,7 +297,8 @@ async function main() {
       if (axeSrc) {
         try {
           await page.addScriptTag({ content: axeSrc });
-          const res = await page.evaluate(async () => { const r = await window.axe.run(document); return { v: r.violations.map((x) => ({ id: x.id, impact: x.impact, help: x.help, nodes: x.nodes.slice(0, 5).map((n) => n.target.join(' ')) })) }; });
+          const res = await page.evaluate(async () => { const r = await window.axe.run(document); const m = (x) => ({ id: x.id, impact: x.impact, help: x.help, nodes: x.nodes.slice(0, 5).map((n) => n.target.join(' ')) }); return { v: r.violations.map(m), inc: r.incomplete.map(m) }; });
+          vr.axeIncomplete = res.inc; // axe could not decide: a human must review these; they are not passes
           for (const v of res.v) addF('axe:' + v.id, ['critical', 'serious'].includes(v.impact) ? 'fail' : 'warn', `${v.impact}: ${v.help}`, v.nodes);
         } catch (e) { addF('axe-error', 'warn', 'axe failed to run: ' + String(e.message).split('\n')[0]); }
       }
@@ -373,6 +374,7 @@ async function main() {
       f.examples.slice(0, 3).forEach((x) => console.log(`      - ${x}`));
     }
     if (!vr.findings.length) console.log('  no findings');
+    if (vr.axeIncomplete && vr.axeIncomplete.length) console.log(`  needs manual review (axe incomplete, not a pass): ${vr.axeIncomplete.map((x) => `${x.id}[${x.nodes.length}]`).join(', ')}`);
     if (vr.blocked.length) console.log(`  info: blocked ${vr.blocked.length} external request(s); use --allow-external to permit`);
     console.log(`  steps: ${vr.steps.filter((s) => s.ok).length}/${steps.length} ok; screenshots: ${vr.screenshots.join(', ')}`);
   }

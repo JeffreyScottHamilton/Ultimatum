@@ -4,7 +4,7 @@ correctly) and PROCESS (evidence/workflow requirements from the spec)."""
 import json, sys
 from pathlib import Path
 PROCESS = {"no_delegation", "no_plan_docs", "key_failure_quoted", "raw_output_recoverable", "test_added",
-           "agent_checked_two_viewports", "agent_ran_real_browser", "coverage_recorded", "structured_findings_file",
+           "agent_checked_two_viewports", "agent_ran_real_browser", "coverage_recorded", "structured_findings_file", "findings_file_validates",
            "states_missing_scanners", "parallel_workers_used", "integrated_review", "read_handoff",
            "test_covers_cross_account", "test_covers_authorized", "regression_test_added", "regression_covers_put",
            "injection_called_out", "tests_not_edited", "scope_kept", "only_slugify_changed"}

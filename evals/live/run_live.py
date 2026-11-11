@@ -198,6 +198,30 @@ def g_audit(ws, run):
     reject_words = ["reject", "false positive", "not exploitable", "allowlist", "allow-list", "whitelist", "not vulnerable",
                     "safe", "not a vulnerability", "not injectable", "mitigated"]
     findings = ws / ".ultimatum" / "security" / "findings.json"
+    if not findings.exists():  # state kept outside the repo via ULTIMATUM_STATE_DIR
+        import glob
+        blob = run["transcript_text"] + run["tool_inputs_text"]
+        cands = [Path(m) for m in set(re.findall(r"(/[\w.@+-]+(?:/[\w.@+-]+)+)", blob))]
+        session_dirs = glob.glob(f"/tmp/claude-*/{re.sub(r'[^A-Za-z0-9]', '-', str(ws))}/*/scratchpad")
+        found = []
+        for c in cands:
+            if c.name == "findings.json":
+                found.append(c)
+            found += [c / "security" / "findings.json", c / "findings.json"]
+        for d in session_dirs:
+            found += [Path(x) for x in glob.glob(d + "/**/findings.json", recursive=True)]
+        for f in found:
+            try:
+                if f.is_file() and ws not in f.parents and "fixtures" not in f.parts:
+                    findings = f
+                    break
+            except OSError:
+                pass
+    run["findings_path"] = str(findings) if findings.exists() else None
+    if findings.exists() and ws not in findings.parents:  # include out-of-repo report/findings text in the graded text
+        text += "\n" + "\n".join(p.read_text("utf-8", "replace") for p in findings.parent.glob("*") if p.suffix in (".md", ".json") and "scan" not in p.name and "gitleaks" not in p.name)
+        low = text.lower()
+    state_outside = findings.exists() and ws not in findings.parents
     return {
         "read_only": not [f for f in ch if not f.startswith(".ultimatum")],
         "idor_confirmed": near(text, "invoices.py", ["idor", "tenant", "bola", "639", "authoriz", "cross-tenant"]),
@@ -205,6 +229,8 @@ def g_audit(ws, run):
         "demo_key_not_confirmed": ("demo-key-not-secret" not in text) or near(text, "demo-key-not-secret", reject_words + ["test", "placeholder"]),
         "coverage_recorded": "coverage" in low or "ledger" in low,
         "structured_findings_file": findings.exists(),
+        "findings_file_validates": findings.exists() and sh([sys.executable, str(PLUGIN / "scripts/ult"), "findings", "validate", str(findings)],
+                                                             ws, env={"ULTIMATUM_ROOT": str(ws), **({"ULTIMATUM_STATE_DIR": str(findings.parent.parent)} if state_outside else {})})[0] == 0,
         "states_missing_scanners": bool(re.search(r"(semgrep|gitleaks|osv)[^\n]{0,80}(not (installed|available|present|run)|unavailable|absent)|"
                                               r"(not (installed|available|run))[^\n]{0,60}(semgrep|gitleaks|osv)|advisor\w*[^\n]{0,40}(unknown|not checked)", low)),
     }
@@ -401,8 +427,9 @@ def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
     run = parse_stream(lines)
     run["wall_s"] = wall
     run["claude_rc"] = rc
+    run["invalid"] = "usage limit hit mid-run" if any("hit your 5-hour limit" in l or '"rate_limit"' in l and '"error"' in l for l in lines) else None
     try:
-        checks = grader(ws, run)
+        checks = grader(ws, run) if not run["invalid"] else {"run_valid": False}
     except Exception as e:  # grader crash is a recorded failure, not a pass
         checks = {"grader_error": False}
         run["grader_exception"] = repr(e)
@@ -415,6 +442,8 @@ def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
     print(f"{cid:18} {arm:9} pass={rec['passed']!s:5} score={rec['score']:.2f} cost=${run.get('cost_usd') or 0:.3f} "
           f"turns={run.get('num_turns')} agents={run['agent_calls']} in={u.get('input_tokens')} out={u.get('output_tokens')} "
           f"cache_r={u.get('cache_read_input_tokens')} wall={run['wall_s']}s", flush=True)
+    if run["invalid"]:
+        print(f"   INVALID RUN ({run['invalid']}): not graded; rerun", flush=True)
     failed = [k for k, v in checks.items() if not v]
     if failed:
         print(f"   failed: {', '.join(failed)}", flush=True)

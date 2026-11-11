@@ -1,0 +1,93 @@
+{
+  "case": "6-audit",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": true,
+    "findings_file_validates": true,
+    "states_missing_scanners": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Read": 3,
+    "Bash": 11,
+    "Agent": 1,
+    "ReadNotifications": 1
+  },
+  "agent_calls": 1,
+  "agent_types": [
+    "ultimatum:security-verifier"
+  ],
+  "agent_descriptions": [
+    "Verify invoice IDOR candidate"
+  ],
+  "final": "I found one confirmed vulnerability: any logged-in user can read other tenants' invoices. A fresh verifier confirmed it as high severity. I changed no files in the repo, and the working tree is clean.\n\n## Confirmed\n**F-001 (high, confidence high): cross-tenant invoice read at `GET /api/invoices/<id>`** (CWE-639)\n- **Cause:** `get_invoice` queries only `WHERE id = ?` (`invoicer/handlers/invoices.py:20-23`) and never uses `user[\"tenant_id\"]`. The list handler (`invoices.py:12`) and the report (`reports.py:18`) both filter by tenant.\n- **Impact:** a member of tenant A can read every other tenant's invoices (customer, amount, notes) by counting up the integer ids.\n- **Proof:**\n  - A tenant A token on `/api/invoices/3` returned 200 with tenant 2's \"Initech\" invoice.\n  - A tenant B token on `/api/invoices/2` returned 200 with \"A: confidential rate card\".\n  - I ran both through the in-process test client.\n  - The existing tests only cover the caller's own invoice and a missing id (`tests/test_invoices.py:20,25`), so they miss this.\n- **Fix:** add `AND tenant_id = ?` bound to `user[\"tenant_id\"]` and return 404 on a miss. Add a cross-tenant negative test.\n\n## Rejected leads\n- **F-002, SQL built with an f-string in `reports.py:18`** (the scanner's one high lead): the sort column and direction come only from dictionary lookups with fixed defaults (`reports.py:6-11,16-17`), and the tenant id is a bound parameter. A probe with `sort=amount;DROP` just returned the default ordering. Pattern FP-01.\n- **F-003, `DEMO_API_KEY` in `tests/fixtures.py:12`:** a documented test placeholder for an in-memory database. Pattern FP-05.\n- **F-004, `create_invoice` crashes with `TypeError` on a bad body:** a body of `[1]` or a null `amount_cents` isn't caught by `except (ValueError, KeyError)` at `invoices.py:34`. I reproduced it. It only gives a 500 on that one request, with no shared availability impact. Pattern FP-11, a robustness bug and not a vulnerability.\n- **Output escaping:** the HTML report escapes customer and created with `html.escape`, so there is no XSS.\n- **Admin route:** `/api/admin/tenants` checks the admin role.\n\n## Covered\n- **Coverage:** all 18 ledger areas are closed. 11 are checked with evidence and 7 are not applicable, each with a reason from my searches:\n  - **Checked:** authentication, admin-route authorization, object-level authorization, injection, output escaping, input parsing, business logic, data exposure, secrets, crypto, and dependencies.\n  - **Not applicable:** sessions, files, SSRF, config, CI, deploy, and AI-agent. The repo has no cookies, file handling, outbound requests, CI, IaC or agent code, and the greps found none.\n- **Code and tests:** I read all 316 lines of the repo. The 10 unit tests pass (`python3 -m unittest`, exit 0).\n- **Scan:** `ult scan` ran its built-in checks only. semgrep, gitleaks and osv-scanner aren't installed, so dependency advisories are unknown. There is no manifest or lockfile, and the app uses only the standard library.\n\n## Limits\n- **Not checked:** I did no active testing, and I couldn't see the WSGI server, proxy or TLS that would sit in front of this app.\n- **Accepted as design:** tokens are stored in plaintext and compared by SQL lookup, as the README describes. I did not report this.\n- **Report files:** the ledger, findings and report are in `/tmp/claude-0/-tmp-claude-0--home-user-Ultimatum-c051b7f5-1efa-5745-8c75-fc5201ebb861-scratchpad-live6-3-6-audit--ultimatum/faa18f6c-5b5d-4a37-97bc-b13a4990062a/scratchpad/ult/security/` (`report.md`, `findings.json`, `ledger.json`). I kept them outside the repo.\n\nI haven't started a fix. I can do that next if you want.",
+  "is_error": false,
+  "num_turns": 14,
+  "duration_ms": 73124,
+  "cost_usd": 0.3239811,
+  "usage": {
+    "input_tokens": 24,
+    "cache_creation_input_tokens": 33901,
+    "cache_read_input_tokens": 646254,
+    "output_tokens": 8057
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 32,
+      "outputTokens": 10445,
+      "cacheReadInputTokens": 677656,
+      "cacheCreationInputTokens": 40340,
+      "webSearchRequests": 0,
+      "costUSD": 0.3239811,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 544,
+      "cacheCreationEphemeral5mInputTokens": 6439,
+      "cacheCreationEphemeral1hInputTokens": 33901,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 1
+    },
+    "started_in_background": 1,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "ultimatum:security-verifier": 1
+    }
+  },
+  "permission_denials": 0,
+  "wall_s": 77.0,
+  "claude_rc": 0,
+  "invalid": null,
+  "findings_path": "/tmp/claude-0/-tmp-claude-0--home-user-Ultimatum-c051b7f5-1efa-5745-8c75-fc5201ebb861-scratchpad-live6-3-6-audit--ultimatum/faa18f6c-5b5d-4a37-97bc-b13a4990062a/scratchpad/ult/security/findings.json",
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live6-3/6-audit__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live6-3/6-audit__ultimatum.jsonl"
+}

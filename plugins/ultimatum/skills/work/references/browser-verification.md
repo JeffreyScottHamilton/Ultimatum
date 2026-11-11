@@ -20,7 +20,7 @@ node "${CLAUDE_PLUGIN_ROOT}/scripts/ult-browser.mjs" <url> \
 
 ### Steps file
 
-A JSON array run in each viewport, in order; the first failing step stops the run and is a FAIL naming the step index and message.
+A JSON array run in each viewport, in order; the first failing step stops the run and is a FAIL naming the step index (0-based) and message.
 
 ```json
 [

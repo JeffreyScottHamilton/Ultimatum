@@ -51,7 +51,10 @@ def _refuse_symlink(p: Path) -> None:
 
 def state_dir(root: Path | None = None, sub: str | None = None) -> Path:
     root = root or project_root()
-    d = root / STATE_DIRNAME
+    # ULTIMATUM_STATE_DIR keeps all state outside the project, for tasks where
+    # the user forbids any write inside the repository (e.g. a strict read-only audit).
+    ext = os.environ.get("ULTIMATUM_STATE_DIR")
+    d = Path(ext).resolve() if ext else root / STATE_DIRNAME
     _refuse_symlink(d)
     if not d.exists():
         d.mkdir(mode=0o700, parents=True, exist_ok=True)
