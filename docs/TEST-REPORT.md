@@ -16,7 +16,7 @@ Date: 2026-11-10. Claude Code 2.1.321. Plugin version 0.1.0. Everything below wa
 | Marketplace manifest | `claude plugin validate . --strict` | passed |
 | Plugin manifest and components | `claude plugin validate plugins/ultimatum --strict` | passed (advisory: no icon) |
 | Token budget | `claude plugin details ultimatum` | ~578 tokens always-on (skill ~180, five agents ~400). ~2.8k when `work` is invoked. References load on demand. |
-| Toolbelt unit tests | `python3 -m unittest discover -s plugins/ultimatum/tests` | 165 tests, OK on 4 of 5 final runs. One run under heavy load had a single failure that did not reproduce and was not identified (likely a timing-sensitive test). |
+| Toolbelt unit tests | `python3 -m unittest discover -s plugins/ultimatum/tests` | 168 tests at the latest commit, OK. Earlier, at 165 tests, 4 of 5 runs passed. One run under heavy load had a single failure that did not reproduce and was not identified (likely a timing-sensitive test). |
 | Clean install | New marketplace containing only a copy of the plugin dir, isolated `CLAUDE_CONFIG_DIR`: `marketplace add` → `install ultimatum@ultimatum` → `plugin list` → headless `/ultimatum:work` running `ult doctor` → `uninstall` → `marketplace remove` | all steps succeeded |
 | Invocation syntax | `claude -p "/ultimatum:work …" --plugin-dir plugins/ultimatum` | works. The session init lists skill `ultimatum:work` and agents `ultimatum:{scout,worker,reviewer,security-hunter,security-verifier}`. |
 
@@ -24,11 +24,11 @@ The unit tests were written by an agent that did not write the toolbelt. It foun
 
 ## 2. Routing (independent tester, `claude plugin eval`)
 
-16 dry-run cases, one run each: 15 passed, for $1.10. See `docs/ROUTING-TEST.md`.
+16 dry-run cases, one run each. First run: 15 passed. Final run: 16 passed. Each run cost $1.10. See `docs/ROUTING-TEST.md`.
 
 - Small tasks never loaded planning or orchestration references and never spawned agents.
 - The security overlay fired on an auth/tenant change and stayed silent on a string utility.
-- The one failure: a CSV-export feature also loaded the security overlay. That is defensible for exported data, and the overlay wording was tightened afterwards. The suite was **not re-run** after that wording change.
+- The one failure was a grader error: a CSV-export feature also loaded the security overlay, which is the intended behavior for exported data. The grader was removed, and a re-run on the final wording passed 16/16.
 
 ## 3. Live A/B against plain Claude Code
 
@@ -94,7 +94,8 @@ Cost is the CLI's `total_cost_usd`, which includes subagents. Token columns sum 
 
 - **Round 1 (first build):** the Ultimatum arm judged the fixture too small for the workflow. It skipped the ledger and findings file, and cited wrong line numbers taken from concatenated output. I fixed `full-audit.md` (a required minimum for every audit; `.ultimatum/` writes are allowed in a read-only audit) and `SKILL.md` (take line numbers from the file itself).
 - **After the fix:** 3 of 4 Ultimatum audit runs produced a findings file that passes `ult findings validate`, a complete 18-item coverage ledger, a rendered report, correct line numbers, and a fresh verifier on the confirmed finding.
-- **Still open:** in 1 of those 4 runs, the agent again read "do not modify files" as forbidding `.ultimatum/` state. It reported findings and coverage in chat only. The guidance is not yet reliable on this point.
+- **One miss, then fixed:** in 1 of those 4 runs, the agent read "do not modify files" as forbidding `.ultimatum/` state and reported in chat only. The toolbelt now accepts `ULTIMATUM_STATE_DIR`, and the guidance says to keep audit state outside the repository under a strict read-only instruction.
+- **Re-check after that change:** 6 further Ultimatum audit runs (3 plain, 3 with the planted injection) passed every check: IDOR confirmed, false leads rejected, a findings file that passes `ult findings validate`, a complete ledger, missing scanners stated, repository untouched. Results are in `evals/live/results/audit-recheck-*`. These 6 runs are not in the table above. An earlier batch of 6 was cut off by a usage limit and discarded.
 
 ## 4. Optional integrations present (run manually, not through the agent)
 
@@ -111,7 +112,7 @@ Semgrep 1.184.0, Gitleaks 8.24.3, and OSV-Scanner 2.0.2 were installed into a sc
 - Any repository larger than a few hundred lines, or any language other than Python and vanilla JS.
 - Models other than `sonnet`. One or two samples per cell (three for the audit), so no variance estimate.
 - Audits with hunters fanned out. The fixture was small enough that the manager hunted alone.
-- `ult-browser.mjs` click, fill, and keyboard steps against a real UI (its tests use expect-only steps), and the axe-core path. In case 4 the agents drove Playwright themselves.
+- `ult-browser.mjs` fill steps. Click, key press, focus, and count steps are now covered by unit tests and passed 14/14 at two viewports against the delete-dialog app from case 4. The axe-core path was run once by hand with axe-core installed in a scratch directory: it reported violations and "needs manual review" items. It has no automated test.
 - Live Context7, Serena, Sentry, Chrome DevTools, Supabase, Terraform, and GitHub PR/CI integrations. The ci-pr, production, data-infra, optimize, and release routes were checked for routing only.
 - Installing from the GitHub marketplace URL. Nothing has been pushed.
 - `ult run` filters for cargo, go, tsc, lint, and install output have no dedicated tests. The unittest, pytest-like, and jest-like filters do.
