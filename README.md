@@ -34,7 +34,7 @@ claude plugin install ultimatum@ultimatum
 
 Remove it with `claude plugin uninstall ultimatum@ultimatum`, then `claude plugin marketplace remove ultimatum`.
 
-## Install from GitHub (once this repository is published)
+## Install from GitHub
 
 ```
 /plugin marketplace add JeffreyScottHamilton/Ultimatum
@@ -75,6 +75,7 @@ Live evals run real Claude sessions and cost money. Each run's cost is printed a
 
 ## Documents
 
+- [`CHANGELOG.md`](CHANGELOG.md): release notes
 - [`docs/TEST-REPORT.md`](docs/TEST-REPORT.md): what was tested live, results, and open gaps
 - [`docs/COVERAGE-MAP.md`](docs/COVERAGE-MAP.md): every upstream capability and where Ultimatum covers it, or why it doesn't
 - [`docs/CREDITS.md`](docs/CREDITS.md): upstream projects, revisions, and licenses

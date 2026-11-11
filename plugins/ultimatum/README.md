@@ -58,6 +58,6 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 
 Or add the marketplace first with `/plugin marketplace add JeffreyScottHamilton/Ultimatum`, then run `/plugin install ultimatum@ultimatum`. To try a local checkout: `claude --plugin-dir ./plugins/ultimatum`.
 
-Requirements: Claude Code with plugin support and Python 3.9+ (tested on 3.13). Browser checks need Node and Playwright.
+Requirements: Claude Code with plugin support and Python 3.9+ (unit tests pass on 3.9, 3.11, 3.12 and 3.13). Browser checks need Node and Playwright.
 
 Credits: see `CREDITS.md`. License: MIT.

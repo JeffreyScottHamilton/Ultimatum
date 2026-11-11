@@ -17,6 +17,7 @@ Date: 2026-11-10. Claude Code 2.1.321. Plugin version 0.1.0. Everything below wa
 | Plugin manifest and components | `claude plugin validate plugins/ultimatum --strict` | passed (advisory: no icon) |
 | Token budget | `claude plugin details ultimatum` | ~578 tokens always-on (skill ~180, five agents ~400). ~2.8k when `work` is invoked. References load on demand. |
 | Toolbelt unit tests | `python3 -m unittest discover -s plugins/ultimatum/tests` | 168 tests at the latest commit, OK. Earlier, at 165 tests, 4 of 5 runs passed. One run under heavy load had a single failure that did not reproduce and was not identified (likely a timing-sensitive test). |
+| Python versions | same suite under 3.9, 3.11, 3.12, 3.13 | all OK. CI (`.github/workflows/ci.yml`) runs 3.9, 3.11 and 3.13 plus `claude plugin validate --strict` on every push |
 | Clean install | New marketplace containing only a copy of the plugin dir, isolated `CLAUDE_CONFIG_DIR`: `marketplace add` → `install ultimatum@ultimatum` → `plugin list` → headless `/ultimatum:work` running `ult doctor` → `uninstall` → `marketplace remove` | all steps succeeded |
 | Invocation syntax | `claude -p "/ultimatum:work …" --plugin-dir plugins/ultimatum` | works. The session init lists skill `ultimatum:work` and agents `ultimatum:{scout,worker,reviewer,security-hunter,security-verifier}`. |
 
