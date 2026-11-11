@@ -90,6 +90,8 @@ def rg(root: Path, pattern: str, scope: str | None, glob: str | None, ignore_cas
         argv += ["-g", f"!{d}/"]
     argv.append(str((root / scope) if scope else root))
     out = subprocess.run(argv, capture_output=True, text=True, timeout=60)
+    if out.returncode == 2 and not out.stdout:  # rg error (e.g. regex syntax rg rejects)
+        raise SystemExit(f"[ult] search failed: {out.stderr.strip()[:300]}")
     hits = []
     for line in out.stdout.splitlines():
         parts = line.split(":", 2)
@@ -98,7 +100,23 @@ def rg(root: Path, pattern: str, scope: str | None, glob: str | None, ignore_cas
     return hits
 
 
+def _scope_ok(root: Path, scope: str | None) -> None:
+    if scope:
+        base = (root / scope).resolve()
+        if base != root and root not in base.parents:
+            raise SystemExit(f"[ult] --path {scope!r} is outside the project ({root}); refusing to search there")
+
+
+def _check_regex(pattern: str, ignore_case: bool) -> None:
+    try:
+        re.compile(pattern, re.IGNORECASE if ignore_case else 0)
+    except re.error as e:
+        raise SystemExit(f"[ult] invalid regex {pattern!r}: {e}")
+
+
 def _search(root, pattern, scope, glob, ignore_case=False):
+    _scope_ok(root, scope)
+    _check_regex(pattern, ignore_case)
     if shutil.which("rg"):
         return rg(root, pattern, scope, glob, ignore_case)
     return grep(root, pattern, list_files(root, scope, glob), ignore_case)
@@ -138,6 +156,7 @@ def cmd_search(args) -> int:
 
 def cmd_symbols(args) -> int:
     root = project_root()
+    _scope_ok(root, args.path)
     name = re.escape(args.name) if not args.regex else args.name
     files = [f for f in list_files(root, args.path, args.glob) if f.suffix in EXT_LANG]
     hits = []
