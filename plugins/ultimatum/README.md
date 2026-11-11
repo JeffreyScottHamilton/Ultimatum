@@ -20,6 +20,7 @@ Ultimatum reads the task and picks a workflow:
 - security review of a change
 - a full security audit or remediation
 - a session handoff or resume
+- an efficiency review of Claude's own recent usage
 
 It then loads only the guidance that workflow needs. A short security pass runs automatically whenever a change touches auth, permissions, tenant boundaries, money, data exposure, external input, secrets, or deploy settings.
 
@@ -35,6 +36,7 @@ It then loads only the guidance that workflow needs. A short security pass runs 
   - `ult scan`: wraps Semgrep, Gitleaks, and OSV-Scanner if they are installed, and falls back to built-in leads if they aren't.
   - `ult findings`: validates and renders security findings and a coverage ledger.
   - `ult doctor`: shows which optional integrations are present.
+  - `ult usage report` and `ult improve`: the efficiency coach. It reviews your local Claude Code transcripts, finds avoidable token use, and tracks whether each change actually helped.
 - **A browser check** (`scripts/ult-browser.mjs`): uses Playwright for viewports, real interactions, console errors, and accessibility checks. It runs axe-core if installed and built-in checks otherwise.
 - **Five subagents**:
   - `ultimatum:scout`: fast, read-only searching.

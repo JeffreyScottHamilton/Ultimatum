@@ -11,6 +11,8 @@
   ult scan [...]            security scanners if installed, built-in checks otherwise
   ult findings ...          validate / merge / render security findings
   ult doctor                which optional integrations are present
+  ult usage report          where Claude's tokens went, avoidable work (local transcripts)
+  ult improve ...           propose / apply / measure / keep or roll back a workflow change
 """
 import argparse
 import os
@@ -19,9 +21,9 @@ import sys
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
-from ultlib import doctor, handoff, repomap, run, search, store  # noqa: E402
+from ultlib import doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
-MODULES = [run, search, repomap, store, handoff, doctor]
+MODULES = [run, search, repomap, store, handoff, doctor, usage]
 for optional in ("scan", "findings"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))

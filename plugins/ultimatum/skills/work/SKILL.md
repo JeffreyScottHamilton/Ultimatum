@@ -1,6 +1,6 @@
 ---
 name: work
-description: "Ultimatum's single entry point for software work in a repository. Covers understanding a codebase, small fixes, unclear or large features, hard bugs and failing tests, CI and PR feedback, UI and browser verification, secure implementation, security review of a change, full security audit and remediation, data and infra changes, bounded optimization, releases, and session handoff or resume. Use when the user runs /ultimatum:work <task>, or asks to fix, build, debug, review, audit, ship, optimize, or resume code work."
+description: "Ultimatum's single entry point for software work in a repository. Covers understanding a codebase, small fixes, unclear or large features, hard bugs and failing tests, CI and PR feedback, UI and browser verification, secure implementation, security review of a change, full security audit and remediation, data and infra changes, bounded optimization, releases, session handoff or resume, and reviewing Claude's own token usage to improve the workflow. Use when the user runs /ultimatum:work <task>, or asks to fix, build, debug, review, audit, ship, optimize, or resume code work."
 argument-hint: "<task>"
 ---
 
@@ -40,6 +40,7 @@ Pick the **one** primary route that fits, plus the security overlay if it is tri
 | **sec-audit** | Audit a repo or service, or "find vulnerabilities" | `security/full-audit.md`, `security/coverage-model.md`, `security/findings.md` |
 | **sec-fix** | Remediate a known or reported vulnerability | `security/remediation.md` |
 | **handoff** | "Save progress", ending a session, or "resume", "continue", "pick up" | `handoff.md` |
+| **improve** | Review Claude's own usage to cut tokens: "efficiency review", "daily coach", "why so many tokens" | `self-improvement.md` |
 | **skill-eval** | Testing or improving Ultimatum itself | `skill-evaluation.md` |
 
 **Security overlay (secure implementation).** The overlay applies when a change you make touches authentication, sessions, permissions or roles, tenant or account boundaries, money or credits, personal or confidential data exposure, file upload, download or export of user or tenant data, file paths built from input, parsing of external input, outbound requests built from input, shell or SQL or template construction, secrets, CORS or CSP or cookies, CI permissions, deploy settings, or LLM or tool permissions. In that case, also read `security/secure-implementation.md`. It is a short pass: name the boundary that must hold, check the code paths that reach it, and add a negative test for it. An ordinary edit that touches none of these pays nothing.
