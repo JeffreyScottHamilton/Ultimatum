@@ -23,6 +23,8 @@ Date: 2026-11-10. Claude Code 2.1.321. Plugin version 0.1.0. Everything below wa
 
 The unit tests were written by an agent that did not write the toolbelt. It found 11 bugs, all fixed, including a path traversal in `ult get` and missed secret redactions. My own review found a symlink-clobber bug (see `docs/SECURITY.md`), also fixed with regression tests.
 
+The first CI run found two more bugs, in `ult search`'s pure-Python fallback, which only runs when ripgrep is absent and so was never exercised locally: an invalid regex and a `--path` outside the project both crashed. Both are fixed, and the full suite now also passes with ripgrep hidden.
+
 ## 2. Routing (independent tester, `claude plugin eval`)
 
 16 dry-run cases, one run each. First run: 15 passed. Final run: 16 passed. Each run cost $1.10. See `docs/ROUTING-TEST.md`.
@@ -107,6 +109,7 @@ Semgrep 1.184.0, Gitleaks 8.24.3, and OSV-Scanner 2.0.2 were installed into a sc
 - **OSV-Scanner:** could not reach `api.osv.dev` from this sandbox (proxy returned Forbidden). `ult scan` reported "dependency advisories: unknown" instead of clean. **A successful advisory lookup was not observed.**
 
 ## 5. Not tested
+
 
 - The one-off unit-test flake above is undiagnosed.
 

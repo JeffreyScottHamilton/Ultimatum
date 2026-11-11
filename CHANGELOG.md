@@ -15,6 +15,9 @@ First public preview. Tested on small fixture projects only; see `docs/TEST-REPO
 - `ULTIMATUM_STATE_DIR` to keep all state outside the repository for strict read-only work.
 - CI: unit tests on Python 3.9, 3.11 and 3.13, plus `claude plugin validate --strict`.
 
+### Fixed before release
+- `ult search` crashed with a traceback on an invalid regex and on a `--path` outside the project when ripgrep was not installed. Found by the first CI run (CI runners have no ripgrep); both now exit with a clear error, on both the ripgrep and pure-Python paths.
+
 ### Known limitations
 - Not yet tested on large real-world repositories or with models other than `sonnet`.
 - Costs about 1.5–1.8x plain Claude Code per task in the recorded evals; no token-savings claim is made.
