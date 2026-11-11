@@ -58,6 +58,19 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 
 Or add the marketplace first with `/plugin marketplace add JeffreyScottHamilton/Ultimatum`, then run `/plugin install ultimatum@ultimatum`. To try a local checkout: `claude --plugin-dir ./plugins/ultimatum`.
 
+## Make Claude use it automatically
+
+Claude does not pick a skill on its own for ordinary coding requests. In testing, it used Ultimatum unprompted in 0 of 3 tasks. Adding one instruction to your personal `~/.claude/CLAUDE.md` changed that to 3 of 3:
+
+```
+## Ultimatum
+For any software task in a repository (fixing, building, debugging, reviewing, auditing,
+testing, shipping, or explaining code), invoke the `ultimatum:work` skill first and follow it.
+Skip it only for questions unrelated to a codebase.
+```
+
+This applies Ultimatum, and its extra cost (about 1.5–1.8x per task in our evals), to every coding task. Leave it out if you'd rather call `/ultimatum:work` only when you want it.
+
 Requirements: Claude Code with plugin support and Python 3.9+ (unit tests pass on 3.9, 3.11, 3.12 and 3.13). Browser checks need Node and Playwright.
 
 Credits: see `CREDITS.md`. License: MIT.
