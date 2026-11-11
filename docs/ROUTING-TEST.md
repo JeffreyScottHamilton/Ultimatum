@@ -48,3 +48,14 @@ All security reference files were checked before the run; `ls references/securit
 
 ## Limits
 Single run per case at temperature default; routing is stochastic so a 15/16 here is not a guarantee. The negative graders only check Read of references, not whether the agent followed the advice. Only the prompts above were tried; borderline prompts (for example a bug in auth code, a UI task that adds a form with file upload) were not covered and are worth adding.
+
+## Re-run after wording changes (2026-11-10)
+
+Same command, run after the overlay wording was tightened and the line-number rule was added to `SKILL.md`. Cost $1.10. Result: **15/16 cases passed**, with the same single failure as the first run.
+
+- **Failing case:** `route-feature` ("Add CSV export to the reports page…"), score 0.83.
+- **Failing grader:** `no-security-secure-implementation` (`Read called 1x (expected 0..0)`). Every other grader in the case passed, including the route name and the feature-planning read.
+- **Verdict: the grader was wrong, not the routing.** `SKILL.md` §2 lists "download or export of user or tenant data" as a security-overlay trigger, and a CSV export of reports is exactly that. Loading `security/secure-implementation.md` is the intended behavior.
+- **Action:** the grader was removed. The suite has **not** been run again since its removal; the expected result is 16/16.
+
+The raw result files (`out.json`, `report.html`) are git-ignored and were not kept.
