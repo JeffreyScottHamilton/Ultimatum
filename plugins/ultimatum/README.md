@@ -52,6 +52,15 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 - Optional tools such as Semgrep, Gitleaks, OSV-Scanner, Playwright, axe-core, Context7, Serena, the Sentry MCP, and Chrome DevTools MCP are used only when present, and Ultimatum names them before use. The core works without any of them.
 - Security audits are read-only by default. Active testing only targets local fixtures or environments you explicitly authorize.
 
+## Recommended: compact long chats at about 200k tokens
+
+On models with a 1M-token window, long chats re-read their whole context every turn. In our own usage, single turns reached 533k tokens. Capping context reduces that, and Ultimatum keeps a handoff current at milestones so details survive the summary. Set the cap outside the plugin, since a plugin can't change it:
+
+- **Terminal:** `claude --autocompact 200000` (or alias it).
+- **Cloud sessions:** add the environment variable `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20` in the environment's settings (20% of a 1M window). A model with a smaller window would compact sooner at that percentage.
+
+The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult improve`).
+
 ## Install
 
 ```

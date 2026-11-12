@@ -35,6 +35,14 @@ The log id is enough for logs.
 4. Answer the open questions from the code if you can. Ask the user only about questions that block the next step.
 5. When you finish, update the handoff or delete it if the goal is complete. Then report as usual.
 
+## Surviving compaction
+
+Compaction replaces the conversation with a summary. Exact error strings, `file:line` anchors, log ids, and the reasons behind decisions are often lost. Users who cap context (for example at 200k tokens) hit compaction regularly. You can't see the token count reliably, so work by milestones instead:
+
+- **Refresh on milestones.** Run `ult handoff write` after a check turns green, after a decision with a non-obvious reason, and before moving to the next subtask. It costs one command, and the file is overwritten each time.
+- **Keep evidence out of the conversation.** Run noisy commands through `ult run`. Their logs survive compaction, and the handoff lists the log ids. Save durable facts with `ult note`.
+- **Resume right after a compaction.** If the conversation starts with a summary, or you notice earlier details are missing, run `ult handoff show` and re-run the cheapest check before editing. The summary is a claim, not evidence.
+
 ## Cross-session memory for longer efforts
 
 - Use `ult note --kind decision|fact|finding --title ... --body ...` for durable facts you will search for later. Find them with `ult find <terms>` and read them back exactly with `ult get <ref>`.

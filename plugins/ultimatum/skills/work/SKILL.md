@@ -56,6 +56,8 @@ Also read `context-efficiency.md` when output is noisy, the repo is large, or yo
 5. **Review your diff.** Run `git diff`. Remove debug code, unrelated edits, and new duplicates of existing helpers. If the overlay was triggered, confirm the negative test fails without the guard (see `security/secure-implementation.md`).
 6. **Report.** Use the format in §5.
 
+**Long tasks and compaction.** Claude Code may summarize (compact) the conversation when it grows, which drops exact details. On any task longer than a few steps, refresh the handoff at each milestone (a check passes, a decision is made, before switching subtasks) with `ult handoff write`. After a compaction, run `ult handoff show` before continuing, and re-run the cheapest check rather than trusting the summary. See `handoff.md`.
+
 **Delegation.** Do **small** and most **bug** or **feature** work yourself, without planning documents or subagents. Delegate only when parts are truly independent or a scan is broad. In that case use `ultimatum:scout` (fast, read-only) for searches across many files, `ultimatum:worker` for one owned slice with an acceptance check, `ultimatum:reviewer` for a fresh review of an integrated diff, and `ultimatum:security-hunter` or `ultimatum:security-verifier` for audits. Give each one only the context it needs (see `orchestration.md`). Redact secrets in every brief. Check each result yourself before relying on it.
 
 ## 4. Optional integrations
