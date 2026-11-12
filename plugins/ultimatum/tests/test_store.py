@@ -9,7 +9,7 @@ class TestStore(UltCase):
         r = self.ult("note", "--kind", "decision", "--title", "Use WAL mode", "--body", "sqlite journal_mode=WAL because concurrent readers")
         self.assertEqual(r.code, 0, r.all)
         ref = r.out.strip()
-        self.assertRegex(ref, r"^note:\d+$")
+        self.assertRegex(ref, r"^note:\d+-[0-9a-f]{6}$")
         f = self.ult("find", "journal_mode")
         self.assertEqual(f.code, 0, f.all)
         self.assertIn(ref, f.out)
@@ -111,8 +111,8 @@ class TestStore(UltCase):
         os.environ["ULTIMATUM_ROOT"] = str(self.root)
         self.addCleanup(os.environ.pop, "ULTIMATUM_ROOT", None)
         from ultlib import store
-        refs = {store.add_note("note", f"t{i}", f"body{i}") for i in range(30)}
-        self.assertEqual(len(refs), 30)  # BUG candidate: ref is int(time.time()*1000)
+        refs = {store.add_note("note", f"t{i}", f"body{i}") for i in range(300)}
+        self.assertEqual(len(refs), 300)  # was flaky when the ref was only the millisecond
 
     def test_rerun_same_id_not_duplicated(self):
         self.ult("run", "--", PY, "-c", "print('uniqueword')")

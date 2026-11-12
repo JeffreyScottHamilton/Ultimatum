@@ -111,7 +111,7 @@ Semgrep 1.184.0, Gitleaks 8.24.3, and OSV-Scanner 2.0.2 were installed into a sc
 ## 5. Not tested
 
 
-- The one-off unit-test flake above is undiagnosed.
+- The one-off unit-test failure above was later diagnosed: two `ult note` references created in the same millisecond collided. Fixed in 0.2.1.
 
 - Any repository larger than a few hundred lines, or any language other than Python and vanilla JS.
 - Models other than `sonnet`. One or two samples per cell (three for the audit), so no variance estimate.

@@ -29,9 +29,8 @@ You are continuing work on **Ultimatum**, a free, open-source Claude Code plugin
 - Report only what was run. Mark anything untested as untested.
 
 ## Unfinished work, in priority order
-1. **Undiagnosed unit-test flake.** One full-suite run under heavy load had a single failure that never reproduced. Likely a timing-sensitive test in `tests/test_run.py` (the `--timeout` case) or `tests/test_browser.py`.
-2. **Gaps listed in `docs/COVERAGE-MAP.md`**, top ones: secret scanning of git history (`ult scan` runs gitleaks on a directory only); an audit coverage-critic step; aggregation and trigger-eval tooling for skill evaluation; PR-description and finish-branch guidance.
-3. **Untested areas** from `docs/TEST-REPORT.md` section 5: larger repositories and other languages, other models, audits that fan out to several hunters, the live MCP integrations, a successful OSV-Scanner advisory lookup, and installing from the GitHub marketplace URL.
+1. **Gaps listed in `docs/COVERAGE-MAP.md`**, top ones: secret scanning of git history (`ult scan` runs gitleaks on a directory only); an audit coverage-critic step; aggregation and trigger-eval tooling for skill evaluation; PR-description and finish-branch guidance.
+2. **Untested areas** from `docs/TEST-REPORT.md` section 5: larger repositories and other languages, other models, audits that fan out to several hunters, the live MCP integrations, a successful OSV-Scanner advisory lookup, and installing from the GitHub marketplace URL.
 
 ## How to verify a change
 - Toolbelt or script change: add or update a test in `plugins/ultimatum/tests/`, then run the unit suite.

@@ -9,6 +9,7 @@ a file path that must be read before it is relied on.
 from __future__ import annotations
 
 import re
+import secrets
 import sqlite3
 import time
 from pathlib import Path
@@ -50,7 +51,9 @@ def index_log(rid: str, lines: list[str], meta: dict) -> None:
 
 def add_note(kind: str, title: str, body: str) -> str:
     con = _db()
-    ref = f"note:{int(time.time() * 1000)}"
+    # millisecond stamp keeps refs sortable; the random suffix keeps two notes
+    # written in the same millisecond distinct (seen as a flaky CI failure)
+    ref = f"note:{int(time.time() * 1000)}-{secrets.token_hex(3)}"
     with con:
         con.execute("INSERT INTO docs VALUES (?,?,?,?,?)",
                     (ref, kind, title, redact(body), time.strftime("%Y-%m-%dT%H:%M:%S")))
