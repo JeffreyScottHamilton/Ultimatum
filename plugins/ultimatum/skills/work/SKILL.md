@@ -20,6 +20,13 @@ References live in `${CLAUDE_SKILL_DIR}/references/`. Read a reference only when
 5. **Ask only questions that change the outcome.** If a sensible default exists, take it and state the assumption.
 6. **Preserve the project.** Don't change user or project settings, hooks, global config, or CI unless the task requires it. Ultimatum's state goes in `.ultimatum/`, which ignores itself in git. If the user forbids any write inside the repository, set `ULTIMATUM_STATE_DIR` to a directory outside it and keep using the toolbelt.
 
+7. **Keep the conversation small.** Everything that enters this chat is re-read on every later turn, so each extra line is paid for many times over.
+   - Don't put bulk into the chat: run noisy commands through `ult run`, read files by line range, and cap search results.
+   - Batch independent tool calls into one turn, and don't re-read a file you already have, or one you just edited.
+   - Send broad exploration (many files, big logs) to `ultimatum:scout`, so only its short answer enters this chat.
+   - Keep replies short, without restating plans or pasting back what the user can already see.
+   - Once a long task finishes a milestone, run `ult handoff write`. When the chat has grown long, suggest `/compact` or a fresh session that resumes from the handoff.
+
 ## 2. Route the task
 
 Pick the **one** primary route that fits, plus the security overlay if it is triggered. Read only the listed references.
