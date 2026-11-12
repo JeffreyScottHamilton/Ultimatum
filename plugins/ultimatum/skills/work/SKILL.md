@@ -29,7 +29,7 @@ References live in `${CLAUDE_SKILL_DIR}/references/`. Read a reference only when
 
 ## 2. Route the task
 
-Pick the **one** primary route that fits, plus the security overlay if it is triggered. Read only the listed references.
+Pick the **one** primary route that fits, plus the security overlay if it is triggered. Read only the listed references. Decide from the task and what you already know: never run tools or open references just to decide, and never load one "just in case". If the task turns out bigger or security-relevant mid-way, load the extra reference then.
 
 | Route | When | Read |
 |---|---|---|
