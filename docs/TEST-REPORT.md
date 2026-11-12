@@ -1,6 +1,6 @@
 # Ultimatum test report
 
-Date: 2026-11-10. Claude Code 2.1.321. Plugin version 0.1.0. Everything below was run in this build session unless marked **not run**.
+Date: 2026-11-10. Claude Code 2.1.321. Plugin version 0.1.0 for the live A/B runs below; later versions up to 0.2.4 are covered by unit tests, CI, and the targeted live checks in section 6. Everything below was run in this build session unless marked **not run**.
 
 ## Summary
 
@@ -121,3 +121,13 @@ Semgrep 1.184.0, Gitleaks 8.24.3, and OSV-Scanner 2.0.2 were installed into a sc
 - Installing from the GitHub marketplace URL. Nothing has been pushed.
 - `ult run` filters for cargo, go, tsc, lint, and install output have no dedicated tests. The unittest, pytest-like, and jest-like filters do.
 - 180 of the 278 covered rows in `docs/COVERAGE-MAP.md` have neither a unit test nor a live case behind them.
+
+## 6. Checks after 0.1.0 (versions 0.1.1 to 0.2.4)
+
+| Change | Evidence |
+|---|---|
+| CI on every push (Python 3.9, 3.11, 3.13 without ripgrep, plus plugin validation) | GitHub Actions passing on `main`. The first runs caught 3 real bugs, all fixed with tests. |
+| Auto-use through one `~/.claude/CLAUDE.md` line | Live: Ultimatum used unprompted in 0 of 3 tasks without the line, 3 of 3 with it, all tasks correct. |
+| Efficiency coach (`ult usage`, `ult improve`) | 9 unit tests, including a check that no prompt text appears in reports. Live run on real transcripts: auto-invoked, $0.09, proposed one change. |
+| `ult scan --history`, lead dedupe | A committed-then-deleted token was found only with `--history`. Dedupe has a unit test. |
+| Compaction and small-conversation rules (0.2.2, 0.2.4) | Instruction-only changes. Validated, but the effect on tokens is **not yet measured**. |
