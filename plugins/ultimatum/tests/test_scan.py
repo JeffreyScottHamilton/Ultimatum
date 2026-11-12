@@ -270,3 +270,15 @@ class TestExternalAdapters(ScanCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDedupe(unittest.TestCase):
+    def test_builtin_twin_of_external_lead_is_dropped(self):
+        sys.path.insert(0, __import__("_harness").SCRIPTS)
+        from ultlib.scan import dedupe_leads
+        ext = {"source": "gitleaks", "rule_id": "github-pat", "class": "secrets", "file": "a.py", "line": 3}
+        twin = {"source": "builtin", "rule_id": "secret-github-token", "class": "secrets", "file": "a.py", "line": 3}
+        other = {"source": "builtin", "rule_id": "sql-string-build", "class": "injection", "file": "a.py", "line": 3}
+        out = dedupe_leads([twin, other, ext])
+        self.assertEqual([l["rule_id"] for l in out], ["sql-string-build", "github-pat"])
+        self.assertEqual(ext["also_flagged_by"], ["secret-github-token"])

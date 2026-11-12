@@ -48,7 +48,7 @@ Write the answers as the scope line. It goes into `ult findings ledger init --sc
    - **External services:** payment, email, storage, LLM APIs, internal HTTP calls.
    - **Dependencies:** manifests and lockfiles.
    - **Deploy surfaces:** Dockerfile, compose, k8s, Terraform, CI workflows, agent configs (`.mcp.json`, `.claude/`).
-3. Run `ult scan`. This is required: it runs the built-in checks plus any installed tools in offline-safe mode. Read which commands ran and which tools did not run, and state both in the report, including "dependency advisories: unknown" when osv-scanner is absent. Keep the leads for the hunters and resolve every lead in the ledger or the findings.
+3. Run `ult scan --history` (or `ult scan` outside a git repo). This is required: it runs the built-in checks plus any installed tools in offline-safe mode. Read which commands ran and which tools did not run, and state both in the report, including "dependency advisories: unknown" when osv-scanner is absent and "git history secrets: NOT checked" when gitleaks is absent. Keep the leads for the hunters and resolve every lead in the ledger or the findings.
 
 ## 2. Trust-boundary map
 

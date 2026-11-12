@@ -547,10 +547,12 @@ def run_semgrep(exe, cfg, target, root, base, rep):
     return leads
 
 
-def run_gitleaks(exe, target, root, rep):
+def run_gitleaks(exe, target, root, rep, history=False):
     sd = state_dir(root, "security")
     report = sd / f"gitleaks-{new_id('r')}.json"
-    cmd = [exe, "dir", str(target), "--redact", "--exit-code", "3", "--report-format", "json", "--report-path", str(report)]
+    # history=True scans every commit (secrets that were committed and later removed)
+    mode = ["git", str(root)] if history else ["dir", str(target)]
+    cmd = [exe, *mode, "--redact", "--exit-code", "3", "--report-format", "json", "--report-path", str(report)]
     code, out, err = _run_tool(cmd, root)
     status = {0: "completed", 3: "completed"}.get(code, "incomplete")
     entry = {"tool": "gitleaks", "command": shlex.join(cmd), "exit_code": code, "status": status}
@@ -615,6 +617,21 @@ def run_osv(exe, target, root, online, rep):
 
 
 # --------------------------------------------------------------------------
+def dedupe_leads(leads: list) -> list:
+    """Drop a built-in lead when an external tool flagged the same class at the
+    same file:line (e.g. gitleaks and the built-in secret patterns both firing).
+    The external lead is kept and records which built-in rule agreed."""
+    ext = {(ld["file"], ld["line"], ld["class"]): ld for ld in leads if ld.get("source") != "builtin"}
+    out = []
+    for ld in leads:
+        twin = ext.get((ld["file"], ld["line"], ld["class"])) if ld.get("source") == "builtin" else None
+        if twin is not None:
+            twin.setdefault("also_flagged_by", []).append(ld["rule_id"])
+            continue
+        out.append(ld)
+    return out
+
+
 def cmd_scan(args) -> int:
     root = project_root()
     target = (Path(args.path) if args.path else root)
@@ -658,7 +675,7 @@ def cmd_scan(args) -> int:
                 continue
             ext_leads += run_semgrep(exe, args.semgrep_config, target, root, args.diff, rep)
         elif name == "gitleaks":
-            ext_leads += run_gitleaks(exe, target, root, rep)
+            ext_leads += run_gitleaks(exe, target, root, rep, history=getattr(args, "history", False))
         else:
             dbdir = os.environ.get("OSV_SCANNER_LOCAL_DB_CACHE_DIRECTORY")
             if not args.osv_online and not (dbdir and Path(dbdir).is_dir()):
@@ -690,6 +707,7 @@ def cmd_scan(args) -> int:
     rep["dependency_inventory"] = inv
     leads += dep_leads
     leads += ext_leads
+    leads = dedupe_leads(leads)
 
     if args.diff:
         def keep(ld):
@@ -731,6 +749,10 @@ def cmd_scan(args) -> int:
         print(f"  ran: {redact(c['command'])}  -> exit {c['exit_code']} ({c['status']})" + (f"  [{c['note']}]" if c.get("note") else ""))
     print("  built-in checks: ran (secrets, risky sinks, CI, IaC, agent config, dependency hygiene)")
     print(f"  dependency advisories: {rep['advisory_status']}")
+    if getattr(args, "history", False):
+        gl = rep["tools"].get("gitleaks", {})
+        print("  git history secrets: " + ("checked (gitleaks git mode)" if gl.get("ran") and gl.get("status") == "completed"
+                                          else "NOT checked: needs gitleaks; current files only"))
     by_sev: dict[str, int] = {}
     for ld in uniq:
         by_sev[ld["severity_hint"]] = by_sev.get(ld["severity_hint"], 0) + 1
@@ -754,6 +776,7 @@ def register(sub):
     p.add_argument("--json", metavar="OUT", help="also write the JSON report here")
     p.add_argument("--no-external", action="store_true", help="do not run semgrep/gitleaks/osv-scanner even if installed")
     p.add_argument("--semgrep-config", metavar="CFG", help="semgrep rules: local file/dir, or p/... (network; needs consent)")
+    p.add_argument("--history", action="store_true", help="gitleaks scans all git history, not just current files (needs gitleaks)")
     p.add_argument("--osv-online", action="store_true", help="let osv-scanner query OSV.dev (needs the user's consent)")
     p.add_argument("--max-print", type=int, default=60, help="leads printed (JSON keeps all)")
     p.set_defaults(func=cmd_scan)
