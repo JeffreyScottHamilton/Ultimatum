@@ -29,8 +29,19 @@ You are continuing work on **Ultimatum**, a free, open-source Claude Code plugin
 - Report only what was run. Mark anything untested as untested.
 
 ## Unfinished work, in priority order
-1. **Gaps listed in `docs/COVERAGE-MAP.md`**, top ones: secret scanning of git history (`ult scan` runs gitleaks on a directory only); an audit coverage-critic step; aggregation and trigger-eval tooling for skill evaluation; PR-description and finish-branch guidance.
-2. **Untested areas** from `docs/TEST-REPORT.md` section 5: larger repositories and other languages, other models, audits that fan out to several hunters, the live MCP integrations, a successful OSV-Scanner advisory lookup, and installing from the GitHub marketplace URL.
+1. **Three-way quality test (highest value).** Every comparison so far is Ultimatum against plain Claude Code, never against the original upstream skills. Extend `evals/live/run_live.py` with a third arm that installs the relevant upstream packs (for example Superpowers, Trail of Bits, Impeccable) into the isolated config dir. Run cases 1–9 with 3 runs each, and record correctness first, then cost. Budget is roughly $5–8 per round.
+2. **Duplicate scan leads.** When gitleaks is installed, `ult scan` reports the same secret twice (once from `gitleaks:*`, once from `builtin:secret-*`, same file:line). Dedupe by (file, line, class) in `plugins/ultimatum/scripts/ultlib/scan.py` and keep the external tool's lead. Add a test.
+3. **Secrets in git history.** `ult scan` runs gitleaks on the working directory only. Add `--history`, which runs `gitleaks git --redact` when gitleaks is present and otherwise says "not checked". This is the top security gap in `docs/COVERAGE-MAP.md`.
+4. **Measure the efficiency coach on real use.** After a week of normal use, run `ult usage report --since 7d` and use `ult improve` on one finding. Then check whether the 200k compaction cap (set by the user in Settings, not by the plugin) reduced tokens per session. Record the results in `docs/TEST-REPORT.md`.
+5. **Remaining gaps** are listed in `docs/COVERAGE-MAP.md` (47 gaps; 117 rows marked partial).
+6. **Untested areas** are in `docs/TEST-REPORT.md` section 5: large real repositories, other models, multi-hunter audits, live MCP integrations, and OSV advisory lookups.
+
+## Version history since the first handoff
+- 0.1.1: CI added (Python 3.9/3.11/3.13 without ripgrep, plus plugin validation). Fixed two search crashes on the no-ripgrep path.
+- 0.2.0: efficiency coach (`ult usage report`, `ult improve`, `improve` route, `self-improvement.md`). Tested live: auto-invoked, $0.09 per review, no prompt text in reports.
+- 0.2.1: fixed `ult note` reference collisions within one millisecond. This was the earlier unreproduced test failure.
+- 0.2.2: handoff refreshed at milestones so work survives compaction. README documents the 200k context cap.
+- Making Claude use Ultimatum without being asked needs one line in `~/.claude/CLAUDE.md`. Tested 0/3 without it and 3/3 with it. See the plugin README.
 
 ## How to verify a change
 - Toolbelt or script change: add or update a test in `plugins/ultimatum/tests/`, then run the unit suite.
