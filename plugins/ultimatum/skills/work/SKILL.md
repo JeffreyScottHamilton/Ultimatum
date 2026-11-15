@@ -25,7 +25,8 @@ References live in `${CLAUDE_SKILL_DIR}/references/`. Read a reference only when
    - Batch independent tool calls into one turn, and don't re-read a file you already have, or one you just edited.
    - Send broad exploration (many files, big logs) to `ultimatum:scout`, so only its short answer enters this chat.
    - Keep replies short, without restating plans or pasting back what the user can already see.
-   - Once a long task finishes a milestone, run `ult handoff write`. When the chat has grown long, suggest `/compact` or a fresh session that resumes from the handoff.
+   - **Check the chat's size before substantial work** when this conversation already has many earlier exchanges, has been compacted, or you are unsure: `ult context` (one cheap line). If it reports HIGH (over 150k tokens per turn), do not start the work here. Run `ult handoff write` and tell the user to open a fresh chat with: `/ultimatum:work resume`. In a fresh chat every step is many times cheaper.
+   - Once a long task finishes a milestone, run `ult handoff write`.
 
 ## 2. Route the task
 

@@ -155,3 +155,26 @@ class TestImproveLedger(CoachCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestContext(unittest.TestCase):
+    def run_ctx(self, cache_read):
+        cfg = Path(tempfile.mkdtemp())
+        work = Path(tempfile.mkdtemp()).resolve()
+        import re as _re
+        d = cfg / "projects" / _re.sub(r"[^A-Za-z0-9]", "-", str(work))
+        d.mkdir(parents=True)
+        (d / "s.jsonl").write_text(json.dumps(assistant("m1", {"input_tokens": 5, "cache_read_input_tokens": cache_read})) + "\n")
+        env = {**os.environ, "CLAUDE_CONFIG_DIR": str(cfg), "ULTIMATUM_ROOT": str(work)}
+        return subprocess.run([sys.executable, ULT, "context"], cwd=work, env=env, capture_output=True, text=True)
+
+    def test_small_chat_ok(self):
+        r = self.run_ctx(30_000)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("ok", r.stdout)
+
+    def test_large_chat_flagged(self):
+        r = self.run_ctx(400_000)
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("HIGH", r.stdout)
+        self.assertIn("fresh chat", r.stdout)
