@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from datetime import datetime
 from pathlib import Path
 
 from .common import project_root
@@ -23,19 +24,36 @@ def latest_context(cwd: Path) -> tuple[int, int] | None:
     files = sorted(d.glob("*.jsonl"), key=lambda p: p.stat().st_mtime) if d.is_dir() else []
     if not files:
         return None
-    last, turns = 0, 0
-    with open(files[-1], encoding="utf-8", errors="replace") as fh:
+    tokens, turns, _ = transcript_stats(files[-1])
+    return tokens, turns
+
+
+def _epoch(ts) -> float | None:
+    if not isinstance(ts, str):
+        return None
+    try:
+        return datetime.fromisoformat(ts.replace("Z", "+00:00")).timestamp()
+    except ValueError:
+        return None
+
+
+def transcript_stats(path: Path) -> tuple[int, int, float | None]:
+    """(tokens the last turn re-read, assistant turns, epoch of the last assistant turn)."""
+    last, turns, when = 0, 0, None
+    with open(path, encoding="utf-8", errors="replace") as fh:
         for line in fh:
             if '"assistant"' not in line:
                 continue
             try:
-                u = json.loads(line).get("message", {}).get("usage") or {}
+                e = json.loads(line)
+                u = e.get("message", {}).get("usage") or {}
             except (json.JSONDecodeError, AttributeError):
                 continue
             c = u.get("input_tokens", 0) + u.get("cache_read_input_tokens", 0) + u.get("cache_creation_input_tokens", 0)
             if c:
                 last, turns = c, turns + 1
-    return last, turns
+                when = _epoch(e.get("timestamp")) or when
+    return last, turns, when
 
 
 def cmd_context(args) -> int:

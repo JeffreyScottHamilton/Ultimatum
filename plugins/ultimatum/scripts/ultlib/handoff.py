@@ -76,10 +76,39 @@ def check(root: Path, text: str) -> list[str]:
     return notes
 
 
+def _sections(text: str) -> dict[str, list[str]]:
+    out: dict[str, list[str]] = {}
+    cur = None
+    for line in text.splitlines():
+        if line.startswith("## "):
+            cur = out.setdefault(line[3:].strip(), [])
+        elif cur is not None and line.strip():
+            cur.append(line.strip())
+    return out
+
+
+def _carry_over(path: Path, a) -> None:
+    """--keep: fill unset fields from the existing handoff so an automatic
+    write (e.g. by the guard hook) never erases the recorded goal or plan."""
+    if not path.exists():
+        return
+    sec = _sections(path.read_text(errors="replace"))
+    pick = lambda name: [l for l in sec.get(name, []) if not l.endswith("(unstated)") and "(none" not in l]
+    bullets = lambda name: [l[2:] for l in pick(name) if l.startswith("- ")]
+    if not a.goal and pick("Goal"):
+        a.goal = " ".join(pick("Goal"))
+    if not a.next and pick("Next unfinished step"):
+        a.next = " ".join(pick("Next unfinished step"))
+    a.decision = (a.decision or []) or bullets("Decisions (with why)")
+    a.question = (a.question or []) or bullets("Open questions")
+
+
 def cmd_handoff(args) -> int:
     root = project_root()
     path = state_dir(root) / "handoff.md"
     if args.action == "write":
+        if args.keep:
+            _carry_over(path, args)
         text = compose(root, args)
         write_private(path, text)
         hist = state_dir(root, "handoffs") / f"{time.strftime('%Y%m%d-%H%M%S')}.md"
@@ -107,4 +136,6 @@ def register(sub):
     p.add_argument("--evidence", action="append", help="extra evidence line (repeatable)")
     p.add_argument("--next", help="the single next unfinished step")
     p.add_argument("--question", action="append")
+    p.add_argument("--keep", action="store_true",
+                   help="carry over goal, decisions, next step and questions from the existing handoff when not given")
     p.set_defaults(func=cmd_handoff)

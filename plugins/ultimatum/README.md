@@ -47,7 +47,7 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 
 ## Defaults that respect your project
 
-- No hooks, telemetry, MCP servers, proxies, or hosted model routing are installed.
+- No telemetry, MCP servers, proxies, or hosted model routing are installed. The one hook (the chat-size guard below) does nothing unless you turn it on.
 - State is kept in `.ultimatum/` in your project. The directory ignores itself in git. Raw logs are mode 0600, and anything printed or written to summaries is secret-redacted.
 - Optional tools such as Semgrep, Gitleaks, OSV-Scanner, Playwright, axe-core, Context7, Serena, the Sentry MCP, and Chrome DevTools MCP are used only when present, and Ultimatum names them before use. The core works without any of them.
 - Security audits are read-only by default. Active testing only targets local fixtures or environments you explicitly authorize.
@@ -60,6 +60,22 @@ On models with a 1M-token window, long chats re-read their whole context every t
 - **Cloud sessions:** add the environment variable `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20` in the environment's settings (20% of a 1M window). A model with a smaller window would compact sooner at that percentage.
 
 The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult improve`).
+
+## Optional: block prompts in chats that got too expensive
+
+The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but is **off by default**. When on, before each prompt it runs a local script (no model call) that reads the current chat's transcript. If the last turn re-read more than 150k tokens, or the chat has been idle for more than 60 minutes (so the prompt cache expired and the next turn re-reads everything), it:
+
+1. blocks the prompt (exit code 2), so it never reaches the model and costs zero model tokens,
+2. runs `ult handoff write --keep`, which keeps the existing goal, decisions, and next step and records the blocked prompt,
+3. prints: `Chat too large. Start a new chat and type: /ultimatum:work resume`
+
+To turn it on, set `ULTIMATUM_GUARD=1` in the environment Claude Code runs in, for example in `~/.claude/settings.json`:
+
+```json
+{ "env": { "ULTIMATUM_GUARD": "1" } }
+```
+
+For cloud sessions, add `ULTIMATUM_GUARD=1` to the environment's variables. Optional thresholds: `ULTIMATUM_GUARD_TOKENS` (default `150000`) and `ULTIMATUM_GUARD_IDLE_MIN` (default `60`). To turn it off, remove the variable. The guard needs `python3` on the PATH. If the transcript can't be read, it lets the prompt through.
 
 ## Install
 

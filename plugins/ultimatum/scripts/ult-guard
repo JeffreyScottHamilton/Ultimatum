@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Ultimatum chat-size guard: an opt-in UserPromptSubmit hook. Local, stdlib only.
+
+Off unless ULTIMATUM_GUARD=1. When on, before each prompt it reads the current
+chat's transcript; if the last turn re-read more than ULTIMATUM_GUARD_TOKENS
+(default 150000) or the chat has been idle longer than ULTIMATUM_GUARD_IDLE_MIN
+(default 60) minutes, it writes a handoff and exits 2. Claude Code then drops
+the prompt before it reaches the model (zero model tokens) and shows stderr.
+Any error or missing data lets the prompt through.
+"""
+import json
+import os
+import subprocess
+import sys
+import time
+
+MESSAGE = "Chat too large. Start a new chat and type: /ultimatum:work resume"
+
+
+def _num(name, default):
+    try:
+        return float(os.environ.get(name, default))
+    except ValueError:
+        return float(default)
+
+
+def main() -> int:
+    if os.environ.get("ULTIMATUM_GUARD", "").strip().lower() not in ("1", "true", "yes", "on"):
+        return 0
+    sys.dont_write_bytecode = True
+    here = os.path.dirname(os.path.realpath(__file__))
+    sys.path.insert(0, here)
+    from pathlib import Path
+    from ultlib.context import HIGH, transcript_stats
+
+    try:
+        data = json.load(sys.stdin)
+        transcript = Path(data["transcript_path"])
+        tokens, turns, last = transcript_stats(transcript)
+    except Exception:  # no input, no transcript yet, unreadable: never block
+        return 0
+    limit = _num("ULTIMATUM_GUARD_TOKENS", HIGH)
+    idle_min = (time.time() - last) / 60 if last else 0
+    reason = None
+    if tokens > limit:
+        reason = f"each turn re-reads ~{tokens:,} tokens"
+    elif idle_min > _num("ULTIMATUM_GUARD_IDLE_MIN", 60):
+        reason = f"idle {int(idle_min)} minutes, so the cache expired and the next turn re-reads everything"
+    if not reason:
+        return 0
+
+    prompt = str(data.get("prompt") or "")[:500]
+    cmd = [sys.executable, os.path.join(here, "ult"), "handoff", "write", "--keep",
+           "--evidence", f"ult-guard blocked a prompt ({reason}; {turns} turns)"]
+    if prompt:
+        cmd += ["--evidence", f"blocked prompt, resend it in the new chat: {prompt}"]
+    try:
+        subprocess.run(cmd, cwd=data.get("cwd") or None, capture_output=True, timeout=20)
+    except Exception:
+        pass
+    print(f"[ultimatum] {reason}.\n{MESSAGE}", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())
