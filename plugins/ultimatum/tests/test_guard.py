@@ -40,6 +40,16 @@ class GuardCase(UltCase):
         return subprocess.run([sys.executable, GUARD], input=payload, capture_output=True, text=True,
                               env=e, cwd=str(self.root), timeout=60)
 
+    def start(self, enabled=True, source="startup"):
+        e = self.env()
+        e.pop("ULTIMATUM_GUARD", None)
+        if enabled:
+            e["ULTIMATUM_GUARD"] = "1"
+        payload = json.dumps({"session_id": "new", "transcript_path": str(self.tmp / "new.jsonl"),
+                              "cwd": str(self.root), "hook_event_name": "SessionStart", "source": source})
+        return subprocess.run([sys.executable, GUARD], input=payload, capture_output=True, text=True,
+                              env=e, cwd=str(self.root), timeout=60)
+
     def handoff(self):
         return self.root / ".ultimatum" / "handoff.md"
 
@@ -94,10 +104,42 @@ class GuardCase(UltCase):
         self.assertIn("use Stripe — already integrated", text)
         self.assertIn("wire the webhook", text)
 
+    def test_new_chat_resumes_after_block_once(self):
+        self.assertEqual(self.guard(self.transcript(turn(400_000)), prompt="fix the login bug").returncode, 2)
+        r = self.start()
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("stopped by the Ultimatum chat-size guard", r.stdout)
+        self.assertIn("fix the login bug", r.stdout)
+        self.assertEqual(self.start().stdout, "")  # consumed: the next new chat starts clean
+
+    def test_new_chat_without_block_adds_nothing(self):
+        self.ult("handoff", "write", "--goal", "unrelated manual handoff")
+        r = self.start()
+        self.assertEqual((r.returncode, r.stdout), (0, ""))
+
+    def test_resume_off_when_guard_off(self):
+        self.guard(self.transcript(turn(400_000)))
+        self.assertEqual(self.start(enabled=False).stdout, "")
+        self.assertIn("chat-size guard", self.start().stdout)  # still pending for when it is on
+
+    def test_stale_block_is_not_resumed(self):
+        self.guard(self.transcript(turn(400_000)))
+        marker = self.root / ".ultimatum" / "guard-pending"
+        old = time.time() - 8 * 24 * 3600
+        os.utime(marker, (old, old))
+        self.assertEqual(self.start().stdout, "")
+        self.assertFalse(marker.exists())
+
+    def test_session_start_does_not_create_state_dir(self):
+        self.start()
+        self.assertFalse((self.root / ".ultimatum").exists())
+
     def test_hooks_json_points_at_guard(self):
         cfg = json.loads((Path(SCRIPTS).parent / "hooks" / "hooks.json").read_text())
-        cmd = cfg["hooks"]["UserPromptSubmit"][0]["hooks"][0]["command"]
-        self.assertIn("${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard", cmd)
+        for event in ("UserPromptSubmit", "SessionStart"):
+            cmd = cfg["hooks"][event][0]["hooks"][0]["command"]
+            self.assertIn("${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard", cmd)
+        self.assertEqual(cfg["hooks"]["SessionStart"][0]["matcher"], "startup|clear")
 
 
 if __name__ == "__main__":

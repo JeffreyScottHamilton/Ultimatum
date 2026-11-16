@@ -7,6 +7,10 @@ chat's transcript; if the last turn re-read more than ULTIMATUM_GUARD_TOKENS
 (default 60) minutes, it writes a handoff and exits 2. Claude Code then drops
 the prompt before it reaches the model (zero model tokens) and shows stderr.
 Any error or missing data lets the prompt through.
+
+The same script is also a SessionStart hook: when a new chat starts (or /clear)
+after the guard blocked a prompt, it prints the handoff so Claude resumes the
+work from the first message, whatever it says. Each block is resumed once.
 """
 import json
 import os
@@ -15,6 +19,9 @@ import sys
 import time
 
 MESSAGE = "Chat too large. Start a new chat and type: /ultimatum:work resume"
+PENDING = "guard-pending"
+RESUME_MAX_AGE = 7 * 24 * 3600
+RESUME_MAX_CHARS = 8000
 
 
 def _num(name, default):
@@ -22,6 +29,33 @@ def _num(name, default):
         return float(os.environ.get(name, default))
     except ValueError:
         return float(default)
+
+
+def _state(cwd):
+    """The project's state dir, without creating it (unlike common.state_dir)."""
+    from pathlib import Path
+    from ultlib.common import STATE_DIRNAME, project_root
+    ext = os.environ.get("ULTIMATUM_STATE_DIR")
+    return Path(ext).resolve() if ext else project_root(Path(cwd) if cwd else None) / STATE_DIRNAME
+
+
+def resume(data) -> int:
+    """SessionStart: hand a pending guard handoff to the new chat, once."""
+    d = _state(data.get("cwd"))
+    marker, handoff = d / PENDING, d / "handoff.md"
+    if not marker.is_file() or marker.is_symlink():
+        return 0
+    fresh = time.time() - marker.stat().st_mtime < RESUME_MAX_AGE
+    marker.unlink()
+    if not fresh or not handoff.is_file():
+        return 0
+    text = handoff.read_text(encoding="utf-8", errors="replace")[:RESUME_MAX_CHARS]
+    print("The previous chat was stopped by the Ultimatum chat-size guard. Whatever the user's "
+          "first message says (e.g. \"continue\"), resume that work: follow the /ultimatum:work "
+          "handoff route (resume) with the handoff below, starting at its next unfinished step, "
+          "unless the user asks for something else.\n")
+    print(text)
+    return 0
 
 
 def main() -> int:
@@ -35,6 +69,8 @@ def main() -> int:
 
     try:
         data = json.load(sys.stdin)
+        if data.get("hook_event_name") == "SessionStart":
+            return resume(data)
         transcript = Path(data["transcript_path"])
         tokens, turns, last = transcript_stats(transcript)
     except Exception:  # no input, no transcript yet, unreadable: never block
@@ -55,7 +91,9 @@ def main() -> int:
     if prompt:
         cmd += ["--evidence", f"blocked prompt, resend it in the new chat: {prompt}"]
     try:
-        subprocess.run(cmd, cwd=data.get("cwd") or None, capture_output=True, timeout=20)
+        r = subprocess.run(cmd, cwd=data.get("cwd") or None, capture_output=True, timeout=20)
+        if r.returncode == 0:
+            (_state(data.get("cwd")) / PENDING).write_text(f"{time.time():.0f}\n")
     except Exception:
         pass
     print(f"[ultimatum] {reason}.\n{MESSAGE}", file=sys.stderr)

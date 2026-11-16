@@ -69,6 +69,8 @@ The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but 
 2. runs `ult handoff write --keep`, which keeps the existing goal, decisions, and next step and records the blocked prompt,
 3. prints: `Chat too large. Start a new chat and type: /ultimatum:work resume`
 
+When you then start a new chat in the same project (or type `/clear`), a `SessionStart` hook loads that handoff into the new chat once, so your first message can be anything, for example `continue`, and Claude picks up at the next unfinished step. Typing `/ultimatum:work resume` still works too. In cloud sessions, a new chat runs on a new machine without the old chat's `.ultimatum/` files, so use `/clear` in the same chat there instead.
+
 To turn it on, set `ULTIMATUM_GUARD=1` in the environment Claude Code runs in, for example in `~/.claude/settings.json`:
 
 ```json

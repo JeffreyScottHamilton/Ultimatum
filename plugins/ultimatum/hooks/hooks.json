@@ -1,6 +1,18 @@
 {
   "description": "Ultimatum chat-size guard. Off unless ULTIMATUM_GUARD=1; see the plugin README.",
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
