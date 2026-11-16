@@ -57,13 +57,15 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 On models with a 1M-token window, long chats re-read their whole context every turn. In our own usage, single turns reached 533k tokens. Capping context reduces that, and Ultimatum keeps a handoff current at milestones so details survive the summary. Set the cap outside the plugin, since a plugin can't change it:
 
 - **Terminal:** `claude --autocompact 200000` (or alias it).
-- **Cloud sessions:** add the environment variable `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20` in the environment's settings (20% of a 1M window). A model with a smaller window would compact sooner at that percentage.
+- **Cloud sessions:** add the environment variable `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20` yourself in the environment's settings (a session can't set this one for you) (20% of a 1M window). A model with a smaller window would compact sooner at that percentage.
 
 The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult improve`).
 
 ## Optional: block prompts in chats that got too expensive
 
-The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but is **off by default**. When on, before each prompt it runs a local script (no model call) that reads the current chat's transcript. If the last turn re-read more than 150k tokens, or the chat has been idle for more than 60 minutes (so the prompt cache expired and the next turn re-reads everything), it:
+Use auto-compact (above) as the main control: it shrinks a chat in place, so nothing has to be re-learned. A new chat starts at roughly 78k tokens per turn and then re-reads files to catch up, so switching only pays off for very large chats. The guard is a safety net for those, which is why its limits sit well above the ~200k compaction point.
+
+The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but is **off by default**. When on, before each prompt it runs a local script (no model call) that reads the current chat's transcript. If the last turn re-read more than 400k tokens, or the chat has been idle for more than 4 hours, it:
 
 1. blocks the prompt (exit code 2), so it never reaches the model and costs zero model tokens,
 2. runs `ult handoff write --keep`, which keeps the existing goal, decisions, and next step and records the blocked prompt,
@@ -77,7 +79,7 @@ To turn it on, set `ULTIMATUM_GUARD=1` in the environment Claude Code runs in, f
 { "env": { "ULTIMATUM_GUARD": "1" } }
 ```
 
-For cloud sessions, add `ULTIMATUM_GUARD=1` to the environment's variables. Optional thresholds: `ULTIMATUM_GUARD_TOKENS` (default `150000`) and `ULTIMATUM_GUARD_IDLE_MIN` (default `60`). To turn it off, remove the variable. The guard needs `python3` on the PATH. If the transcript can't be read, it lets the prompt through.
+For cloud sessions, add `ULTIMATUM_GUARD=1` to the environment's variables. Optional thresholds: `ULTIMATUM_GUARD_TOKENS` (default `400000`) and `ULTIMATUM_GUARD_IDLE_MIN` (default `240`). To turn it off, remove the variable. The guard needs `python3` on the PATH. If the transcript can't be read, it lets the prompt through.
 
 ## Install
 

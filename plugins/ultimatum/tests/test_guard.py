@@ -65,7 +65,7 @@ class GuardCase(UltCase):
         self.assertFalse(self.handoff().exists())
 
     def test_large_chat_blocks_and_writes_handoff(self):
-        r = self.guard(self.transcript(turn(20_000), turn(150_001)), prompt="fix the login bug")
+        r = self.guard(self.transcript(turn(20_000), turn(400_001)), prompt="fix the login bug")
         self.assertEqual(r.returncode, 2)
         self.assertIn(MESSAGE, r.stderr)
         self.assertEqual(r.stdout, "")
@@ -74,13 +74,13 @@ class GuardCase(UltCase):
         self.assertIn("fix the login bug", text)
 
     def test_exactly_at_limit_passes(self):
-        self.assertEqual(self.guard(self.transcript(turn(150_000))).returncode, 0)
+        self.assertEqual(self.guard(self.transcript(turn(400_000))).returncode, 0)
 
     def test_idle_chat_blocks(self):
-        r = self.guard(self.transcript(turn(5_000, offset=-61 * 60)))
+        r = self.guard(self.transcript(turn(5_000, offset=-241 * 60)))
         self.assertEqual(r.returncode, 2)
         self.assertIn(MESSAGE, r.stderr)
-        self.assertIn("idle 61 minutes", r.stderr)
+        self.assertIn("idle 241 minutes", r.stderr)
 
     def test_thresholds_are_configurable(self):
         t = self.transcript(turn(60_000, offset=-10 * 60))
@@ -98,14 +98,14 @@ class GuardCase(UltCase):
         self.assertEqual(self.ult("handoff", "write", "--goal", "Ship the billing page",
                                   "--decision", "use Stripe — already integrated",
                                   "--next", "wire the webhook").code, 0)
-        self.assertEqual(self.guard(self.transcript(turn(400_000))).returncode, 2)
+        self.assertEqual(self.guard(self.transcript(turn(500_000))).returncode, 2)
         text = self.handoff().read_text()
         self.assertIn("Ship the billing page", text)
         self.assertIn("use Stripe — already integrated", text)
         self.assertIn("wire the webhook", text)
 
     def test_new_chat_resumes_after_block_once(self):
-        self.assertEqual(self.guard(self.transcript(turn(400_000)), prompt="fix the login bug").returncode, 2)
+        self.assertEqual(self.guard(self.transcript(turn(500_000)), prompt="fix the login bug").returncode, 2)
         r = self.start()
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertIn("stopped by the Ultimatum chat-size guard", r.stdout)
@@ -118,12 +118,12 @@ class GuardCase(UltCase):
         self.assertEqual((r.returncode, r.stdout), (0, ""))
 
     def test_resume_off_when_guard_off(self):
-        self.guard(self.transcript(turn(400_000)))
+        self.guard(self.transcript(turn(500_000)))
         self.assertEqual(self.start(enabled=False).stdout, "")
         self.assertIn("chat-size guard", self.start().stdout)  # still pending for when it is on
 
     def test_stale_block_is_not_resumed(self):
-        self.guard(self.transcript(turn(400_000)))
+        self.guard(self.transcript(turn(500_000)))
         marker = self.root / ".ultimatum" / "guard-pending"
         old = time.time() - 8 * 24 * 3600
         os.utime(marker, (old, old))

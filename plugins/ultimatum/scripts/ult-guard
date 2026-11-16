@@ -3,8 +3,8 @@
 
 Off unless ULTIMATUM_GUARD=1. When on, before each prompt it reads the current
 chat's transcript; if the last turn re-read more than ULTIMATUM_GUARD_TOKENS
-(default 150000) or the chat has been idle longer than ULTIMATUM_GUARD_IDLE_MIN
-(default 60) minutes, it writes a handoff and exits 2. Claude Code then drops
+(default 400000) or the chat has been idle longer than ULTIMATUM_GUARD_IDLE_MIN
+(default 240) minutes, it writes a handoff and exits 2. Claude Code then drops
 the prompt before it reaches the model (zero model tokens) and shows stderr.
 Any error or missing data lets the prompt through.
 
@@ -20,6 +20,8 @@ import time
 
 MESSAGE = "Chat too large. Start a new chat and type: /ultimatum:work resume"
 PENDING = "guard-pending"
+TOKENS_DEFAULT = 400_000  # a safety net above auto-compact (~200k), not the main control
+IDLE_MIN_DEFAULT = 240
 RESUME_MAX_AGE = 7 * 24 * 3600
 RESUME_MAX_CHARS = 8000
 
@@ -65,7 +67,7 @@ def main() -> int:
     here = os.path.dirname(os.path.realpath(__file__))
     sys.path.insert(0, here)
     from pathlib import Path
-    from ultlib.context import HIGH, transcript_stats
+    from ultlib.context import transcript_stats
 
     try:
         data = json.load(sys.stdin)
@@ -75,12 +77,12 @@ def main() -> int:
         tokens, turns, last = transcript_stats(transcript)
     except Exception:  # no input, no transcript yet, unreadable: never block
         return 0
-    limit = _num("ULTIMATUM_GUARD_TOKENS", HIGH)
+    limit = _num("ULTIMATUM_GUARD_TOKENS", TOKENS_DEFAULT)
     idle_min = (time.time() - last) / 60 if last else 0
     reason = None
     if tokens > limit:
         reason = f"each turn re-reads ~{tokens:,} tokens"
-    elif idle_min > _num("ULTIMATUM_GUARD_IDLE_MIN", 60):
+    elif idle_min > _num("ULTIMATUM_GUARD_IDLE_MIN", IDLE_MIN_DEFAULT):
         reason = f"idle {int(idle_min)} minutes, so the cache expired and the next turn re-reads everything"
     if not reason:
         return 0
