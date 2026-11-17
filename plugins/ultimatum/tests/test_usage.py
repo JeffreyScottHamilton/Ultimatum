@@ -177,4 +177,5 @@ class TestContext(unittest.TestCase):
         r = self.run_ctx(400_000)
         self.assertEqual(r.returncode, 3)
         self.assertIn("HIGH", r.stdout)
-        self.assertIn("fresh chat", r.stdout)
+        self.assertIn("handoff write", r.stdout)
+        self.assertNotIn("fresh chat", r.stdout)

@@ -24,21 +24,25 @@ You are continuing work on **Ultimatum**, a free, open-source Claude Code plugin
 ## Rules that must keep holding
 - Original wording and code only. Several upstreams are CC BY-SA, ELv2, GPL, or have no license file (`research/REVISIONS.md`). Never copy upstream text or code. Cite standard IDs (ASVS, WSTG, CWE) only.
 - The toolbelt stays Python standard library only, with no network access.
-- No hooks, telemetry, MCP servers, or proxies in the default install.
+- No telemetry, MCP servers, or proxies in the default install. The only hook is the read-only post-compaction handoff hook (`hooks/hooks.json`, added in 0.3.0 at the owner's request).
+- The main session orchestrates and never edits project files; workers make every edit (SKILL.md rule 7). It never asks the user to open a new chat.
 - Exact evidence is never compressed: exit codes, error strings, `file:line`, and security evidence stay verbatim.
 - Report only what was run. Mark anything untested as untested.
 
 ## Unfinished work, in priority order
-1. **Three-way quality test (highest value).** Every comparison so far is Ultimatum against plain Claude Code, never against the original upstream skills. Extend `evals/live/run_live.py` with a third arm that installs the relevant upstream packs (for example Superpowers, Trail of Bits, Impeccable) into the isolated config dir. Run cases 1–9 with 3 runs each, and record correctness first, then cost. Budget is roughly $5–8 per round.
-4. **Measure the efficiency coach on real use.** After a week of normal use, run `ult usage report --since 7d` and use `ult improve` on one finding. Then check whether the 200k compaction cap (set by the user in Settings, not by the plugin) reduced tokens per session. Record the results in `docs/TEST-REPORT.md`.
-5. **Remaining gaps** are listed in `docs/COVERAGE-MAP.md` (47 gaps; 117 rows marked partial).
-6. **Untested areas** are in `docs/TEST-REPORT.md` section 5: large real repositories, other models, multi-hunter audits, live MCP integrations, and OSV advisory lookups.
+1. **Re-run the live A/B for 0.3.0.** Always-delegate (rule 7) and the compaction hook are unmeasured. Run the nine cases with 3 runs per arm, counting subagent tokens, and update `docs/TEST-REPORT.md`. The 16 routing dry-runs still expect no agent, because they do not implement anything.
+2. **Three-way quality test (highest value).** Every comparison so far is Ultimatum against plain Claude Code, never against the original upstream skills. Extend `evals/live/run_live.py` with a third arm that installs the relevant upstream packs (for example Superpowers, Trail of Bits, Impeccable) into the isolated config dir. Run cases 1–9 with 3 runs each, and record correctness first, then cost. Budget is roughly $5–8 per round.
+3. **Measure the efficiency coach on real use.** After a week of normal use, run `ult usage report --since 7d` and use `ult improve` on one finding. Then check whether the 200k auto-compact window (`CLAUDE_CODE_AUTO_COMPACT_WINDOW=200000`) reduced tokens per session. Record the results in `docs/TEST-REPORT.md`.
+4. **Remaining gaps** are listed in `docs/COVERAGE-MAP.md` (47 gaps; 117 rows marked partial).
+5. **Untested areas** are in `docs/TEST-REPORT.md` section 5: large real repositories, other models, multi-hunter audits, live MCP integrations, and OSV advisory lookups.
 
 ## Version history since the first handoff
 - 0.1.1: CI added (Python 3.9/3.11/3.13 without ripgrep, plus plugin validation). Fixed two search crashes on the no-ripgrep path.
 - 0.2.0: efficiency coach (`ult usage report`, `ult improve`, `improve` route, `self-improvement.md`). Tested live: auto-invoked, $0.09 per review, no prompt text in reports.
 - 0.2.1: fixed `ult note` reference collisions within one millisecond. This was the earlier unreproduced test failure.
 - 0.2.2: handoff refreshed at milestones so work survives compaction. README documents the 200k context cap.
+- 0.2.3–0.2.6: git-history secret scan, rule "keep the conversation small", zero-overhead routing, `ult context`.
+- 0.3.0: orchestrator-only main session, post-compaction hook, no fresh-chat advice, Learn step. See `CHANGELOG.md`.
 - Making Claude use Ultimatum without being asked needs one line in `~/.claude/CLAUDE.md`. Tested 0/3 without it and 3/3 with it. See the plugin README.
 
 ## How to verify a change

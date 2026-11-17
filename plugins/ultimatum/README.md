@@ -40,26 +40,37 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 - **A browser check** (`scripts/ult-browser.mjs`): uses Playwright for viewports, real interactions, console errors, and accessibility checks. It runs axe-core if installed and built-in checks otherwise.
 - **Five subagents**:
   - `ultimatum:scout`: fast, read-only searching.
-  - `ultimatum:worker`: one owned slice of a larger task.
+  - `ultimatum:worker`: makes every edit, from a one-line fix to one owned slice of a larger task. The main session only orchestrates: it never edits files itself.
   - `ultimatum:reviewer`: a fresh review of the integrated diff.
   - `ultimatum:security-hunter`: hunts in one assigned area during an audit.
   - `ultimatum:security-verifier`: independently challenges serious findings.
 
 ## Defaults that respect your project
 
-- No hooks, telemetry, MCP servers, proxies, or hosted model routing are installed.
+- No telemetry, MCP servers, proxies, or hosted model routing are installed. One local hook ships (`hooks/hooks.json`): after a compaction it prints the saved handoff back into the chat. It runs `ult handoff show`, reads only `.ultimatum/handoff.md`, and makes no network calls.
 - State is kept in `.ultimatum/` in your project. The directory ignores itself in git. Raw logs are mode 0600, and anything printed or written to summaries is secret-redacted.
 - Optional tools such as Semgrep, Gitleaks, OSV-Scanner, Playwright, axe-core, Context7, Serena, the Sentry MCP, and Chrome DevTools MCP are used only when present, and Ultimatum names them before use. The core works without any of them.
 - Security audits are read-only by default. Active testing only targets local fixtures or environments you explicitly authorize.
 
-## Recommended: compact long chats at about 200k tokens
+## One chat, compacted automatically at about 200k tokens
 
-On models with a 1M-token window, long chats re-read their whole context every turn. In our own usage, single turns reached 533k tokens. Capping context reduces that, and Ultimatum keeps a handoff current at milestones so details survive the summary. Set the cap outside the plugin, since a plugin can't change it:
+You should never need to start a new chat because the old one got long. Ultimatum is built to work through compaction: it saves a handoff at each milestone, the hook above prints it back after every compaction, and the skill tells Claude to re-check and keep going without asking you.
 
-- **Terminal:** `claude --autocompact 200000` (or alias it).
-- **Cloud sessions:** add the environment variable `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20` in the environment's settings (20% of a 1M window). A model with a smaller window would compact sooner at that percentage.
+Claude Code compacts automatically; you only set where. On a 1M-token model the default is far too late (every turn re-reads the whole chat), so set the window to 200k once. A plugin can't change this setting for you:
 
-The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult improve`).
+- **Everywhere on your machine:** add to `~/.claude/settings.json`:
+  ```json
+  { "env": { "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "200000" } }
+  ```
+- **One project:** the same block in that project's `.claude/settings.json` (this repository ships one).
+- **One run:** `claude --autocompact 200000`.
+- **Cloud sessions (claude.ai/code):** add the environment variable `CLAUDE_CODE_AUTO_COMPACT_WINDOW=200000` in the environment's settings, or commit the project `.claude/settings.json` above.
+
+The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult usage report`).
+
+## It learns
+
+When you correct Claude, or the same mistake happens twice in a task, Ultimatum adds the one-line rule that would have prevented it to the project's `CLAUDE.md` under `## Learned`, and tells you. Claude Code loads that file in every later session. For measured changes, ask for an "efficiency review" (`ult usage report`, `ult improve`).
 
 ## Install
 

@@ -1,4 +1,20 @@
-# Efficiency coach: review usage, improve the workflow
+# Self-improvement: learn from mistakes, review usage
+
+Ultimatum improves in two ways. The first is automatic and happens inside every task. The second is a measured review the user asks for.
+
+## Learning during a task (automatic, no approval needed)
+
+Trigger: the user corrects you, or the same mistake or failing command occurs twice in one task.
+
+1. Write the rule that would have prevented it, in one line, as an instruction: "Run tests with `npm test -- --runInBand`", not "the tests failed earlier".
+2. Have the worker add it to the project's `CLAUDE.md` under `## Learned` (create the file or section if missing). Claude Code loads that file in every later session, so the lesson persists, including in cloud sessions where `.ultimatum/` does not.
+3. Skip it if an equivalent line exists. Replace a line that turned out wrong instead of adding a second one. Keep the section under about 20 lines; merge or drop the least useful when it grows.
+4. Never write secrets, personal data, or conversation text. Never add a rule that weakens tests, CI gates, security checks, or permissions.
+5. Mention the added line in the report so the user can veto it.
+
+If the lesson is about Ultimatum itself rather than the project (a route misfired, a reference was wrong), also save it with `ult note --kind todo --title "ultimatum: <lesson>" --body "<evidence>"` and name it in the report, so it can be fixed in the plugin through the **skill-eval** route.
+
+## Efficiency coach (on request)
 
 Goal: reduce the tokens Claude spends on avoidable work without making results worse. The coach changes the instructions and notes around Claude, such as a project's `CLAUDE.md`, a skill, or a documented command. It never changes the model.
 
@@ -27,8 +43,8 @@ Also list open experiments from `ult improve list` that are ready to measure.
 | `repeated-reads` | Add the file's key facts (layout, entry points) to `CLAUDE.md`. |
 | `search-churn` | Add a short "where things live" section to `CLAUDE.md`. |
 | `corrections` | Add the convention the user had to correct. Read the transcript lines locally to see what it was, then write only the rule, never the conversation. |
-| `compactions` | Suggest earlier handoffs or splitting long tasks. Usually advice only, with no file change. |
-| `subagent-share` | Check whether delegation was justified. If not, tighten that project's guidance. |
+| `compactions` | Expected with a 200k window. Act only if work was lost or redone after one: then add the missing milestone handoff habit to `CLAUDE.md`. |
+| `subagent-share` | High by design, since workers make every edit. Act only on waste inside it: oversized briefs, repeated fix rounds, or workers re-reading what the brief could have given them. |
 
 Rules:
 - **Never** weaken tests, CI gates, security checks, or permission settings to save tokens. A cheaper wrong answer is a regression.

@@ -50,7 +50,7 @@ def cmd_context(args) -> int:
     tokens, turns = r
     if tokens >= HIGH:
         print(f"[ult context] HIGH: each turn re-reads ~{tokens:,} tokens ({turns} turns so far). "
-              f"Write a handoff and continue in a fresh chat.")
+              f"Run `ult handoff write` now; auto-compaction will shrink the chat. Keep working here.")
         return 3
     print(f"[ult context] ok: ~{tokens:,} tokens per turn ({turns} turns so far)")
     return 0

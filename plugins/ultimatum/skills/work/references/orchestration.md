@@ -4,18 +4,17 @@ Goal: split a large feature into independent slices, run workers safely, integra
 
 ## 1. When to parallelize
 
-Use workers only if all hold:
-- Three or more slices, each independently verifiable by a command that can fail.
-- Slices touch disjoint files (or you can fence them; §4).
-- Each slice is bigger than the cost of writing its brief (roughly more than 15 minutes of work or 3+ files).
+The manager never edits project files; every edit is a worker's (SKILL.md §1 rule 7). The only choice is parallel or in sequence. Run workers in parallel only if all hold:
+- Each slice is independently verifiable by a command that can fail.
+- Slices touch disjoint files (or you can fence them; §5).
 - Interfaces between slices can be fixed in advance.
-Otherwise do it yourself in blocker order. Use `ultimatum:scout` (read-only) for broad searches whatever the size.
+Otherwise run one worker per slice in blocker order. Use `ultimatum:scout` (read-only) for broad searches whatever the size.
 
 ## 2. Manager preparation (before any dispatch)
 
 1. Spec and interfaces done: exact signatures, endpoints, schema, event names, error shapes, file layout. Workers copy these verbatim.
 2. Shared contract file: put it in the repo's doc location or `.ultimatum/specs/<slug>.md`. Briefs point to it; they do not restate numbers.
-3. Land shared foundations yourself first, in one commit: types, schema, config, test helpers, empty module stubs. Workers then fill in, not invent.
+3. Land shared foundations first, through one foundation worker, in one commit: types, schema, config, test helpers, empty module stubs. Later workers then fill in, not invent.
 4. Record `BASE`: `git rev-parse HEAD` (never `HEAD~1`). Clean working tree or commit it first.
 5. Conflict scan: one row per pair of slices that share a file, interface, or fixture; one row per slice (do its tests agree with its code?). Resolve by reassigning ownership or sequencing.
 6. Decide order by blockers. Dispatch only slices whose blockers are done.
@@ -44,7 +43,7 @@ REPLY (<= 15 lines): STATUS, files changed, acceptance command + exit code +
 
 Status vocabulary (exact words): **DONE**, **DONE_WITH_CONCERNS** (finished; lists doubts), **BLOCKED** (cannot proceed; says why), **NEEDS_CONTEXT** (a named fact is missing). Escalating is always acceptable; silent guessing is the failure.
 
-Model choice: set it explicitly (an omitted model inherits the manager's). Mechanical edits and searches: haiku via `ultimatum:scout`/simple slices; normal implementation: sonnet via `ultimatum:worker`; ambiguous design, security-sensitive, or cross-cutting slices: the strongest model or do them yourself. Reviewers use at least sonnet.
+Model choice: set it explicitly (an omitted model inherits the manager's). Mechanical edits and searches: haiku via `ultimatum:scout`/simple slices; normal implementation: sonnet via `ultimatum:worker`; ambiguous design, security-sensitive, or cross-cutting slices: the strongest model. Reviewers use at least sonnet.
 
 Workers do not spawn workers. State it in every brief.
 
@@ -71,11 +70,11 @@ For each report:
 1. Treat it as a claim. Inspect `git -C <worktree> diff <BASE>..HEAD --stat` and the diff itself. Files outside "YOU OWN" are a violation; investigate.
 2. Rerun the acceptance command yourself via `ult run`. Quote the exit code and test count (ZERO_RUN is not a pass).
 3. On BLOCKED or NEEDS_CONTEXT, change something before retrying: more context, a stronger model, or a smaller slice. Never resend the same brief.
-4. Fix rounds: findings go back to the same worker for up to 3 rounds; then a fresh worker one tier up with a pointer to what was tried; after 5 rounds, you decide: park the item with a reason, or rule on the smallest change if later slices depend on it. Never fix worker output inside the manager session without review.
+4. Fix rounds: findings go back to the same worker for up to 3 rounds; then a fresh worker one tier up with a pointer to what was tried; after 5 rounds, you decide: park the item with a reason, or rule on the smallest change if later slices depend on it. Never fix worker output inside the manager session.
 
 ## 7. Integrate
 
-1. Merge slices in blocker order onto the integration branch: `git merge --no-ff ult/<slice>` or cherry-pick. Resolve conflicts yourself, citing the contract.
+1. Merge slices in blocker order onto the integration branch: `git merge --no-ff ult/<slice>` or cherry-pick. Merge commands are yours; a conflict that needs a code decision goes to a worker with the contract line that settles it.
 2. After each merge run the project's fast check; after the last, the full suite via `ult run`.
 3. Run the end-to-end acceptance from the spec (the success checks) on the integrated tree.
 4. Do not push or open a PR without the user's authorization.

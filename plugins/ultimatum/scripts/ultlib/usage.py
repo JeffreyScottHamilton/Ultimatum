@@ -270,8 +270,8 @@ FIXES = {
     "repeated-failures": "Record the working command (test/build/lint) in the project's CLAUDE.md so it isn't rediscovered by trial and error.",
     "search-churn": "Add a short repo map or 'where things live' section to the project's CLAUDE.md; use `ult map`/`ult symbols` first.",
     "corrections": "Look at what the user had to correct and add the missing convention or requirement to the project's CLAUDE.md.",
-    "compactions": "Split long sessions or save a handoff earlier (`ult handoff write`) so context does not overflow.",
-    "subagent-share": "Check that delegation was needed; small tasks should run inline (Ultimatum §3 delegation rule).",
+    "compactions": "Expected with a 200k auto-compact window. If work was redone afterwards, save the handoff at each milestone (`ult handoff write`).",
+    "subagent-share": "High by design (workers make every edit). Look for waste inside it: oversized briefs, repeated fix rounds, re-reading.",
 }
 
 
