@@ -394,6 +394,31 @@ def cmd_usage(args) -> int:
 
 
 # --------------------------------------------------------------------------
+# Retro: the same detectors, on this chat only, in a few lines
+# --------------------------------------------------------------------------
+RETRO_SKIP = {"compactions", "subagent-share"}  # expected by design, never a lesson
+
+
+def cmd_retro(args) -> int:
+    from .context import current_transcript
+    f = current_transcript()
+    if not f:
+        print("[ult retro] no transcript found for this chat; nothing to check")
+        return 1
+    files = [f, *sorted((f.parent / f.stem / "subagents").glob("*.jsonl"))]
+    sessions = [r for r in (analyze_file(p, None) for p in files) if r]
+    finds = [x for x in findings(sessions) if x["id"] not in RETRO_SKIP]
+    errors = sum(s["tool_errors"] for s in sessions)
+    if not finds:
+        print(f"[ult retro] clean: nothing repeated or oversized in this chat ({errors} tool errors)")
+        return 0
+    print(f"[ult retro] {len(finds)} lesson candidate(s) in this chat ({errors} tool errors):")
+    for x in finds:
+        print(f"- {x['id']}: {'; '.join(x['examples'][:2])}\n  fix: {x['fix']}")
+    return 3
+
+
+# --------------------------------------------------------------------------
 # Experiment ledger
 # --------------------------------------------------------------------------
 STATES = ("proposed", "applied", "kept", "rolled-back", "rejected")
@@ -496,6 +521,9 @@ def register(sub):
     p.add_argument("--project", help="only transcripts whose path contains this text")
     p.add_argument("--save", action="store_true", help="save report to $ULTIMATUM_HOME/coach/reports/")
     p.set_defaults(func=cmd_usage)
+
+    p = sub.add_parser("retro", help="lesson candidates from this chat only: repeated failures, re-reads, big outputs (exit 3 if any)")
+    p.set_defaults(func=cmd_retro)
 
     p = sub.add_parser("improve", help="experiment ledger: propose/apply/measure/keep/rollback a workflow change")
     p.add_argument("action", choices=["propose", "list", "apply", "measure", "keep", "rollback", "reject"])

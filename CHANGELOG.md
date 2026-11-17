@@ -11,7 +11,8 @@ All notable changes to Ultimatum are listed here. Versions follow [Semantic Vers
 
 ### Added
 - `hooks/hooks.json`: one `SessionStart` hook (source `compact`) that prints `ult handoff show` after each compaction, so work resumes in the same chat. This is the plugin's first hook; it is local and read-only.
-- Learn step in the default loop: after a user correction or a repeated mistake, the preventing rule is added to the project's `CLAUDE.md` under `## Learned` (`self-improvement.md`).
+- Learn step in the default loop, run without being asked: `ult retro` checks the current chat and its subagents for repeated failures, re-reads, oversized outputs, search churn, and corrections. Project lessons become one-line rules in the project's `CLAUDE.md` under `## Learned`; lessons about Ultimatum are flagged as `Skill lesson:` in the report.
+- Daily self-improvement run (`self-improvement.md` §2): a scheduled cloud session reads recent sessions, makes at most one tested change to the plugin, and opens a pull request. It never merges.
 - Repository `CLAUDE.md` and `.claude/settings.json` (200k window) for sessions that work on Ultimatum itself.
 
 Not measured: the cost and quality effect of always delegating. The last live A/B (`docs/TEST-REPORT.md`) predates this change.

@@ -11,7 +11,8 @@
   ult scan [...]            security scanners if installed, built-in checks otherwise
   ult findings ...          validate / merge / render security findings
   ult doctor                which optional integrations are present
-  ult usage report          where Claude's tokens went, avoidable work (local transcripts)
+  ult retro                 lesson candidates from this chat (repeated failures, re-reads, big outputs)
+ult usage report          where Claude's tokens went, avoidable work (local transcripts)
   ult improve ...           propose / apply / measure / keep or roll back a workflow change
 """
 import argparse

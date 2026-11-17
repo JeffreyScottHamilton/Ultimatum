@@ -153,6 +153,50 @@ class TestImproveLedger(CoachCase):
         self.assertNotEqual(r.returncode, 0)
 
 
+class TestRetro(unittest.TestCase):
+    def run_retro(self, entries, sub_entries=None):
+        cfg = Path(tempfile.mkdtemp())
+        work = Path(tempfile.mkdtemp()).resolve()
+        import re as _re
+        d = cfg / "projects" / _re.sub(r"[^A-Za-z0-9]", "-", str(work))
+        d.mkdir(parents=True)
+        (d / "s.jsonl").write_text("\n".join(json.dumps(e) for e in entries) + "\n")
+        if sub_entries:
+            sd = d / "s" / "subagents"
+            sd.mkdir(parents=True)
+            (sd / "a.jsonl").write_text("\n".join(json.dumps(e) for e in sub_entries) + "\n")
+        env = {**os.environ, "CLAUDE_CONFIG_DIR": str(cfg), "ULTIMATUM_ROOT": str(work)}
+        return subprocess.run([sys.executable, ULT, "retro"], cwd=work, env=env, capture_output=True, text=True)
+
+    def failing(self, n):
+        out = [prompt("fix it " + SECRET_PROMPT_MARKER)]
+        for i in range(n):
+            out += [assistant(f"m{i}", U, [(f"t{i}", "Bash", {"command": "pytest -q"})]), result(f"t{i}", "boom", is_error=True)]
+        return out
+
+    def test_clean_chat(self):
+        r = self.run_retro([prompt("hello"), assistant("m1", U)])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("clean", r.stdout)
+
+    def test_repeated_failure_is_a_candidate(self):
+        r = self.run_retro(self.failing(4))
+        self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
+        self.assertIn("repeated-failures", r.stdout)
+        self.assertIn("pytest", r.stdout)
+        self.assertNotIn(SECRET_PROMPT_MARKER, r.stdout)
+
+    def test_subagent_transcripts_are_included(self):
+        r = self.run_retro([prompt("hello"), assistant("m1", U)], sub_entries=self.failing(4)[1:])
+        self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
+        self.assertIn("repeated-failures", r.stdout)
+
+    def test_no_transcript(self):
+        env = {**os.environ, "CLAUDE_CONFIG_DIR": tempfile.mkdtemp(), "ULTIMATUM_ROOT": tempfile.mkdtemp()}
+        r = subprocess.run([sys.executable, ULT, "retro"], cwd=env["ULTIMATUM_ROOT"], env=env, capture_output=True, text=True)
+        self.assertEqual(r.returncode, 1)
+
+
 if __name__ == "__main__":
     unittest.main()
 

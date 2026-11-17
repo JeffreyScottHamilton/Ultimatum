@@ -36,6 +36,7 @@ It then loads only the guidance that workflow needs. A short security pass runs 
   - `ult scan`: wraps Semgrep, Gitleaks, and OSV-Scanner if they are installed, and falls back to built-in leads if they aren't.
   - `ult findings`: validates and renders security findings and a coverage ledger.
   - `ult doctor`: shows which optional integrations are present.
+  - `ult retro`: lesson candidates from the current chat, run automatically at the end of a task.
   - `ult usage report` and `ult improve`: the efficiency coach. It reviews your local Claude Code transcripts, finds avoidable token use, and tracks whether each change actually helped.
 - **A browser check** (`scripts/ult-browser.mjs`): uses Playwright for viewports, real interactions, console errors, and accessibility checks. It runs axe-core if installed and built-in checks otherwise.
 - **Five subagents**:
@@ -70,7 +71,12 @@ The effect on your own token use is unmeasured. Track it with the efficiency coa
 
 ## It learns
 
-When you correct Claude, or the same mistake happens twice in a task, Ultimatum adds the one-line rule that would have prevented it to the project's `CLAUDE.md` under `## Learned`, and tells you. Claude Code loads that file in every later session. For measured changes, ask for an "efficiency review" (`ult usage report`, `ult improve`).
+You don't have to correct it or ask for a review:
+
+- **After every task** it checks its own chat with `ult retro` (repeated failing commands, re-read files, oversized outputs, fix rounds). A project lesson becomes a one-line rule in that project's `CLAUDE.md` under `## Learned`, which Claude Code loads in every later session. A lesson about Ultimatum itself is flagged in the report as `Skill lesson: ...`.
+- **Once a day**, if you set up the scheduled run described in `skills/work/references/self-improvement.md` §2, a cloud session reads your recent chats, picks at most one improvement to the plugin, tests it, and opens a pull request on this repository. Merging is your approval.
+
+For measured token savings, ask for an "efficiency review" (`ult usage report`, `ult improve`).
 
 ## Install
 

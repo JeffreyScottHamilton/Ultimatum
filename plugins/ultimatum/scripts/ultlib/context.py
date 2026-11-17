@@ -16,15 +16,28 @@ from .common import project_root
 HIGH = 150_000
 
 
-def latest_context(cwd: Path) -> tuple[int, int] | None:
+def newest_transcript(cwd: Path) -> Path | None:
+    """The most recently written transcript of the chat running in `cwd`."""
     base = Path(os.environ.get("CLAUDE_CONFIG_DIR") or Path.home() / ".claude") / "projects"
-    slug = re.sub(r"[^A-Za-z0-9]", "-", str(cwd))
-    d = base / slug
+    d = base / re.sub(r"[^A-Za-z0-9]", "-", str(cwd))
     files = sorted(d.glob("*.jsonl"), key=lambda p: p.stat().st_mtime) if d.is_dir() else []
-    if not files:
+    return files[-1] if files else None
+
+
+def current_transcript() -> Path | None:
+    for cand in (Path.cwd().resolve(), project_root()):
+        f = newest_transcript(cand)
+        if f:
+            return f
+    return None
+
+
+def latest_context(cwd: Path) -> tuple[int, int] | None:
+    f = newest_transcript(cwd)
+    if not f:
         return None
     last, turns = 0, 0
-    with open(files[-1], encoding="utf-8", errors="replace") as fh:
+    with open(f, encoding="utf-8", errors="replace") as fh:
         for line in fh:
             if '"assistant"' not in line:
                 continue
