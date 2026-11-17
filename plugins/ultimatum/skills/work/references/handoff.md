@@ -37,11 +37,12 @@ The log id is enough for logs.
 
 ## Surviving compaction
 
-Compaction replaces the conversation with a summary. Exact error strings, `file:line` anchors, log ids, and the reasons behind decisions are often lost. Users who cap context (for example at 200k tokens) hit compaction regularly. You can't see the token count reliably, so work by milestones instead:
+Compaction replaces the conversation with a summary. Exact error strings, `file:line` anchors, log ids, and the reasons behind decisions are often lost. With the window set to about 200k tokens, compaction happens regularly and automatically, and the work continues in the same chat. Never tell the user to open a new chat because this one is long. Work by milestones:
 
 - **Refresh on milestones.** Run `ult handoff write` after a check turns green, after a decision with a non-obvious reason, and before moving to the next subtask. It costs one command, and the file is overwritten each time.
 - **Keep evidence out of the conversation.** Run noisy commands through `ult run`. Their logs survive compaction, and the handoff lists the log ids. Save durable facts with `ult note`.
-- **Resume right after a compaction.** If the conversation starts with a summary, or you notice earlier details are missing, run `ult handoff show` and re-run the cheapest check before editing. The summary is a claim, not evidence.
+- **Resume right after a compaction.** The plugin's `SessionStart` hook prints `ult handoff show` into the chat after each compaction. If it isn't there (hooks disabled, or details seem missing), run `ult handoff show` yourself. Re-run the cheapest check before briefing the next worker, then continue without asking the user. The summary is a claim, not evidence.
+- **Check the size when unsure.** `ult context` prints the tokens each turn re-reads. HIGH means a compaction is close: write the handoff now.
 
 ## Cross-session memory for longer efforts
 

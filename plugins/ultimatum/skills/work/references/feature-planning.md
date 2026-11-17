@@ -78,7 +78,7 @@ When the spec is silent or wrong, decide instead of stalling: authority is the s
 
 ## 9. Escalate to `orchestration.md`
 
-Switch when any holds: three or more slices have no shared files and can run at once; the work exceeds what fits comfortably in one context; the user asks for parallel agents. Before switching, the spec's Interfaces section must be complete, because workers see only their slice. Otherwise do the slices yourself in blocker order, one test-first slice at a time (`tdd.md`).
+Switch when any holds: three or more slices have no shared files and can run at once; the work exceeds what fits comfortably in one context; the user asks for parallel agents. Before switching, the spec's Interfaces section must be complete, because workers see only their slice. Otherwise give the slices to one worker at a time in blocker order, one test-first slice each (`tdd.md`).
 
 ## 10. Done planning when
 

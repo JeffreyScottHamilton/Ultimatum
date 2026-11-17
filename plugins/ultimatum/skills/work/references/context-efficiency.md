@@ -73,10 +73,10 @@ Stop searching once you have the anchor you need. Repeating the same broad searc
 
 ## 6. Delegation economics
 
-- Delegation costs context: the worker has to rebuild understanding, and you have to read its report. Delegate when that cost is clearly smaller than doing the work inline. Examples:
-  - a broad scan across many files where you need only the conclusion (`ultimatum:scout`, fast model)
-  - truly independent slices
-  - an independent review or verification, where a fresh context is the point
+- All edits are delegated (SKILL.md §1 rule 7), which keeps file contents and edit churn out of the main chat. The cost is the brief and the report, so keep both short:
+  - a small change gets a brief of a few lines and one worker
+  - a broad scan where you need only the conclusion goes to `ultimatum:scout` (fast model)
+  - a review or verification gets a fresh context, because that is the point
 - Give each worker the minimum it needs:
   - the goal
   - the exact anchors (`file:line`, log id)

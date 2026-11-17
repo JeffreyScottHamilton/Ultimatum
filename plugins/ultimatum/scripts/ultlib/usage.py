@@ -270,8 +270,8 @@ FIXES = {
     "repeated-failures": "Record the working command (test/build/lint) in the project's CLAUDE.md so it isn't rediscovered by trial and error.",
     "search-churn": "Add a short repo map or 'where things live' section to the project's CLAUDE.md; use `ult map`/`ult symbols` first.",
     "corrections": "Look at what the user had to correct and add the missing convention or requirement to the project's CLAUDE.md.",
-    "compactions": "Split long sessions or save a handoff earlier (`ult handoff write`) so context does not overflow.",
-    "subagent-share": "Check that delegation was needed; small tasks should run inline (Ultimatum §3 delegation rule).",
+    "compactions": "Expected with a 200k auto-compact window. If work was redone afterwards, save the handoff at each milestone (`ult handoff write`).",
+    "subagent-share": "High by design (workers make every edit). Look for waste inside it: oversized briefs, repeated fix rounds, re-reading.",
 }
 
 
@@ -394,6 +394,31 @@ def cmd_usage(args) -> int:
 
 
 # --------------------------------------------------------------------------
+# Retro: the same detectors, on this chat only, in a few lines
+# --------------------------------------------------------------------------
+RETRO_SKIP = {"compactions", "subagent-share"}  # expected by design, never a lesson
+
+
+def cmd_retro(args) -> int:
+    from .context import current_transcript
+    f = current_transcript()
+    if not f:
+        print("[ult retro] no transcript found for this chat; nothing to check")
+        return 1
+    files = [f, *sorted((f.parent / f.stem / "subagents").glob("*.jsonl"))]
+    sessions = [r for r in (analyze_file(p, None) for p in files) if r]
+    finds = [x for x in findings(sessions) if x["id"] not in RETRO_SKIP]
+    errors = sum(s["tool_errors"] for s in sessions)
+    if not finds:
+        print(f"[ult retro] clean: nothing repeated or oversized in this chat ({errors} tool errors)")
+        return 0
+    print(f"[ult retro] {len(finds)} lesson candidate(s) in this chat ({errors} tool errors):")
+    for x in finds:
+        print(f"- {x['id']}: {'; '.join(x['examples'][:2])}\n  fix: {x['fix']}")
+    return 3
+
+
+# --------------------------------------------------------------------------
 # Experiment ledger
 # --------------------------------------------------------------------------
 STATES = ("proposed", "applied", "kept", "rolled-back", "rejected")
@@ -496,6 +521,9 @@ def register(sub):
     p.add_argument("--project", help="only transcripts whose path contains this text")
     p.add_argument("--save", action="store_true", help="save report to $ULTIMATUM_HOME/coach/reports/")
     p.set_defaults(func=cmd_usage)
+
+    p = sub.add_parser("retro", help="lesson candidates from this chat only: repeated failures, re-reads, big outputs (exit 3 if any)")
+    p.set_defaults(func=cmd_retro)
 
     p = sub.add_parser("improve", help="experiment ledger: propose/apply/measure/keep/rollback a workflow change")
     p.add_argument("action", choices=["propose", "list", "apply", "measure", "keep", "rollback", "reject"])

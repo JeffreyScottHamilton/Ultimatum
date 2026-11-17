@@ -136,10 +136,13 @@ class GuardCase(UltCase):
 
     def test_hooks_json_points_at_guard(self):
         cfg = json.loads((Path(SCRIPTS).parent / "hooks" / "hooks.json").read_text())
-        for event in ("UserPromptSubmit", "SessionStart"):
-            cmd = cfg["hooks"][event][0]["hooks"][0]["command"]
-            self.assertIn("${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard", cmd)
-        self.assertEqual(cfg["hooks"]["SessionStart"][0]["matcher"], "startup|clear")
+        guard = "${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard"
+        self.assertIn(guard, cfg["hooks"]["UserPromptSubmit"][0]["hooks"][0]["command"])
+        by_matcher = {e["matcher"]: e["hooks"][0]["command"] for e in cfg["hooks"]["SessionStart"]}
+        self.assertIn(guard, by_matcher["startup|clear"])
+        # the post-compaction hook prints the handoff and never runs the guard
+        self.assertIn("handoff show", by_matcher["compact"])
+        self.assertNotIn("ult-guard", by_matcher["compact"])
 
 
 if __name__ == "__main__":
