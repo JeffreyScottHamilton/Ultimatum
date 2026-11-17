@@ -48,7 +48,7 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 
 ## Defaults that respect your project
 
-- No telemetry, MCP servers, proxies, or hosted model routing are installed. One local hook ships (`hooks/hooks.json`): after a compaction it prints the saved handoff back into the chat. It runs `ult handoff show`, reads only `.ultimatum/handoff.md`, and makes no network calls.
+- No telemetry, MCP servers, proxies, or hosted model routing are installed. One local hook ships (`hooks/hooks.json`): after a compaction it prints the saved handoff back into the chat. It runs `ult handoff show`, reads only `.ultimatum/handoff.md`, and makes no network calls. The other hook, the chat-size guard below, does nothing unless you turn it on.
 - State is kept in `.ultimatum/` in your project. The directory ignores itself in git. Raw logs are mode 0600, and anything printed or written to summaries is secret-redacted.
 - Optional tools such as Semgrep, Gitleaks, OSV-Scanner, Playwright, axe-core, Context7, Serena, the Sentry MCP, and Chrome DevTools MCP are used only when present, and Ultimatum names them before use. The core works without any of them.
 - Security audits are read-only by default. Active testing only targets local fixtures or environments you explicitly authorize.
@@ -77,6 +77,26 @@ You don't have to correct it or ask for a review:
 - **Once a day**, if you set up the scheduled run described in `skills/work/references/self-improvement.md` §2, a cloud session reads your recent chats, picks at most one improvement to the plugin, tests it, and opens a pull request on this repository. Merging is your approval.
 
 For measured token savings, ask for an "efficiency review" (`ult usage report`, `ult improve`).
+
+## Optional: block prompts in chats that got too expensive
+
+Use auto-compact (above) as the main control: it shrinks a chat in place, so nothing has to be re-learned. A new chat starts at roughly 78k tokens per turn and then re-reads files to catch up, so switching only pays off for very large chats. The guard is a safety net for those, which is why its limits sit well above the ~200k compaction point.
+
+The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but is **off by default**. When on, before each prompt it runs a local script (no model call) that reads the current chat's transcript. If the last turn re-read more than 400k tokens, or the chat has been idle for more than 4 hours, it:
+
+1. blocks the prompt (exit code 2), so it never reaches the model and costs zero model tokens,
+2. runs `ult handoff write --keep`, which keeps the existing goal, decisions, and next step and records the blocked prompt,
+3. prints: `Chat too large. Start a new chat and type: /ultimatum:work resume`
+
+When you then start a new chat in the same project (or type `/clear`), a `SessionStart` hook loads that handoff into the new chat once, so your first message can be anything, for example `continue`, and Claude picks up at the next unfinished step. Typing `/ultimatum:work resume` still works too. In cloud sessions, a new chat runs on a new machine without the old chat's `.ultimatum/` files, so use `/clear` in the same chat there instead.
+
+To turn it on, set `ULTIMATUM_GUARD=1` in the environment Claude Code runs in, for example in `~/.claude/settings.json`:
+
+```json
+{ "env": { "ULTIMATUM_GUARD": "1" } }
+```
+
+For cloud sessions, add `ULTIMATUM_GUARD=1` to the environment's variables. Optional thresholds: `ULTIMATUM_GUARD_TOKENS` (default `400000`) and `ULTIMATUM_GUARD_IDLE_MIN` (default `240`). To turn it off, remove the variable. The guard needs `python3` on the PATH. If the transcript can't be read, it lets the prompt through.
 
 ## Install
 

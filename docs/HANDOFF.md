@@ -24,7 +24,7 @@ You are continuing work on **Ultimatum**, a free, open-source Claude Code plugin
 ## Rules that must keep holding
 - Original wording and code only. Several upstreams are CC BY-SA, ELv2, GPL, or have no license file (`research/REVISIONS.md`). Never copy upstream text or code. Cite standard IDs (ASVS, WSTG, CWE) only.
 - The toolbelt stays Python standard library only, with no network access.
-- No telemetry, MCP servers, or proxies in the default install. The only hook is the read-only post-compaction handoff hook (`hooks/hooks.json`, added in 0.3.0 at the owner's request).
+- No telemetry, MCP servers, or proxies in the default install. Hooks (`hooks/hooks.json`): the read-only post-compaction handoff hook (0.3.0) and the opt-in chat-size guard (0.2.7, off unless `ULTIMATUM_GUARD=1`).
 - The main session orchestrates and never edits project files; workers make every edit (SKILL.md rule 7). It never asks the user to open a new chat.
 - Exact evidence is never compressed: exit codes, error strings, `file:line`, and security evidence stay verbatim.
 - Report only what was run. Mark anything untested as untested.

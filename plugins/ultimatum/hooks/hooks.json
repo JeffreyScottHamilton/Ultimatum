@@ -1,5 +1,5 @@
 {
-  "description": "After a compaction, print the saved handoff back into the conversation so work continues in the same chat.",
+  "description": "After a compaction, print the saved handoff back into the chat. Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
   "hooks": {
     "SessionStart": [
       {
@@ -9,6 +9,27 @@
             "type": "command",
             "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult\" handoff show 2>/dev/null || true",
             "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "startup|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard\"",
+            "timeout": 30
           }
         ]
       }
