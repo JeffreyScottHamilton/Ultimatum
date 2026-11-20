@@ -28,15 +28,35 @@ Say one line: **Persuade** (landing, pricing, marketing), **Operate** (app, dash
 
 ## 3. Direction card (new surfaces only)
 
-Skip for edits inside an established screen. For new pages or a new visual area, write five lines in the plan and keep them for the final report:
+Skip for edits inside an established screen. For new pages or a new visual area:
+
+**First, sketch three directions, one line each, each from a different source in section 3a** (for example: one from a domain artifact, one from a material or era, one from a structural constraint). Run the **swap test** on each: replace the product name with a competitor's; if the direction still fits unchanged, it is generic, so drop it or sharpen it. Pick the strongest survivor and say in one line why it beat the others. Your first idea is usually the average of every similar page, so it is a candidate, never the default.
+
+Then write the card, six lines, in the plan, and keep it for the final report:
 
 1. Surface mode.
-2. Palette roles (ground, ink, accent, state colors) with a reason tied to who uses it and under what light, not to the industry.
-3. Type pairing and scale steps (display, h1-h3, body, label, meta, data).
-4. Radius and elevation rule (declare once: border OR shadow).
-5. One signature move and where it lives; one motion moment.
+2. **Concept:** one phrase the whole surface obeys (for example "a well-kept field notebook", "an airport departure board", "a printed train timetable"). Every later choice should be explainable by it.
+3. Palette roles (ground, ink, accent, state colors) with a reason tied to the concept, who uses it and under what light, not to the industry.
+4. Type pairing and scale steps (display, h1-h3, body, label, meta, data), with a reason from the concept.
+5. Radius and elevation rule (declare once: border OR shadow).
+6. One signature move and where it lives; one motion moment.
 
-If a previous card exists in the repo, state how this one differs. Do not default to the same palette, pairing and composition every time.
+**Do not repeat yourself across projects.** Append each card, with the date and surface, to `.ultimatum/ui-directions.md` (Ultimatum's own state, ignored by git). Before writing a new card, read that file if it exists, and change at least the concept, the display typeface and the accent hue from the last two cards, unless the brief or the project's existing identity pins them.
+
+### 3a. Sources of distinctiveness
+
+Uniqueness comes from specifics, not from effects. Draw on these, in roughly this order:
+
+- **The domain's own artifacts.** What do people in this field already look at: maps, receipts, scorecards, lab labels, sheet music, shipping manifests, film slates? Borrow its structure, rules, type habits or color coding, never a clip-art picture of it.
+- **The real content as the graphic.** The product's own screenshots, data, timetable, menu, code or photos, shown large and precisely, beat any decorative illustration. A real chart of real numbers is a better hero than an abstract blob.
+- **Typography as the voice.** For Persuade and Experience, choose a display face with a real character (a grotesk with quirks, a condensed or wide cut, a sharp serif, a humanist sans) instead of whatever the framework ships with. Pair it with a quiet, highly legible text face. Use contrast in size boldly: a very large display step against modest body text is cheaper and more memorable than any effect. In Operate and Read, keep the text face practical, and let the voice live in headings, numerals and labels.
+- **A specific color source.** Take the palette from a named reference (a material, a place, a printed object, a time of day), build its scale in OKLCH so lightness steps are even, and add one accent that is used sparingly. Two or three committed colors read as more intentional than a full rainbow of tints.
+- **Composition with tension.** An asymmetric grid, a column that breaks the margin, content that bleeds off the edge, a strong change of scale between neighbors, generous empty space used on purpose. Keep the grid; break it once, deliberately.
+- **A structural constraint.** For example: only rules and type, no boxes; one color plus black; everything aligned to a visible baseline; all motion horizontal. A constraint forces original solutions and keeps the surface consistent.
+- **Detail at the edges.** Tailored focus rings, selection color, custom scrollbars where appropriate, the empty state's illustration or copy, the 404 page, the favicon, loading skeletons shaped like the real content. Users notice these, and generators almost never do them.
+- **Copy with a point of view.** Specific, concrete sentences in the product's own voice, with real numbers and names. Copy is the cheapest way to be different.
+
+Never trade usability for novelty: labels stay readable, controls stay recognizable, contrast and focus rules in section 4 still hold.
 
 ## 4. Craft floor (check on the rendered result)
 
@@ -107,7 +127,12 @@ A page that gates data or actions (login, billing, admin, delete, role changes, 
 After building and verifying, run the gate on the changed surface:
 
 1. Run `ult-browser` (and manual checks from `browser-verification.md`); list failures by id.
-2. Fix them. Re-run. **At most 3 rounds.**
+2. For new surfaces, look at full-page screenshots at desktop and 375 px width and run the **distinctiveness check**, counting each failure like a check failure:
+   - **Swap test:** with the product name replaced by a competitor's, would the page still fit? If yes, it is generic.
+   - **Memory test:** name the one thing someone would remember tomorrow. It should be the signature move from the card. If you can't name one, or it is a section 6 tell, it fails.
+   - **Squint test:** with the screenshot blurred, are the primary action and the hierarchy still obvious?
+   - **Card check:** does the result follow the concept, or did it drift back to defaults while building?
+3. Fix them. Re-run. **At most 3 rounds** (the checks from steps 1 and 2 share this limit).
 3. Anything still open after round 3 is either fixed by a smaller change you state, or **waived**.
 
 Waiver format, one line each in the report:
