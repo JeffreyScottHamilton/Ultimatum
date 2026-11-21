@@ -10,6 +10,7 @@ from _harness import SCRIPTS, UltCase
 
 GUARD = str(Path(SCRIPTS) / "ult-guard")
 MESSAGE = "Chat too large. Start a new chat and type: /ultimatum:work resume"
+RESEND = "send your message again to continue in this chat"
 
 
 def ts(offset=0):
@@ -76,16 +77,32 @@ class GuardCase(UltCase):
     def test_exactly_at_limit_passes(self):
         self.assertEqual(self.guard(self.transcript(turn(400_000))).returncode, 0)
 
-    def test_idle_chat_blocks(self):
-        r = self.guard(self.transcript(turn(5_000, offset=-241 * 60)))
+    def test_idle_large_chat_blocks(self):
+        r = self.guard(self.transcript(turn(200_000, offset=-241 * 60)))
         self.assertEqual(r.returncode, 2)
         self.assertIn(MESSAGE, r.stderr)
+        self.assertIn(RESEND, r.stderr)
         self.assertIn("idle 241 minutes", r.stderr)
+
+    def test_idle_small_chat_passes(self):
+        r = self.guard(self.transcript(turn(5_000, offset=-854 * 60)))
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertFalse(self.handoff().exists())
+
+    def test_resending_in_blocked_chat_goes_through_once(self):
+        t = self.transcript(turn(200_000, offset=-300 * 60))
+        self.assertEqual(self.guard(t).returncode, 2)
+        r = self.guard(t)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertEqual(self.start().stdout, "")  # stayed in the chat: no resume in the next new chat
+        self.assertEqual(self.guard(t).returncode, 2)  # a later, separate prompt is judged afresh
 
     def test_thresholds_are_configurable(self):
         t = self.transcript(turn(60_000, offset=-10 * 60))
         self.assertEqual(self.guard(t, ULTIMATUM_GUARD_TOKENS="50000").returncode, 2)
-        self.assertEqual(self.guard(t, ULTIMATUM_GUARD_IDLE_MIN="5").returncode, 2)
+        self.assertEqual(self.guard(t, ULTIMATUM_GUARD_IDLE_MIN="5").returncode, 0)
+        self.assertEqual(self.guard(t, ULTIMATUM_GUARD_IDLE_MIN="5",
+                                    ULTIMATUM_GUARD_IDLE_TOKENS="50000").returncode, 2)
         self.assertEqual(self.guard(t).returncode, 0)
 
     def test_missing_transcript_or_bad_input_never_blocks(self):
