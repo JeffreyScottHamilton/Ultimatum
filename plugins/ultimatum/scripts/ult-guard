@@ -3,10 +3,14 @@
 
 Off unless ULTIMATUM_GUARD=1. When on, before each prompt it reads the current
 chat's transcript; if the last turn re-read more than ULTIMATUM_GUARD_TOKENS
-(default 400000) or the chat has been idle longer than ULTIMATUM_GUARD_IDLE_MIN
-(default 240) minutes, it writes a handoff and exits 2. Claude Code then drops
-the prompt before it reaches the model (zero model tokens) and shows stderr.
-Any error or missing data lets the prompt through.
+(default 400000), or the chat has been idle longer than ULTIMATUM_GUARD_IDLE_MIN
+(default 240) minutes while re-reading more than ULTIMATUM_GUARD_IDLE_TOKENS
+(default 150000), it writes a handoff and exits 2. Claude Code then drops the
+prompt before it reaches the model (zero model tokens) and shows stderr. A small
+idle chat is never blocked: one uncached re-read of it costs little.
+The guard blocks a chat once: sending a prompt again in the same chat goes
+through, so the user is never locked out. Any error or missing data lets the
+prompt through.
 
 The same script is also a SessionStart hook: when a new chat starts (or /clear)
 after the guard blocked a prompt, it prints the handoff so Claude resumes the
@@ -18,10 +22,12 @@ import subprocess
 import sys
 import time
 
-MESSAGE = "Chat too large. Start a new chat and type: /ultimatum:work resume"
+MESSAGE = ("Chat too large. Start a new chat and type: /ultimatum:work resume\n"
+           "Or send your message again to continue in this chat.")
 PENDING = "guard-pending"
 TOKENS_DEFAULT = 400_000  # a safety net above auto-compact (~200k), not the main control
 IDLE_MIN_DEFAULT = 240
+IDLE_TOKENS_DEFAULT = 150_000  # below this an expired cache is a cheap one-off re-read
 RESUME_MAX_AGE = 7 * 24 * 3600
 RESUME_MAX_CHARS = 8000
 
@@ -74,6 +80,13 @@ def main() -> int:
         if data.get("hook_event_name") == "SessionStart":
             return resume(data)
         transcript = Path(data["transcript_path"])
+        session = str(data.get("session_id") or "")
+        marker = _state(data.get("cwd")) / PENDING
+        if session and marker.is_file() and not marker.is_symlink():
+            parts = marker.read_text(encoding="utf-8", errors="replace").split()
+            if len(parts) > 1 and parts[1] == session:
+                marker.unlink()  # resent in the blocked chat: the user chose to stay, let it through
+                return 0
         tokens, turns, last = transcript_stats(transcript)
     except Exception:  # no input, no transcript yet, unreadable: never block
         return 0
@@ -82,7 +95,8 @@ def main() -> int:
     reason = None
     if tokens > limit:
         reason = f"each turn re-reads ~{tokens:,} tokens"
-    elif idle_min > _num("ULTIMATUM_GUARD_IDLE_MIN", IDLE_MIN_DEFAULT):
+    elif (idle_min > _num("ULTIMATUM_GUARD_IDLE_MIN", IDLE_MIN_DEFAULT)
+          and tokens > _num("ULTIMATUM_GUARD_IDLE_TOKENS", IDLE_TOKENS_DEFAULT)):
         reason = f"idle {int(idle_min)} minutes, so the cache expired and the next turn re-reads everything"
     if not reason:
         return 0
@@ -95,7 +109,7 @@ def main() -> int:
     try:
         r = subprocess.run(cmd, cwd=data.get("cwd") or None, capture_output=True, timeout=20)
         if r.returncode == 0:
-            (_state(data.get("cwd")) / PENDING).write_text(f"{time.time():.0f}\n")
+            marker.write_text(f"{time.time():.0f} {session}\n")
     except Exception:
         pass
     print(f"[ultimatum] {reason}.\n{MESSAGE}", file=sys.stderr)

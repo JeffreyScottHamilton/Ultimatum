@@ -82,11 +82,13 @@ For measured token savings, ask for an "efficiency review" (`ult usage report`, 
 
 Use auto-compact (above) as the main control: it shrinks a chat in place, so nothing has to be re-learned. A new chat starts at roughly 78k tokens per turn and then re-reads files to catch up, so switching only pays off for very large chats. The guard is a safety net for those, which is why its limits sit well above the ~200k compaction point.
 
-The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but is **off by default**. When on, before each prompt it runs a local script (no model call) that reads the current chat's transcript. If the last turn re-read more than 400k tokens, or the chat has been idle for more than 4 hours, it:
+The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but is **off by default**. When on, before each prompt it runs a local script (no model call) that reads the current chat's transcript. If the last turn re-read more than 400k tokens, or the chat has been idle for more than 4 hours and re-reads more than 150k tokens, it:
 
 1. blocks the prompt (exit code 2), so it never reaches the model and costs zero model tokens,
 2. runs `ult handoff write --keep`, which keeps the existing goal, decisions, and next step and records the blocked prompt,
-3. prints: `Chat too large. Start a new chat and type: /ultimatum:work resume`
+3. prints: `Chat too large. Start a new chat and type: /ultimatum:work resume`, and says you can send your message again to stay.
+
+A small chat is never blocked for being idle: re-reading it once after the cache expires costs little. The guard blocks a chat once. If you send the same or any message again in that chat, it goes through, so you are never locked out.
 
 When you then start a new chat in the same project (or type `/clear`), a `SessionStart` hook loads that handoff into the new chat once, so your first message can be anything, for example `continue`, and Claude picks up at the next unfinished step. Typing `/ultimatum:work resume` still works too. In cloud sessions, a new chat runs on a new machine without the old chat's `.ultimatum/` files, so use `/clear` in the same chat there instead.
 
@@ -96,7 +98,7 @@ To turn it on, set `ULTIMATUM_GUARD=1` in the environment Claude Code runs in, f
 { "env": { "ULTIMATUM_GUARD": "1" } }
 ```
 
-For cloud sessions, add `ULTIMATUM_GUARD=1` to the environment's variables. Optional thresholds: `ULTIMATUM_GUARD_TOKENS` (default `400000`) and `ULTIMATUM_GUARD_IDLE_MIN` (default `240`). To turn it off, remove the variable. The guard needs `python3` on the PATH. If the transcript can't be read, it lets the prompt through.
+For cloud sessions, add `ULTIMATUM_GUARD=1` to the environment's variables. Optional thresholds: `ULTIMATUM_GUARD_TOKENS` (default `400000`), `ULTIMATUM_GUARD_IDLE_MIN` (default `240`) and `ULTIMATUM_GUARD_IDLE_TOKENS` (default `150000`, the chat size below which idling never blocks). To turn it off, remove the variable. The guard needs `python3` on the PATH. If the transcript can't be read, it lets the prompt through.
 
 ## Install
 

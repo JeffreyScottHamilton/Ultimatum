@@ -41,6 +41,26 @@ Remove it with `claude plugin uninstall ultimatum@ultimatum`, then `claude plugi
 /plugin install ultimatum@ultimatum
 ```
 
+### Turn on auto-update (do this once per computer)
+
+Claude Code keeps auto-update off for marketplaces added from GitHub, and a repository cannot turn it on for you. Add `"autoUpdate": true` to the marketplace's entry in your user settings, `~/.claude/settings.json` (on Windows, `%USERPROFILE%\.claude\settings.json`):
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "ultimatum": {
+      "source": { "source": "github", "repo": "JeffreyScottHamilton/Ultimatum" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": { "ultimatum@ultimatum": true }
+}
+```
+
+Merge this with what the file already has. Claude Code then updates the marketplace and the plugin when it starts, so restart it to pick up a new release. Claude Code reads this setting only from user settings, not from project settings. An update installs only when the version in `plugins/ultimatum/.claude-plugin/plugin.json` changes, and only from the default branch (`main`).
+
+Cloud sessions need no setting if their environment's setup script installs Ultimatum: each new session starts in a fresh container and fetches the latest release.
+
 ## Repository layout
 
 | Path | What it is | Shipped in the plugin? |
