@@ -36,30 +36,67 @@ It then loads only the guidance that workflow needs. A short security pass runs 
   - `ult scan`: wraps Semgrep, Gitleaks, and OSV-Scanner if they are installed, and falls back to built-in leads if they aren't.
   - `ult findings`: validates and renders security findings and a coverage ledger.
   - `ult doctor`: shows which optional integrations are present.
+  - `ult retro`: lesson candidates from the current chat, run automatically at the end of a task.
   - `ult usage report` and `ult improve`: the efficiency coach. It reviews your local Claude Code transcripts, finds avoidable token use, and tracks whether each change actually helped.
 - **A browser check** (`scripts/ult-browser.mjs`): uses Playwright for viewports, real interactions, console errors, and accessibility checks. It runs axe-core if installed and built-in checks otherwise.
 - **Five subagents**:
   - `ultimatum:scout`: fast, read-only searching.
-  - `ultimatum:worker`: one owned slice of a larger task.
+  - `ultimatum:worker`: makes every edit, from a one-line fix to one owned slice of a larger task. The main session only orchestrates: it never edits files itself.
   - `ultimatum:reviewer`: a fresh review of the integrated diff.
   - `ultimatum:security-hunter`: hunts in one assigned area during an audit.
   - `ultimatum:security-verifier`: independently challenges serious findings.
 
 ## Defaults that respect your project
 
-- No hooks, telemetry, MCP servers, proxies, or hosted model routing are installed.
+- No telemetry, MCP servers, proxies, or hosted model routing are installed. One local hook ships (`hooks/hooks.json`): after a compaction it prints the saved handoff back into the chat. It runs `ult handoff show`, reads only `.ultimatum/handoff.md`, and makes no network calls. The other hook, the chat-size guard below, does nothing unless you turn it on.
 - State is kept in `.ultimatum/` in your project. The directory ignores itself in git. Raw logs are mode 0600, and anything printed or written to summaries is secret-redacted.
 - Optional tools such as Semgrep, Gitleaks, OSV-Scanner, Playwright, axe-core, Context7, Serena, the Sentry MCP, and Chrome DevTools MCP are used only when present, and Ultimatum names them before use. The core works without any of them.
 - Security audits are read-only by default. Active testing only targets local fixtures or environments you explicitly authorize.
 
-## Recommended: compact long chats at about 200k tokens
+## One chat, compacted automatically at about 200k tokens
 
-On models with a 1M-token window, long chats re-read their whole context every turn. In our own usage, single turns reached 533k tokens. Capping context reduces that, and Ultimatum keeps a handoff current at milestones so details survive the summary. Set the cap outside the plugin, since a plugin can't change it:
+You should never need to start a new chat because the old one got long. Ultimatum is built to work through compaction: it saves a handoff at each milestone, the hook above prints it back after every compaction, and the skill tells Claude to re-check and keep going without asking you.
 
-- **Terminal:** `claude --autocompact 200000` (or alias it).
-- **Cloud sessions:** add the environment variable `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20` in the environment's settings (20% of a 1M window). A model with a smaller window would compact sooner at that percentage.
+Claude Code compacts automatically; you only set where. On a 1M-token model the default is far too late (every turn re-reads the whole chat), so set the window to 200k once. A plugin can't change this setting for you:
 
-The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult improve`).
+- **Everywhere on your machine:** add to `~/.claude/settings.json`:
+  ```json
+  { "env": { "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "200000" } }
+  ```
+- **One project:** the same block in that project's `.claude/settings.json` (this repository ships one).
+- **One run:** `claude --autocompact 200000`.
+- **Cloud sessions (claude.ai/code):** add the environment variable `CLAUDE_CODE_AUTO_COMPACT_WINDOW=200000` in the environment's settings, or commit the project `.claude/settings.json` above.
+
+The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult usage report`).
+
+## It learns
+
+You don't have to correct it or ask for a review:
+
+- **After every task** it checks its own chat with `ult retro` (repeated failing commands, re-read files, oversized outputs, fix rounds). A project lesson becomes a one-line rule in that project's `CLAUDE.md` under `## Learned`, which Claude Code loads in every later session. A lesson about Ultimatum itself is flagged in the report as `Skill lesson: ...`.
+- **Once a day**, if you set up the scheduled run described in `skills/work/references/self-improvement.md` §2, a cloud session reads your recent chats, picks at most one improvement to the plugin, tests it, and opens a pull request on this repository. Merging is your approval.
+
+For measured token savings, ask for an "efficiency review" (`ult usage report`, `ult improve`).
+
+## Optional: block prompts in chats that got too expensive
+
+Use auto-compact (above) as the main control: it shrinks a chat in place, so nothing has to be re-learned. A new chat starts at roughly 78k tokens per turn and then re-reads files to catch up, so switching only pays off for very large chats. The guard is a safety net for those, which is why its limits sit well above the ~200k compaction point.
+
+The chat-size guard is a `UserPromptSubmit` hook that ships with the plugin but is **off by default**. When on, before each prompt it runs a local script (no model call) that reads the current chat's transcript. If the last turn re-read more than 400k tokens, or the chat has been idle for more than 4 hours, it:
+
+1. blocks the prompt (exit code 2), so it never reaches the model and costs zero model tokens,
+2. runs `ult handoff write --keep`, which keeps the existing goal, decisions, and next step and records the blocked prompt,
+3. prints: `Chat too large. Start a new chat and type: /ultimatum:work resume`
+
+When you then start a new chat in the same project (or type `/clear`), a `SessionStart` hook loads that handoff into the new chat once, so your first message can be anything, for example `continue`, and Claude picks up at the next unfinished step. Typing `/ultimatum:work resume` still works too. In cloud sessions, a new chat runs on a new machine without the old chat's `.ultimatum/` files, so use `/clear` in the same chat there instead.
+
+To turn it on, set `ULTIMATUM_GUARD=1` in the environment Claude Code runs in, for example in `~/.claude/settings.json`:
+
+```json
+{ "env": { "ULTIMATUM_GUARD": "1" } }
+```
+
+For cloud sessions, add `ULTIMATUM_GUARD=1` to the environment's variables. Optional thresholds: `ULTIMATUM_GUARD_TOKENS` (default `400000`) and `ULTIMATUM_GUARD_IDLE_MIN` (default `240`). To turn it off, remove the variable. The guard needs `python3` on the PATH. If the transcript can't be read, it lets the prompt through.
 
 ## Install
 
