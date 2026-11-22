@@ -1,10 +1,10 @@
 # Self-improvement: learn from every task, improve the plugin daily
 
-Ultimatum improves in three ways. Two are automatic: a self-check at the end of every task, and a daily run that improves the plugin itself. The third is a measured review the user can ask for.
+Ultimatum improves in three ways. Two are automatic: a self-check at the end of long tasks, and a daily run that improves the plugin itself. The third is a measured review the user can ask for.
 
 ## 1. Learning during a task (automatic, no approval needed)
 
-Do not wait for the user to correct you. Before the report, run `ult retro`: it reads this chat's transcript and its subagents' and lists lesson candidates (exit 3) or says clean (exit 0). Signals, from the tool or from what you saw:
+After a long task (roughly 15+ turns) or a correction from the user, run `ult retro` before the report: it reads this chat's transcript and its subagents' and lists lesson candidates (exit 3) or says clean (exit 0). Signals, from the tool or from what you saw:
 
 - the same command failed several times before the working form was found
 - a file was read again and again, or a search took many attempts
@@ -64,7 +64,7 @@ Also list open experiments from `ult improve list` that are ready to measure.
 | `search-churn` | Add a short "where things live" section to `CLAUDE.md`. |
 | `corrections` | Add the convention the user had to correct. Read the transcript lines locally to see what it was, then write only the rule, never the conversation. |
 | `compactions` | Expected with a 200k window. Act only if work was lost or redone after one: then add the missing milestone handoff habit to `CLAUDE.md`. |
-| `subagent-share` | High by design, since workers make every edit. Act only on waste inside it: oversized briefs, repeated fix rounds, or workers re-reading what the brief could have given them. |
+| `subagent-share` | Should be low: subagents are for broad sweeps and parallel slices of large work. If high, check whether small edits went to workers, and look for waste inside them: oversized briefs, repeated fix rounds, or workers re-reading what the brief could have given them. |
 
 Rules:
 - **Never** weaken tests, CI gates, security checks, or permission settings to save tokens. A cheaper wrong answer is a regression.
