@@ -36,12 +36,12 @@ It then loads only the guidance that workflow needs. A short security pass runs 
   - `ult scan`: wraps Semgrep, Gitleaks, and OSV-Scanner if they are installed, and falls back to built-in leads if they aren't.
   - `ult findings`: validates and renders security findings and a coverage ledger.
   - `ult doctor`: shows which optional integrations are present.
-  - `ult retro`: lesson candidates from the current chat, run automatically at the end of a task.
+  - `ult retro`: lesson candidates from the current chat, run automatically at the end of a long task.
   - `ult usage report` and `ult improve`: the efficiency coach. It reviews your local Claude Code transcripts, finds avoidable token use, and tracks whether each change actually helped.
 - **A browser check** (`scripts/ult-browser.mjs`): uses Playwright for viewports, real interactions, console errors, and accessibility checks. It runs axe-core if installed and built-in checks otherwise.
 - **Five subagents**:
   - `ultimatum:scout`: fast, read-only searching.
-  - `ultimatum:worker`: makes every edit, from a one-line fix to one owned slice of a larger task. The main session only orchestrates: it never edits files itself.
+  - `ultimatum:worker`: one owned slice of large work, run in parallel with other slices. Small and medium changes are made directly in the main chat, which is cheaper than starting a new agent.
   - `ultimatum:reviewer`: a fresh review of the integrated diff.
   - `ultimatum:security-hunter`: hunts in one assigned area during an audit.
   - `ultimatum:security-verifier`: independently challenges serious findings.
@@ -67,13 +67,13 @@ Claude Code compacts automatically; you only set where. On a 1M-token model the 
 - **One run:** `claude --autocompact 200000`.
 - **Cloud sessions (claude.ai/code):** add the environment variable `CLAUDE_CODE_AUTO_COMPACT_WINDOW=200000` in the environment's settings, or commit the project `.claude/settings.json` above.
 
-The effect on your own token use is unmeasured. Track it with the efficiency coach (`ult usage report`).
+Measured token use, so far: in the live A/B run (`evals/live/results/final`, 10 test tasks, one run each, made with a version before 0.3.0), Ultimatum cost 1.2× to 4.3× more per task than plain Claude Code and passed 9 of 10 tasks against 5 of 10. Cost per passed task was about the same. Version 0.4.0 cuts the overhead: a smaller always-loaded skill file, no subagent for ordinary edits, terse replies, and the self-check only after long tasks. It has not been re-measured yet. Track your own use with the efficiency coach (`ult usage report`).
 
 ## It learns
 
 You don't have to correct it or ask for a review:
 
-- **After every task** it checks its own chat with `ult retro` (repeated failing commands, re-read files, oversized outputs, fix rounds). A project lesson becomes a one-line rule in that project's `CLAUDE.md` under `## Learned`, which Claude Code loads in every later session. A lesson about Ultimatum itself is flagged in the report as `Skill lesson: ...`.
+- **After a long task** (or when you correct it) it checks its own chat with `ult retro` (repeated failing commands, re-read files, oversized outputs, fix rounds). A project lesson becomes a one-line rule in that project's `CLAUDE.md` under `## Learned`, which Claude Code loads in every later session. A lesson about Ultimatum itself is flagged in the report as `Skill lesson: ...`.
 - **Once a day**, if you set up the scheduled run described in `skills/work/references/self-improvement.md` §2, a cloud session reads your recent chats, picks at most one improvement to the plugin, tests it, and opens a pull request on this repository. Merging is your approval.
 
 For measured token savings, ask for an "efficiency review" (`ult usage report`, `ult improve`).
