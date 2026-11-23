@@ -119,7 +119,7 @@ testing, shipping, or explaining code), invoke the `ultimatum:work` skill first 
 Skip it only for questions unrelated to a codebase.
 ```
 
-This applies Ultimatum, and its extra cost (about 1.5–1.8x per task in our evals), to every coding task. Leave it out if you'd rather call `/ultimatum:work` only when you want it.
+This applies Ultimatum, and its extra cost (1.2× to 4.3× per task in the last live A/B run, before 0.4.0), to every coding task. Leave it out if you'd rather call `/ultimatum:work` only when you want it.
 
 Requirements: Claude Code with plugin support and Python 3.9+ (unit tests pass on 3.9, 3.11, 3.12 and 3.13). Browser checks need Node and Playwright.
 

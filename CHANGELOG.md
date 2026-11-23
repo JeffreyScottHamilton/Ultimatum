@@ -2,6 +2,12 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.4.1] - 2026-11-23
+
+### Changed
+- Quieter replies. No narration while working. A finished, verified task with nothing for the user to do now ends with just `Done.`. Otherwise it reports one line per action the user must take, or per failed or skipped check or risk. Full detail (files, commands, exit codes) only on request, or for large, audit and release work. Verification itself is unchanged.
+- README: the always-on cost note now points to the measured A/B range instead of an older estimate.
+
 ## [0.4.0] - 2026-11-22
 
 ### Changed

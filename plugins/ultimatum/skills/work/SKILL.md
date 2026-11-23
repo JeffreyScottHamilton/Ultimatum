@@ -17,7 +17,7 @@ References: `${CLAUDE_SKILL_DIR}/references/`. Read one only when its route appl
    - Do the work yourself in this chat. A subagent starts a whole new context, so use one only where §3 says.
    - Batch independent tool calls into one turn. Never re-read a file you have or just edited. Read by line range.
    - Keep bulk out: noisy commands go through `ult run`; cap search results.
-   - **Write tersely.** Short sentences, no preamble, no restated plan, no recap of what the user can see. Code, paths, commands, errors and evidence stay exact.
+   - **Say almost nothing.** No narration while working: no preamble, no plans, no "now I'll…", no recap. Speak mid-task only to ask a question that changes the outcome. Code, paths, commands and errors you do write stay exact.
    - Long chat: run `ult context` before substantial work; if HIGH, `ult handoff write`, then carry on (the chat compacts itself).
 2. **Evidence before claims.** No "fixed", "passes" or "secure" without running the check this session. Quote the exit code and the failing line.
 3. **Exact, never paraphrased:** identifiers, paths, errors, diff anchors, security evidence. Take `file:line` from the file itself (Read, `grep -n`, `ult search`).
@@ -74,4 +74,12 @@ Redact secrets in every brief.
 
 ## 4. Report
 
-Small task: one to three lines: what changed, the check and its result. Larger work: outcome first, then **Changed** (file: why), **Verified** (command, exit code, key line; plus what was not verified), **Risk** (security work only), **Next** (only if unfinished). No headings for small tasks. No token or security claims beyond what you measured.
+Checks still run in full (§1 rule 2); the report just stays short.
+
+- **Done and verified, nothing for the user to do:** reply `Done.` and nothing else.
+- **The user must act** (approve, run something, supply a key or decision): `Done.` (or `Blocked.`), then one line per action, starting with a verb.
+- **A check failed, was skipped, or a risk was found** (security work: always state the boundary checked): one line each, exact, after `Done.` or `Blocked.`.
+- Lesson lines from §3.6 (`Learned: …`, `Skill lesson: …`) go one line each at the end.
+- Longer detail (changed files, commands, exit codes) only when the user asks for it, or for **large**, **sec-audit** and **release** work, where it is listed as **Changed**, **Verified**, **Risk**, **Next**, one line per item.
+
+Never claim done, passing, secure or cheaper beyond what you ran.

@@ -1,6 +1,6 @@
 {
   "name": "ultimatum",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "One developer skill for Claude Code: /ultimatum:work <task> routes to focused workflows for small changes, features, hard bugs, UI, secure implementation, security review and audits, releases, optimization and handoffs. The main session orchestrates and subagents make every edit. Local-first, no telemetry; one opt-in chat-size guard hook, off by default.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
