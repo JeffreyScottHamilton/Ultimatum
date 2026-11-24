@@ -1,0 +1,60 @@
+{"task": "rename the getUserById helper to fetchUserById, its only 2 callers too", "route": "small", "addons": [], "overlay": false}
+{"task": "bump the request timeout in config/http.yaml from 5s to 10s", "route": "small", "addons": [], "overlay": false}
+{"task": "fix typo 'recieve' in the onboarding email template", "route": "small", "addons": [], "overlay": false}
+{"task": "session cookie is missing SameSite=Lax, add it in the cookie helper", "route": "small", "addons": [], "overlay": true}
+{"task": "change the retry count constant in the webhook sender from 3 to 5", "route": "small", "addons": [], "overlay": false}
+{"task": "how does the job queue pick up retries? trace it from enqueue to worker", "route": "discover", "addons": [], "overlay": false}
+{"task": "new to this repo, can you map out the main services and how they talk", "route": "discover", "addons": [], "overlay": false}
+{"task": "explain what the billing reconcile cron actually does, i keep getting lost in it", "route": "discover", "addons": [], "overlay": false}
+{"task": "add team invitations: admins invite by email, invite expires in 7 days, unclear whether invitees need an account first", "route": "feature", "addons": [], "overlay": true}
+{"task": "we need CSV export of the orders table with filters, maybe scheduled emails too, not sure about the scope", "route": "feature", "addons": [], "overlay": true}
+{"task": "add dark mode toggle to the settings page, store preference per user, maybe system default too", "route": "feature", "addons": [], "overlay": false}
+{"task": "migrate all 14 services from the old logger to structured logging, each service is its own folder", "route": "large", "addons": [], "overlay": false}
+{"task": "rotate the internal API auth from shared key to per-service JWTs across gateway, billing, and auth services", "route": "large", "addons": [], "overlay": true}
+{"task": "bump Node 18 to 22 across the monorepo packages and fix whatever breaks, probably 30 plus packages", "route": "large", "addons": [], "overlay": false}
+{"task": "users are randomly logged out after about 10 minutes, session token looks fine in the db", "route": "bug", "addons": [], "overlay": true}
+{"task": "test_checkout_retry flakes about 1 in 5 runs on CI, passes locally", "route": "bug", "addons": [], "overlay": false}
+{"task": "prod 500s on /api/reports since this morning, stack says KeyError tenant_id", "route": "bug", "addons": [], "overlay": true}
+{"task": "pagination skips the last item when page size is exactly 50", "route": "bug", "addons": [], "overlay": false}
+{"task": "my PR is red, lint and one integration test failing, get it green", "route": "ci-pr", "addons": [], "overlay": false}
+{"task": "reviewer left 9 comments on PR 412, address them and reply on each thread", "route": "ci-pr", "addons": [], "overlay": false}
+{"task": "deploy workflow fails at the approval step, the github environment secret scope looks wrong", "route": "ci-pr", "addons": [], "overlay": true}
+{"task": "restyle the pricing page, calmer editorial look, and fix the cramped layout on phones", "route": "ui", "addons": ["design"], "overlay": false}
+{"task": "build a React card component for product listings with image, price badge and hover state", "route": "ui", "addons": ["react"], "overlay": false}
+{"task": "make the modal fade and slide in smoothly instead of popping", "route": "ui", "addons": ["motion"], "overlay": false}
+{"task": "add index on orders(customer_id, created_at), the report query takes 9s", "route": "data-infra", "addons": [], "overlay": false}
+{"task": "write a migration to add RLS policies so tenants only see their own rows in invoices", "route": "data-infra", "addons": [], "overlay": true}
+{"task": "terraform plan wants to replace our RDS instance, why", "route": "data-infra", "addons": [], "overlay": false}
+{"task": "homepage bundle is 1.8MB, cut it down", "route": "optimize", "addons": [], "overlay": false}
+{"task": "the summarizer agent eats too many tokens per run, get it lean", "route": "optimize", "addons": [], "overlay": false}
+{"task": "search endpoint p95 is 1.2s, want under 300ms", "route": "optimize", "addons": [], "overlay": false}
+{"task": "write release notes for 3.4.0 from the commits since 3.3.1", "route": "release", "addons": [], "overlay": false}
+{"task": "are we ready to ship the mobile app build to TestFlight?", "route": "release", "addons": [], "overlay": false}
+{"task": "bump version to 2.0.0 in package and changelog, then tag", "route": "release", "addons": [], "overlay": false}
+{"task": "review this PR for security issues, it adds a file upload endpoint", "route": "sec-review", "addons": [], "overlay": false}
+{"task": "can you security-check my branch before I merge, it touches auth middleware", "route": "sec-review", "addons": [], "overlay": false}
+{"task": "any security problems in the diff for the new webhook receiver?", "route": "sec-review", "addons": [], "overlay": false}
+{"task": "audit the whole api service for vulns, we're going to SOC2 soon", "route": "sec-audit", "addons": [], "overlay": false}
+{"task": "find vulnerabilities in our backend repo, look at injection and authz especially", "route": "sec-audit", "addons": [], "overlay": false}
+{"task": "full security sweep of the payments service please", "route": "sec-audit", "addons": [], "overlay": false}
+{"task": "pentest report says the admin endpoint lacks auth, fix it", "route": "sec-fix", "addons": [], "overlay": false}
+{"task": "dependabot flagged a prototype pollution CVE in lodash, patch it", "route": "sec-fix", "addons": [], "overlay": false}
+{"task": "reported XSS in the comment renderer, remediate", "route": "sec-fix", "addons": [], "overlay": false}
+{"task": "save progress, I'm stopping for today", "route": "handoff", "addons": [], "overlay": false}
+{"task": "resume the migration work from yesterday", "route": "handoff", "addons": [], "overlay": false}
+{"task": "pick up where we left off on the search refactor", "route": "handoff", "addons": [], "overlay": false}
+{"task": "why did this chat burn so many tokens? too many tool calls I think", "route": "improve", "addons": [], "overlay": false}
+{"task": "run an efficiency review on how you've been working in this session", "route": "improve", "addons": [], "overlay": false}
+{"task": "daily coach: what habits should I change to cut your usage", "route": "improve", "addons": [], "overlay": false}
+{"task": "run the routing eval on the ultimatum skill and tell me the misroutes", "route": "skill-eval", "addons": [], "overlay": false}
+{"task": "does the ultimatum security routing still hold after the last change? test it", "route": "skill-eval", "addons": [], "overlay": false}
+{"task": "score the plugin's holdout set for accuracy", "route": "skill-eval", "addons": [], "overlay": false}
+{"task": "make an excel sheet of Q3 revenue by region with a chart", "route": "documents", "addons": [], "overlay": false}
+{"task": "edit the board deck pptx, update slide 4 numbers", "route": "documents", "addons": [], "overlay": false}
+{"task": "generate a PDF invoice export of customer records for each tenant", "route": "documents", "addons": [], "overlay": true}
+{"task": "build an MCP server that wraps our internal ticketing API", "route": "mcp-build", "addons": [], "overlay": true}
+{"task": "make an MCP tool that runs shell commands for the agent", "route": "mcp-build", "addons": [], "overlay": true}
+{"task": "add a resource to our MCP server that lists the deployed services", "route": "mcp-build", "addons": [], "overlay": false}
+{"task": "write a skill that teaches the agent our deploy checklist", "route": "skill-author", "addons": [], "overlay": false}
+{"task": "make a slash command /triage that files bug reports", "route": "skill-author", "addons": [], "overlay": false}
+{"task": "create a subagent definition for reviewing migrations, read only", "route": "skill-author", "addons": [], "overlay": true}

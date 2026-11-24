@@ -1,1601 +1,1849 @@
 {
- "version": 1,
- "modules": [
-  {
-   "id": "small",
-   "kind": "route",
-   "summary": "Clear, local change of a few files with no design choice.",
-   "activate": {
-    "keywords": [
-     "typo",
-     "rename",
-     "tweak",
-     "one-line",
-     "one line",
-     "wording",
-     "spelling",
-     "bump",
-     "constant",
-     "default value",
-     "log message",
-     "copy change",
-     "remove unused",
-     "quick fix",
-     "small change",
-     "small fix",
-     "small"
-    ],
-    "phrases": [
-     "change the text",
-     "update the copy",
-     "add a comment",
-     "fix the typo",
-     "small change",
-     "quick fix",
-     "one-liner",
-     "one-line change",
-     "one line change"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "several files",
-    "design",
-    "investigate",
-    "architecture",
-    "migration",
-    "why does",
-    "how does",
-    "redesign",
-    "refactor across"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [],
-   "mode_hint": "FAST",
-   "contract": "Make the clear local edit directly, then verify it.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "discover",
-   "kind": "route",
-   "summary": "Understand how existing code or an unfamiliar repo works.",
-   "activate": {
-    "keywords": [
-     "explain",
-     "understand",
-     "unfamiliar",
-     "codebase",
-     "overview",
-     "walk me through",
-     "architecture",
-     "trace",
-     "onboard"
-    ],
-    "phrases": [
-     "how does",
-     "how do",
-     "how is",
-     "where is",
-     "where does",
-     "what does",
-     "what happens when",
-     "map the",
-     "walk me through",
-     "how it works",
-     "reaches the",
-     "gets to the",
-     "flows into",
-     "flows from",
-     "how a request",
-     "how an",
-     "how the request"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "fix the",
-    "implement",
-    "add a",
-    "build a",
-    "make it",
-    "failing"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "discovery.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Answer how the code works with cited file:line evidence; do not change code.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "feature",
-   "kind": "route",
-   "summary": "New behavior with open questions or several parts.",
-   "activate": {
-    "keywords": [
-     "feature",
-     "implement",
-     "introduce",
-     "support",
-     "option",
-     "setting",
-     "endpoint",
-     "command",
-     "allow",
-     "enable",
-     "toggle"
-    ],
-    "phrases": [
-     "add support",
-     "new feature",
-     "let users",
-     "allow users",
-     "add a feature",
-     "add an option",
-     "add a setting",
-     "new endpoint",
-     "new command",
-     "build a",
-     "we need a way"
-    ],
-    "files": [],
-    "deps": [],
-    "weak": [
-     "new"
-    ]
-   },
-   "never_when": [
-    "bug",
-    "failing",
-    "crash",
-    "typo",
-    "rename",
-    "explain",
-    "how does",
-    "vulnerability",
-    "audit",
-    "release notes"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "feature-planning.md",
-    "tdd.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Plan the behavior and open questions, then build it test-first.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "large",
-   "kind": "route",
-   "summary": "Several independent parts or more than about ten files.",
-   "activate": {
-    "keywords": [
-     "migrate",
-     "rewrite",
-     "monorepo",
-     "subsystem",
-     "workstream",
-     "epic",
-     "parallel",
-     "entire",
-     "across",
-     "everywhere",
-     "importers",
-     "packages",
-     "callers"
-    ],
-    "phrases": [
-     "several parts",
-     "multiple modules",
-     "across the codebase",
-     "many files",
-     "end to end",
-     "end-to-end",
-     "whole codebase",
-     "all services",
-     "independent parts",
-     "large refactor",
-     "port the entire",
-     "rewrite the",
-     "all importers",
-     "every importer",
-     "all packages",
-     "every package",
-     "many importers",
-     "all call sites",
-     "every call site",
-     "all callers",
-     "every caller",
-     "across packages"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "small",
-    "typo",
-    "one file",
-    "single file",
-    "quick",
-    "tweak"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "feature-planning.md",
-    "orchestration.md"
-   ],
-   "mode_hint": "DEEP",
-   "contract": "Split into independent slices with owned files and acceptance checks, then integrate.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "bug",
-   "kind": "route",
-   "summary": "Wrong behavior, failing or flaky test, crash or production error.",
-   "activate": {
-    "keywords": [
-     "bug",
-     "bugs",
-     "broken",
-     "fails",
-     "failing",
-     "failure",
-     "crash",
-     "crashes",
-     "error",
-     "errors",
-     "exception",
-     "regression",
-     "wrong",
-     "incorrect",
-     "flaky",
-     "unexpected",
-     "throws",
-     "stacktrace",
-     "hangs",
-     "segfault",
-     "failed"
-    ],
-    "phrases": [
-     "failing test",
-     "flaky test",
-     "stack trace",
-     "doesn't work",
-     "does not work",
-     "not working",
-     "wrong result",
-     "returns the wrong",
-     "off-by-one",
-     "race condition",
-     "production error",
-     "is broken",
-     "keeps failing",
-     "test fails",
-     "tests fail",
-     "is failing",
-     "timed out",
-     "times out"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "ci is red",
-    "review comments",
-    "pr comments",
-    "security review",
-    "vulnerability",
-    "feature request",
-    "error message wording",
-    "audit log"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "debugging.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Reproduce the failure, find the root cause, fix it, and confirm with the failing check.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "ci-pr",
-   "kind": "route",
-   "summary": "Red CI or PR review comments to address.",
-   "activate": {
-    "keywords": [
-     "ci",
-     "workflow",
-     "checks",
-     "pr",
-     "pull",
-     "merge",
-     "conflict",
-     "reviewer",
-     "lint",
-     "actions"
-    ],
-    "phrases": [
-     "red ci",
-     "ci is red",
-     "ci failing",
-     "failing ci",
-     "failing checks",
-     "github actions",
-     "review comments",
-     "pr comments",
-     "pr review",
-     "review feedback",
-     "address the review",
-     "pull request comments",
-     "merge conflict",
-     "workflow run",
-     "address comments",
-     "checks failing",
-     "checks are failing",
-     "pull request feedback",
-     "ci pipeline",
-     "pipeline is red"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "security review",
-    "audit",
-    "vulnerability",
-    "design review",
-    "ui review",
-    "production error",
-    "flaky test in code"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "ci-and-pr.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Read the failing checks or review threads, fix each one, and re-run the checks.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "ui",
-   "kind": "route",
-   "summary": "Build, restyle or review an interface, checked in a browser.",
-   "activate": {
-    "keywords": [
-     "ui",
-     "responsive",
-     "css",
-     "styling",
-     "restyle",
-     "tailwind",
-     "browser",
-     "playwright",
-     "visual",
-     "accessibility",
-     "a11y",
-     "frontend",
-     "palette",
-     "accessible"
-    ],
-    "phrases": [
-     "look and feel",
-     "browser check",
-     "visual regression",
-     "screenshot",
-     "mobile layout",
-     "dark mode",
-     "front end",
-     "front-end",
-     "landing page",
-     "build the page",
-     "restyle the",
-     "design the page",
-     "make it look",
-     "on phones",
-     "on mobile"
-    ],
-    "files": [
-     "*.tsx",
-     "*.jsx",
-     "*.vue",
-     "*.svelte"
-    ],
-    "deps": [],
-    "weak": [
-     "page",
-     "screen",
-     "layout",
-     "button",
-     "modal",
-     "dialog",
-     "navbar",
-     "dashboard",
-     "component",
-     "interface",
-     "dark"
-    ]
-   },
-   "never_when": [
-    "backend only",
-    "api only",
-    "no browser",
-    "server-side only",
-    "database",
-    "cli only",
-    "ui tests are green"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "ui.md",
-    "browser-verification.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Build or review the interface and verify it in a real browser, including responsive and accessibility checks.",
-   "attribution": [
-    "upstream-design"
-   ],
-   "version": "2.0.0"
-  },
-  {
-   "id": "data-infra",
-   "kind": "route",
-   "summary": "Migrations, schema, RLS, slow queries and infrastructure as code.",
-   "activate": {
-    "keywords": [
-     "migration",
-     "migrations",
-     "schema",
-     "database",
-     "db",
-     "sql",
-     "index",
-     "rls",
-     "postgres",
-     "mysql",
-     "sqlite",
-     "terraform",
-     "iac",
-     "kubernetes",
-     "helm",
-     "docker",
-     "infra",
-     "infrastructure",
-     "bigquery",
-     "warehouse",
-     "etl",
-     "backfill",
-     "table",
-     "column",
-     "foreign",
-     "cloudformation"
-    ],
-    "phrases": [
-     "slow query",
-     "add an index",
-     "database migration",
-     "row level security",
-     "schema change",
-     "query plan",
-     "terraform apply",
-     "terraform plan",
-     "dockerfile",
-     "data pipeline",
-     "backfill the"
-    ],
-    "files": [
-     "*.sql",
-     "*.tf"
-    ],
-    "deps": []
-   },
-   "never_when": [
-    "frontend",
-    "ui only",
-    "rename variable",
-    "css",
-    "sql injection",
-    "injection",
-    "exploit"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "data-and-infra.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Change the data or infra definition safely, with a rollback path and a check against the real engine or plan.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "optimize",
-   "kind": "route",
-   "summary": "Improve a measurable metric: speed, size, cost or tokens.",
-   "activate": {
-    "keywords": [
-     "optimize",
-     "optimise",
-     "optimization",
-     "faster",
-     "latency",
-     "throughput",
-     "benchmark",
-     "profiling",
-     "performance",
-     "cheaper",
-     "shrink",
-     "footprint",
-     "cost",
-     "memory",
-     "bundle"
-    ],
-    "phrases": [
-     "speed up",
-     "make it faster",
-     "reduce latency",
-     "bundle size",
-     "token usage",
-     "reduce tokens",
-     "memory usage",
-     "cut the cost",
-     "lower the cost",
-     "reduce the size",
-     "runs slow",
-     "too slow",
-     "reduce cost"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "review my usage",
-    "efficiency review",
-    "learn from this",
-    "where did my tokens go",
-    "bug",
-    "crash",
-    "failing"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "optimization-loop.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Measure the baseline, change one thing, re-measure, and keep or roll back against the metric.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "release",
-   "kind": "route",
-   "summary": "Ship readiness, release notes, version tags and post-deploy checks.",
-   "activate": {
-    "keywords": [
-     "release",
-     "releases",
-     "ship",
-     "shipping",
-     "changelog",
-     "publish",
-     "deploy",
-     "deployment",
-     "rollout",
-     "rollback",
-     "tag",
-     "versioned",
-     "candidate"
-    ],
-    "phrases": [
-     "release notes",
-     "ready to ship",
-     "ready to release",
-     "cut a release",
-     "tag a release",
-     "release candidate",
-     "go live",
-     "post-deploy",
-     "post deploy",
-     "smoke test after deploy",
-     "version bump",
-     "bump the version",
-     "publish to"
-    ],
-    "files": [
-     "CHANGELOG.md"
-    ],
-    "deps": []
-   },
-   "never_when": [
-    "security",
-    "vulnerability",
-    "audit",
-    "bug fix",
-    "feature flag",
-    "rename"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "release.md"
-   ],
-   "mode_hint": "DEEP",
-   "contract": "Check release readiness, write the notes from the diff, and verify the deployed result.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "sec-review",
-   "kind": "route",
-   "summary": "Security review of a diff, PR or branch.",
-   "activate": {
-    "keywords": [
-     "security",
-     "secure",
-     "vulnerability",
-     "vulnerabilities",
-     "threat",
-     "exploitable"
-    ],
-    "phrases": [
-     "security review",
-     "sec review",
-     "security-review",
-     "review the diff for security",
-     "review for security",
-     "security of this diff",
-     "security check",
-     "security issues in this pr",
-     "threat model the change",
-     "review this pr for security",
-     "review the branch for security",
-     "check this change",
-     "review this change",
-     "this change for security"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "fix the vulnerability",
-    "remediate",
-    "fix the security",
-    "find vulnerabilities",
-    "security audit",
-    "audit the repo"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "security/change-review.md",
-    "security/coverage-model.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Review the change for security issues with evidence, without editing code.",
-   "attribution": [
-    "upstream-engineering"
-   ],
-   "version": "2.0.0"
-  },
-  {
-   "id": "sec-audit",
-   "kind": "route",
-   "summary": "Audit a whole repository for vulnerabilities.",
-   "activate": {
-    "keywords": [
-     "audit",
-     "pentest",
-     "pen-test",
-     "vulnerability",
-     "vulnerabilities",
-     "exposure",
-     "exposed"
-    ],
-    "phrases": [
-     "security audit",
-     "audit the repo",
-     "audit the codebase",
-     "find vulnerabilities",
-     "find security issues",
-     "vulnerability hunt",
-     "penetration test",
-     "pentest the",
-     "scan the repo for",
-     "find vulnerabilities in",
-     "whole repo security",
-     "security posture"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "audit log",
-    "audit trail",
-    "audit table",
-    "audit column",
-    "fix the vulnerability",
-    "remediate",
-    "review the diff",
-    "this pr",
-    "sec review"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "security/full-audit.md",
-    "security/coverage-model.md",
-    "security/findings.md"
-   ],
-   "mode_hint": "DEEP",
-   "contract": "Audit the repository in scope, verify each high-impact finding, and report evidence without changing code.",
-   "attribution": [
-    "upstream-engineering"
-   ],
-   "version": "2.0.0"
-  },
-  {
-   "id": "sec-fix",
-   "kind": "route",
-   "summary": "Fix a known vulnerability and prove the fix.",
-   "activate": {
-    "keywords": [
-     "remediate",
-     "remediation",
-     "cve",
-     "harden",
-     "exploit",
-     "vulnerability",
-     "xss",
-     "csrf",
-     "ssrf"
-    ],
-    "phrases": [
-     "fix the vulnerability",
-     "patch the vulnerability",
-     "fix the security",
-     "close the finding",
-     "fix the finding",
-     "fix the cve",
-     "fix the xss",
-     "fix the injection",
-     "fix the sql injection",
-     "fix the leak",
-     "patch the cve",
-     "fix the path traversal",
-     "fix this vulnerability",
-     "close finding"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "find vulnerabilities",
-    "audit the repo",
-    "security review",
-    "review the diff",
-    "explain"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "security/remediation.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Fix the known vulnerability at its root, add a negative test that fails without the guard, and re-check.",
-   "attribution": [
-    "upstream-engineering"
-   ],
-   "version": "2.0.0"
-  },
-  {
-   "id": "handoff",
-   "kind": "route",
-   "summary": "Save progress for later, or resume an earlier session.",
-   "activate": {
-    "keywords": [
-     "resume",
-     "handoff",
-     "checkpoint",
-     "compaction",
-     "compacted",
-     "resumption"
-    ],
-    "phrases": [
-     "save progress",
-     "save state",
-     "where we left off",
-     "where i left off",
-     "hand off",
-     "write a handoff",
-     "after compaction",
-     "resume where",
-     "resume the",
-     "continue where",
-     "session summary",
-     "pick up where",
-     "pick up from",
-     "pick up the work",
-     "left off",
-     "continue from"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "fix",
-    "implement",
-    "add a",
-    "bug",
-    "failing"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "handoff.md"
-   ],
-   "mode_hint": "RECOVERY",
-   "contract": "Write or read the handoff: goal, decisions, evidence, next step; then continue from it.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "improve",
-   "kind": "route",
-   "summary": "Review Claude's own usage or mistakes in this chat and propose workflow changes.",
-   "activate": {
-    "keywords": [
-     "retro",
-     "retrospective",
-     "self-improvement",
-     "efficiency",
-     "mistakes",
-     "usage",
-     "avoidable",
-     "lessons"
-    ],
-    "phrases": [
-     "efficiency review",
-     "learn from this",
-     "review my usage",
-     "review your usage",
-     "where did my tokens go",
-     "where did the tokens go",
-     "your mistakes",
-     "what went wrong in this chat",
-     "usage report",
-     "lessons from this session",
-     "improve your workflow",
-     "token-usage review",
-     "token usage review",
-     "what went wrong"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "optimize the",
-    "speed up",
-    "faster",
-    "bundle",
-    "audit log"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "self-improvement.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Review this chat's usage and mistakes, then propose one measured workflow change.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "skill-eval",
-   "kind": "route",
-   "summary": "Test or improve Ultimatum itself: routing, skills, graders, evals.",
-   "activate": {
-    "keywords": [
-     "eval",
-     "evals",
-     "grader",
-     "graders",
-     "ultimatum",
-     "toolbelt",
-     "regression"
-    ],
-    "phrases": [
-     "skill eval",
-     "skill evaluation",
-     "eval the router",
-     "routing eval",
-     "improve ultimatum",
-     "ultimatum itself",
-     "ultimatum plugin",
-     "run the evals",
-     "test the skill",
-     "grader prompt",
-     "live eval"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "write a new skill",
-    "new skill",
-    "for my team",
-    "unrelated to ultimatum"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "skill-evaluation.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Change or test Ultimatum with its own evals, cost-aware and with user approval for paid runs.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "documents",
-   "kind": "route",
-   "summary": "Create or edit office and PDF documents: DOCX, XLSX, PPTX, PDF.",
-   "activate": {
-    "keywords": [
-     "docx",
-     "xlsx",
-     "pptx",
-     "pdf",
-     "spreadsheet",
-     "excel",
-     "powerpoint",
-     "slides",
-     "deck",
-     "memo",
-     "onepager",
-     "worksheet"
-    ],
-    "phrases": [
-     "word document",
-     "word doc",
-     "slide deck",
-     "pdf report",
-     "write a memo",
-     "one-pager",
-     "one pager",
-     "fill in the pdf",
-     "excel sheet",
-     "make a presentation",
-     "export to pdf",
-     "generate a pdf"
-    ],
-    "files": [
-     "*.docx",
-     "*.xlsx",
-     "*.pptx",
-     "*.pdf"
-    ],
-    "deps": []
-   },
-   "never_when": [
-    "release notes",
-    "changelog",
-    "readme",
-    "api docs",
-    "markdown",
-    "ui pdf viewer"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "documents.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Produce or edit the office or PDF file and check it by rendering or reading it back.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "mcp-build",
-   "kind": "route",
-   "summary": "Build or change an MCP server with its tools.",
-   "activate": {
-    "keywords": [
-     "mcp"
-    ],
-    "phrases": [
-     "mcp server",
-     "mcp tool",
-     "mcp tools",
-     "model context protocol",
-     "build an mcp",
-     "write an mcp",
-     "create an mcp",
-     "mcp resource",
-     "stdio server"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "use the github mcp",
-    "connect to the mcp",
-    "use context7",
-    "use sentry",
-    "use serena"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "mcp-build.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Build the MCP server with schema-checked tools, least-privilege access and a protocol-level test.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "skill-author",
-   "kind": "route",
-   "summary": "Write a new agent skill, slash command or plugin skill for the user.",
-   "activate": {
-    "keywords": [
-     "skill",
-     "skills",
-     "subagent",
-     "slash"
-    ],
-    "phrases": [
-     "write a skill",
-     "create a skill",
-     "new skill",
-     "skill.md",
-     "author a skill",
-     "skill for my team",
-     "write a slash command",
-     "write a subagent",
-     "agent definition",
-     "plugin skill",
-     "skill description",
-     "slash command"
-    ],
-    "files": [
-     "SKILL.md"
-    ],
-    "deps": []
-   },
-   "never_when": [
-    "eval",
-    "evals",
-    "grader",
-    "ultimatum itself",
-    "improve ultimatum",
-    "routing",
-    "test the skill"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "skill-author.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Write the skill with a precise trigger description, short body and one check that it triggers as intended.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "react",
-   "kind": "addon",
-   "summary": "React or Next.js specifics: components, hooks, state, rendering.",
-   "activate": {
-    "keywords": [
-     "react",
-     "jsx",
-     "tsx",
-     "nextjs",
-     "next.js",
-     "usestate",
-     "useeffect",
-     "hydration",
-     "rerender",
-     "re-render"
-    ],
-    "phrases": [
-     "react component",
-     "react hook",
-     "react app",
-     "react router",
-     "server component",
-     "client component",
-     "react state"
-    ],
-    "files": [
-     "*.tsx",
-     "*.jsx"
-    ],
-    "deps": [
-     "react",
-     "next"
-    ]
-   },
-   "never_when": [
-    "react to",
-    "react with",
-    "react against",
-    "react quickly"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "react.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Apply React-specific rules for components, hooks and rendering.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "design",
-   "kind": "addon",
-   "summary": "Design system: tokens, palette, typography, theme and brand.",
-   "activate": {
-    "keywords": [
-     "brand",
-     "branding",
-     "palette",
-     "typography",
-     "theme",
-     "theming",
-     "logo",
-     "mockup",
-     "moodboard"
-    ],
-    "phrases": [
-     "design system",
-     "design tokens",
-     "color palette",
-     "visual design",
-     "brand guidelines",
-     "dark theme",
-     "visual identity",
-     "spacing scale"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "token usage",
-    "token budget",
-    "api token",
-    "access token",
-    "state transition"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "design/design.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Apply the design-system rules: tokens first, then palette, type and theme.",
-   "attribution": [
-    "upstream-design"
-   ],
-   "version": "2.0.0"
-  },
-  {
-   "id": "motion",
-   "kind": "addon",
-   "summary": "Animation and transitions for interfaces.",
-   "activate": {
-    "keywords": [
-     "animation",
-     "animations",
-     "animate",
-     "animated",
-     "transition",
-     "transitions",
-     "motion",
-     "keyframes",
-     "easing",
-     "parallax",
-     "gsap",
-     "lottie",
-     "framer"
-    ],
-    "phrases": [
-     "framer motion",
-     "micro-interaction",
-     "micro interaction",
-     "page transition",
-     "scroll animation",
-     "motion design",
-     "reduced motion",
-     "prefers-reduced-motion",
-     "hover animation"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "state transition",
-    "status transition",
-    "payment transition",
-    "db transition",
-    "transition the ticket",
-    "motion sensor"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "design/motion.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Add motion that respects reduced-motion settings and does not block interaction.",
-   "attribution": [
-    "upstream-design"
-   ],
-   "version": "2.0.0"
-  },
-  {
-   "id": "components",
-   "kind": "addon",
-   "summary": "Choosing and integrating component libraries with licence checks.",
-   "activate": {
-    "keywords": [
-     "shadcn",
-     "radix",
-     "chakra",
-     "mui",
-     "antd",
-     "daisyui",
-     "headless",
-     "combobox",
-     "carousel",
-     "tooltip",
-     "accordion",
-     "datepicker"
-    ],
-    "phrases": [
-     "component library",
-     "ui library",
-     "find a component",
-     "pick a component",
-     "date picker",
-     "data grid",
-     "data table",
-     "component registry",
-     "material ui",
-     "ant design"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "write a component",
-    "unit test",
-    "library upgrade of the api"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "design/components.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Pick a component library that fits the stack and licence, then integrate it through its public API.",
-   "attribution": [
-    "upstream-design"
-   ],
-   "version": "2.0.0"
-  },
-  {
-   "id": "production",
-   "kind": "addon",
-   "summary": "Production data, logs, incidents and live-user impact.",
-   "activate": {
-    "keywords": [
-     "incident",
-     "outage",
-     "sev1",
-     "postmortem",
-     "prod",
-     "production"
-    ],
-    "phrases": [
-     "in production",
-     "prod data",
-     "production data",
-     "production logs",
-     "production incident",
-     "production error",
-     "production outage",
-     "on call",
-     "on-call",
-     "live customers",
-     "real users",
-     "customer data"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "production build",
-    "production mode",
-    "production config only"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "production.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Handle production data and incidents read-only first, minimise exposure, and confirm impact before changes.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "context",
-   "kind": "addon",
-   "summary": "Noisy output, large repos and context-window pressure.",
-   "activate": {
-    "keywords": [
-     "noisy",
-     "verbose",
-     "huge",
-     "giant",
-     "massive",
-     "bloated"
-    ],
-    "phrases": [
-     "context window",
-     "context budget",
-     "token budget",
-     "big output",
-     "large output",
-     "large repo",
-     "large codebase",
-     "huge log",
-     "long log",
-     "too much output",
-     "reduce context",
-     "context efficiency"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "design tokens",
-    "api token",
-    "access token",
-    "budget approval"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "context-efficiency.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Keep command and search output small and capped; use the toolbelt summaries.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "integrations",
-   "kind": "addon",
-   "summary": "Optional tools: Context7, Serena, Graphify, semgrep, Playwright, Sentry, GitHub.",
-   "activate": {
-    "keywords": [
-     "context7",
-     "serena",
-     "graphify",
-     "semgrep",
-     "playwright",
-     "sentry",
-     "gh"
-    ],
-    "phrases": [
-     "github mcp",
-     "github api",
-     "use sentry",
-     "use playwright",
-     "use context7",
-     "use serena",
-     "use semgrep",
-     "use graphify",
-     "gh cli",
-     "gh pr"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "no external tools",
-    "without sentry"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "integrations.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Check the optional tool is present and its output is capped before using it.",
-   "attribution": [],
-   "version": "2.0.0"
-  },
-  {
-   "id": "security",
-   "kind": "overlay",
-   "summary": "Boundary overlay: auth, money, personal data, uploads, input-built commands, secrets, CORS/CSP/cookies, CI permissions, LLM tool permissions.",
-   "activate": {
-    "keywords": [
-     "auth",
-     "authn",
-     "authz",
-     "authentication",
-     "authorization",
-     "login",
-     "logout",
-     "oauth",
-     "sso",
-     "cookie",
-     "cookies",
-     "cors",
-     "csp",
-     "csrf",
-     "password",
-     "passwords",
-     "rbac",
-     "tenant",
-     "tenants",
-     "payment",
-     "payments",
-     "refund",
-     "refunds",
-     "billing",
-     "checkout",
-     "pii",
-     "upload",
-     "uploads",
-     "uploaded",
-     "secret",
-     "secrets",
-     "credential",
-     "credentials",
-     "jwt",
-     "samesite",
-     "httponly",
-     "ssrf",
-     "xss",
-     "sanitize",
-     "sanitise",
-     "deserialize",
-     "unserialize",
-     "webhook",
-     "webhooks",
-     "export",
-     "exports",
-     "exported"
-    ],
-    "phrases": [
-     "access control",
-     "multi-tenant",
-     "row level security",
-     "user roles",
-     "admin role",
-     "role check",
-     "roles and permissions",
-     "permission check",
-     "permissions check",
-     "ci permissions",
-     "deploy permissions",
-     "workflow permissions",
-     "tool permissions",
-     "allowed tools",
-     "llm tool",
-     "tool access",
-     "personal data",
-     "personal information",
-     "user data",
-     "data export",
-     "export csv",
-     "csv export",
-     "export data",
-     "export users",
-     "user input",
-     "user-supplied",
-     "untrusted input",
-     "external input",
-     "from user input",
-     "shell command",
-     "shell out",
-     "subprocess",
-     "child_process",
-     "raw sql",
-     "sql query",
-     "sql built",
-     "string-built sql",
-     "path traversal",
-     "file path from",
-     "request params",
-     "query string",
-     "api key",
-     "api keys",
-     "access token",
-     "api token",
-     "private key",
-     "content security policy",
-     "allow origin",
-     "set-cookie",
-     "parse webhook",
-     "yaml.load",
-     "pickle",
-     "service account",
-     "iam role",
-     "pull_request_target",
-     "deploy key",
-     "command injection",
-     "template injection",
-     "open redirect",
-     "dangerouslysetinnerhtml",
-     "innerhtml",
-     "eval(",
-     "sql injection",
-     "user session",
-     "user sessions",
-     "session token",
-     "session cookie",
-     "session store",
-     "session expiry",
-     "session fixation",
-     "session management"
-    ],
-    "files": [],
-    "deps": []
-   },
-   "never_when": [
-    "author",
-    "token budget",
-    "token usage",
-    "design tokens",
-    "design token",
-    "aria role",
-    "stylesheet",
-    "style only",
-    "copy only",
-    "wording only",
-    "export default",
-    "export const",
-    "export function",
-    "module.exports",
-    "named export",
-    "dependency injection"
-   ],
-   "requires": [],
-   "conflicts": [],
-   "read": [
-    "security/secure-implementation.md"
-   ],
-   "mode_hint": "STANDARD",
-   "contract": "Name the boundary, check the paths to it, and add a negative test that fails without the guard.",
-   "attribution": [
-    "upstream-engineering"
-   ],
-   "version": "2.0.0"
-  }
- ]
+  "version": 1,
+  "modules": [
+    {
+      "id": "small",
+      "kind": "route",
+      "summary": "Clear, local change of a few files with no design choice.",
+      "activate": {
+        "keywords": [
+          "typo",
+          "rename",
+          "tweak",
+          "one-line",
+          "one line",
+          "wording",
+          "spelling",
+          "bump",
+          "constant",
+          "default value",
+          "log message",
+          "copy change",
+          "remove unused",
+          "quick fix",
+          "small change",
+          "small fix",
+          "small"
+        ],
+        "phrases": [
+          "change the text",
+          "update the copy",
+          "add a comment",
+          "fix the typo",
+          "small change",
+          "quick fix",
+          "one-liner",
+          "one-line change",
+          "one line change"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "several files",
+        "design",
+        "investigate",
+        "architecture",
+        "migration",
+        "why does",
+        "how does",
+        "redesign",
+        "refactor across"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [],
+      "mode_hint": "FAST",
+      "contract": "Make the clear local edit directly, then verify it.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "discover",
+      "kind": "route",
+      "summary": "Understand how existing code or an unfamiliar repo works.",
+      "activate": {
+        "keywords": [
+          "explain",
+          "understand",
+          "unfamiliar",
+          "codebase",
+          "overview",
+          "walk me through",
+          "architecture",
+          "trace",
+          "onboard"
+        ],
+        "phrases": [
+          "how does",
+          "how do",
+          "how is",
+          "where is",
+          "where does",
+          "what does",
+          "what happens when",
+          "map the",
+          "walk me through",
+          "how it works",
+          "reaches the",
+          "gets to the",
+          "flows into",
+          "flows from",
+          "how a request",
+          "how an",
+          "how the request",
+          "walk me thru",
+          "how the",
+          "gets from",
+          "explain how",
+          "what is the flow",
+          "show me how",
+          "explain the",
+          "request lifecycle",
+          "lifecycle of",
+          "why is it built",
+          "what calls"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "fix the",
+        "implement",
+        "add a",
+        "build a",
+        "make it",
+        "failing",
+        "explain shows",
+        "explain analyze",
+        "seq scan"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "discovery.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Answer how the code works with cited file:line evidence; do not change code.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "feature",
+      "kind": "route",
+      "summary": "New behavior with open questions or several parts.",
+      "activate": {
+        "keywords": [
+          "feature",
+          "implement",
+          "introduce",
+          "support",
+          "option",
+          "setting",
+          "endpoint",
+          "command",
+          "allow",
+          "enable",
+          "toggle",
+          "integrate",
+          "integration",
+          "preferences",
+          "notifications"
+        ],
+        "phrases": [
+          "add support",
+          "new feature",
+          "let users",
+          "allow users",
+          "add a feature",
+          "add an option",
+          "add a setting",
+          "new endpoint",
+          "new command",
+          "build a",
+          "we need a way",
+          "calls the",
+          "wire the",
+          "wire up",
+          "add sentry",
+          "integrate with",
+          "needs schema",
+          "per event",
+          "end user",
+          "add a button",
+          "add a page",
+          "add a screen",
+          "should be able to",
+          "users can",
+          "be able to",
+          "invite members"
+        ],
+        "files": [],
+        "deps": [],
+        "weak": [
+          "new",
+          "add",
+          "build",
+          "api"
+        ]
+      },
+      "never_when": [
+        "bug",
+        "failing",
+        "crash",
+        "typo",
+        "rename",
+        "explain",
+        "how does",
+        "vulnerability",
+        "audit",
+        "release notes"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "feature-planning.md",
+        "tdd.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Plan the behavior and open questions, then build it test-first.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "large",
+      "kind": "route",
+      "summary": "Several independent parts or more than about ten files.",
+      "activate": {
+        "keywords": [
+          "migrate",
+          "rewrite",
+          "monorepo",
+          "subsystem",
+          "workstream",
+          "epic",
+          "parallel",
+          "entire",
+          "everywhere"
+        ],
+        "phrases": [
+          "several parts",
+          "multiple modules",
+          "across the codebase",
+          "many files",
+          "end to end",
+          "end-to-end",
+          "whole codebase",
+          "all services",
+          "independent parts",
+          "large refactor",
+          "port the entire",
+          "rewrite the",
+          "all importers",
+          "every importer",
+          "all packages",
+          "every package",
+          "many importers",
+          "all call sites",
+          "every call site",
+          "all callers",
+          "every caller",
+          "across packages",
+          "all the services",
+          "in all the",
+          "each service",
+          "every service",
+          "every module"
+        ],
+        "files": [],
+        "deps": [],
+        "weak": [
+          "callers",
+          "importers",
+          "packages",
+          "across"
+        ]
+      },
+      "never_when": [
+        "small",
+        "typo",
+        "one file",
+        "single file",
+        "quick",
+        "tweak"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "feature-planning.md",
+        "orchestration.md"
+      ],
+      "mode_hint": "DEEP",
+      "contract": "Split into independent slices with owned files and acceptance checks, then integrate.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "bug",
+      "kind": "route",
+      "summary": "Wrong behavior, failing or flaky test, crash or production error.",
+      "activate": {
+        "keywords": [
+          "bug",
+          "bugs",
+          "broken",
+          "fails",
+          "failing",
+          "failure",
+          "crash",
+          "crashes",
+          "error",
+          "errors",
+          "exception",
+          "regression",
+          "wrong",
+          "incorrect",
+          "flaky",
+          "unexpected",
+          "throws",
+          "stacktrace",
+          "hangs",
+          "segfault",
+          "failed",
+          "breaks",
+          "intermittent",
+          "intermittently",
+          "freezes",
+          "stuck",
+          "leaks",
+          "glitch",
+          "loop"
+        ],
+        "phrases": [
+          "failing test",
+          "flaky test",
+          "stack trace",
+          "doesn't work",
+          "does not work",
+          "not working",
+          "wrong result",
+          "returns the wrong",
+          "off-by-one",
+          "race condition",
+          "production error",
+          "is broken",
+          "keeps failing",
+          "test fails",
+          "tests fail",
+          "is failing",
+          "timed out",
+          "times out",
+          "only sometimes",
+          "breaks when",
+          "stopped working",
+          "started after",
+          "infinite loop",
+          "forever",
+          "shows another",
+          "sees another",
+          "wrong user",
+          "still shows",
+          "no longer",
+          "used to work",
+          "works the first time",
+          "first time then",
+          "then fails",
+          "then says",
+          "says expired",
+          "instead of the",
+          "hang up",
+          "1 in",
+          "sometimes fails"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "ci is red",
+        "review comments",
+        "pr comments",
+        "security review",
+        "vulnerability",
+        "feature request",
+        "error message wording",
+        "audit log"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "debugging.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Reproduce the failure, find the root cause, fix it, and confirm with the failing check.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "ci-pr",
+      "kind": "route",
+      "summary": "Red CI or PR review comments to address.",
+      "activate": {
+        "keywords": [
+          "ci",
+          "workflow",
+          "checks",
+          "pr",
+          "pull",
+          "conflict",
+          "reviewer",
+          "lint",
+          "actions"
+        ],
+        "phrases": [
+          "red ci",
+          "ci is red",
+          "ci failing",
+          "failing ci",
+          "failing checks",
+          "github actions",
+          "review comments",
+          "pr comments",
+          "pr review",
+          "review feedback",
+          "address the review",
+          "pull request comments",
+          "merge conflict",
+          "workflow run",
+          "address comments",
+          "checks failing",
+          "checks are failing",
+          "pull request feedback",
+          "ci pipeline",
+          "pipeline is red",
+          "pr green",
+          "get this pr",
+          "lint fails",
+          "lint errors",
+          "e2e job",
+          "deploy workflow",
+          "permissions block",
+          "build is red",
+          "ci job"
+        ],
+        "files": [],
+        "deps": [],
+        "weak": [
+          "pipeline",
+          "merge"
+        ]
+      },
+      "never_when": [
+        "security review",
+        "audit",
+        "vulnerability",
+        "design review",
+        "ui review",
+        "production error",
+        "flaky test in code"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "ci-and-pr.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Read the failing checks or review threads, fix each one, and re-run the checks.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "ui",
+      "kind": "route",
+      "summary": "Build, restyle or review an interface, checked in a browser.",
+      "activate": {
+        "keywords": [
+          "ui",
+          "responsive",
+          "css",
+          "styling",
+          "restyle",
+          "tailwind",
+          "browser",
+          "playwright",
+          "visual",
+          "accessibility",
+          "a11y",
+          "frontend",
+          "palette",
+          "accessible",
+          "animation",
+          "animations",
+          "animate",
+          "fade",
+          "janky",
+          "dropdown",
+          "tooltip",
+          "modal",
+          "carousel",
+          "drawer"
+        ],
+        "phrases": [
+          "look and feel",
+          "browser check",
+          "visual regression",
+          "screenshot",
+          "mobile layout",
+          "dark mode",
+          "front end",
+          "front-end",
+          "landing page",
+          "build the page",
+          "restyle the",
+          "design the page",
+          "make it look",
+          "on phones",
+          "on mobile",
+          "component library",
+          "ui library",
+          "table component",
+          "ease-out",
+          "ease out",
+          "reduced motion",
+          "tab switch",
+          "page transition",
+          "page transitions",
+          "dropzone",
+          "change the copy",
+          "button copy",
+          "placeholder text",
+          "settings page",
+          "profile page",
+          "profile form",
+          "a page with",
+          "build a page",
+          "new page",
+          "the form"
+        ],
+        "files": [
+          "*.tsx",
+          "*.jsx",
+          "*.vue",
+          "*.svelte"
+        ],
+        "deps": [],
+        "weak": [
+          "page",
+          "screen",
+          "layout",
+          "button",
+          "dialog",
+          "navbar",
+          "dashboard",
+          "component",
+          "interface",
+          "dark",
+          "keystroke",
+          "settings tab",
+          "toggle",
+          "preferences"
+        ]
+      },
+      "never_when": [
+        "backend only",
+        "api only",
+        "no browser",
+        "server-side only",
+        "database",
+        "cli only",
+        "ui tests are green"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "ui.md",
+        "browser-verification.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Build or review the interface and verify it in a real browser, including responsive and accessibility checks.",
+      "attribution": [
+        "upstream-design"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "id": "data-infra",
+      "kind": "route",
+      "summary": "Migrations, schema, RLS, slow queries and infrastructure as code.",
+      "activate": {
+        "keywords": [
+          "migration",
+          "migrations",
+          "schema",
+          "database",
+          "db",
+          "sql",
+          "index",
+          "rls",
+          "postgres",
+          "mysql",
+          "sqlite",
+          "terraform",
+          "iac",
+          "kubernetes",
+          "helm",
+          "docker",
+          "infra",
+          "infrastructure",
+          "bigquery",
+          "warehouse",
+          "etl",
+          "backfill",
+          "column",
+          "foreign",
+          "cloudformation"
+        ],
+        "phrases": [
+          "slow query",
+          "add an index",
+          "database migration",
+          "row level security",
+          "schema change",
+          "query plan",
+          "terraform apply",
+          "terraform plan",
+          "dockerfile",
+          "data pipeline",
+          "backfill the",
+          "log table",
+          "add a table",
+          "new table",
+          "audit log table",
+          "seq scan",
+          "explain shows",
+          "explain analyze",
+          "query takes",
+          "full table scan",
+          "missing index",
+          "rls policies",
+          "add rls"
+        ],
+        "files": [
+          "*.sql",
+          "*.tf"
+        ],
+        "deps": [],
+        "weak": [
+          "table",
+          "query"
+        ]
+      },
+      "never_when": [
+        "frontend",
+        "ui only",
+        "rename variable",
+        "css",
+        "sql injection",
+        "injection",
+        "exploit",
+        "table component",
+        "component library",
+        "string concat"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "data-and-infra.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Change the data or infra definition safely, with a rollback path and a check against the real engine or plan.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "optimize",
+      "kind": "route",
+      "summary": "Improve a measurable metric: speed, size, cost or tokens.",
+      "activate": {
+        "keywords": [
+          "optimize",
+          "optimise",
+          "optimization",
+          "faster",
+          "latency",
+          "throughput",
+          "benchmark",
+          "profiling",
+          "performance",
+          "cheaper",
+          "shrink",
+          "footprint",
+          "cost",
+          "memory",
+          "bundle",
+          "trim",
+          "bill",
+          "expensive",
+          "slow",
+          "slower",
+          "bloat"
+        ],
+        "phrases": [
+          "speed up",
+          "make it faster",
+          "reduce latency",
+          "bundle size",
+          "token usage",
+          "reduce tokens",
+          "memory usage",
+          "cut the cost",
+          "lower the cost",
+          "reduce the size",
+          "runs slow",
+          "too slow",
+          "reduce cost",
+          "costs too much",
+          "too expensive",
+          "cloud bill",
+          "cut it",
+          "trim the",
+          "context size",
+          "cut context",
+          "reduce the cost",
+          "make it cheaper",
+          "lower latency",
+          "too many tokens",
+          "way too many",
+          "burns",
+          "per request",
+          "llm tokens",
+          "token cost",
+          "costs per"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "review my usage",
+        "efficiency review",
+        "learn from this",
+        "where did my tokens go",
+        "bug",
+        "crash",
+        "failing",
+        "fix the",
+        "broken"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "optimization-loop.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Measure the baseline, change one thing, re-measure, and keep or roll back against the metric.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "release",
+      "kind": "route",
+      "summary": "Ship readiness, release notes, version tags and post-deploy checks.",
+      "activate": {
+        "keywords": [
+          "release",
+          "releases",
+          "ship",
+          "shipping",
+          "changelog",
+          "publish",
+          "deploy",
+          "deployment",
+          "rollout",
+          "rollback",
+          "tag",
+          "versioned",
+          "candidate"
+        ],
+        "phrases": [
+          "release notes",
+          "ready to ship",
+          "ready to release",
+          "cut a release",
+          "tag a release",
+          "release candidate",
+          "go live",
+          "post-deploy",
+          "post deploy",
+          "smoke test after deploy",
+          "version bump",
+          "bump the version",
+          "publish to"
+        ],
+        "files": [
+          "CHANGELOG.md"
+        ],
+        "deps": []
+      },
+      "never_when": [
+        "security",
+        "vulnerability",
+        "audit",
+        "bug fix",
+        "feature flag",
+        "rename"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "release.md"
+      ],
+      "mode_hint": "DEEP",
+      "contract": "Check release readiness, write the notes from the diff, and verify the deployed result.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "sec-review",
+      "kind": "route",
+      "summary": "Security review of a diff, PR or branch.",
+      "activate": {
+        "keywords": [
+          "security",
+          "secure",
+          "vulnerability",
+          "vulnerabilities",
+          "threat",
+          "exploitable",
+          "semgrep"
+        ],
+        "phrases": [
+          "security review",
+          "sec review",
+          "security-review",
+          "review the diff for security",
+          "review for security",
+          "security of this diff",
+          "security check",
+          "security issues in this pr",
+          "threat model the change",
+          "review this pr for security",
+          "review the branch for security",
+          "check this change",
+          "review this change",
+          "this change for security",
+          "findings are real",
+          "over this branch",
+          "this branch for",
+          "which findings",
+          "triage the findings",
+          "before merging"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "fix the vulnerability",
+        "remediate",
+        "fix the security",
+        "find vulnerabilities",
+        "security audit",
+        "audit the repo"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "security/change-review.md",
+        "security/coverage-model.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Review the change for security issues with evidence, without editing code.",
+      "attribution": [
+        "upstream-engineering"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "id": "sec-audit",
+      "kind": "route",
+      "summary": "Audit a whole repository for vulnerabilities.",
+      "activate": {
+        "keywords": [
+          "audit",
+          "pentest",
+          "pen-test",
+          "vulnerability",
+          "vulnerabilities",
+          "exposure",
+          "exposed"
+        ],
+        "phrases": [
+          "security audit",
+          "audit the repo",
+          "audit the codebase",
+          "find vulnerabilities",
+          "find security issues",
+          "vulnerability hunt",
+          "penetration test",
+          "pentest the",
+          "scan the repo for",
+          "find vulnerabilities in",
+          "whole repo security",
+          "security posture"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "audit log",
+        "audit trail",
+        "audit table",
+        "audit column",
+        "fix the vulnerability",
+        "remediate",
+        "review the diff",
+        "this pr",
+        "sec review"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "security/full-audit.md",
+        "security/coverage-model.md",
+        "security/findings.md"
+      ],
+      "mode_hint": "DEEP",
+      "contract": "Audit the repository in scope, verify each high-impact finding, and report evidence without changing code.",
+      "attribution": [
+        "upstream-engineering"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "id": "sec-fix",
+      "kind": "route",
+      "summary": "Fix a known vulnerability and prove the fix.",
+      "activate": {
+        "keywords": [
+          "remediate",
+          "remediation",
+          "cve",
+          "harden",
+          "exploit",
+          "vulnerability",
+          "xss",
+          "csrf",
+          "ssrf",
+          "idor",
+          "injection",
+          "traversal"
+        ],
+        "phrases": [
+          "fix the vulnerability",
+          "patch the vulnerability",
+          "fix the security",
+          "close the finding",
+          "fix the finding",
+          "fix the cve",
+          "fix the xss",
+          "fix the injection",
+          "fix the sql injection",
+          "fix the leak",
+          "patch the cve",
+          "fix the path traversal",
+          "fix this vulnerability",
+          "close finding",
+          "open redirect",
+          "the ssrf",
+          "the xss",
+          "the sql injection",
+          "path traversal",
+          "the idor",
+          "patch the",
+          "injection in",
+          "fix the csrf",
+          "the csrf",
+          "pen test flagged",
+          "pentest flagged",
+          "scanner flagged",
+          "flagged by",
+          "missing httponly",
+          "no httponly",
+          "no samesite"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "find vulnerabilities",
+        "audit the repo",
+        "security review",
+        "review the diff",
+        "explain"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "security/remediation.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Fix the known vulnerability at its root, add a negative test that fails without the guard, and re-check.",
+      "attribution": [
+        "upstream-engineering"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "id": "handoff",
+      "kind": "route",
+      "summary": "Save progress for later, or resume an earlier session.",
+      "activate": {
+        "keywords": [
+          "resume",
+          "handoff",
+          "checkpoint",
+          "compaction",
+          "compacted",
+          "resumption"
+        ],
+        "phrases": [
+          "save progress",
+          "save state",
+          "where we left off",
+          "where i left off",
+          "hand off",
+          "write a handoff",
+          "after compaction",
+          "resume where",
+          "resume the",
+          "continue where",
+          "session summary",
+          "pick up where",
+          "pick up from",
+          "pick up the work",
+          "left off",
+          "continue from",
+          "continue the",
+          "from yesterday",
+          "where we were",
+          "keep going",
+          "carry on",
+          "previous session",
+          "last session",
+          "save where",
+          "pick this up",
+          "pick it up",
+          "tomorrow",
+          "save my place",
+          "wrap up for"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "fix",
+        "implement",
+        "add a",
+        "bug",
+        "failing"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "handoff.md"
+      ],
+      "mode_hint": "RECOVERY",
+      "contract": "Write or read the handoff: goal, decisions, evidence, next step; then continue from it.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "improve",
+      "kind": "route",
+      "summary": "Review Claude's own usage or mistakes in this chat and propose workflow changes.",
+      "activate": {
+        "keywords": [
+          "retro",
+          "retrospective",
+          "self-improvement",
+          "efficiency",
+          "mistakes",
+          "usage",
+          "avoidable",
+          "lessons"
+        ],
+        "phrases": [
+          "efficiency review",
+          "learn from this",
+          "review my usage",
+          "review your usage",
+          "where did my tokens go",
+          "where did the tokens go",
+          "your mistakes",
+          "what went wrong in this chat",
+          "usage report",
+          "lessons from this session",
+          "improve your workflow",
+          "token-usage review",
+          "token usage review",
+          "what went wrong",
+          "this chat",
+          "in this chat",
+          "look back at",
+          "so many tokens",
+          "be leaner",
+          "tool calls above",
+          "last task",
+          "how you worked"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "optimize the",
+        "speed up",
+        "faster",
+        "bundle",
+        "audit log"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "self-improvement.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Review this chat's usage and mistakes, then propose one measured workflow change.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "skill-eval",
+      "kind": "route",
+      "summary": "Test or improve Ultimatum itself: routing, skills, graders, evals.",
+      "activate": {
+        "keywords": [
+          "eval",
+          "evals",
+          "grader",
+          "graders",
+          "ultimatum",
+          "toolbelt",
+          "regression"
+        ],
+        "phrases": [
+          "skill eval",
+          "skill evaluation",
+          "eval the router",
+          "routing eval",
+          "improve ultimatum",
+          "ultimatum itself",
+          "ultimatum plugin",
+          "run the evals",
+          "test the skill",
+          "grader prompt",
+          "live eval",
+          "ultimatum skill",
+          "the ultimatum skill",
+          "trigger phrases",
+          "routing of ultimatum"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "write a new skill",
+        "new skill",
+        "for my team",
+        "unrelated to ultimatum"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "skill-evaluation.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Change or test Ultimatum with its own evals, cost-aware and with user approval for paid runs.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "documents",
+      "kind": "route",
+      "summary": "Create or edit office and PDF documents: DOCX, XLSX, PPTX, PDF.",
+      "activate": {
+        "keywords": [
+          "docx",
+          "xlsx",
+          "pptx",
+          "spreadsheet",
+          "excel",
+          "powerpoint",
+          "deck",
+          "memo",
+          "onepager",
+          "worksheet"
+        ],
+        "phrases": [
+          "word document",
+          "word doc",
+          "slide deck",
+          "pdf report",
+          "write a memo",
+          "one-pager",
+          "one pager",
+          "fill in the pdf",
+          "excel sheet",
+          "make a presentation",
+          "export to pdf",
+          "generate a pdf"
+        ],
+        "files": [
+          "*.docx",
+          "*.xlsx",
+          "*.pptx",
+          "*.pdf"
+        ],
+        "deps": [],
+        "weak": [
+          "pdf",
+          "slides"
+        ]
+      },
+      "never_when": [
+        "release notes",
+        "changelog",
+        "readme",
+        "api docs",
+        "markdown",
+        "ui pdf viewer"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "documents.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Produce or edit the office or PDF file and check it by rendering or reading it back.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "mcp-build",
+      "kind": "route",
+      "summary": "Build or change an MCP server with its tools.",
+      "activate": {
+        "keywords": [
+          "mcp"
+        ],
+        "phrases": [
+          "mcp server",
+          "mcp tool",
+          "mcp tools",
+          "model context protocol",
+          "build an mcp",
+          "write an mcp",
+          "create an mcp",
+          "mcp resource",
+          "stdio server"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "use the github mcp",
+        "connect to the mcp",
+        "use context7",
+        "use sentry",
+        "use serena"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "mcp-build.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Build the MCP server with schema-checked tools, least-privilege access and a protocol-level test.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "skill-author",
+      "kind": "route",
+      "summary": "Write a new agent skill, slash command or plugin skill for the user.",
+      "activate": {
+        "keywords": [
+          "skill",
+          "skills",
+          "subagent",
+          "slash"
+        ],
+        "phrases": [
+          "write a skill",
+          "create a skill",
+          "new skill",
+          "skill.md",
+          "author a skill",
+          "skill for my team",
+          "write a slash command",
+          "write a subagent",
+          "agent definition",
+          "plugin skill",
+          "skill description",
+          "slash command",
+          "claude skill",
+          "skill that",
+          "existing skill",
+          "review skill",
+          "my skill",
+          "a skill for",
+          "skill so",
+          "make a subagent",
+          "a subagent that",
+          "system prompt",
+          "custom agent",
+          "claude code agent"
+        ],
+        "files": [
+          "SKILL.md"
+        ],
+        "deps": []
+      },
+      "never_when": [
+        "eval",
+        "evals",
+        "grader",
+        "ultimatum itself",
+        "improve ultimatum",
+        "routing",
+        "test the skill",
+        "ultimatum skill",
+        "the ultimatum"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "skill-author.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Write the skill with a precise trigger description, short body and one check that it triggers as intended.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "react",
+      "kind": "addon",
+      "summary": "React or Next.js specifics: components, hooks, state, rendering.",
+      "activate": {
+        "keywords": [
+          "react",
+          "jsx",
+          "tsx",
+          "nextjs",
+          "next.js",
+          "usestate",
+          "useeffect",
+          "hydration",
+          "rerender",
+          "re-render"
+        ],
+        "phrases": [
+          "react component",
+          "react hook",
+          "react app",
+          "react router",
+          "server component",
+          "client component",
+          "react state"
+        ],
+        "files": [
+          "*.tsx",
+          "*.jsx"
+        ],
+        "deps": [
+          "react",
+          "next"
+        ]
+      },
+      "never_when": [
+        "react to",
+        "react with",
+        "react against",
+        "react quickly"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "react.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Apply React-specific rules for components, hooks and rendering.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "design",
+      "kind": "addon",
+      "summary": "Design system: tokens, palette, typography, theme and brand.",
+      "activate": {
+        "keywords": [
+          "brand",
+          "branding",
+          "palette",
+          "typography",
+          "theme",
+          "theming",
+          "logo",
+          "mockup",
+          "moodboard"
+        ],
+        "phrases": [
+          "design system",
+          "design tokens",
+          "color palette",
+          "visual design",
+          "brand guidelines",
+          "dark theme",
+          "visual identity",
+          "spacing scale"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "token usage",
+        "token budget",
+        "api token",
+        "access token",
+        "state transition"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "design/design.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Apply the design-system rules: tokens first, then palette, type and theme.",
+      "attribution": [
+        "upstream-design"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "id": "motion",
+      "kind": "addon",
+      "summary": "Animation and transitions for interfaces.",
+      "activate": {
+        "keywords": [
+          "animation",
+          "animations",
+          "animate",
+          "animated",
+          "transition",
+          "transitions",
+          "motion",
+          "keyframes",
+          "easing",
+          "parallax",
+          "gsap",
+          "lottie",
+          "framer"
+        ],
+        "phrases": [
+          "framer motion",
+          "micro-interaction",
+          "micro interaction",
+          "page transition",
+          "scroll animation",
+          "motion design",
+          "reduced motion",
+          "prefers-reduced-motion",
+          "hover animation"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "state transition",
+        "status transition",
+        "payment transition",
+        "db transition",
+        "transition the ticket",
+        "motion sensor"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "design/motion.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Add motion that respects reduced-motion settings and does not block interaction.",
+      "attribution": [
+        "upstream-design"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "id": "components",
+      "kind": "addon",
+      "summary": "Choosing and integrating component libraries with licence checks.",
+      "activate": {
+        "keywords": [
+          "shadcn",
+          "radix",
+          "chakra",
+          "mui",
+          "antd",
+          "daisyui",
+          "headless",
+          "combobox",
+          "carousel",
+          "tooltip",
+          "accordion",
+          "datepicker"
+        ],
+        "phrases": [
+          "component library",
+          "ui library",
+          "find a component",
+          "pick a component",
+          "date picker",
+          "data grid",
+          "data table",
+          "component registry",
+          "material ui",
+          "ant design"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "write a component",
+        "unit test",
+        "library upgrade of the api"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "design/components.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Pick a component library that fits the stack and licence, then integrate it through its public API.",
+      "attribution": [
+        "upstream-design"
+      ],
+      "version": "2.0.0"
+    },
+    {
+      "id": "production",
+      "kind": "addon",
+      "summary": "Production data, logs, incidents and live-user impact.",
+      "activate": {
+        "keywords": [
+          "incident",
+          "outage",
+          "sev1",
+          "postmortem",
+          "prod",
+          "production"
+        ],
+        "phrases": [
+          "in production",
+          "prod data",
+          "production data",
+          "production logs",
+          "production incident",
+          "production error",
+          "production outage",
+          "on call",
+          "on-call",
+          "live customers",
+          "real users",
+          "customer data"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "production build",
+        "production mode",
+        "production config only"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "production.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Handle production data and incidents read-only first, minimise exposure, and confirm impact before changes.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "context",
+      "kind": "addon",
+      "summary": "Noisy output, large repos and context-window pressure.",
+      "activate": {
+        "keywords": [
+          "noisy",
+          "verbose",
+          "huge",
+          "giant",
+          "massive",
+          "bloated"
+        ],
+        "phrases": [
+          "context window",
+          "context budget",
+          "token budget",
+          "big output",
+          "large output",
+          "large repo",
+          "large codebase",
+          "huge log",
+          "long log",
+          "too much output",
+          "reduce context",
+          "context efficiency"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "design tokens",
+        "api token",
+        "access token",
+        "budget approval"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "context-efficiency.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Keep command and search output small and capped; use the toolbelt summaries.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "integrations",
+      "kind": "addon",
+      "summary": "Optional tools: Context7, Serena, Graphify, semgrep, Playwright, Sentry, GitHub.",
+      "activate": {
+        "keywords": [
+          "context7",
+          "serena",
+          "graphify",
+          "semgrep",
+          "playwright",
+          "sentry",
+          "gh"
+        ],
+        "phrases": [
+          "github mcp",
+          "github api",
+          "use sentry",
+          "use playwright",
+          "use context7",
+          "use serena",
+          "use semgrep",
+          "use graphify",
+          "gh cli",
+          "gh pr"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "no external tools",
+        "without sentry"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "integrations.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Check the optional tool is present and its output is capped before using it.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
+      "id": "security",
+      "kind": "overlay",
+      "summary": "Boundary overlay: auth, money, personal data, uploads, input-built commands, secrets, CORS/CSP/cookies, CI permissions, LLM tool permissions.",
+      "activate": {
+        "keywords": [
+          "auth",
+          "authn",
+          "authz",
+          "authentication",
+          "authorization",
+          "login",
+          "logout",
+          "oauth",
+          "sso",
+          "cookie",
+          "cookies",
+          "cors",
+          "csp",
+          "csrf",
+          "password",
+          "passwords",
+          "rbac",
+          "tenant",
+          "tenants",
+          "payment",
+          "payments",
+          "refund",
+          "refunds",
+          "billing",
+          "checkout",
+          "pii",
+          "upload",
+          "uploads",
+          "uploaded",
+          "secret",
+          "secrets",
+          "credential",
+          "credentials",
+          "jwt",
+          "samesite",
+          "httponly",
+          "ssrf",
+          "xss",
+          "sanitize",
+          "sanitise",
+          "deserialize",
+          "unserialize",
+          "webhook",
+          "webhooks",
+          "export",
+          "exports",
+          "exported",
+          "permissions",
+          "role",
+          "roles",
+          "invite",
+          "invites",
+          "invitation",
+          "rls",
+          "policies",
+          "policy"
+        ],
+        "phrases": [
+          "access control",
+          "multi-tenant",
+          "row level security",
+          "user roles",
+          "admin role",
+          "role check",
+          "roles and permissions",
+          "permission check",
+          "permissions check",
+          "ci permissions",
+          "deploy permissions",
+          "workflow permissions",
+          "tool permissions",
+          "allowed tools",
+          "llm tool",
+          "tool access",
+          "personal data",
+          "personal information",
+          "user data",
+          "data export",
+          "export csv",
+          "csv export",
+          "export data",
+          "export users",
+          "user input",
+          "user-supplied",
+          "untrusted input",
+          "external input",
+          "from user input",
+          "shell command",
+          "shell out",
+          "subprocess",
+          "child_process",
+          "raw sql",
+          "sql query",
+          "sql built",
+          "string-built sql",
+          "path traversal",
+          "file path from",
+          "request params",
+          "query string",
+          "api key",
+          "api keys",
+          "access token",
+          "api token",
+          "private key",
+          "content security policy",
+          "allow origin",
+          "set-cookie",
+          "parse webhook",
+          "yaml.load",
+          "pickle",
+          "service account",
+          "iam role",
+          "pull_request_target",
+          "deploy key",
+          "command injection",
+          "template injection",
+          "open redirect",
+          "dangerouslysetinnerhtml",
+          "innerhtml",
+          "eval(",
+          "sql injection",
+          "user session",
+          "user sessions",
+          "session token",
+          "session cookie",
+          "session store",
+          "session expiry",
+          "session fixation",
+          "session management",
+          "write permissions",
+          "permissions block",
+          "shell commands",
+          "run shell",
+          "permission checks",
+          "github_token",
+          "id-token",
+          "so claude can",
+          "internal api",
+          "let the agent",
+          "agent can"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "author",
+        "token budget",
+        "token usage",
+        "design tokens",
+        "design token",
+        "aria role",
+        "stylesheet",
+        "style only",
+        "copy only",
+        "wording only",
+        "export default",
+        "export const",
+        "export function",
+        "module.exports",
+        "named export",
+        "dependency injection"
+      ],
+      "requires": [],
+      "conflicts": [],
+      "read": [
+        "security/secure-implementation.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Name the boundary, check the paths to it, and add a negative test that fails without the guard.",
+      "attribution": [
+        "upstream-engineering"
+      ],
+      "version": "2.0.0"
+    }
+  ]
 }

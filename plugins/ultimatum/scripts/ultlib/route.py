@@ -184,7 +184,7 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
     # One named file plus an edit verb is a local edit, unless another route has real evidence.
     files = {mm.group(0).lower() for mm in _FILE_RE.finditer(text)}
     top_other = max((sc for sc, rid in route_scores if rid != "small"), default=0)
-    if len(files) == 1 and _EDIT_RE.search(text) and len(text.split()) <= 20 and top_other < 3:
+    if len(files) == 1 and _EDIT_RE.search(text) and len(text.split()) <= 25 and top_other < 4:
         route_scores = [(max(sc, THRESHOLD) if rid == "small" else sc, rid) for sc, rid in route_scores]
     route_scores.sort(key=lambda x: (-x[0], PRIORITY.index(x[1])))
 
@@ -220,7 +220,7 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
 
     # Security overlay: never on the sec routes, which already cover it.
     sec_score, sec_hits = _score(by["security"], low, tokens, deps)
-    overlay = sec_score >= THRESHOLD and route not in SECURITY_ROUTES
+    overlay = sec_score >= THRESHOLD and route not in SECURITY_ROUTES and route != "discover"
     touches = [h for h in sec_hits if not h.startswith("dep:")][:3] if overlay else []
 
     # Mode.
@@ -335,7 +335,7 @@ def run_eval(path: Path, root: Path | None) -> tuple[str, bool]:
            f"addons: {a_ok / total if total else 0:.3f} ({a_ok}/{total})"]
     if m_total:
         out.append(f"mode: {m_ok / m_total:.3f} ({m_ok}/{m_total})")
-    out.extend(fails[:12])
+    out.extend(fails[:30])
     ok = route_acc >= EVAL_ROUTE_MIN and ov_acc >= 1.0
     return "\n".join(out), ok
 

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -242,7 +243,7 @@ class RouteEval(UltCase):
         vals = {}
         for line in r.out.splitlines():
             for key in ("route", "overlay", "addons"):
-                if line.startswith(key + ":"):
+                if re.match(rf"{key}: [0-9.]+ \(", line):
                     vals[key] = float(line.split()[1])
         self.assertGreaterEqual(vals["route"], 0.95)
         self.assertEqual(vals["overlay"], 1.0)

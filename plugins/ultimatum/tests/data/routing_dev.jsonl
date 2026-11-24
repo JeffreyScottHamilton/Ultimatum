@@ -184,7 +184,7 @@
 {"task": "Write a subagent definition for a read-only log summarizer", "route": "skill-author", "addons": [], "overlay": false}
 {"task": "We have been seeing intermittent failures in the nightly report job for about two weeks. Sometimes it finishes, sometimes it dies with a timeout while writing the CSV. I suspect the database connection pool but have not confirmed. Please find the cause and fix it, and add a regression test.", "route": "bug", "addons": [], "overlay": false}
 {"task": "Walk me through how a request gets to the database layer", "route": "discover", "addons": [], "overlay": false}
-{"task": "Show how the cart reaches the payment service", "route": "discover", "addons": [], "overlay": true}
+{"task": "Show how the cart reaches the payment service", "route": "discover", "addons": [], "overlay": false}
 {"task": "Update the importers of parse_config across all packages to the new signature", "route": "large", "addons": [], "overlay": false}
 {"task": "Fix the failing test in test_parser.py", "route": "bug", "addons": [], "overlay": false}
 {"task": "Rename retry_count to attempts in client.py", "route": "small", "addons": [], "overlay": false}
