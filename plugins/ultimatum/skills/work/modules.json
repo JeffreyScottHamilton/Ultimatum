@@ -176,7 +176,9 @@
           "should be able to",
           "users can",
           "be able to",
-          "invite members"
+          "invite members",
+          "plan it first",
+          "new setting"
         ],
         "files": [],
         "deps": [],
@@ -1205,67 +1207,6 @@
       "version": "2.0.0"
     },
     {
-      "id": "documents",
-      "kind": "route",
-      "summary": "Create or edit office and PDF documents: DOCX, XLSX, PPTX, PDF.",
-      "activate": {
-        "keywords": [
-          "docx",
-          "xlsx",
-          "pptx",
-          "spreadsheet",
-          "excel",
-          "powerpoint",
-          "deck",
-          "memo",
-          "onepager",
-          "worksheet"
-        ],
-        "phrases": [
-          "word document",
-          "word doc",
-          "slide deck",
-          "pdf report",
-          "write a memo",
-          "one-pager",
-          "one pager",
-          "fill in the pdf",
-          "excel sheet",
-          "make a presentation",
-          "export to pdf",
-          "generate a pdf"
-        ],
-        "files": [
-          "*.docx",
-          "*.xlsx",
-          "*.pptx",
-          "*.pdf"
-        ],
-        "deps": [],
-        "weak": [
-          "pdf",
-          "slides"
-        ]
-      },
-      "never_when": [
-        "release notes",
-        "changelog",
-        "readme",
-        "api docs",
-        "markdown",
-        "ui pdf viewer"
-      ],
-      "requires": [],
-      "conflicts": [],
-      "read": [
-        "documents.md"
-      ],
-      "mode_hint": "STANDARD",
-      "contract": "Produce or edit the office or PDF file and check it by rendering or reading it back.",
-      "attribution": [],
-      "version": "2.0.0"
-    },
-    {
       "id": "mcp-build",
       "kind": "route",
       "summary": "Build or change an MCP server with its tools.",
@@ -1759,7 +1700,6 @@
       "conflicts": [
         "small",
         "handoff",
-        "documents",
         "improve",
         "sec-review",
         "sec-audit",

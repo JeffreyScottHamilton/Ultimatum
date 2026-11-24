@@ -9,7 +9,7 @@ One skill for the software work a developer actually does in Claude Code. Instal
 A local router (`ult route`, no model call) reads the task and picks:
 
 - **a mode:** FAST (clear, local edits: no references, no subagents), STANDARD, DEEP (large work and audits: acceptance checks, parallel workers, one review) or RECOVERY (resume after a break or compaction). Start a task with `fast:` or `deep:` to force one.
-- **one workflow:** small fix, discovery, feature, large change, bug, CI/PR, UI, data/infra, optimization, release, security review, audit or fix, handoff, efficiency review, skill evaluation, Office documents, MCP server, or skill authoring.
+- **one workflow:** small fix, discovery, feature, large change, bug, CI/PR, UI, data/infra, optimization, release, security review, audit or fix, handoff, efficiency review, skill evaluation, MCP server, or skill authoring.
 - **up to two add-ons:** React, UI design, motion, components, production debugging, context efficiency, integrations.
 - **the security overlay** whenever a change touches auth, permissions, tenants, money, personal data, external input, secrets or deploy settings.
 

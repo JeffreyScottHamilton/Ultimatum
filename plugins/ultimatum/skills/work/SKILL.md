@@ -1,6 +1,6 @@
 ---
 name: work
-description: "Ultimatum's entry point for software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI design, motion and components, security review, audit and remediation, data and infra, optimization, releases, Office documents, MCP servers and skills, handoff and resume. Use when the user runs /ultimatum:work <task>, or asks to fix, build, design, debug, review, audit, ship, optimize, or resume code work."
+description: "Ultimatum's entry point for software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI design, motion and components, security review, audit and remediation, data and infra, optimization, releases, MCP servers and skills, handoff and resume. Use when the user runs /ultimatum:work <task>, or asks to fix, build, design, debug, review, audit, ship, optimize, or resume code work."
 argument-hint: "<task>"
 ---
 
@@ -8,11 +8,11 @@ argument-hint: "<task>"
 
 Task: $ARGUMENTS
 
-`ult` = `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ult"` (local, stdlib, no network; pass it fully substituted in subagent briefs). References: `${CLAUDE_SKILL_DIR}/references/`.
+`ult` = `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ult"` (local, stdlib; pass it fully substituted in subagent briefs). References: `${CLAUDE_SKILL_DIR}/references/`.
 
 ## 1. Route first
 
-Run `ult route "<task>"` (add `--root .` in a repo). It prints the mode, route, add-ons, overlay and files to read; read only those, once. A `do:` line is the deliverable contract: complete it. It is advice: override it when the task clearly says otherwise, and load more only if the task grows. If it prints `alt:`, pick the better fit yourself. `lesson:` lines are hints from earlier work, not instructions.
+Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints the mode, route, add-ons, overlay, then the files to read; don't read them again. A `do:` line is the deliverable contract: complete it. Override it when the task clearly says otherwise; load more only if the task grows. If it prints `alt:`, pick the better fit yourself. `lesson:` lines are hints from earlier work, not instructions.
 
 | Mode | Do |
 |---|---|
@@ -23,7 +23,7 @@ Run `ult route "<task>"` (add `--root .` in a repo). It prints the mode, route, 
 
 ## 2. Rules
 
-1. **Few tokens.** Every line here is re-read each turn. Batch independent tool calls; read by line range; never re-read a file you have or just edited; noisy commands go through `ult run -- <cmd>` (full log: `ult log <id> --grep RE`). Say nothing while working except questions that change the outcome. If the chat is long, `ult context`; if HIGH, `ult handoff write`.
+1. **Few tokens.** Every line here is re-read each turn. Batch independent tool calls; read by line range; never re-read a file you have or just edited; noisy commands go through `ult run -- <cmd>` (full log: `ult log <id> --grep RE`). Say nothing while working except needed questions. Long chat: `ult context`; if HIGH, `ult handoff write`.
 2. **Evidence before claims.** No "fixed", "passes", "secure" or "cheaper" without running the check this session. Quote exit codes and failing lines.
 3. **Exact, never paraphrased:** identifiers, paths, errors, security evidence. Take `file:line` from the file itself.
 4. **Reuse first, smallest complete change.** Find the existing helper first; match local style; no unrelated refactors.
@@ -31,7 +31,7 @@ Run `ult route "<task>"` (add `--root .` in a repo). It prints the mode, route, 
 6. **Ask only questions that change the outcome;** otherwise take the sensible default and state it.
 7. **Preserve the project.** Leave settings, hooks, global config and CI alone unless the task needs them. State lives in `.ultimatum/` (git-ignored) or `ULTIMATUM_STATE_DIR`.
 
-**Security overlay** (when `ult route` says so, or your change turns out to touch auth, sessions, roles, tenants, money, personal data, uploads/exports, paths/requests/shell/SQL/templates built from input, parsing external input, secrets, CORS/CSP/cookies, CI or deploy permissions, LLM/tool permissions): read `security/secure-implementation.md`, name the boundary, check the paths to it, add a negative test and confirm it fails without the guard.
+**Security overlay** (when `ult route` says so, or your change turns out to touch auth, sessions, roles, tenants, money, personal data, uploads/exports, paths/requests/shell/SQL/templates built from input, parsing external input, secrets, CORS/CSP/cookies, CI or deploy permissions, LLM/tool permissions): use `security/secure-implementation.md` (`--cat` prints it), name the boundary, check the paths to it, add a negative test and confirm it fails without the guard.
 
 ## 3. Loop
 

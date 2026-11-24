@@ -168,12 +168,6 @@
 {"task": "Add a grader for the bug route and update the eval fixtures", "route": "skill-eval", "addons": [], "overlay": false}
 {"task": "Test the skill: does ultimatum:work pick the security route for the new prompt?", "route": "skill-eval", "addons": [], "overlay": false}
 {"task": "Run the live eval on the work skill; it costs money, so ask me first", "route": "skill-eval", "addons": [], "overlay": false}
-{"task": "Make a PDF report of last quarter's metrics from this CSV", "route": "documents", "addons": [], "overlay": false}
-{"task": "Fill in the PDF form for the visa application using these fields", "route": "documents", "addons": [], "overlay": false}
-{"task": "Create a slide deck summarizing the Q3 results for the board", "route": "documents", "addons": [], "overlay": false}
-{"task": "Turn the notes into a Word document with a table of contents", "route": "documents", "addons": [], "overlay": false}
-{"task": "Update the xlsx budget sheet so the totals match the forecast", "route": "documents", "addons": [], "overlay": false}
-{"task": "Write a one-pager memo about the new pricing tiers", "route": "documents", "addons": [], "overlay": false}
 {"task": "Build an MCP server that exposes our internal ticket search as a tool", "route": "mcp-build", "addons": [], "overlay": false}
 {"task": "Add a new tool to our existing MCP server for listing invoices", "route": "mcp-build", "addons": [], "overlay": false}
 {"task": "Write an MCP resource and tool schema for the docs index, with a stdio test", "route": "mcp-build", "addons": [], "overlay": false}

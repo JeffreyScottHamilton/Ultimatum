@@ -67,10 +67,6 @@
 {"task": "run the routing eval and tell me accuracy after my router change", "route": "skill-eval", "addons": [], "overlay": false, "mode": "STANDARD"}
 {"task": "improve the trigger phrases of the ultimatum skill, it misses PR review requests", "route": "skill-eval", "addons": [], "overlay": false, "mode": "STANDARD"}
 {"task": "test the skill evaluation harness after my change", "route": "skill-eval", "addons": [], "overlay": false, "mode": "STANDARD"}
-{"task": "turn my notes into a 10 slide powerpoint deck for the board", "route": "documents", "addons": [], "overlay": false, "mode": "STANDARD"}
-{"task": "extract the table from this pdf report into an excel workbook", "route": "documents", "addons": [], "overlay": false, "mode": "STANDARD"}
-{"task": "write a word doc for the project proposal with headings and a table", "route": "documents", "addons": [], "overlay": false, "mode": "STANDARD"}
-{"task": "make an excel budget with monthly formulas for next year", "route": "documents", "addons": [], "overlay": false, "mode": "STANDARD"}
 {"task": "build an MCP server in python that exposes a weather lookup tool", "route": "mcp-build", "addons": [], "overlay": false, "mode": "STANDARD"}
 {"task": "make an mcp server for our docs site, read only resources", "route": "mcp-build", "addons": [], "overlay": false, "mode": "STANDARD"}
 {"task": "build an mcp server that runs shell commands for the agent, with permission checks", "route": "mcp-build", "addons": [], "overlay": true, "mode": "STANDARD"}

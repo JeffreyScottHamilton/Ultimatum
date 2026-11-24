@@ -1,7 +1,7 @@
 {
   "name": "ultimatum",
   "version": "2.0.0",
-  "description": "One developer skill for Claude Code: /ultimatum:work <task> runs a local router that picks a mode (fast, standard, deep, recovery), one workflow and only the guidance it needs: changes, bugs, CI, UI design and motion, security, data, releases, documents, MCP servers and skills. Local-first: learns from your sessions on your machine and shares nothing without your approval.",
+  "description": "One developer skill for Claude Code: /ultimatum:work <task> runs a local router that picks a mode (fast, standard, deep, recovery), one workflow and only the guidance it needs: changes, bugs, CI, UI design and motion, security, data, releases, MCP servers and skills. Local-first: learns from your sessions on your machine and shares nothing without your approval.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },

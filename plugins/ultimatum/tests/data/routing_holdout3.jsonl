@@ -49,9 +49,6 @@
 {"task": "run the routing eval on the ultimatum skill and tell me the misroutes", "route": "skill-eval", "addons": [], "overlay": false}
 {"task": "does the ultimatum security routing still hold after the last change? test it", "route": "skill-eval", "addons": [], "overlay": false}
 {"task": "score the plugin's holdout set for accuracy", "route": "skill-eval", "addons": [], "overlay": false}
-{"task": "make an excel sheet of Q3 revenue by region with a chart", "route": "documents", "addons": [], "overlay": false}
-{"task": "edit the board deck pptx, update slide 4 numbers", "route": "documents", "addons": [], "overlay": false}
-{"task": "generate a PDF invoice export of customer records for each tenant", "route": "documents", "addons": [], "overlay": true}
 {"task": "build an MCP server that wraps our internal ticketing API", "route": "mcp-build", "addons": [], "overlay": true}
 {"task": "make an MCP tool that runs shell commands for the agent", "route": "mcp-build", "addons": [], "overlay": true}
 {"task": "add a resource to our MCP server that lists the deployed services", "route": "mcp-build", "addons": [], "overlay": false}

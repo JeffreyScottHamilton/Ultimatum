@@ -50,9 +50,6 @@
 {"task": "the ultimatum router sent my flaky-test request to ci-pr, check the routing eval and tune it", "route": "skill-eval", "addons": [], "overlay": false}
 {"task": "add holdout cases for the ultimatum routes like the existing routing sets", "route": "skill-eval", "addons": [], "overlay": false}
 {"task": "run the ultimatum unit tests and validation after my plugin change", "route": "skill-eval", "addons": [], "overlay": false}
-{"task": "turn this quarterly numbers spreadsheet into a pptx deck with charts", "route": "documents", "addons": [], "overlay": false}
-{"task": "extract the tables from contract.pdf into an excel file", "route": "documents", "addons": [], "overlay": false}
-{"task": "fill the placeholders in our offer_letter.docx template", "route": "documents", "addons": [], "overlay": false}
 {"task": "build an MCP server wrapping our internal Jira API so Claude can search tickets", "route": "mcp-build", "addons": ["integrations"], "overlay": true}
 {"task": "scaffold a TypeScript MCP server with one read-only tool that searches our wiki", "route": "mcp-build", "addons": [], "overlay": false}
 {"task": "my MCP server's stdio handshake fails, the client rejects the tool schema. fix it", "route": "mcp-build", "addons": [], "overlay": false}

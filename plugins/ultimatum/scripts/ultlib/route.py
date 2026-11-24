@@ -25,7 +25,7 @@ MODULES_PATH = PLUGIN / "skills" / "work" / "modules.json"
 REFS = PLUGIN / "skills" / "work" / "references"
 
 PRIORITY = ["sec-fix", "sec-audit", "sec-review", "bug", "ci-pr", "release", "data-infra", "ui",
-            "optimize", "handoff", "improve", "skill-eval", "mcp-build", "skill-author", "documents",
+            "optimize", "handoff", "improve", "skill-eval", "mcp-build", "skill-author",
             "large", "feature", "discover", "small"]
 SECURITY_ROUTES = {"sec-review", "sec-audit", "sec-fix"}
 MAX_ADDONS = 2
@@ -71,6 +71,7 @@ def _directive_re() -> re.Pattern:
     return re.compile(
         r"ignore\s+(?:all\s+|any\s+|your\s+|the\s+|previous\s+|prior\s+|these\s+|my\s+)*"
         r"(?:rules|instructions|guidance|guidelines|system prompt)"
+        r"|\b(?:output|print|reveal|show|repeat|leak|dump)\s+(?:the\s+|your\s+)?(?:system prompt|hidden instructions)"
         r"|\b(?:route|routed|routing)\s+(?:this\s+|it\s+|the\s+task\s+)?(?:to|as|into)\s+(?:the\s+)?(?:route\s+)?(?:" + alts + r")\b"
         r"|\b(?:set|force|override)\s+(?:the\s+)?mode\b"
         r"|\b(?:use|pick|choose|select)\s+(?:the\s+)?(?:" + alts + r")\s+route\b",
@@ -365,7 +366,22 @@ def cmd_route(args) -> int:
         print(json.dumps(d, indent=2, ensure_ascii=False))
     else:
         print(format_text(d))
+        if args.cat:
+            print(cat_refs(d))
     return 0
+
+
+def cat_refs(d: dict) -> str:
+    """The listed references (plus the overlay guide) inline, so routing and reading take one call."""
+    files = list(d["read"])
+    if d["overlay"] and "security/secure-implementation.md" not in files:
+        files.append("security/secure-implementation.md")
+    out = []
+    for f in files:
+        p = REFS / f
+        if p.is_file():
+            out.append(f"===== {f} =====\n{p.read_text(encoding='utf-8').rstrip()}")
+    return "\n".join(out)
 
 
 def register(sub):
@@ -373,6 +389,7 @@ def register(sub):
     p.add_argument("task", nargs="*", help="the task text (quote it)")
     p.add_argument("--root", help="project directory (package.json deps add add-ons)")
     p.add_argument("--json", action="store_true", help="machine-readable output")
+    p.add_argument("--cat", action="store_true", help="also print the files to read, so no separate Read is needed")
     p.add_argument("--eval", metavar="FILE", help="score JSONL cases; exit 1 below thresholds")
     p.add_argument("--list", action="store_true", help="one line per module: id, kind, tokens, summary")
     p.set_defaults(func=cmd_route)

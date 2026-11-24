@@ -48,7 +48,7 @@ VERSION_RE = re.compile(r"^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]{1,30})?$")
 
 ROUTES = {"small", "discover", "feature", "large", "bug", "ci-pr", "ui", "data-infra", "optimize",
           "release", "sec-review", "sec-audit", "sec-fix", "handoff", "improve", "skill-eval",
-          "documents", "mcp-build", "skill-author"}
+          "mcp-build", "skill-author"}
 ROUTE_RE = re.compile(r"\broute:\s*([a-z][a-z-]{1,30})")
 
 # Command kinds we will ever record. Anything else is recorded as "other",
