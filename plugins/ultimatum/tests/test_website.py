@@ -59,9 +59,24 @@ class WebsitePlan(UltCase):
         self.assertEqual(p["roles"][:2], ["manager", "designer"])
 
     def test_designer_runs_when_project_has_no_styles(self):
-        p = plan("Build a landing page for a bakery with a menu and contact form", root=self.root)
+        p = plan("Add a pricing section and a contact form to the landing page", root=self.root)
         self.assertTrue(p["designer"])
         self.assertEqual(p["designer_why"], "no existing styles found")
+
+    def test_new_site_always_gets_design_build_and_review(self):
+        self.write("styles.css", "body{}")
+        p = plan("Build me a website for my coffee shop", root=self.root)
+        self.assertTrue(p["designer"])
+        for f in ("skills/design/SKILL.md", "skills/coding/SKILL.md", "skills/review/SKILL.md"):
+            self.assertIn(f, p["load"])
+
+    def test_small_fix_reuses_the_design_and_checks_in_a_browser(self):
+        self.write("index.html", "<nav></nav>")
+        self.write("styles.css", "nav{}")
+        p = plan("Fix the mobile menu", root=self.root)
+        self.assertEqual((p["size"], p["team"], p["designer"]), ("small", "solo", False))
+        self.assertEqual(p["roles"], ["manager", "builder", "browser check"])
+        self.assertNotIn("skills/design/SKILL.md", p["load"])
 
     def test_designer_skipped_when_look_is_set(self):
         self.write("tailwind.config.js", "module.exports={}")
@@ -169,3 +184,63 @@ class ChatStyle(UltCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PlainChatPicker(UltCase):
+    """The UserPromptSubmit hook that starts the website workflow from plain chat."""
+
+    def pick(self, prompt, cwd=None, auto=None):
+        import json, os, subprocess
+        from _harness import PY, SCRIPTS
+        env = dict(os.environ)
+        env.pop("ULTIMATUM_AUTO", None)
+        if auto is not None:
+            env["ULTIMATUM_AUTO"] = auto
+        data = json.dumps({"hook_event_name": "UserPromptSubmit", "prompt": prompt, "cwd": str(cwd or self.root)})
+        cp = subprocess.run([PY, os.path.join(SCRIPTS, "ult-pick")], input=data, capture_output=True,
+                            text=True, env=env, timeout=30)
+        self.assertEqual(cp.returncode, 0, cp.stderr)
+        return cp.stdout
+
+    def site(self):
+        self.write("index.html", "<nav class='menu'></nav>")
+        self.write("styles.css", "nav{}")
+
+    def test_new_website_request_starts_website(self):
+        out = self.pick("Build me a website for my coffee shop")
+        self.assertIn('"additionalContext"', out)
+        self.assertIn("ultimatum:website", out)
+
+    def test_interface_fix_in_a_website_project_starts_website(self):
+        self.site()
+        self.assertIn("ultimatum:website", self.pick("Fix the mobile menu"))
+
+    def test_interface_words_outside_a_website_project_do_nothing(self):
+        self.write("app/main.py", "print(1)")
+        self.assertEqual(self.pick("Fix the mobile menu"), "")
+
+    def test_regular_coding_request_does_nothing(self):
+        self.site()
+        self.assertEqual(self.pick("Fix the CSV export"), "")
+
+    def test_explicit_command_and_off_switch_are_respected(self):
+        self.site()
+        self.assertEqual(self.pick("/ultimatum:work Fix the mobile menu"), "")
+        self.assertEqual(self.pick("Build me a website for my coffee shop", auto="0"), "")
+
+    def test_bad_input_never_blocks(self):
+        import os, subprocess
+        from _harness import PY, SCRIPTS
+        cp = subprocess.run([PY, os.path.join(SCRIPTS, "ult-pick")], input="not json", capture_output=True, text=True)
+        self.assertEqual((cp.returncode, cp.stdout), (0, ""))
+
+    def test_hook_is_registered_and_skill_runs_the_whole_job(self):
+        import json
+        from pathlib import Path
+        plug = Path(__file__).resolve().parent.parent
+        hooks = json.loads((plug / "hooks/hooks.json").read_text())["hooks"]["UserPromptSubmit"]
+        self.assertIn("ult-pick", json.dumps(hooks))
+        body = (plug / "skills/website/SKILL.md").read_text()
+        for needle in ("ult-browser.mjs", "**Preview.**", "no approval needed", "explicit yes",
+                       "Build me a website for my coffee shop"):
+            self.assertIn(needle, body)

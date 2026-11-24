@@ -17,6 +17,8 @@ from .route import PLUGIN, cat_paths, decide, sanitize
 
 _KEEP_RE = re.compile(r"\b(keep|match|reuse|same as|stick (?:to|with)|don'?t change|no redesign|without changing)\b[^.]{0,30}\b(look|style|styles|design|branding|brand|theme|colou?rs?|fonts?)\b|\bno redesign\b", re.I)
 _NEW_RE = re.compile(r"\b(redesign|re-?style|rebrand|new look|fresh look|new design|new visual|visual direction|from scratch|brand[- ]new|make it look|look (?:better|more|less|modern|premium)|moderni[sz]e|design (?:a|an|the|our|my) )", re.I)
+_NEW_SITE_RE = re.compile(r"\b(build|create|make|start|design|set up|spin up)\b(?: me| us)? (?:a|an|my|our|the)? ?(?:new |simple |small |one-page |single-page )?(?:website|web ?site|site|landing ?page|home ?page|portfolio|web ?page)\b", re.I)
+_FIX_RE = re.compile(r"\b(fix|broken|bug|doesn'?t|does not|isn'?t|not working|won'?t|overlap\w*|cut off|misaligned|repair)\b", re.I)
 _SHIP_RE = re.compile(r"\b(ship|deploy|publish|release|launch|go live|put it live|make it live)\b", re.I)
 _BIG_RE = re.compile(r"\b(multi-?page|full (?:web)?site|entire (?:web)?site|whole (?:web)?site|several pages|many pages)\b", re.I)
 _NPAGES_RE = re.compile(r"\b(\d+|four|five|six|seven|eight|nine|ten)[- ]pages?\b", re.I)
@@ -66,13 +68,15 @@ def _page_count(text: str) -> int:
 def plan(task: str, root: Path | None = None) -> dict:
     text, _ = sanitize(task or "")
     d = decide(text, root=root, use_deps=False, lessons_on=False)
-    small = d["route"] == "small" or d["mode"] == "FAST"
+    new_site = bool(_NEW_SITE_RE.search(text) or _NEW_RE.search(text)) and not _KEEP_RE.search(text)
+    small = d["route"] == "small" or d["mode"] == "FAST" or (
+        bool(_FIX_RE.search(text)) and not new_site and not _BIG_RE.search(text) and _page_count(text) < 2)
     big = not small and (bool(_BIG_RE.search(text)) or _page_count(text) >= 4 or d["route"] == "large")
     size = "small" if small else ("large" if big else "standard")
 
     signals = style_signals(root)
-    if _NEW_RE.search(text) and not _KEEP_RE.search(text):
-        designer, why = True, "the task asks for a new look"
+    if new_site:
+        designer, why = True, "new site or new look"
     elif _KEEP_RE.search(text):
         designer, why = False, "the task keeps the current look"
     elif small:
@@ -84,7 +88,7 @@ def plan(task: str, root: Path | None = None) -> dict:
 
     ship = bool(_SHIP_RE.search(text))
     roles = ["manager"] + (["designer"] if designer else []) + (
-        ["builder", "closest check"] if small else ["builder", "reviewer", "manager"])
+        ["builder", "browser check"] if small else ["builder", "reviewer", "manager"])
     load = ["shared/defaults.md"]
     if size == "large":
         load.append("skills/work/references/code-map.md")

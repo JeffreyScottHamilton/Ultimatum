@@ -37,6 +37,11 @@ WEBSITE_ROUTES = {"ui", "feature", "small", "large"}
 _RECOVERY_RE = re.compile(r"\b(resume|resuming|pick up (?:where|from|the work|again)|picking up (?:where|from)|after compaction|after the compaction|continue)\b", re.I)
 _DEEP_RE = re.compile(r"\b(audit|thorough|deep)\b", re.I)
 _WEBSITE_RE = re.compile(r"\b(websites?|web ?sites?|web ?pages?|landing ?pages?|home ?pages?|marketing (?:site|page)s?|portfolio (?:site|page)s?|personal site|static site|docs site|microsite)\b", re.I)
+# Interface words that mean website work only inside a project that is a website.
+_SITE_UI_RE = re.compile(r"\b(menu|nav(?:bar|igation)?|header|footer|hero|navbar|hamburger|layout|responsive|mobile view|on (?:phones?|mobile)|css|styles?|styling|stylesheet|dark mode|font|colou?rs?|buttons?|sidebar|modal|carousel|gallery|landing|homepage|page)\b", re.I)
+_SITE_DEPS = {"next", "react", "react-dom", "vue", "nuxt", "svelte", "@sveltejs/kit", "astro", "vite", "gatsby",
+              "@remix-run/react", "solid-js", "@11ty/eleventy", "preact", "angular", "@angular/core"}
+_SITE_HTML = ("index.html", "public/index.html", "src/index.html", "site/index.html", "docs/index.html")
 _PREFIX_RE = re.compile(r"^\s*(fast|deep)\s*:\s*", re.I)
 _EDIT_RE = re.compile(r"\b(add|change|rename|remove|fix|update|set|replace|move|delete|bump|make|drop|correct|edit)\b", re.I)
 _FILE_RE = re.compile(r"\b[\w./-]+\.(?:py|ts|tsx|js|jsx|mjs|md|json|css|scss|html|sql|go|rs|java|rb|ya?ml|toml|sh|txt)\b", re.I)
@@ -164,6 +169,29 @@ def _handoff_exists(root: Path) -> bool:
     return (base_path / "handoff.md").is_file()
 
 
+def site_project(root: Path | None) -> bool:
+    """True when the project looks like a website: an index.html or a web framework in package.json."""
+    if root is None or not root.is_dir():
+        return False
+    if any((root / f).is_file() for f in _SITE_HTML):
+        return True
+    try:
+        pkg = json.loads((root / "package.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    deps = {**(pkg.get("dependencies") or {}), **(pkg.get("devDependencies") or {})} if isinstance(pkg, dict) else {}
+    return bool(_SITE_DEPS & set(deps))
+
+
+def website_flag(text: str, route: str, root: Path | None) -> bool:
+    """Website work: a website named outright, or interface words inside a website project."""
+    if route in SECURITY_ROUTES or route not in WEBSITE_ROUTES | {"bug"}:
+        return False
+    if _WEBSITE_RE.search(text):
+        return route in WEBSITE_ROUTES
+    return bool(_SITE_UI_RE.search(text)) and site_project(root)
+
+
 def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_on: bool = True) -> dict:
     """Route one task. Pure function apart from reading modules.json and package.json."""
     raw = task or ""
@@ -273,7 +301,7 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
         "lessons": lessons,
         "dropped_directives": dropped,
         "do": by[route].get("do", ""),
-        "workflow": "website" if route in WEBSITE_ROUTES and _WEBSITE_RE.search(text) else "default",
+        "workflow": "website" if website_flag(text, route, root) else "default",
     }
 
 

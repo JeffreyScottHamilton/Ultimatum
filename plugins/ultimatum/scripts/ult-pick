@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""Ultimatum workflow picker: a UserPromptSubmit hook. Local, stdlib only, no network.
+
+When a plain-chat prompt is clearly website work (a website named outright, or
+interface words such as "mobile menu" inside a project that is a website), it adds
+one line of context telling Claude to start the ultimatum:website skill. Every
+other prompt gets nothing, so ordinary chats pay no extra tokens. A prompt that
+starts with "/" is an explicit command and is left alone. ULTIMATUM_AUTO=0 turns
+it off. Any error lets the prompt through unchanged.
+"""
+import json
+import os
+import sys
+
+NOTE = ("Ultimatum: this request is website work. Start the ultimatum:website skill now "
+        "(Skill tool, skill \"ultimatum:website\", args: the user's request) and let it run the whole job.")
+
+
+def main() -> int:
+    if os.environ.get("ULTIMATUM_AUTO", "1").strip().lower() in ("0", "false", "no", "off"):
+        return 0
+    sys.dont_write_bytecode = True
+    sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+    try:
+        data = json.load(sys.stdin)
+        prompt = (data.get("prompt") or "").strip()
+        if not prompt or prompt.startswith("/"):
+            return 0
+        from pathlib import Path
+        from ultlib.route import decide
+        cwd = data.get("cwd") or os.getcwd()
+        d = decide(prompt[:2000], root=Path(cwd), use_deps=False, lessons_on=False)
+        if d.get("workflow") != "website":
+            return 0
+        print(json.dumps({"hookSpecificOutput": {"hookEventName": "UserPromptSubmit",
+                                                 "additionalContext": NOTE}}))
+    except Exception:  # never block or break a prompt
+        return 0
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

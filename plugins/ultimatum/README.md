@@ -7,7 +7,7 @@ One skill for the software work a developer actually does in Claude Code. Instal
 /ultimatum:website <task>     # websites and landing pages
 ```
 
-`/ultimatum:website` runs a short team flow: the Manager writes one brief, an optional Designer (only for a new look), a Builder (mobile, desktop, keyboard), a Reviewer on the real page, then the Manager fixes, rechecks and reports. Small jobs stay solo. A clear website request sent to `/ultimatum:work` switches to it, unless you typed `/ultimatum:work` on purpose.
+`/ultimatum:website` runs a short team flow: the Manager writes one brief, an optional Designer (only for a new look), a Builder (mobile, desktop, keyboard), a Reviewer on the real page, then the Manager fixes, rechecks and reports. Small jobs stay solo. You don't have to type either command: once the plugin is enabled, a plain request such as "Build me a website for my coffee shop", or "Fix the mobile menu" inside a website project, starts the website workflow by itself (a small local prompt hook; `ULTIMATUM_AUTO=0` turns it off). Typed commands always win.
 
 A local router (`ult route`, no model call) reads the task and picks:
 

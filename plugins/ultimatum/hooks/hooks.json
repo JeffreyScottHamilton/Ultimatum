@@ -1,5 +1,5 @@
 {
-  "description": "After a compaction, print the saved handoff back into the chat. On Stop, record local usage observations (counts only, nothing printed; ULTIMATUM_OBSERVE=0 turns it off). Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
+  "description": "After a compaction, print the saved handoff back into the chat. On Stop, record local usage observations (counts only, nothing printed; ULTIMATUM_OBSERVE=0 turns it off). Before each prompt, a clear website request gets one line pointing Claude to /ultimatum:website (ULTIMATUM_AUTO=0 turns it off). Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
   "hooks": {
     "SessionStart": [
       {
@@ -30,6 +30,11 @@
             "type": "command",
             "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard\"",
             "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-pick\"",
+            "timeout": 10
           }
         ]
       }
