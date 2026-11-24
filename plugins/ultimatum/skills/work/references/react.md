@@ -77,3 +77,12 @@ Use the browser View Transitions API (or the framework flag, such as Next's `vie
 - Animate with the native-driver path (Reanimated worklets or `useNativeDriver`), not JS-thread state per frame.
 - Touch targets 44 pt+, `accessibilityLabel`/`accessibilityRole` on pressables, safe-area insets, keyboard-avoiding views on forms.
 - Test on a real or emulated device at two sizes; `ult-browser` does not cover native.
+
+## J. Performance checklist (run before shipping a React change)
+
+- [ ] **Waterfalls:** independent requests start together (C1, C2); no fetch chain from parent to child.
+- [ ] **Bundle:** no barrel import of a large library; heavy rare UI is dynamically imported with a fixed-size fallback (D1, D2).
+- [ ] **Re-render causes:** no state set from an effect; no high-frequency value in `useState`; each subscriber reads the smallest slice (E1, E2, E3, E10).
+- [ ] **Server/client boundary:** `'use client'` only at leaves; only the fields the client needs cross the boundary (B1, B3).
+- [ ] **Lists:** stable keys; virtualized beyond a few hundred rows (E8).
+- [ ] **Evidence:** a before and after number (bundle KB, serial requests, render count) is in the report.

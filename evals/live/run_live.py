@@ -551,30 +551,99 @@ def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
     return rec
 
 
+def plan_jobs(args) -> list[tuple[str, str]]:
+    cases = [c.strip() for c in args.cases.split(",") if c.strip()]
+    for c in cases:
+        if c not in CASES:
+            raise SystemExit(f"unknown case {c!r}; choose from {', '.join(CASES)}")
+    arms = parse_arms(args.arms)
+    return [(c, a) for c in cases for a in arms]
+
+
+def v041_commit_present() -> bool:
+    rc, _ = sh(["git", "rev-parse", "--verify", "-q", f"{V041_COMMIT}^{{commit}}"], REPO)
+    return rc == 0
+
+
+def dry_run(jobs, args):
+    n, per, cap = len(jobs), args.budget, args.max_total_usd
+    starts = n if per <= 0 else min(n, int(cap // per + 1e-9))
+    arms = parse_arms(args.arms)
+    print("DRY RUN: no claude calls, no workspaces, no worktrees, no output written.")
+    print(f"cases ({len(set(c for c, _ in jobs))}): {', '.join(dict.fromkeys(c for c, _ in jobs))}")
+    print(f"arms: {', '.join(arms)}")
+    print(f"planned runs: {n} (cases x arms)")
+    print(f"per-run budget ${per:.2f}; cumulative cap ${cap:.2f}")
+    print(f"estimated max cost: ${min(n * per, cap):.2f} (upper bound; actual cost is lower)")
+    print(f"runs that fit the cap at full per-run budget: {starts}; skipped: {n - starts} (run order is case-major)")
+    if "v041" in arms:
+        ok = v041_commit_present()
+        print(f"v041 commit {V041_COMMIT[:12]}: {'present' if ok else 'MISSING in this clone; a real run aborts before spending'}")
+
+
+def make_v041_worktree():
+    """Detached worktree of V041_COMMIT under a fresh temp dir. Returns (tmpdir, worktree, plugin_dir)."""
+    if not v041_commit_present():
+        raise SystemExit(f"arm v041 needs commit {V041_COMMIT} in this clone; fetch it or drop v041 from --arms")
+    tmp = Path(tempfile.mkdtemp(prefix="ult-v041-"))
+    wt = tmp / "wt"
+    rc, out = sh(["git", "worktree", "add", "--detach", str(wt), V041_COMMIT], REPO)
+    plugin = wt / "plugins" / "ultimatum"
+    if rc != 0 or not plugin.is_dir():
+        remove_v041_worktree(tmp, wt)
+        raise SystemExit(f"could not create v041 worktree (rc={rc}): {out.strip()[-300:]}")
+    return tmp, wt, plugin
+
+
+def remove_v041_worktree(tmp: Path, wt: Path):
+    sh(["git", "worktree", "remove", "--force", str(wt)], REPO)
+    sh(["git", "worktree", "prune"], REPO)
+    shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
+    global LEDGER
     ap = argparse.ArgumentParser()
     ap.add_argument("--cases", default=",".join(CASES))
-    ap.add_argument("--arms", default="ultimatum,baseline")
+    ap.add_argument("--arms", default="vanilla,v2", help="comma list of vanilla, v041, v2 (aliases: baseline, ultimatum)")
     ap.add_argument("--model", default="sonnet")
-    ap.add_argument("--budget", type=float, default=3.0, help="max USD per run")
+    ap.add_argument("--budget", type=float, default=3.0, help="max USD per run (--max-budget-usd)")
+    ap.add_argument("--max-total-usd", type=float, default=15.0, help="cumulative USD cap across all runs")
     ap.add_argument("--timeout", type=int, default=1500)
     ap.add_argument("--out", default=str(REPO / "evals/live/results" / time.strftime("%Y%m%d-%H%M%S")))
     ap.add_argument("--scratch", default=os.environ.get("ULT_EVAL_SCRATCH", "/tmp/ult-live"))
     ap.add_argument("-j", "--jobs", type=int, default=1)
     ap.add_argument("--regrade", action="store_true", help="re-run graders on existing workspaces/transcripts")
+    ap.add_argument("--dry-run", action="store_true", help="print the plan and estimated max cost; call nothing")
     args = ap.parse_args()
+    jobs = plan_jobs(args)
+    if args.dry_run:
+        dry_run(jobs, args)
+        return
     outdir = Path(args.out); outdir.mkdir(parents=True, exist_ok=True)
     scratch = Path(args.scratch); scratch.mkdir(parents=True, exist_ok=True)
-    jobs = [(c, a) for c in args.cases.split(",") for a in args.arms.split(",")]
-    if args.jobs > 1:
-        from concurrent.futures import ThreadPoolExecutor
-        with ThreadPoolExecutor(args.jobs) as ex:
-            recs = list(ex.map(lambda ca: run_case(ca[0], ca[1], args, outdir, scratch), jobs))
-    else:
-        recs = [run_case(c, a, args, outdir, scratch) for c, a in jobs]
+    LEDGER = Ledger(args.max_total_usd)
+    arms = {a for _, a in jobs}
+    wt_tmp = wt = None
+    try:
+        if "v041" in arms and not args.regrade:
+            wt_tmp, wt, PLUGIN_DIRS["v041"] = make_v041_worktree()
+        if args.jobs > 1:
+            from concurrent.futures import ThreadPoolExecutor
+            with ThreadPoolExecutor(args.jobs) as ex:
+                results = list(ex.map(lambda ca: run_case(ca[0], ca[1], args, outdir, scratch), jobs))
+        else:
+            results = [run_case(c, a, args, outdir, scratch) for c, a in jobs]
+    finally:
+        if wt_tmp is not None:
+            remove_v041_worktree(wt_tmp, wt)
+    recs = [r for r in results if r is not None]
     (outdir / "summary.json").write_text(json.dumps([{k: r[k] for k in ("case", "arm", "passed", "score", "checks", "cost_usd",
                                                                           "num_turns", "agent_calls", "usage", "model_usage", "subagent_stats",
-                                                                          "duration_ms", "wall_s", "permission_denials")} for r in recs], indent=2))
+                                                                          "duration_ms", "wall_s", "permission_denials", "metrics")} for r in recs], indent=2))
+    (outdir / "skipped.json").write_text(json.dumps(LEDGER.skipped, indent=2))
+    print(f"ran {len(recs)} of {len(jobs)} planned runs; spent ${LEDGER.spent:.2f} of ${args.max_total_usd:.2f} cap; "
+          f"skipped {len(LEDGER.skipped)}")
     print(f"results: {outdir}")
 
 
