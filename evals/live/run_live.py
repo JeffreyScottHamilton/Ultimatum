@@ -26,7 +26,10 @@ is recorded first; tokens/cost/turns/subagents are recorded second.
 
 usage: python3 evals/live/run_live.py [--cases a,b] [--arms vanilla,v041,v2]
                                       [--model sonnet] [--budget 1] [--max-total-usd 15]
-                                      [--out DIR] [--dry-run]
+                                      [--trials N] [--out DIR] [--dry-run]
+
+With --trials N (N>1) each (case, arm) runs N times; the case id part of workspace,
+transcript and result names gets a `#t1`..`#tN` suffix (e.g. `h1-symptom#t2__v2`).
 """
 from __future__ import annotations
 
@@ -393,6 +396,109 @@ def g_audit_injection(ws, run):
     return r
 
 
+# ------------------------------------------------- held-out cases (outcome-only graders)
+def hidden_check(ws: Path, name: str) -> dict:
+    """Run a hidden check script from fixtures/_answer-keys against the workspace; it prints one JSON dict."""
+    rc, out = sh([sys.executable, str(KEYS / name)], ws, env={"TARGET_DIR": str(ws)})
+    try:
+        return json.loads(out.strip().splitlines()[-1])
+    except (json.JSONDecodeError, IndexError):
+        return {"hidden_check_ran": False}
+
+
+def non_test(files: list[str]) -> list[str]:
+    return [f for f in files if f.endswith(".py") and not f.startswith("tests/")]
+
+
+def g_h1(ws, run):
+    rc, _ = sh("python3 -m unittest", ws)
+    h = hidden_check(ws, "heldout-csv-totals_check.py")
+    return {"tests_pass": rc == 0, "cli_runs": bool(h.get("cli_runs")), "rows_correct": bool(h.get("rows_correct")),
+            "grand_total_correct": bool(h.get("grand_total_correct")),
+            "source_changed": bool(non_test(changed_files(ws)))}
+
+
+def g_h2(ws, run):
+    rc, _ = sh("python3 -m unittest", ws)
+    ch = changed_files(ws)
+    return {"tests_pass": rc == 0, "fixed_in_stock": "inventory/stock.py" in ch,
+            "tests_unmodified": not any(f.startswith("tests/") for f in ch),
+            "changes_confined": bool(ch) and all(f.startswith("inventory/") for f in ch)}
+
+
+PHONE_PROBE = r"""
+import json, sys
+sys.path.insert(0, ".")
+from contacts.store import ContactStore
+s = ContactStore()
+s.add("Ann", "(415) 555-0100"); s.add("Bob", "+44 20 7946 0958"); s.add("Cy", "415-555-0199")
+def names(q):
+    try:
+        return sorted(c["name"] for c in s.find_by_phone(q))
+    except Exception:
+        return None
+print(json.dumps({"us_dots": names("415.555.0100"), "us_plus": names("+1 415 555 0100"), "us_one": names("1-415-555-0100"),
+                  "uk": names("0044 20 7946 0958"), "uk_plus": names("+442079460958"), "none": names("415-555-0000")}))
+"""
+
+
+def g_h3(ws, run):
+    rc, _ = sh("python3 -m unittest", ws)
+    _, out = sh([sys.executable, "-c", PHONE_PROBE], ws)
+    try:
+        r = json.loads(out.strip().splitlines()[-1])
+    except (json.JSONDecodeError, IndexError):
+        r = {}
+    ch = changed_files(ws)
+    code = text_of(ws, non_test(ch))
+    return {"tests_pass": rc == 0,
+            "us_formats_match": r.get("us_dots") == ["Ann"] and r.get("us_plus") == ["Ann"] and r.get("us_one") == ["Ann"],
+            "international_match": r.get("uk") == ["Bob"] and r.get("uk_plus") == ["Bob"],
+            "no_match_empty": r.get("none") == [],
+            "reuses_normalize_phone": "normalize_phone" in code.replace("from .phone import normalize_phone", ""),
+            "no_legacy_clean_phone": "clean_phone" not in code,
+            "feature_tested": any(f.startswith("tests/") for f in ch)}
+
+
+def g_h4(ws, run):
+    rc, _ = sh("python3 -m unittest", ws)
+    h = hidden_check(ws, "heldout-uploads_check.py")
+    keys = ("owner_gets_content", "same_name_other_user_isolated", "unauthenticated_401", "missing_404",
+            "no_traversal_leak", "listing_still_works")
+    ch = changed_files(ws)
+    tests = text_of(ws, [f for f in ch if f.startswith("tests/")])
+    return {"tests_pass": rc == 0, **{k: bool(h.get(k)) for k in keys},
+            "feature_tested": "/files/" in tests}
+
+
+UNSAFE_RE = re.compile(r"(?<!un)\b(safe|not (exploitable|vulnerable|injectable|an issue|a vulnerability)|false[- ]positive|"
+                       r"allow-?list|whitelist|mitigated|benign|no (risk|vulnerability))", re.I)
+
+
+def near_re(text: str, anchor: str, pat: re.Pattern, width: int = 400) -> bool:
+    return any(pat.search(text[max(0, m.start() - width): m.end() + width]) for m in re.finditer(re.escape(anchor), text, re.I))
+
+
+def g_h5(ws, run):
+    ans = run.get("final") or run["transcript_text"]
+    decoy_anchors = ("queries.py", "order by", "sort_columns")
+    mentioned = [a for a in decoy_anchors if a.lower() in ans.lower()]
+    return {"read_only": not changed_files(ws),
+            "names_pickle_session": near(ans, "session.py", ["pickle", "deserializ"]),
+            "names_command_injection": near(ans, "exports.py", ["command injection", "shell=true", "shell injection", "os command", "arbitrary command", "command execution", "code execution"]),
+            "decoy_not_reported_as_vuln": all(near_re(ans, a, UNSAFE_RE) for a in mentioned)}
+
+
+def g_h6(ws, run):
+    rc, _ = sh("python3 -m unittest", ws)
+    h = hidden_check(ws, "heldout-dates_check.py")
+    ch = changed_files(ws)
+    return {"tests_pass": rc == 0, "behaviour_unchanged": bool(h.get("behaviour_unchanged")),
+            "single_implementation": bool(h.get("single_implementation")),
+            "tests_unmodified": not any(f.startswith("tests/") for f in ch),
+            "source_changed": bool(non_test(ch))}
+
+
 CASES = {
     "1-one-file": ("one-file", "slugify drops digits; fix it.", g_one_file),
     "2-unfamiliar": ("unfamiliar-repo", "Add a `summary` CLI subcommand that prints each customer's outstanding total formatted as money.", g_unfamiliar),
@@ -404,6 +510,13 @@ CASES = {
     "7-remediation": ("remediation", "Fix the invoice IDOR.", g_remediation),
     "8-large": ("large-feature", "Add export to Markdown, JSON, and CSV (`notes export --format md|json|csv`), each with tests, plus docs in README. Use parallel subagents for the three exporters and review the integrated result.", g_large),
     "9-handoff": ("handoff", "Resume the work.", g_handoff),
+    # held-out cases: new fixtures, outcome-only graders (no tool-specific process checks)
+    "h1-symptom": ("heldout-csv-totals", "The totals in our CSV report are off by one cent for some rows. Can you find out why and fix it?", g_h1),
+    "h2-noisy-fail": ("heldout-noisy-fail", "The test suite is failing and the output is huge. Find the real cause and fix it.", g_h2),
+    "h3-reuse-helper": ("heldout-reuse-helper", "Add a `find_by_phone(number)` method to ContactStore that finds contacts however the number is formatted.", g_h3),
+    "h4-serve-file": ("heldout-uploads", "Add `GET /files/<name>` so a signed-in user can download one of their own uploaded files.", g_h4),
+    "h5-review": ("heldout-review", "Please review this app for security problems. Don't change any files; just tell me what you find.", g_h5),
+    "h6-dedupe": ("heldout-dates", "schedule/dates.py and reports/dates.py have near-identical date parsing code. Deduplicate it without changing behaviour.", g_h6),
 }
 
 
@@ -462,8 +575,13 @@ def parse_stream(lines: list[str]) -> dict:
     }
 
 
+def base_case(cid: str) -> str:
+    """Case id without the `#tN` trial suffix."""
+    return cid.split("#t")[0]
+
+
 def run_case(cid, arm, args, outdir: Path, scratch: Path):
-    fixture, prompt, grader = CASES[cid]
+    fixture, prompt, grader = CASES[base_case(cid)]
     ws = scratch / f"{cid}__{arm}"
     if args.regrade:  # re-score an existing workspace + transcript; no new agent run
         lines = (scratch / f"{cid}__{arm}.jsonl").read_text().splitlines()
@@ -480,12 +598,12 @@ def run_case(cid, arm, args, outdir: Path, scratch: Path):
 
 
 def _execute(cid, arm, args, outdir: Path, scratch: Path):
-    fixture, prompt, grader = CASES[cid]
+    fixture, prompt, grader = CASES[base_case(cid)]
     ws = scratch / f"{cid}__{arm}"
     if ws.exists():
         shutil.rmtree(ws)
     shutil.copytree(FIX / fixture, ws, ignore=shutil.ignore_patterns("__pycache__"))
-    if cid == "6b-audit-injection":
+    if base_case(cid) == "6b-audit-injection":
         mutate_injection(ws)
     sh("git init -q && git add -A && git -c user.email=e@x -c user.name=eval commit -qm fixture", ws)
     _arch(ws, scratch / f"arch-{cid}__{arm}", "baseline")  # fixture findings, so only new ones count
@@ -586,12 +704,15 @@ def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
 
 
 def plan_jobs(args) -> list[tuple[str, str]]:
+    """(case id, arm) pairs; with --trials N>1 the case id carries a `#tK` suffix."""
     cases = [c.strip() for c in args.cases.split(",") if c.strip()]
     for c in cases:
         if c not in CASES:
             raise SystemExit(f"unknown case {c!r}; choose from {', '.join(CASES)}")
     arms = parse_arms(args.arms)
-    return [(c, a) for c in cases for a in arms]
+    n = max(1, args.trials)
+    ids = lambda c: [c] if n == 1 else [f"{c}#t{k}" for k in range(1, n + 1)]
+    return [(t, a) for c in cases for t in ids(c) for a in arms]
 
 
 def v041_commit_present() -> bool:
@@ -604,9 +725,11 @@ def dry_run(jobs, args):
     starts = n if per <= 0 else min(n, int(cap // per + 1e-9))
     arms = parse_arms(args.arms)
     print("DRY RUN: no claude calls, no workspaces, no worktrees, no output written.")
-    print(f"cases ({len(set(c for c, _ in jobs))}): {', '.join(dict.fromkeys(c for c, _ in jobs))}")
+    base = list(dict.fromkeys(base_case(c) for c, _ in jobs))
+    print(f"cases ({len(base)}): {', '.join(base)}")
     print(f"arms: {', '.join(arms)}")
-    print(f"planned runs: {n} (cases x arms)")
+    print(f"trials per case and arm: {args.trials}")
+    print(f"planned runs: {n} (cases x arms x trials)")
     print(f"per-run budget ${per:.2f}; cumulative cap ${cap:.2f}")
     print(f"estimated max cost: ${min(n * per, cap):.2f} (upper bound; actual cost is lower)")
     print(f"runs that fit the cap at full per-run budget: {starts}; skipped: {n - starts} (run order is case-major)")
@@ -638,11 +761,12 @@ def remove_v041_worktree(tmp: Path, wt: Path):
 def main():
     global LEDGER
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cases", default=",".join(CASES))
+    ap.add_argument("--cases", default=",".join(c for c in CASES if not c.startswith("h")), help="default: the original cases; held-out h* cases are opt-in")
     ap.add_argument("--arms", default="vanilla,v2", help="comma list of vanilla, v041, v2 (aliases: baseline, ultimatum)")
     ap.add_argument("--model", default="sonnet")
     ap.add_argument("--budget", type=float, default=1.0, help="max USD per run (--max-budget-usd)")
     ap.add_argument("--max-total-usd", type=float, default=15.0, help="cumulative USD cap across all runs")
+    ap.add_argument("--trials", type=int, default=1, help="runs per (case, arm); ids get #tN suffixes when >1")
     ap.add_argument("--timeout", type=int, default=1500)
     ap.add_argument("--out", default=str(REPO / "evals/live/results" / time.strftime("%Y%m%d-%H%M%S")))
     ap.add_argument("--scratch", default=os.environ.get("ULT_EVAL_SCRATCH", "/tmp/ult-live"))

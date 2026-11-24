@@ -35,3 +35,13 @@ Plugin arms use the `/ultimatum:work` prefix. All arms run with an isolated conf
 
 Report results only from real runs in `evals/live/results/`. Never report numbers from
 `--dry-run`, from a regrade, or from memory. Say which arms, cases, model and budget were used.
+
+## Trials and held-out cases
+
+`--trials N` (default 1) runs each (case, arm) N times; with N>1 the case id gets a `#t1`..`#tN` suffix in
+workspace, transcript and result names (`h1-symptom#t2__v2`). The ledger cap still bounds total spend, and
+`--dry-run` shows the run count and max cost. `summarize.py` aggregates trials under the base case id and reports
+runs, passing, pass rate, outcome-only pass (PROCESS checks excluded), total and per-passing-task cost, and mean tokens.
+
+Cases `h1-symptom` .. `h6-dedupe` are held out: new fixtures (`fixtures/heldout-*`), outcome-only graders, hidden
+checks in `fixtures/_answer-keys/heldout-*_check.py`. They are opt-in (not in the default `--cases`).

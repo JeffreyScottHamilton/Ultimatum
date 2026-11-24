@@ -7,6 +7,8 @@ Per arm: pass rate, total tokens, total cost, cost per task and cost per passing
 Per case: mean cost and pass count, with cost ratios against vanilla and v041.
 Report numbers only from real runs.
 
+Runs from --trials N carry a `#tK` suffix on the case id; they are aggregated under the base id.
+
 usage: python3 evals/live/summarize.py RESULTS_DIR [RESULTS_DIR ...]
 """
 import json
@@ -60,6 +62,7 @@ def main():
             if "case" not in r:
                 continue
             r["arm"] = canon(r["arm"])
+            r["case"] = r["case"].split("#t")[0]
             rows.setdefault((r["case"], r["arm"]), []).append(r)
         sk = Path(rd) / "skipped.json"
         if sk.is_file():
@@ -83,8 +86,8 @@ def main():
 
     print("\n## Per arm\n")
     print("Passing = graders pass and no new blocking architecture finding (cycle, placeholder).\n")
-    print("| Arm | Tasks | Passing | Pass rate | Invalid | New arch findings | Total tokens | Total cost $ | Cost/task $ | Cost/passing task $ |")
-    print("|---|---|---|---|---|---|---|---|---|---|")
+    print("| Arm | Runs | Passing | Pass rate | Outcome-only pass | Invalid | New arch findings | Total tokens | Mean tokens | Total cost $ | Cost/run $ | Cost/passing task $ |")
+    print("|---|---|---|---|---|---|---|---|---|---|---|---|")
     arms = sorted({a for _, a in rows}, key=lambda a: ARM_ORDER.index(a) if a in ARM_ORDER else 9)
     total_cost = 0.0
     for arm in arms:
@@ -98,8 +101,9 @@ def main():
         per_pass = f"{cost / passing:.3f}" if passing else "n/a (0 passing)"
         measured = [m["arch_findings"] for m in ms if m.get("arch_measured")]
         arch_cell = f"{sum(measured)} ({len(measured)}/{n} measured)" if measured else "not measured"
-        print(f"| {arm} | {n} | {passing} | {passing / n:.0%} | {sum(m['invalid'] for m in ms)} | {arch_cell} | {tokens:,} | "
-              f"{cost:.2f} | {cost / n:.3f} | {per_pass} |")
+        outcome = sum(all(v for k, v in r["checks"].items() if k not in PROCESS) for r in rs)
+        print(f"| {arm} | {n} | {passing} | {passing / n:.0%} | {outcome}/{n} ({outcome / n:.0%}) | {sum(m['invalid'] for m in ms)} | "
+              f"{arch_cell} | {tokens:,} | {tokens / n:,.0f} | {cost:.2f} | {cost / n:.3f} | {per_pass} |")
 
     cases = sorted({c for c, _ in rows})
     print("\n## Per-case cost ratios (mean cost per run; >1 means more expensive)\n")
