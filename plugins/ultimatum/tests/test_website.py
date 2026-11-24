@@ -187,7 +187,7 @@ if __name__ == "__main__":
 
 
 class PlainChatPicker(UltCase):
-    """The UserPromptSubmit hook that starts the website workflow from plain chat."""
+    """The UserPromptSubmit hook that starts Website or Work from plain chat."""
 
     def pick(self, prompt, cwd=None, auto=None):
         import json, os, subprocess
@@ -215,13 +215,25 @@ class PlainChatPicker(UltCase):
         self.site()
         self.assertIn("ultimatum:website", self.pick("Fix the mobile menu"))
 
-    def test_interface_words_outside_a_website_project_do_nothing(self):
+    def test_interface_fix_outside_a_website_project_starts_work(self):
         self.write("app/main.py", "print(1)")
-        self.assertEqual(self.pick("Fix the mobile menu"), "")
+        out = self.pick("Fix the mobile menu")
+        self.assertIn("ultimatum:work", out)
+        self.assertNotIn("ultimatum:website", out)
 
-    def test_regular_coding_request_does_nothing(self):
+    def test_regular_coding_request_starts_work(self):
         self.site()
-        self.assertEqual(self.pick("Fix the CSV export"), "")
+        out = self.pick("Fix the CSV export")
+        self.assertIn('"additionalContext"', out)
+        self.assertIn("ultimatum:work", out)
+        self.assertNotIn("ultimatum:website", out)
+
+    def test_plain_questions_and_writing_help_get_nothing(self):
+        self.site()
+        for prompt in ("What is a closure in JavaScript?", "Thanks!", "write a haiku about autumn",
+                       "How does the export module work?", "Make this email shorter: Hi Sam, quick follow-up"):
+            with self.subTest(prompt=prompt):
+                self.assertEqual(self.pick(prompt), "")
 
     def test_explicit_command_and_off_switch_are_respected(self):
         self.site()
@@ -242,5 +254,51 @@ class PlainChatPicker(UltCase):
         self.assertIn("ult-pick", json.dumps(hooks))
         body = (plug / "skills/website/SKILL.md").read_text()
         for needle in ("ult-browser.mjs", "**Preview.**", "no approval needed", "explicit yes",
-                       "Build me a website for my coffee shop"):
+                       "Build me a website for my coffee shop", "**one** clear visual direction",
+                       "**Small fix = only the reported bug.**", "seen, not changed"):
             self.assertIn(needle, body)
+
+    def test_plan_tells_small_fixes_to_stay_on_the_bug_and_new_sites_to_pick_one_look(self):
+        self.site()
+        small = self.ult("website", "Fix the mobile menu", "--root", str(self.root)).out
+        self.assertIn("scope: only the reported bug", small)
+        self.assertNotIn("designer: yes", small)
+        new = self.ult("website", "Build me a website for my coffee shop", "--root", str(self.tmp / "empty")).out
+        self.assertIn("design: pick one direction yourself", new)
+        self.assertIn("reviewer", new)
+
+
+class PickAccuracy(unittest.TestCase):
+    """ultlib.pick on the labelled sets: coding tasks start a workflow, plain chat never does."""
+
+    @classmethod
+    def setUpClass(cls):
+        import sys
+        from pathlib import Path
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+        from ultlib.pick import pick
+        cls.pick = staticmethod(pick)
+        cls.data = Path(__file__).resolve().parent / "data"
+
+    def rows(self, name):
+        import json
+        return [json.loads(l)["task"] for l in (self.data / name).read_text().splitlines() if l.strip()]
+
+    def test_plain_chat_stays_in_chat(self):
+        wrong = [t for t in self.rows("plain_chat.jsonl") if self.pick(t) != "chat"]
+        self.assertEqual(wrong, [])
+
+    def test_coding_tasks_start_a_workflow_except_code_questions(self):
+        import json
+        rows = []
+        for f in sorted(self.data.glob("routing_*.jsonl")):
+            rows += [json.loads(l) for l in f.read_text().splitlines() if l.strip()]
+        asks = [r["task"] for r in rows if r["route"] != "discover" and not r["task"].startswith("/")]
+        missed = [t for t in asks if self.pick(t) == "chat"]
+        self.assertLessEqual(len(missed), 3, missed)
+
+    def test_the_three_example_prompts(self):
+        self.assertEqual(self.pick("Build me a website for my coffee shop"), "website")
+        self.assertEqual(self.pick("Fix the CSV export"), "work")
+        self.assertEqual(self.pick("What is a closure in JavaScript?"), "chat")
+

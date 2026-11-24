@@ -118,6 +118,10 @@ def format_text(p: dict) -> str:
              "roles: " + " -> ".join(p["roles"]) + ("  (one person: you)" if p["team"] == "solo" else ""),
              f"release: {p['release']}",
              "load: " + ", ".join(p["load"])]
+    if p["size"] == "small":
+        lines.append("scope: only the reported bug; findings that were there before your edit are reported, not fixed")
+    elif p["designer"]:
+        lines.append("design: pick one direction yourself and build it; placeholders for missing facts; then browser review")
     if p["overlay"]:
         lines.append("overlay: security (skills/work/references/security/secure-implementation.md)")
     return "\n".join(lines)
