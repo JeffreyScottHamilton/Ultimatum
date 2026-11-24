@@ -2,6 +2,13 @@
 
 Goal: turn a request into a small, agreed spec and independently verifiable slices, spending only as much ceremony as the size of the change deserves. The general loop is in SKILL.md §3; this file covers what happens before step 3 (Change).
 
+## 0. Flow: brainstorm, plan, slice, verify
+
+- **Brainstorm** (Normal and larger): list two or three approaches, one trade-off each. Pick one and give the reason in one line. Name what would change the choice. Trivial work skips this.
+- **Plan**: §2 to §6. The spec is the contract that every slice follows.
+- **Slice**: §7. Each slice has an acceptance command that can fail.
+- **Verify**: run each slice's acceptance command as it lands, then the spec's success checks on the integrated result (§10). A final skim is not verification.
+
 ## 1. Size it first
 
 | Size | Signal | Do |

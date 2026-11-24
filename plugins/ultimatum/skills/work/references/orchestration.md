@@ -1,6 +1,6 @@
 # Orchestration: large work with workers
 
-Goal: split a large feature into independent slices, run workers safely, integrate, and review once. Delegation basics: SKILL.md §3. Planning comes first (`feature-planning.md`); do not orchestrate before the spec and interfaces exist.
+Goal: split a large feature into independent slices, run workers safely, integrate, and review once. Delegation basics: SKILL.md §3. Planning comes first (`feature-planning.md`); do not orchestrate before the spec and interfaces exist. The full order is brainstorm, plan, slice, dispatch, verify each report, integrate, review once.
 
 ## 1. When to parallelize
 
@@ -57,6 +57,7 @@ Workers do not spawn workers. State it in every brief.
 ## 5. Isolation: worktrees
 
 Use a worktree when two workers could write at the same time, or when a worker's changes might be discarded.
+Default for any parallel run: one worktree and branch per worker, even when the file lists look disjoint. Lockfiles and generated files escape ownership lists.
 1. `git worktree add ../<repo>-<slice> -b ult/<slice> <BASE>`
 2. Worker runs inside that path; its briefs gives that path and branch. Confirm `git rev-parse HEAD` equals BASE at start.
 3. Add project-local worktree dirs to `.gitignore` only if they live inside the repo; prefer sibling dirs.

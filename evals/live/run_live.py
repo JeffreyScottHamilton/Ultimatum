@@ -25,7 +25,7 @@ Graders are deterministic Python checks against the fixture's answer key
 is recorded first; tokens/cost/turns/subagents are recorded second.
 
 usage: python3 evals/live/run_live.py [--cases a,b] [--arms vanilla,v041,v2]
-                                      [--model sonnet] [--budget 3] [--max-total-usd 15]
+                                      [--model sonnet] [--budget 1] [--max-total-usd 15]
                                       [--out DIR] [--dry-run]
 """
 from __future__ import annotations
@@ -607,7 +607,7 @@ def main():
     ap.add_argument("--cases", default=",".join(CASES))
     ap.add_argument("--arms", default="vanilla,v2", help="comma list of vanilla, v041, v2 (aliases: baseline, ultimatum)")
     ap.add_argument("--model", default="sonnet")
-    ap.add_argument("--budget", type=float, default=3.0, help="max USD per run (--max-budget-usd)")
+    ap.add_argument("--budget", type=float, default=1.0, help="max USD per run (--max-budget-usd)")
     ap.add_argument("--max-total-usd", type=float, default=15.0, help="cumulative USD cap across all runs")
     ap.add_argument("--timeout", type=int, default=1500)
     ap.add_argument("--out", default=str(REPO / "evals/live/results" / time.strftime("%Y%m%d-%H%M%S")))

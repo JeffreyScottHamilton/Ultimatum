@@ -142,3 +142,9 @@ Waiver format, one line each in the report:
 Example: `WAIVE tap-target-medium @ 375x812 a.footer-link -- legal links inline in prose -- brief`.
 
 A waiver needs a reason a reviewer could disagree with. "Pre-existing" is a reason only if you also state it was not touched. Never waive a console error, a failed expect, or a P0. The report's UI section lists: direction card (if made), the final `ULT-BROWSER:` line with report path, waivers, and what was not verified (for example "axe not available; fallback coverage only").
+
+## 10. Deeper design references
+
+- Brief, direction, tokens, five-axis audit, DESIGN.md: `design/design.md`.
+- Motion mechanics (durations, springs, interruption, gestures, removal pass): `design/motion.md`.
+- Choosing a component library, licence and maintenance checks: `design/components.md`.

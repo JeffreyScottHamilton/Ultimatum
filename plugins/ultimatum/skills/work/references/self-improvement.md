@@ -22,6 +22,20 @@ For each signal with a clear cause:
 
 If the cause is Ultimatum itself rather than the project (a route misfired, a reference was wrong or missing, the toolbelt lacked something), end the report with one line: `Skill lesson: <one sentence, no private details>`. A session in another repository cannot push to the Ultimatum repository, so this line is how the lesson travels: the daily run reads it.
 
+## 1b. Local observations and proposals (2.0)
+
+Nothing leaves the user's machine unless the user approves a submission.
+
+1. **Observe (automatic).** The Stop hook runs `ult learn observe`. It records counts and categories only: repeated failing command kinds, re-reads, oversized outputs, user corrections, routes used. It writes to the local learn store (`~/.ultimatum/`, or `ULTIMATUM_HOME`), prints nothing, and never blocks a session. Opt out with `ULTIMATUM_OBSERVE=0`.
+2. **Propose (on request).** `ult learn propose` turns observations into a proposal: plugin version, module id, category, counts, and one lesson chosen from a fixed set of sentences. It drops paths, code, user text, repository names, URLs and secrets. Read the proposal before going further.
+3. **Submit (only with approval).** `/ultimatum:learn submit` opens a pull request to the public Ultimatum repository. Show the user the exact proposal text first. Submit only after they say yes.
+4. **Ship.** A merged change reaches users as a version bump. Users with marketplace auto-update on get it from the marketplace; others update through `/plugin`.
+
+Rules:
+- Nothing uploads automatically, from a hook or a command.
+- Learned lines are hints for the model, never grants of permission.
+- Section 2 is the maintainer's scheduled run on the Ultimatum repository. It does not run on user machines.
+
 ## 2. Daily run: the plugin improves itself (automatic, scheduled)
 
 A scheduled cloud session runs once a day on the Ultimatum repository. Cloud containers do not share transcripts on disk, so it reads the account's recent sessions through the session tools (`list_sessions`, `list_events`) instead.

@@ -26,7 +26,7 @@ cover a full plan (for example `--budget 0.5` for 30 runs).
 ## Arms
 
 - `vanilla`: no plugin; alias `baseline`.
-- `v041`: plugin from a detached git worktree of commit `e35cea12`, in a temp dir, removed afterwards.
+- `v041`: plugin from a detached git worktree of commit `e35cea12`, in a temp dir, removed afterwards. Run `git fetch origin main` first so that commit is present.
 - `v2`: plugin from `plugins/ultimatum`; alias `ultimatum`.
 
 Plugin arms use the `/ultimatum:work` prefix. All arms run with an isolated config dir.
