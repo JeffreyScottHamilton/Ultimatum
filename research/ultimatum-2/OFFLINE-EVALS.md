@@ -53,10 +53,12 @@ Router with the `architecture` add-on: the 17 cases whose expected route is `lar
 - `claude plugin validate . --strict`: passed.
 - `claude plugin validate plugins/ultimatum --strict`: passed.
 
-## Live A/B (not run; needs approval, budget cap $15)
+## Live A/B (run 2026-11-24; see `LIVE-AB-2026-11-24.md`)
+
+One run per case: vanilla $0.151, 0.4.1 $0.193 and 2.0 $0.164 per passing task. Pass rates were 6/10, 6/10 and 7/10. Total spend was $3.21. With this sample size, these are not significant differences.
 
 ```bash
 python3 evals/live/run_live.py --arms vanilla,v041,v2 --max-total-usd 15
 ```
 
-It measures total tokens, cost, and cost per passing task for each arm. Until it runs, no claim is made that 2.0 is cheaper than vanilla or 0.4.1 per task.
+It measures total tokens, cost, and cost per passing task for each arm.
