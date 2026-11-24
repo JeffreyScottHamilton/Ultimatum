@@ -15,9 +15,9 @@
 {"task": "CORS blocks the new app.example subdomain from calling our api with cookies, allow credentials for it", "route": "feature", "addons": [], "overlay": true, "mode": "STANDARD"}
 {"task": "add Sentry to the frontend, wire the DSN from env and check release tagging", "route": "feature", "addons": ["integrations"], "overlay": false, "mode": "STANDARD"}
 {"task": "let users upload avatars: check file type and size on the server, store in s3", "route": "feature", "addons": [], "overlay": true, "mode": "STANDARD"}
-{"task": "upgrade every package from node 18 to 22 across the monorepo, 12 packages, parallel is fine", "route": "large", "addons": [], "overlay": false, "mode": "DEEP"}
-{"task": "split reporting into three packages and update the 14 importers", "route": "large", "addons": [], "overlay": false, "mode": "DEEP"}
-{"task": "move our whole frontend from CRA to vite across the 3 apps, can run in parallel", "route": "large", "addons": ["react"], "overlay": false, "mode": "DEEP"}
+{"task": "upgrade every package from node 18 to 22 across the monorepo, 12 packages, parallel is fine", "route": "large", "addons": ["architecture"], "overlay": false, "mode": "DEEP"}
+{"task": "split reporting into three packages and update the 14 importers", "route": "large", "addons": ["architecture"], "overlay": false, "mode": "DEEP"}
+{"task": "move our whole frontend from CRA to vite across the 3 apps, can run in parallel", "route": "large", "addons": ["architecture", "react"], "overlay": false, "mode": "DEEP"}
 {"task": "flaky test in date-picker.spec, fails about 1 in 5 runs on CI", "route": "bug", "addons": [], "overlay": false, "mode": "STANDARD"}
 {"task": "after login the dashboard shows another user's name, only sometimes", "route": "bug", "addons": [], "overlay": true, "mode": "STANDARD"}
 {"task": "prod error: TypeError cannot read property 'id' of undefined in the orders list, sentry trace attached", "route": "bug", "addons": ["production"], "overlay": false, "mode": "STANDARD"}

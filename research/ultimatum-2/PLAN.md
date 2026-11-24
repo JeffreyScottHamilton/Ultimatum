@@ -160,6 +160,31 @@ Revised targets, stated plainly:
 | L0 | 500–1,000 tokens | ≤ 1,000 tokens body + ≤ 400 tokens descriptions | feasible |
 | Pass rate | — | ≥ 0.4.1 (9/10) | no regression on quality or security |
 
+## 12b. Architecture Guardian (extends the context-efficiency work)
+
+**Starting point.** Graphify was already integrated, but only as a pointer: one row in `integrations.md`, a line in `context-efficiency.md` §4, and an `integrations` add-on keyword. `ult map` was the local fallback. Nothing read Graphify's graph or checked structure. The guardian builds on that rather than adding a second graph tool.
+
+**What was added**
+- `ult arch` (stdlib, local) holds the checks and the CLI (`arch.py`). The import graph and cycle finder live separately (`archgraph.py`).
+  - Python imports are resolved through the AST. Module names that two files share are skipped, never guessed. JS/TS relative specifiers are resolved, with extension and `/index` fallback.
+  - `graphify-out/graph.json` is merged when present, using **EXTRACTED import edges only**. INFERRED and AMBIGUOUS edges never become findings.
+  - Checks: cycles (Tarjan SCC), normalised 8-line duplicate blocks, file and function size, placeholders, naming style outliers, unused private Python functions (a lead), changed modules with no test (a lead), and typed share.
+  - `--changed` reads only the git diff. `baseline` + `--drift` report only new findings, so a legacy repo can adopt the checks gradually.
+- Selective activation: an `architecture` add-on, which the large route always gets (new `with_routes` field), plus structural keywords and "code review". It conflicts with small, handoff, documents, improve and the security routes. A typo fix pays nothing.
+- The reviewer agent and the DEEP mode row run `ult arch check --changed` once at the end.
+- Learning: `--record` writes finding counts only. `ult learn propose` maps them to four fixed lessons, which go through the existing sanitized proposal and PR-approval flow.
+- Quality next to tokens: the live A/B baselines each fixture, measures the findings each run added, and counts a task as passing only if graders pass and no new cycle or placeholder appears. The summary prints new findings next to cost per passing task.
+
+**Complementary tools, used only where they pay**
+| Tool | Role | Why not always |
+|---|---|---|
+| Graphify | Cross-language graph, blast radius, cycles the local parser cannot see | Building a graph can run a model pass over docs; use an existing graph or AST-only update |
+| Serena / LSP | Exact references and renames | Needs an MCP server; `ult refs` covers small repos |
+| RTK | Already-installed output filters | Research found filters that drop per-finding lines; `ult run` keeps raw output |
+| Repomix | Bounded bundle of an explicit file list for a reviewer | Not researched in depth here; user-installed only; never a whole-repo dump |
+
+**Not done.** No refactor of the five pre-existing oversized files `ult arch` flags in this repo (unrelated to this change). Repomix is not reviewed in `research/` and is not vendored. Its row only states a usage rule.
+
 ## 13. Phases (§33)
 
 | Phase | Work | Exit check |

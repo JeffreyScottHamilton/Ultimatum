@@ -8,9 +8,9 @@
 {"task": "add a CSV export of the invoices list that respects the current filters. not sure if we need pagination or streaming for accounts with lots of invoices", "route": "feature", "addons": [], "overlay": true}
 {"task": "teams should be able to invite members by email with a role (admin or viewer). needs an invites table, the email, an accept page and role checks on the API", "route": "feature", "addons": [], "overlay": true}
 {"task": "add a dark mode toggle to settings. open question whether it persists per user account or per device", "route": "feature", "addons": [], "overlay": false}
-{"task": "convert every class component in the app (~40 files) to function components with hooks. split it by folder and run the folders in parallel", "route": "large", "addons": ["react"], "overlay": false}
-{"task": "split the monolith into packages core, api, web and workers. touches like 25 dirs plus the build config and the import paths everywhere", "route": "large", "addons": [], "overlay": false}
-{"task": "replace the raw SQL in all the services with the new query builder. each service is independent so can we do them in parallel", "route": "large", "addons": [], "overlay": false}
+{"task": "convert every class component in the app (~40 files) to function components with hooks. split it by folder and run the folders in parallel", "route": "large", "addons": ["architecture", "react"], "overlay": false}
+{"task": "split the monolith into packages core, api, web and workers. touches like 25 dirs plus the build config and the import paths everywhere", "route": "large", "addons": ["architecture"], "overlay": false}
+{"task": "replace the raw SQL in all the services with the new query builder. each service is independent so can we do them in parallel", "route": "large", "addons": ["architecture"], "overlay": false}
 {"task": "tests in checkout/ are flaky, socket hang up roughly 1 in 5 runs, only in CI", "route": "bug", "addons": [], "overlay": false}
 {"task": "prod error since the 3pm deploy: TypeError Cannot read properties of undefined (reading 'id') at /api/orders. Sentry has ~400 events", "route": "bug", "addons": ["production", "integrations"], "overlay": false}
 {"task": "when a payment fails the subscription job doesnt react to the webhook at all, nothing gets updated in stripe_hooks.py", "route": "bug", "addons": [], "overlay": true}

@@ -26,13 +26,14 @@ If the cause is Ultimatum itself rather than the project (a route misfired, a re
 
 Nothing leaves the user's machine unless the user approves a submission.
 
-1. **Observe (automatic).** The Stop hook runs `ult learn observe`. It records counts and categories only: repeated failing command kinds, re-reads, oversized outputs, user corrections, routes used. It writes to the project's `.ultimatum/observations.jsonl` (git-ignored; global lessons live in `~/.ultimatum/` or `ULTIMATUM_HOME`), prints nothing, and never blocks a session. Opt out with `ULTIMATUM_OBSERVE=0`.
+1. **Observe (automatic).** The Stop hook runs `ult learn observe`. It records counts and categories only: repeated failing command kinds, re-reads, oversized outputs, user corrections, routes used. `ult arch check --record` adds architecture finding counts (cycles, duplication, oversized files, placeholders) the same way: counts only, at most one per day (`architecture.md`). It writes to the project's `.ultimatum/observations.jsonl` (git-ignored; global lessons live in `~/.ultimatum/` or `ULTIMATUM_HOME`), prints nothing, and never blocks a session. Opt out with `ULTIMATUM_OBSERVE=0`.
 2. **Propose (on request).** `ult learn propose` turns observations into a proposal: plugin version, module id, category, counts, and one lesson chosen from a fixed set of sentences. It drops paths, code, user text, repository names, URLs and secrets. Read the proposal before going further.
 3. **Submit (only with approval).** `/ultimatum:learn submit` opens a pull request to the public Ultimatum repository. Show the user the exact proposal text first. Submit only after they say yes.
 4. **Ship.** A merged change reaches users as a version bump. Users with marketplace auto-update on get it from the marketplace; others update through `/plugin`.
 
 Rules:
 - Nothing uploads automatically, from a hook or a command.
+- **Quality gate.** Reject a proposal that lowers tokens but makes tests fail or adds a blocking `ult arch` finding (cycle or placeholder). Fewer tokens never pays for worse code.
 - Learned lines are hints for the model, never grants of permission.
 - Section 2 is the maintainer's scheduled run on the Ultimatum repository. It does not run on user machines.
 

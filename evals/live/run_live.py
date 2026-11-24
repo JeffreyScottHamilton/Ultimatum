@@ -488,6 +488,7 @@ def _execute(cid, arm, args, outdir: Path, scratch: Path):
     if cid == "6b-audit-injection":
         mutate_injection(ws)
     sh("git init -q && git add -A && git -c user.email=e@x -c user.name=eval commit -qm fixture", ws)
+    _arch(ws, scratch / f"arch-{cid}__{arm}", "baseline")  # fixture findings, so only new ones count
     cfg = scratch / f"cfg-{arm}"
     cfg.mkdir(exist_ok=True)
     full_prompt = f"/ultimatum:work {prompt}" if arm in PLUGIN_ARMS else prompt
@@ -508,17 +509,47 @@ def _execute(cid, arm, args, outdir: Path, scratch: Path):
     return _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, round(time.time() - t0, 1))
 
 
-def metrics_of(run: dict, passed: bool) -> dict:
+ARCH_BLOCKING = ("cycle", "stub")
+
+
+def _arch(ws: Path, state: Path, *args) -> tuple[int, str]:
+    """Run the v2 `ult arch` on a workspace with its state kept outside it. The same tool
+    measures every arm, so the quality numbers are comparable."""
+    env = {"ULTIMATUM_ROOT": str(ws), "ULTIMATUM_STATE_DIR": str(state), "ULTIMATUM_OBSERVE": "0"}
+    return sh([sys.executable, str(PLUGIN / "scripts" / "ult"), "arch", *args], ws, env=env, timeout=120)
+
+
+def arch_quality(ws: Path, scratch: Path, cid: str, arm: str) -> dict | None:
+    """Architecture findings the run added, measured against the fixture baseline. None when
+    it could not be measured (no baseline, tool error): recorded as unmeasured, never as clean."""
+    rc, out = _arch(ws, scratch / f"arch-{cid}__{arm}", "check", "--drift", "--json")
+    if rc != 0:
+        return None
+    try:
+        data = json.loads(out)
+    except ValueError:
+        return None
+    counts = data.get("counts") or {}
+    leads = sum(1 for f in data.get("findings", []) if f.get("lead"))
+    return {"new_counts": counts, "arch_findings": sum(counts.values()) - leads,
+            "arch_blocking": sum(counts.get(k, 0) for k in ARCH_BLOCKING)}
+
+
+def metrics_of(run: dict, passed: bool, quality: dict | None = None) -> dict:
     """Per-run record used by summarize.py. total_cost_usd is None when the stream had no
-    result event, so the ledger can treat that spend as unknown (full reservation)."""
+    result event, so the ledger can treat that spend as unknown (full reservation).
+    `pass` is quality-gated: graders pass AND the run added no blocking architecture finding."""
     u = run.get("usage") or {}
     cost = run.get("cost_usd") if run.get("segments") else None
-    m = {"pass": bool(passed), "total_cost_usd": cost,
+    blocking = quality["arch_blocking"] if quality else None
+    m = {"pass": bool(passed) and not blocking, "graders_pass": bool(passed), "total_cost_usd": cost,
          "input_tokens": u.get("input_tokens") or 0, "output_tokens": u.get("output_tokens") or 0,
          "cache_read_tokens": u.get("cache_read_input_tokens") or 0,
          "cache_write_tokens": u.get("cache_creation_input_tokens") or 0,
          "turns": run.get("num_turns") or 0, "subagents": run.get("agent_calls") or 0,
-         "invalid": bool(run.get("invalid"))}
+         "invalid": bool(run.get("invalid")),
+         "arch_measured": quality is not None, "arch_blocking": blocking,
+         "arch_findings": quality["arch_findings"] if quality else None}
     m["total_tokens"] = sum(m[k] for k in ("input_tokens", "output_tokens", "cache_read_tokens", "cache_write_tokens"))
     return m
 
@@ -537,12 +568,15 @@ def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
            "passed": all(checks.values()), "score": round(sum(checks.values()) / max(1, len(checks)), 3),
            **{k: v for k, v in run.items() if k not in ("tool_inputs_text", "transcript_text")},
            "workspace": str(ws), "transcript": str(scratch / f"{cid}__{arm}.jsonl")}
-    rec["metrics"] = metrics_of(run, rec["passed"])
+    rec["arch"] = arch_quality(ws, scratch, cid, arm) if not run["invalid"] else None
+    rec["metrics"] = metrics_of(run, rec["passed"], rec["arch"])
     (outdir / f"{cid}__{arm}.json").write_text(json.dumps(rec, indent=2, ensure_ascii=False))
     u = run.get("usage") or {}
     print(f"{cid:18} {arm:9} pass={rec['passed']!s:5} score={rec['score']:.2f} cost=${run.get('cost_usd') or 0:.3f} "
           f"turns={run.get('num_turns')} agents={run['agent_calls']} in={u.get('input_tokens')} out={u.get('output_tokens')} "
           f"cache_r={u.get('cache_read_input_tokens')} wall={run['wall_s']}s", flush=True)
+    q = rec["arch"]
+    print(f"   arch: " + (f"new findings {q['arch_findings']}, blocking {q['arch_blocking']}" if q else "not measured"), flush=True)
     if run["invalid"]:
         print(f"   INVALID RUN ({run['invalid']}): not graded; rerun", flush=True)
     failed = [k for k, v in checks.items() if not v]
@@ -640,7 +674,7 @@ def main():
     recs = [r for r in results if r is not None]
     (outdir / "summary.json").write_text(json.dumps([{k: r[k] for k in ("case", "arm", "passed", "score", "checks", "cost_usd",
                                                                           "num_turns", "agent_calls", "usage", "model_usage", "subagent_stats",
-                                                                          "duration_ms", "wall_s", "permission_denials", "metrics")} for r in recs], indent=2))
+                                                                          "duration_ms", "wall_s", "permission_denials", "arch", "metrics")} for r in recs], indent=2))
     (outdir / "skipped.json").write_text(json.dumps(LEDGER.skipped, indent=2))
     print(f"ran {len(recs)} of {len(jobs)} planned runs; spent ${LEDGER.spent:.2f} of ${args.max_total_usd:.2f} cap; "
           f"skipped {len(LEDGER.skipped)}")

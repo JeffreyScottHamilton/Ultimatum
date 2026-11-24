@@ -16,10 +16,16 @@ All notable changes to Ultimatum are listed here. Versions follow [Semantic Vers
 - CI fails a pull request that changes the plugin without bumping the version and adding a changelog entry.
 - Static size tests for the always-loaded skill body, descriptions, management skills and references.
 - Live A/B runner arms for plain Claude Code, 0.4.1 and 2.0, with a total spend cap (`--max-total-usd`).
+- Architecture Guardian. `ult arch check` finds import cycles (Python and JS/TS, plus Graphify's EXTRACTED import edges when `graphify-out/graph.json` exists), duplicated blocks, oversized files and functions, placeholder code, naming outliers, unused private functions and untested changed modules. `--changed` limits it to the git diff. `ult arch baseline` plus `--drift` report only new findings. `--strict` exits 1 on cycles or placeholders. `--record` adds finding counts (no paths or code) to local observations.
+- `architecture` add-on (`references/architecture.md`). It loads for the large route, refactors, structural words and code reviews, and never for small, handoff, documents, improve or security routes. Add-ons gained a `with_routes` field for this.
+- The live A/B gates its pass on code quality: a task passes only if its graders pass and `ult arch` finds no new cycle or placeholder. New architecture findings are reported next to tokens and cost.
 
 ### Changed
 - `SKILL.md` file is down from 7.6 KB (0.4.1) to 4.5 KB: the routing table moved into the router, so it is no longer re-read on every turn.
 - The reviewer agent is described as a once-per-DEEP-task step.
+- The reviewer runs `ult arch check --changed` and checks for parallel modules, wrong-way imports, placeholders and needless dependencies.
+- `ult doctor` lists Graphify, Repomix and RTK. `integrations.md` says when each one pays off.
+- Self-improvement rejects a proposal that saves tokens but fails tests or adds a blocking architecture finding.
 
 ### Compatibility
 - Every 0.4.x command, hook, agent and reference path still works. `ult update migrate` is a no-op on existing `.ultimatum/` state apart from creating `knowledge.md` and `proposals/`.

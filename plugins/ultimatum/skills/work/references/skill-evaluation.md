@@ -40,6 +40,7 @@ One directory per case: `prompt.md` (frontmatter + realistic prompt) and `grader
 
 Record in this order, and do not skip ahead:
 1. **Correctness first:** case pass rate per arm (mean and sample stdev across runs), which assertions moved.
+   For coding tasks, a case passes only when its tests pass **and** `ult arch check --changed` reports no new `cycle` or `stub`. `run_live.py` records these counts per arm (`arch_blocking`, `arch_findings`) and uses the gated pass in cost per passing task.
 2. **Quality failures:** reasons from failed runs (quote the transcript or grader line).
 3. **Then cost:** tokens, wall time, tool calls, cache read/creation tokens, and **subagent usage** (workers, reviewers, scouts, each model and their tokens). A change that shrinks main-context tokens by delegating is not a saving until total usage is counted.
 4. Capture duration and tokens when each run finishes; they cannot be recovered later.
@@ -49,7 +50,7 @@ Record in this order, and do not skip ahead:
 
 - Classify against the previous recorded baseline: green to red counts as a regression; red to red is unchanged; new failing cases are new; flakes within the baseline's own noise are classified, not blamed.
 - List dimensions that could not be run (no network, no cost budget). Never silently drop them.
-- A change may merge when: static gates pass, no case regressed beyond noise, no near-miss negative started failing, and always-on token cost did not grow without justification.
+- A change may merge when: static gates pass, no case regressed beyond noise, no near-miss negative started failing, and always-on token cost did not grow without justification. Code-quality findings per task must not grow either; a token saving that adds architecture findings is a regression.
 - Fix attempts for a regression: at most 3, each must shrink the failing set.
 
 ## 6. Claims policy

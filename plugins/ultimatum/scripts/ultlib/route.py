@@ -203,7 +203,7 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
         alt = None
         route = "small" if (len(text.split()) <= 15 and _CONCRETE_RE.search(text) and _EDIT_RE.search(text)) else "feature"
 
-    # Add-ons: score, then honour requires/conflicts for the chosen route.
+    # Add-ons: score (with_routes sets a floor), then honour requires/conflicts for the route.
     addon_cands = []
     for mod in mods:
         if mod["kind"] != "addon":
@@ -213,6 +213,8 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
         if route in mod.get("conflicts", []):
             continue
         s, hits = _score(mod, low, tokens, deps)
+        if route in mod.get("with_routes", []):
+            s = max(s, THRESHOLD)
         if s >= THRESHOLD:
             addon_cands.append((s, mod["id"]))
     addon_cands.sort(key=lambda x: (-x[0], x[1]))

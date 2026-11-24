@@ -65,7 +65,20 @@ SIGNAL_MODULE = {
     "big-output": "context",
     "correction": "engineering",
     "search-churn": "discovery",
+    "arch-cycle": "architecture",
+    "arch-dup": "architecture",
+    "arch-size": "architecture",
+    "arch-stub": "architecture",
 }
+
+# Fixed sentences for architecture signals recorded by `ult arch check --record`.
+ARCH_TEMPLATES = {
+    "arch-cycle": "Before adding an import between modules, check `ult arch check --changed` so no new dependency cycle appears.",
+    "arch-dup": "Before writing a helper, search for an existing one and extend it instead of copying its body.",
+    "arch-size": "When a file or function grows past the size limit, split it along one responsibility before adding more.",
+    "arch-stub": "Do not leave placeholder code: finish the implementation or remove the stub before reporting done.",
+}
+ARCH_SIGNALS = {"cycle": "arch-cycle", "dup": "arch-dup", "size": "arch-size", "func-size": "arch-size", "stub": "arch-stub"}
 
 # Fixed template sentences, keyed by task category. Proposals use only these.
 TEMPLATES = {
@@ -403,6 +416,25 @@ def observe(transcript: Path, root=None) -> dict:
     return rec
 
 
+def record_arch(counts: dict, root=None) -> dict | None:
+    """One snapshot per project per day of architecture finding counts. Counts only: no paths or code."""
+    signals: dict[str, int] = defaultdict(int)
+    for kind, n in counts.items():
+        if kind in ARCH_SIGNALS and isinstance(n, int) and n > 0:
+            signals[ARCH_SIGNALS[kind]] += n
+    if not signals:
+        return None
+    day = time.strftime("%Y-%m-%d", time.gmtime())
+    session = hashlib.sha1(f"arch:{day}".encode("utf-8")).hexdigest()[:12]
+    rec = {"ts": int(time.time()), "session": session, "category": "refactor",
+           "signals": dict(signals), "failing_kinds": [], "routes": []}
+    path = state_dir(root) / "observations.jsonl"
+    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()[-(MAX_OBSERVATIONS - 1):] if path.is_file() else []
+    lines = [l for l in lines if l.strip()] + [json.dumps(rec, sort_keys=True)]
+    write_private(path, "\n".join(lines) + "\n")
+    return rec
+
+
 def _observe_disabled() -> bool:
     return os.environ.get("ULTIMATUM_OBSERVE") == "0"
 
@@ -497,7 +529,7 @@ def propose(root=None) -> list[dict]:
         p = {"id": pid, "created": int(time.time()), "plugin_version": plugin_version(),
              "module": SIGNAL_MODULE[sig], "signal": sig, "category": cat,
              "counts": {"sessions": a["sessions"], "occurrences": a["occurrences"]},
-             "lesson": TEMPLATES.get(cat, TEMPLATES["other"])}
+             "lesson": ARCH_TEMPLATES.get(sig) or TEMPLATES.get(cat, TEMPLATES["other"])}
         pdir = _proposals_dir(root)
         write_private(pdir / f"{pid}.json", json.dumps(p, indent=2, sort_keys=True) + "\n")
         write_private(pdir / f"{pid}.md", _proposal_md(p))

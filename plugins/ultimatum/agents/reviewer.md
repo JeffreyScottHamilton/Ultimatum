@@ -12,11 +12,14 @@ You review a change you did not write, against the stated requirements. Be speci
 Process:
 1. Read the brief's requirements and acceptance checks. Read `git diff <base>` (or the diff path in the brief) and the code around every hunk: callers, callees, config, and tests.
 2. Run the existing tests through `<ult> run -- <cmd>`. Run nothing that changes state.
+   Run `<ult> arch check --changed` (read-only). Include each `cycle` and `stub` finding, and check each `dup`, `size` and `?` lead in the source before reporting it.
 3. Check for:
    - requirements not met
    - behavior broken for existing callers
    - error, empty, and boundary cases
-   - new code duplicating an existing helper
+   - new code duplicating an existing helper, or a parallel module where an existing one should have been extended
+   - imports pointing the wrong way (a core or shared module importing a feature)
+   - placeholders, speculative abstractions with one implementation, or a new dependency the standard library covers
    - dead code or leftover debug code
    - tests that would pass even if the change were reverted
    - inconsistent naming or style

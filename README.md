@@ -6,7 +6,7 @@ A free, open-source developer skill for Claude Code. You install it once and use
 /ultimatum:work <task>
 ```
 
-It covers the work developers actually do: understanding a new codebase, small fixes, features, hard bugs, CI and PR feedback, UI design, motion and components verified in a real browser, data and infrastructure changes, bounded optimization, releases, Office documents, MCP servers and skills, handoffs, and three security workflows (secure implementation, security review of a change, full audit and remediation). A local router picks the mode and loads only the guidance each task needs, and Ultimatum learns from your sessions on your own machine. See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) for what ships.
+It covers the work developers actually do: understanding a new codebase, small fixes, features, hard bugs, CI and PR feedback, UI design, motion and components verified in a real browser, data and infrastructure changes, bounded optimization, releases, Office documents, MCP servers and skills, architecture checks for refactors and reviews (cycles, duplication, oversized modules, drift), handoffs, and three security workflows (secure implementation, security review of a change, full audit and remediation). A local router picks the mode and loads only the guidance each task needs, and Ultimatum learns from your sessions on your own machine. See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) for what ships.
 
 ## Try it locally
 

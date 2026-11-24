@@ -1666,6 +1666,74 @@
       "version": "2.0.0"
     },
     {
+      "id": "architecture",
+      "kind": "addon",
+      "summary": "Architecture Guardian: module boundaries, cycles, duplication, oversized files, drift; for significant changes and code reviews.",
+      "activate": {
+        "keywords": [
+          "architecture",
+          "architectural",
+          "refactor",
+          "refactoring",
+          "restructure",
+          "modularize",
+          "modularise",
+          "maintainability",
+          "layering",
+          "coupling",
+          "decouple"
+        ],
+        "phrases": [
+          "circular dependency",
+          "circular dependencies",
+          "circular import",
+          "import cycle",
+          "duplicated code",
+          "duplicate code",
+          "code duplication",
+          "dead code",
+          "code review",
+          "review this code",
+          "tech debt",
+          "technical debt",
+          "module boundaries",
+          "god class",
+          "god object",
+          "architecture drift",
+          "clean architecture",
+          "separation of concerns"
+        ],
+        "files": [],
+        "deps": []
+      },
+      "never_when": [
+        "no refactor",
+        "without refactoring",
+        "don't refactor",
+        "do not refactor"
+      ],
+      "requires": [],
+      "with_routes": [
+        "large"
+      ],
+      "conflicts": [
+        "small",
+        "handoff",
+        "documents",
+        "improve",
+        "sec-review",
+        "sec-audit",
+        "sec-fix"
+      ],
+      "read": [
+        "architecture.md"
+      ],
+      "mode_hint": "STANDARD",
+      "contract": "Check the dependency graph and the changed files with `ult arch check --changed` before and after; extend existing modules instead of adding parallel ones; never trade quality for tokens.",
+      "attribution": [],
+      "version": "2.0.0"
+    },
+    {
       "id": "security",
       "kind": "overlay",
       "summary": "Boundary overlay: auth, money, personal data, uploads, input-built commands, secrets, CORS/CSP/cookies, CI permissions, LLM tool permissions.",

@@ -21,6 +21,9 @@ TOOLS = [
     ("terraform", "infra validate/plan/test"),
     ("supabase", "local DB, migrations, advisors"),
     ("psql", "query plans (EXPLAIN) against an authorised database"),
+    ("graphify", "repo graph; ult arch merges its EXTRACTED import edges (fallback: local import graph)"),
+    ("repomix", "pack an explicit file list for a reviewer (fallback: pass paths)"),
+    ("rtk", "optional output filters (prefer ult run, which keeps raw output)"),
 ]
 
 
@@ -42,7 +45,7 @@ def cmd_doctor(args) -> int:
     for mod, why in (("playwright", "real-browser interaction, screenshots, viewports"),
                      ("axe-core", "full accessibility rule engine (fallback: built-in DOM checks)")):
         print(f"  {'✓' if _node_has(mod) else '·'} {mod:<12} {why} [node module]")
-    print("  MCP tools (Context7, Serena, Sentry, Chrome DevTools, Supabase, Terraform): check the agent's tool list.")
+    print("  MCP tools (Context7, Serena or LSP, Sentry, Chrome DevTools, Supabase, Terraform): check the agent's tool list.")
     return 0
 
 

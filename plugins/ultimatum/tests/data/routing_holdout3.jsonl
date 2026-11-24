@@ -9,9 +9,9 @@
 {"task": "add team invitations: admins invite by email, invite expires in 7 days, unclear whether invitees need an account first", "route": "feature", "addons": [], "overlay": true}
 {"task": "we need CSV export of the orders table with filters, maybe scheduled emails too, not sure about the scope", "route": "feature", "addons": [], "overlay": true}
 {"task": "add dark mode toggle to the settings page, store preference per user, maybe system default too", "route": "feature", "addons": [], "overlay": false}
-{"task": "migrate all 14 services from the old logger to structured logging, each service is its own folder", "route": "large", "addons": [], "overlay": false}
-{"task": "rotate the internal API auth from shared key to per-service JWTs across gateway, billing, and auth services", "route": "large", "addons": [], "overlay": true}
-{"task": "bump Node 18 to 22 across the monorepo packages and fix whatever breaks, probably 30 plus packages", "route": "large", "addons": [], "overlay": false}
+{"task": "migrate all 14 services from the old logger to structured logging, each service is its own folder", "route": "large", "addons": ["architecture"], "overlay": false}
+{"task": "rotate the internal API auth from shared key to per-service JWTs across gateway, billing, and auth services", "route": "large", "addons": ["architecture"], "overlay": true}
+{"task": "bump Node 18 to 22 across the monorepo packages and fix whatever breaks, probably 30 plus packages", "route": "large", "addons": ["architecture"], "overlay": false}
 {"task": "users are randomly logged out after about 10 minutes, session token looks fine in the db", "route": "bug", "addons": [], "overlay": true}
 {"task": "test_checkout_retry flakes about 1 in 5 runs on CI, passes locally", "route": "bug", "addons": [], "overlay": false}
 {"task": "prod 500s on /api/reports since this morning, stack says KeyError tenant_id", "route": "bug", "addons": [], "overlay": true}

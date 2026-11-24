@@ -60,7 +60,7 @@ Narrow first, then confirm in source:
 1. `ult symbols <Name>` finds definitions. `ult refs <Name>` finds usages. `ult search '<regex>' --path src --glob '*.ts'` finds patterns. Results are grouped per file and capped. Use `--path`/`--glob` to narrow rather than raising the caps.
 2. Read only the relevant range of a file, using offset and limit, unless you are going to edit most of it.
 3. For a new repo, run `ult map summary` once and then `ult map query routes|auth|data_stores|sinks|entry_points|<keyword>`. The map gives `file:line` leads built with regexes, so they are *guesses* until you open the source.
-4. If a Serena or LSP MCP is in your tool list, prefer it for definitions, references, and symbol-level edits in large typed codebases. If a Graphify graph exists, query it narrowly and never load the whole graph.
+4. If a Serena or LSP MCP is in your tool list, prefer it for definitions, references, and symbol-level edits in large typed codebases. If a Graphify graph exists, query it narrowly and never load the whole graph; for structure (cycles, duplication, oversized files) run `ult arch check --changed`, which reads it for you (`architecture.md`).
 5. For library or API questions, check the installed version first (lockfile, `node_modules/<pkg>/package.json`, `pip show`). Then read the installed source or types. Use Context7 MCP if it is present: one concept per query and at most ~3 calls. Label answers from memory as unverified when the version matters.
 
 Stop searching once you have the anchor you need. Repeating the same broad search with different wording is a sign to read one file properly instead.

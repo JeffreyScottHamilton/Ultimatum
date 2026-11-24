@@ -82,8 +82,9 @@ def main():
               f"{mean(lambda r: r.get('usage', {}).get('cache_read_input_tokens', 0)):.0f} |")
 
     print("\n## Per arm\n")
-    print("| Arm | Tasks | Passing | Pass rate | Invalid | Total tokens | Total cost $ | Cost/task $ | Cost/passing task $ |")
-    print("|---|---|---|---|---|---|---|---|---|")
+    print("Passing = graders pass and no new blocking architecture finding (cycle, placeholder).\n")
+    print("| Arm | Tasks | Passing | Pass rate | Invalid | New arch findings | Total tokens | Total cost $ | Cost/task $ | Cost/passing task $ |")
+    print("|---|---|---|---|---|---|---|---|---|---|")
     arms = sorted({a for _, a in rows}, key=lambda a: ARM_ORDER.index(a) if a in ARM_ORDER else 9)
     total_cost = 0.0
     for arm in arms:
@@ -95,7 +96,9 @@ def main():
         total_cost += cost
         tokens = sum(m["total_tokens"] for m in ms)
         per_pass = f"{cost / passing:.3f}" if passing else "n/a (0 passing)"
-        print(f"| {arm} | {n} | {passing} | {passing / n:.0%} | {sum(m['invalid'] for m in ms)} | {tokens:,} | "
+        measured = [m["arch_findings"] for m in ms if m.get("arch_measured")]
+        arch_cell = f"{sum(measured)} ({len(measured)}/{n} measured)" if measured else "not measured"
+        print(f"| {arm} | {n} | {passing} | {passing / n:.0%} | {sum(m['invalid'] for m in ms)} | {arch_cell} | {tokens:,} | "
               f"{cost:.2f} | {cost / n:.3f} | {per_pass} |")
 
     cases = sorted({c for c, _ in rows})

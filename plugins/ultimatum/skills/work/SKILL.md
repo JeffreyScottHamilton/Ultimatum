@@ -18,7 +18,7 @@ Run `ult route "<task>"` (add `--root .` in a repo). It prints the mode, one rou
 |---|---|
 | FAST | No references, no subagents. Edit, run one targeted check, report. |
 | STANDARD | Read the listed files. Verify, then run the nearest wider suite. |
-| DEEP | State an acceptance check per part. Workers for independent slices, one `ultimatum:reviewer` pass at the end. |
+| DEEP | State an acceptance check per part. Workers for independent slices; at the end `ult arch check --changed`, then one `ultimatum:reviewer` pass. |
 | RECOVERY | `ult handoff show`, re-run the cheapest check, then continue. |
 
 ## 2. Rules

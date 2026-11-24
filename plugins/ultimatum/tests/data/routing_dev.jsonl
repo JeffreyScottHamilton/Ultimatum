@@ -47,13 +47,13 @@
 {"task": "Escape user input before it goes into the email template", "route": "feature", "addons": [], "overlay": true}
 {"task": "Parse the webhook payload from the partner and store the order id", "route": "feature", "addons": [], "overlay": true}
 {"task": "Our onboarding has three steps today: account creation, a profile form, and an email check. We want a new setting that lets people skip the profile step and fill it in later on their own time. Plan it first; there are open questions about the default for existing users.", "route": "feature", "addons": [], "overlay": false}
-{"task": "Migrate the whole monorepo from Jest to Vitest, across all packages", "route": "large", "addons": [], "overlay": false}
-{"task": "Rewrite the billing and notifications subsystems as separate services with end-to-end tests", "route": "large", "addons": [], "overlay": true}
-{"task": "This needs several parts: a parser, a cache, a CLI and docs, each owned by a different worker", "route": "large", "addons": [], "overlay": false}
-{"task": "Port the entire API surface from REST to GraphQL across all services", "route": "large", "addons": [], "overlay": false}
-{"task": "Split the utility layer across the repo into domain packages", "route": "large", "addons": [], "overlay": false}
-{"task": "Do an end to end rework of the onboarding flow: data, API, UI and emails", "route": "large", "addons": [], "overlay": false}
-{"task": "Rewrite the entire ingestion, storage and reporting services as independent parts", "route": "large", "addons": [], "overlay": false}
+{"task": "Migrate the whole monorepo from Jest to Vitest, across all packages", "route": "large", "addons": ["architecture"], "overlay": false}
+{"task": "Rewrite the billing and notifications subsystems as separate services with end-to-end tests", "route": "large", "addons": ["architecture"], "overlay": true}
+{"task": "This needs several parts: a parser, a cache, a CLI and docs, each owned by a different worker", "route": "large", "addons": ["architecture"], "overlay": false}
+{"task": "Port the entire API surface from REST to GraphQL across all services", "route": "large", "addons": ["architecture"], "overlay": false}
+{"task": "Split the utility layer across the repo into domain packages", "route": "large", "addons": ["architecture"], "overlay": false}
+{"task": "Do an end to end rework of the onboarding flow: data, API, UI and emails", "route": "large", "addons": ["architecture"], "overlay": false}
+{"task": "Rewrite the entire ingestion, storage and reporting services as independent parts", "route": "large", "addons": ["architecture"], "overlay": false}
 {"task": "The cart total is wrong when the cart is empty: it returns NaN", "route": "bug", "addons": [], "overlay": false}
 {"task": "Flaky test in test_sync.py fails about one run in five", "route": "bug", "addons": [], "overlay": false}
 {"task": "Stack trace from the worker: KeyError 'user_id' in process_batch", "route": "bug", "addons": [], "overlay": false}
@@ -185,7 +185,7 @@
 {"task": "We have been seeing intermittent failures in the nightly report job for about two weeks. Sometimes it finishes, sometimes it dies with a timeout while writing the CSV. I suspect the database connection pool but have not confirmed. Please find the cause and fix it, and add a regression test.", "route": "bug", "addons": [], "overlay": false}
 {"task": "Walk me through how a request gets to the database layer", "route": "discover", "addons": [], "overlay": false}
 {"task": "Show how the cart reaches the payment service", "route": "discover", "addons": [], "overlay": false}
-{"task": "Update the importers of parse_config across all packages to the new signature", "route": "large", "addons": [], "overlay": false}
+{"task": "Update the importers of parse_config across all packages to the new signature", "route": "large", "addons": ["architecture"], "overlay": false}
 {"task": "Fix the failing test in test_parser.py", "route": "bug", "addons": [], "overlay": false}
 {"task": "Rename retry_count to attempts in client.py", "route": "small", "addons": [], "overlay": false}
 {"task": "Make the homepage layout work on phones", "route": "ui", "addons": [], "overlay": false}

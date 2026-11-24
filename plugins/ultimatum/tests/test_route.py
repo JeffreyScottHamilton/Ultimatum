@@ -25,7 +25,7 @@ JSON_KEYS = {"mode", "route", "addons", "read", "tokens", "overlay", "touches", 
 ROUTES = {"small", "discover", "feature", "large", "bug", "ci-pr", "ui", "data-infra", "optimize",
           "release", "sec-review", "sec-audit", "sec-fix", "handoff", "improve", "skill-eval",
           "documents", "mcp-build", "skill-author"}
-ADDONS = {"react", "design", "motion", "components", "production", "context", "integrations"}
+ADDONS = {"react", "design", "motion", "components", "production", "context", "integrations", "architecture"}
 
 
 def decide(task):

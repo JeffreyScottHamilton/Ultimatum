@@ -22,6 +22,7 @@ It prints only the reference files that combination needs and their size, so Cla
   - `ult run -- <cmd>`: runs a noisy command and prints its exit code and the exact failure lines. The full raw log is kept and can be retrieved with `ult log <id>`.
   - `ult search | symbols | refs`: scoped, capped code search.
   - `ult map`: a repository map you query by section.
+  - `ult arch check [--changed] [--drift]`: the Architecture Guardian. It finds import cycles (merging Graphify's extracted edges if you have a graph), duplicated blocks, oversized files and functions, placeholders, naming outliers and untested changed modules. It runs only for structural work and reviews, never for small edits.
   - `ult note | find | get`: a local full-text evidence store.
   - `ult handoff write | show`: a short, checkable session handoff.
   - `ult scan`: wraps Semgrep, Gitleaks, and OSV-Scanner if they are installed, and falls back to built-in leads if they aren't.
