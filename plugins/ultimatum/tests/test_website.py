@@ -45,7 +45,7 @@ class WebsiteRouting(unittest.TestCase):
 
     def test_work_skill_keeps_explicit_command_and_offers_switch(self):
         body = (SKILLS / "work" / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("`workflow: website` and the user did not type `/ultimatum:work`", body)
+        self.assertIn("`workflow: website` or `motion` (user did not type `/ultimatum:work`)", body)
         web = (SKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("typed `/ultimatum:website`", web)
 

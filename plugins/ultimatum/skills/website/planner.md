@@ -46,3 +46,9 @@ When the user approves (in words, or with an image they bring back), record what
 `ult website --approve "<what was approved: layout, colours, type, imagery, changes asked for>" [--image <path to the mockup if saved>]`
 
 This writes an **Approved direction** section in the brief. The Builder builds from it and the Reviewer compares the real page with it. Then continue with Build.
+
+## Existing site: finding your way
+
+On a redesign of a larger site, if two focused searches have not shown how the pages, styles and components connect, or the change touches three or more areas, run `ult map`. Then use Graphify, if it is installed, for one specific question. Confirm the answer in the code before you plan around it.
+
+Ideas from the Karpathy guidelines (plan to a checkable result), gstack (plan and design review roles, MIT) and Matt Pocock's skills (sharpen the brief by asking, MIT); the wording is Ultimatum's own.

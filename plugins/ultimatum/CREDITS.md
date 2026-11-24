@@ -58,4 +58,5 @@ The full revision table and the license decisions are in `research/REVISIONS.md`
 | [motion-canvas/motion-canvas](https://github.com/motion-canvas/motion-canvas) | `7b91435` | MIT | Recommended as an optional install by `ult components`; not bundled |
 | [midrender/revideo](https://github.com/midrender/revideo) | `b5de67a` | MIT | Recommended as an optional install by `ult components`; not bundled |
 | [Temzasse/react-modal-sheet](https://github.com/Temzasse/react-modal-sheet) | `8cee295` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | `ca64f8b` | Apache-2.0 | Preferred Motion Graphics renderer when installed (not bundled); story, sound and visual ideas in Ultimatum's own words |
 | [radix-ui/primitives](https://github.com/radix-ui/primitives) | `eb3a2b7` | MIT | Recommended as an optional install by `ult components`; not bundled |

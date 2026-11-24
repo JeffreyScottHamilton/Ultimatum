@@ -74,25 +74,25 @@ def brief_path(root: Path) -> Path:
     return (Path(ext).resolve() if ext else root / STATE_DIRNAME) / "brief.md"
 
 
-def approval(root: Path | None) -> str:
+def approval(root: Path | None, head: str = APPROVED_HEAD) -> str:
     """"approved" once the brief records what the user approved, else "waiting"."""
     try:
         text = brief_path(root or project_root()).read_text(encoding="utf-8", errors="replace")
     except OSError:
         return "waiting"
-    _, sep, rest = text.partition(APPROVED_HEAD)
+    _, sep, rest = text.partition(head)
     body = rest.split("\n## ", 1)[0].strip()
     return "approved" if sep and body else "waiting"
 
 
-def record_approval(root: Path, note: str, image: str | None = None) -> Path:
-    """Append the user's approval to the brief so the Builder and Reviewer work from it."""
+def record_approval(root: Path, note: str, image: str | None = None, head: str = APPROVED_HEAD) -> Path:
+    """Write the user's approval into the brief so the Builder/Animator and Reviewer work from it."""
     path = state_dir(root) / "brief.md"
     old = path.read_text(encoding="utf-8", errors="replace") if path.exists() else "# Brief\n"
-    head, sep, rest = old.partition(APPROVED_HEAD)
+    before, sep, rest = old.partition(head)
     tail = rest.split("\n## ", 1)[1] if sep and "\n## " in rest else ""
-    block = f"{APPROVED_HEAD}\n\n{note.strip()}\n" + (f"\nMockup: {image}\n" if image else "")
-    new = head.rstrip() + "\n\n" + block + (f"\n## {tail}" if tail else "")
+    block = f"{head}\n\n{note.strip()}\n" + (f"\nImage: {image}\n" if image else "")
+    new = before.rstrip() + "\n\n" + block + (f"\n## {tail}" if tail else "")
     write_private(path, new)
     return path
 

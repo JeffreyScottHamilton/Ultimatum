@@ -4,6 +4,7 @@
 It adds one line of context so Ultimatum starts without a slash command:
 - website work (a website named outright, or interface words such as "mobile menu"
   inside a project that is a website) -> start the ultimatum:website skill;
+- a standalone animated clip or video -> start ultimatum:motion-graphics;
 - other coding work (fix, build, test, review, debug, ship) -> start ultimatum:work.
 Plain questions, writing help and small talk get nothing (ultlib/pick.py), so
 ordinary chats pay no extra tokens. A prompt that
@@ -17,6 +18,8 @@ import sys
 NOTES = {
     "website": ("Ultimatum: this request is website work. Start the ultimatum:website skill now "
                 "(Skill tool, skill \"ultimatum:website\", args: the user's request) and let it run the whole job."),
+    "motion": ("Ultimatum: this request is a motion graphics clip or video. Start the ultimatum:motion-graphics skill now "
+               "(Skill tool, skill \"ultimatum:motion-graphics\", args: the user's request) and let it run the whole job."),
     "work": ("Ultimatum: this request is coding work. Start the ultimatum:work skill now "
              "(Skill tool, skill \"ultimatum:work\", args: the user's request) and follow it."),
 }

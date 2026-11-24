@@ -188,6 +188,83 @@
       "modules": ["components"],
       "reviewed": "2026-11-24",
       "note": "Verified alternative to Vaul (dialog primitive to build a sheet on)"
+    },
+    {
+      "id": "hyperframes",
+      "kind": "skill-source",
+      "repo": "https://github.com/heygen-com/hyperframes",
+      "pin": "ca64f8b",
+      "licence": "Apache-2.0",
+      "decision": "adapter",
+      "modules": ["motion-graphics"],
+      "reviewed": "2026-11-24",
+      "note": "Preferred renderer when the user has it installed; story, sound and visual ideas adapted in own words; not bundled"
+    },
+    {
+      "id": "gstack",
+      "kind": "skill-source",
+      "repo": "https://github.com/garrytan/gstack",
+      "pin": "afb68ac",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["website", "review"],
+      "reviewed": "2026-11-24",
+      "note": "Planning, design-review and QA role ideas in own words"
+    },
+    {
+      "id": "mattpocock-skills",
+      "kind": "skill-source",
+      "repo": "https://github.com/mattpocock/skills",
+      "pin": "d653911",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["deep", "website"],
+      "reviewed": "2026-11-24",
+      "note": "Requirements questions, small steps and TDD ideas in own words"
+    },
+    {
+      "id": "shadcn-ui",
+      "kind": "skill-source",
+      "repo": "https://github.com/shadcn-ui/ui",
+      "pin": "055aa6b",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": ["coding"],
+      "reviewed": "2026-11-24",
+      "note": "Reuse the project's installed components before building new ones; not bundled"
+    },
+    {
+      "id": "graphify",
+      "kind": "skill-source",
+      "repo": "https://github.com/Graphify-Labs/graphify",
+      "pin": "14f35e3",
+      "licence": "Apache-2.0 / MIT",
+      "decision": "adapter",
+      "modules": ["search"],
+      "reviewed": "2026-11-24",
+      "note": "Optional repo graph for one specific question after `ult map`; not bundled"
+    },
+    {
+      "id": "caveman",
+      "kind": "skill-source",
+      "repo": "https://github.com/JuliusBrussee/caveman",
+      "pin": "47c61be",
+      "licence": "Apache-2.0",
+      "decision": "adapt",
+      "modules": ["shared"],
+      "reviewed": "2026-11-24",
+      "note": "Plain, terse answers that keep technical facts exact; own wording"
+    },
+    {
+      "id": "karpathy-guidelines",
+      "kind": "skill-source",
+      "repo": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "pin": "2c60614",
+      "licence": "MIT (stated in README)",
+      "decision": "adapt",
+      "modules": ["shared"],
+      "reviewed": "2026-11-24",
+      "note": "Plan before acting, verifiable success; own wording (moved from forrestchang/andrej-karpathy-skills)"
     }
   ]
 }

@@ -24,6 +24,10 @@
   ult arch [check|baseline]  architecture checks: cycles, duplication, size, stubs, naming, drift
   ult update status|setup   installed vs available version; auto-update setup
   ult website "<task>"      Website workflow plan: size, team, designer, roles, files to load
+  ult motion "<task>"       Motion Graphics plan: size, roles, storyboard gate, renderer, files to load
+  ult beats FILE            suggested beats (librosa) or possible cues (ffmpeg) to check by ear
+  ult media FILE            check a video export: duration, size, fps, codecs, audio, loudness
+  ult loop add|triage|fixed|recheck|status   review loop: blockers hold delivery, minor ones don't
   ult style status|apply|remove  opt-in shared answer style in ~/.claude/CLAUDE.md
 """
 import argparse
@@ -36,7 +40,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from ultlib import context, doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
 MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
-for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "style"):
+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "motion", "media", "loop", "style"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
     except ImportError:

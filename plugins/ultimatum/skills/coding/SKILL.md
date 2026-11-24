@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Coding
 
-For a Builder (the Manager or a helper). Inputs: the brief (`.ultimatum/brief.md` when it exists), one guide for the kind of work (`guides/website.md` for sites), the files you own, and the check you must run.
+For a Builder (the Manager or a helper). Inputs: the brief (`.ultimatum/brief.md` when it exists), one guide (`guides/website.md` for sites, `guides/motion.md` for clips), the files you own, and the check you must run.
 
 1. **Find what exists:** `ult search`, `ult symbols`, `ult refs`. Reuse or extend the project's components, tokens and helpers before writing new ones. Use an installed library (such as shadcn/ui or Radix) as the project already does; `ult components "<need>"` only when nothing fits.
 2. **Smallest complete change.** Match the local style. No unrelated refactors, renames or new dependencies unless the brief asks for them.

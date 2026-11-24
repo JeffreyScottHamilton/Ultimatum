@@ -39,6 +39,19 @@ _DEEP_RE = re.compile(r"\b(audit|thorough|deep)\b", re.I)
 _WEBSITE_RE = re.compile(r"\b(websites?|web ?sites?|web ?pages?|landing ?pages?|home ?pages?|marketing (?:site|page)s?|portfolio (?:site|page)s?|personal site|static site|docs site|microsite)\b", re.I)
 # Interface words that mean website work only inside a project that is a website.
 _SITE_UI_RE = re.compile(r"\b(menu|nav(?:bar|igation)?|header|footer|hero|navbar|hamburger|layout|responsive|mobile view|on (?:phones?|mobile)|css|styles?|styling|stylesheet|dark mode|font|colou?rs?|buttons?|sidebar|modal|carousel|gallery|landing|homepage|page)\b", re.I)
+# A standalone clip or video (motion graphics). Interface words keep it in Website or Work.
+_MOTION_RE = re.compile(
+    r"\b(?:motion\s+graphics?|motion\s+design|kinetic\s+typography|title\s+sequence|lower\s+thirds?|"
+    r"animated\s+(?:video|clip|intro|outro|logo|explainer|title|short|reel|ad|promo|lyric|text|teaser|trailer)|"
+    r"(?:logo|product|title|brand)\s+(?:reveal|animation|sting)|(?:explainer|promo|intro|outro|lyric|launch|teaser|"
+    r"hype|recap|product)\s+(?:video|clip|reel)|beat[- ]?(?:sync(?:ed)?|cut|matched|synced)|"
+    r"(?:video|clip|reel|short)\s+(?:for|to\s+post\s+on)\s+(?:instagram|tiktok|youtube|reels|shorts|linkedin)|"
+    r"(?:make|create|render|animate|cut|edit|produce|build)\s+(?:me\s+|us\s+)?(?:an?\s+|the\s+|my\s+|our\s+)?"
+    r"(?:[\w-]+\s+){0,3}(?:video|clip|reel|animation|sting|teaser|trailer|montage))\b", re.I)
+_MOTION_NOT_RE = re.compile(
+    r"\b(?:player|upload\w*|endpoint|component|api|thumbnail|bug|test|crash\w*|error|server|database|function|"
+    r"stream(?:ing)?|transcod\w*|encoder|decoder|pipeline|webhook|bitrate|codec|loading|spinner|skeleton|"
+    r"transition\s+between\s+(?:pages|routes|screens))\b", re.I)
 _SITE_DEPS = {"next", "react", "react-dom", "vue", "nuxt", "svelte", "@sveltejs/kit", "astro", "vite", "gatsby",
               "@remix-run/react", "solid-js", "@11ty/eleventy", "preact", "angular", "@angular/core"}
 _SITE_HTML = ("index.html", "public/index.html", "src/index.html", "site/index.html", "docs/index.html")
@@ -192,6 +205,19 @@ def website_flag(text: str, route: str, root: Path | None) -> bool:
     return bool(_SITE_UI_RE.search(text)) and site_project(root)
 
 
+def motion_flag(text: str, route: str) -> bool:
+    """A standalone animated clip or video; animation inside a site or app stays with that work."""
+    if route in SECURITY_ROUTES or not _MOTION_RE.search(text):
+        return False
+    return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text) or _SITE_UI_RE.search(text))
+
+
+def workflow_for(text: str, route: str, root: Path | None) -> str:
+    if website_flag(text, route, root):
+        return "website"
+    return "motion" if motion_flag(text, route) else "default"
+
+
 def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_on: bool = True) -> dict:
     """Route one task. Pure function apart from reading modules.json and package.json."""
     raw = task or ""
@@ -301,7 +327,7 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
         "lessons": lessons,
         "dropped_directives": dropped,
         "do": by[route].get("do", ""),
-        "workflow": "website" if website_flag(text, route, root) else "default",
+        "workflow": workflow_for(text, route, root),
     }
 
 
@@ -309,8 +335,8 @@ def format_text(d: dict) -> str:
     head = f"mode: {d['mode']}  route: {d['route']}"
     if d["addons"]:
         head += "  +: " + ", ".join(d["addons"])
-    if d.get("workflow") == "website":
-        head += "  workflow: website"
+    if d.get("workflow") in ("website", "motion"):
+        head += f"  workflow: {d['workflow']}"
     lines = [head]
     if d["read"]:
         lines.append(f"read: {', '.join(d['read'])} ({_fmt_tokens(d['tokens'])})")

@@ -1,7 +1,8 @@
-"""Pick the workflow for a plain-chat message: "website", "work" or "chat" (offline, deterministic).
+"""Pick the workflow for a plain-chat message: "website", "motion", "work" or "chat" (offline, deterministic).
 
 Used by the `ult-pick` UserPromptSubmit hook so Ultimatum starts without a slash command:
 - website: a website named outright, or interface words inside a website project;
+- motion: a standalone animated clip or video (an animation inside a site stays website);
 - work: a request to change, fix, test, review, debug or ship code in this project;
 - chat: everything else (general questions, writing help, small talk), which gets nothing.
 Questions about how code works stay in chat; Claude answers them without a workflow.
@@ -71,6 +72,7 @@ _FAILURE_RE = re.compile(
     r"returns\s+(?:the\s+)?wrong|off\s+by\s+one|stuck)\b", re.I)
 
 
+_MAKE_RE = re.compile(r"\b(?:(?:can|could|would|will)\s+you|please|for\s+me|for\s+us|help\s+me\s+(?:make|create|render|animate|produce|cut|edit))\b", re.I)
 _IDENT_RE = re.compile(r"\b[a-z]+[A-Z][A-Za-z0-9]*\b|\bre-?render")  # useEffect, getUserById
 
 
@@ -79,13 +81,18 @@ def _strong(text: str) -> bool:
 
 
 def pick(text: str, root: Path | None = None) -> str:
-    """Return "website", "work" or "chat" for one plain-chat message."""
+    """Return "website", "motion", "work" or "chat" for one plain-chat message."""
     text = (text or "").strip()
     if not text or text.startswith("/"):
         return "chat"
     d = decide(text[:2000], root=root, use_deps=False, lessons_on=False)
     if d.get("workflow") == "website":
         return "website"
+    if d.get("workflow") == "motion":
+        # "What is motion graphics?" is a question; "Can you make a logo reveal?" is a job.
+        if not _QUESTION_RE.search(text) or _MAKE_RE.search(text):
+            return "motion"
+        return "chat"
     if d["route"] == "handoff" and not d["default"]:
         return "work"
     strong = _strong(text)
