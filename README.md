@@ -6,7 +6,7 @@ A free, open-source developer skill for Claude Code. You install it once and use
 /ultimatum:work <task>
 ```
 
-It covers the work developers actually do: understanding a new codebase, small fixes, features, hard bugs, CI and PR feedback, UI work verified in a real browser, data and infrastructure changes, bounded optimization, releases, handoffs, and three security workflows (secure implementation, security review of a change, full audit and remediation). See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) for what ships.
+It covers the work developers actually do: understanding a new codebase, small fixes, features, hard bugs, CI and PR feedback, UI design, motion and components verified in a real browser, data and infrastructure changes, bounded optimization, releases, Office documents, MCP servers and skills, handoffs, and three security workflows (secure implementation, security review of a change, full audit and remediation). A local router picks the mode and loads only the guidance each task needs, and Ultimatum learns from your sessions on your own machine. See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) for what ships.
 
 ## Try it locally
 
@@ -43,7 +43,7 @@ Remove it with `claude plugin uninstall ultimatum@ultimatum`, then `claude plugi
 
 ### Turn on auto-update (do this once per computer)
 
-Claude Code keeps auto-update off for marketplaces added from GitHub, and a repository cannot turn it on for you. Add `"autoUpdate": true` to the marketplace's entry in your user settings, `~/.claude/settings.json` (on Windows, `%USERPROFILE%\.claude\settings.json`):
+Claude Code keeps auto-update off for marketplaces added from GitHub, and a repository cannot turn it on for you. The easiest way: run `/ultimatum:setup` once; it backs up your settings and makes the change below. Or add `"autoUpdate": true` to the marketplace's entry in your user settings, `~/.claude/settings.json` (on Windows, `%USERPROFILE%\.claude\settings.json`):
 
 ```json
 {
@@ -59,7 +59,7 @@ Claude Code keeps auto-update off for marketplaces added from GitHub, and a repo
 
 Merge this with what the file already has. Claude Code then updates the marketplace and the plugin when it starts, so restart it to pick up a new release. Claude Code reads this setting only from user settings, not from project settings. An update installs only when the version in `plugins/ultimatum/.claude-plugin/plugin.json` changes, and only from the default branch (`main`).
 
-Cloud sessions need no setting if their environment's setup script installs Ultimatum: each new session starts in a fresh container and fetches the latest release.
+Cloud sessions: install from claude.ai/customize/plugins; each new session downloads the current version. In a session that is already running, `/reload-plugins` picks up an update. Fallback anywhere: `claude plugin update ultimatum@ultimatum`.
 
 ## Repository layout
 
@@ -88,14 +88,19 @@ claude plugin validate plugins/ultimatum --strict
 ```
 
 ```bash
-python3 evals/live/run_live.py --cases 1-one-file --budget 1
+python3 plugins/ultimatum/scripts/ult route --eval plugins/ultimatum/tests/data/routing_holdout.jsonl
 ```
 
-Live evals run real Claude sessions and cost money. Each run's cost is printed and recorded.
+```bash
+python3 evals/live/run_live.py --arms vanilla,v041,v2 --max-total-usd 15 --dry-run
+```
+
+Live evals run real Claude sessions and cost money (drop `--dry-run`). Each run's cost is printed and recorded, and the run stops before `--max-total-usd` is exceeded.
 
 ## Documents
 
 - [`CHANGELOG.md`](CHANGELOG.md): release notes
+- [`research/ultimatum-2/OFFLINE-EVALS.md`](research/ultimatum-2/OFFLINE-EVALS.md): 2.0 offline measurements
 - [`docs/TEST-REPORT.md`](docs/TEST-REPORT.md): what was tested live, results, and open gaps
 - [`docs/COVERAGE-MAP.md`](docs/COVERAGE-MAP.md): every upstream capability and where Ultimatum covers it, or why it doesn't
 - [`docs/CREDITS.md`](docs/CREDITS.md): upstream projects, revisions, and licenses

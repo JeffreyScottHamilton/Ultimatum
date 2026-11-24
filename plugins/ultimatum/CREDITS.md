@@ -43,3 +43,19 @@ Thank you to the authors and maintainers of these projects.
 | [shadcn/ui skills docs](https://ui.shadcn.com/docs/skills) | docs page | MIT | See shadcn-ui/ui |
 
 The full revision table and the license decisions are in `research/REVISIONS.md`. Capability-by-capability coverage is in `docs/COVERAGE-MAP.md`.
+
+## Added for 2.0 (reviewed 2026-11-24; full list: `ult upstreams`)
+
+| Project | Revision inspected | License | Use |
+|---|---|---|---|
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `a4fc248` | MIT (ui-styling folder is Apache-2.0) | Recommended as an optional install by `ult components`; not bundled |
+| [remotion-dev/skills](https://github.com/remotion-dev/skills) | `89c8afa` | none | Reviewed and skipped (no licence); nothing used |
+| [JaimeJunr/claude-code-frontend-skills](https://github.com/JaimeJunr/claude-code-frontend-skills) | `7177def` | MIT (bundled plugins are Apache-2.0 or MIT) | Ideas for the 2.0 design and component modules |
+| [magicuidesign/magicui](https://github.com/magicuidesign/magicui) | `d13c610` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [ibelick/motion-primitives](https://github.com/ibelick/motion-primitives) | `120f64f` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [motiondivision/motion](https://github.com/motiondivision/motion) | `1fa0e14` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [juliangarnier/anime](https://github.com/juliangarnier/anime) | `01b81be` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [motion-canvas/motion-canvas](https://github.com/motion-canvas/motion-canvas) | `7b91435` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [midrender/revideo](https://github.com/midrender/revideo) | `b5de67a` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [Temzasse/react-modal-sheet](https://github.com/Temzasse/react-modal-sheet) | `8cee295` | MIT | Recommended as an optional install by `ult components`; not bundled |
+| [radix-ui/primitives](https://github.com/radix-ui/primitives) | `eb3a2b7` | MIT | Recommended as an optional install by `ult components`; not bundled |

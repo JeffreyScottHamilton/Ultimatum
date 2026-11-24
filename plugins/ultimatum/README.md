@@ -6,27 +6,18 @@ One skill for the software work a developer actually does in Claude Code. Instal
 /ultimatum:work <task>
 ```
 
-Ultimatum reads the task and picks a workflow:
+A local router (`ult route`, no model call) reads the task and picks:
 
-- a small fix
-- codebase discovery
-- an unclear or large feature
-- a hard bug or failing test
-- CI or PR feedback
-- UI work verified in a real browser
-- data or infrastructure changes
-- a bounded optimization loop
-- release readiness
-- security review of a change
-- a full security audit or remediation
-- a session handoff or resume
-- an efficiency review of Claude's own recent usage
+- **a mode:** FAST (clear, local edits: no references, no subagents), STANDARD, DEEP (large work and audits: acceptance checks, parallel workers, one review) or RECOVERY (resume after a break or compaction). Start a task with `fast:` or `deep:` to force one.
+- **one workflow:** small fix, discovery, feature, large change, bug, CI/PR, UI, data/infra, optimization, release, security review, audit or fix, handoff, efficiency review, skill evaluation, Office documents, MCP server, or skill authoring.
+- **up to two add-ons:** React, UI design, motion, components, production debugging, context efficiency, integrations.
+- **the security overlay** whenever a change touches auth, permissions, tenants, money, personal data, external input, secrets or deploy settings.
 
-It then loads only the guidance that workflow needs. A short security pass runs automatically whenever a change touches auth, permissions, tenant boundaries, money, data exposure, external input, secrets, or deploy settings.
+It prints only the reference files that combination needs and their size, so Claude reads those and nothing else.
 
 ## What you get
 
-- **A compact router** (`skills/work/SKILL.md`) that loads focused references on demand (`skills/work/references/`).
+- **A small entry skill** (`skills/work/SKILL.md`, about 1k tokens) plus the router and its registry (`skills/work/modules.json`), which load focused references on demand (`skills/work/references/`).
 - **A local toolbelt** (`scripts/ult`), written in the Python standard library with no network access:
   - `ult run -- <cmd>`: runs a noisy command and prints its exit code and the exact failure lines. The full raw log is kept and can be retrieved with `ult log <id>`.
   - `ult search | symbols | refs`: scoped, capped code search.
@@ -37,8 +28,12 @@ It then loads only the guidance that workflow needs. A short security pass runs 
   - `ult findings`: validates and renders security findings and a coverage ledger.
   - `ult doctor`: shows which optional integrations are present.
   - `ult retro`: lesson candidates from the current chat, run automatically at the end of a long task.
+  - `ult route`: the router above. `ult route --list` shows every module; `--eval FILE` scores it.
+  - `ult components "<need>"`: suggests permissively licensed UI and animation libraries offline, with alternatives for restricted ones. `ult upstreams` lists the reviewed sources.
+  - `ult learn`, `ult budget`, `ult sync`, `ult update`: local lessons and proposals, this chat's token use, copying lessons between machines, and update setup (see below).
   - `ult usage report` and `ult improve`: the efficiency coach. It reviews your local Claude Code transcripts, finds avoidable token use, and tracks whether each change actually helped.
 - **A browser check** (`scripts/ult-browser.mjs`): uses Playwright for viewports, real interactions, console errors, and accessibility checks. It runs axe-core if installed and built-in checks otherwise.
+- **Management commands** that cost nothing until you type them: `/ultimatum:status`, `setup`, `sync`, `learn`, `skills`, `budget`, `eval`, `doctor`, `rollback`, `migrate`.
 - **Five subagents**:
   - `ultimatum:scout`: fast, read-only searching.
   - `ultimatum:worker`: one owned slice of large work, run in parallel with other slices. Small and medium changes are made directly in the main chat, which is cheaper than starting a new agent.
@@ -48,7 +43,7 @@ It then loads only the guidance that workflow needs. A short security pass runs 
 
 ## Defaults that respect your project
 
-- No telemetry, MCP servers, proxies, or hosted model routing are installed. One local hook ships (`hooks/hooks.json`): after a compaction it prints the saved handoff back into the chat. It runs `ult handoff show`, reads only `.ultimatum/handoff.md`, and makes no network calls. The other hook, the chat-size guard below, does nothing unless you turn it on.
+- No telemetry, MCP servers, proxies, or hosted model routing are installed. Local hooks ship in `hooks/hooks.json`. After a compaction one prints the saved handoff back into the chat (`ult handoff show`). At the end of each turn one records counts and categories (never prompts, code, paths or secrets) to `.ultimatum/observations.jsonl`; it prints nothing, so it adds no tokens, and `ULTIMATUM_OBSERVE=0` turns it off. The chat-size guard below does nothing unless you turn it on. None of them makes network calls.
 - State is kept in `.ultimatum/` in your project. The directory ignores itself in git. Raw logs are mode 0600, and anything printed or written to summaries is secret-redacted.
 - Optional tools such as Semgrep, Gitleaks, OSV-Scanner, Playwright, axe-core, Context7, Serena, the Sentry MCP, and Chrome DevTools MCP are used only when present, and Ultimatum names them before use. The core works without any of them.
 - Security audits are read-only by default. Active testing only targets local fixtures or environments you explicitly authorize.
@@ -67,16 +62,25 @@ Claude Code compacts automatically; you only set where. On a 1M-token model the 
 - **One run:** `claude --autocompact 200000`.
 - **Cloud sessions (claude.ai/code):** add the environment variable `CLAUDE_CODE_AUTO_COMPACT_WINDOW=200000` in the environment's settings, or commit the project `.claude/settings.json` above.
 
-Measured token use, so far: in the live A/B run (`evals/live/results/final`, 10 test tasks, one run each, made with a version before 0.3.0), Ultimatum cost 1.2× to 4.3× more per task than plain Claude Code and passed 9 of 10 tasks against 5 of 10. Cost per passed task was about the same. Version 0.4.0 cuts the overhead: a smaller always-loaded skill file, no subagent for ordinary edits, terse replies, and the self-check only after long tasks. It has not been re-measured yet. Track your own use with the efficiency coach (`ult usage report`).
+Measured token use, so far: in the live A/B run (`evals/live/results/final`, 10 test tasks, one run each, made with a version before 0.3.0), Ultimatum cost 1.2× to 4.3× more per task than plain Claude Code and passed 9 of 10 tasks against 5 of 10. 2.0 has not been measured live yet. What has been measured offline is in `research/ultimatum-2/OFFLINE-EVALS.md`. Track your own use with `ult budget` and `ult usage report`.
 
-## It learns
+## It learns, locally
 
-You don't have to correct it or ask for a review:
+- **Every turn** the observe hook above counts what went wrong (repeated failing commands, re-read files, oversized outputs, corrections). Nothing is sent anywhere.
+- **After a long task** (or when you correct it) Claude records one lesson with `ult learn add`. Project lessons stay in `.ultimatum/` (git-ignored, never committed for you); lessons about how Claude works go to `~/.ultimatum/`. The router shows up to three relevant lessons with each task.
+- **To improve Ultimatum itself**, run `/ultimatum:learn propose`. It writes a proposal from a fixed allow-list (plugin version, module, category, counts and one stock sentence), with no paths, code, your text, repository names, URLs or secrets. `/ultimatum:learn submit <id>` shows you the exact text and opens a pull request only after you say yes. A merged change ships as a new version.
+- **Cloud sessions** start on a fresh machine. `/ultimatum:sync` copies your lessons to and from a private repository of your own, and asks before every push.
 
-- **After a long task** (or when you correct it) it checks its own chat with `ult retro` (repeated failing commands, re-read files, oversized outputs, fix rounds). A project lesson becomes a one-line rule in that project's `CLAUDE.md` under `## Learned`, which Claude Code loads in every later session. A lesson about Ultimatum itself is flagged in the report as `Skill lesson: ...`.
-- **Once a day**, if you set up the scheduled run described in `skills/work/references/self-improvement.md` §2, a cloud session reads your recent chats, picks at most one improvement to the plugin, tests it, and opens a pull request on this repository. Merging is your approval.
+## Updates
 
-For measured token savings, ask for an "efficiency review" (`ult usage report`, `ult improve`).
+Auto-update is off by default for third-party marketplaces like this one. Turn it on once:
+
+- **Local CLI:** run `/ultimatum:setup`. It backs up `~/.claude/settings.json` and sets `autoUpdate` for the `ultimatum` marketplace. Or toggle it in `/plugin` > Marketplaces.
+- **Cloud (claude.ai/code):** install and update from claude.ai/customize/plugins; sessions download the current version when they start.
+- **A session that is already running:** `/reload-plugins` after an update lands, or restart.
+- **Fallback:** `claude plugin update ultimatum@ultimatum`.
+
+`/ultimatum:status` shows the running and available versions. `/ultimatum:rollback` explains how to go back to a cached earlier version (kept for 14 days). `/ultimatum:migrate` upgrades 0.4.x state; it changes nothing that already works.
 
 ## Optional: block prompts in chats that got too expensive
 
@@ -119,7 +123,7 @@ testing, shipping, or explaining code), invoke the `ultimatum:work` skill first 
 Skip it only for questions unrelated to a codebase.
 ```
 
-This applies Ultimatum, and its extra cost (1.2× to 4.3× per task in the last live A/B run, before 0.4.0), to every coding task. Leave it out if you'd rather call `/ultimatum:work` only when you want it.
+This applies Ultimatum, and its extra cost (1.2× to 4.3× per task in the last live A/B run, before 0.4.0; 2.0 not yet measured live), to every coding task. Leave it out if you'd rather call `/ultimatum:work` only when you want it.
 
 Requirements: Claude Code with plugin support and Python 3.9+ (unit tests pass on 3.9, 3.11, 3.12 and 3.13). Browser checks need Node and Playwright.
 

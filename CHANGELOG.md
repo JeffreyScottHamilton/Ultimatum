@@ -2,6 +2,28 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [2.0.0] - 2026-11-24
+
+### Added
+- `ult route "<task>"`: a local, deterministic router (no model call). It picks a mode (FAST, STANDARD, DEEP, RECOVERY), one route, up to two add-ons and the security overlay, and lists only the reference files to read with their token cost. Routes and add-ons live in `skills/work/modules.json`. `--eval FILE` scores it against labelled tasks.
+- New guidance modules: UI design (`design/design.md`), motion (`design/motion.md`), component selection (`design/components.md`), Office documents (hands off to Anthropic's document skills when installed), MCP server building and skill authoring.
+- `ult components "<need>"`: offline lookup of permissively licensed component and animation libraries. Restricted or unlicensed ones are hidden unless `--all`, and then flagged, with MIT alternatives listed.
+- `ult upstreams`: the reviewed upstream projects with pinned revisions, licences and decisions.
+- `ult learn`: local lessons (`add`, `list`, `prune`), automatic observation at the end of each turn (counts and categories only; `ULTIMATUM_OBSERVE=0` turns it off), and `propose`, which writes redacted improvement proposals from a fixed allow-list. Nothing leaves the machine unless you approve `/ultimatum:learn submit`.
+- `ult budget`, `ult sync export|import` (copy lessons to a folder such as a clone of your own private repo), and `ult update status|setup|migrate`.
+- Management skills that cost nothing at startup (`disable-model-invocation`): `/ultimatum:status`, `setup`, `sync`, `learn`, `skills`, `budget`, `eval`, `doctor`, `rollback`, `migrate`.
+- `/ultimatum:setup` turns on marketplace auto-update once (with a backup of `~/.claude/settings.json`), and explains the cloud and running-session steps.
+- CI fails a pull request that changes the plugin without bumping the version and adding a changelog entry.
+- Static size tests for the always-loaded skill body, descriptions, management skills and references.
+- Live A/B runner arms for plain Claude Code, 0.4.1 and 2.0, with a total spend cap (`--max-total-usd`).
+
+### Changed
+- `SKILL.md` file is down from 7.6 KB (0.4.1) to 4.5 KB: the routing table moved into the router, so it is no longer re-read on every turn.
+- The reviewer agent is described as a once-per-DEEP-task step.
+
+### Compatibility
+- Every 0.4.x command, hook, agent and reference path still works. `ult update migrate` is a no-op on existing `.ultimatum/` state apart from creating `knowledge.md` and `proposals/`.
+
 ## [0.4.1] - 2026-11-23
 
 ### Changed
