@@ -7,6 +7,7 @@ from pathlib import Path
 
 P = Path(__file__).resolve().parents[1]
 SKILLS = P / "skills"
+WORKFLOWS = {"work", "website"}  # model-invocable entry points; everything else is opt-in
 
 
 def _front(text: str) -> str:
@@ -21,15 +22,21 @@ class SizeBudgets(unittest.TestCase):
         self.assertLessEqual(len(body.encode()), 4096, "L0 body must stay <= 4 KB (~1k tokens)")
         self.assertLessEqual(len(text.encode()), 20 * 1024)
 
-    def test_work_description_within_listing_cap(self):
-        front = _front((SKILLS / "work" / "SKILL.md").read_text(encoding="utf-8"))
-        m = re.search(r'^description:\s*"?(.*?)"?$', front, re.M)
-        self.assertIsNotNone(m)
-        self.assertLessEqual(len(m.group(1)), 600)
+    def test_website_skill_body_is_small(self):
+        text = (SKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertLessEqual(len(text.split("\n---\n", 1)[1].encode()), 4096)
+
+    def test_workflow_descriptions_within_listing_cap(self):
+        for name in sorted(WORKFLOWS):
+            front = _front((SKILLS / name / "SKILL.md").read_text(encoding="utf-8"))
+            m = re.search(r'^description:\s*"?(.*?)"?$', front, re.M)
+            with self.subTest(skill=name):
+                self.assertIsNotNone(m)
+                self.assertLessEqual(len(m.group(1)), 600)
 
     def test_management_skills_cost_nothing_at_startup(self):
         for d in sorted(SKILLS.iterdir()):
-            if d.name == "work" or not (d / "SKILL.md").exists():
+            if d.name in WORKFLOWS or not (d / "SKILL.md").exists():
                 continue
             text = (d / "SKILL.md").read_text(encoding="utf-8")
             with self.subTest(skill=d.name):
@@ -45,7 +52,7 @@ class SizeBudgets(unittest.TestCase):
                 self.assertLessEqual(len(m.group(1)), 400)
 
     def test_every_reference_is_bounded(self):
-        for f in (SKILLS / "work" / "references").rglob("*.md"):
+        for f in [*(SKILLS / "work" / "references").rglob("*.md"), *(SKILLS / "coding" / "guides").glob("*.md")]:
             with self.subTest(ref=str(f.relative_to(P))):
                 self.assertLessEqual(f.stat().st_size, 16 * 1024)
 

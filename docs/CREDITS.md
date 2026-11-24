@@ -59,3 +59,16 @@ The full revision table and the license decisions are in `research/REVISIONS.md`
 | [midrender/revideo](https://github.com/midrender/revideo) | `b5de67a` | MIT | Recommended as an optional install by `ult components`; not bundled |
 | [Temzasse/react-modal-sheet](https://github.com/Temzasse/react-modal-sheet) | `8cee295` | MIT | Recommended as an optional install by `ult components`; not bundled |
 | [radix-ui/primitives](https://github.com/radix-ui/primitives) | `eb3a2b7` | MIT | Recommended as an optional install by `ult components`; not bundled |
+
+## Where the 2.0 workflows draw ideas from
+
+All wording in the skills and guides is original. This table only shows which listed project inspired which part; licences are as recorded above.
+
+| Part | Inspired by |
+|---|---|
+| Shared defaults (`shared/defaults.md`) | Caveman (plain answers), Ponytail (reuse, simplest approach), Karpathy guidelines (plan to fit, check results) |
+| DEEP mode | Superpowers, Matt Pocock's skills, Ponytail |
+| Design skill | Taste, UI/UX Pro Max, Impeccable |
+| Coding website guide | Ponytail, shadcn/ui, Radix |
+| Review browser checks | gstack QA, Playwright, axe-core |
+| Code-map escalation | Graphify |

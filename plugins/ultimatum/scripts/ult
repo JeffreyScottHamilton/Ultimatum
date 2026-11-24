@@ -23,6 +23,8 @@
   ult upstreams             upstream sources, pins, licences and decisions
   ult arch [check|baseline]  architecture checks: cycles, duplication, size, stubs, naming, drift
   ult update status|setup   installed vs available version; auto-update setup
+  ult website "<task>"      Website workflow plan: size, team, designer, roles, files to load
+  ult style status|apply|remove  opt-in shared answer style in ~/.claude/CLAUDE.md
 """
 import argparse
 import os
@@ -34,7 +36,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from ultlib import context, doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
 MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
-for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit"):
+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "style"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
     except ImportError:

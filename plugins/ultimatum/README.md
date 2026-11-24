@@ -3,12 +3,15 @@
 One skill for the software work a developer actually does in Claude Code. Install it once, then run one command:
 
 ```
-/ultimatum:work <task>
+/ultimatum:work <task>        # default: chat and coding
+/ultimatum:website <task>     # websites and landing pages
 ```
+
+`/ultimatum:website` runs a short team flow: the Manager writes one brief, an optional Designer (only for a new look), a Builder (mobile, desktop, keyboard), a Reviewer on the real page, then the Manager fixes, rechecks and reports. Small jobs stay solo. A clear website request sent to `/ultimatum:work` switches to it, unless you typed `/ultimatum:work` on purpose.
 
 A local router (`ult route`, no model call) reads the task and picks:
 
-- **a mode:** FAST (clear, local edits: no references, no subagents), STANDARD, DEEP (large work and audits: acceptance checks, parallel workers, one review) or RECOVERY (resume after a break or compaction). Start a task with `fast:` or `deep:` to force one.
+- **a mode:** FAST (clear, local edits: no references, no subagents), STANDARD, DEEP (large work: acceptance checks, a code map, optional helpers, one review), SECURITY (security review, audit or fix with the OWASP-informed guides) or RECOVERY (resume after a break or compaction). Start a task with `fast:` or `deep:` to force one.
 - **one workflow:** small fix, discovery, feature, large change, bug, CI/PR, UI, data/infra, optimization, release, security review, audit or fix, handoff, efficiency review, skill evaluation, MCP server, or skill authoring.
 - **up to two add-ons:** React, UI design, motion, components, production debugging, context efficiency, integrations.
 - **the security overlay** whenever a change touches auth, permissions, tenants, money, personal data, external input, secrets or deploy settings.
@@ -29,15 +32,17 @@ It prints only the reference files that combination needs and their size, so Cla
   - `ult findings`: validates and renders security findings and a coverage ledger.
   - `ult doctor`: shows which optional integrations are present.
   - `ult retro`: lesson candidates from the current chat, run automatically at the end of a long task.
+  - `ult website "<task>"`: the website plan (Designer yes or no, solo or helpers, files to read). `ult style status|apply|remove`: the opt-in chat style.
   - `ult route`: the router above. `ult route --list` shows every module; `--eval FILE` scores it.
   - `ult components "<need>"`: suggests permissively licensed UI and animation libraries offline, with alternatives for restricted ones. `ult upstreams` lists the reviewed sources.
   - `ult learn`, `ult budget`, `ult sync`, `ult update`: local lessons and proposals, this chat's token use, copying lessons between machines, and update setup (see below).
   - `ult usage report` and `ult improve`: the efficiency coach. It reviews your local Claude Code transcripts, finds avoidable token use, and tracks whether each change actually helped.
 - **A browser check** (`scripts/ult-browser.mjs`): uses Playwright for viewports, real interactions, console errors, and accessibility checks. It runs axe-core if installed and built-in checks otherwise.
+- **Shared skills** read only when needed: `design`, `coding` (plus short guides such as `guides/website.md`), `review` and `release`. All workflows follow one set of shared defaults (`shared/defaults.md`). `/ultimatum:style` can copy those defaults into your own `CLAUDE.md` for normal chats; `ult style remove` undoes it exactly.
 - **Management commands** that cost nothing until you type them: `/ultimatum:status`, `setup`, `sync`, `learn`, `skills`, `budget`, `eval`, `doctor`, `rollback`, `migrate`.
 - **Five subagents**:
   - `ultimatum:scout`: fast, read-only searching.
-  - `ultimatum:worker`: one owned slice of large work, run in parallel with other slices. Small and medium changes are made directly in the main chat, which is cheaper than starting a new agent.
+  - `ultimatum:worker` (Haiku by default): one owned slice of large work, run in parallel with other slices. Small and medium changes are made directly in the main chat, which is cheaper than starting a new agent.
   - `ultimatum:reviewer`: a fresh review of the integrated diff.
   - `ultimatum:security-hunter`: hunts in one assigned area during an audit.
   - `ultimatum:security-verifier`: independently challenges serious findings.

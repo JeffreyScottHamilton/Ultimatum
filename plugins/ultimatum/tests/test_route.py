@@ -21,7 +21,7 @@ DEV = PLUGIN / "tests" / "data" / "routing_dev.jsonl"
 NEW_REFS = {"design/design.md", "design/motion.md", "design/components.md",
             "mcp-build.md", "skill-author.md"}
 JSON_KEYS = {"mode", "route", "addons", "read", "tokens", "overlay", "touches", "alt",
-             "low_confidence", "default", "lessons", "dropped_directives", "do"}
+             "low_confidence", "default", "lessons", "dropped_directives", "do", "workflow"}
 ROUTES = {"small", "discover", "feature", "large", "bug", "ci-pr", "ui", "data-infra", "optimize",
           "release", "sec-review", "sec-audit", "sec-fix", "handoff", "improve", "skill-eval",
           "mcp-build", "skill-author"}
@@ -70,7 +70,7 @@ class RouteFormat(UltCase):
         self.assertIn("overlay: security", r.out)
         self.assertIn("===== security/secure-implementation.md =====", r.out)
         r = self.ult("route", "--cat", "Fix the typo in the README heading")
-        self.assertNotIn("=====", r.out)
+        self.assertEqual(re.findall(r"^===== (.+) =====$", r.out, re.M), ["shared/defaults.md"])
 
     def test_no_read_line_for_small(self):
         r = self.ult("route", "Fix the typo in the README heading")
@@ -89,7 +89,7 @@ class RouteJsonSchema(UltCase):
         self.assertIsInstance(d["tokens"], int)
         self.assertIsInstance(d["overlay"], bool)
         self.assertIsInstance(d["touches"], list)
-        self.assertIn(d["mode"], {"FAST", "STANDARD", "DEEP", "RECOVERY"})
+        self.assertIn(d["mode"], {"FAST", "STANDARD", "DEEP", "SECURITY", "RECOVERY"})
         self.assertIn(d["route"], ROUTES)
         self.assertEqual(d["route"], "discover")
 
@@ -110,7 +110,12 @@ class RouteModes(UltCase):
         self.assertEqual(json.loads(r.out)["mode"], "FAST")
 
     def test_deep_word_selects_deep(self):
-        self.assertEqual(decide("Audit the upload endpoints for missing checks")["mode"], "DEEP")
+        self.assertEqual(decide("Do a thorough rework of the billing module")["mode"], "DEEP")
+
+    def test_security_routes_select_security_mode(self):
+        self.assertEqual(decide("Audit the upload endpoints for missing checks")["mode"], "SECURITY")
+        self.assertEqual(decide("Review this PR for security issues")["mode"], "SECURITY")
+        self.assertEqual(decide("deep: audit the upload endpoints")["mode"], "DEEP")
 
     def test_resume_phrase_is_recovery(self):
         d = decide("resume the parser work from the last session")

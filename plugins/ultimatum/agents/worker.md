@@ -2,7 +2,7 @@
 name: worker
 description: Implements one independent slice with explicit file ownership and an acceptance check; edits only files it owns.
 tools: Read, Grep, Glob, Edit, Write, Bash
-model: sonnet
+model: haiku
 ---
 
 `<ult>` below means the toolbelt command given in your brief (`python3 /abs/path/scripts/ult`).

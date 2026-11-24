@@ -48,15 +48,15 @@
 {"task": "post-deploy checks for the 2.8 release: migrations applied, smoke tests, error rate", "route": "release", "addons": ["production"], "overlay": false, "mode": "DEEP"}
 {"task": "update the docs for the new flags before we cut the release", "route": "release", "addons": [], "overlay": false, "mode": "DEEP"}
 {"task": "release readiness for the mobile app, check store notes and the version bump", "route": "release", "addons": [], "overlay": false, "mode": "DEEP"}
-{"task": "security review the diff on the export-csv branch before I merge", "route": "sec-review", "addons": [], "overlay": false, "mode": "STANDARD"}
-{"task": "review the diff on feat/markdown-preview for security problems before merge", "route": "sec-review", "addons": [], "overlay": false, "mode": "STANDARD"}
-{"task": "check PR 630 for security problems, it touches our file parser", "route": "sec-review", "addons": [], "overlay": false, "mode": "STANDARD"}
-{"task": "audit the repo for vulnerabilities, thorough pass", "route": "sec-audit", "addons": [], "overlay": false, "mode": "DEEP"}
-{"task": "find vulnerabilities in the api service, full audit", "route": "sec-audit", "addons": [], "overlay": false, "mode": "DEEP"}
-{"task": "deep security audit of the backend before our pen test", "route": "sec-audit", "addons": [], "overlay": false, "mode": "DEEP"}
-{"task": "fix the SQL injection in reports/filter.py, the status param goes straight into the query", "route": "sec-fix", "addons": [], "overlay": true, "mode": "STANDARD"}
-{"task": "remediate the SSRF in the webhook test endpoint, it fetches any URL the user sends", "route": "sec-fix", "addons": [], "overlay": true, "mode": "STANDARD"}
-{"task": "patch the open redirect in the login callback", "route": "sec-fix", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "security review the diff on the export-csv branch before I merge", "route": "sec-review", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "review the diff on feat/markdown-preview for security problems before merge", "route": "sec-review", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "check PR 630 for security problems, it touches our file parser", "route": "sec-review", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "audit the repo for vulnerabilities, thorough pass", "route": "sec-audit", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "find vulnerabilities in the api service, full audit", "route": "sec-audit", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "deep security audit of the backend before our pen test", "route": "sec-audit", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "fix the SQL injection in reports/filter.py, the status param goes straight into the query", "route": "sec-fix", "addons": [], "overlay": true, "mode": "SECURITY"}
+{"task": "remediate the SSRF in the webhook test endpoint, it fetches any URL the user sends", "route": "sec-fix", "addons": [], "overlay": true, "mode": "SECURITY"}
+{"task": "patch the open redirect in the login callback", "route": "sec-fix", "addons": [], "overlay": true, "mode": "SECURITY"}
 {"task": "save progress, I have to stop for today, write the handoff", "route": "handoff", "addons": [], "overlay": false, "mode": "STANDARD"}
 {"task": "resume where we left off on the tooltip alignment fix", "route": "handoff", "addons": [], "overlay": false, "mode": "RECOVERY"}
 {"task": "continue the migration work from yesterday", "route": "handoff", "addons": [], "overlay": false, "mode": "RECOVERY"}

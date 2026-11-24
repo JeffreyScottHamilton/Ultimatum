@@ -31,10 +31,12 @@ SECURITY_ROUTES = {"sec-review", "sec-audit", "sec-fix"}
 MAX_ADDONS = 2
 THRESHOLD = 2
 EVAL_ROUTE_MIN = 0.95
-MODE_CHOICES = ("FAST", "STANDARD", "DEEP", "RECOVERY")
+MODE_CHOICES = ("FAST", "STANDARD", "DEEP", "SECURITY", "RECOVERY")
+WEBSITE_ROUTES = {"ui", "feature", "small", "large"}
 
 _RECOVERY_RE = re.compile(r"\b(resume|resuming|pick up (?:where|from|the work|again)|picking up (?:where|from)|after compaction|after the compaction|continue)\b", re.I)
 _DEEP_RE = re.compile(r"\b(audit|thorough|deep)\b", re.I)
+_WEBSITE_RE = re.compile(r"\b(websites?|web ?sites?|web ?pages?|landing ?pages?|home ?pages?|marketing (?:site|page)s?|portfolio (?:site|page)s?|personal site|static site|docs site|microsite)\b", re.I)
 _PREFIX_RE = re.compile(r"^\s*(fast|deep)\s*:\s*", re.I)
 _EDIT_RE = re.compile(r"\b(add|change|rename|remove|fix|update|set|replace|move|delete|bump|make|drop|correct|edit)\b", re.I)
 _FILE_RE = re.compile(r"\b[\w./-]+\.(?:py|ts|tsx|js|jsx|mjs|md|json|css|scss|html|sql|go|rs|java|rb|ya?ml|toml|sh|txt)\b", re.I)
@@ -232,6 +234,8 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
         mode = forced
     elif recovery:
         mode = "RECOVERY"
+    elif route in SECURITY_ROUTES:
+        mode = "SECURITY"
     elif _DEEP_RE.search(text):
         mode = "DEEP"
     else:
@@ -269,6 +273,7 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
         "lessons": lessons,
         "dropped_directives": dropped,
         "do": by[route].get("do", ""),
+        "workflow": "website" if route in WEBSITE_ROUTES and _WEBSITE_RE.search(text) else "default",
     }
 
 
@@ -276,6 +281,8 @@ def format_text(d: dict) -> str:
     head = f"mode: {d['mode']}  route: {d['route']}"
     if d["addons"]:
         head += "  +: " + ", ".join(d["addons"])
+    if d.get("workflow") == "website":
+        head += "  workflow: website"
     lines = [head]
     if d["read"]:
         lines.append(f"read: {', '.join(d['read'])} ({_fmt_tokens(d['tokens'])})")
@@ -371,17 +378,31 @@ def cmd_route(args) -> int:
     return 0
 
 
+def cat_paths(paths: list[Path]) -> str:
+    """Each existing file under a ===== header, with the plugin root filled in."""
+    out = []
+    for p in paths:
+        if p.is_file():
+            body = p.read_text(encoding="utf-8").rstrip().replace("${CLAUDE_PLUGIN_ROOT}", str(PLUGIN))
+            try:
+                label = str(p.relative_to(REFS))
+            except ValueError:
+                label = str(p.relative_to(PLUGIN))
+            out.append(f"===== {label} =====\n{body}")
+    return "\n".join(out)
+
+
 def cat_refs(d: dict) -> str:
-    """The listed references (plus the overlay guide) inline, so routing and reading take one call."""
+    """Shared defaults, then the listed references (plus overlay and code-map guides), in one call."""
     files = list(d["read"])
     if d["overlay"] and "security/secure-implementation.md" not in files:
         files.append("security/secure-implementation.md")
-    out = []
-    for f in files:
-        p = REFS / f
-        if p.is_file():
-            out.append(f"===== {f} =====\n{p.read_text(encoding='utf-8').rstrip()}")
-    return "\n".join(out)
+    if d["mode"] == "DEEP" and "code-map.md" not in files:
+        files.append("code-map.md")
+    paths = [PLUGIN / "shared" / "defaults.md"] + [REFS / f for f in files]
+    if d["route"] == "release":
+        paths.append(PLUGIN / "skills" / "release" / "SKILL.md")
+    return cat_paths(paths)
 
 
 def register(sub):
