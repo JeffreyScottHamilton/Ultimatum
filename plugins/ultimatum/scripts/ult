@@ -12,8 +12,15 @@
   ult findings ...          validate / merge / render security findings
   ult doctor                which optional integrations are present
   ult retro                 lesson candidates from this chat (repeated failures, re-reads, big outputs)
-ult usage report          where Claude's tokens went, avoidable work (local transcripts)
+  ult usage report          where Claude's tokens went, avoidable work (local transcripts)
   ult improve ...           propose / apply / measure / keep or roll back a workflow change
+  ult route "<task>"        mode + modules + files to read for a task (offline, deterministic)
+  ult components "<need>"   offline UI component-library lookup with licences
+  ult learn ...             local lessons: observe / add / list / relevant / propose / prune
+  ult budget                tokens per turn and top costs for this chat
+  ult sync export|import    copy lessons to or from a private folder you choose
+  ult upstreams             upstream sources, pins, licences and decisions
+  ult update status|setup   installed vs available version; auto-update setup
 """
 import argparse
 import os
@@ -25,7 +32,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from ultlib import context, doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
 MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
-for optional in ("scan", "findings"):
+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
     except ImportError:

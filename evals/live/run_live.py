@@ -1,18 +1,32 @@
 #!/usr/bin/env python3
-"""Live A/B evaluation of Ultimatum against plain Claude Code.
+"""Live A/B evaluation of Ultimatum 2.0 against vanilla Claude Code and Ultimatum 0.4.1.
 
 Each case copies a fixture to a fresh git workspace and runs a headless
-`claude -p` session twice under the same settings:
-  arm "ultimatum": prompt prefixed with `/ultimatum:work`, plugin loaded via --plugin-dir
-  arm "baseline" : same prompt text, no plugin
-Both arms use an isolated CLAUDE_CONFIG_DIR (no user skills, plugins, hooks or
-MCP servers), the same model, the same tool allowlist and the same budget cap.
+`claude -p` session per arm:
+  arm "vanilla": same prompt text, no plugin                       (alias: baseline)
+  arm "v041"   : prompt prefixed with `/ultimatum:work`, plugin loaded via
+                 --plugin-dir from a detached git worktree of commit e35cea12,
+                 created under a temp dir and removed afterwards
+  arm "v2"     : same prefix, plugin loaded via --plugin-dir from plugins/ultimatum
+                 (alias: ultimatum)
+All arms use an isolated CLAUDE_CONFIG_DIR (no user skills, plugins, hooks or MCP
+servers), project settings only (--setting-sources project), the same model, the
+same tool allowlist and the same per-run budget. The fixtures contain no project
+CLAUDE.md or .claude/ directory, so the vanilla arm already runs without plugins,
+hooks or CLAUDE.md; --bare is therefore not used, to keep the baseline unchanged.
+
+Spend is capped cumulatively by --max-total-usd (default 15). Each run reserves
+--budget before it starts and settles to its real total_cost_usd when it ends; a run
+whose reservation does not fit in the remaining budget is skipped and recorded in
+skipped.json.
+
 Graders are deterministic Python checks against the fixture's answer key
 (tests, exploit scripts, an independent Playwright probe, diff scope). Correctness
 is recorded first; tokens/cost/turns/subagents are recorded second.
 
-usage: python3 evals/live/run_live.py [--cases a,b] [--arms ultimatum,baseline]
-                                      [--model sonnet] [--budget 3] [--out DIR]
+usage: python3 evals/live/run_live.py [--cases a,b] [--arms vanilla,v041,v2]
+                                      [--model sonnet] [--budget 3] [--max-total-usd 15]
+                                      [--out DIR] [--dry-run]
 """
 from __future__ import annotations
 
@@ -24,6 +38,8 @@ import shutil
 import socket
 import subprocess
 import sys
+import tempfile
+import threading
 import time
 from pathlib import Path
 
@@ -32,6 +48,61 @@ FIX = REPO / "fixtures"
 KEYS = FIX / "_answer-keys"
 PLUGIN = REPO / "plugins" / "ultimatum"
 TOOLS = "Bash Read Edit Write Glob Grep Agent Skill TodoWrite"
+ARMS = ("vanilla", "v041", "v2")
+ARM_ALIASES = {"baseline": "vanilla", "ultimatum": "v2"}
+PLUGIN_ARMS = ("v041", "v2")  # arms that load the plugin and use the /ultimatum:work prefix
+V041_COMMIT = "e35cea12909e8632cdbf2395015cac19258cc209"
+PLUGIN_DIRS = {"v2": PLUGIN}  # filled in by main(); v041 points into its temp worktree
+LEDGER = None  # set by main()
+
+
+def parse_arms(spec: str) -> list[str]:
+    names = []
+    for raw in spec.split(","):
+        a = raw.strip()
+        if not a:
+            continue
+        a = ARM_ALIASES.get(a, a)
+        if a not in ARMS:
+            raise SystemExit(f"unknown arm {raw!r}; choose from {', '.join(ARMS)} (aliases: baseline, ultimatum)")
+        if a not in names:
+            names.append(a)
+    return names
+
+
+class Ledger:
+    """Cumulative spend guard. A run reserves its per-run budget before it starts and
+    settles to its real total_cost_usd when it ends, so concurrent jobs cannot push
+    spend plus outstanding reservations past the cap."""
+
+    def __init__(self, cap: float):
+        self.cap, self.spent, self.reserved = cap, 0.0, 0.0
+        self.lock = threading.Lock()
+        self.skipped: list[dict] = []
+
+    def remaining(self) -> float:
+        return self.cap - self.spent - self.reserved
+
+    def reserve(self, amount: float) -> bool:
+        with self.lock:
+            if self.remaining() < amount:
+                return False
+            self.reserved += amount
+            return True
+
+    def settle(self, amount: float, rec: dict | None):
+        cost = (rec or {}).get("metrics", {}).get("total_cost_usd")
+        if cost is None:  # unknown spend (no result event or crash): assume the full reservation
+            cost = amount
+        with self.lock:
+            self.reserved -= amount
+            self.spent += cost
+
+    def skip(self, cid: str, arm: str, amount: float):
+        with self.lock:
+            reason = f"remaining ${self.remaining():.2f} < per-run budget ${amount:.2f}"
+            self.skipped.append({"case": cid, "arm": arm, "reason": reason})
+        print(f"{cid:18} {arm:9} SKIPPED: {reason}", flush=True)
 
 
 def sh(cmd, cwd, env=None, timeout=300):
@@ -397,6 +468,20 @@ def run_case(cid, arm, args, outdir: Path, scratch: Path):
     if args.regrade:  # re-score an existing workspace + transcript; no new agent run
         lines = (scratch / f"{cid}__{arm}.jsonl").read_text().splitlines()
         return _grade(cid, arm, args, outdir, scratch, ws, grader, lines, None, 0.0)
+    if not LEDGER.reserve(args.budget):
+        LEDGER.skip(cid, arm, args.budget)
+        return None
+    rec = None
+    try:
+        rec = _execute(cid, arm, args, outdir, scratch)
+        return rec
+    finally:
+        LEDGER.settle(args.budget, rec)
+
+
+def _execute(cid, arm, args, outdir: Path, scratch: Path):
+    fixture, prompt, grader = CASES[cid]
+    ws = scratch / f"{cid}__{arm}"
     if ws.exists():
         shutil.rmtree(ws)
     shutil.copytree(FIX / fixture, ws, ignore=shutil.ignore_patterns("__pycache__"))
@@ -405,12 +490,12 @@ def run_case(cid, arm, args, outdir: Path, scratch: Path):
     sh("git init -q && git add -A && git -c user.email=e@x -c user.name=eval commit -qm fixture", ws)
     cfg = scratch / f"cfg-{arm}"
     cfg.mkdir(exist_ok=True)
-    full_prompt = f"/ultimatum:work {prompt}" if arm == "ultimatum" else prompt
+    full_prompt = f"/ultimatum:work {prompt}" if arm in PLUGIN_ARMS else prompt
     argv = ["claude", "-p", full_prompt, "--model", args.model, "--output-format", "stream-json", "--verbose",
             "--strict-mcp-config", "--setting-sources", "project", "--allowedTools", *TOOLS.split(),
             "--max-budget-usd", str(args.budget), "--no-session-persistence"]
-    if arm == "ultimatum":
-        argv += ["--plugin-dir", str(PLUGIN)]
+    if arm in PLUGIN_ARMS:
+        argv += ["--plugin-dir", str(PLUGIN_DIRS[arm])]
     env = {**os.environ, "CLAUDE_CONFIG_DIR": str(cfg), "CLAUDE_CODE_SYNC_SKILLS": "0", "CLAUDE_CODE_SYNC_PLUGINS": "0"}
     env.pop("ULTIMATUM_ROOT", None)
     t0 = time.time()
@@ -421,6 +506,21 @@ def run_case(cid, arm, args, outdir: Path, scratch: Path):
         lines, rc = (e.stdout or b"").decode("utf-8", "replace").splitlines() if isinstance(e.stdout, bytes) else (e.stdout or "").splitlines(), 124
     (scratch / f"{cid}__{arm}.jsonl").write_text("\n".join(lines))
     return _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, round(time.time() - t0, 1))
+
+
+def metrics_of(run: dict, passed: bool) -> dict:
+    """Per-run record used by summarize.py. total_cost_usd is None when the stream had no
+    result event, so the ledger can treat that spend as unknown (full reservation)."""
+    u = run.get("usage") or {}
+    cost = run.get("cost_usd") if run.get("segments") else None
+    m = {"pass": bool(passed), "total_cost_usd": cost,
+         "input_tokens": u.get("input_tokens") or 0, "output_tokens": u.get("output_tokens") or 0,
+         "cache_read_tokens": u.get("cache_read_input_tokens") or 0,
+         "cache_write_tokens": u.get("cache_creation_input_tokens") or 0,
+         "turns": run.get("num_turns") or 0, "subagents": run.get("agent_calls") or 0,
+         "invalid": bool(run.get("invalid"))}
+    m["total_tokens"] = sum(m[k] for k in ("input_tokens", "output_tokens", "cache_read_tokens", "cache_write_tokens"))
+    return m
 
 
 def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
@@ -437,6 +537,7 @@ def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
            "passed": all(checks.values()), "score": round(sum(checks.values()) / max(1, len(checks)), 3),
            **{k: v for k, v in run.items() if k not in ("tool_inputs_text", "transcript_text")},
            "workspace": str(ws), "transcript": str(scratch / f"{cid}__{arm}.jsonl")}
+    rec["metrics"] = metrics_of(run, rec["passed"])
     (outdir / f"{cid}__{arm}.json").write_text(json.dumps(rec, indent=2, ensure_ascii=False))
     u = run.get("usage") or {}
     print(f"{cid:18} {arm:9} pass={rec['passed']!s:5} score={rec['score']:.2f} cost=${run.get('cost_usd') or 0:.3f} "

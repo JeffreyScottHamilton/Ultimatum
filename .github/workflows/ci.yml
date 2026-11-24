@@ -41,3 +41,23 @@ jobs:
         run: claude plugin validate . --strict
       - name: Validate plugin
         run: claude plugin validate plugins/ultimatum --strict
+
+  version-bump:
+    # Installs only update when the manifest version changes, so a plugin change
+    # without a bump would never reach users (auto-update compares versions).
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Plugin changes bump the version and the changelog
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if git diff --quiet "$BASE" HEAD -- plugins/ultimatum; then echo "plugin unchanged"; exit 0; fi
+          old=$(git show "$BASE:plugins/ultimatum/.claude-plugin/plugin.json" | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])')
+          new=$(python3 -c 'import json;print(json.load(open("plugins/ultimatum/.claude-plugin/plugin.json"))["version"])')
+          echo "version $old -> $new"
+          test "$old" != "$new" || { echo "::error::plugins/ultimatum changed but version was not bumped"; exit 1; }
+          grep -qF "## [$new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $new"; exit 1; }

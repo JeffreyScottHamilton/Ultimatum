@@ -1,5 +1,5 @@
 {
-  "description": "After a compaction, print the saved handoff back into the chat. Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
+  "description": "After a compaction, print the saved handoff back into the chat. On Stop, record local usage observations (counts only, nothing printed; ULTIMATUM_OBSERVE=0 turns it off). Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
   "hooks": {
     "SessionStart": [
       {
@@ -30,6 +30,17 @@
             "type": "command",
             "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard\"",
             "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult\" learn observe --hook >/dev/null 2>&1 || true",
+            "timeout": 10
           }
         ]
       }
