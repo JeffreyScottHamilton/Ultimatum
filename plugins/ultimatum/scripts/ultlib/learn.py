@@ -69,6 +69,9 @@ SIGNAL_MODULE = {
     "arch-dup": "architecture",
     "arch-size": "architecture",
     "arch-stub": "architecture",
+    "poll-sleep": "context",
+    "raw-test-output": "context",
+    "reread": "context",
 }
 
 # Fixed sentences for architecture signals recorded by `ult arch check --record`.
@@ -78,6 +81,17 @@ ARCH_TEMPLATES = {
     "arch-size": "When a file or function grows past the size limit, split it along one responsibility before adding more.",
     "arch-stub": "Do not leave placeholder code: finish the implementation or remove the stub before reporting done.",
 }
+# Token-waste signals counted from a session's own transcript (counts only), one fixed sentence each.
+WASTE_TEMPLATES = {
+    "poll-sleep": "Do not poll with sleep or Monitor; run the command in the foreground or wait for its completion notice.",
+    "raw-test-output": "Run noisy test commands through `ult run` so only the summary and failing lines enter the chat.",
+    "reread": "Keep what a file said in the notes you already have instead of reading the same file again.",
+}
+RAW_TEST_BYTES = 8192
+TEST_CMD_RE = re.compile(r"\b(pytest|unittest|jest|vitest|rspec|phpunit)\b|\b(npm|pnpm|yarn)\s+(run\s+)?test\b"
+                         r"|\bgo\s+test\b|\bcargo\s+test\b|\bmvn\s+test\b|\bgradle\s+test\b|\bmake\s+test\b")
+SLEEP_RE = re.compile(r"(^|[;&|\s])sleep\s+\d")
+CAT_RE = re.compile(r"^\s*cat\s+(?:-\S+\s+)*(\S+)\s*$")
 ARCH_SIGNALS = {"cycle": "arch-cycle", "dup": "arch-dup", "size": "arch-size", "func-size": "arch-size", "stub": "arch-stub"}
 
 # Fixed template sentences, keyed by task category. Proposals use only these.
@@ -320,6 +334,9 @@ def summarize_transcript(text: str) -> dict:
     big = 0
     searches = 0
     routes: defaultdict = defaultdict(int)
+    file_reads: defaultdict = defaultdict(int)   # keys are hashed in memory only, never stored
+    polls = 0
+    raw_tests = 0
     for line in text.splitlines():
         try:
             d = json.loads(line)
@@ -336,6 +353,15 @@ def summarize_transcript(text: str) -> dict:
                     tool_inputs[str(c.get("id", ""))] = (name, inp)
                     if name == "Read" and isinstance(inp.get("file_path"), str):
                         reads[inp["file_path"]] += 1
+                        file_reads[inp["file_path"]] += 1
+                    elif name == "Monitor":
+                        polls += 1
+                    elif name == "Bash" and isinstance(inp.get("command"), str):
+                        m = CAT_RE.match(inp["command"])
+                        if m:
+                            file_reads[m.group(1)] += 1
+                        if SLEEP_RE.search(inp["command"]):
+                            polls += 1
                     elif name in ("Grep", "Glob"):
                         searches += 1
         elif d.get("type") == "user" and not d.get("isMeta") and not d.get("isSidechain"):
@@ -350,6 +376,10 @@ def summarize_transcript(text: str) -> dict:
                     limited = name == "Read" and ("limit" in inp or "offset" in inp)
                     if usage._result_size(c.get("content")) >= usage.BIG_RESULT and not limited:
                         big += 1
+                    if (name == "Bash" and TEST_CMD_RE.search(str(inp.get("command", "")))
+                            and not re.search(r"\bult['\"]?\s+run\b", str(inp.get("command", "")))
+                            and usage._result_size(c.get("content")) > RAW_TEST_BYTES):
+                        raw_tests += 1
                     if name == "Bash" and "route" in str(inp.get("command", "")):
                         for r in ROUTE_RE.findall(usage._text_of(c.get("content"))):
                             if r in ROUTES:
@@ -370,6 +400,9 @@ def summarize_transcript(text: str) -> dict:
             "big-output": big,
             "correction": corrections,
             "search-churn": 1 if searches >= usage.SEARCH_CHURN else 0,
+            "poll-sleep": polls,
+            "raw-test-output": raw_tests,
+            "reread": sum(1 for n in file_reads.values() if n >= 2),
         },
         "failing_kinds": {k: n for k, n in failed.items() if n >= usage.REPEAT_CMD},
         "routes": dict(routes),
@@ -529,7 +562,7 @@ def propose(root=None) -> list[dict]:
         p = {"id": pid, "created": int(time.time()), "plugin_version": plugin_version(),
              "module": SIGNAL_MODULE[sig], "signal": sig, "category": cat,
              "counts": {"sessions": a["sessions"], "occurrences": a["occurrences"]},
-             "lesson": ARCH_TEMPLATES.get(sig) or TEMPLATES.get(cat, TEMPLATES["other"])}
+             "lesson": ARCH_TEMPLATES.get(sig) or WASTE_TEMPLATES.get(sig) or TEMPLATES.get(cat, TEMPLATES["other"])}
         pdir = _proposals_dir(root)
         write_private(pdir / f"{pid}.json", json.dumps(p, indent=2, sort_keys=True) + "\n")
         write_private(pdir / f"{pid}.md", _proposal_md(p))

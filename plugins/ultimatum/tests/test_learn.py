@@ -262,5 +262,48 @@ class TestProposals(LearnCase):
         self.assertEqual(self.ult("learn", "proposals", "--clear", "../x").code, 2)
 
 
+def write_waste_transcript(path, prompt):
+    entries = [{"type": "user", "message": {"role": "user", "content": prompt}}]
+    i = 0
+    for cmd, out in [("sleep 30", "ok"), ("sleep 5 && ls /home/alice/secret", "ok"),
+                     ("pytest -q /home/alice/acme", "x" * 9000),
+                     ("ult run -- pytest -q", "x" * 9000),
+                     ("pytest -q /home/alice/acme/b", "x" * 9000),
+                     ("cat /home/alice/acme/a.py", "ok"), ("cat /home/alice/acme/a.py", "ok"),
+                     ("cat /home/alice/acme/c.py", "ok"), ("cat /home/alice/acme/c.py", "ok")]:
+        i += 1
+        entries += tool_pair(i, "Bash", {"command": cmd}, out)
+    i += 1
+    entries += tool_pair(i, "Monitor", {"command": "tail -f /home/alice/log"}, "ok")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(json.dumps(e) for e in entries) + "\n")
+    return path
+
+
+class TestWasteSignals(LearnCase):
+    def test_counts_recorded_without_paths_or_commands(self):
+        t = write_waste_transcript(self.tmp / "t.jsonl", "explain the module")
+        rec = learn.observe(t, self.root)
+        self.assertEqual(rec["signals"]["poll-sleep"], 3)
+        self.assertEqual(rec["signals"]["raw-test-output"], 2)
+        self.assertEqual(rec["signals"]["reread"], 2)
+        text = self.obs_path().read_text()
+        for bad in ["alice", "acme", "/home/", "sleep 3", "a.py", "tail"]:
+            self.assertNotIn(bad, text)
+
+    def test_propose_emits_fixed_lessons(self):
+        for n in range(3):
+            t = write_waste_transcript(self.tmp / f"c{n}" / "s.jsonl", "explain the module")
+            self.assertEqual(self.ult("learn", "observe", "--transcript", str(t)).code, 0)
+        r = self.ult("learn", "propose")
+        self.assertEqual(r.code, 0, r.all)
+        lessons = {json.loads(f.read_text())["lesson"] for f in self.proposal_files() if f.suffix == ".json"}
+        for sig in ("poll-sleep", "raw-test-output", "reread"):
+            self.assertIn(learn.WASTE_TEMPLATES[sig], lessons)
+        for f in self.proposal_files():
+            for bad in ["alice", "acme", "/home/"]:
+                self.assertNotIn(bad, f.read_text())
+
+
 if __name__ == "__main__":
     unittest.main()

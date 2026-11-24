@@ -104,3 +104,9 @@ The coach must run where the transcripts are. Claude Code keeps them on the mach
 ## Privacy
 
 `ult usage` reads transcripts locally and stores only counts, categories, tool names, file paths, and command names, all secret-redacted, in `~/.ultimatum/coach/` (mode 0600). It never stores or prints prompt text, file contents, or tool output, and it makes no network calls. Override the state location with `ULTIMATUM_HOME`.
+
+## 1c. Token-waste signals
+
+- Eval side: `python3 evals/live/analyze.py <transcript-dir> [--arms ...] [--json]` reads live-eval transcripts and prints per-arm tables (first-call context, cache creation, tool results, rereads, polling, raw vs `ult run` tests) and a top-waste list. Counts and sizes only; nothing is sent anywhere.
+- Session side: the Stop-hook observation also counts `poll-sleep` (sleep or Monitor polling), `raw-test-output` (a test command whose result passed about 8 KB without `ult run`) and `reread` (a file read twice). Counts only; never paths or commands.
+- `ult learn propose` maps each to one fixed lesson sentence once the usual session and occurrence thresholds repeat.
