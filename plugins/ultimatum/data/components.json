@@ -98,7 +98,7 @@
       "package": "cmdk",
       "stacks": ["react"],
       "categories": ["command-menus", "comboboxes"],
-      "keywords": ["command", "palette", "search", "combobox", "filter", "menu", "palette"],
+      "keywords": ["command", "palette", "search", "combobox", "filter", "menu"],
       "licence": "MIT",
       "restricted": false,
       "maintained": false,

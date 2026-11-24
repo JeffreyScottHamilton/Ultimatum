@@ -62,3 +62,26 @@ Sources: npm registry `/latest` and full package docs (publish dates from `time`
 - **YouTube video:** https://youtu.be/zsCGS-Yzjnw could not be accessed from this environment (YouTube is blocked). Any recommendations in it are unverified and are not reflected in this data.
 - Accessibility claims and styling for most copy-paste libraries are from package descriptions and dependencies, not from testing.
 - GitHub stars, issue counts, and contributor data were not collected.
+
+## Permissive alternatives (verified 2026-11-24)
+
+User decision: skip restricted or unlicensed libraries and use permissively licensed alternatives with similar capability. Each alternative below was checked with `npm view` (metadata only) and a `git clone --depth 1` whose LICENSE file was read. Nothing was installed or run. "Repo commit" is the date of the last commit in the clone.
+
+| Replaces | Alternative | Licence (verified) | Latest release | Repo commit | Notes |
+|---|---|---|---|---|---|
+| React Bits, RareUI (Commons Clause) | Magic UI (`magicui-cli` 0.1.6) | MIT, LICENSE.md | 2024-07-08 (CLI) | 2026-11-24 | Copy-paste components; repo active, CLI release old |
+| React Bits, RareUI (Commons Clause) | Motion Primitives (`motion-primitives` 0.1.0) | MIT, LICENCE.md | 2025-03-04 (npm) | 2026-09-28 | Copy-paste from docs; repo `package.json` is private |
+| GSAP (non-SPDX) | Motion (`motion` 14.14.0) | MIT, LICENSE.md | 2026-11-13 | 2026-11-24 | React only; framer-motion is the same codebase |
+| GSAP (non-SPDX) | Anime.js (`animejs` 4.5.0) | MIT, LICENSE.md | 2026-06-22 | 2026-08-09 | Framework-agnostic timelines; 5.x is beta |
+| Vaul (unmaintained) | react-modal-sheet (`react-modal-sheet` 5.7.0) | MIT, LICENSE | 2026-11-07 | 2026-11-09 | Bottom sheets with snap points and gestures |
+| Vaul (unmaintained) | Radix Dialog (`@radix-ui/react-dialog` 1.3.1) | MIT, LICENSE | 2026-10-12 | 2026-10-14 | Primitive only; you build the sheet on it |
+| remotion (no licence) | Revideo (`@revideo/core` 0.11.0) | MIT, LICENSE | 2026-07-10 | 2026-07-15 | Code-driven video; ffmpeg needs were not checked |
+| remotion (no licence) | Motion Canvas (`@motion-canvas/core` 3.17.2) | MIT, LICENSE | 2024-12-14 (npm) | 2026-07-02 | Code-driven video; npm release old, repo active |
+
+Verified and not used as an alternative: shadcn (`shadcn` 4.23.0, MIT, LICENSE, repo commit 2026-11-23). It is a copy-paste CLI, not a drop-in for any restricted entry.
+
+Caveats:
+- "Maintained" here means a repo commit or npm release within 12 months of 2026-11-24. For Magic UI, Motion Primitives and Motion Canvas, the npm release is older than the repo commit, so the repo was used.
+- Feature fit comes from package descriptions and READMEs. Accessibility, bundle size and API fit were not tested.
+- Video alternatives were not tested for rendering, since that needs ffmpeg and a browser. Nothing was run.
+- Machine-readable entries: `plugins/ultimatum/data/components.json` (`alternatives_to`) and `plugins/ultimatum/data/upstreams.json` (`kind: component-library`).

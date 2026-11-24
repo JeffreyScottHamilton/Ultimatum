@@ -26,7 +26,7 @@ If the cause is Ultimatum itself rather than the project (a route misfired, a re
 
 Nothing leaves the user's machine unless the user approves a submission.
 
-1. **Observe (automatic).** The Stop hook runs `ult learn observe`. It records counts and categories only: repeated failing command kinds, re-reads, oversized outputs, user corrections, routes used. It writes to the local learn store (`~/.ultimatum/`, or `ULTIMATUM_HOME`), prints nothing, and never blocks a session. Opt out with `ULTIMATUM_OBSERVE=0`.
+1. **Observe (automatic).** The Stop hook runs `ult learn observe`. It records counts and categories only: repeated failing command kinds, re-reads, oversized outputs, user corrections, routes used. It writes to the project's `.ultimatum/observations.jsonl` (git-ignored; global lessons live in `~/.ultimatum/` or `ULTIMATUM_HOME`), prints nothing, and never blocks a session. Opt out with `ULTIMATUM_OBSERVE=0`.
 2. **Propose (on request).** `ult learn propose` turns observations into a proposal: plugin version, module id, category, counts, and one lesson chosen from a fixed set of sentences. It drops paths, code, user text, repository names, URLs and secrets. Read the proposal before going further.
 3. **Submit (only with approval).** `/ultimatum:learn submit` opens a pull request to the public Ultimatum repository. Show the user the exact proposal text first. Submit only after they say yes.
 4. **Ship.** A merged change reaches users as a version bump. Users with marketplace auto-update on get it from the marketplace; others update through `/plugin`.

@@ -1,0 +1,193 @@
+{
+  "version": 1,
+  "as_of": "2026-11-24",
+  "upstreams": [
+    {
+      "id": "emil",
+      "kind": "skill-source",
+      "repo": "https://github.com/emilkowalski/skills",
+      "pin": "64eb3de",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["motion"],
+      "reviewed": "2026-11-24",
+      "note": "Adapt the animation checklist in own words; skip write-swift and the Sonner skill"
+    },
+    {
+      "id": "impeccable",
+      "kind": "skill-source",
+      "repo": "https://github.com/pbakaus/impeccable",
+      "pin": "b49177d",
+      "licence": "Apache-2.0 (NOTICE adds MIT, MPL-2.0 and OFL-1.1 parts)",
+      "decision": "adapter",
+      "modules": ["design"],
+      "reviewed": "2026-11-24",
+      "note": "Optional adapter only: its launcher downloads a native engine at run time and runs it from hooks. Not vendored"
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "kind": "skill-source",
+      "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "pin": "a4fc248",
+      "licence": "MIT (ui-styling folder is Apache-2.0)",
+      "decision": "adapter",
+      "modules": ["design"],
+      "reviewed": "2026-11-24",
+      "note": "Optional adapter for search; otherwise a small own search over a short table. Skip the logo, icon and CIP generators"
+    },
+    {
+      "id": "anthropic-skills",
+      "kind": "skill-source",
+      "repo": "https://github.com/anthropics/skills",
+      "pin": "e4bb5d9",
+      "licence": "Apache-2.0 per skill folder (no root LICENSE; doc-coauthoring has no licence)",
+      "decision": "adapt",
+      "modules": ["design", "documents", "mcp-build", "skill-author", "testing-web"],
+      "reviewed": "2026-11-24",
+      "note": "Adapt the method in own words; document skills go to the official document-skills plugin as an adapter. Skip brand-guidelines and canvas fonts"
+    },
+    {
+      "id": "superpowers",
+      "kind": "skill-source",
+      "repo": "https://github.com/obra/superpowers",
+      "pin": "22f0b46",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["engineering"],
+      "reviewed": "2026-11-24",
+      "note": "Adapt the verify and debugging discipline and plan-task-review cycle; skip the SessionStart injection and the brainstorm server"
+    },
+    {
+      "id": "vercel-agent-skills",
+      "kind": "skill-source",
+      "repo": "https://github.com/vercel-labs/agent-skills",
+      "pin": "5a37a63",
+      "licence": "MIT (README statement only; no LICENSE file)",
+      "decision": "adapt",
+      "modules": ["frontend"],
+      "reviewed": "2026-11-24",
+      "note": "Adapt a short React checklist in own words; skip the token deploy skill and the 198 KB reference set"
+    },
+    {
+      "id": "taste",
+      "kind": "skill-source",
+      "repo": "https://github.com/Leonxlnx/taste-skill",
+      "pin": "6c0b5c7",
+      "licence": "MIT (photo and icon assets have mixed licences)",
+      "decision": "adapt",
+      "modules": ["design"],
+      "reviewed": "2026-11-24",
+      "note": "Adapt the house rules and never-list in own words; skip the scripts, Stop hook and photo and icon assets"
+    },
+    {
+      "id": "remotion",
+      "kind": "skill-source",
+      "repo": "https://github.com/remotion-dev/skills",
+      "pin": "89c8afa",
+      "licence": "none",
+      "decision": "skip",
+      "modules": [],
+      "reviewed": "2026-11-24",
+      "note": "No licence found: no copying or adapting. Alternatives: revideo, motion-canvas"
+    },
+    {
+      "id": "jaimejunr-frontend-skills",
+      "kind": "skill-source",
+      "repo": "https://github.com/JaimeJunr/claude-code-frontend-skills",
+      "pin": "7177def",
+      "licence": "MIT (bundled plugins are Apache-2.0 or MIT)",
+      "decision": "adapt",
+      "modules": ["components", "design"],
+      "reviewed": "2026-11-24",
+      "note": "Adapt the load budget and precedence idea for ui; nothing vendored, skip the prebuilt hook binary and the image scraper"
+    },
+    {
+      "id": "magic-ui",
+      "kind": "component-library",
+      "repo": "https://github.com/magicuidesign/magicui",
+      "pin": "d13c610",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": ["components"],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to React Bits and RareUI (permissive)"
+    },
+    {
+      "id": "motion-primitives",
+      "kind": "component-library",
+      "repo": "https://github.com/ibelick/motion-primitives",
+      "pin": "120f64f",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": ["components"],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to React Bits and RareUI (permissive); npm latest 0.1.0 (2025-03-04)"
+    },
+    {
+      "id": "motion",
+      "kind": "component-library",
+      "repo": "https://github.com/motiondivision/motion",
+      "pin": "1fa0e14",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": ["motion"],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to GSAP (React only)"
+    },
+    {
+      "id": "animejs",
+      "kind": "component-library",
+      "repo": "https://github.com/juliangarnier/anime",
+      "pin": "01b81be",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": ["motion"],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to GSAP (framework-agnostic)"
+    },
+    {
+      "id": "motion-canvas",
+      "kind": "component-library",
+      "repo": "https://github.com/motion-canvas/motion-canvas",
+      "pin": "7b91435",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": [],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to remotion (programmatic video); no video module exists"
+    },
+    {
+      "id": "revideo",
+      "kind": "component-library",
+      "repo": "https://github.com/midrender/revideo",
+      "pin": "b5de67a",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": [],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to remotion (programmatic video); no video module exists"
+    },
+    {
+      "id": "react-modal-sheet",
+      "kind": "component-library",
+      "repo": "https://github.com/Temzasse/react-modal-sheet",
+      "pin": "8cee295",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": ["components"],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to Vaul (bottom sheets)"
+    },
+    {
+      "id": "radix-dialog",
+      "kind": "component-library",
+      "repo": "https://github.com/radix-ui/primitives",
+      "pin": "eb3a2b7",
+      "licence": "MIT",
+      "decision": "adapter",
+      "modules": ["components"],
+      "reviewed": "2026-11-24",
+      "note": "Verified alternative to Vaul (dialog primitive to build a sheet on)"
+    }
+  ]
+}
