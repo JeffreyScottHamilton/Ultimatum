@@ -17,6 +17,7 @@ Thank you to the authors and maintainers of these projects.
 | [OWASP/wstg](https://github.com/OWASP/wstg) | `e493506b9cde` | CC BY-SA 4.0 | Test categories mapped to source-level questions (IDs cited only) |
 | [anthropics/skills](https://github.com/anthropics/skills) | `2c5958ecac7c` | Apache-2.0 (skill-creator `LICENSE.txt`) | Skill evaluation: with/without-skill comparisons, discriminating assertions, trigger tests (skill-creator, Apache-2.0) |
 | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) | `c1c8a8c14710` | MIT | Coverage-driven audits, independent validation, three-verdict findings, ledgers |
+| [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | `8fd2fcade2fd` | MIT | Business and Social Media roles: customer research, competitor profiling, product marketing, offers, analytics, conversion tracking, content strategy, social content, copywriting |
 | [dequelabs/axe-core](https://github.com/dequelabs/axe-core) | `c50bf8e8933e` | MPL-2.0 | Accessibility rule engine (optional), and the limits of automated a11y checks |
 | [emilkowalski/skills](https://github.com/emilkowalski/skills) | `715c1807e08c` | MIT | Motion and interaction craft: purpose, duration, easing, interruptibility |
 | [garrytan/gstack](https://github.com/garrytan/gstack) | `7dace1fdeabc` | MIT | Ship, review, QA, release, and post-deploy workflows |

@@ -1,7 +1,7 @@
 {
   "name": "ultimatum",
   "version": "2.0.0",
-  "description": "Developer workflows for Claude Code: /ultimatum:work <task> runs a local router that picks a mode (fast, standard, deep, security, recovery) and only the guidance it needs, and /ultimatum:website builds and browser-checks websites, and /ultimatum:motion-graphics storyboards and renders short videos: changes, bugs, CI, UI design and motion, security, data, releases, MCP servers and skills. Local-first: learns from your sessions on your machine and shares nothing without your approval.",
+  "description": "Developer workflows for Claude Code: /ultimatum:work <task> runs a local router that picks a mode (fast, standard, deep, security, recovery) and only the guidance it needs, and /ultimatum:website builds and browser-checks websites, /ultimatum:motion-graphics storyboards and renders short videos, and /ultimatum:launch runs Business, Website, Social and Motion together with your approvals: changes, bugs, CI, UI design and motion, security, data, releases, MCP servers and skills. Local-first: learns from your sessions on your machine and shares nothing without your approval.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },

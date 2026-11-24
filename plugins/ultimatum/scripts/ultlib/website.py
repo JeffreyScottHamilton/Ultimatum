@@ -137,8 +137,11 @@ def plan(task: str, root: Path | None = None) -> dict:
         load.append("skills/review/SKILL.md")
     if ship:
         load.append("skills/release/SKILL.md")
+    from .gates import brief_section, status as gate_status
+    launch = gate_status(root or project_root(), "brief")[0] if brief_section(root or project_root()) else None
     return {
         "workflow": "website",
+        "launch": launch,
         "size": size,
         "team": "helpers" if big else "solo",
         "designer": designer,
@@ -157,6 +160,9 @@ def format_text(p: dict) -> str:
              "roles: " + " -> ".join(p["roles"]) + ("  (one person: you)" if p["team"] == "solo" else ""),
              f"release: {p['release']}",
              "load: " + ", ".join(p["load"])]
+    if p.get("launch") not in (None, "approved"):
+        lines.append(f"launch: the build brief is {p['launch']}; the Launch Manager shows it to the user first "
+                     "(`ult gate check brief`); no Website work from it before that")
     if p["size"] == "small":
         lines.append("scope: only the reported bug; findings that were there before your edit are reported, not fixed")
     elif p["approval"] == "waiting":
@@ -177,6 +183,8 @@ def cmd_website(args) -> int:
             print("ult website --approve needs the user's approved direction in words")
             return 2
         print(f"recorded approval in {record_approval(root, args.approve, args.image)}")
+        from .gates import approve
+        approve(root, "mockup", args.approve, file=args.image if args.image and Path(args.image).is_file() else None)
         return 0
     p = plan(task, root=root)
     if args.json:

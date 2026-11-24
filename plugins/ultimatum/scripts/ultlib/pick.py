@@ -1,8 +1,11 @@
-"""Pick the workflow for a plain-chat message: "website", "motion", "work" or "chat" (offline, deterministic).
+"""Pick the workflow for a plain-chat message: "website", "motion", "launch", "social", "business", "work" or "chat".
 
 Used by the `ult-pick` UserPromptSubmit hook so Ultimatum starts without a slash command:
 - website: a website named outright, or interface words inside a website project;
 - motion: a standalone animated clip or video (an animation inside a site stays website);
+- launch: launching a business, offer or brand (the Launch Manager runs the other teams);
+- social: a content plan or campaign (one tweet stays chat);
+- business: customers, offers, competitors and why people don't book or buy;
 - work: a request to change, fix, test, review, debug or ship code in this project;
 - chat: everything else (general questions, writing help, small talk), which gets nothing.
 Questions about how code works stay in chat; Claude answers them without a workflow.
@@ -81,7 +84,7 @@ def _strong(text: str) -> bool:
 
 
 def pick(text: str, root: Path | None = None) -> str:
-    """Return "website", "motion", "work" or "chat" for one plain-chat message."""
+    """Return the workflow name for one plain-chat message (see the module docstring)."""
     text = (text or "").strip()
     if not text or text.startswith("/"):
         return "chat"
@@ -92,6 +95,11 @@ def pick(text: str, root: Path | None = None) -> str:
         # "What is motion graphics?" is a question; "Can you make a logo reveal?" is a job.
         if not _QUESTION_RE.search(text) or _MAKE_RE.search(text):
             return "motion"
+        return "chat"
+    if d.get("workflow") in ("launch", "social", "business"):
+        # "What is a content calendar?" is a question; "What's stopping people from booking?" is a job.
+        if d["workflow"] == "business" or not _QUESTION_RE.search(text) or _MAKE_RE.search(text):
+            return d["workflow"]
         return "chat"
     if d["route"] == "handoff" and not d["default"]:
         return "work"

@@ -265,6 +265,17 @@
       "modules": ["shared"],
       "reviewed": "2026-11-24",
       "note": "Plan before acting, verifiable success; own wording (moved from forrestchang/andrej-karpathy-skills)"
+    },
+    {
+      "id": "marketingskills",
+      "kind": "skill-source",
+      "repo": "https://github.com/coreyhaines31/marketingskills",
+      "pin": "8fd2fca",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["business", "social-media"],
+      "reviewed": "2026-11-24",
+      "note": "Ideas for the Business and Social Media roles (research, positioning, offers, tracking, content); own wording"
     }
   ]
 }

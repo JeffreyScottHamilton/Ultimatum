@@ -52,6 +52,29 @@ _MOTION_NOT_RE = re.compile(
     r"\b(?:player|upload\w*|endpoint|component|api|thumbnail|bug|test|crash\w*|error|server|database|function|"
     r"stream(?:ing)?|transcod\w*|encoder|decoder|pipeline|webhook|bitrate|codec|loading|spinner|skeleton|"
     r"transition\s+between\s+(?:pages|routes|screens))\b", re.I)
+# A whole launch: the Launch Manager runs Business, Website, Social and Motion from one chat.
+_LAUNCH_RE = re.compile(
+    r"\b(?:launch(?:ing)?|start(?:ing)?|open(?:ing)?)\s+(?:my|our|a|the|this)\s+(?:new\s+|own\s+|small\s+)?"
+    r"(?:business|company|brand|shop|store|startup|studio|practice|bakery|salon|cafe|caf\u00e9|agency|offer|service|course)\b|"
+    r"\b(?:go[- ]to[- ]market|launch\s+plan|business\s+launch)\b", re.I)
+# A content plan or campaign, not a single post (one tweet is plain writing help).
+_SOCIAL_RE = re.compile(
+    r"\b(?:social\s+media\s+(?:plan|campaign|calendar|strategy|content|posts?)|content\s+(?:calendar|plan|strategy)|"
+    r"(?:week|month|series|batch|set|calendar)\s+of\s+(?:social\s+)?(?:posts|content|reels|tiktoks|captions)|"
+    r"(?:instagram|tiktok|linkedin|facebook|social)\s+(?:campaign|strategy|calendar|plan)|"
+    r"(?:plan|schedule|draft)\s+(?:our|my|the|a|some)?\s*(?:social\s+)?posts)\b", re.I)
+# Business questions: customers, offers, competitors, conversions.
+_BUSINESS_RE = re.compile(
+    r"\b(?:what['\u2019]?s|what\s+is)\s+(?:stopping|keeping|holding\s+back)\s+(?:people|customers|visitors|clients|users)|"
+    r"why\s+(?:aren['\u2019]?t|don['\u2019]?t|do\s+not|are\s+not|won['\u2019]?t)\s+(?:more\s+)?(?:people|customers|visitors|clients)\s+"
+    r"(?:book|buy|sign|call|order|subscribe|convert|come\s+back|pay)|"
+    r"\b(?:customer|market)\s+research|competitor(?:s|\s+(?:analysis|research|profiles?))|ideal\s+customer|"
+    r"target\s+(?:audience|customer|market)|pricing\s+(?:strategy|page\s+copy)|price\s+my|positioning|"
+    r"(?:my|our)\s+offer\b|more\s+(?:bookings|customers|clients|sales|leads)|conversion\s+rate", re.I)
+# Code words that keep a business-sounding task in Work (tracking code, form bugs).
+_BUSINESS_NOT_RE = re.compile(
+    r"\b(?:fix|implement|install|wire|debug|refactor|bug|error|crash|test|endpoint|api|component|function|script|"
+    r"pixel|gtag|snippet|query|database|schema|migration|deploy)\b", re.I)
 _SITE_DEPS = {"next", "react", "react-dom", "vue", "nuxt", "svelte", "@sveltejs/kit", "astro", "vite", "gatsby",
               "@remix-run/react", "solid-js", "@11ty/eleventy", "preact", "angular", "@angular/core"}
 _SITE_HTML = ("index.html", "public/index.html", "src/index.html", "site/index.html", "docs/index.html")
@@ -212,10 +235,25 @@ def motion_flag(text: str, route: str) -> bool:
     return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text) or _SITE_UI_RE.search(text))
 
 
+def launch_flag(text: str, route: str) -> str:
+    """Launch, Social Media or Business: the non-code workflows. Empty when none fits."""
+    if route in SECURITY_ROUTES:
+        return ""
+    if _LAUNCH_RE.search(text):
+        return "launch"
+    if _SOCIAL_RE.search(text):
+        return "social"
+    if _BUSINESS_RE.search(text) and not _BUSINESS_NOT_RE.search(text):
+        return "business"
+    return ""
+
+
 def workflow_for(text: str, route: str, root: Path | None) -> str:
     if website_flag(text, route, root):
         return "website"
-    return "motion" if motion_flag(text, route) else "default"
+    if motion_flag(text, route):
+        return "motion"
+    return launch_flag(text, route) or "default"
 
 
 def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_on: bool = True) -> dict:
@@ -335,7 +373,7 @@ def format_text(d: dict) -> str:
     head = f"mode: {d['mode']}  route: {d['route']}"
     if d["addons"]:
         head += "  +: " + ", ".join(d["addons"])
-    if d.get("workflow") in ("website", "motion"):
+    if d.get("workflow") not in (None, "default"):
         head += f"  workflow: {d['workflow']}"
     lines = [head]
     if d["read"]:

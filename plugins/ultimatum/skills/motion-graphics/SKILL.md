@@ -21,6 +21,10 @@ You are the **Manager**. You run the whole job without asking the user to pick s
 4. **Animate** after approval: follow `coding/SKILL.md` with `coding/guides/motion.md`. Make a rough cut with audio first, tied to the storyboard, then polish.
 5. **Review the export:** `ult media <file>`, then watch it at normal speed (frames at key times, or play it) and follow `review/SKILL.md`: pacing, sync with the sound, text readable long enough, safe margins, export settings. Findings carry timestamps.
 
+**Kind** (the plan's `kind:` line). *First launch video:* /brag is optional if the user has it; use its ideas inside step 3, never to skip the approval. *Later video:* reuse the saved style guide (`.ultimatum/motion/style.md`) with a new storyboard that still needs approval. *Standalone:* start from the user's reference if they gave one.
+
+**Deliver.** When the user approves the finished video: `ult gate approve video "<their words>" --file <export>`. Then `ult motion --deliver <export>` (exits 1 while a blocker is open or the export has warnings) records it in the brief as `## Delivered video` for Social Media, or hand it to the user. After the first launch video: `ult motion --save-style "<pacing, cuts, text movement, sound cues, ending>" --video <export>`.
+
 **Small change** (an existing clip: trim, swap text, retime; no `gate:`): change only what was asked, re-export, run `ult media`, watch it once. No storyboard stop.
 
 **Review loop.** The Reviewer (you, or a fresh `ultimatum:reviewer`) reports findings to you. You mark which must be fixed (blockers) and send them to the Animator; the Reviewer rechecks and reports back. Open blockers stop delivery; minor ones go in the report. With several findings or helpers, track them with `ult loop` (`status` exits 1 while a blocker is open). Recheck the polished export before sharing it.

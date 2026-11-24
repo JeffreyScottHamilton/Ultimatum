@@ -27,7 +27,7 @@ UPSTREAM_PINS = {
     "superpowers": "22f0b46", "vercel-agent-skills": "5a37a63", "taste": "6c0b5c7", "remotion": "89c8afa",
     "jaimejunr-frontend-skills": "7177def", "hyperframes": "ca64f8b", "gstack": "afb68ac",
     "mattpocock-skills": "d653911", "shadcn-ui": "055aa6b", "graphify": "14f35e3", "caveman": "47c61be",
-    "karpathy-guidelines": "2c60614",
+    "karpathy-guidelines": "2c60614", "marketingskills": "8fd2fca",
 }
 SPDX_PERMISSIVE = {"MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC"}
 COMPONENT_KEYS = {"id", "name", "package", "stacks", "categories", "keywords", "licence", "restricted",

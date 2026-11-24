@@ -7,7 +7,7 @@ from pathlib import Path
 
 P = Path(__file__).resolve().parents[1]
 SKILLS = P / "skills"
-WORKFLOWS = {"work", "website", "motion-graphics"}  # model-invocable entry points; everything else is opt-in
+WORKFLOWS = {"work", "website", "motion-graphics", "launch", "business", "social-media"}  # model-invocable entry points; everything else is opt-in
 
 
 def _front(text: str) -> str:
