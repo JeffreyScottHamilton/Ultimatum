@@ -10,10 +10,14 @@ The manager never edits project files; every edit is a worker's (SKILL.md §1 ru
 - Interfaces between slices can be fixed in advance.
 Otherwise run one worker per slice in blocker order. Use `ultimatum:scout` (read-only) for broad searches whatever the size.
 
+Dispatch rules:
+- Launch all independent workers in one message. If you have nothing else to do meanwhile, run them in the foreground. Never sleep or poll for their files.
+- Once a slice is delegated, do not edit its owned files yourself; wait for the result.
+
 ## 2. Manager preparation (before any dispatch)
 
 1. Spec and interfaces done: exact signatures, endpoints, schema, event names, error shapes, file layout. Workers copy these verbatim.
-2. Shared contract file: put it in the repo's doc location or `.ultimatum/specs/<slug>.md`. Briefs point to it; they do not restate numbers.
+2. Shared contract file: put it in the repo's doc location or `.ultimatum/specs/<slug>.md`. Write it, and any shared interface file, before launching workers; workers then add only their own files. Briefs point to it; they do not restate numbers.
 3. Land shared foundations first, through one foundation worker, in one commit: types, schema, config, test helpers, empty module stubs. Later workers then fill in, not invent.
 4. Record `BASE`: `git rev-parse HEAD` (never `HEAD~1`). Clean working tree or commit it first.
 5. Conflict scan: one row per pair of slices that share a file, interface, or fixture; one row per slice (do its tests agree with its code?). Resolve by reassigning ownership or sequencing.
@@ -31,6 +35,7 @@ YOU OWN (may edit): <files/dirs>
 DO NOT TOUCH: <other slices' files, shared config, lockfiles, CI, migrations>
 CONSUMES: <interfaces from other slices, exact signatures>
 PRODUCES: <interfaces others rely on, exact signatures>
+ANCHORS: <signatures, the interface this slice implements, test command, key file paths; so the worker need not re-list or re-read the repo>
 ACCEPTANCE: <exact command(s)> -> expected result (via `ult run -- <cmd>`)
 OUT OF SCOPE: <tempting extras>
 RULES: test first (tdd.md); no new dependencies; no push/merge/publish;

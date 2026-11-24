@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Fresh-eyes reviewer for an integrated Ultimatum change. Use once at the end of DEEP work (large changes, after workers finish), to find correctness bugs, missed requirements, duplicated helpers, and untested paths. Read-only.
+description: Read-only fresh-eyes review of an integrated diff at the end of DEEP work: correctness, missed requirements, duplicate helpers, untested paths.
 tools: Read, Grep, Glob, Bash
 model: sonnet
 ---

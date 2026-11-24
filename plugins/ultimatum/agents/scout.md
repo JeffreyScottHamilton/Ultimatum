@@ -1,6 +1,6 @@
 ---
 name: scout
-description: Fast read-only scout for Ultimatum. Use for broad searches across many files ("where is X handled", "list every route that touches Y") when only the conclusion and file:line anchors are needed. Never edits.
+description: Read-only sweep across many files when only the conclusion and file:line anchors are needed.
 tools: Read, Grep, Glob, Bash
 model: haiku
 ---

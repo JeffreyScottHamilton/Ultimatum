@@ -136,6 +136,29 @@ def build_graph(root: Path, sources: dict[str, str], trees: dict[str, ast.AST],
     return graph, used
 
 
+def neighbours(graph: dict[str, set[str]], start: str, reverse: bool = False,
+               depth: int = 1) -> list[tuple[str, int]]:
+    """Files within `depth` hops of `start` (importers when reverse). Sorted by hop, then path."""
+    adj: dict[str, set[str]] = graph
+    if reverse:
+        adj = {}
+        for a, targets in graph.items():
+            for b in targets:
+                adj.setdefault(b, set()).add(a)
+    seen: dict[str, int] = {start: 0}
+    frontier = [start]
+    for hop in range(1, depth + 1):
+        nxt = []
+        for v in frontier:
+            for w in sorted(adj.get(v, ())):
+                if w not in seen:
+                    seen[w] = hop
+                    nxt.append(w)
+        frontier = nxt
+    seen.pop(start)
+    return sorted(seen.items(), key=lambda kv: (kv[1], kv[0]))
+
+
 def cycles(graph: dict[str, set[str]]) -> list[list[str]]:
     """Strongly connected components with more than one file (iterative Tarjan)."""
     index: dict[str, int] = {}

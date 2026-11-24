@@ -22,6 +22,7 @@ from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
+from . import archgraph
 from .archgraph import build_graph, cycles
 from .common import project_root, state_dir, write_private
 from .search import EXT_LANG, _is_test, list_files
@@ -290,10 +291,9 @@ def typing_stats(sources, trees) -> tuple[float | None, int]:
 # Orchestration
 # --------------------------------------------------------------------------
 
-def analyze(root: Path, scope: str | None = None, only: set[str] | None = None,
-            max_lines: int = DEFAULT_MAX_LINES, max_func: int = DEFAULT_MAX_FUNC_LINES,
-            graph_path: Path | None = None, exclude: tuple = ()) -> Report:
-    """Whole-scope graph; findings limited to `only` (changed files) when given."""
+def scan(root: Path, scope: str | None = None, graph_path: Path | None = None,
+         exclude: tuple = ()) -> tuple[dict[str, str], dict[str, ast.AST], dict[str, set[str]], list[str]]:
+    """Sources, Python trees, the merged import graph and its source labels (one parse per file)."""
     sources = source_files(root, scope, exclude)
     trees: dict[str, ast.AST] = {}
     for rel, text in sources.items():
@@ -303,6 +303,14 @@ def analyze(root: Path, scope: str | None = None, only: set[str] | None = None,
             except (SyntaxError, ValueError):
                 pass
     graph, used = build_graph(root, sources, trees, graph_path)
+    return sources, trees, graph, used
+
+
+def analyze(root: Path, scope: str | None = None, only: set[str] | None = None,
+            max_lines: int = DEFAULT_MAX_LINES, max_func: int = DEFAULT_MAX_FUNC_LINES,
+            graph_path: Path | None = None, exclude: tuple = ()) -> Report:
+    """Whole-scope graph; findings limited to `only` (changed files) when given."""
+    sources, trees, graph, used = scan(root, scope, graph_path, exclude)
     findings: list[Finding] = []
     for comp in cycles(graph):
         if only is None or set(comp) & only:
@@ -374,8 +382,54 @@ def _print(report: Report, findings: list[Finding], limit: int) -> None:
         print("  '?' = lead: confirm in source before acting")
 
 
+DEPS_CAP = 30
+
+
+def _target_rel(root: Path, target: str) -> str:
+    """A CLI path (relative to the cwd or absolute) as a repo-relative posix path."""
+    p = Path(target)
+    if not p.is_absolute():
+        p = Path.cwd() / p
+    try:
+        return p.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError:
+        return Path(target).as_posix()
+
+
+def cmd_deps(args, root: Path) -> int:
+    """Neighbours of one file in the merged graph: what it imports, or with --reverse what imports it."""
+    if not args.target:
+        print("[ult arch] deps needs a file: ult arch deps <path> [--reverse]")
+        return 2
+    if args.depth < 1:
+        print("[ult arch] --depth must be 1 or more")
+        return 2
+    _, _, graph, used = scan(root, None, Path(args.graph) if args.graph else None,
+                             tuple(args.exclude or ()))
+    rel = _target_rel(root, args.target)
+    if rel not in graph:
+        print(f"[ult arch] unknown path: {args.target} (not a Python or JS/TS source in this repo)")
+        return 2
+    hits = archgraph.neighbours(graph, rel, reverse=args.reverse, depth=args.depth)
+    limit = DEPS_CAP if args.limit is None else args.limit
+    arrow = "<-" if args.reverse else "->"
+    labels = "+".join(used)
+    if args.json:
+        print(json.dumps({"path": rel, "reverse": args.reverse, "graph": used, "total": len(hits),
+                          "deps": [{"path": p, "depth": d} for p, d in hits[:limit]]}, indent=1))
+        return 0
+    print(f"deps: {rel} {arrow} {len(hits)} ({labels})")
+    for p, d in hits[:limit]:
+        print(f"  {p}" + (f" (depth {d})" if args.depth > 1 else ""))
+    if len(hits) > limit:
+        print(f"  … {len(hits) - limit} more (--limit N)")
+    return 0
+
+
 def cmd_arch(args) -> int:
     root = project_root()
+    if args.action == "deps":
+        return cmd_deps(args, root)
     only = None
     if args.changed:
         only = changed_files(root)
@@ -406,7 +460,7 @@ def cmd_arch(args) -> int:
                           "counts": dict(Counter(f.kind for f in shown)),
                           "findings": [asdict(f) for f in shown]}, indent=1))
     else:
-        _print(report, shown, args.limit)
+        _print(report, shown, PRINT_CAP if args.limit is None else args.limit)
     if args.strict and any(f.kind in BLOCKING for f in shown):
         return 1
     return 0
@@ -414,7 +468,10 @@ def cmd_arch(args) -> int:
 
 def register(sub):
     p = sub.add_parser("arch", help="architecture checks: cycles, duplication, size, stubs, naming, drift")
-    p.add_argument("action", nargs="?", choices=["check", "baseline"], default="check")
+    p.add_argument("action", nargs="?", choices=["check", "baseline", "deps"], default="check")
+    p.add_argument("target", nargs="?", help="deps: the file to start from")
+    p.add_argument("--reverse", action="store_true", help="deps: list importers (blast radius) instead of imports")
+    p.add_argument("--depth", type=int, default=1, help="deps: hops to follow (default 1)")
     p.add_argument("--path", help="limit to this directory")
     p.add_argument("--changed", action="store_true", help="only findings that touch files changed vs HEAD")
     p.add_argument("--drift", action="store_true", help="only findings that are new since `ult arch baseline`")
@@ -422,7 +479,7 @@ def register(sub):
     p.add_argument("--graph", help="Graphify graph.json (default: graphify-out/graph.json when present)")
     p.add_argument("--max-lines", type=int, default=DEFAULT_MAX_LINES)
     p.add_argument("--max-func", type=int, default=DEFAULT_MAX_FUNC_LINES)
-    p.add_argument("--limit", type=int, default=PRINT_CAP)
+    p.add_argument("--limit", type=int, default=None, help="max lines printed (check: 12, deps: 30)")
     p.add_argument("--strict", action="store_true", help="exit 1 on cycles or placeholder code")
     p.add_argument("--record", action="store_true", help="add finding counts to local self-improvement observations")
     p.add_argument("--json", action="store_true")

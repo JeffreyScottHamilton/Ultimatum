@@ -1,6 +1,6 @@
 ---
 name: security-verifier
-description: Independent, skeptical verifier for Ultimatum security candidates. Use with a fresh context on each serious candidate (high/critical, or anything you would report as confirmed). Tries to disprove the finding; classifies it confirmed, needs-validation, or rejected.
+description: Skeptical fresh-context verifier for a high/critical security candidate; classifies it confirmed, needs-validation, or rejected.
 tools: Read, Grep, Glob, Bash
 model: inherit
 ---

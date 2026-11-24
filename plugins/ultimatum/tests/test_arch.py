@@ -214,6 +214,63 @@ class ChangedAndDrift(ArchCase):
         self.assertIn("more", lines[-1])
 
 
+class Deps(ArchCase):
+    def setUp(self):
+        super().setUp()
+        self.write("pkg/__init__.py", "")
+        self.write("pkg/core.py", "def base():\n    return 1\n")
+        self.write("pkg/mid.py", "from pkg import core\n")
+        self.write("pkg/top.py", "from pkg import mid\n")
+        self.write("pkg/leaf.py", "from pkg import top\n")
+
+    def lines(self, *args):
+        return self.ult("arch", "deps", *args).out.splitlines()
+
+    def test_forward_deps_depth_one_and_two(self):
+        self.assertEqual(self.lines("pkg/top.py"), ["deps: pkg/top.py -> 1 (local)", "  pkg/mid.py"])
+        out = self.lines("pkg/top.py", "--depth", "2")
+        self.assertEqual(out, ["deps: pkg/top.py -> 2 (local)", "  pkg/mid.py (depth 1)",
+                               "  pkg/core.py (depth 2)"])
+
+    def test_reverse_lists_importers_as_blast_radius(self):
+        self.assertEqual(self.lines("pkg/core.py", "--reverse"), ["deps: pkg/core.py <- 1 (local)", "  pkg/mid.py"])
+        out = self.lines("pkg/core.py", "--reverse", "--depth", "3")
+        self.assertEqual(out[0], "deps: pkg/core.py <- 3 (local)")
+        self.assertEqual(out[1:], ["  pkg/mid.py (depth 1)", "  pkg/top.py (depth 2)", "  pkg/leaf.py (depth 3)"])
+
+    def test_graphify_extracted_import_counts_and_inferred_does_not(self):
+        self.write("gx/a.py", "x = 1\n")
+        self.write("gx/b.py", "y = 2\n")
+        self.write("gx/c.py", "z = 3\n")
+        graph = {"nodes": [{"id": "a", "source_file": "gx/a.py"}, {"id": "b", "source_file": "gx/b.py"},
+                           {"id": "c", "source_file": "gx/c.py"}],
+                 "links": [{"source": "a", "target": "b", "relation": "imports", "confidence": "EXTRACTED"},
+                           {"source": "c", "target": "a", "relation": "imports", "confidence": "INFERRED"}]}
+        self.write("graphify-out/graph.json", json.dumps(graph))
+        self.assertEqual(self.lines("gx/a.py"), ["deps: gx/a.py -> 1 (local+graphify(1))", "  gx/b.py"])
+        self.assertEqual(self.lines("gx/c.py"), ["deps: gx/c.py -> 0 (local+graphify(1))"])
+        self.assertEqual(self.lines("gx/b.py", "--reverse"), ["deps: gx/b.py <- 1 (local+graphify(1))", "  gx/a.py"])
+
+    def test_limit_caps_output_with_more_line(self):
+        for i in range(5):
+            self.write(f"fan/m{i}.py", f"from pkg import core\n")
+        self.write("fan/hub.py", "".join(f"from fan import m{i}\n" for i in range(5)))
+        out = self.lines("fan/hub.py", "--limit", "2")
+        self.assertEqual(out[0], "deps: fan/hub.py -> 5 (local)")
+        self.assertEqual(out[1:], ["  fan/m0.py", "  fan/m1.py", "  … 3 more (--limit N)"])
+
+    def test_unknown_path_exits_2_with_one_line(self):
+        r = self.ult("arch", "deps", "pkg/nothere.py")
+        self.assertEqual(r.code, 2)
+        self.assertEqual(len(r.out.strip().splitlines()), 1)
+        self.assertIn("unknown path: pkg/nothere.py", r.out)
+
+    def test_json_reports_total_and_depths(self):
+        data = json.loads(self.ult("arch", "deps", "pkg/top.py", "--depth", "2", "--json").out)
+        self.assertEqual(data["total"], 2)
+        self.assertEqual(data["deps"], [{"path": "pkg/mid.py", "depth": 1}, {"path": "pkg/core.py", "depth": 2}])
+
+
 class Activation(unittest.TestCase):
     """The guardian loads for structural work and reviews, never for trivial edits."""
 

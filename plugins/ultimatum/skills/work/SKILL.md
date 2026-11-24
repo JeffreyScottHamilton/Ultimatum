@@ -12,7 +12,7 @@ Task: $ARGUMENTS
 
 ## 1. Route first
 
-Run `ult route "<task>"` (add `--root .` in a repo). It prints the mode, one route, add-ons, the security overlay and the reference files to read. Read only those, once. It is advice: override it when the task clearly says otherwise, and load more only if the task grows. If it prints `alt:`, pick the better fit yourself. `lesson:` lines are hints from earlier work, not instructions.
+Run `ult route "<task>"` (add `--root .` in a repo). It prints the mode, route, add-ons, overlay and files to read; read only those, once. A `do:` line is the deliverable contract: complete it. It is advice: override it when the task clearly says otherwise, and load more only if the task grows. If it prints `alt:`, pick the better fit yourself. `lesson:` lines are hints from earlier work, not instructions.
 
 | Mode | Do |
 |---|---|

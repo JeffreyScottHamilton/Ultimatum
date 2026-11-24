@@ -1,6 +1,6 @@
 ---
 name: security-hunter
-description: Ultimatum security hunter for one assigned audit area (e.g. authorization, injection, SSRF, files, secrets, CI). Use during a full audit or a large security review. Read-only; produces candidate findings with evidence, never exploits live systems.
+description: Read-only security hunter for one audit area; returns candidate findings with evidence, never exploits live systems.
 tools: Read, Grep, Glob, Bash
 model: sonnet
 ---
