@@ -12,7 +12,7 @@ import os
 import re
 from pathlib import Path
 
-from .common import project_root
+from .common import STATE_DIRNAME, project_root, state_dir, write_private
 from .route import PLUGIN, cat_paths, decide, sanitize
 
 _KEEP_RE = re.compile(r"\b(keep|match|reuse|same as|stick (?:to|with)|don'?t change|no redesign|without changing)\b[^.]{0,30}\b(look|style|styles|design|branding|brand|theme|colou?rs?|fonts?)\b|\bno redesign\b", re.I)
@@ -65,6 +65,38 @@ def _page_count(text: str) -> int:
     return max(n, len(named))
 
 
+APPROVED_HEAD = "## Approved direction"
+
+
+def brief_path(root: Path) -> Path:
+    """Where the brief lives, without creating anything (plan stays read-only)."""
+    ext = os.environ.get("ULTIMATUM_STATE_DIR")
+    return (Path(ext).resolve() if ext else root / STATE_DIRNAME) / "brief.md"
+
+
+def approval(root: Path | None) -> str:
+    """"approved" once the brief records what the user approved, else "waiting"."""
+    try:
+        text = brief_path(root or project_root()).read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return "waiting"
+    _, sep, rest = text.partition(APPROVED_HEAD)
+    body = rest.split("\n## ", 1)[0].strip()
+    return "approved" if sep and body else "waiting"
+
+
+def record_approval(root: Path, note: str, image: str | None = None) -> Path:
+    """Append the user's approval to the brief so the Builder and Reviewer work from it."""
+    path = state_dir(root) / "brief.md"
+    old = path.read_text(encoding="utf-8", errors="replace") if path.exists() else "# Brief\n"
+    head, sep, rest = old.partition(APPROVED_HEAD)
+    tail = rest.split("\n## ", 1)[1] if sep and "\n## " in rest else ""
+    block = f"{APPROVED_HEAD}\n\n{note.strip()}\n" + (f"\nMockup: {image}\n" if image else "")
+    new = head.rstrip() + "\n\n" + block + (f"\n## {tail}" if tail else "")
+    write_private(path, new)
+    return path
+
+
 def plan(task: str, root: Path | None = None) -> dict:
     text, _ = sanitize(task or "")
     d = decide(text, root=root, use_deps=False, lessons_on=False)
@@ -87,9 +119,15 @@ def plan(task: str, root: Path | None = None) -> dict:
         designer, why = False, f"existing styles: {signals[0]}"
 
     ship = bool(_SHIP_RE.search(text))
-    roles = ["manager"] + (["designer"] if designer else []) + (
+    # New site or a new look: plan, design and a mockup the user approves before production code.
+    visual = designer and not small
+    status = approval(root) if visual else "not needed"
+    roles = ["planner (manager)" if visual else "manager"] + (["designer"] if designer else []) + (
+        ["user approves mockup"] if visual and status != "approved" else []) + (
         ["builder", "browser check"] if small else ["builder", "reviewer", "manager"])
     load = ["shared/defaults.md"]
+    if visual:
+        load.append("skills/website/planner.md")
     if size == "large":
         load.append("skills/work/references/code-map.md")
     if designer:
@@ -106,6 +144,7 @@ def plan(task: str, root: Path | None = None) -> dict:
         "designer": designer,
         "designer_why": why,
         "roles": roles,
+        "approval": status,
         "release": "asked (deploy only on the user's explicit yes)" if ship else "not asked",
         "load": load,
         "overlay": d["overlay"],
@@ -120,8 +159,11 @@ def format_text(p: dict) -> str:
              "load: " + ", ".join(p["load"])]
     if p["size"] == "small":
         lines.append("scope: only the reported bug; findings that were there before your edit are reported, not fixed")
-    elif p["designer"]:
-        lines.append("design: pick one direction yourself and build it; placeholders for missing facts; then browser review")
+    elif p["approval"] == "waiting":
+        lines.append("gate: brief + design + mockup prompt, then stop until the user approves the look; "
+                     "no production code before that (planner.md)")
+    elif p["approval"] == "approved":
+        lines.append("gate: approved; build from the brief's Approved direction, then browser review against it")
     if p["overlay"]:
         lines.append("overlay: security (skills/work/references/security/secure-implementation.md)")
     return "\n".join(lines)
@@ -130,6 +172,12 @@ def format_text(p: dict) -> str:
 def cmd_website(args) -> int:
     task = " ".join(args.task or []).strip()
     root = Path(args.root).resolve() if args.root else project_root()
+    if args.approve is not None:
+        if not args.approve.strip():
+            print("ult website --approve needs the user's approved direction in words")
+            return 2
+        print(f"recorded approval in {record_approval(root, args.approve, args.image)}")
+        return 0
     p = plan(task, root=root)
     if args.json:
         print(json.dumps(p, indent=2))
@@ -149,4 +197,6 @@ def register(sub):
     p.add_argument("--root", help="project directory (default: the current project)")
     p.add_argument("--json", action="store_true", help="machine-readable output")
     p.add_argument("--cat", action="store_true", help="also print the files to load")
+    p.add_argument("--approve", metavar="TEXT", help="record the look the user approved in the brief")
+    p.add_argument("--image", metavar="PATH", help="with --approve: the approved mockup file")
     p.set_defaults(func=cmd_website)

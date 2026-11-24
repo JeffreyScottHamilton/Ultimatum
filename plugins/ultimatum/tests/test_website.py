@@ -56,7 +56,7 @@ class WebsitePlan(UltCase):
         p = plan("Redesign the landing page with a fresh look", root=self.root)
         self.assertTrue(p["designer"])
         self.assertIn("skills/design/SKILL.md", p["load"])
-        self.assertEqual(p["roles"][:2], ["manager", "designer"])
+        self.assertEqual(p["roles"][:3], ["planner (manager)", "designer", "user approves mockup"])
 
     def test_designer_runs_when_project_has_no_styles(self):
         p = plan("Add a pricing section and a contact form to the landing page", root=self.root)
@@ -264,8 +264,73 @@ class PlainChatPicker(UltCase):
         self.assertIn("scope: only the reported bug", small)
         self.assertNotIn("designer: yes", small)
         new = self.ult("website", "Build me a website for my coffee shop", "--root", str(self.tmp / "empty")).out
-        self.assertIn("design: pick one direction yourself", new)
+        self.assertIn("gate: brief + design + mockup prompt, then stop", new)
         self.assertIn("reviewer", new)
+
+
+class VisualApproval(UltCase):
+    """New sites and redesigns stop for a mockup approval; small fixes never do."""
+
+    def test_new_site_stops_for_mockup_approval_before_building(self):
+        p = plan("Build me a website for my coffee shop", root=self.root)
+        self.assertEqual(p["approval"], "waiting")
+        roles = p["roles"]
+        self.assertLess(roles.index("designer"), roles.index("user approves mockup"))
+        self.assertLess(roles.index("user approves mockup"), roles.index("builder"))
+        self.assertIn("skills/website/planner.md", p["load"])
+        self.assertEqual(p["load"][:2], ["shared/defaults.md", "skills/website/planner.md"])
+
+    def test_major_redesign_also_stops(self):
+        self.write("styles.css", "body{}")
+        self.assertEqual(plan("Redesign the homepage with a fresh look", root=self.root)["approval"], "waiting")
+
+    def test_small_menu_fix_takes_the_short_path(self):
+        self.write("index.html", "<nav></nav>")
+        self.write("styles.css", "nav{}")
+        p = plan("Fix the mobile menu", root=self.root)
+        self.assertEqual(p["approval"], "not needed")
+        self.assertNotIn("user approves mockup", p["roles"])
+        self.assertNotIn("skills/website/planner.md", p["load"])
+        out = self.ult("website", "Fix the mobile menu", "--root", str(self.root)).out
+        self.assertNotIn("gate:", out)
+
+    def test_approval_is_recorded_in_the_brief_and_opens_the_build(self):
+        self.write(".ultimatum/brief.md", "# Brief\n\n## For whom\nCommuters\n\n## Phases\n1. Hero\n")
+        r = self.ult("website", "--root", str(self.root), "--approve", "Warm cream and espresso palette, big call button",
+                     "--image", "mockups/home.png")
+        self.assertEqual(r.code, 0, r.all)
+        brief = (self.root / ".ultimatum/brief.md").read_text()
+        for needle in ("## For whom", "## Phases", "## Approved direction", "big call button", "mockups/home.png"):
+            self.assertIn(needle, brief)
+        p = plan("Build me a website for my coffee shop", root=self.root)
+        self.assertEqual(p["approval"], "approved")
+        self.assertNotIn("user approves mockup", p["roles"])
+        out = self.ult("website", "Build me a website for my coffee shop", "--root", str(self.root)).out
+        self.assertIn("gate: approved", out)
+        # A second approval replaces the first instead of stacking.
+        self.ult("website", "--root", str(self.root), "--approve", "Darker green version")
+        brief = (self.root / ".ultimatum/brief.md").read_text()
+        self.assertEqual(brief.count("## Approved direction"), 1)
+        self.assertIn("Darker green version", brief)
+        self.assertNotIn("big call button", brief)
+        self.assertIn("## Phases", brief)
+
+    def test_empty_approval_is_refused(self):
+        r = self.ult("website", "--root", str(self.root), "--approve", "  ")
+        self.assertEqual(r.code, 2)
+        self.assertFalse((self.root / ".ultimatum/brief.md").exists())
+
+    def test_skill_and_planner_spell_out_the_gate(self):
+        from pathlib import Path
+        plug = Path(__file__).resolve().parent.parent
+        skill = (plug / "skills/website/SKILL.md").read_text()
+        for needle in ("**Visual path**", "**Short path**", "stop and wait", "no production code until the user approves",
+                       "ult website --approve", "ChatGPT", "No mockup and no approval stop", "compare with the approved direction"):
+            self.assertIn(needle, skill)
+        guide = (plug / "skills/website/planner.md").read_text()
+        for needle in ("[[PLACEHOLDER:", "grayscale wireframe", "ChatGPT", "end your turn", "Approved direction",
+                       "First action", "Mobile", "Phases", "exact words"):
+            self.assertIn(needle, guide)
 
 
 class PickAccuracy(unittest.TestCase):

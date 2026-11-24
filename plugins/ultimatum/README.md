@@ -7,7 +7,7 @@ One skill for the software work a developer actually does in Claude Code. Instal
 /ultimatum:website <task>     # websites and landing pages
 ```
 
-`/ultimatum:website` runs a short team flow: the Manager writes one brief, an optional Designer (only for a new look), a Builder (mobile, desktop, keyboard), a Reviewer on the real page, then the Manager fixes, rechecks and reports. Small jobs stay solo. You don't have to type either command: once the plugin is enabled, a plain request such as "Build me a website for my coffee shop", or "Fix the mobile menu" inside a website project, starts the website workflow by itself, and other coding requests such as "Fix the CSV export" start `/ultimatum:work`, with no line needed in your `CLAUDE.md`. Plain questions ("What is a closure?", "How does the export module work?") and writing help stay in normal chat. It is a small local prompt hook; `ULTIMATUM_AUTO=0` turns it off. Typed commands always win.
+`/ultimatum:website` runs a short team flow. For a new site or a redesign, the Manager plans one brief, an optional Designer adds the look, and you get a ChatGPT-ready mockup prompt (or the mockup itself when an image tool is available) to approve before any production code; then a Builder (mobile, desktop, keyboard) and a Reviewer on the real page, compared with what you approved. Small fixes skip the mockup: brief plan, focused fix, browser check. You don't have to type either command: once the plugin is enabled, a plain request such as "Build me a website for my coffee shop", or "Fix the mobile menu" inside a website project, starts the website workflow by itself, and other coding requests such as "Fix the CSV export" start `/ultimatum:work`, with no line needed in your `CLAUDE.md`. Plain questions ("What is a closure?", "How does the export module work?") and writing help stay in normal chat. It is a small local prompt hook; `ULTIMATUM_AUTO=0` turns it off. Typed commands always win.
 
 A local router (`ult route`, no model call) reads the task and picks:
 
@@ -32,7 +32,7 @@ It prints only the reference files that combination needs and their size, so Cla
   - `ult findings`: validates and renders security findings and a coverage ledger.
   - `ult doctor`: shows which optional integrations are present.
   - `ult retro`: lesson candidates from the current chat, run automatically at the end of a long task.
-  - `ult website "<task>"`: the website plan (Designer yes or no, solo or helpers, files to read). `ult style status|apply|remove`: the opt-in chat style.
+  - `ult website "<task>"`: the website plan (Designer yes or no, mockup gate, solo or helpers, files to read); `ult website --approve "…"` records the approved look in the brief. `ult style status|apply|remove`: the opt-in chat style.
   - `ult route`: the router above. `ult route --list` shows every module; `--eval FILE` scores it.
   - `ult components "<need>"`: suggests permissively licensed UI and animation libraries offline, with alternatives for restricted ones. `ult upstreams` lists the reviewed sources.
   - `ult learn`, `ult budget`, `ult sync`, `ult update`: local lessons and proposals, this chat's token use, copying lessons between machines, and update setup (see below).
