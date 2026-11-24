@@ -1,0 +1,105 @@
+{
+  "case": "h1-symptom#t2",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "cli_runs": true,
+    "rows_correct": true,
+    "grand_total_correct": true,
+    "source_changed": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Grep": 1,
+    "Glob": 1,
+    "Read": 4,
+    "Edit": 2,
+    "Bash": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I fixed the off-by-one-cent totals in `billing/totals.py`. The 6 existing tests pass. I didn't run it against your CSV, so I haven't confirmed that the rows that were off now match.\n\n**Cause:** `line_total_cents` used binary floats and Python's `round()`. Both cause errors:\n- Floats can't represent most decimal prices exactly. A value like `1.005` is stored as 1.00499999…, so it rounds down.\n- `round()` rounds exact ties to the nearest even number, so 12.5 becomes 12. The README says amounts round half up.\n\nEither error can leave a line one cent off. Because the invoice total sums the rounded lines, a bad line also makes the grand total wrong.\n\n**Fix:** the calculation now uses `Decimal` and rounds with `ROUND_HALF_UP`. I spot-checked values that used to round wrongly: `0.125`, `1.005` and `2.675` now give 13, 101 and 268 cents.\n\nI didn't add regression tests. The ties above would be good ones to add to `tests/test_totals.py`.",
+  "is_error": false,
+  "num_turns": 10,
+  "duration_ms": 13634,
+  "cost_usd": 0.0679037,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 9437,
+    "cache_read_input_tokens": 140597,
+    "output_tokens": 1608
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1608,
+      "cacheReadInputTokens": 140597,
+      "cacheCreationInputTokens": 9437,
+      "webSearchRequests": 0,
+      "costUSD": 0.0679037,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 60,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 9437,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 14.5,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h1-symptom#t2__vanilla",
+  "transcript": "/tmp/ult-live-h/h1-symptom#t2__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0679037,
+    "input_tokens": 8,
+    "output_tokens": 1608,
+    "cache_read_tokens": 140597,
+    "cache_write_tokens": 9437,
+    "turns": 10,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 151650
+  }
+}

