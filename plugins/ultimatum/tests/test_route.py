@@ -21,7 +21,7 @@ DEV = PLUGIN / "tests" / "data" / "routing_dev.jsonl"
 NEW_REFS = {"design/design.md", "design/motion.md", "design/components.md",
             "documents.md", "mcp-build.md", "skill-author.md"}
 JSON_KEYS = {"mode", "route", "addons", "read", "tokens", "overlay", "touches", "alt",
-             "low_confidence", "default", "lessons", "dropped_directives"}
+             "low_confidence", "default", "lessons", "dropped_directives", "do"}
 ROUTES = {"small", "discover", "feature", "large", "bug", "ci-pr", "ui", "data-infra", "optimize",
           "release", "sec-review", "sec-audit", "sec-fix", "handoff", "improve", "skill-eval",
           "documents", "mcp-build", "skill-author"}
@@ -38,7 +38,7 @@ class RouteFormat(UltCase):
         r = self.ult("route", "Rename foo to bar in utils.py and add a comment")
         self.assertEqual(r.code, 0, r.err)
         lines = r.out.strip().splitlines()
-        self.assertLessEqual(len(lines), 6)
+        self.assertLessEqual(len(lines), 7)
         self.assertTrue(lines[0].startswith("mode: "))
         self.assertIn("  route: ", lines[0])
         self.assertTrue(lines[1].startswith("read: "))
@@ -49,7 +49,7 @@ class RouteFormat(UltCase):
         d = decide("Rewrite the billing and notifications subsystems as separate services with end-to-end tests")
         d.update(alt="feature", low_confidence=True, lessons=["a", "b", "c"], overlay=True,
                  touches=["billing"], addons=["react", "motion"])
-        self.assertLessEqual(len(R.format_text(d).splitlines()), 6)
+        self.assertLessEqual(len(R.format_text(d).splitlines()), 7)
 
     def test_addon_and_read_tokens_shown(self):
         r = self.ult("route", "Build a responsive pricing page with three tiers and check it in the browser")
@@ -297,3 +297,22 @@ class RouteList(UltCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RouteDoLine(unittest.TestCase):
+    def test_do_line_only_where_a_contract_exists(self):
+        for task, want in (("Perform a security audit of this repository", "ult audit start"),
+                           ("the test suite is failing, fix the bug", "ult run --")):
+            d = decide(task)
+            self.assertIn(want, d["do"], task)
+            self.assertIn("do: ", R.format_text(d))
+        d = decide("Fix the typo in the README")
+        self.assertEqual(d["route"], "small")
+        self.assertEqual(d["do"], "")
+        self.assertNotIn("do:", R.format_text(d))
+
+    def test_do_is_one_short_line(self):
+        for m in R.load_modules():
+            if "do" in m:
+                self.assertLessEqual(len(m["do"]), 160)
+                self.assertNotIn("\n", m["do"])

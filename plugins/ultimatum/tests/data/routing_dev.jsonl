@@ -190,3 +190,13 @@
 {"task": "Rename retry_count to attempts in client.py", "route": "small", "addons": [], "overlay": false}
 {"task": "Make the homepage layout work on phones", "route": "ui", "addons": [], "overlay": false}
 {"task": "Add a loading spinner to the upload button in app.tsx", "route": "ui", "addons": [], "overlay": true}
+{"task": "slugify drops digits; fix it.", "route": "bug", "addons": [], "overlay": false}
+{"task": "the CSV exporter truncates names longer than 40 chars and loses the trailing column", "route": "bug", "addons": [], "overlay": false}
+{"task": "date parser returns None for 29 Feb on leap years", "route": "bug", "addons": [], "overlay": false}
+{"task": "invoice totals are off by one cent after rounding discounts", "route": "bug", "addons": [], "overlay": false}
+{"task": "the importer raises KeyError on rows with an empty id column", "route": "bug", "addons": [], "overlay": false}
+{"task": "dedupe step duplicates records and loses the last one of every batch", "route": "bug", "addons": [], "overlay": false}
+{"task": "the sync job ignores the timezone setting and uses UTC instead of the configured zone", "route": "bug", "addons": [], "overlay": false}
+{"task": "add a filter that drops archived rows from the report", "route": "feature", "addons": [], "overlay": false}
+{"task": "skip weekends when scheduling reminders", "route": "feature", "addons": [], "overlay": false}
+{"task": "add an option to ignore case when matching tags", "route": "feature", "addons": [], "overlay": false}

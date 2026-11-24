@@ -62,3 +62,17 @@ python3 evals/live/run_live.py --arms vanilla,v041,v2 --max-total-usd 15
 ```
 
 It measures total tokens, cost, and cost per passing task for each arm.
+
+## Second optimization pass (2026-11-24, offline only)
+
+- Waste analysis of the 30 live transcripts (`evals/live/analyze.py`) found three things. v2's first call has about 2.2k more tokens of context than vanilla. The audit and noisy-test failures happened because the model skipped about 7.5k tokens of reference reading. In 8-large, the manager polled for results and redid work it had already delegated.
+- Fixes: `ult audit start/finish` and the `do:` contract line; `ult arch deps`; dispatch rules; agent descriptions cut from about 1,140 B to 661 B; defect-symptom routing.
+- `ult arch deps route.py --reverse` prints 140 B, against 1,545 B for `ult arch check --json` on this repo.
+- `ult run` on the noisy-test fixture prints 1,243 B, against 130,430 B of raw output.
+- Route accuracy:
+  - dev: 189/192 before, 199/202 after (10 new cases added)
+  - holdout: 77/80, unchanged
+  - holdout2: 58/60, unchanged
+  - holdout3: 46/60 before, 47/60 after. Its misses were looked at while planning, so treat holdout3 as partly seen.
+- 349 unit tests pass, and both `claude plugin validate --strict` runs pass.
+- No new live run yet. The $0.151 and $0.120 targets are unverified until a paid held-out run.

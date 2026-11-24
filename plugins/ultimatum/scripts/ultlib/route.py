@@ -267,6 +267,7 @@ def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_o
         "default": default,
         "lessons": lessons,
         "dropped_directives": dropped,
+        "do": by[route].get("do", ""),
     }
 
 
@@ -279,6 +280,8 @@ def format_text(d: dict) -> str:
         lines.append(f"read: {', '.join(d['read'])} ({_fmt_tokens(d['tokens'])})")
     else:
         lines.append("read: none")
+    if d.get("do"):
+        lines.append(f"do: {d['do']}")
     if d["overlay"]:
         t = f" (touches: {', '.join(d['touches'])})" if d["touches"] else ""
         lines.append(f"overlay: security{t}")
@@ -288,7 +291,7 @@ def format_text(d: dict) -> str:
         lines.append(f"alt: {d['alt']} (low confidence)")
     if d["lessons"]:
         lines.append("lessons: " + " | ".join(d["lessons"]))
-    return "\n".join(lines[:6])
+    return "\n".join(lines[:7])
 
 
 def format_list() -> str:

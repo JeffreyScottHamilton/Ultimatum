@@ -287,6 +287,7 @@
       "id": "bug",
       "kind": "route",
       "summary": "Wrong behavior, failing or flaky test, crash or production error.",
+      "do": "Run tests and other noisy commands as `ult run -- <cmd>`; quote its exit code and failing lines.",
       "activate": {
         "keywords": [
           "bug",
@@ -358,7 +359,44 @@
           "instead of the",
           "hang up",
           "1 in",
-          "sometimes fails"
+          "sometimes fails",
+          "traceback",
+          "off by one",
+          "returns none",
+          "returns null",
+          "returns nothing",
+          "returns empty",
+          "returns the wrong",
+          "returns wrong",
+          "null pointer",
+          "nullpointerexception",
+          "keyerror",
+          "typeerror",
+          "valueerror",
+          "indexerror",
+          "attributeerror",
+          "undefined is not",
+          "cannot read property",
+          "500s",
+          "http 500",
+          "http 502",
+          "http 503",
+          "silently drops",
+          "silently ignores",
+          "silently skips"
+        ],
+        "weak": [
+          "drops",
+          "skips",
+          "loses",
+          "ignores",
+          "duplicates",
+          "truncates",
+          "mangles",
+          "swallows",
+          "omits",
+          "fix it",
+          "fix this"
         ],
         "files": [],
         "deps": []
@@ -387,6 +425,7 @@
       "id": "ci-pr",
       "kind": "route",
       "summary": "Red CI or PR review comments to address.",
+      "do": "Run tests and other noisy commands as `ult run -- <cmd>`; quote its exit code and failing lines.",
       "activate": {
         "keywords": [
           "ci",
@@ -865,6 +904,7 @@
       "id": "sec-audit",
       "kind": "route",
       "summary": "Audit a whole repository for vulnerabilities.",
+      "do": "`ult audit start`, then `ult findings add < file` per finding, then `ult audit finish` (report + validation).",
       "activate": {
         "keywords": [
           "audit",
