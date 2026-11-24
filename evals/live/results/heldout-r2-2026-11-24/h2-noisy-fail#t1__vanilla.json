@@ -1,0 +1,100 @@
+{
+  "case": "h2-noisy-fail#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "fixed_in_stock": true,
+    "tests_unmodified": true,
+    "changes_confined": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 5
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "The test suite passes now. All 7 tests are green, and the 183 failures came from a single bug.\n\nThe bug was in `reorder_qty` in `inventory/stock.py`. It used floor division (`need // pack_size`), so it rounded down to whole packs. Its docstring and `test_reorder_rounds_up_to_whole_pack` both expect it to round up. Each of the 199 `need` values in that test is its own subtest, so the output was huge. 183 of them failed, and each one printed its own traceback.\n\nI changed it to ceiling division, `-(-need // pack_size)`. I didn't touch the tests or `logutil`.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 9394,
+  "cost_usd": 0.0609251,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 8234,
+    "cache_read_input_tokens": 212451,
+    "output_tokens": 672
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 672,
+      "cacheReadInputTokens": 212451,
+      "cacheCreationInputTokens": 8234,
+      "webSearchRequests": 0,
+      "costUSD": 0.0609251,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 8234,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 10.3,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h2-noisy-fail#t1__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h2-noisy-fail#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0609251,
+    "input_tokens": 12,
+    "output_tokens": 672,
+    "cache_read_tokens": 212451,
+    "cache_write_tokens": 8234,
+    "turns": 6,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 221369
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "case": "6-audit#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": false,
+    "findings_file_validates": false,
+    "states_missing_scanners": false
+  },
+  "passed": false,
+  "score": 0.625,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I found one confirmed vulnerability, a cross-tenant read in `GET /api/invoices/<id>`. I changed no files. The 10 existing tests pass, and none of them cover this case.\n\n## Confirmed vulnerability\n\n**Broken object-level authorization (IDOR) in `get_invoice`, `invoicer/handlers/invoices.py:18-27`. Severity: high.**\n- The query is `SELECT ... FROM invoices WHERE id = ?`, with no `AND tenant_id = ?`. The other invoice handlers (`list_invoices`, `invoice_report`) do filter by tenant, so this one is inconsistent with them.\n- **Reproduction:** with the fixtures, tenant A's token (`demo-key-not-secret`) requests `/api/invoices/3`, which belongs to tenant B. It gets 200 and the full record: customer, amount and notes. Tenant A's `notes` field already holds \"confidential rate card\".\n- Invoice IDs are sequential integers, so a user can walk the ID range and read every tenant's invoices.\n- **Fix:** add `AND tenant_id = ?` with `user[\"tenant_id\"]`, and return 404 for rows outside the caller's tenant.\n\n## Leads I rejected\n\n- **SQL injection in the report's `ORDER BY`** (`handlers/reports.py`): the query is built with an f-string, but `sort` and `dir` are mapped through fixed allow-lists (`SORT_COLUMNS`, `DIRECTIONS`) with defaults. Only constants reach the SQL, and `tenant_id` is parameterized.\n- **SQL injection elsewhere:** all other queries use `?` placeholders, including the token lookup in `auth.py`.\n- **XSS in the HTML report** (`templates.py`): `customer` and `created` go through `html.escape`, and `amount` is computed from an integer. I did not test `format()` or `REPORT_ROW` injection. The values are inserted into the template after it is fixed, so I don't see a way to inject into it.\n- **Admin endpoint authorization:** `/api/admin/tenants` checks `role == \"admin\"`. It lists every tenant's name and invoice count, which is intended for admins.\n- **Hardcoded secrets:** the demo tokens are in `tests/fixtures.py` and the docstring says they are test-only. They only apply to an in-memory database seeded by the tests.\n- **Authentication:** it does a plain DB lookup with no timing-sensitive comparison. Tokens are stored in plaintext, and the lookup is an exact match on a UNIQUE column. That is a hardening point, not an exploitable bug in this code.\n- **Create-invoice body handling:** `CONTENT_LENGTH` is read without a cap, so a large body could cause memory pressure. A malformed `CONTENT_LENGTH` is caught as `ValueError`. A non-dict JSON body would raise `TypeError` (a 500, not a security issue), so it is a robustness nit and I did not file it as a finding. `tenant_id` comes from the user, not the body, so there is no mass-assignment.\n\n## Coverage\n\nI read all 11 source files: `app.py`, `auth.py`, `db.py`, `http.py`, `templates.py`, the three handlers, and the test fixtures. I ran the test suite and reproduced the IDOR with a short inline script, not saved to the repo. I did not do dependency, deployment or runtime-hardening review. The code uses only the standard library, there is no TLS or rate limiting at this layer, and there are no security response headers.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 19274,
+  "cost_usd": 0.0785814,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 10865,
+    "cache_read_input_tokens": 179914,
+    "output_tokens": 1711
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1711,
+      "cacheReadInputTokens": 179914,
+      "cacheCreationInputTokens": 10865,
+      "webSearchRequests": 0,
+      "costUSD": 0.0785814,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 57,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 10865,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 20.2,
+  "claude_rc": 0,
+  "invalid": null,
+  "findings_path": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/6-audit#t1__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/6-audit#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": false,
+    "graders_pass": false,
+    "total_cost_usd": 0.0785814,
+    "input_tokens": 10,
+    "output_tokens": 1711,
+    "cache_read_tokens": 179914,
+    "cache_write_tokens": 10865,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 192500
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "case": "3-noisy#t1",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "fixed_in_parse": true,
+    "tests_not_edited": true,
+    "key_failure_quoted": true,
+    "raw_output_recoverable": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 6
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done. The cause was in `pipeline/parse.py:17`. For European amounts, `parse_amount` cut the decimal part to one digit with `frac[:1]`, so `\"1.234,56\"` parsed as 1234.5. I changed it to use the whole `frac`.\n\n`python3 -m unittest` now exits 0 with 151 tests OK. Before the change, one test failed: `test_parse_european_decimal`. I didn't add a new test, because that existing test already covers this case.",
+  "is_error": false,
+  "num_turns": 7,
+  "duration_ms": 15679,
+  "cost_usd": 0.0903828,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 13362,
+    "cache_read_input_tokens": 270568,
+    "output_tokens": 985
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 14,
+      "outputTokens": 985,
+      "cacheReadInputTokens": 270568,
+      "cacheCreationInputTokens": 13362,
+      "webSearchRequests": 0,
+      "costUSD": 0.0903828,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 13362,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 16.6,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/3-noisy#t1__v2",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/3-noisy#t1__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0903828,
+    "input_tokens": 14,
+    "output_tokens": 985,
+    "cache_read_tokens": 270568,
+    "cache_write_tokens": 13362,
+    "turns": 7,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 284929
+  }
+}

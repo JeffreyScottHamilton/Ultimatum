@@ -1,0 +1,104 @@
+{
+  "case": "h4-serve-file#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "owner_gets_content": true,
+    "same_name_other_user_isolated": true,
+    "unauthenticated_401": true,
+    "missing_404": true,
+    "no_traversal_leak": true,
+    "listing_still_works": true,
+    "feature_tested": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 5
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "`GET /files/<name>` now works. A signed-in user gets the file's contents back as `200` with `text/plain`. All 8 tests pass, including the 5 new ones.\n\n- **Auth:** with no valid token it returns `401`, same as the other routes.\n- **Other users' files:** a user can only read from their own folder. A request for a name that doesn't exist, or that belongs to someone else, gets `404`.\n- **Bad names:** the route reuses the name check from uploads, so `..`, names with `/` or `\\`, and leading-dot names are rejected with `404`. I also added a check for NUL bytes (`\\0`) in names, which the upload check had missed. That makes `POST /files` reject such names too.\n- **Response headers:** it sends `Content-Disposition: attachment` and `X-Content-Type-Options: nosniff`, so browsers download the file instead of rendering it. Without these, an uploaded HTML file could run script on your origin.\n\nThe route is in `files_app/app.py`, the file-reading helper is in `files_app/storage.py`, and the README lists the new route.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 20496,
+  "cost_usd": 0.0887211,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 11334,
+    "cache_read_input_tokens": 215111,
+    "output_tokens": 2185
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 2185,
+      "cacheReadInputTokens": 215111,
+      "cacheCreationInputTokens": 11334,
+      "webSearchRequests": 0,
+      "costUSD": 0.0887211,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 219,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 11334,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 21.4,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h4-serve-file#t1__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h4-serve-file#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0887211,
+    "input_tokens": 12,
+    "output_tokens": 2185,
+    "cache_read_tokens": 215111,
+    "cache_write_tokens": 11334,
+    "turns": 6,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 228642
+  }
+}

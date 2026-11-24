@@ -1,0 +1,127 @@
+{
+  "case": "4-ui#t2",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "reuses_dialog": true,
+    "reuses_toast": true,
+    "reuses_button": true,
+    "no_native_confirm": true,
+    "agent_checked_two_viewports": true,
+    "agent_ran_real_browser": true,
+    "probe_375_rows_present": true,
+    "probe_375_no_h_overflow": true,
+    "probe_375_delete_button": true,
+    "probe_375_delete_in_viewport": true,
+    "probe_375_dialog_opens_on_enter": true,
+    "probe_375_focus_in_dialog": true,
+    "probe_375_escape_closes": true,
+    "probe_375_escape_keeps_row": true,
+    "probe_375_confirm_removes_row": true,
+    "probe_375_toast_shown": true,
+    "probe_375_no_page_errors": true,
+    "probe_1280_rows_present": true,
+    "probe_1280_no_h_overflow": true,
+    "probe_1280_delete_button": true,
+    "probe_1280_delete_in_viewport": true,
+    "probe_1280_dialog_opens_on_enter": true,
+    "probe_1280_focus_in_dialog": true,
+    "probe_1280_escape_closes": true,
+    "probe_1280_escape_keeps_row": true,
+    "probe_1280_confirm_removes_row": true,
+    "probe_1280_toast_shown": true,
+    "probe_1280_no_page_errors": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 6,
+    "Read": 2
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done. Each project row now has a Delete button. It opens a confirmation dialog, and confirming removes the row and shows a \"Deleted “<name>”\" toast.\n\nI ran it in real Chromium at 375x812 and 1280x800, and `ULT-BROWSER: PASS (fail=0 warn=0 viewports=2)`. At both widths all 14 steps passed: open the dialog, Escape cancels, Delete removes the row (5 rows to 4), and the toast appears. After a cancel, focus returns to the same Delete button, and after a delete it moves to the nearest remaining row. I opened the 375px after-delete and 1280px dialog screenshots, and the long project names wrap without overflow. The 4 static tests pass. The report is `/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/br-t2/report.json`.\n\n- **Changes:** the work is in `app.js` and `styles.css`. It reuses the existing `Button`, `Dialog` and `Toast` components, and each Delete button's aria-label includes the project name.\n- **In-memory only:** the delete changes `window.PROJECTS` in memory, so a reload brings the rows back. The app has no backend or storage.\n- **Not verified:** axe wasn't available, so the accessibility check used the fallback only. I also didn't test the empty list or the 320px width.",
+  "is_error": false,
+  "num_turns": 9,
+  "duration_ms": 33881,
+  "cost_usd": 0.1748743,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 25964,
+    "cache_read_input_tokens": 387963,
+    "output_tokens": 3219
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 3219,
+      "cacheReadInputTokens": 387963,
+      "cacheCreationInputTokens": 25964,
+      "webSearchRequests": 0,
+      "costUSD": 0.1748743,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 229,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 25964,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 35.1,
+  "claude_rc": 0,
+  "invalid": null,
+  "probe_notes": [],
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/4-ui#t2__v2",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/4-ui#t2__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.1748743,
+    "input_tokens": 16,
+    "output_tokens": 3219,
+    "cache_read_tokens": 387963,
+    "cache_write_tokens": 25964,
+    "turns": 9,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 417162
+  }
+}

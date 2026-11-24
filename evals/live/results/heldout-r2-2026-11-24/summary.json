@@ -1,0 +1,2047 @@
+[
+  {
+    "case": "h1-symptom#t1",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "cli_runs": true,
+      "rows_correct": true,
+      "grand_total_correct": true,
+      "source_changed": true
+    },
+    "cost_usd": 0.065073,
+    "num_turns": 8,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 7913,
+      "cache_read_input_tokens": 173910,
+      "output_tokens": 1601
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 1601,
+        "cacheReadInputTokens": 173910,
+        "cacheCreationInputTokens": 7913,
+        "webSearchRequests": 0,
+        "costUSD": 0.065073,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 32,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 7913,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 18721,
+    "wall_s": 20.1,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.065073,
+      "input_tokens": 10,
+      "output_tokens": 1601,
+      "cache_read_tokens": 173910,
+      "cache_write_tokens": 7913,
+      "turns": 8,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 183434
+    }
+  },
+  {
+    "case": "h1-symptom#t1",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "cli_runs": true,
+      "rows_correct": true,
+      "grand_total_correct": true,
+      "source_changed": true
+    },
+    "cost_usd": 0.0861384,
+    "num_turns": 5,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 12904,
+      "cache_read_input_tokens": 188724,
+      "output_tokens": 1563
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 1563,
+        "cacheReadInputTokens": 188724,
+        "cacheCreationInputTokens": 12904,
+        "webSearchRequests": 0,
+        "costUSD": 0.0861384,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 145,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 12904,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 19393,
+    "wall_s": 20.5,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0861384,
+      "input_tokens": 10,
+      "output_tokens": 1563,
+      "cache_read_tokens": 188724,
+      "cache_write_tokens": 12904,
+      "turns": 5,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 203201
+    }
+  },
+  {
+    "case": "h1-symptom#t2",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "cli_runs": true,
+      "rows_correct": true,
+      "grand_total_correct": true,
+      "source_changed": true
+    },
+    "cost_usd": 0.0682726,
+    "num_turns": 8,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 8665,
+      "cache_read_input_tokens": 176126,
+      "output_tokens": 1598
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 1598,
+        "cacheReadInputTokens": 176126,
+        "cacheCreationInputTokens": 8665,
+        "webSearchRequests": 0,
+        "costUSD": 0.0682726,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 81,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 8665,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 20534,
+    "wall_s": 21.6,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0682726,
+      "input_tokens": 10,
+      "output_tokens": 1598,
+      "cache_read_tokens": 176126,
+      "cache_write_tokens": 8665,
+      "turns": 8,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 186399
+    }
+  },
+  {
+    "case": "h1-symptom#t2",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "cli_runs": true,
+      "rows_correct": true,
+      "grand_total_correct": true,
+      "source_changed": true
+    },
+    "cost_usd": 0.0770774,
+    "num_turns": 5,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 10369,
+      "cache_read_input_tokens": 190914,
+      "output_tokens": 1649
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 1649,
+        "cacheReadInputTokens": 190914,
+        "cacheCreationInputTokens": 10369,
+        "webSearchRequests": 0,
+        "costUSD": 0.0770774,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 170,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 10369,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 15821,
+    "wall_s": 16.7,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0770774,
+      "input_tokens": 10,
+      "output_tokens": 1649,
+      "cache_read_tokens": 190914,
+      "cache_write_tokens": 10369,
+      "turns": 5,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 202942
+    }
+  },
+  {
+    "case": "h1-symptom#t3",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "cli_runs": true,
+      "rows_correct": true,
+      "grand_total_correct": true,
+      "source_changed": true
+    },
+    "cost_usd": 0.0627636,
+    "num_turns": 8,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 7952,
+      "cache_read_input_tokens": 175956,
+      "output_tokens": 1334
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 1334,
+        "cacheReadInputTokens": 175956,
+        "cacheCreationInputTokens": 7952,
+        "webSearchRequests": 0,
+        "costUSD": 0.0627636,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 39,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 7952,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 13268,
+    "wall_s": 14.5,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0627636,
+      "input_tokens": 10,
+      "output_tokens": 1334,
+      "cache_read_tokens": 175956,
+      "cache_write_tokens": 7952,
+      "turns": 8,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 185252
+    }
+  },
+  {
+    "case": "h1-symptom#t3",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "cli_runs": true,
+      "rows_correct": true,
+      "grand_total_correct": true,
+      "source_changed": true
+    },
+    "cost_usd": 0.06704969999999999,
+    "num_turns": 4,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 9941,
+      "cache_read_input_tokens": 149697,
+      "output_tokens": 1230
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 8,
+        "outputTokens": 1230,
+        "cacheReadInputTokens": 149697,
+        "cacheCreationInputTokens": 9941,
+        "webSearchRequests": 0,
+        "costUSD": 0.06704969999999999,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 85,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 9941,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 12628,
+    "wall_s": 13.8,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.06704969999999999,
+      "input_tokens": 8,
+      "output_tokens": 1230,
+      "cache_read_tokens": 149697,
+      "cache_write_tokens": 9941,
+      "turns": 4,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 160876
+    }
+  },
+  {
+    "case": "h2-noisy-fail#t1",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "fixed_in_stock": true,
+      "tests_unmodified": true,
+      "changes_confined": true
+    },
+    "cost_usd": 0.0609251,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 8234,
+      "cache_read_input_tokens": 212451,
+      "output_tokens": 672
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 672,
+        "cacheReadInputTokens": 212451,
+        "cacheCreationInputTokens": 8234,
+        "webSearchRequests": 0,
+        "costUSD": 0.0609251,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 8234,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 9394,
+    "wall_s": 10.3,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0609251,
+      "input_tokens": 12,
+      "output_tokens": 672,
+      "cache_read_tokens": 212451,
+      "cache_write_tokens": 8234,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 221369
+    }
+  },
+  {
+    "case": "h2-noisy-fail#t1",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "fixed_in_stock": true,
+      "tests_unmodified": true,
+      "changes_confined": true
+    },
+    "cost_usd": 0.0858457,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 13592,
+      "cache_read_input_tokens": 231437,
+      "output_tokens": 831
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 831,
+        "cacheReadInputTokens": 231437,
+        "cacheCreationInputTokens": 13592,
+        "webSearchRequests": 0,
+        "costUSD": 0.0858457,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 13592,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 12069,
+    "wall_s": 13.0,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0858457,
+      "input_tokens": 12,
+      "output_tokens": 831,
+      "cache_read_tokens": 231437,
+      "cache_write_tokens": 13592,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 245872
+    }
+  },
+  {
+    "case": "h2-noisy-fail#t2",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "fixed_in_stock": true,
+      "tests_unmodified": true,
+      "changes_confined": true
+    },
+    "cost_usd": 0.0608311,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 7869,
+      "cache_read_input_tokens": 211911,
+      "output_tokens": 814
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 814,
+        "cacheReadInputTokens": 211911,
+        "cacheCreationInputTokens": 7869,
+        "webSearchRequests": 0,
+        "costUSD": 0.0608311,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 7869,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 11267,
+    "wall_s": 12.1,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0608311,
+      "input_tokens": 12,
+      "output_tokens": 814,
+      "cache_read_tokens": 211911,
+      "cache_write_tokens": 7869,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 220606
+    }
+  },
+  {
+    "case": "h2-noisy-fail#t2",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "fixed_in_stock": true,
+      "tests_unmodified": true,
+      "changes_confined": true
+    },
+    "cost_usd": 0.0776291,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 11084,
+      "cache_read_input_tokens": 233091,
+      "output_tokens": 996
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 996,
+        "cacheReadInputTokens": 233091,
+        "cacheCreationInputTokens": 11084,
+        "webSearchRequests": 0,
+        "costUSD": 0.0776291,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 56,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 11084,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 13788,
+    "wall_s": 15.0,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0776291,
+      "input_tokens": 12,
+      "output_tokens": 996,
+      "cache_read_tokens": 233091,
+      "cache_write_tokens": 11084,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 245183
+    }
+  },
+  {
+    "case": "h2-noisy-fail#t3",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "fixed_in_stock": true,
+      "tests_unmodified": true,
+      "changes_confined": true
+    },
+    "cost_usd": 0.0597363,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 7778,
+      "cache_read_input_tokens": 211503,
+      "output_tokens": 745
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 745,
+        "cacheReadInputTokens": 211503,
+        "cacheCreationInputTokens": 7778,
+        "webSearchRequests": 0,
+        "costUSD": 0.0597363,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 7778,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 10822,
+    "wall_s": 11.9,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0597363,
+      "input_tokens": 12,
+      "output_tokens": 745,
+      "cache_read_tokens": 211503,
+      "cache_write_tokens": 7778,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 220038
+    }
+  },
+  {
+    "case": "h2-noisy-fail#t3",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "fixed_in_stock": true,
+      "tests_unmodified": true,
+      "changes_confined": true
+    },
+    "cost_usd": 0.086715,
+    "num_turns": 5,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 14275,
+      "cache_read_input_tokens": 202550,
+      "output_tokens": 934
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 934,
+        "cacheReadInputTokens": 202550,
+        "cacheCreationInputTokens": 14275,
+        "webSearchRequests": 0,
+        "costUSD": 0.086715,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 41,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 14275,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 13603,
+    "wall_s": 14.5,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.086715,
+      "input_tokens": 10,
+      "output_tokens": 934,
+      "cache_read_tokens": 202550,
+      "cache_write_tokens": 14275,
+      "turns": 5,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 217769
+    }
+  },
+  {
+    "case": "h3-reuse-helper#t1",
+    "arm": "vanilla",
+    "passed": false,
+    "score": 0.857,
+    "checks": {
+      "tests_pass": true,
+      "us_formats_match": true,
+      "international_match": true,
+      "no_match_empty": true,
+      "reuses_normalize_phone": true,
+      "no_legacy_clean_phone": true,
+      "feature_tested": false
+    },
+    "cost_usd": 0.0614011,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 7811,
+      "cache_read_input_tokens": 175471,
+      "output_tokens": 1259
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 1259,
+        "cacheReadInputTokens": 175471,
+        "cacheCreationInputTokens": 7811,
+        "webSearchRequests": 0,
+        "costUSD": 0.0614011,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 85,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 7811,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 13797,
+    "wall_s": 14.7,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": false,
+      "graders_pass": false,
+      "total_cost_usd": 0.0614011,
+      "input_tokens": 10,
+      "output_tokens": 1259,
+      "cache_read_tokens": 175471,
+      "cache_write_tokens": 7811,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 184551
+    }
+  },
+  {
+    "case": "h3-reuse-helper#t1",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "us_formats_match": true,
+      "international_match": true,
+      "no_match_empty": true,
+      "reuses_normalize_phone": true,
+      "no_legacy_clean_phone": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.06306600000000001,
+    "num_turns": 4,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 9961,
+      "cache_read_input_tokens": 143660,
+      "output_tokens": 884
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 8,
+        "outputTokens": 884,
+        "cacheReadInputTokens": 143660,
+        "cacheCreationInputTokens": 9961,
+        "webSearchRequests": 0,
+        "costUSD": 0.06306600000000001,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 9961,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 9357,
+    "wall_s": 10.3,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.06306600000000001,
+      "input_tokens": 8,
+      "output_tokens": 884,
+      "cache_read_tokens": 143660,
+      "cache_write_tokens": 9961,
+      "turns": 4,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 154513
+    }
+  },
+  {
+    "case": "h3-reuse-helper#t2",
+    "arm": "vanilla",
+    "passed": false,
+    "score": 0.857,
+    "checks": {
+      "tests_pass": true,
+      "us_formats_match": true,
+      "international_match": true,
+      "no_match_empty": true,
+      "reuses_normalize_phone": true,
+      "no_legacy_clean_phone": true,
+      "feature_tested": false
+    },
+    "cost_usd": 0.066275,
+    "num_turns": 9,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 10,
+      "cache_creation_input_tokens": 8574,
+      "cache_read_input_tokens": 176990,
+      "output_tokens": 1426
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 10,
+        "outputTokens": 1426,
+        "cacheReadInputTokens": 176990,
+        "cacheCreationInputTokens": 8574,
+        "webSearchRequests": 0,
+        "costUSD": 0.066275,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 44,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 8574,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 13964,
+    "wall_s": 14.8,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": false,
+      "graders_pass": false,
+      "total_cost_usd": 0.066275,
+      "input_tokens": 10,
+      "output_tokens": 1426,
+      "cache_read_tokens": 176990,
+      "cache_write_tokens": 8574,
+      "turns": 9,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 187000
+    }
+  },
+  {
+    "case": "h3-reuse-helper#t2",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "us_formats_match": true,
+      "international_match": true,
+      "no_match_empty": true,
+      "reuses_normalize_phone": true,
+      "no_legacy_clean_phone": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.055585600000000006,
+    "num_turns": 4,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 7775,
+      "cache_read_input_tokens": 145896,
+      "output_tokens": 988
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 8,
+        "outputTokens": 988,
+        "cacheReadInputTokens": 145896,
+        "cacheCreationInputTokens": 7775,
+        "webSearchRequests": 0,
+        "costUSD": 0.055585600000000006,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 37,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 7775,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 10081,
+    "wall_s": 11.1,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.055585600000000006,
+      "input_tokens": 8,
+      "output_tokens": 988,
+      "cache_read_tokens": 145896,
+      "cache_write_tokens": 7775,
+      "turns": 4,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 154667
+    }
+  },
+  {
+    "case": "h3-reuse-helper#t3",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "us_formats_match": true,
+      "international_match": true,
+      "no_match_empty": true,
+      "reuses_normalize_phone": true,
+      "no_legacy_clean_phone": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.0765882,
+    "num_turns": 10,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 9438,
+      "cache_read_input_tokens": 215022,
+      "output_tokens": 1731
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 1731,
+        "cacheReadInputTokens": 215022,
+        "cacheCreationInputTokens": 9438,
+        "webSearchRequests": 0,
+        "costUSD": 0.0765882,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 9438,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 18169,
+    "wall_s": 19.0,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0765882,
+      "input_tokens": 12,
+      "output_tokens": 1731,
+      "cache_read_tokens": 215022,
+      "cache_write_tokens": 9438,
+      "turns": 10,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 226203
+    }
+  },
+  {
+    "case": "h3-reuse-helper#t3",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "us_formats_match": true,
+      "international_match": true,
+      "no_match_empty": true,
+      "reuses_normalize_phone": true,
+      "no_legacy_clean_phone": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.055528,
+    "num_turns": 4,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 7743,
+      "cache_read_input_tokens": 145900,
+      "output_tokens": 995
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 8,
+        "outputTokens": 995,
+        "cacheReadInputTokens": 145900,
+        "cacheCreationInputTokens": 7743,
+        "webSearchRequests": 0,
+        "costUSD": 0.055528,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 7743,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 10075,
+    "wall_s": 11.1,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.055528,
+      "input_tokens": 8,
+      "output_tokens": 995,
+      "cache_read_tokens": 145900,
+      "cache_write_tokens": 7743,
+      "turns": 4,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 154646
+    }
+  },
+  {
+    "case": "h4-serve-file#t1",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "owner_gets_content": true,
+      "same_name_other_user_isolated": true,
+      "unauthenticated_401": true,
+      "missing_404": true,
+      "no_traversal_leak": true,
+      "listing_still_works": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.0887211,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 11334,
+      "cache_read_input_tokens": 215111,
+      "output_tokens": 2185
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 2185,
+        "cacheReadInputTokens": 215111,
+        "cacheCreationInputTokens": 11334,
+        "webSearchRequests": 0,
+        "costUSD": 0.0887211,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 219,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 11334,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 20496,
+    "wall_s": 21.4,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0887211,
+      "input_tokens": 12,
+      "output_tokens": 2185,
+      "cache_read_tokens": 215111,
+      "cache_write_tokens": 11334,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 228642
+    }
+  },
+  {
+    "case": "h4-serve-file#t1",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "owner_gets_content": true,
+      "same_name_other_user_isolated": true,
+      "unauthenticated_401": true,
+      "missing_404": true,
+      "no_traversal_leak": true,
+      "listing_still_works": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.12085590000000002,
+    "num_turns": 4,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 20284,
+      "cache_read_input_tokens": 160639,
+      "output_tokens": 2364
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 8,
+        "outputTokens": 2364,
+        "cacheReadInputTokens": 160639,
+        "cacheCreationInputTokens": 20284,
+        "webSearchRequests": 0,
+        "costUSD": 0.12085590000000002,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 218,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 20284,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 18208,
+    "wall_s": 19.2,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.12085590000000002,
+      "input_tokens": 8,
+      "output_tokens": 2364,
+      "cache_read_tokens": 160639,
+      "cache_write_tokens": 20284,
+      "turns": 4,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 183295
+    }
+  },
+  {
+    "case": "h4-serve-file#t2",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "owner_gets_content": true,
+      "same_name_other_user_isolated": true,
+      "unauthenticated_401": true,
+      "missing_404": true,
+      "no_traversal_leak": true,
+      "listing_still_works": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.0870496,
+    "num_turns": 6,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 11206,
+      "cache_read_input_tokens": 215416,
+      "output_tokens": 2066
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 12,
+        "outputTokens": 2066,
+        "cacheReadInputTokens": 215416,
+        "cacheCreationInputTokens": 11206,
+        "webSearchRequests": 0,
+        "costUSD": 0.0870496,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 143,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 11206,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 19855,
+    "wall_s": 20.7,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.0870496,
+      "input_tokens": 12,
+      "output_tokens": 2066,
+      "cache_read_tokens": 215416,
+      "cache_write_tokens": 11206,
+      "turns": 6,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 228700
+    }
+  },
+  {
+    "case": "h4-serve-file#t2",
+    "arm": "v2",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "owner_gets_content": true,
+      "same_name_other_user_isolated": true,
+      "unauthenticated_401": true,
+      "missing_404": true,
+      "no_traversal_leak": true,
+      "listing_still_works": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.10660159999999999,
+    "num_turns": 4,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 16317,
+      "cache_read_input_tokens": 157276,
+      "output_tokens": 2559
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 8,
+        "outputTokens": 2559,
+        "cacheReadInputTokens": 157276,
+        "cacheCreationInputTokens": 16317,
+        "webSearchRequests": 0,
+        "costUSD": 0.10660159999999999,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 172,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 16317,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 19407,
+    "wall_s": 20.6,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.10660159999999999,
+      "input_tokens": 8,
+      "output_tokens": 2559,
+      "cache_read_tokens": 157276,
+      "cache_write_tokens": 16317,
+      "turns": 4,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 176160
+    }
+  },
+  {
+    "case": "h4-serve-file#t3",
+    "arm": "vanilla",
+    "passed": true,
+    "score": 1.0,
+    "checks": {
+      "tests_pass": true,
+      "owner_gets_content": true,
+      "same_name_other_user_isolated": true,
+      "unauthenticated_401": true,
+      "missing_404": true,
+      "no_traversal_leak": true,
+      "listing_still_works": true,
+      "feature_tested": true
+    },
+    "cost_usd": 0.07046690000000001,
+    "num_turns": 4,
+    "agent_calls": 0,
+    "usage": {
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 9091,
+      "cache_read_input_tokens": 139069,
+      "output_tokens": 2018
+    },
+    "model_usage": {
+      "claude-sonnet-5-5": {
+        "inputTokens": 8,
+        "outputTokens": 2018,
+        "cacheReadInputTokens": 139069,
+        "cacheCreationInputTokens": 9091,
+        "webSearchRequests": 0,
+        "costUSD": 0.07046690000000001,
+        "contextWindow": 200000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 174,
+        "cacheCreationEphemeral5mInputTokens": 0,
+        "cacheCreationEphemeral1hInputTokens": 9091,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "duration_ms": 18254,
+    "wall_s": 19.1,
+    "permission_denials": 0,
+    "arch": {
+      "new_counts": {},
+      "arch_findings": 0,
+      "arch_blocking": 0
+    },
+    "metrics": {
+      "pass": true,
+      "graders_pass": true,
+      "total_cost_usd": 0.07046690000000001,
+      "input_tokens": 8,
+      "output_tokens": 2018,
+      "cache_read_tokens": 139069,
+      "cache_write_tokens": 9091,
+      "turns": 4,
+      "subagents": 0,
+      "invalid": false,
+      "arch_measured": true,
+      "arch_blocking": 0,
+      "arch_findings": 0,
+      "total_tokens": 150186
+    }
+  }
+]
