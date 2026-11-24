@@ -91,15 +91,7 @@ Each has a LICENSE file in its plugin folder. Apache-2.0 requires notices and ch
 
 **Size:** 2508 files total. Much of the bulk is vendored upstream repos under `Leonxlnx_taste-skill/`, `anthropics_skills/`, `emil/`, `pbakaus_impeccable/`, `nextlevelbuilder_ui-ux-pro-max-skill/` (these sit beside the plugin folder). SKILL.md files under `plugins/` and `.claude/`: 45. Largest: write-swift 42776 B, image-to-code 36442 B, imagegen-frontend-mobile 40326 B, imagegen-frontend-web 36854 B, emil-design-eng 28257 B, frontend-stack 22594 B. `references/` folders total 300 files, about 7.3 MB (mostly taste assets).
 
-**Routing mechanism (specific):** `plugins/frontend-stack/skills/frontend-stack/SKILL.md` is a router with eight sections. Steps:
-1. Read the project first (package.json, components.json, Tailwind, DESIGN.md).
-2. Classify the request on three axes: job (build, change, review, craft, assets), surface (marketing, product, component, mobile web, native), stack signals.
-3. Phase plan: Diagnose, Direction, Build, Review. A table in §4 maps each task type to one **lead** skill and up to **two support** skills. Examples: product dashboards lead with `frontend-design`; landing pages lead with `taste`; "looks generic" routes to an identity flow first.
-4. Vague complaints ("ugly") trigger a clarifying question before any skill loads.
-5. Precedence ladder (§6): user request and brand, then the project's existing system, then accessibility and correctness, then the lead's scope rules, then domain owner, then the lead's taste defaults.
-6. Load budget (§7): base skill plus one lead plus at most two supporting skills per phase.
-7. Finish format (§8).
-Seven reference files (about 88 KB) hold the detailed flows; `conflicts.md` (15.5 KB) holds cross-pack rulings. The routing is by instruction text in the model's context. There is no code that selects skills.
+**Routing mechanism (specific):** `plugins/frontend-stack/skills/frontend-stack/SKILL.md` is a router with eight sections. It reads the project first; classifies the request on job, surface and stack signals; splits work into phases (Diagnose, Direction, Build, Review); a table maps each task type to one lead skill and up to two support skills; vague complaints trigger a question before any skill loads; a precedence ladder settles conflicts (user request, project system, accessibility, lead's scope, domain owner, lead's taste defaults); a load budget caps skills per phase. Seven reference files (about 88 KB) hold flows, and `conflicts.md` (15.5 KB) holds cross-pack rulings. Selection is by instruction text in the model's context; no code selects skills.
 
 **Hooks and startup injection:** `plugins/impeccable/hooks/hooks.json` has a `SessionStart` hook (timeout 5) and a `PostToolUse` hook on `Edit|Write` (timeout 30, status "Design deep pass"). Both run `skills/impeccable/scripts/impeccable hook` (or a `.cmd` on Windows) if the file exists. The directory has a prebuilt `impeccable` script (13724 B), `impeccable.cmd` (15459 B), `engine-checksums.txt`, and `live-browser-dom.js`. Per-session token cost: not measured (hook output not run).
 
@@ -108,8 +100,8 @@ Seven reference files (about 88 KB) hold the detailed flows; `conflicts.md` (15.
 **Scripts and network:**
 - `ui-ux-pro-max/.../scripts/` contains Python 3 files (`core.py`, `search.py`, `design_system.py`, `preview.py`, `validate_data.py`, `generate.py`) and CSV data (`styles.csv`, `colors.csv`, `industries.csv`).
 - `design-system/scripts/fetch-background.py` fetches hard-coded `images.pexels.com` URLs ("uses web scraping (no API key required)").
-- `taste/.../assets/**/*.js` and `.mjs` files (about 100 files, for example `effect.js`, `component.js`, `shoot.mjs`). `shoot.mjs` is a Node 22+ tool for screenshots; it drives a browser. Not run.
-- `scripts/sync.py` (Python) pulls upstream repos by `https://github.com/{repo}.git` and regenerates the marketplace and notices. `scripts/check.sh` is the local gate; `.githooks/pre-push` runs it.
+- `taste/.../assets/**/*.js|mjs` (about 110 files). `shoot.mjs` is a Node 22+ screenshot tool. Not run.
+- Repo `scripts/sync.py` pulls upstream repos by GitHub URL and regenerates notices.
 
 **Security risks:**
 - Shipped prebuilt executable (`impeccable`) invoked from hooks on every Edit or Write.
