@@ -29,7 +29,7 @@ class PlainChatRouting(UltCase):
     def test_five_prompts_pick_the_right_workflow(self):
         from ultlib.pick import pick
         self.site()
-        self.assertEqual(hook("How does the export module work?", self.root), "")
+        self.assertNotIn("ultimatum:work", hook("How does the export module work?", self.root))
         cases = {
             "Fix the CSV export": "work",
             "Build me a website for my coffee shop": "website",
@@ -40,7 +40,7 @@ class PlainChatRouting(UltCase):
             with self.subTest(prompt=prompt):
                 self.assertEqual(pick(prompt, root=self.root), kind)
                 out = hook(prompt, self.root)
-                # Only coding work gets core's note; the heads have no hook.
+                # Only coding work goes to ultimatum:work; the rest go to their plugin.
                 self.assertEqual("ultimatum:work" in out, kind == "work")
 
     def test_animation_inside_a_website_stays_website(self):

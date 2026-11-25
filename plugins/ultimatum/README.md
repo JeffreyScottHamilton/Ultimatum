@@ -6,9 +6,13 @@ One skill for the software work a developer actually does in Claude Code. Instal
 /ultimatum:work <task>        # chat and coding
 ```
 
-You don't have to type it: once the plugin is enabled, a coding request such as "Fix the CSV export" starts `/ultimatum:work` through a small local prompt hook, with no line needed in your `CLAUDE.md`. Plain questions ("What is a closure?", "How does the export module work?") and writing help stay in normal chat. `ULTIMATUM_AUTO=0` turns the hook off, and typed commands always win.
+Ultimatum is the default way of working once it is enabled: short plain answers first, more depth only when the question needs it, helpers only when they save time. A small local prompt hook does this with no line needed in your `CLAUDE.md`:
 
-Ultimatum core is for coding only. Launches and social media are separate, self-contained plugins in the same marketplace: [Website](../ultimatum-website-launch/README.md), [E-commerce](../ultimatum-ecommerce-launch/README.md) and [App](../ultimatum-app-launch/README.md) Launch. Each ships its own team guides, reviewer agents and copy of the toolbelt, and none of them needs core.
+- **Questions** ("What is a closure?") get a one-line style note: answer first in 1-3 plain lines. `ULTIMATUM_STYLE=0` drops it.
+- **Coding** ("Fix the CSV export") starts `/ultimatum:work`.
+- **Websites, stores, apps, events, social media and video** go to the matching plugin's skill if it is installed: [Website](../ultimatum-website-launch/README.md), [E-commerce](../ultimatum-ecommerce-launch/README.md), [App](../ultimatum-app-launch/README.md), [Event](../ultimatum-event-launch/README.md), [Social media](../ultimatum-social-media/README.md), [Video](../ultimatum-video/README.md). If not, you get a short answer and the `/plugin install <plugin>@ultimatum` line. Each of those plugins is self-contained and none of them needs core.
+
+`ULTIMATUM_AUTO=0` turns the hook off, and typed commands always win.
 
 A local router (`ult route`, no model call) reads the task and picks:
 

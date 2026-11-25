@@ -25,7 +25,7 @@ Add the launch plugin for what you are launching, Social Media on its own for po
 
 | Plugin | For |
 |---|---|
-| `ultimatum` | Software work: coding, debugging, CI, interface work, security review, releases |
+| `ultimatum` | The default: short answers first, coding work, and a pointer to the right plugin for everything else |
 | `ultimatum-website-launch` | Launching a small business, local service, portfolio or creator site |
 | `ultimatum-ecommerce-launch` | Launching an online store |
 | `ultimatum-app-launch` | Launching a web app, mobile app or subscription product |

@@ -205,14 +205,14 @@ class PlainChatPicker(LaunchCase):
         from ultlib.pick import pick
         return pick(prompt, root=self.root)
 
-    def test_new_website_request_picks_website_and_core_stays_quiet(self):
+    def test_new_website_request_points_to_website_launch(self):
         self.assertEqual(self.kind("Build me a website for my coffee shop"), "website")
-        self.assertEqual(self.pick("Build me a website for my coffee shop"), "")
+        self.assertIn("ultimatum-website-launch", self.pick("Build me a website for my coffee shop"))
 
     def test_interface_fix_in_a_website_project_picks_website(self):
         self.site()
         self.assertEqual(self.kind("Fix the mobile menu"), "website")
-        self.assertEqual(self.pick("Fix the mobile menu"), "")
+        self.assertNotIn("ultimatum:work", self.pick("Fix the mobile menu"))
 
     def test_interface_fix_outside_a_website_project_starts_work(self):
         self.write("app/main.py", "print(1)")
@@ -225,12 +225,14 @@ class PlainChatPicker(LaunchCase):
         self.assertIn('"additionalContext"', out)
         self.assertIn("ultimatum:work", out)
 
-    def test_plain_questions_and_writing_help_get_nothing(self):
+    def test_plain_questions_and_writing_help_get_only_the_style_line(self):
         self.site()
         for prompt in ("What is a closure in JavaScript?", "Thanks!", "write a haiku about autumn",
                        "How does the export module work?", "Make this email shorter: Hi Sam, quick follow-up"):
             with self.subTest(prompt=prompt):
-                self.assertEqual(self.pick(prompt), "")
+                out = self.pick(prompt)
+                self.assertIn("Ultimatum style", out)
+                self.assertNotIn("ultimatum:work", out)
 
     def test_explicit_command_and_off_switch_are_respected(self):
         self.site()

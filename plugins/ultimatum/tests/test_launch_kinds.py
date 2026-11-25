@@ -61,10 +61,12 @@ class KindRouting(unittest.TestCase):
 
 
 class KindHookAndBoard(LaunchCase):
-    def test_launch_prompts_get_no_hook_note(self):
+    def test_launch_prompts_point_to_a_launch_plugin(self):
         for text in ("launch my online candle shop", "help me launch my business", "help me fill my workshop"):
             with self.subTest(text=text):
-                self.assertEqual(pick_hooks(text, self.root), "")
+                out = pick_hooks(text, self.root)
+                self.assertIn("-launch", out)
+                self.assertNotIn("ultimatum:work", out)
 
     def test_board_prints_the_kind_and_its_head(self):
         for kind in KIND_ORDER:

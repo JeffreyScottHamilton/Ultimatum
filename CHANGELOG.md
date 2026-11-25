@@ -23,8 +23,8 @@ An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will 
 
 ### ultimatum
 
-- Coding only. The `workflow:` line from `ult route` points a launch to an installed `ultimatum-<kind>-launch:launch`, and social, motion or film work to an installed social media plugin.
-- `ult-pick` (the UserPromptSubmit hook) adds a note only for coding work; launch, business, social and video prompts get nothing, so other plugins' heads are chosen from their descriptions.
+- The default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Coding goes to `/ultimatum:work`.
+- `ult-pick` (the UserPromptSubmit hook) adds a short style note to plain questions (`ULTIMATUM_STYLE=0` drops it), starts `ultimatum:work` for coding, and sends launch, business, social and video prompts to the matching plugin's skill, or says to install it with `/plugin install <plugin>@ultimatum`.
 - Writing style (shared by every plugin through `shared/defaults.md`): a one-line result by default ("Login works."), with fix and check details only when asked, when a check failed or was skipped, or when the user must decide; otherwise terse bullets, no recap or filler, questions as a numbered list with a recommended answer, and one next step at the end. Easier to scan and fewer tokens.
 - `ult board` and `ult notes` (in every plugin's toolbelt): on big projects, one Markdown card per piece of work (backlog, doing, blocked, done, with its check and files) and linked notes for decisions (`[[topic]]` links between notes and cards, so `.ultimatum/notes/` also opens as an Obsidian vault). Every head and the `work` skill run `ult board show` first on a big project, so work resumes from the right card after lost context. Local and git-ignored; small jobs skip it.
 - Graphify on big codebases: used from the start when installed (refreshing a stale graph with the no-model `graphify update .`); when missing, the report suggests installing it once. Ultimatum never installs it.

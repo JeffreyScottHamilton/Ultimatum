@@ -48,7 +48,7 @@ class Base(LaunchCase):
 
 
 class PlainChatRouting(Base):
-    """ultlib.pick sorts plain prompts; core's hook announces only coding work.
+    """ultlib.pick sorts plain prompts; core's hook sends each job to the right place.
 
     The launch and social media plugins have no hook: each is one head skill Claude
     picks from its description, so only core's note is checked here.
@@ -77,21 +77,44 @@ class PlainChatRouting(Base):
             with self.subTest(prompt=prompt):
                 self.assertEqual(pick(prompt, root=self.root), kind)
 
-    def test_core_hook_announces_only_coding_work(self):
+    HEAD = {"launch": None, "business": None, "website": "ultimatum-website-launch:launch",
+            "social": "ultimatum-social-media:social-media", "motion": "ultimatum-video:video",
+            "film": "ultimatum-video:video"}
+
+    def test_core_hook_sends_each_job_to_its_plugin(self):
         self.write("index.html", "<nav class='menu'></nav>")
         for prompt, kind in self.CASES.items():
             with self.subTest(prompt=prompt):
                 out = hook(prompt, self.root)
+                self.assertIn('"additionalContext"', out)
                 if kind == "work":
-                    self.assertIn('"additionalContext"', out)
                     self.assertIn("ultimatum:work", out)
-                else:
-                    self.assertEqual(out, "")
+                    continue
+                self.assertNotIn("ultimatum:work", out)
+                self.assertIn("/plugin install ultimatum-", out)
+                if self.HEAD[kind]:
+                    self.assertIn(self.HEAD[kind], out)
 
-    def test_plain_questions_get_an_answer(self):
+    def test_launch_kind_names_its_plugin(self):
+        self.assertIn("ultimatum-ecommerce-launch:launch", hook("launch my online candle shop", self.root))
+        self.assertIn("ultimatum-event-launch:launch", hook("help me fill my workshop launch", self.root))
+        self.assertIn("ultimatum-event-launch:launch", hook("promote our opening night", self.root))
+        for q in ("What is an event?", "How do events work in JavaScript?"):
+            self.assertNotIn("event-launch", hook(q, self.root), q)
+
+    def test_plain_questions_get_only_the_style_line(self):
         for q in ("What is a brand film?", "What is a content calendar?", "How does a soft launch work?", "What is TikTok?",
                   "How do instagram reels work?"):
-            self.assertEqual(hook(q, self.root), "", q)
+            out = hook(q, self.root)
+            self.assertIn("Ultimatum style", out, q)
+            self.assertNotIn("/plugin install", out, q)
+
+    def test_style_line_can_be_turned_off(self):
+        import os
+        env = dict(os.environ, ULTIMATUM_STYLE="0")
+        env.pop("ULTIMATUM_AUTO", None)
+        self.assertEqual(pick_hooks("What is TikTok?", self.root, env=env), "")
+        self.assertIn("ultimatum:work", pick_hooks("Fix the signup form validation bug", self.root, env=env))
 
     def test_slash_commands_win(self):
         for p in ("/ultimatum-website-launch:launch fix the signup form validation bug",
