@@ -1,0 +1,18 @@
+{
+  "name": "ultimatum-event-launch",
+  "version": "1.0.0",
+  "description": "Event Launch for Ultimatum. Plans and runs the promotion of a public event, working back from the date: intake, ticketing and sign-up, a countdown promotion plan, a day-of run sheet and the follow-up afterwards. Nothing is posted, sent or paid for without your approval.",
+  "author": {
+    "name": "Jeffrey Scott Hamilton"
+  },
+  "homepage": "https://github.com/JeffreyScottHamilton/Ultimatum",
+  "repository": "https://github.com/JeffreyScottHamilton/Ultimatum",
+  "license": "MIT",
+  "keywords": [
+    "launch",
+    "event",
+    "tickets",
+    "workshop",
+    "promotion"
+  ]
+}
