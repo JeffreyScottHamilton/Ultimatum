@@ -31,8 +31,6 @@ Add the launch plugin for what you are launching, Social Media on its own for po
 | `ultimatum-social-media` | Social posts, campaigns and video, with hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro |
 | `ultimatum-video` | One finished video: Higgsfield product ads, motion-graphics explainers, brand films, with ElevenLabs voice, music and effects |
 
-Upgrading from 1.0.0: Claude Code offers the update itself. See the [changelog](CHANGELOG.md).
-
 ## How Ultimatum answers
 
 Ultimatum is the default once it is on. Every chat starts with one line: its version, that it works, which Ultimatum plugins are on, and whether the chat is held to 200K tokens.

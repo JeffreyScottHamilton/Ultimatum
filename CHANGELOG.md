@@ -2,9 +2,9 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
-## [2.0.0] - 2026-11-25
+## [1.0.0] - 2026-11-25
 
-Ultimatum 2.0.0 is a suite of plugins released together from one marketplace. Every plugin carries version 2.0.0, and each one stands alone: none depends on another.
+Ultimatum 1.0.0 is a suite of plugins released together from one marketplace. Every plugin carries version 1.0.0, and each one stands alone: none depends on another.
 
 | Plugin | What it does |
 |---|---|
@@ -18,9 +18,6 @@ Ultimatum 2.0.0 is a suite of plugins released together from one marketplace. Ev
 
 Each launch plugin is one head skill, `launch`, that runs its own Business, Website, Social Media, Brand Film and Motion Graphics teams from guides shipped inside it, with its own `taste-critic` and `compliance-reviewer` agents and its own copy of the `ult` toolbelt. `ultimatum-social-media` is a head of its own, `social-media`, with the Social Media, Motion Graphics, Brand Film and Editors guides. Heads register no hooks.
 
-### Upgrading from 1.0.0
-
-Claude Code offers the update on its own (`claude plugin update ultimatum@ultimatum` forces it). Then install the plugins you want. The launch and marketing skills (`/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media`, `/ultimatum:motion-graphics`) are gone from core; install the launch plugin for your kind of launch and use `/ultimatum-<kind>-launch:launch`.
 
 ### ultimatum
 
@@ -89,9 +86,9 @@ Claude Code offers the update on its own (`claude plugin update ultimatum@ultima
 - Product and social video uses Higgsfield through its MCP: credit check, plan with costs, yes, one generation, review. Motion graphics is the second choice.
 - ElevenLabs is the default for voice, music and sound effects; Suno stays as a manual option.
 
-## [1.0.0]
+## Core development build
 
-The earlier core-only build of `ultimatum`. Everything below is new since the 0.x previews.
+The core-only build of `ultimatum` that came before the suite. Everything below is new since the 0.x previews.
 
 
 
