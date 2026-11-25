@@ -43,9 +43,9 @@ Show it in plain words, then stop. Record the user's answer with `ult gate appro
 
 | Signal in the brief | Route |
 |---|---|
-| Portfolio, local business, event, landing page, no logins or payments beyond a link | small site (`route-small-site.md`) |
-| Accounts, subscriptions, a web app, a dashboard | SaaS (`route-saas.md`) |
-| Physical or digital products sold from a catalogue, a cart, shipping | e-commerce (`route-ecommerce.md`) |
+| Portfolio, local business, event, landing page, no logins or payments beyond a link | website (`ultimatum-website-launch`, else `routes.md`) |
+| Accounts, subscriptions, a web app, a dashboard | SaaS (`ultimatum-saas-launch`, else `routes.md`) |
+| Physical or digital products sold from a catalogue, a cart, shipping | e-commerce (`ultimatum-ecommerce-launch`, else `routes.md`) |
 | Two of the above | the main money path's route, plus the needed section of the other |
 
 Tell the user which route you picked and why in one line; they can override it.

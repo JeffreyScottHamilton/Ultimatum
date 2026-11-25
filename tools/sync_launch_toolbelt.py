@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Copy core's toolbelt and the core files it reads into the ultimatum-launch plugin.
+"""Copy core's toolbelt and the core files it reads into every launch plugin.
 
 Claude Code gives each plugin its own folder and documents no way for one plugin to
-read another's files, so ultimatum-launch ships an exact copy of core's `ult`. Run
+read another's files, so ultimatum-launch and each kind of launch plugin (website,
+e-commerce, SaaS) ship an exact copy of core's `ult`. Run
 this after changing anything listed below; core's test_toolbelt_copy fails until the
 copy matches again. Standard library only.
 
@@ -20,6 +21,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 CORE = REPO / "plugins" / "ultimatum"
 LAUNCH = REPO / "plugins" / "ultimatum-launch"
+# The shared launch teams, then one plugin per kind of launch.
+TARGETS = [LAUNCH] + [REPO / "plugins" / f"ultimatum-{k}-launch" for k in ("website", "ecommerce", "saas")]
 
 # Same path in both plugins.
 SAME_PATH = [
@@ -54,18 +57,20 @@ CORE_DOCS = [
 
 
 def pairs() -> list[tuple[Path, Path]]:
-    """(core source, launch copy) for every copied file."""
-    out = [(CORE / rel, LAUNCH / rel) for rel in SAME_PATH]
-    out += [(p, LAUNCH / "scripts" / "ultlib" / p.name)
-            for p in sorted((CORE / "scripts" / "ultlib").glob("*.py"))]
-    out += [(CORE / rel, LAUNCH / "shared" / "core" / rel) for rel in CORE_DOCS]
+    """(core source, copy) for every copied file in every launch plugin."""
+    out = []
+    for t in TARGETS:
+        out += [(CORE / rel, t / rel) for rel in SAME_PATH]
+        out += [(p, t / "scripts" / "ultlib" / p.name)
+                for p in sorted((CORE / "scripts" / "ultlib").glob("*.py"))]
+        out += [(CORE / rel, t / "shared" / "core" / rel) for rel in CORE_DOCS]
     return out
 
 
 def stale() -> list[Path]:
-    """ultlib files in the copy that core no longer has."""
+    """ultlib files in a copy that core no longer has."""
     keep = {p.name for p in (CORE / "scripts" / "ultlib").glob("*.py")}
-    return [p for p in sorted((LAUNCH / "scripts" / "ultlib").glob("*.py")) if p.name not in keep]
+    return [p for t in TARGETS for p in sorted((t / "scripts" / "ultlib").glob("*.py")) if p.name not in keep]
 
 
 def differences() -> list[str]:
@@ -98,7 +103,7 @@ def main(argv=None) -> int:
             print(f"differs: {b}")
         print("launch toolbelt matches core" if not bad else f"{len(bad)} file(s) differ; run tools/sync_launch_toolbelt.py")
         return 1 if bad else 0
-    print(f"updated {sync()} file(s) in {LAUNCH.relative_to(REPO)}")
+    print(f"updated {sync()} file(s) in {len(TARGETS)} launch plugin(s)")
     return 0
 
 

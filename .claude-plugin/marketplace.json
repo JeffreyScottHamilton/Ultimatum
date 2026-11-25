@@ -4,7 +4,7 @@
     "name": "Jeffrey Scott Hamilton"
   },
   "metadata": {
-    "description": "Ultimatum: plain-chat workflows for Claude Code. The core plugin handles code; Ultimatum Launch adds business, website, marketing, motion and film teams that wait for your approval."
+    "description": "Ultimatum: plain-chat workflows for Claude Code. The core plugin handles code; Ultimatum Launch adds business, website, marketing, motion and film teams that wait for your approval, and the Website, E-commerce and SaaS Launch plugins add a deeper manager for each kind of launch."
   },
   "plugins": [
     {
@@ -31,6 +31,42 @@
         "branding",
         "marketing",
         "motion-graphics"
+      ]
+    },
+    {
+      "name": "ultimatum-website-launch",
+      "source": "./plugins/ultimatum-website-launch",
+      "description": "Website Launch for Ultimatum: a manager built for small business, local service, portfolio and creator sites. Deeper intake, pages and local SEO, and a launch-day checklist; it runs the shared Ultimatum Launch teams and waits for your yes.",
+      "category": "productivity",
+      "tags": [
+        "launch",
+        "website",
+        "local-seo",
+        "small-business"
+      ]
+    },
+    {
+      "name": "ultimatum-ecommerce-launch",
+      "source": "./plugins/ultimatum-ecommerce-launch",
+      "description": "E-commerce Launch for Ultimatum: a manager built for online stores. Platform choice, catalog and product pages, payments, tax, shipping and policies, and a store launch checklist; it runs the shared Ultimatum Launch teams and waits for your yes.",
+      "category": "productivity",
+      "tags": [
+        "launch",
+        "ecommerce",
+        "online-store",
+        "shopify"
+      ]
+    },
+    {
+      "name": "ultimatum-saas-launch",
+      "source": "./plugins/ultimatum-saas-launch",
+      "description": "SaaS Launch for Ultimatum: a manager built for software and app products. Pricing and billing, sign-up and activation, trust and security basics, and a launch-week plan; it runs the shared Ultimatum Launch teams and waits for your yes.",
+      "category": "productivity",
+      "tags": [
+        "launch",
+        "saas",
+        "pricing",
+        "onboarding"
       ]
     }
   ]

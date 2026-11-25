@@ -10,11 +10,23 @@ Launch teams for Claude Code: intake, business and brand, website, marketing, mo
 /plugin install ultimatum-launch@ultimatum
 ```
 
+## Launch kinds
+
+This plugin is the shared base: the teams, the agents and a general manager for mixed or unsure launches. Each kind of launch also has its own plugin with a deeper manager that runs these same teams:
+
+| Plugin | For |
+|---|---|
+| `ultimatum-website-launch` | small business, local service, portfolio and creator sites |
+| `ultimatum-ecommerce-launch` | online stores |
+| `ultimatum-saas-launch` | software, apps and subscriptions |
+
+Install the ones you need (`/plugin install ultimatum-<kind>-launch@ultimatum`). The plain-chat hook names the right one when it is installed.
+
 ## Skills
 
 | Say something like | Skill |
 |---|---|
-| "Help me launch my business" | `/ultimatum-launch:launch`: intake in rounds of 5 to 8 questions with recommended answers, a one-page brief you approve, then the right route (small site, SaaS, e-commerce); a fact-finder checks prices and terms first |
+| "Help me launch my business" | `/ultimatum-launch:launch`: intake in rounds of 5 to 8 questions with recommended answers, a one-page brief you approve, then the kind of launch (website, e-commerce, SaaS), handing over to that kind's plugin when installed; a fact-finder checks prices and terms first |
 | "Who is my customer and what should I charge?" | `/ultimatum-launch:business`: positioning before visuals, saved to `brand/brand.md` |
 | "Build me a website for my coffee shop" | `/ultimatum-launch:website`: three HTML directions screenshotted at 375, 768 and 1440 px, a taste critic that needs 8/10, your pick, then the build and a browser check |
 | "Write a week of tiktok posts" | `/ultimatum-launch:social-media`: hook videos, posts, blog and SEO articles, scripts; results read after about 48 hours and judged by signups; its video step picks Brand Film or Motion Graphics |

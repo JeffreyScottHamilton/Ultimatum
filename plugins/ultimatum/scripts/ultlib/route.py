@@ -75,8 +75,11 @@ _FILM_RE = re.compile(
     r"(?:feel|cry)|human[- ]moment|live[- ]action\s+(?:ad|video|spot|film))\b", re.I)
 # A whole launch: the Launch Manager runs Business, Website, Social and Motion from one chat.
 _LAUNCH_RE = re.compile(
-    r"\b(?:launch(?:ing)?|start(?:ing)?|open(?:ing)?)\s+(?:my|our|a|the|this)\s+(?:new\s+|own\s+|small\s+)?"
+    r"\b(?:launch(?:ing)?|start(?:ing)?|open(?:ing)?)\s+(?:my|our|a|the|this)\s+(?:[a-z][\w'-]*\s+){0,3}?"
     r"(?:business|company|brand|shop|store|startup|studio|practice|bakery|salon|cafe|caf\u00e9|agency|offer|service|course)\b|"
+    # Software products only with "launch": "start the app" is usually a dev-server command.
+    r"\blaunch(?:ing)?\s+(?:my|our)\s+(?:[a-z][\w'-]*\s+){0,3}?(?:saas|app|product|platform|software)\b"
+    r"(?!\s+(?:in|on|locally|with|from|server|build|page|fix|bug|test|container|emulator|simulator)\b)|"
     r"\b(?:go[- ]to[- ]market|launch\s+plan|business\s+launch)\b", re.I)
 # A content plan or campaign, not a single post (one tweet is plain writing help).
 _PLATFORM = r"(?:social|tiktok|instagram|insta|ig|linkedin|facebook|fb|youtube|yt|twitter|threads|pinterest|snapchat)"

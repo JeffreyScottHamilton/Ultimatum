@@ -9,6 +9,8 @@ decides the workflow; `--scope` decides which ones this copy may announce:
 - `--scope launch` (run by the ultimatum-launch plugin's own hook): website work,
   a standalone clip, a launch, a social media plan or a business question ->
   ultimatum-launch:website, :motion-graphics, :brand-film, :launch, :social-media or :business.
+A launch also names its kind's plugin (ultimatum-website-, -ecommerce- or
+  -saas-launch) to start instead when installed.
 So the Launch teams are only suggested when that plugin is installed.
 Plain questions, writing help and small talk get nothing, so ordinary chats pay no
 extra tokens. A prompt that starts with "/" is an explicit command and is left alone.
@@ -69,9 +71,16 @@ def main() -> int:
         from pathlib import Path
         from ultlib.pick import pick
         cwd = data.get("cwd") or os.getcwd()
-        note = notes.get(pick(prompt[:2000], root=Path(cwd)))
+        kind = pick(prompt[:2000], root=Path(cwd))
+        note = notes.get(kind)
         if not note:
             return 0
+        if kind == "launch":
+            from ultlib.teams import kind_plugin, launch_kind
+            deeper = kind_plugin(launch_kind(prompt[:2000]))
+            if deeper:
+                note += (f" If the {deeper} plugin is installed, start `{deeper}:launch` instead: "
+                         "it is the same manager with deeper steps for this kind of launch.")
         print(json.dumps({"hookSpecificOutput": {"hookEventName": "UserPromptSubmit",
                                                  "additionalContext": note}}))
     except Exception:  # never block or break a prompt

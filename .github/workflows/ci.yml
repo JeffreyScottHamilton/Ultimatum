@@ -41,8 +41,11 @@ jobs:
         run: claude plugin validate . --strict
       - name: Validate plugin
         run: claude plugin validate plugins/ultimatum --strict
-      - name: Validate launch plugin
-        run: claude plugin validate plugins/ultimatum-launch --strict
+      - name: Validate launch plugins
+        run: |
+          for p in launch website-launch ecommerce-launch saas-launch; do
+            claude plugin validate "plugins/ultimatum-$p" --strict
+          done
       - name: Launch toolbelt matches core
         run: python3 tools/sync_launch_toolbelt.py --check
 
@@ -65,14 +68,19 @@ jobs:
           echo "version $old -> $new"
           test "$old" != "$new" || { echo "::error::plugins/ultimatum changed but version was not bumped"; exit 1; }
           grep -qF "## [$new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $new"; exit 1; }
-      - name: Launch plugin changes bump its version and the changelog
+      - name: Launch plugin changes bump their version and the changelog
         env:
           BASE: ${{ github.event.pull_request.base.sha }}
         run: |
-          if git diff --quiet "$BASE" HEAD -- plugins/ultimatum-launch; then echo "launch unchanged"; exit 0; fi
-          new=$(python3 -c 'import json;print(json.load(open("plugins/ultimatum-launch/.claude-plugin/plugin.json"))["version"])')
-          if old=$(git show "$BASE:plugins/ultimatum-launch/.claude-plugin/plugin.json" 2>/dev/null | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])' 2>/dev/null); then
-            echo "launch version $old -> $new"
-            test "$old" != "$new" || { echo "::error::plugins/ultimatum-launch changed but version was not bumped"; exit 1; }
-          fi
-          grep -qF "## [launch $new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for launch $new"; exit 1; }
+          fail=0
+          for label in launch website-launch ecommerce-launch saas-launch; do
+            dir="plugins/ultimatum-$label"
+            if git diff --quiet "$BASE" HEAD -- "$dir"; then echo "$label unchanged"; continue; fi
+            new=$(python3 -c "import json;print(json.load(open('$dir/.claude-plugin/plugin.json'))['version'])")
+            if old=$(git show "$BASE:$dir/.claude-plugin/plugin.json" 2>/dev/null | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])' 2>/dev/null); then
+              echo "$label version $old -> $new"
+              test "$old" != "$new" || { echo "::error::$dir changed but version was not bumped"; fail=1; }
+            fi
+            grep -qF "## [$label $new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $label $new"; fail=1; }
+          done
+          exit $fail

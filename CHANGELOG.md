@@ -2,6 +2,34 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [website-launch 0.1.0] - 2026-11-25
+
+First release of **Ultimatum Website Launch** (`plugins/ultimatum-website-launch/`). It is a launch manager for small business, local service, portfolio and creator sites and depends on `ultimatum` and `ultimatum-launch`. It has its own intake, a route (site size, host, domain), pages and local SEO, and a launch-day checklist with 30-day numbers. It runs the shared Launch teams through the Skill tool.
+
+## [ecommerce-launch 0.1.0] - 2026-11-25
+
+First release of **Ultimatum E-commerce Launch** (`plugins/ultimatum-ecommerce-launch/`). It is a launch manager for online stores and depends on `ultimatum` and `ultimatum-launch`. It covers store intake, platform and theme choice, catalogue and product pages, and checkout and operations (payments, tax, shipping, policies, and the Shopify theme licence notes moved here from the base). It also has a store launch checklist with a real test order.
+
+## [saas-launch 0.1.0] - 2026-11-25
+
+First release of **Ultimatum SaaS Launch** (`plugins/ultimatum-saas-launch/`). It is a launch manager for software and app products and depends on `ultimatum` and `ultimatum-launch`. It covers SaaS intake, the waitlist, beta and public paths, pricing and billing, activation and onboarding, and a launch-week checklist with trust basics and 30-day metrics.
+
+## [launch 0.3.0] - 2026-11-25
+
+### Changed
+- Ultimatum Launch is now the shared base for the kind plugins above. The manager detects the kind and hands over to `ultimatum-<kind>-launch:launch` when that plugin is installed. Otherwise it reads the new short `references/routes.md`.
+- The three route files moved into their kind plugins. The Shopify theme rows moved to E-commerce Launch.
+
+## [1.3.0] - 2026-11-25
+
+### Added
+- `ult launch` prints the launch kind (website, ecommerce or saas) and the deeper plugin for it. `--kind` sets the kind by hand.
+- The plain-chat hook names the kind's plugin for a launch request.
+
+### Changed
+- Launch routing catches "launch my online candle shop", "launch our SaaS app" and similar requests. Developer phrases ("launch the app in debug mode", "launch my app in the simulator") stay out.
+- The launch toolbelt sync now covers all four launch plugins.
+
 ## [launch 0.2.0] - 2026-11-25
 
 ### Added

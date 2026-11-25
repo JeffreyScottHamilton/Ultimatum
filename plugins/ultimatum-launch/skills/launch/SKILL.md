@@ -1,6 +1,6 @@
 ---
 name: launch
-description: "Ultimatum Launch's manager. Use it whenever the user asks, in plain chat or with /ultimatum-launch:launch, to launch a business, brand, offer, product, shop or SaaS (\"help me launch my business\"). It runs a short intake interview, writes a one-page brief the user approves, picks the route (small site, SaaS, e-commerce or a mix) and runs Business, Website, Marketing and a video (Brand Film or Motion) with an approval before every spend, post and deploy."
+description: "Ultimatum Launch's manager. Use it whenever the user asks, in plain chat or with /ultimatum-launch:launch, to launch a business, brand, offer, product, shop or SaaS (\"help me launch my business\"). It runs a short intake interview, writes a one-page brief the user approves, picks the kind (website, e-commerce, SaaS or a mix; hands over to that kind's Launch plugin when installed) and runs Business, Website, Marketing and a video (Brand Film or Motion) with an approval before every spend, post and deploy."
 argument-hint: "<what you are launching>"
 ---
 
@@ -20,7 +20,7 @@ Run `ult launch --root .`: it prints each step, its state and one `next:` line. 
 
 1. **Intake.** Follow `references/intake.md`: decisions in batches of 5–8 mostly multiple-choice questions (AskUserQuestion, a recommended answer each), "why" questions one at a time in chat. Skip what files or earlier answers already say. The brand interview belongs to Business (step 4); do not ask it twice.
 2. **Brief.** Write the one-page brief (`ult business --start-brief`, then fill `## Build brief` as `intake.md` shows). Show it, then stop and wait. Yes: `ult gate approve brief "<their words>"`. Changes: `ult gate revise brief "<their words>"`, fix it, show it again. Never approve for the user.
-3. **Route.** From the approved brief pick one route and read only its file: `route-small-site.md`, `route-saas.md` or `route-ecommerce.md`. A mix → the main route's file, plus the one section you need from the other. Each route file says which video style usually fits. Before naming any paid tool, licence or price, check `references/licenses.md`.
+3. **Route.** `ult launch` prints the kind (website, ecommerce or saas). If `ultimatum-<kind>-launch` is installed, invoke `ultimatum-<kind>-launch:launch` with the approved brief (same teams, deeper steps). Otherwise read `references/routes.md`. A mix → the main kind. Before naming any paid tool, licence or price, check `references/licenses.md`.
 4. **Business & brand** (`business/SKILL.md`): positioning first, then `brand/brand.md`, before any visuals.
 5. **Website** (`website/SKILL.md`): three directions, critic, the user's pick (`ult website --approve`), build, browser check.
 6. **Marketing** (`social-media/SKILL.md`) drafts from the approved offer while Website builds. Its video step picks the style: **Brand Film** (`brand-film/SKILL.md`) when the message is a feeling people carry; **Motion** (`motion-graphics/SKILL.md`) for a feature, a number or frequent updates. Brand Film has four user gates (story, sourcing, animatic, video); both return a checked export.

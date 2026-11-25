@@ -4,8 +4,6 @@ Plain summaries, not legal advice. Items marked **check before relying** came fr
 
 | Tool | What to know | What to do |
 |---|---|---|
-| Shopify Horizon theme | Use is limited to Shopify stores. Selling or distributing a theme derived from it is not allowed; delivering it to one merchant's own store is. | Client-store builds only; refuse to package a reusable theme. |
-| Shopify Dawn theme | Use is limited to themes that work with Shopify. | Same rule, a little looser. |
 | Remotion | Free for individuals, non-profits and companies of up to 3 people; bigger companies need a paid company licence (pricing: **check before relying**). | Ask company size at intake. More than 3 people → prefer HyperFrames (Apache-2.0) unless they buy the licence. |
 | HyperFrames | Apache-2.0, renders HTML and GSAP to MP4, no seat fees. | Default renderer for companies over 3 people. |
 | GSAP | Free, including commercial use and all plugins. Not allowed in no-code visual builders that compete with Webflow. | Fine for client sites; flag only if the product is a visual builder. |
