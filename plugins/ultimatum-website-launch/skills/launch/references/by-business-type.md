@@ -1,6 +1,6 @@
 # Playbooks by business type
 
-Pick the row that matches the intake answer, then use its section for the brief, the page list and the hand-off notes to `ultimatum-launch:website`. Everything here is a rule of thumb; the owner's real situation wins.
+Pick the row that matches the intake answer, then use its section for the brief, the page list and the notes for the Website team. Everything here is a rule of thumb; the owner's real situation wins.
 
 | Type | Main action | Must-have pages | Best proof | Usual video |
 |---|---|---|---|---|
@@ -72,4 +72,4 @@ Pick the row that matches the intake answer, then use its section for the brief,
 
 ## Hand-off notes
 
-When calling `ultimatum-launch:website`, paste: the type, the main action and its exact button wording, the page list from the table, the proof the owner has, the type's common mistakes to avoid, and any compliance limits (health, licences, reviews).
+When you run the Website team, carry: the type, the main action and its exact button wording, the page list from the table, the proof the owner has, the type's common mistakes to avoid, and any compliance limits (health, licences, reviews).

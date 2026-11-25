@@ -7,7 +7,7 @@ Four pages must be live before launch: refund and returns, shipping, privacy, te
 1. Start from the platform's policy generator or a reputable template (Shopify and WooCommerce both offer starting points; check before relying on what they cover).
 2. Fill every bracket with the store's real facts, using the outlines below as a checklist. Facts come from the intake answers, not guesses; any `(guess)` stays visible until the owner confirms it.
 3. Match reality: the privacy page lists the apps actually installed; the shipping page matches the rates actually set.
-4. Run `ultimatum-launch:compliance-reviewer` on all four pages and on any product page that repeats a promise from them.
+4. Run this plugin's `ultimatum-ecommerce-launch:compliance-reviewer` agent on all four pages and on any product page that repeats a promise from them.
 5. Show the owner each page; record the yes. Link all four from the footer and from checkout where the platform allows.
 6. Put a "last updated" date on each page; review it when the store changes apps, carriers or regions.
 

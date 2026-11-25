@@ -13,7 +13,7 @@ Tick each item with evidence (a command, a screenshot or a live URL), not a gues
 - [ ] **Analytics and events.** Page views plus events for call taps, booking clicks and form submits. Pick a tool and its tier by checking the vendor's page. Add a cookie or privacy notice if the tool needs one for the owner's country.
 - [ ] **Domain, SSL, email.** Domain resolves with and without `www`, one redirects to the other; HTTPS valid; business email sends and receives; SPF/DKIM set if the domain sends mail (ask before changing DNS).
 - [ ] **Basics.** Title, description and preview image per page; 404 page; favicon; sitemap; privacy note if anything is collected; schema validates.
-- [ ] **Claims reviewed** by `ultimatum-launch:compliance-reviewer`; no open blockers in `ult loop`.
+- [ ] **Claims reviewed** by the `ultimatum-website-launch:compliance-reviewer` agent; no open blockers in `ult loop`.
 - [ ] **Deploy approved** (`ult gate approve deploy`), `ult gate check deploy` passes, live URL checked.
 
 ## Launch week
@@ -22,7 +22,7 @@ Each outward action needs the user's yes (one yes per action).
 
 1. **Tell existing customers.** A short email, text or message with the link and the main action; draft it, the owner sends it.
 2. **Listings.** Update the website link and booking link on Google Business Profile, directories and social bios (owner's yes, owner's login).
-3. **Social.** One announcement post and a pinned link; use the drafts from `ultimatum-launch:social-media`.
+3. **Social.** One announcement post and a pinned link; use the Social Media team's drafts.
 4. **Review requests.** Ask five recent happy customers for a review with the direct link (no payment, no pressure).
 5. **Local word of mouth.** A flyer or QR code, a nearby partner business, a community group the owner already belongs to.
 6. **Watch.** Check the form inbox and booking tool daily; reply fast (rule of thumb: same day).

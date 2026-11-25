@@ -8,7 +8,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from _harness import LAUNCH, SCRIPTS, LaunchCase, UltCase, pick_hooks
+from _harness import LAUNCH, SCRIPTS, TEAMS, LaunchCase, UltCase, pick_hooks
 
 sys.path.insert(0, SCRIPTS)
 from ultlib import route as R  # noqa: E402
@@ -16,7 +16,7 @@ from ultlib.website import plan  # noqa: E402
 
 P = Path(SCRIPTS).parent
 SKILLS = P / "skills"
-LSKILLS = LAUNCH / "skills"  # website and the other launch skills moved to ultimatum-launch
+WEB_GUIDE = TEAMS / "website" / "guide.md"  # the Website team guide, copied into every launch head
 
 
 def _front(text: str) -> str:
@@ -47,8 +47,8 @@ class WebsiteRouting(unittest.TestCase):
     def test_work_skill_keeps_explicit_command_and_offers_switch(self):
         body = (SKILLS / "work" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("A `workflow:` line (user did not type `/ultimatum:work`)", body)
-        web = (LSKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("typed `/ultimatum-launch:website`", web)
+        self.assertIn("ultimatum-<kind>-launch:launch", body)
+        self.assertIn("ultimatum-social-media:social-media", body)
 
 
 class WebsitePlan(LaunchCase):
@@ -139,8 +139,8 @@ class SharedSkills(unittest.TestCase):
                 self.assertIn("disable-model-invocation: true", _front(text))
                 self.assertLessEqual(len(text.encode()), 1536)
 
-    def test_website_skill_does_not_load_work(self):
-        body = (LSKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
+    def test_website_guide_does_not_load_work(self):
+        body = WEB_GUIDE.read_text(encoding="utf-8")
         self.assertNotIn("work/SKILL.md", body)
         self.assertIn("ult website", body)
 
@@ -148,9 +148,9 @@ class SharedSkills(unittest.TestCase):
         rel = (SKILLS / "release" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("explicit yes", rel)
         self.assertIn("never counts as approval", rel)
-        for base, name in ((SKILLS, "work"), (LSKILLS, "website")):
-            body = (base / name / "SKILL.md").read_text(encoding="utf-8")
-            with self.subTest(skill=name):
+        for path in (SKILLS / "work" / "SKILL.md", WEB_GUIDE):
+            body = path.read_text(encoding="utf-8")
+            with self.subTest(file=path.name):
                 self.assertIn("explicit yes", body)
         self.assertEqual(R.decide("Build a landing page for our coffee shop")["route"], "ui")
 
@@ -201,27 +201,29 @@ class PlainChatPicker(LaunchCase):
         self.write("index.html", "<nav class='menu'></nav>")
         self.write("styles.css", "nav{}")
 
-    def test_new_website_request_starts_website(self):
-        out = self.pick("Build me a website for my coffee shop")
-        self.assertIn('"additionalContext"', out)
-        self.assertIn("ultimatum-launch:website", out)
+    def kind(self, prompt):
+        from ultlib.pick import pick
+        return pick(prompt, root=self.root)
 
-    def test_interface_fix_in_a_website_project_starts_website(self):
+    def test_new_website_request_picks_website_and_core_stays_quiet(self):
+        self.assertEqual(self.kind("Build me a website for my coffee shop"), "website")
+        self.assertEqual(self.pick("Build me a website for my coffee shop"), "")
+
+    def test_interface_fix_in_a_website_project_picks_website(self):
         self.site()
-        self.assertIn("ultimatum-launch:website", self.pick("Fix the mobile menu"))
+        self.assertEqual(self.kind("Fix the mobile menu"), "website")
+        self.assertEqual(self.pick("Fix the mobile menu"), "")
 
     def test_interface_fix_outside_a_website_project_starts_work(self):
         self.write("app/main.py", "print(1)")
-        out = self.pick("Fix the mobile menu")
-        self.assertIn("ultimatum:work", out)
-        self.assertNotIn("ultimatum-launch:website", out)
+        self.assertEqual(self.kind("Fix the mobile menu"), "work")
+        self.assertIn("ultimatum:work", self.pick("Fix the mobile menu"))
 
     def test_regular_coding_request_starts_work(self):
         self.site()
         out = self.pick("Fix the CSV export")
         self.assertIn('"additionalContext"', out)
         self.assertIn("ultimatum:work", out)
-        self.assertNotIn("ultimatum-launch:website", out)
 
     def test_plain_questions_and_writing_help_get_nothing(self):
         self.site()
@@ -233,27 +235,27 @@ class PlainChatPicker(LaunchCase):
     def test_explicit_command_and_off_switch_are_respected(self):
         self.site()
         self.assertEqual(self.pick("/ultimatum:work Fix the mobile menu"), "")
-        self.assertEqual(self.pick("Build me a website for my coffee shop", auto="0"), "")
+        self.assertEqual(self.pick("Fix the CSV export", auto="0"), "")
 
     def test_bad_input_never_blocks(self):
         import os, subprocess
         from _harness import PY, SCRIPTS
-        for scripts, scope in ((SCRIPTS, "core"), (str(LAUNCH / "scripts"), "launch")):
+        for scripts, scope in ((SCRIPTS, "core"), (str(LAUNCH / "scripts"), "core")):
             cp = subprocess.run([PY, os.path.join(scripts, "ult-pick"), "--scope", scope], input="not json",
                                 capture_output=True, text=True)
             self.assertEqual((cp.returncode, cp.stdout), (0, ""))
 
-    def test_hook_is_registered_and_skill_runs_the_whole_job(self):
+    def test_hook_is_registered_and_guide_runs_the_whole_job(self):
         import json
-        from pathlib import Path
-        plug = LAUNCH
-        hooks = json.loads((plug / "hooks/hooks.json").read_text())["hooks"]["UserPromptSubmit"]
+        from _harness import CORE
+        hooks = json.loads((CORE / "hooks/hooks.json").read_text())["hooks"]["UserPromptSubmit"]
         self.assertIn("ult-pick", json.dumps(hooks))
-        body = (plug / "skills/website/SKILL.md").read_text()
+        body = WEB_GUIDE.read_text()
         for needle in ("ult-browser.mjs", "**Preview.**", "no approval needed", "explicit yes",
-                       "Build me a website for my coffee shop", "**one** clear visual direction",
-                       "**Small fix = only the reported bug.**", "seen, not changed"):
+                       "**one** clear visual direction", "**Small fix = only the reported bug.**", "seen, not changed"):
             self.assertIn(needle, body)
+        head = (LAUNCH / "skills/launch/SKILL.md").read_text()
+        self.assertIn("references/website/guide.md", head)
 
     def test_plan_tells_small_fixes_to_stay_on_the_bug_and_new_sites_to_pick_one_look(self):
         self.site()
@@ -274,8 +276,8 @@ class VisualApproval(LaunchCase):
         roles = p["roles"]
         self.assertLess(roles.index("designer"), roles.index("user approves mockup"))
         self.assertLess(roles.index("user approves mockup"), roles.index("builder"))
-        self.assertIn("skills/website/planner.md", p["load"])
-        self.assertEqual(p["load"][:2], ["shared/defaults.md", "skills/website/planner.md"])
+        self.assertIn("teams/website/planner.md", p["load"])
+        self.assertEqual(p["load"][:2], ["shared/defaults.md", "teams/website/planner.md"])
 
     def test_major_redesign_also_stops(self):
         self.write("styles.css", "body{}")
@@ -287,7 +289,7 @@ class VisualApproval(LaunchCase):
         p = plan("Fix the mobile menu", root=self.root)
         self.assertEqual(p["approval"], "not needed")
         self.assertNotIn("user approves mockup", p["roles"])
-        self.assertNotIn("skills/website/planner.md", p["load"])
+        self.assertNotIn("teams/website/planner.md", p["load"])
         out = self.ult("website", "Fix the mobile menu", "--root", str(self.root)).out
         self.assertNotIn("gate:", out)
 
@@ -317,14 +319,12 @@ class VisualApproval(LaunchCase):
         self.assertEqual(r.code, 2)
         self.assertFalse((self.root / ".ultimatum/brief.md").exists())
 
-    def test_skill_and_planner_spell_out_the_gate(self):
-        from pathlib import Path
-        plug = LAUNCH
-        skill = (plug / "skills/website/SKILL.md").read_text()
+    def test_guide_and_planner_spell_out_the_gate(self):
+        skill = WEB_GUIDE.read_text()
         for needle in ("**Visual path**", "**Short path**", "stop and wait", "no production code until the user approves",
                        "ult website --approve", "ChatGPT", "No mockup and no approval stop", "compare with the approved direction"):
             self.assertIn(needle, skill)
-        guide = (plug / "skills/website/planner.md").read_text()
+        guide = (TEAMS / "website/planner.md").read_text()
         for needle in ("[[PLACEHOLDER:", "grayscale wireframe", "ChatGPT", "end your turn", "Approved direction",
                        "First action", "Mobile", "Phases", "exact words"):
             self.assertIn(needle, guide)

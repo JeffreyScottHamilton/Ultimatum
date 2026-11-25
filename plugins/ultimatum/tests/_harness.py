@@ -10,16 +10,18 @@ from pathlib import Path
 ULT = str(Path(__file__).resolve().parent.parent / "scripts" / "ult")
 SCRIPTS = str(Path(ULT).parent)
 PY = sys.executable
-# The ultimatum-launch plugin ships an exact copy of this toolbelt (tools/sync_launch_toolbelt.py).
+# Every head plugin ships an exact copy of this toolbelt (tools/sync_plugins.py);
+# the launch tests run the Website Launch copy, and the team guides come from teams/.
 REPO = Path(__file__).resolve().parents[3]
 CORE = REPO / "plugins" / "ultimatum"
-LAUNCH = REPO / "plugins" / "ultimatum-launch"
+TEAMS = REPO / "teams"
+LAUNCH = REPO / "plugins" / "ultimatum-website-launch"
 LAUNCH_SCRIPTS = str(LAUNCH / "scripts")
 LAUNCH_ULT = str(LAUNCH / "scripts" / "ult")
 
 
-def pick_hooks(prompt, cwd, scopes=("core", "launch"), env=None):
-    """Run each installed plugin's UserPromptSubmit picker, as Claude Code would with both installed."""
+def pick_hooks(prompt, cwd, scopes=("core",), env=None):
+    """Run core's UserPromptSubmit picker, as Claude Code would. Head plugins have no hook."""
     import json
     e = dict(os.environ if env is None else env)
     if env is None:
@@ -93,6 +95,6 @@ class UltCase(unittest.TestCase):
 
 
 class LaunchCase(UltCase):
-    """Runs the ultimatum-launch plugin's copy of `ult`, which reads that plugin's skills."""
+    """Runs the Website Launch head's copy of `ult`, which reads that plugin's team guides."""
     ULT = LAUNCH_ULT
 

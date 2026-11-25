@@ -7,10 +7,9 @@ from pathlib import Path
 
 P = Path(__file__).resolve().parents[1]
 SKILLS = P / "skills"
-LAUNCH = P.parent / "ultimatum-launch"
-LSKILLS = LAUNCH / "skills"
-WORKFLOWS = {"work"}  # core's model-invocable workflow; the launch workflows live in ultimatum-launch
-LAUNCH_WORKFLOWS = {"launch", "business", "website", "social-media", "motion-graphics", "brand-film"}
+TEAMS = P.parents[1] / "teams"  # team guides and agents, copied into each head by tools/sync_plugins.py
+HEADS = sorted(d for d in P.parent.glob("ultimatum-*") if (d / ".claude-plugin" / "plugin.json").is_file())
+WORKFLOWS = {"work"}  # core's model-invocable workflow; each other plugin is one head skill
 LOOKUPS = {"status", "doctor"}  # small read-only checks Claude may run when asked about the install
 
 
@@ -26,18 +25,24 @@ class SizeBudgets(unittest.TestCase):
         self.assertLessEqual(len(body.encode()), 4096, "L0 body must stay <= 4 KB (~1k tokens)")
         self.assertLessEqual(len(text.encode()), 20 * 1024)
 
-    def test_launch_skill_bodies_are_small(self):
-        self.assertEqual({d.name for d in LSKILLS.iterdir() if (d / "SKILL.md").exists()}, LAUNCH_WORKFLOWS)
-        for name in sorted(LAUNCH_WORKFLOWS):
-            text = (LSKILLS / name / "SKILL.md").read_text(encoding="utf-8")
-            with self.subTest(skill=name):
-                self.assertLessEqual(len(text.split("\n---\n", 1)[1].encode()), 4096)
+    def test_each_head_is_one_small_skill(self):
+        self.assertTrue(HEADS)
+        for head in HEADS:
+            skills = list((head / "skills").glob("*/SKILL.md"))
+            with self.subTest(plugin=head.name):
+                self.assertEqual(len(skills), 1)
+                self.assertLessEqual(len(skills[0].read_text(encoding="utf-8").split("\n---\n", 1)[1].encode()), 4096)
+
+    def test_team_guides_are_small(self):
+        for f in sorted(TEAMS.glob("*/guide.md")):
+            with self.subTest(guide=f.parent.name):
+                self.assertLessEqual(len(f.read_bytes()), 4096)
 
     def test_workflow_descriptions_within_listing_cap(self):
         paths = [SKILLS / n / "SKILL.md" for n in sorted(WORKFLOWS | LOOKUPS)]
-        paths += [LSKILLS / n / "SKILL.md" for n in sorted(LAUNCH_WORKFLOWS)]
+        paths += [p for head in HEADS for p in (head / "skills").glob("*/SKILL.md")]
         for path in paths:
-            name = path.parent.name
+            name = f"{path.parents[2].name}:{path.parent.name}"
             front = _front(path.read_text(encoding="utf-8"))
             m = re.search(r'^description:\s*"?(.*?)"?$', front, re.M)
             with self.subTest(skill=name):
@@ -62,7 +67,7 @@ class SizeBudgets(unittest.TestCase):
         self.assertIn("disable-model-invocation: true", _front((SKILLS / "setup" / "SKILL.md").read_text()))
 
     def test_agent_descriptions_are_short(self):
-        for f in sorted([*(P / "agents").glob("*.md"), *(LAUNCH / "agents").glob("*.md")]):
+        for f in sorted([*(P / "agents").glob("*.md"), *(TEAMS / "agents").glob("*.md")]):
             front = _front(f.read_text(encoding="utf-8"))
             m = re.search(r"^description:\s*(.*)$", front, re.M)
             with self.subTest(agent=f.name):
@@ -71,10 +76,10 @@ class SizeBudgets(unittest.TestCase):
 
     def test_every_reference_is_bounded(self):
         for f in [*(SKILLS / "work" / "references").rglob("*.md"), *(SKILLS / "coding" / "guides").glob("*.md"),
-                  *LSKILLS.rglob("*.md")]:
+                  *TEAMS.rglob("*.md"), *(p for h in HEADS for p in (h / "skills").rglob("*.md"))]:
             if f.name == "SKILL.md":
                 continue
-            with self.subTest(ref=str(f.relative_to(P.parent))):
+            with self.subTest(ref=str(f.relative_to(P.parents[1]))):
                 self.assertLessEqual(f.stat().st_size, 16 * 1024)
 
 

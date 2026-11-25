@@ -127,7 +127,7 @@ def plan(task: str, root: Path | None = None) -> dict:
         ["builder", "browser check"] if small else ["builder", "reviewer", "manager"])
     load = ["shared/defaults.md"]
     if visual:
-        load.append("skills/website/planner.md")
+        load.append("teams/website/planner.md")
     if size == "large":
         load.append("skills/work/references/code-map.md")
     if designer:

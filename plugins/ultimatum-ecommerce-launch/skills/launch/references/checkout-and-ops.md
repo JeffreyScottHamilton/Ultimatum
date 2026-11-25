@@ -84,4 +84,4 @@ Summaries from the theme licences as read when this plugin was written; **check 
 | Shopify Dawn theme | Use is limited to building themes for Shopify stores. | Same practice as Horizon: build for one merchant's store; do not package a derived theme for sale or reuse until the licence text has been read. |
 | Paid third-party themes | Licence is usually per store; moving it to another store may need a new purchase (check before relying). | Buy under the owner's account, not yours. |
 
-Video, music and stock licences are in the base plugin's `licenses.md` (`ultimatum-launch`). Short version: free tiers of voice and music tools are often non-commercial, free stock needs a log of source and licence, and recognisable people need releases. A company of more than 3 people needs a paid Remotion company licence (check before relying).
+Video, music and stock licences are in `shared/licenses.md`. Short version: free tiers of voice and music tools are often non-commercial, free stock needs a log of source and licence, and recognisable people need releases. A company of more than 3 people needs a paid Remotion company licence (check before relying).

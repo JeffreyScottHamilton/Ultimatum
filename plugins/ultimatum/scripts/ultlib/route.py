@@ -21,13 +21,21 @@ from pathlib import Path
 from .common import project_root
 
 PLUGIN = Path(__file__).resolve().parents[2]
-# A plugin that ships its own copy of this toolbelt (Ultimatum Launch) keeps the core
+# A head plugin that ships its own copy of this toolbelt keeps the core
 # files it needs under shared/core/, at the same relative paths as in the core plugin.
 CORE_COPY = PLUGIN / "shared" / "core"
 
 
 def plugin_file(rel: str) -> Path:
-    """A plugin file by its core-relative path: this plugin's own, else its shared/core copy."""
+    """A plugin file by its core-relative path: this plugin's own, else its shared/core copy.
+
+    `teams/<team>/<file>` names a shared team guide: a head plugin ships it under
+    skills/<head>/references/<team>/; in the repo it sits in the top-level teams/ folder.
+    """
+    if rel.startswith("teams/"):
+        rest = rel[len("teams/"):]
+        found = sorted(PLUGIN.glob(f"skills/*/references/{rest}"))
+        return found[0] if found else PLUGIN.parents[1] / rel
     p = PLUGIN / rel
     if p.exists():
         return p

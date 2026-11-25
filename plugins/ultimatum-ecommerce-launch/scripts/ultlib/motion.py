@@ -73,7 +73,7 @@ def plan(task: str, root: Path | None = None) -> dict:
     ship = bool(_SHIP_RE.search(text))
     load = ["shared/defaults.md"]
     if not small:
-        load += ["skills/motion-graphics/storyboard.md", "skills/design/SKILL.md"]
+        load += ["teams/motion-graphics/storyboard.md", "skills/design/SKILL.md"]
     load += ["skills/coding/SKILL.md", "skills/coding/guides/motion.md", "skills/review/SKILL.md"]
     if ship:
         load.append("skills/release/SKILL.md")

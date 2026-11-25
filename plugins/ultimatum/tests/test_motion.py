@@ -9,7 +9,7 @@ import unittest
 from array import array
 from pathlib import Path
 
-from _harness import LAUNCH, LAUNCH_SCRIPTS, LaunchCase as UltCase, pick_hooks
+from _harness import LAUNCH, LAUNCH_SCRIPTS, TEAMS, LaunchCase as UltCase, pick_hooks
 
 sys.path.insert(0, LAUNCH_SCRIPTS)
 PLUGIN = LAUNCH
@@ -27,27 +27,26 @@ class PlainChatRouting(UltCase):
         self.write("styles.css", "nav{}")
 
     def test_five_prompts_pick_the_right_workflow(self):
+        from ultlib.pick import pick
         self.site()
         self.assertEqual(hook("How does the export module work?", self.root), "")
         cases = {
-            "Fix the CSV export": "ultimatum:work",
-            "Build me a website for my coffee shop": "ultimatum-launch:website",
-            "Fix the mobile menu": "ultimatum-launch:website",
-            "Make a 15 second logo reveal video for my bakery": "ultimatum-launch:motion-graphics",
+            "Fix the CSV export": "work",
+            "Build me a website for my coffee shop": "website",
+            "Fix the mobile menu": "website",
+            "Make a 15 second logo reveal video for my bakery": "motion",
         }
-        for prompt, skill in cases.items():
+        for prompt, kind in cases.items():
             with self.subTest(prompt=prompt):
+                self.assertEqual(pick(prompt, root=self.root), kind)
                 out = hook(prompt, self.root)
-                self.assertIn('"additionalContext"', out)
-                self.assertIn(skill, out)
-                for other in {"ultimatum:work", "ultimatum-launch:website", "ultimatum-launch:motion-graphics"} - {skill}:
-                    self.assertNotIn(f'\\"{other}\\"', out)
+                # Only coding work gets core's note; the heads have no hook.
+                self.assertEqual("ultimatum:work" in out, kind == "work")
 
     def test_animation_inside_a_website_stays_website(self):
+        from ultlib.pick import pick
         self.site()
-        out = hook("Animate the hamburger menu on the landing page", self.root)
-        self.assertIn("ultimatum-launch:website", out)
-        self.assertNotIn("motion-graphics", out)
+        self.assertEqual(pick("Animate the hamburger menu on the landing page", root=self.root), "website")
 
     def test_motion_questions_get_an_answer_not_a_project(self):
         from ultlib.pick import pick
@@ -71,7 +70,7 @@ class StoryboardGate(UltCase):
         self.assertEqual(r.code, 0, r.all)
         self.assertIn("user approves storyboard", r.out)
         self.assertIn("no production animation before that", r.out)
-        self.assertIn("skills/motion-graphics/storyboard.md", r.out)
+        self.assertIn("teams/motion-graphics/storyboard.md", r.out)
         self.assertLess(r.out.index("user approves storyboard"), r.out.index("animator"))
 
     def test_approval_is_recorded_and_opens_the_gate(self):
@@ -99,14 +98,14 @@ class StoryboardGate(UltCase):
         self.assertIn("confirm before timing cuts", r.out)
 
     def test_skill_files_say_stop_and_wait(self):
-        skill = (PLUGIN / "skills/motion-graphics/SKILL.md").read_text()
-        board = (PLUGIN / "skills/motion-graphics/storyboard.md").read_text()
+        skill = (TEAMS / "motion-graphics/guide.md").read_text()
+        board = (TEAMS / "motion-graphics/storyboard.md").read_text()
         self.assertIn("stop and wait", skill)
         self.assertIn("no production animation until the user approves", skill)
         self.assertIn("Open blockers stop delivery", skill)
         self.assertIn("possible cues", board)
         self.assertIn("suggested", board)
-        self.assertLessEqual(len(skill.split("\n---\n", 1)[1].encode()), 4096)
+        self.assertLessEqual(len(skill.encode()), 4096)
 
 
 class Cues(unittest.TestCase):

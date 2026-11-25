@@ -11,7 +11,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from _harness import LAUNCH, LAUNCH_SCRIPTS, LaunchCase, pick_hooks
+from _harness import LAUNCH, LAUNCH_SCRIPTS, TEAMS, LaunchCase, pick_hooks
 
 sys.path.insert(0, LAUNCH_SCRIPTS)
 PLUGIN = LAUNCH
@@ -22,8 +22,8 @@ FILLED = ("- Audience: busy parents in Leeds\n- Offer: Saturday baking class, 40
           "- Checks that show it works: booking form sends\n")
 
 
-def hook(prompt, cwd, scopes=("core", "launch")):
-    """Both plugins' UserPromptSubmit hooks, as Claude Code runs them when both are installed."""
+def hook(prompt, cwd, scopes=("core",)):
+    """Core's UserPromptSubmit hook, as Claude Code runs it."""
     return pick_hooks(prompt, cwd, scopes)
 
 
@@ -48,34 +48,45 @@ class Base(LaunchCase):
 
 
 class PlainChatRouting(Base):
-    CASES = {
-        "Help me launch my business": "ultimatum-launch:launch",
-        "What's stopping people from booking?": "ultimatum-launch:business",
-        "What’s stopping people from booking?": "ultimatum-launch:business",
-        "Build a website": "ultimatum-launch:website",
-        "Fix the mobile menu": "ultimatum-launch:website",
-        "Plan a week of posts": "ultimatum-launch:social-media",
-        "write a week of tiktok posts": "ultimatum-launch:social-media",
-        "plan instagram reels for my bakery": "ultimatum-launch:social-media",
-        "make 5 youtube shorts ideas": "ultimatum-launch:social-media",
-        "Make a motion graphic": "ultimatum-launch:motion-graphics",
-        "Make a 30 second launch video": "ultimatum-launch:motion-graphics",
-        "Make an emotional brand film for our launch": "ultimatum-launch:brand-film",
-        "Create a cinematic ad about a nurse coming home": "ultimatum-launch:brand-film",
-        "Fix the signup form validation bug": "ultimatum:work",
-    }
-    SKILLS = {"ultimatum-launch:launch", "ultimatum-launch:business", "ultimatum-launch:website",
-              "ultimatum-launch:social-media", "ultimatum-launch:motion-graphics", "ultimatum-launch:brand-film",
-              "ultimatum:work"}
+    """ultlib.pick sorts plain prompts; core's hook announces only coding work.
 
-    def test_each_plain_prompt_starts_one_workflow(self):
+    The launch and social media plugins have no hook: each is one head skill Claude
+    picks from its description, so only core's note is checked here.
+    """
+    CASES = {
+        "Help me launch my business": "launch",
+        "What's stopping people from booking?": "business",
+        "What’s stopping people from booking?": "business",
+        "Build a website": "website",
+        "Fix the mobile menu": "website",
+        "Plan a week of posts": "social",
+        "write a week of tiktok posts": "social",
+        "plan instagram reels for my bakery": "social",
+        "make 5 youtube shorts ideas": "social",
+        "Make a motion graphic": "motion",
+        "Make a 30 second launch video": "motion",
+        "Make an emotional brand film for our launch": "film",
+        "Create a cinematic ad about a nurse coming home": "film",
+        "Fix the signup form validation bug": "work",
+    }
+
+    def test_each_plain_prompt_picks_one_workflow(self):
+        from ultlib.pick import pick
         self.write("index.html", "<nav class='menu'></nav>")
-        for prompt, skill in self.CASES.items():
+        for prompt, kind in self.CASES.items():
+            with self.subTest(prompt=prompt):
+                self.assertEqual(pick(prompt, root=self.root), kind)
+
+    def test_core_hook_announces_only_coding_work(self):
+        self.write("index.html", "<nav class='menu'></nav>")
+        for prompt, kind in self.CASES.items():
             with self.subTest(prompt=prompt):
                 out = hook(prompt, self.root)
-                self.assertIn(skill, out)
-                for other in self.SKILLS - {skill}:
-                    self.assertNotIn(f'\\"{other}\\"', out)
+                if kind == "work":
+                    self.assertIn('"additionalContext"', out)
+                    self.assertIn("ultimatum:work", out)
+                else:
+                    self.assertEqual(out, "")
 
     def test_plain_questions_get_an_answer(self):
         for q in ("What is a brand film?", "What is a content calendar?", "How does a soft launch work?", "What is TikTok?",
@@ -83,26 +94,21 @@ class PlainChatRouting(Base):
             self.assertEqual(hook(q, self.root), "", q)
 
     def test_slash_commands_win(self):
-        for p in ("/ultimatum-launch:website plan a week of posts",
-                  "/ultimatum-launch:social-media build a website", "/ultimatum:work build a website"):
+        for p in ("/ultimatum-website-launch:launch fix the signup form validation bug",
+                  "/ultimatum-social-media:social-media fix the signup form validation bug",
+                  "/ultimatum:work build a website"):
             self.assertEqual(hook(p, self.root), "", p)
 
-    def test_each_scope_emits_only_its_own_notes(self):
-        self.write("index.html", "<nav class='menu'></nav>")
-        self.assertEqual(hook("Build a website", self.root, ("core",)), "")
-        self.assertEqual(hook("Fix the signup form validation bug", self.root, ("launch",)), "")
-        core = hook("Fix the signup form validation bug", self.root, ("core",))
-        self.assertIn("ultimatum:work", core)
-        launch = hook("write a week of tiktok posts", self.root, ("launch",))
-        self.assertIn("ultimatum-launch:social-media", launch)
-        self.assertNotIn("ultimatum:work", launch)
+    def test_other_scopes_say_nothing(self):
+        out = pick_hooks("Fix the signup form validation bug", self.root, ("launch",))
+        self.assertEqual(out, "")
 
-    def test_hooks_pass_their_scope(self):
-        from _harness import CORE
-        core = (CORE / "hooks/hooks.json").read_text()
-        launch = (LAUNCH / "hooks/hooks.json").read_text()
-        self.assertIn("--scope core", core)
-        self.assertIn("--scope launch", launch)
+    def test_only_core_registers_a_hook(self):
+        from _harness import CORE, REPO
+        self.assertIn("--scope core", (CORE / "hooks/hooks.json").read_text())
+        for head in sorted((REPO / "plugins").glob("ultimatum-*")):
+            with self.subTest(plugin=head.name):
+                self.assertFalse((head / "hooks").exists())
 
     def test_engineering_words_stay_work(self):
         from ultlib.pick import pick
@@ -173,7 +179,7 @@ class Business(Base):
     def test_launch_mode_loads_the_brief_guide(self):
         r = self.u("business", "Help me launch my bakery")
         self.assertIn("mode: launch", r.out)
-        self.assertIn("skills/business/brief.md", r.out)
+        self.assertIn("teams/business/brief.md", r.out)
 
 
 class MockupGate(Base):
@@ -190,7 +196,7 @@ class MockupGate(Base):
     def test_small_fix_skips_the_mockup_but_keeps_the_browser_check(self):
         r = self.u("website", "Fix the mobile menu")
         self.assertNotIn("gate:", r.out)
-        skill = (PLUGIN / "skills/website/SKILL.md").read_text()
+        skill = (TEAMS / "website/guide.md").read_text()
         self.assertIn("No mockup and no approval stop", skill)
         self.assertIn("then the browser check", skill)
 
@@ -273,12 +279,12 @@ class BrandFilm(Base):
         r = self.u("film", "Make an anthem film about people who bake at dawn")
         self.assertIn("sub-genre: montage", r.out)
         self.assertIn("next: write the logline", r.out)
-        self.assertIn("skills/brand-film/story.md", r.out)
+        self.assertIn("teams/brand-film/story.md", r.out)
         self.u("gate", "approve", "story", "yes, the grandmother story")
         r = self.u("film", "Make a brand film")
         self.assertIn("sub-genre: character", r.out)
         self.assertIn("nothing is bought, generated or shot", r.out)
-        self.assertIn("references/footage.md", r.out)
+        self.assertIn("teams/brand-film/footage.md", r.out)
         self.u("gate", "approve", "sourcing", "ok, 40 dollars of stock")
         self.assertIn("cut the rough timeline", self.u("film", "Make a brand film").out)
 
@@ -334,11 +340,17 @@ class DeliverRealExport(Base):
 
 class SkillText(unittest.TestCase):
     def test_connector_fallback_and_no_credentials(self):
-        for name in ("launch", "business", "social-media"):
-            text = (PLUGIN / f"skills/{name}/SKILL.md").read_text()
-            with self.subTest(skill=name):
+        for name in ("business", "social-media"):
+            text = (TEAMS / name / "guide.md").read_text()
+            with self.subTest(team=name):
                 self.assertIn("Composio", text)
                 self.assertIn("authorized", text)
+        from _harness import REPO
+        for head in sorted((REPO / "plugins").glob("ultimatum-*-launch")):
+            text = (head / "skills/launch/SKILL.md").read_text()
+            with self.subTest(head=head.name):
+                self.assertIn("authorized", text)
+                self.assertIn("Never put credentials", text)
         defaults = (PLUGIN / "shared/defaults.md").read_text()
         self.assertIn("Context7", defaults)
 

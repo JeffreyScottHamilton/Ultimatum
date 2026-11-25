@@ -1,40 +1,54 @@
-"""ultimatum-launch ships a copy of core's toolbelt; this fails as soon as the copy drifts."""
+"""Every head plugin ships copies of the team guides, agents and core's toolbelt; this fails as soon as a copy drifts."""
 import importlib.util
 import json
 import unittest
 
-from _harness import CORE, LAUNCH, REPO
+from _harness import CORE, REPO
 
-SYNC = REPO / "tools" / "sync_launch_toolbelt.py"
+SYNC = REPO / "tools" / "sync_plugins.py"
 
 
 def _sync_module():
-    spec = importlib.util.spec_from_file_location("sync_launch_toolbelt", SYNC)
+    spec = importlib.util.spec_from_file_location("sync_plugins", SYNC)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
 
 
-class ToolbeltCopy(unittest.TestCase):
-    def test_launch_copy_matches_core(self):
+def _heads():
+    return _sync_module().heads()
+
+
+class PluginCopies(unittest.TestCase):
+    def test_every_copy_matches_its_source(self):
         bad = _sync_module().differences()
-        self.assertEqual(bad, [], "run: python3 tools/sync_launch_toolbelt.py")
+        self.assertEqual(bad, [], "run: python3 tools/sync_plugins.py")
 
-    def test_copied_core_docs_are_not_registered_as_launch_skills(self):
-        stray = [p for p in (LAUNCH / "skills").glob("*/SKILL.md")
-                 if p.parent.name in {"work", "design", "coding", "review", "release"}]
-        self.assertEqual(stray, [])
+    def test_at_least_the_three_launch_heads_are_synced(self):
+        names = {root.name for root, _, _ in _heads()}
+        self.assertTrue({"ultimatum-website-launch", "ultimatum-ecommerce-launch", "ultimatum-app-launch"} <= names)
 
-    def test_launch_depends_on_core_and_both_are_listed(self):
-        launch = json.loads((LAUNCH / ".claude-plugin/plugin.json").read_text())
-        self.assertIn("ultimatum", json.dumps(launch.get("dependencies")))
+    def test_each_head_registers_only_its_head_skill(self):
+        for root, head, _ in _heads():
+            with self.subTest(plugin=root.name):
+                skills = sorted(p.parent.name for p in (root / "skills").glob("*/SKILL.md"))
+                self.assertEqual(skills, [head])
+                self.assertFalse((root / "hooks").exists())
+
+    def test_heads_stand_alone_and_are_listed(self):
         market = json.loads((REPO / ".claude-plugin/marketplace.json").read_text())
         sources = {p["name"]: p["source"] for p in market["plugins"]}
-        self.assertEqual(sources.get("ultimatum-launch"), "./plugins/ultimatum-launch")
-        self.assertIn("ultimatum", sources)
+        self.assertEqual(sources.get("ultimatum"), "./plugins/ultimatum")
+        self.assertNotIn("ultimatum-launch", sources)
+        self.assertFalse((REPO / "plugins" / "ultimatum-launch").exists())
         core = json.loads((CORE / ".claude-plugin/plugin.json").read_text())
-        for meta in (launch, core):
-            self.assertEqual(meta["license"], "MIT")
+        self.assertEqual(core["license"], "MIT")
+        for root, _, _ in _heads():
+            meta = json.loads((root / ".claude-plugin/plugin.json").read_text())
+            with self.subTest(plugin=root.name):
+                self.assertNotIn("dependencies", meta)
+                self.assertEqual(meta["license"], "MIT")
+                self.assertEqual(sources.get(root.name), f"./plugins/{root.name}")
 
 
 if __name__ == "__main__":

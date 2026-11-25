@@ -4,7 +4,7 @@
     "name": "Jeffrey Scott Hamilton"
   },
   "metadata": {
-    "description": "Ultimatum for Claude Code. The core plugin handles software work. Ultimatum Launch adds business, website, social media, motion graphics and brand film teams, and the Website, E-commerce and App Launch add-ons give each kind of launch its own guided plan."
+    "description": "Ultimatum for Claude Code. Every plugin stands alone. The core plugin handles software work; the Website, E-commerce and App Launch plugins each run a whole launch of that kind with their own business, website, social media and video teams."
   },
   "plugins": [
     {
@@ -21,22 +21,9 @@
       ]
     },
     {
-      "name": "ultimatum-launch",
-      "source": "./plugins/ultimatum-launch",
-      "description": "Shared launch teams for Ultimatum: business and brand, website, social media, motion graphics and brand film, with taste and compliance reviewers. Nothing is posted, published, deployed or paid for without your approval.",
-      "category": "productivity",
-      "tags": [
-        "launch",
-        "website",
-        "branding",
-        "marketing",
-        "motion-graphics"
-      ]
-    },
-    {
       "name": "ultimatum-website-launch",
       "source": "./plugins/ultimatum-website-launch",
-      "description": "Website Launch for Ultimatum. Plans and runs the launch of a small business, local service, portfolio or creator site: intake, business-type playbooks, page copy, local SEO and a launch checklist. Requires ultimatum-launch.",
+      "description": "Website Launch for Ultimatum. Plans and runs the launch of a small business, local service, portfolio or creator site: intake, business-type playbooks, page copy, local SEO and a launch checklist. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
       "category": "productivity",
       "tags": [
         "launch",
@@ -48,7 +35,7 @@
     {
       "name": "ultimatum-ecommerce-launch",
       "source": "./plugins/ultimatum-ecommerce-launch",
-      "description": "E-commerce Launch for Ultimatum. Plans and runs an online store launch: platform and theme choice, catalogue and product photos, payments, tax, shipping, policy pages and a first-30-days review. Requires ultimatum-launch.",
+      "description": "E-commerce Launch for Ultimatum. Plans and runs an online store launch: platform and theme choice, catalogue and product photos, payments, tax, shipping, policy pages and a first-30-days review. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
       "category": "productivity",
       "tags": [
         "launch",
@@ -60,7 +47,7 @@
     {
       "name": "ultimatum-app-launch",
       "source": "./plugins/ultimatum-app-launch",
-      "description": "App Launch for Ultimatum. Plans and runs the launch of a web app, mobile app or subscription product: pricing and billing, sign-up and activation, onboarding emails, trust basics and a launch-week plan. Requires ultimatum-launch.",
+      "description": "App Launch for Ultimatum. Plans and runs the launch of a web app, mobile app or subscription product: pricing and billing, sign-up and activation, onboarding emails, trust basics and a launch-week plan. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
       "category": "productivity",
       "tags": [
         "launch",

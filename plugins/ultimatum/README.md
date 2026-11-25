@@ -8,7 +8,7 @@ One skill for the software work a developer actually does in Claude Code. Instal
 
 You don't have to type it: once the plugin is enabled, a coding request such as "Fix the CSV export" starts `/ultimatum:work` through a small local prompt hook, with no line needed in your `CLAUDE.md`. Plain questions ("What is a closure?", "How does the export module work?") and writing help stay in normal chat. `ULTIMATUM_AUTO=0` turns the hook off, and typed commands always win.
 
-Websites, business and brand, marketing, motion graphics and full launches live in the separate **Ultimatum Launch** plugin (`/ultimatum-launch:website`, `/ultimatum-launch:launch` and so on; see [`../ultimatum-launch/README.md`](../ultimatum-launch/README.md)). Since 1.1.0 the core plugin no longer has those commands.
+Ultimatum core is for coding only. Launches and social media are separate, self-contained plugins in the same marketplace: [Website](../ultimatum-website-launch/README.md), [E-commerce](../ultimatum-ecommerce-launch/README.md) and [App](../ultimatum-app-launch/README.md) Launch. Each ships its own team guides, reviewer agents and copy of the toolbelt, and none of them needs core.
 
 A local router (`ult route`, no model call) reads the task and picks:
 

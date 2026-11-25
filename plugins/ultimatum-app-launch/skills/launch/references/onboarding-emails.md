@@ -7,7 +7,7 @@ Emails from sign-up to the end of the trial, built around the aha moment defined
 1. The aha sentence and the activation event (from `activation.md`).
 2. The 3-5 steps between sign-up and aha, each with a direct link into the product.
 3. A reply-to address a person reads.
-4. The tool: the product's own email code via `ultimatum:work`, or an email platform. Use events from the product to start and stop emails; a fixed timetable that ignores what the user did sends the wrong message.
+4. The tool: the product's own email code (coding work, done in a coding session), or an email platform. Use events from the product to start and stop emails; a fixed timetable that ignores what the user did sends the wrong message.
 5. Legal basics: transactional email (receipts, password resets) differs from marketing email; marketing needs consent where the law requires it, plus an unsubscribe link and a postal address in some places (check before relying: rules where the users are).
 
 ## The sequence (example for a 14-day trial)

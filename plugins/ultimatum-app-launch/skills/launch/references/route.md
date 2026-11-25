@@ -20,7 +20,7 @@ Pick from the approved brief, tell the user in one line, let them override. Defa
 
 ## Team
 
-Business & brand, Website ("show the product working"), a data and security role, a payments role, a deploy role, Marketing. `ultimatum:work` handles app code, with its security review on auth, tenants and money.
+Business & brand, Website ("show the product working"), a data and security role, a payments role, a deploy role, Marketing. App code is coding work done in a coding session, with a security review on auth, tenants and money.
 
 ## Supabase
 

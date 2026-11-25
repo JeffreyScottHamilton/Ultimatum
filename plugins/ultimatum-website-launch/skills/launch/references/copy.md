@@ -1,6 +1,6 @@
 # Writing the words
 
-Small-business sites usually fail on words, not design. Draft copy here, in the owner's voice from `brand/brand.md`, and pass it to `ultimatum-launch:website` in the skill args. The owner approves every claim.
+Small-business sites usually fail on words, not design. Draft copy here, in the owner's voice from `brand/brand.md`, and use it when you run the Website team (`website/guide.md`). The owner approves every claim.
 
 ## Rules
 
@@ -75,4 +75,4 @@ Interview the owner for this with questions asked one at a time in chat: "How di
 - [ ] The same button wording everywhere.
 - [ ] Read aloud once: no jargon the customer would not use.
 - [ ] Spelling of the business name, address and phone checked against the listing.
-- [ ] Passed to `ultimatum-launch:compliance-reviewer` with the pages.
+- [ ] Passed to the `ultimatum-website-launch:compliance-reviewer` agent with the pages.

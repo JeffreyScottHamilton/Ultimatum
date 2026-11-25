@@ -1,6 +1,6 @@
 # Product photos: shot list and setup
 
-Hand the shot list and the house rules to the Website and Social teams in the skill args. Every number here is a rule of thumb, not a platform requirement; image size limits and recommended dimensions are **check before relying** on the platform's own help pages.
+Hand the shot list and the house rules to the Website and Social Media teams when you run them. Every number here is a rule of thumb, not a platform requirement; image size limits and recommended dimensions are **check before relying** on the platform's own help pages.
 
 ## House rules (decide once, write them in `brand/brand.md`)
 
@@ -60,7 +60,7 @@ Category extras:
 - Background swaps and lifestyle scenes made with AI tools (Higgsfield and others) only after a credit check and the user's yes, one generation per yes.
 - The product itself must stay accurate: shape, colour, size, label. An AI image that flatters the product beyond reality is a compliance blocker.
 - No AI people presented as real customers or reviewers. Label AI content where the platform asks for it.
-- Licences and commercial rights for AI tools: base plugin `licenses.md` (`ultimatum-launch`), check before relying.
+- Licences and commercial rights for AI tools: `shared/licenses.md`, check before relying.
 
 ## Beginner mistakes
 

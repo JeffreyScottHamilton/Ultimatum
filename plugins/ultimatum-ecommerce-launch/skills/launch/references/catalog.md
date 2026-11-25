@@ -1,6 +1,6 @@
 # Catalogue and product pages
 
-Hand the relevant parts of this file to the Website and Social teams in the skill args. Numbers below are rules of thumb, not facts.
+Hand the relevant parts of this file to the Website and Social Media teams when you run them. Numbers below are rules of thumb, not facts.
 
 ## Product data
 

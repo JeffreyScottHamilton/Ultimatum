@@ -1,6 +1,6 @@
 ---
 name: launch
-description: "E-commerce Launch manager for online stores: Shopify, WooCommerce, moving from Etsy to an own store, print-on-demand and small DTC brands. Use it in plain chat (\"launch my online shop\") or with /ultimatum-ecommerce-launch:launch. It runs a store intake, writes a one-page brief the user approves, then runs the shared Ultimatum Launch teams (Business, Website, Social Media, video) with an approval before every spend, post and deploy."
+description: "E-commerce Launch manager for online stores: Shopify, WooCommerce, moving from Etsy to an own store, print-on-demand and small DTC brands. Use it in plain chat (\"launch my online shop\") or with /ultimatum-ecommerce-launch:launch. It runs a store intake, writes a one-page brief the user approves, then runs its Business, Website, Social Media and video teams with an approval before every spend, post and deploy."
 argument-hint: "<the store you are launching>"
 ---
 
@@ -19,12 +19,12 @@ Run `ult launch --kind ecommerce --root .`: it prints steps, gate states and a `
 1. **Intake.** `references/intake.md`: batches of 5-8 mostly multiple-choice questions, recommended answer first; skip what is known.
 2. **Brief.** `ult business --start-brief`, fill `## Build brief`, show it, stop. Yes: `ult gate approve brief "<their words>"`. Changes: `ult gate revise brief "<their words>"`, fix, show again. Never approve for the user.
 3. **Route.** `references/route.md`: platform, theme, store structure, video style. Read `references/checkout-and-ops.md` before naming any tool, licence or price.
-4. **Shared teams.** They live in another plugin and cannot read these files, so run each with the Skill tool and paste the store notes it needs into the args:
-   - `ultimatum-launch:business`: positioning, then `brand/brand.md`.
-   - `ultimatum-launch:website`: store design directions, pick, build, browser check. Paste the product-page anatomy from `catalog.md` and the shot list from `product-photos.md`.
-   - `ultimatum-launch:social-media`: launch posts; its video step chooses `ultimatum-launch:brand-film` or `ultimatum-launch:motion-graphics`.
+4. **Teams.** Each team is a guide in this plugin; read it when its turn comes and follow it yourself, with the store notes it needs:
+   - Business, `references/business/guide.md`: positioning, then `brand/brand.md`.
+   - Website, `references/website/guide.md`: store design directions, pick, build, browser check, using the product-page anatomy from `catalog.md` and the shot list from `product-photos.md`.
+   - Social Media, `references/social-media/guide.md`: launch posts; its video step chooses Brand Film (`references/brand-film/guide.md`) or Motion Graphics (`references/motion-graphics/guide.md`).
 5. **Catalogue and store ops.** `references/catalog.md` and `product-photos.md` for products; `references/checkout-and-ops.md` for payments, tax, shipping, emails; `references/policy-pages.md` for the four policy pages. Owner-only steps stay with the owner.
-6. **Review loop.** Log each problem with `ult loop add "<finding>" --where "<page or file>" --blocker` (or `--minor`); `ult loop status` shows what is open. Run `ultimatum-launch:compliance-reviewer` on product claims, images and policies, and `ultimatum-launch:taste-critic` on pages and creative. Open blockers stop delivery.
+6. **Review loop.** Log each problem with `ult loop add "<finding>" --where "<page or file>" --blocker` (or `--minor`); `ult loop status` shows what is open. Run this plugin's agents `ultimatum-ecommerce-launch:compliance-reviewer` on product claims, images and policies, and `ultimatum-ecommerce-launch:taste-critic` on pages and creative. Open blockers stop delivery.
 7. **Pre-launch.** Work through `references/launch-checklist.md`, including a real test order.
 8. **Publish.** Only on the user's yes: `ult gate approve publish "<words>" --link <checked live url>`, `ult gate check publish --need-link`, then `ult gate done publish`. Deploys: `ult gate approve deploy "<words>"` and `${CLAUDE_PLUGIN_ROOT}/shared/core/skills/release/SKILL.md`.
 9. **Results.** Week by week, follow `references/first-30-days.md`; record numbers with `ult social --results "<what was measured>"` and bring them to the user to pick the next single change.

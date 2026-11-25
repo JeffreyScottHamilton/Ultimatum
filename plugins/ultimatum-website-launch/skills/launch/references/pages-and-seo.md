@@ -1,6 +1,6 @@
 # Pages and SEO
 
-Hand the relevant parts to `ultimatum-launch:website` in the skill args; it cannot read this file.
+Use the relevant parts when you run the Website team (`website/guide.md`).
 
 ## Every page
 

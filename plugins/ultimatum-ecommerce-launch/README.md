@@ -1,15 +1,13 @@
 # Ultimatum E-commerce Launch
 
-A launch manager for online stores: Shopify, WooCommerce, Etsy-to-own-store, print-on-demand and small DTC brands. It runs the shared Ultimatum Launch teams with store-specific intake, platform and theme advice, catalogue rules, checkout and operations notes, and a launch checklist. Every spend, post, publish and deploy needs your approval.
+A launch manager for online stores: Shopify, WooCommerce, Etsy-to-own-store, print-on-demand and small DTC brands. It runs its own Business, Website, Social Media and video teams with store-specific intake, platform and theme advice, catalogue rules, checkout and operations notes, and a launch checklist. Every spend, post, publish and deploy needs your approval.
 
-It needs the core `ultimatum` plugin and the `ultimatum-launch` plugin, which holds the Business, Website, Social Media, Brand Film and Motion Graphics teams and the reviewer agents.
+It stands alone: the Business, Website, Social Media, Brand Film and Motion Graphics team guides, the taste and compliance reviewer agents and the `ult` toolbelt ship inside it. No other plugin is needed.
 
 ## Install
 
 ```
 /plugin marketplace add JeffreyScottHamilton/Ultimatum
-/plugin install ultimatum@ultimatum
-/plugin install ultimatum-launch@ultimatum
 /plugin install ultimatum-ecommerce-launch@ultimatum
 ```
 
@@ -17,7 +15,7 @@ It needs the core `ultimatum` plugin and the `ultimatum-launch` plugin, which ho
 
 Say "Help me launch my online store", or type `/ultimatum-ecommerce-launch:launch <what you sell>`. Progress is kept in `.ultimatum/`; run it again to resume.
 
-## What it adds over the base manager
+## What it includes
 
 | Area | What you get |
 |---|---|
@@ -32,6 +30,6 @@ Say "Help me launch my online store", or type `/ultimatum-ecommerce-launch:launc
 
 Each guide ends with the mistakes beginners usually make.
 
-The manager runs the shared teams from `ultimatum-launch` and hands them the store notes they need. Prices, fees and vendor policies are marked "check before relying"; confirm them on the vendor's page. Shopify theme licence rows are in `skills/launch/references/checkout-and-ops.md`.
+The manager reads each team guide under `skills/launch/references/<team>/` when that team's turn comes and carries the store notes with it. Prices, fees and vendor policies are marked "check before relying"; confirm them on the vendor's page. Shopify theme licence rows are in `skills/launch/references/checkout-and-ops.md`.
 
 MIT licence; see `LICENSE`.

@@ -6,7 +6,7 @@ Use after the model is chosen in `pricing-and-billing.md`. The products, plan na
 
 1. Write the plan table in plain text first (name, for whom, price, what is included, limit), and get the user's yes on it.
 2. Write the FAQ from real questions (beta users, sales calls, support inbox); add the standard ones listed below.
-3. Hand both to `ultimatum-launch:website` with the anatomy from `pricing-and-billing.md`.
+3. Take both to the Website team (`website/guide.md`) with the anatomy from `pricing-and-billing.md`.
 4. Compliance review of every claim, then a check that each button goes to the right checkout or form, in test mode.
 5. Wire the analytics event `visited_pricing` and the plan chosen at checkout.
 

@@ -27,7 +27,7 @@ Goal: enough to write a one-page brief the user signs off, in few turns.
 1. **Data handled.** None personal / emails and names / business data / payments / health, children or finance (the last needs a careful legal look; recommend asking a professional).
 2. **Launch channels.** Waitlist email / Product Hunt / Hacker News / communities and forums / founder social posts / paid ads / partners. Recommend two or three, not all.
 3. **Date.** Fixed date or event / within a month / when it is good (recommended: a date, even a soft one).
-4. **Budget.** Monthly ceiling for hosting, tools, ads and AI credits; tools already paid for (hosting, billing, database, email, analytics); company size (above 3 people changes some video tool licences, see the base `licenses.md` rows).
+4. **Budget.** Monthly ceiling for hosting, tools, ads and AI credits; tools already paid for (hosting, billing, database, email, analytics); company size (above 3 people changes some video tool licences, see the rows in `shared/licenses.md`).
 5. **Evidence.** Real footage, screen recordings, customer quotes, logos allowed? Anyone willing to appear on camera?
 
 ## One at a time

@@ -38,13 +38,10 @@ ROLES = {
     "video": ["editor", "colorist", "sound", "film critic", "compliance reviewer"],
 }
 LOAD = {
-    "story": ["skills/brand-film/SKILL.md", "skills/brand-film/story.md"],
-    "sourcing": ["skills/brand-film/SKILL.md", "skills/brand-film/references/footage.md",
-                 "skills/launch/references/licenses.md"],
-    "animatic": ["skills/brand-film/SKILL.md", "skills/brand-film/references/edit.md",
-                 "skills/brand-film/references/sound.md"],
-    "video": ["skills/brand-film/SKILL.md", "skills/brand-film/references/edit.md",
-              "skills/brand-film/references/sound.md"],
+    "story": ["teams/brand-film/guide.md", "teams/brand-film/story.md"],
+    "sourcing": ["teams/brand-film/guide.md", "teams/brand-film/footage.md", "teams/shared/licenses.md"],
+    "animatic": ["teams/brand-film/guide.md", "teams/brand-film/edit.md", "teams/brand-film/sound.md"],
+    "video": ["teams/brand-film/guide.md", "teams/brand-film/edit.md", "teams/brand-film/sound.md"],
 }
 
 

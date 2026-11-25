@@ -23,7 +23,7 @@ How to choose: list 3 candidate actions, check which one the users who stayed (i
 - Verify email without blocking the first look when you can.
 - Say what happens next on the sign-up page. Do not hide the price.
 - Test it on a phone and on a slow connection. Log every drop-off step.
-- Auth is high risk: use `ultimatum:work` security review (rate limits, password reset, session handling).
+- Auth is high risk: run a security review in a coding session (rate limits, password reset, session handling).
 
 ## First-run experience
 

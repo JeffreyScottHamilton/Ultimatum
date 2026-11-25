@@ -5,7 +5,7 @@ For a public launch (see `route.md` for waitlist and beta paths). Start only whe
 ## Two weeks before
 
 - [ ] Launch date agreed with the user; avoid days when the team cannot be online (rule of thumb: a weekday early in the week gives time to fix things before the weekend).
-- [ ] Assets ready and through compliance review: headline, one-paragraph description, 3-5 screenshots of the real product, a short demo video (`ultimatum-launch:motion-graphics`), founder photo if used.
+- [ ] Assets ready and through compliance review: headline, one-paragraph description, 3-5 screenshots of the real product, a short demo video (Motion Graphics, `motion-graphics/guide.md`), founder photo if used.
 - [ ] Waitlist told the date and what they will get (an early-user offer only if the user approves it).
 - [ ] Beta users asked if they will share an honest comment or quote on launch day; quotes only with written permission.
 - [ ] Launch-site listings drafted (Product Hunt, "Show HN" on Hacker News, relevant communities) and each site's rules read. No asking for votes; no fake accounts.

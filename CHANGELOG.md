@@ -4,39 +4,41 @@ All notable changes to Ultimatum are listed here. Versions follow [Semantic Vers
 
 ## [1.0.0] - 2026-11-25
 
-Ultimatum 1.0.0 is a suite of five plugins released together from one marketplace. Every plugin in the suite carries version 1.0.0.
+Ultimatum 1.0.0 is a suite of plugins released together from one marketplace. Every plugin carries version 1.0.0, and each one stands alone: none depends on another.
 
-| Plugin | What it does | Needs |
-|---|---|---|
-| `ultimatum` | Software work: routing, coding, debugging, CI, interface work, security review, releases | nothing |
-| `ultimatum-launch` | Shared launch teams: business, website, social media, motion graphics, brand film, reviewers | `ultimatum` |
-| `ultimatum-website-launch` | Small business, local service, portfolio and creator sites | both above |
-| `ultimatum-ecommerce-launch` | Online stores | both above |
-| `ultimatum-app-launch` | Web apps, mobile apps and subscription products | both above |
+| Plugin | What it does |
+|---|---|
+| `ultimatum` | Software work only: routing, coding, debugging, CI, interface work, security review, releases |
+| `ultimatum-website-launch` | Launching small business, local service, portfolio and creator sites |
+| `ultimatum-ecommerce-launch` | Launching online stores |
+| `ultimatum-app-launch` | Launching web apps, mobile apps and subscription products |
+
+Each launch plugin is one head skill, `launch`, that runs its own Business, Website, Social Media, Brand Film and Motion Graphics teams from guides shipped inside it, with its own `taste-critic` and `compliance-reviewer` agents and its own copy of the `ult` toolbelt. Heads register no hooks.
 
 ### Upgrading from the earlier 1.0.0 build
 
-An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will not offer an update for it. Run `/plugin uninstall ultimatum@ultimatum`, then `/plugin marketplace update ultimatum`, then install the plugins you want. The launch and marketing skills moved out of the core plugin: `/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media` and `/ultimatum:motion-graphics` are now `/ultimatum-launch:<name>`.
+An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will not offer an update for it. Run `/plugin uninstall ultimatum@ultimatum`, then `/plugin marketplace update ultimatum`, then install the plugins you want. The launch and marketing skills (`/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media`, `/ultimatum:motion-graphics`) are gone from core; install the launch plugin for your kind of launch and use `/ultimatum-<kind>-launch:launch`.
 
 ### ultimatum
 
-- Launch skills moved to `ultimatum-launch`. `ult-pick` takes `--scope core|launch`: the core hook adds only the work note, the launch hook adds only launch notes.
+- Coding only. The `workflow:` line from `ult route` points a launch to an installed `ultimatum-<kind>-launch:launch`, and social, motion or film work to an installed social media plugin.
+- `ult-pick` (the UserPromptSubmit hook) adds a note only for coding work; launch, business, social and video prompts get nothing, so other plugins' heads are chosen from their descriptions.
 - `/ultimatum:status` and `/ultimatum:doctor` can be invoked by the model; `/ultimatum:setup` stays user-only.
 - Film routing: requests for a brand film, cinematic or emotional ad, or documentary-style spot route to `film` before motion. `ult film` plans the film, checks the footage manifest, tracked media and voiceover pace (`--check`) and runs the export check (`--deliver`). New gates: `story`, `sourcing`, `animatic`.
-- `ult launch` prints the launch kind (website, ecommerce or app) and the plugin that handles it; `--kind` sets it by hand. The plain-chat hook names that plugin.
+- `ult launch` prints the launch kind (website, ecommerce, app or event) and the head plugin that handles it; `--kind` sets it by hand. Event launches (workshops, classes, webinars, meetups, openings, fundraisers, ticketed shows) are detected before the other kinds.
 - Launch routing recognises store, app and local-business launches ("launch my online candle shop", "launch our SaaS app"). Developer phrases such as "launch the app in debug mode" stay with coding.
-- TikTok, Instagram Reels and YouTube Shorts requests route to Marketing; plain questions such as "What is TikTok?" stay in chat.
+- TikTok, Instagram Reels and YouTube Shorts requests route to social media; plain questions such as "What is TikTok?" stay in chat.
+- The toolbelt finds team guides inside whichever head runs it (`teams/<team>/...` resolves to `skills/<head>/references/<team>/...`).
 
-### ultimatum-launch
+### Team guides (`teams/`, shipped inside each head)
 
-- Skills `launch`, `business`, `website`, `social-media`, `motion-graphics` and `brand-film`, each a short skill file with a `references/` folder. Agents `taste-critic` and `compliance-reviewer`, both read-only.
-- Launch: intake in rounds of 5 to 8 questions with a recommended answer each, a one-page brief approved with `ult gate`, and a hand-off to the kind plugin when it is installed (otherwise `references/routes.md`). Vendor terms are marked "check before relying".
-- Business: positioning before visuals, kept in one `brand/brand.md`, with interview and numbers guides.
-- Website: three HTML directions with distinct motion, screenshotted at 375, 768 and 1440 px and scored by the taste critic (8/10 within 3 rounds), plus design rules.
+- Business: positioning before visuals, kept in one `brand/brand.md`, with brief, interview and numbers guides.
+- Website: three HTML directions with distinct motion, screenshotted at 375, 768 and 1440 px and scored by the taste critic (8/10 within 3 rounds), plus design rules and a planner. Small fixes skip the mockup but keep the browser check.
 - Social Media: picks Brand Film or Motion Graphics per piece, a hook type per post, a results loop read about 48 hours after posting, a weekly top and bottom three, and a learnings log. Nothing is posted without approval.
 - Motion Graphics: storyboard, audio sheet, animation timed to voice and beats, sound effects, and a loudness check (about -14 LUFS, -1 dBTP). Sound effects are CC0 first, with credits logged.
 - Brand Film: story, sourcing, animatic and video gates; legal footage lanes (own footage, free stock, paid stock, AI b-roll) with costs and consent; score-first editing, grading and sound. Spend needs approval, a photoreal AI person is never the hero, and media stays out of Git.
-- Its own copy of the toolbelt, kept identical to core by `tools/sync_launch_toolbelt.py`; CI fails on drift.
+- Shared licence notes and the two read-only reviewer agents.
+- `tools/sync_plugins.py` copies the guides, agents and toolbelt into every head; `--check` runs in CI and fails on drift. Edit `teams/` and core, never the copies.
 
 ### ultimatum-website-launch
 

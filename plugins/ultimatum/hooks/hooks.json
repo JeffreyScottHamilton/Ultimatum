@@ -1,5 +1,5 @@
 {
-  "description": "After a compaction, print the saved handoff back into the chat. On Stop, record local usage observations (counts only, nothing printed; ULTIMATUM_OBSERVE=0 turns it off). Before each prompt, coding work gets one line pointing Claude to /ultimatum:work; plain questions get nothing, and website, video, launch, business and social prompts are left to the ultimatum-launch plugin's own hook (ULTIMATUM_AUTO=0 turns both off). Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
+  "description": "After a compaction, print the saved handoff back into the chat. On Stop, record local usage observations (counts only, nothing printed; ULTIMATUM_OBSERVE=0 turns it off). Before each prompt, coding work gets one line pointing Claude to /ultimatum:work; plain questions, launch, business, social and video prompts get nothing (ULTIMATUM_AUTO=0 turns it off). Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
   "hooks": {
     "SessionStart": [
       {

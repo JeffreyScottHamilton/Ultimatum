@@ -46,8 +46,8 @@ Motion: restrained. GSAP with ScrollTrigger and Lenis are options (see the websi
 
 ## Which video style
 
-- **Brand Film** (`ultimatum-launch:brand-film`, four user gates): usually right for a local or people-led business. A founder story, the place, a customer moment. Shot on the owner's phone with releases from anyone shown.
-- **Motion Graphics** (`ultimatum-launch:motion-graphics`): one offer, a price list, a how-it-works or opening-hours clip, or when there is no footage and nobody to film.
+- **Brand Film** (`brand-film/guide.md`, four user gates): usually right for a local or people-led business. A founder story, the place, a customer moment. Shot on the owner's phone with releases from anyone shown.
+- **Motion Graphics** (`motion-graphics/guide.md`): one offer, a price list, a how-it-works or opening-hours clip, or when there is no footage and nobody to film.
 - Neither: skip video if the message is not clear. A good set of photos is enough for launch.
 
 Social picks the style; the manager passes the owner's footage answer from intake.

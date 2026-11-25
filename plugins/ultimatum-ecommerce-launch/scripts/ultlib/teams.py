@@ -25,8 +25,11 @@ RESULTS_HEAD = "## Campaign results"
 _CHANGE_RE = re.compile(r"^\s*(?:please\s+)?(?:change|update|rewrite|edit|add|remove|fix|replace|move|make|put|set)\b", re.I)
 _LAUNCH_WORD_RE = re.compile(r"\b(?:launch|launching|go[- ]to[- ]market|build\s+brief)\b", re.I)
 _VIDEO_RE = re.compile(r"\b(?:video|reel|reels|clip|tiktok|shorts|animation|motion)\b", re.I)
-# Kinds of launch, each with its own plugin that goes deeper than the shared Launch Manager.
+# Kinds of launch, each with its own head plugin (ultimatum-<kind>-launch).
 KINDS = {
+    "event": re.compile(r"\b(?:events?|workshops?|webinars?|meetups?|conferences?|fundraisers?|gigs?|concerts?|"
+                        r"tickets?|ticketed|pop[- ]ups?|opening\s+night|launch\s+party|classes|courses?|"
+                        r"open\s+day|masterclass(?:es)?|retreats?)\b", re.I),
     "ecommerce": re.compile(r"\b(?:e-?commerce|online\s+(?:store|shop)|store|shop|shopify|woocommerce|etsy|"
                             r"sell(?:ing)?\b[^.]{0,40}?\bonline|sell(?:ing)?\s+(?:products?|my\s+\w+)|products|merch|inventory|"
                             r"checkout|dropship\w*|catalog(?:ue)?|print[- ]on[- ]demand|skus?)\b", re.I),
@@ -38,11 +41,11 @@ KINDS = {
                           r"photograph\w*|freelanc\w*|bookings?|appointments?|studio|gym|"
                           r"small\s+business|personal\s+(?:site|brand)|website|landing\s+page)\b", re.I),
 }
-KIND_ORDER = ("ecommerce", "app", "website")  # tie-break: the more specific kind first
+KIND_ORDER = ("event", "ecommerce", "app", "website")  # tie-break: the more specific kind first
 
 
 def launch_kind(text: str) -> str:
-    """'ecommerce', 'app', 'website', or '' when the text gives no sign."""
+    """'event', 'ecommerce', 'app', 'website', or '' when the text gives no sign."""
     hits = {k: len(KINDS[k].findall(text or "")) for k in KIND_ORDER}
     best = max(KIND_ORDER, key=lambda k: (hits[k], -KIND_ORDER.index(k)))
     return best if hits[best] else ""
@@ -119,9 +122,9 @@ def cmd_launch(args) -> int:
         return 0
     print("workflow: launch  manager: you, in the user's main chat")
     if b["plugin"]:
-        print(f"kind: {b['kind']}  deeper manager: {b['plugin']}:launch (use it if installed; it runs the same teams)")
+        print(f"kind: {b['kind']}  head: {b['plugin']}:launch")
     else:
-        print("kind: unknown (website, ecommerce or app); ask in intake, then `ult launch --kind K`")
+        print("kind: unknown (website, ecommerce, app or event); ask in intake, then `ult launch --kind K`")
     for n, (what, st) in enumerate(b["steps"], 1):
         print(f"{n}. {what}: {st}")
     print("rule: changes to an approved brief and every sign-off go through the Launch Manager")
@@ -148,8 +151,8 @@ def business_plan(task: str, root: Path) -> dict:
                       "analyst (Analytics, Conversion Tracking)"],
             "rules": ["label each point observed (with its source) or guessed",
                       "say what you accessed; with no connector, use public pages and the user's files"],
-            "load": ["shared/defaults.md", "skills/business/SKILL.md"] + (
-                ["skills/business/brief.md"] if mode == "launch" else [])}
+            "load": ["shared/defaults.md", "teams/business/guide.md"] + (
+                ["teams/business/brief.md"] if mode == "launch" else [])}
 
 
 def start_brief(root: Path) -> tuple[Path, bool]:
@@ -200,7 +203,7 @@ def social_plan(task: str, root: Path) -> dict:
     return {"workflow": "social", "offer": offer, "video": video, "delivered": delivered,
             "needs_link": bool(_LINK_RE.search(text)) or launch, "steps": steps,
             "publish": status(root, "publish")[0],
-            "load": ["shared/defaults.md", "skills/social-media/SKILL.md", "skills/social-media/campaign.md"]}
+            "load": ["shared/defaults.md", "teams/social-media/guide.md", "teams/social-media/campaign.md"]}
 
 
 def cmd_social(args) -> int:

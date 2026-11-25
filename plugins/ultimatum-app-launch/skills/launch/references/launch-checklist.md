@@ -9,7 +9,7 @@ Tick each line with evidence (a link, a command, a test result). Legal text is t
 - [ ] **Security page**: how data is stored and protected, who to tell about a problem. Claim only what is true; the compliance reviewer checks it.
 - [ ] **Status page** or a plain place where outages are posted.
 - [ ] **Data handling**: what you store, where, how a user exports or deletes it, which vendors see it. Cookie notice where analytics needs one (check before relying: local rules).
-- [ ] **Auth hardening**: run a security review with `ultimatum:work` on sign-in, password reset, sessions, roles and tenant separation. Row-level security tests include "must not see" cases.
+- [ ] **Auth hardening**: run a security review in a coding session on sign-in, password reset, sessions, roles and tenant separation. Row-level security tests include "must not see" cases.
 - [ ] **Billing** rehearsed in test mode: sign up, pay, access, change plan, cancel, failed payment, repeat webhook (see `pricing-and-billing.md`).
 - [ ] **Pricing page** matches the billing set-up and the terms: same prices, trial length, refund rule (`pricing-page-examples.md`).
 - [ ] **Onboarding emails** set up, tested in a few mail apps, and approved by the user (`onboarding-emails.md`).

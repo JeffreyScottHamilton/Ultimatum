@@ -66,7 +66,7 @@ Prefer the theme's built-in sections to custom code; every extra app slows the s
 | Maker, craft or gifting story | Brand Film with real footage of the maker | Feeling carries; no AI people |
 | UGC-style product clips | Higgsfield, after a credit check | Fast variants; label AI content |
 
-Paid ads: check stock and music licences in `checkout-and-ops.md` and the base plugin's `licenses.md`.
+Paid ads: check stock and music licences in `checkout-and-ops.md` and `shared/licenses.md`.
 
 ## Beginner mistakes at this stage
 
