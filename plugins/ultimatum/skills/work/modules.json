@@ -56,7 +56,7 @@
       "mode_hint": "FAST",
       "contract": "Make the clear local edit directly, then verify it.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "discover",
@@ -126,7 +126,7 @@
       "mode_hint": "STANDARD",
       "contract": "Answer how the code works with cited file:line evidence; do not change code.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "feature",
@@ -210,7 +210,7 @@
       "mode_hint": "STANDARD",
       "contract": "Plan the behavior and open questions, then build it test-first.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "large",
@@ -283,7 +283,7 @@
       "mode_hint": "DEEP",
       "contract": "Split into independent slices with owned files and acceptance checks, then integrate.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "bug",
@@ -421,7 +421,7 @@
       "mode_hint": "STANDARD",
       "contract": "Reproduce the failure, find the root cause, fix it, and confirm with the failing check.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "ci-pr",
@@ -495,7 +495,7 @@
       "mode_hint": "STANDARD",
       "contract": "Read the failing checks or review threads, fix each one, and re-run the checks.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "ui",
@@ -609,7 +609,7 @@
       "attribution": [
         "upstream-design"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "data-infra",
@@ -698,7 +698,7 @@
       "mode_hint": "STANDARD",
       "contract": "Change the data or infra definition safely, with a rollback path and a check against the real engine or plan.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "optimize",
@@ -782,7 +782,7 @@
       "mode_hint": "STANDARD",
       "contract": "Measure the baseline, change one thing, re-measure, and keep or roll back against the metric.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "release",
@@ -840,7 +840,7 @@
       "mode_hint": "DEEP",
       "contract": "Check release readiness, write the notes from the diff, and verify the deployed result.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "sec-review",
@@ -900,7 +900,7 @@
       "attribution": [
         "upstream-engineering"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "sec-audit",
@@ -957,7 +957,7 @@
       "attribution": [
         "upstream-engineering"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "sec-fix",
@@ -1031,7 +1031,7 @@
       "attribution": [
         "upstream-engineering"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "handoff",
@@ -1095,7 +1095,7 @@
       "mode_hint": "RECOVERY",
       "contract": "Write or read the handoff: goal, decisions, evidence, next step; then continue from it.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "improve",
@@ -1154,7 +1154,7 @@
       "mode_hint": "STANDARD",
       "contract": "Review this chat's usage and mistakes, then propose one measured workflow change.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "skill-eval",
@@ -1204,7 +1204,7 @@
       "mode_hint": "STANDARD",
       "contract": "Change or test Ultimatum with its own evals, cost-aware and with user approval for paid runs.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "mcp-build",
@@ -1243,7 +1243,7 @@
       "mode_hint": "STANDARD",
       "contract": "Build the MCP server with schema-checked tools, least-privilege access and a protocol-level test.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "skill-author",
@@ -1306,7 +1306,7 @@
       "mode_hint": "STANDARD",
       "contract": "Write the skill with a precise trigger description, short body and one check that it triggers as intended.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "react",
@@ -1357,7 +1357,7 @@
       "mode_hint": "STANDARD",
       "contract": "Apply React-specific rules for components, hooks and rendering.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "design",
@@ -1405,7 +1405,7 @@
       "attribution": [
         "upstream-design"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "motion",
@@ -1459,7 +1459,7 @@
       "attribution": [
         "upstream-design"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "components",
@@ -1510,7 +1510,7 @@
       "attribution": [
         "upstream-design"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "production",
@@ -1555,7 +1555,7 @@
       "mode_hint": "STANDARD",
       "contract": "Handle production data and incidents read-only first, minimise exposure, and confirm impact before changes.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "context",
@@ -1601,7 +1601,7 @@
       "mode_hint": "STANDARD",
       "contract": "Keep command and search output small and capped; use the toolbelt summaries.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "integrations",
@@ -1644,7 +1644,7 @@
       "mode_hint": "STANDARD",
       "contract": "Check the optional tool is present and its output is capped before using it.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "architecture",
@@ -1711,7 +1711,7 @@
       "mode_hint": "STANDARD",
       "contract": "Check the dependency graph and the changed files with `ult arch check --changed` before and after; extend existing modules instead of adding parallel ones; never trade quality for tokens.",
       "attribution": [],
-      "version": "2.0.0"
+      "version": "1.0.0"
     },
     {
       "id": "security",
@@ -1891,7 +1891,7 @@
       "attribution": [
         "upstream-engineering"
       ],
-      "version": "2.0.0"
+      "version": "1.0.0"
     }
   ]
 }

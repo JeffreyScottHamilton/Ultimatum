@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Live A/B evaluation of Ultimatum 2.0 against vanilla Claude Code and Ultimatum 0.4.1.
+"""Live A/B evaluation of Ultimatum 1.0 against vanilla Claude Code and Ultimatum 0.4.1.
 
 Each case copies a fixture to a fresh git workspace and runs a headless
 `claude -p` session per arm:

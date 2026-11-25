@@ -22,7 +22,7 @@ For each signal with a clear cause:
 
 If the cause is Ultimatum itself rather than the project (a route misfired, a reference was wrong or missing, the toolbelt lacked something), end the report with one line: `Skill lesson: <one sentence, no private details>`. A session in another repository cannot push to the Ultimatum repository, so this line is how the lesson travels: the daily run reads it.
 
-## 1b. Local observations and proposals (2.0)
+## 1b. Local observations and proposals (1.0)
 
 Nothing leaves the user's machine unless the user approves a submission.
 

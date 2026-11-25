@@ -1,6 +1,6 @@
 ---
 name: migrate
-description: Upgrade Ultimatum's local state from 0.x to 2.0.
+description: Upgrade Ultimatum's local state from 0.x to 1.0.
 disable-model-invocation: true
 ---
 

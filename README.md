@@ -1,17 +1,38 @@
 # Ultimatum
 
-A free, open-source developer skill for Claude Code. You install it once and use one command:
+**Build, check and launch with Claude Code.** Ask in plain chat and Ultimatum sends the job to the right team: code, websites, motion graphics, business research or social media. Every step passes a checker, and nothing is published, posted or deployed until you say yes.
+
+![Ultimatum workflow map: Launch in the middle, Business and Website on the left, Motion graphics and Social media on the right, shared skills along the top](docs/images/workflow.png)
+
+## Install
 
 ```
-/ultimatum:work <task>
-/ultimatum:website <task>
-/ultimatum:motion-graphics <task>
-/ultimatum:launch <task>
-/ultimatum:business <task>
-/ultimatum:social-media <task>
+/plugin marketplace add JeffreyScottHamilton/Ultimatum
+/plugin install ultimatum@ultimatum
+/ultimatum:setup
 ```
 
-`/ultimatum:work` is the default for chat and coding. `/ultimatum:website` builds or fixes websites with a brief, an optional designer, a mockup you approve for new looks, a builder and a browser review. You can also just ask in plain chat: "Build me a website for my coffee shop" starts Website, "Fix the CSV export" starts Work, "Make a logo reveal video" starts Motion Graphics (it stops for storyboard approval before animating), "Help me launch my business" starts `/ultimatum:launch` (Business drafts a build brief you approve, then Website, Social and Motion work from it; nothing is published without your yes and a checked live link), "What's stopping people from booking?" starts `/ultimatum:business`, and "Plan a week of posts" starts `/ultimatum:social-media`. Plain questions stay in normal chat. It covers the work developers actually do: understanding a new codebase, small fixes, features, hard bugs, CI and PR feedback, UI design, motion and components verified in a real browser, data and infrastructure changes, bounded optimization, releases, MCP servers and skills, architecture checks for refactors and reviews (cycles, duplication, oversized modules, drift), handoffs, and three security workflows (secure implementation, security review of a change, full audit and remediation). A local router picks the mode and loads only the guidance each task needs, and Ultimatum learns from your sessions on your own machine. See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) for what ships.
+## What you can ask
+
+| Say something like | Team | Command |
+|---|---|---|
+| "Help me launch my business" | Launch runs Business, Website, Social and Motion together | `/ultimatum:launch` |
+| "What's stopping people from booking?" | Business: research, plan, build brief | `/ultimatum:business` |
+| "Build me a website for my coffee shop" | Website: brief, mockup you approve, build, browser check | `/ultimatum:website` |
+| "Make a logo reveal video" | Motion graphics: storyboard you approve, animate, timestamped review | `/ultimatum:motion-graphics` |
+| "Plan a week of posts" | Social media: channel, posts, checks, publish only with your yes | `/ultimatum:social-media` |
+| "Fix the CSV export" | Work: discovery, fixes, features, bugs, CI, security, releases | `/ultimatum:work` |
+
+Plain questions stay in normal chat. A typed command always wins over the router's guess.
+
+## How it stays honest
+
+- **Checkers on every step.** A browser reviewer for sites, a timestamped reviewer for videos, a claims and links reviewer for posts. Findings are fixed and rechecked before you see the work.
+- **Six approval stops.** Brief, mockup, storyboard, video, publish and deploy. Each approval is fingerprinted, so if the file changes afterwards you are asked again.
+- **Evidence before claims.** No "fixed" or "passes" without a check run in the session.
+- **Local first.** The toolbelt is Python standard library with no network access, and what Ultimatum learns stays on your machine unless you choose to share it.
+
+See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) for everything that ships.
 
 ## Try it locally
 
@@ -39,14 +60,7 @@ claude plugin install ultimatum@ultimatum
 
 Remove it with `claude plugin uninstall ultimatum@ultimatum`, then `claude plugin marketplace remove ultimatum`.
 
-## Install from GitHub
-
-```
-/plugin marketplace add JeffreyScottHamilton/Ultimatum
-/plugin install ultimatum@ultimatum
-```
-
-### Turn on auto-update (do this once per computer)
+## Auto-update
 
 Claude Code keeps auto-update off for marketplaces added from GitHub, and a repository cannot turn it on for you. The easiest way: run `/ultimatum:setup` once; it backs up your settings and makes the change below. Or add `"autoUpdate": true` to the marketplace's entry in your user settings, `~/.claude/settings.json` (on Windows, `%USERPROFILE%\.claude\settings.json`):
 
@@ -105,7 +119,7 @@ Live evals run real Claude sessions and cost money (drop `--dry-run`). Each run'
 ## Documents
 
 - [`CHANGELOG.md`](CHANGELOG.md): release notes
-- [`research/ultimatum-2/OFFLINE-EVALS.md`](research/ultimatum-2/OFFLINE-EVALS.md): 2.0 offline measurements
+- [`research/ultimatum-2/OFFLINE-EVALS.md`](research/ultimatum-2/OFFLINE-EVALS.md): 1.0 offline measurements
 - [`docs/TEST-REPORT.md`](docs/TEST-REPORT.md): what was tested live, results, and open gaps
 - [`docs/COVERAGE-MAP.md`](docs/COVERAGE-MAP.md): every upstream capability and where Ultimatum covers it, or why it doesn't
 - [`docs/CREDITS.md`](docs/CREDITS.md): upstream projects, revisions, and licenses

@@ -172,7 +172,7 @@ def cmd_setup(args) -> int:
 
 
 def migrate(root=None) -> list[str]:
-    """Create the 2.0 files that 0.4.x projects lack. Never rewrites existing content."""
+    """Create the 1.0 files that 0.4.x projects lack. Never rewrites existing content."""
     changes = []
     d = state_dir(root)
     k = d / "knowledge.md"
