@@ -13,8 +13,6 @@ Plain chat in. The right workflow out, with a checker on every step and nothing 
 
 </div>
 
-![Ultimatum overview: one chat, the right workflow for each job](docs/images/workflow.png)
-
 ## Contents
 
 - [What you get](#what-you-get)

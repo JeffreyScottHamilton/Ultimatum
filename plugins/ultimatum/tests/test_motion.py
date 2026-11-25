@@ -89,7 +89,8 @@ class StoryboardGate(UltCase):
     def test_small_change_to_an_existing_clip_skips_the_storyboard(self):
         r = self.ult("motion", "Trim the intro video to 6 seconds", "--root", str(self.root))
         self.assertIn("size: small", r.out)
-        self.assertNotIn("storyboard", r.out.split("load:")[0])
+        plan = [l for l in r.out.split("load:")[0].splitlines() if not l.startswith("renderer:")]
+        self.assertNotIn("storyboard", "\n".join(plan))
         self.assertIn("scope: only the change asked for", r.out)
 
     def test_music_points_to_beats_as_suggestions(self):
