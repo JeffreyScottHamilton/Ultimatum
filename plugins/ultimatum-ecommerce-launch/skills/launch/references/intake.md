@@ -1,6 +1,6 @@
 # Intake: online store
 
-Goal: enough to write a one-page brief the user signs off, in few turns. Ask decisions in batches of 5-8 with AskUserQuestion: mostly multiple choice, your **recommended answer first** and labelled "(recommended)". Ask "why" questions one at a time in chat. Skip what files or earlier answers already say. If the user says "I don't know", suggest an answer and mark it `(guess)` in the brief.
+Goal: enough to write a one-page brief the user signs off, in as many rounds as it takes. Rounds of 4 questions with AskUserQuestion (its limit per call), repeated until every brief field is filled; expect 4-6 rounds on a real launch. Each question: 2-3 options plus free text, your **recommended answer first** labelled "(recommended)", and a last option "Skip, use your pick" (record it as `(your pick)` in the brief). Group each round by topic; after each round, say in one line which fields are still empty. Ask "why" questions one at a time in chat. Skip what files or earlier answers already say. If the user says "I don't know", suggest an answer and mark it `(guess)` in the brief.
 
 Prices, fees and vendor terms you offer as options go through the fact-finder first and are marked "check before relying" until read on the vendor's page.
 

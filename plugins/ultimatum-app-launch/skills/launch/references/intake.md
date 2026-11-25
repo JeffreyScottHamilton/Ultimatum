@@ -4,7 +4,7 @@ Goal: enough to write a one-page brief the user signs off, in few turns.
 
 ## How to ask
 
-- Decisions go in batches of 5–8 with AskUserQuestion: mostly multiple choice, 2–4 options plus free text, **recommended answer first**, labelled "(recommended)".
+- Rounds of 4 questions with AskUserQuestion (its limit per call), repeated until every brief field is filled; expect 4-6 rounds on a real launch. Each question: 2-3 options plus free text, your **recommended answer first** labelled "(recommended)", and a last option "Skip, use your pick" (record it as `(your pick)` in the brief). Group each round by topic; after each round, say in one line which fields are still empty.
 - "Why" questions go one at a time in plain chat: why this, why now, why would someone switch to you. Wait for each answer.
 - Vague answer: dig once with a concrete ask ("name one person who would pay tomorrow").
 - Skip what the repo, README, site or earlier answers already say, and say where you took it.

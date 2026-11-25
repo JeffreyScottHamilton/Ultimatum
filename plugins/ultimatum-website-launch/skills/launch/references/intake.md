@@ -4,7 +4,7 @@ Goal: enough for a one-page brief the owner signs off, in few turns.
 
 ## How to ask
 
-- Rounds of 5-8 questions with AskUserQuestion. Mostly multiple choice, 2-4 options plus free text, your **recommended answer first**, labelled "(recommended)".
+- Rounds of 4 questions with AskUserQuestion (its limit per call), repeated until every brief field is filled; expect 4-6 rounds on a real launch. Each question: 2-3 options plus free text, your **recommended answer first** labelled "(recommended)", and a last option "Skip, use your pick" (record it as `(your pick)` in the brief). Group each round by topic; after each round, say in one line which fields are still empty.
 - "Why" questions (why now, why would someone pick you) go one at a time in chat.
 - Vague answer: dig once with a concrete ask ("what did your last three customers ask first?").
 - Skip what you already know from files, the current site or earlier answers, and say where it came from.

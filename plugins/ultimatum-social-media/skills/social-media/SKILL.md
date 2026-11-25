@@ -14,9 +14,11 @@ Task: $ARGUMENTS (if empty, use the user's latest request)
 
 Run `ult social --root .`: it prints the steps, the offer status, the video step and the publish gate. Do the step it names.
 
+Big project (many pages, products, channels or weeks): also `ult board show`, resume from its `resume:` card. One card per piece of work (`ult board add|move`); decisions in `ult notes add`, linked with [[topic]].
+
 ## Steps
 
-1. **Scope.** Follow `references/social-media/scope.md`: one AskUserQuestion batch (scope, format, platforms, own footage, editor, deadline), recommended answer first. Its table says which style file and guides to read. A channel also gets pillars, cadence and a four-week calendar.
+1. **Scope.** Follow `references/social-media/scope.md`: rounds of 4 AskUserQuestion questions (scope, format, platforms, own footage, editor, deadline, then any gap) until scope is clear; recommended answer first. Its table says which style file and guides to read. A channel also gets pillars, cadence and a four-week calendar.
 2. **Brand.** Read `brand/brand.md`. If it is missing, ask a short interview (voice, audience, colours, words to avoid) and write a basic `brand/brand.md`; show it before using it.
 3. **Make.** Plan, write and review with `references/social-media/guide.md` plus the style file from the scope table (`references/social-media/styles/`). Video without own footage: `references/motion-graphics/guide.md` for a feature, number or how-it-works; `references/brand-film/guide.md` for a feeling carried by people. When the user named an editor, follow `references/editors/guide.md` (live control, timeline file, or build here).
 4. **Review.** Log problems with `ult loop add "<finding>" --where "<post or file>" --blocker` (or `--minor`). Run agents `ultimatum-social-media:compliance-reviewer` (claims, consent, music and asset licences, AI labels) and `ultimatum-social-media:taste-critic` (hooks, layout, pacing). Fix, recheck; open blockers stop delivery.

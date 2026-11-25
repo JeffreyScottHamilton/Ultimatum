@@ -14,9 +14,11 @@ Task: $ARGUMENTS (if empty, use the user's latest request)
 
 Run `ult launch --kind website --root .`: it prints steps, gate states and a `next:` line. Do that step. An approval reading `changed` means the brief changed after the yes: show it again.
 
+Big project (many pages, products, channels or weeks): also `ult board show`, resume from its `resume:` card. One card per piece of work (`ult board add|move`); decisions in `ult notes add`, linked with [[topic]].
+
 ## Steps
 
-1. **Intake.** Follow `references/intake.md`: batches of 5-8 mostly multiple-choice questions (AskUserQuestion, recommended answer first), "why" questions one at a time. Skip what files already say.
+1. **Intake.** Follow `references/intake.md`: rounds of 4 questions (AskUserQuestion's limit), repeated until every brief field is filled (often 4-6 rounds); recommended answer first, plus "skip, use your pick", "why" questions one at a time. Skip what files already say.
 2. **Brief.** `ult business --start-brief`, fill `## Build brief` as intake.md shows, show it, stop. Yes: `ult gate approve brief "<their words>"`. Changes: `ult gate revise brief "<their words>"`, fix, show again. Never approve for the user.
 3. **Route.** Read `references/route.md` (site size, host, domain, video style) and the matching section of `references/by-business-type.md` (main action, pages, proof, mistakes to avoid). Check any paid tool, licence or price on the vendor's own page.
 4. **Teams.** Each team is a guide in this plugin. Read it when its turn comes and follow it yourself, with the notes it needs (pages, local SEO, booking, hours, area):

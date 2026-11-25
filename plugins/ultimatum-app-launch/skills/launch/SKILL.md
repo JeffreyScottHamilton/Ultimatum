@@ -14,6 +14,8 @@ Task: $ARGUMENTS (if empty, use the user's latest request)
 
 Run `ult launch --kind app --root .`: it prints steps, gate states and a `next:` line. Do that step. An approval reading `changed` means the brief changed after the user's yes: show it again.
 
+Big project (many pages, products, channels or weeks): also `ult board show`, resume from its `resume:` card. One card per piece of work (`ult board add|move`); decisions in `ult notes add`, linked with [[topic]].
+
 ## Teams
 
 Each team is a guide in this plugin. Read it when its turn comes and follow it yourself, with the product notes it needs (audience, pricing, stage, route):
@@ -25,7 +27,7 @@ Each team is a guide in this plugin. Read it when its turn comes and follow it y
 
 ## Steps
 
-1. **Intake.** `references/intake.md`: batches of 5-8 mostly multiple-choice questions, recommended answer first; "why" questions one at a time.
+1. **Intake.** `references/intake.md`: rounds of 4 questions (AskUserQuestion's limit), repeated until every brief field is filled (often 4-6 rounds); recommended answer first, plus "skip, use your pick"; "why" questions one at a time.
 2. **Brief.** `ult business --start-brief`, fill `## Build brief`, show it, stop. Yes: `ult gate approve brief "<their words>"`. Changes: `ult gate revise brief "<their words>"`, fix, show again. Never approve for the user.
 3. **Route.** `references/route.md`: landing page, site or docs; waitlist, beta or public path; stack; video. Price or billing open: `pricing-and-billing.md`, then `pricing-page-examples.md` for the page.
 4. **Business, then Website, then Marketing.** Business sets positioning and `brand/brand.md` first; Marketing drafts while Website builds. Product onboarding: `activation.md` and `onboarding-emails.md`.

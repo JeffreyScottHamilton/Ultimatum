@@ -1,8 +1,8 @@
 # Social media: scope
 
-Settle the scope before drafting anything. Ask the opening questions in one AskUserQuestion batch, with the recommended answer first in each list. Skip any question the brand file, the build brief or the user's message already answers, and say which answers you took from where.
+Settle the scope before drafting anything. Ask the opening questions in rounds of 4 with AskUserQuestion (its limit per call), recommended answer first in each list plus a "Skip, use your pick" option, and keep going with any gaps until the scope is clear. Skip any question the brand file, the build brief or the user's message already answers, and say which answers you took from where.
 
-## Opening questions (one batch)
+## Opening questions (rounds of 4)
 
 | # | Question | Options (recommended first) | Why it matters |
 |---|---|---|---|
@@ -32,7 +32,7 @@ Every row also uses `guide.md` for planning, writing, review and approval. When 
 
 ## Running a channel
 
-When the answer to question 1 is "running a channel", add these steps after the opening batch.
+When the answer to question 1 is "running a channel", add these steps after the opening rounds.
 
 ### Content pillars
 

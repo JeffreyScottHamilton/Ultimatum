@@ -1,6 +1,6 @@
 # Event intake
 
-Ask in rounds of 5-8 questions with AskUserQuestion, mostly multiple choice, recommended answer first. Skip anything the user's message, `brand/brand.md` or an existing brief already answers, and say where you took it from. Ask "why" questions one at a time, in plain chat, after the rounds.
+Rounds of 4 questions with AskUserQuestion (its limit per call), repeated until every brief field is filled; expect 4-6 rounds on a real launch. Each question: 2-3 options plus free text, your **recommended answer first** labelled "(recommended)", and a last option "Skip, use your pick" (record it as `(your pick)` in the brief). Group each round by topic; after each round, say in one line which fields are still empty. Skip anything the user's message, `brand/brand.md` or an existing brief already answers, and say where you took it from. Ask "why" questions one at a time, in plain chat, after the rounds.
 
 ## Round 1: the event
 

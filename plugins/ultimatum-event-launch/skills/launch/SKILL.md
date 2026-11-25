@@ -14,11 +14,13 @@ Task: $ARGUMENTS (if empty, use the user's latest request)
 
 Run `ult launch --kind event --root .`: it prints steps, gate states and a `next:` line. Do that step. An approval reading `changed` means the brief changed after the yes: show it again.
 
+Big project (many pages, products, channels or weeks): also `ult board show`, resume from its `resume:` card. One card per piece of work (`ult board add|move`); decisions in `ult notes add`, linked with [[topic]].
+
 Scope: public events. Weddings, private parties and festival logistics are out of scope: say so in one line, then help only with the public-facing parts.
 
 ## Steps
 
-1. **Intake.** `references/event/intake.md`: rounds of 5-8 mostly multiple-choice questions (AskUserQuestion, recommended answer first), "why" questions one at a time. Skip what is known.
+1. **Intake.** `references/event/intake.md`: rounds of 4 questions (AskUserQuestion's limit), repeated until every brief field is filled (often 4-6 rounds); recommended answer first, plus "skip, use your pick", "why" questions one at a time. Skip what is known.
 2. **Brief.** `ult business --start-brief`, fill `## Build brief` as intake.md shows, show it, stop. Yes: `ult gate approve brief "<their words>"`. Changes: `ult gate revise brief "<their words>"`, fix, show again. Never approve for the user.
 3. **Route.** `references/event/route.md`: path by event type and lead time, sign-up tool, own page or listing platform, video style. Then `references/event/timeline.md` works back from the date; under four weeks, use its compressed plan and say what was cut.
 4. **Teams.** Positioning and `brand/brand.md`: `references/business/guide.md`. Event page: `references/website/guide.md`. Countdown posts and video: `references/social-media/guide.md`. Sign-ups: `references/event/tickets-and-signups.md`; promotion: `references/event/promotion.md`.
