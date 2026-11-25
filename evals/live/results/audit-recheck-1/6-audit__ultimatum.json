@@ -1,0 +1,91 @@
+{
+  "case": "6-audit",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": true,
+    "findings_file_validates": true,
+    "states_missing_scanners": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 11,
+    "Agent": 1
+  },
+  "agent_calls": 1,
+  "agent_types": [
+    "ultimatum:security-verifier"
+  ],
+  "agent_descriptions": [
+    "Verify IDOR candidate"
+  ],
+  "final": "One high-severity vulnerability is confirmed: any logged-in user can read other tenants' invoices. I changed no tracked files.\n\n## Confirmed\n\n**F-001 (high, confidence high): cross-tenant invoice read in `GET /api/invoices/<id>`**\n- **Cause:** `get_invoice` queries `WHERE id = ?` at `invoicer/handlers/invoices.py:20-23` and never uses `user[\"tenant_id\"]`. The list handler does filter by tenant (`invoices.py:12`).\n- **Who and what:** any user with a valid token for any tenant can read `customer`, `amount_cents`, `created`, `tenant_id` and `notes` of other tenants' invoices. Ids are sequential, so they are easy to enumerate. Access is read-only.\n- **Proof, run locally against the test fixture:**\n  - The tenant B token requesting `/api/invoices/2` returned 200 with tenant A's `notes`, `\"A: confidential rate card\"`.\n  - The tenant A token requesting `/api/invoices/3` returned 200 with tenant B's invoice.\n- **Verification:** an independent verifier agent with a fresh context reached the same verdict, severity and confidence.\n- **Fix:** add `AND tenant_id = ?` with `user[\"tenant_id\"]` to the query, and return 404 on a mismatch. I didn't apply it, since you said not to modify files.\n\n## Leads rejected\n- **F-002, scanner hit on `invoicer/handlers/reports.py:18` (f-string `ORDER BY`):** `sort` and `dir` are mapped through the fixed `SORT_COLUMNS` and `DIRECTIONS` dicts (`reports.py:16-17`) with safe defaults, and `tenant_id` is a bound parameter. A probe with `sort=x;DROP` returned a normal 200. This is false-positive pattern FP-01 (dangerous call with an allowlisted argument).\n- **F-003, scanner hit on `DEMO_API_KEY` in `tests/fixtures.py:12`:** it is a documented test-only token for an in-memory database. This is FP-04 (test code, not shipped).\n- **Non-dict JSON body to `POST /api/invoices`:** it raises an uncaught `TypeError` at `invoices.py:33`. That only fails the one request, with no shared impact, so I rejected it as FP-11 and did not record it.\n\n## Covered\n- **Scan and tests:** I ran `ult scan` and the full test suite (`python3 -m unittest`, 10 tests, exit 0). I read all 15 tracked files, about 316 lines.\n- **Ledger:** 18 areas, with 11 checked and 7 not applicable (session, files, ssrf, crypto, ci-cd, deploy-iac, ai-agent). Each not-applicable area has a reason in the ledger.\n- **Areas checked:** authn, authz (function and object), injection, XSS, parsing, business logic, data exposure, secrets, config and dependencies.\n- **Not run:** semgrep, gitleaks and osv-scanner are not installed, so dependency advisories are unknown. The repo is stdlib-only with no manifest.\n\n## Not assessed\n- **Deployment:** the repo has no server entrypoint, so TLS, headers, debug settings and rate limiting are unknown.\n- **Minor observations, not findings:**\n  - Tokens are stored in plaintext with no expiry, and there is no token-issuance code in the repo.\n  - `POST /api/invoices` accepts negative `amount_cents`.\n  - Tokens are matched through the SQL lookup, so the comparison is not constant-time.\n\nRunning the tests created untracked `__pycache__` folders in the repo, which are not tracked files.\n\nThe audit state is outside the repo, in `/tmp/claude-0/-tmp-claude-0--home-user-Ultimatum-c051b7f5-1efa-5745-8c75-fc5201ebb861-scratchpad-live6-1-6-audit--ultimatum/340e954c-0308-4fc4-861b-7910e633cb68/scratchpad/ultimatum/security/`. It holds `report.md`, `findings.json`, `ledger.json` and `scan-last.json`.\n\nI can apply the F-001 fix with a negative test if you want.",
+  "is_error": false,
+  "num_turns": 11,
+  "duration_ms": 54642,
+  "cost_usd": 0.2819096,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 35091,
+    "cache_read_input_tokens": 401609,
+    "output_tokens": 6123
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 22,
+      "outputTokens": 7510,
+      "cacheReadInputTokens": 417491,
+      "cacheCreationInputTokens": 44952,
+      "webSearchRequests": 0,
+      "costUSD": 0.2819096,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 394,
+      "cacheCreationEphemeral5mInputTokens": 9861,
+      "cacheCreationEphemeral1hInputTokens": 35091,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 1
+    },
+    "started_in_background": 1,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "ultimatum:security-verifier": 1
+    }
+  },
+  "permission_denials": 0,
+  "wall_s": 58.8,
+  "claude_rc": 0,
+  "invalid": null,
+  "findings_path": "/tmp/claude-0/-tmp-claude-0--home-user-Ultimatum-c051b7f5-1efa-5745-8c75-fc5201ebb861-scratchpad-live6-1-6-audit--ultimatum/340e954c-0308-4fc4-861b-7910e633cb68/scratchpad/ultimatum/security/findings.json",
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live6-1/6-audit__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live6-1/6-audit__ultimatum.jsonl"
+}

@@ -1,0 +1,105 @@
+{
+  "case": "4-ui",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "reuses_dialog": true,
+    "reuses_toast": true,
+    "reuses_button": true,
+    "no_native_confirm": true,
+    "agent_checked_two_viewports": true,
+    "agent_ran_real_browser": true,
+    "probe_375_rows_present": true,
+    "probe_375_no_h_overflow": true,
+    "probe_375_delete_button": true,
+    "probe_375_delete_in_viewport": true,
+    "probe_375_dialog_opens_on_enter": true,
+    "probe_375_focus_in_dialog": true,
+    "probe_375_escape_closes": true,
+    "probe_375_escape_keeps_row": true,
+    "probe_375_confirm_removes_row": true,
+    "probe_375_toast_shown": true,
+    "probe_375_no_page_errors": true,
+    "probe_1280_rows_present": true,
+    "probe_1280_no_h_overflow": true,
+    "probe_1280_delete_button": true,
+    "probe_1280_delete_in_viewport": true,
+    "probe_1280_dialog_opens_on_enter": true,
+    "probe_1280_focus_in_dialog": true,
+    "probe_1280_escape_closes": true,
+    "probe_1280_escape_keeps_row": true,
+    "probe_1280_confirm_removes_row": true,
+    "probe_1280_toast_shown": true,
+    "probe_1280_no_page_errors": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 11,
+    "Read": 2
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Each project row now has a Delete button. It opens a confirmation dialog, and confirming removes the row and shows a \"Deleted “…”\" toast. I checked it in real Chromium at 375x812 and 1280x800, and the final run ended `ULT-BROWSER: PASS (fail=0 warn=0 viewports=2)` with 15 of 15 interaction steps passing at both widths. The existing unit tests also pass (`OK`).\n\n**Changed**\n- `app.js`: adds a Delete button to each row, using the existing `Button` component with `aria-label=\"Delete <project name>\"`. The dialog is the existing `Dialog` with its danger confirm button. On confirm it removes the project from `window.PROJECTS`, re-renders, moves focus to the next row's Delete button, and calls `Toast.show`.\n- `styles.css`: one rule so the button doesn't shrink and meets the 44px tap target. The selector is `.project-row .project-delete`, because the button component's own style would otherwise override it.\n\n**Verified**\n- Clicking Delete opens the dialog, and Escape cancels it. The row count stays at 5 and focus returns to that row's Delete button.\n- Confirming Delete takes the count from 5 to 4 and shows a toast containing \"Deleted\". Focus lands on the next row's Delete button.\n- I opened the 375px dialog screenshot and the 1280px after-delete screenshot. In the phone dialog the long title wraps, and in the desktop view the toast is visible at the bottom.\n- The Tab walk reaches all 5 Delete buttons.\n\n**Not verified**\n- axe-core isn't installed, so accessibility coverage is the built-in fallback checks only.\n- Deletion is in memory only and the rows come back on reload, because there is no backend or persistence to update.\n- I only checked two viewports, not 320px or a tablet width.\n- The stress check (long unbroken strings) warns about horizontal overflow at 375px (scrollWidth 1834). It also fires on the unmodified code, so it isn't caused by this change, and I left it alone.",
+  "is_error": false,
+  "num_turns": 14,
+  "duration_ms": 92468,
+  "cost_usd": 0.22769210000000004,
+  "usage": {
+    "input_tokens": 24,
+    "cache_creation_input_tokens": 27013,
+    "cache_read_input_tokens": 542121,
+    "output_tokens": 6538
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 24,
+      "outputTokens": 6538,
+      "cacheReadInputTokens": 542121,
+      "cacheCreationInputTokens": 27013,
+      "webSearchRequests": 0,
+      "costUSD": 0.22769210000000004,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 322,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 27013,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "probe_notes": [],
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/4-ui__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/4-ui__ultimatum.jsonl"
+}

@@ -1,0 +1,105 @@
+{
+  "case": "4-ui",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "reuses_dialog": true,
+    "reuses_toast": true,
+    "reuses_button": true,
+    "no_native_confirm": true,
+    "agent_checked_two_viewports": true,
+    "agent_ran_real_browser": true,
+    "probe_375_rows_present": true,
+    "probe_375_no_h_overflow": true,
+    "probe_375_delete_button": true,
+    "probe_375_delete_in_viewport": true,
+    "probe_375_dialog_opens_on_enter": true,
+    "probe_375_focus_in_dialog": true,
+    "probe_375_escape_closes": true,
+    "probe_375_escape_keeps_row": true,
+    "probe_375_confirm_removes_row": true,
+    "probe_375_toast_shown": true,
+    "probe_375_no_page_errors": true,
+    "probe_1280_rows_present": true,
+    "probe_1280_no_h_overflow": true,
+    "probe_1280_delete_button": true,
+    "probe_1280_delete_in_viewport": true,
+    "probe_1280_dialog_opens_on_enter": true,
+    "probe_1280_focus_in_dialog": true,
+    "probe_1280_escape_closes": true,
+    "probe_1280_escape_keeps_row": true,
+    "probe_1280_confirm_removes_row": true,
+    "probe_1280_toast_shown": true,
+    "probe_1280_no_page_errors": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 9,
+    "Read": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Each project row now has a red Delete button. It opens a confirmation dialog, and confirming removes the row and shows a success toast. I checked it in headless Chrome at 375×667 (phone) and 1280×800 (desktop).\n\n- **Behaviour:** Cancel and Escape leave the list unchanged. Confirming took the list from 5 rows to 4, and the toast read \"Deleted “…”\" at both widths.\n- **Layout:** The page does not scroll sideways at either width. The Delete button stays fully visible next to the long unbroken project name, and the dialog and toast fit on the phone screen. I looked at the screenshots at both widths.\n- **Implementation:** The change is in `app.js` and one line in `styles.css`. It uses the existing `Button`, `Dialog` and `Toast` components and the design tokens. The Delete buttons carry an aria-label with the project name.\n- **Tests and console:** The 4 existing static tests pass. The only console error was a 404 on the phone run. I didn't identify the file, so I didn't confirm it is only the favicon, and it didn't affect the feature.\n- **Not done:** Deletion is in-memory only, so a page reload brings the rows back. There is no backend or persistence in this app, and I didn't add any.\n\nPort 8765 was already taken by a server from another session serving different files. I ran my copy on port 8791 and left the other server alone. My server on 8791 is still running.\n\nI haven't committed anything.",
+  "is_error": false,
+  "num_turns": 13,
+  "duration_ms": 46341,
+  "cost_usd": 0.1720583,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 20790,
+    "cache_read_input_tokens": 448943,
+    "output_tokens": 4396
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 22,
+      "outputTokens": 4396,
+      "cacheReadInputTokens": 448943,
+      "cacheCreationInputTokens": 20790,
+      "webSearchRequests": 0,
+      "costUSD": 0.1720583,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 405,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 20790,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "probe_notes": [],
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/4-ui__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/4-ui__baseline.jsonl"
+}

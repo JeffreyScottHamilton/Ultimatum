@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+"""Ultimatum workflow picker: a UserPromptSubmit hook. Local, stdlib only, no network.
+
+It adds one line of context so Ultimatum starts without a slash command:
+- website work (a website named outright, or interface words such as "mobile menu"
+  inside a project that is a website) -> start the ultimatum:website skill;
+- a standalone animated clip or video -> start ultimatum:motion-graphics;
+- a launch, a social media plan or a business question -> ultimatum:launch,
+  ultimatum:social-media or ultimatum:business;
+- other coding work (fix, build, test, review, debug, ship) -> start ultimatum:work.
+Plain questions, writing help and small talk get nothing (ultlib/pick.py), so
+ordinary chats pay no extra tokens. A prompt that
+starts with "/" is an explicit command and is left alone. ULTIMATUM_AUTO=0 turns
+it off. Any error lets the prompt through unchanged.
+"""
+import json
+import os
+import sys
+
+NOTES = {
+    "website": ("Ultimatum: this request is website work. Start the ultimatum:website skill now "
+                "(Skill tool, skill \"ultimatum:website\", args: the user's request) and let it run the whole job."),
+    "motion": ("Ultimatum: this request is a motion graphics clip or video. Start the ultimatum:motion-graphics skill now "
+               "(Skill tool, skill \"ultimatum:motion-graphics\", args: the user's request) and let it run the whole job."),
+    "launch": ("Ultimatum: this request is a launch. Start the ultimatum:launch skill now "
+               "(Skill tool, skill \"ultimatum:launch\", args: the user's request); it runs Business, Website, Social Media "
+               "and Motion and brings every approval back to the user."),
+    "business": ("Ultimatum: this request is a business question. Start the ultimatum:business skill now "
+                 "(Skill tool, skill \"ultimatum:business\", args: the user's request); advice only, no changes unless asked."),
+    "social": ("Ultimatum: this request is a social media plan or campaign. Start the ultimatum:social-media skill now "
+               "(Skill tool, skill \"ultimatum:social-media\", args: the user's request); nothing is posted without approval."),
+    "work": ("Ultimatum: this request is coding work. Start the ultimatum:work skill now "
+             "(Skill tool, skill \"ultimatum:work\", args: the user's request) and follow it."),
+}
+
+
+def main() -> int:
+    if os.environ.get("ULTIMATUM_AUTO", "1").strip().lower() in ("0", "false", "no", "off"):
+        return 0
+    sys.dont_write_bytecode = True
+    sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+    try:
+        data = json.load(sys.stdin)
+        prompt = (data.get("prompt") or "").strip()
+        if not prompt or prompt.startswith("/"):
+            return 0
+        from pathlib import Path
+        from ultlib.pick import pick
+        cwd = data.get("cwd") or os.getcwd()
+        note = NOTES.get(pick(prompt[:2000], root=Path(cwd)))
+        if not note:
+            return 0
+        print(json.dumps({"hookSpecificOutput": {"hookEventName": "UserPromptSubmit",
+                                                 "additionalContext": note}}))
+    except Exception:  # never block or break a prompt
+        return 0
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,105 @@
+{
+  "case": "6-audit",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": false,
+    "findings_file_validates": false,
+    "states_missing_scanners": false
+  },
+  "passed": false,
+  "score": 0.625,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I found one confirmed vulnerability: a cross-tenant read in `GET /api/invoices/<id>`. I changed no source files. Running the tests created `__pycache__` directories, which I deleted afterward. The 10 existing tests pass.\n\n## Confirmed\n\n**1. Broken tenant isolation on `GET /api/invoices/<id>` (high severity, IDOR).**\n- **Where:** `invoicer/handlers/invoices.py:20-28`, `get_invoice`.\n- **Cause:** the query is `WHERE id = ?` and never checks `tenant_id`. `list_invoices`, the report and `create_invoice` all scope by the caller's tenant, so this handler is the odd one out.\n- **Reproduction:** I ran this against the fixture data.\n  - Tenant A's token requesting `/api/invoices/3` returned 200 with tenant B's invoice.\n  - Tenant B's token requesting `/api/invoices/2` returned 200 with tenant A's invoice, including the note \"A: confidential rate card\".\n- **Impact:** any authenticated user can read every tenant's invoices, including customer, amount and notes, by counting through the integer IDs.\n- **Fix:** add `AND tenant_id = ?` with `user[\"tenant_id\"]`, and return 404 when nothing matches. Add a cross-tenant regression test.\n\n## Low severity (confirmed, not security-critical)\n\n**2. `POST /api/invoices` returns a 500 on a valid JSON body that isn't an object.**\n- **Where:** `invoicer/handlers/invoices.py:33`.\n- **Repro:** I sent the body `[1]`. `data[\"customer\"]` raised an uncaught `TypeError`, because the handler only catches `ValueError` and `KeyError`.\n- **Impact:** an authenticated user can trigger unhandled exceptions. It isn't a data leak.\n- **Fix:** also catch `TypeError`.\n\n**3. No cap on the request body size in `create_invoice`.**\n- **Where:** `invoicer/handlers/invoices.py`.\n- **Cause:** it reads `CONTENT_LENGTH` bytes with no limit. A negative value makes `read(-1)` read to EOF.\n- **Impact:** an authenticated user can cause memory pressure. I didn't test this; I only read the code. A real deployment would probably be limited by the server in front of it.\n\n## Leads I rejected\n\n- **SQL injection via `sort` and `dir` in the report** (`invoicer/handlers/reports.py`): not exploitable. The f-string only receives values from the `SORT_COLUMNS` and `DIRECTIONS` allowlists, unknown input falls back to defaults, and `tenant_id` is a bound parameter.\n- **XSS in the HTML report** (`invoicer/templates.py`): not exploitable. `customer` and `created` go through `html.escape`, and the amount is a float formatted from an integer. Notes aren't rendered in the report.\n- **Hardcoded secrets** (`DEMO_API_KEY`, `TOKEN_B`, `TOKEN_ADMIN` in `tests/fixtures.py`): these are test-only tokens for an in-memory database and aren't used by the app code.\n- **SQL injection in the other queries:** everything else is parameterized, including the token lookup in `invoicer/auth.py` and the inserts.\n- **Admin listing all tenants** (`invoicer/handlers/admin.py`): it is role-gated, with a 403 for non-admins. The role is global rather than per-tenant, so any admin sees every tenant. That looks like intended design. It's worth confirming that \"admin\" is meant to be a platform-wide role. The fixture admin `root` is in tenant 1.\n- **Authentication bypass:** the header parsing is strict and tokens are matched exactly through a parameterized, unique-indexed lookup. The only weaknesses are design notes. Tokens are stored in plaintext in `users`, and the comparison isn't constant-time, which doesn't matter much for a database lookup.\n- **Path routing:** the `\\d+` pattern anchored with `$` leaves no traversal or ReDoS surface. A trailing newline can't slip past `$`, because `\\d+` can't match it and the 404 fallback applies.\n\n## Coverage\n\nI read all of the code: `app.py`, `auth.py`, `db.py`, `http.py`, `templates.py`, the three handlers, `tests/fixtures.py` and the README. I ran the full test suite and wrote small reproduction scripts against the in-memory fixtures.\n\nI did not review the test files `test_invoices.py` and `test_reports_admin.py` in detail. I also did not test it behind a real WSGI server, so TLS, headers, rate limiting and CORS are out of scope.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 23813,
+  "cost_usd": 0.08852689999999999,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 11314,
+    "cache_read_input_tokens": 180609,
+    "output_tokens": 2519
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 2519,
+      "cacheReadInputTokens": 180609,
+      "cacheCreationInputTokens": 11314,
+      "webSearchRequests": 0,
+      "costUSD": 0.08852689999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 259,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 11314,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 24.7,
+  "claude_rc": 0,
+  "invalid": null,
+  "findings_path": null,
+  "workspace": "/tmp/ult-live/6-audit__vanilla",
+  "transcript": "/tmp/ult-live/6-audit__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": false,
+    "graders_pass": false,
+    "total_cost_usd": 0.08852689999999999,
+    "input_tokens": 10,
+    "output_tokens": 2519,
+    "cache_read_tokens": 180609,
+    "cache_write_tokens": 11314,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 194452
+  }
+}

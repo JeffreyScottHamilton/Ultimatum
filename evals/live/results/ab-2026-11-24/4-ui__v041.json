@@ -1,0 +1,127 @@
+{
+  "case": "4-ui",
+  "arm": "v041",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "reuses_dialog": true,
+    "reuses_toast": true,
+    "reuses_button": true,
+    "no_native_confirm": true,
+    "agent_checked_two_viewports": true,
+    "agent_ran_real_browser": true,
+    "probe_375_rows_present": true,
+    "probe_375_no_h_overflow": true,
+    "probe_375_delete_button": true,
+    "probe_375_delete_in_viewport": true,
+    "probe_375_dialog_opens_on_enter": true,
+    "probe_375_focus_in_dialog": true,
+    "probe_375_escape_closes": true,
+    "probe_375_escape_keeps_row": true,
+    "probe_375_confirm_removes_row": true,
+    "probe_375_toast_shown": true,
+    "probe_375_no_page_errors": true,
+    "probe_1280_rows_present": true,
+    "probe_1280_no_h_overflow": true,
+    "probe_1280_delete_button": true,
+    "probe_1280_delete_in_viewport": true,
+    "probe_1280_dialog_opens_on_enter": true,
+    "probe_1280_focus_in_dialog": true,
+    "probe_1280_escape_closes": true,
+    "probe_1280_escape_keeps_row": true,
+    "probe_1280_confirm_removes_row": true,
+    "probe_1280_toast_shown": true,
+    "probe_1280_no_page_errors": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 8,
+    "Read": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done.\n- Verified: `ULT-BROWSER: PASS (fail=0 warn=0 viewports=2)` at 375x812 and 1280x800. All 12 interaction steps passed at both sizes. They covered the dialog opening, cancelling with Escape, focus returning to the Delete button, confirming, 5 rows becoming 4, and the toast appearing. The 375px screenshot shows the row gone, long names wrapping, and the toast \"Deleted “Website redesign”\".\n- Static tests pass (4 tests, OK).\n- Not verified: axe wasn't available, so accessibility used fallback coverage only. Deletion is client-side only, so a reload restores the row.",
+  "is_error": false,
+  "num_turns": 13,
+  "duration_ms": 49966,
+  "cost_usd": 0.20354550000000002,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 30038,
+    "cache_read_input_tokens": 452075,
+    "output_tokens": 3815
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 3815,
+      "cacheReadInputTokens": 452075,
+      "cacheCreationInputTokens": 30038,
+      "webSearchRequests": 0,
+      "costUSD": 0.20354550000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 211,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 30038,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 51.0,
+  "claude_rc": 0,
+  "invalid": null,
+  "probe_notes": [],
+  "workspace": "/tmp/ult-live/4-ui__v041",
+  "transcript": "/tmp/ult-live/4-ui__v041.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.20354550000000002,
+    "input_tokens": 18,
+    "output_tokens": 3815,
+    "cache_read_tokens": 452075,
+    "cache_write_tokens": 30038,
+    "turns": 13,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 485946
+  }
+}

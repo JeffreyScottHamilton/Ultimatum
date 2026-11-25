@@ -1,0 +1,104 @@
+{
+  "case": "h4-serve-file#t3",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "owner_gets_content": true,
+    "same_name_other_user_isolated": true,
+    "unauthenticated_401": true,
+    "missing_404": true,
+    "no_traversal_leak": true,
+    "listing_still_works": true,
+    "feature_tested": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "`GET /files/<name>` now returns the content of one of the signed-in user's own files as `text/plain`. All 7 tests pass, including the 4 new ones.\n\n- **Auth:** a missing or invalid token gets 401, the same as the other routes.\n- **Other users' files:** the lookup only searches the caller's own directory. Bob requesting Alice's file gets 404, not 403, so the response doesn't reveal whether the file exists.\n- **Invalid names:** it uses the existing `valid_name` check, so `..` and anything starting with `.` is refused. Names containing `/` or `\\` are refused too. A NUL byte is also treated as not found. All of these return 404.\n- **Response headers:** it sends `X-Content-Type-Options: nosniff`, so a browser won't treat an uploaded file as HTML.\n\nI added `storage.read` and the route in `files_app/app.py`, and a line in the README. In `tests/test_app.py`, the `call` helper now returns a successful download as raw text instead of parsing it as JSON.\n\nThe new tests cover downloading your own file, no auth, another user's file, a missing file, and path traversal.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 17448,
+  "cost_usd": 0.0683286,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 8780,
+    "cache_read_input_tokens": 138626,
+    "output_tokens": 1933
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1933,
+      "cacheReadInputTokens": 138626,
+      "cacheCreationInputTokens": 8780,
+      "webSearchRequests": 0,
+      "costUSD": 0.0683286,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 199,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 8780,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 18.4,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h4-serve-file#t3__vanilla",
+  "transcript": "/tmp/ult-live-h/h4-serve-file#t3__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0683286,
+    "input_tokens": 8,
+    "output_tokens": 1933,
+    "cache_read_tokens": 138626,
+    "cache_write_tokens": 8780,
+    "turns": 4,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 149347
+  }
+}

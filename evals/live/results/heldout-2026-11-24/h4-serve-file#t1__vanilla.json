@@ -1,0 +1,105 @@
+{
+  "case": "h4-serve-file#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "owner_gets_content": true,
+    "same_name_other_user_isolated": true,
+    "unauthenticated_401": true,
+    "missing_404": true,
+    "no_traversal_leak": true,
+    "listing_still_works": true,
+    "feature_tested": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3,
+    "bash": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "`GET /files/<name>` now returns the contents of one of the caller's own files. All 6 tests pass, including 3 new ones for this route.\n\n- **Success:** the response is `200` with the raw file text. The headers are `Content-Type: text/plain; charset=utf-8`, `Content-Disposition: attachment` and `X-Content-Type-Options: nosniff`. I added the last two so a browser downloads the file instead of rendering it, since users can upload arbitrary text.\n- **Signed out:** the route returns `401`, like the other routes.\n- **Missing file, or another user's file:** the route returns `404`. A user only ever reads from their own directory, so they can't tell whether someone else has a file of that name.\n- **Bad names:** `..`, `../bob/b.txt` and other names containing `/` or `\\` return `404`. The name goes through the same `valid_name` check that uploads use. Symlinks and directories are also refused.\n\nThe change is a new `storage.read()` in `files_app/storage.py` and the route in `files_app/app.py`. I also added the tests and a line in the README.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 21847,
+  "cost_usd": 0.0937372,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 10816,
+    "cache_read_input_tokens": 176932,
+    "output_tokens": 3276
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 3276,
+      "cacheReadInputTokens": 176932,
+      "cacheCreationInputTokens": 10816,
+      "webSearchRequests": 0,
+      "costUSD": 0.0937372,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 135,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 10816,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 22.8,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h4-serve-file#t1__vanilla",
+  "transcript": "/tmp/ult-live-h/h4-serve-file#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0937372,
+    "input_tokens": 10,
+    "output_tokens": 3276,
+    "cache_read_tokens": 176932,
+    "cache_write_tokens": 10816,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 191034
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "case": "5-secure-feature",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "probe_ran": true,
+    "owner_gets_200_content": true,
+    "cross_account_blocked": true,
+    "unauthenticated_401": true,
+    "missing_404": true,
+    "test_covers_cross_account": true,
+    "test_covers_authorized": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3,
+    "Read": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "`GET /api/documents/<id>/download` now returns the document's content as the response body. All 8 tests pass (`python3 -m unittest`, OK).\n\n**Changed**\n- `docs_app/routes.py`: added `download_document` and its route, `^/api/documents/([0-9]+)/download$`.\n  - It looks the document up with the existing `storage.get_document_for_account`.\n  - A missing id and another account's id both return the same 404 `{\"error\": \"not found\"}`.\n  - The response is `application/octet-stream` with `X-Content-Type-Options: nosniff` and `Content-Disposition: attachment`.\n  - The filename in that header is cut down to `[A-Za-z0-9._-]` (anything else becomes `_`), because document names are user-supplied.\n- `docs_app/tests/test_documents.py`: added `test_download_own`, `test_download_requires_auth` and `test_download_other_account_denied`. The last one also checks that a nonexistent id (999) returns 404.\n- `README.md`: documented the endpoint.\n\n**Verified**\n- I temporarily swapped the scoped lookup for the unscoped `storage.get_document`. `test_download_other_account_denied` then failed with `AssertionError: 200 != 404`. After restoring the guard, all tests pass again and `git diff` shows `get_document_for_account` in place.\n- I did not run `ult scan`, and I did not test the filename sanitising or the headers directly; no test covers them.\n\n**Risk**\n- Boundary: a user can download only documents owned by their account. The check is made per document in the lookup, not only by the route-level login check.\n- Unauthenticated requests get 401 before the handler runs. That is the existing check in `server.py`, and `test_download_requires_auth` covers it.\n- The one remaining assumption is that downloads are always served as `application/octet-stream` rather than a type guessed from the document name.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 26306,
+  "cost_usd": 0.1079836,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 16865,
+    "cache_read_input_tokens": 152876,
+    "output_tokens": 2522
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2522,
+      "cacheReadInputTokens": 152876,
+      "cacheCreationInputTokens": 16865,
+      "webSearchRequests": 0,
+      "costUSD": 0.1079836,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 173,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 16865,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/5-secure-feature__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/5-secure-feature__ultimatum.jsonl"
+}

@@ -1,0 +1,105 @@
+{
+  "case": "7-remediation",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "exploit_blocked_get_and_put": true,
+    "same_tenant_get_200": true,
+    "same_tenant_put_200": true,
+    "regression_test_added": true,
+    "regression_covers_put": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Grep": 2,
+    "Read": 2,
+    "Edit": 3,
+    "Bash": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I fixed the invoice IDOR in `invoicer/handlers/invoices.py`. The test suite passes, including the two new tests.\n\n- **The bug:** `get_invoice` and `update_invoice` looked invoices up by `id` alone. Any authenticated user could read or overwrite another tenant's invoice by guessing its ID.\n- **The fix:** both queries now also require `tenant_id = user[\"tenant_id\"]`. An invoice that belongs to another tenant returns 404, the same as one that doesn't exist, so the response doesn't reveal whether the ID is real.\n- **New tests:** in `tests/test_invoices.py`, one checks that a user can't read another tenant's invoice, in either direction. The other checks that a cross-tenant update returns 404 and leaves the invoice unchanged.\n\nI also searched the rest of `invoicer/` for invoice queries. The list and report queries were already scoped to the tenant. I didn't review `admin.py`.",
+  "is_error": false,
+  "num_turns": 9,
+  "duration_ms": 16174,
+  "cost_usd": 0.0756057,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 10127,
+    "cache_read_input_tokens": 177077,
+    "output_tokens": 1737
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1737,
+      "cacheReadInputTokens": 177077,
+      "cacheCreationInputTokens": 10127,
+      "webSearchRequests": 0,
+      "costUSD": 0.0756057,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 77,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 10127,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 17.1,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live/7-remediation__vanilla",
+  "transcript": "/tmp/ult-live/7-remediation__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0756057,
+    "input_tokens": 10,
+    "output_tokens": 1737,
+    "cache_read_tokens": 177077,
+    "cache_write_tokens": 10127,
+    "turns": 9,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 188951
+  }
+}

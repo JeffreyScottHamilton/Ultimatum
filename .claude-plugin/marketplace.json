@@ -1,0 +1,16 @@
+{
+  "name": "ultimatum",
+  "owner": { "name": "Jeffrey Scott Hamilton" },
+  "metadata": {
+    "description": "Ultimatum: plain-chat workflows for Claude Code that build, check and launch: coding, websites, motion graphics, business and social media, with a reviewer on every step and your approval before anything ships."
+  },
+  "plugins": [
+    {
+      "name": "ultimatum",
+      "source": "./plugins/ultimatum",
+      "description": "Ask in plain chat and a local router picks the team: /ultimatum:work for code, /ultimatum:website, /ultimatum:motion-graphics, /ultimatum:business, /ultimatum:social-media, or /ultimatum:launch to run them together. Every step passes a checker, and nothing ships without your approval.",
+      "category": "development",
+      "tags": ["workflow", "launch", "website", "motion-graphics", "security", "code-review"]
+    }
+  ]
+}

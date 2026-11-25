@@ -1,0 +1,80 @@
+{
+  "case": "7-remediation",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "exploit_blocked_get_and_put": true,
+    "same_tenant_get_200": true,
+    "same_tenant_put_200": true,
+    "regression_test_added": true,
+    "regression_covers_put": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Tenant B can no longer read or modify tenant A's invoices. The full suite passes: `ult run` exit 0, 13 tests.\n\n**Boundary:** a user can read or update only invoices belonging to their own tenant. The bug was that `get_invoice` and `update_invoice` in `invoicer/handlers/invoices.py` looked up `WHERE id = ?` with no tenant filter. That let any authenticated user read (GET) or overwrite (PUT) another tenant's invoice by changing the id in the URL.\n\n**Changed:**\n- `invoicer/handlers/invoices.py`: both queries now add `AND tenant_id = ?` bound to `user[\"tenant_id\"]`. This is the same scoping `list_invoices` already uses. A cross-tenant id now returns 404, the same as a missing id, so it doesn't reveal that the invoice exists.\n- `tests/test_invoices.py`: two regression tests, `test_user_cannot_read_other_tenants_invoice` and `test_user_cannot_update_other_tenants_invoice`. The PUT test also checks that the victim's record is unchanged.\n\n**Verified:**\n- **Before the fix:** the same two tests failed with `AssertionError: 200 != 404`, exit 1, and both repro markers printed. The baseline suite was 11 tests, exit 0.\n- **After the fix:** the suite passes, 13 tests, exit 0.\n- **Allowed path:** the existing `test_get_own_invoice` and `test_update_own_invoice` still pass.\n- I didn't do a separate revert run, since the pre-fix failure covers it.\n\n**Variants checked:**\n- **Other invoice routes:** `list_invoices`, `create_invoice` and the report handler already scope by tenant.\n- **Admin route:** `admin.list_tenants` checks the admin role and returns tenant-wide counts by design.\n- **Search coverage:** I searched for `invoices` across the repo and read every handler that touches the table. I did not search for other tables or other IDOR patterns.\n\n**Risk:** none identified beyond this scope. Nothing was deployed. I did not run `ult scan`.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 26693,
+  "cost_usd": 0.12245339999999999,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 20932,
+    "cache_read_input_tokens": 157794,
+    "output_tokens": 2293
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2293,
+      "cacheReadInputTokens": 157794,
+      "cacheCreationInputTokens": 20932,
+      "webSearchRequests": 0,
+      "costUSD": 0.12245339999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 110,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 20932,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/7-remediation__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/7-remediation__ultimatum.jsonl"
+}

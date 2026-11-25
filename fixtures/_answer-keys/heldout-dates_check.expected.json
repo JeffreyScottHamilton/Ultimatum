@@ -1,0 +1,110 @@
+{
+ "due": [
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-02-29"
+  ],
+  [
+   "err",
+   "unrecognised due date: '2023-02-29'"
+  ],
+  [
+   "err",
+   "unrecognised due date: 'soon'"
+  ],
+  [
+   "err",
+   "unrecognised due date: ''"
+  ],
+  [
+   "err",
+   "unrecognised due date: '2024/03/05'"
+  ],
+  [
+   "ok",
+   "1999-12-31"
+  ],
+  [
+   "ok",
+   "2020-09-01"
+  ],
+  [
+   "err",
+   "unrecognised due date: 20240305"
+  ],
+  [
+   "err",
+   "unrecognised due date: None"
+  ]
+ ],
+ "report": [
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-03-05"
+  ],
+  [
+   "ok",
+   "2024-02-29"
+  ],
+  [
+   "err",
+   "unrecognised report date: '2023-02-29'"
+  ],
+  [
+   "err",
+   "unrecognised report date: 'soon'"
+  ],
+  [
+   "err",
+   "unrecognised report date: ''"
+  ],
+  [
+   "err",
+   "unrecognised report date: '2024/03/05'"
+  ],
+  [
+   "ok",
+   "1999-12-31"
+  ],
+  [
+   "ok",
+   "2020-09-01"
+  ],
+  [
+   "err",
+   "unrecognised report date: 20240305"
+  ],
+  [
+   "err",
+   "unrecognised report date: None"
+  ]
+ ]
+}
