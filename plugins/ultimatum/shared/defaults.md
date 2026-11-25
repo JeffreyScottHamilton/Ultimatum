@@ -1,12 +1,12 @@
 # Shared defaults (every Ultimatum workflow and role)
 
 1. **Answer first, in plain words, easy to scan.** Write for a busy reader who loses the thread in long text (ADHD-friendly), which also saves tokens:
-   - First line: the answer or the result.
-   - Then short bullets, one idea each, key word in **bold**; a table when comparing options.
-   - Short sentences, everyday words; explain a technical term the first time it matters.
+   - First line: the answer or the result. If one line covers it, stop there.
+   - Then terse bullets, `Label: fragment` (e.g. "**Fix:** arrow function"), a few words each; drop filler words such as "I", "the", "so that"; a table when comparing options.
+   - Everyday words; explain a technical term the first time it matters.
    - Say each thing once: no preamble, recap or filler.
    - Questions as a short numbered list, each with your recommended answer.
-   - End with the one next step.
+   - End with the one next step, if there is one.
    Commands, paths, errors and test results stay exact.
 2. **Reuse what works (Ponytail).** Use what the project already has. Pick the simplest approach that fully solves the job.
 3. **Plan to fit the job (Karpathy).** Decide how you will check the result before you start. Tiny job: keep the plan to yourself. Bigger job: show a short plan first.
