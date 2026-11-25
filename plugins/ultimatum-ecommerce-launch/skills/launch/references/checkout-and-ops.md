@@ -6,7 +6,14 @@ Plain summaries, not legal, tax or financial advice. Anything about fees, limits
 
 - Use the platform's own payment provider first; add PayPal or a wallet if customers ask.
 - Set up identity and bank checks early: they can take days (owner only).
-- **Test mode first.** Use the provider's test card numbers from its docs, place orders, then switch to live (owner only, after a yes).
+- **Test mode first**, step by step:
+  1. Turn on the provider's test mode (or the platform's test gateway).
+  2. Take the test card numbers from the provider's own docs; never use a real card in test mode.
+  3. Place an order for each case: a successful card, a declined card, a wallet payment if offered, an order with a discount code.
+  4. Check each one: order appears, inventory drops, confirmation email arrives, analytics records it.
+  5. Refund one test order and check the refund email.
+  6. Switch to live (owner only, after a yes), then do one real low-value order and refund it (see `launch-checklist.md`).
+- Payout schedule and any first-payout hold: check before relying on the provider's page, and tell the owner so cash flow is not a surprise.
 - Each real payment, refund or payout change is its own yes.
 
 ## Tax basics (not tax advice)
@@ -29,22 +36,23 @@ Plain summaries, not legal, tax or financial advice. Anything about fees, limits
 
 Carrier prices and platform label discounts: check before relying.
 
+How to set rates without losing money:
+1. Pack three typical orders (small, medium, large) and weigh and measure each.
+2. Get the real carrier price for each to your main zone and your furthest zone (carrier site or the platform's label tool).
+3. Add packaging cost. That is your true shipping cost per order type.
+4. Decide what the customer pays: the full cost, a flat rate that averages it out, or free (the cost goes into the product price or the threshold).
+5. Write it down in the shipping policy (`policy-pages.md`) and check checkout shows the same.
+
+Worked example with made-up numbers: if the real cost is 6 for small parcels and 9 for large, a flat 7 rate loses 2 on every large order; either price large items to cover it or add a weight-based rate.
+
 ## Policies
 
-Four pages, live before launch; the owner signs off (or a lawyer for anything beyond a template).
-
-| Page | Must cover |
-|---|---|
-| Refund and returns | Window, condition, who pays return shipping, how refunds are paid, exceptions |
-| Shipping | Regions, times, costs, tracking, customs |
-| Privacy | What data, why, who sees it, cookies, how to ask for deletion; match the real apps installed |
-| Terms | Orders, pricing errors, liability, governing law |
-
-Platform policy generators give a starting point only; legal requirements vary by region: check before relying.
+Four pages live before launch: refund and returns, shipping, privacy, terms. Outlines, the order to write them in and common mistakes: `policy-pages.md`. Platform generators give a starting point only; legal requirements vary by region (check before relying). The owner signs off each page.
 
 ## Abandoned cart
 
-- Turn on the platform's abandoned-checkout email: first after about an hour, second next day, a third later (rule of thumb).
+- Turn on the platform's abandoned-checkout email. Built-in tools may send only one email; more steps may need an email app (check before relying).
+- A common sequence (rule of thumb): first about an hour after leaving, second the next day, third two or three days later.
 - Plain reminder first; offer a discount only in the last one.
 - Only email people who agreed to receive email where the law requires it.
 
@@ -68,9 +76,12 @@ Edit the defaults: order confirmation, shipping confirmation, delivery, refund. 
 
 ## Licences and terms
 
+Summaries from the theme licences as read when this plugin was written; **check before relying** on Shopify's current theme licence text.
+
 | Tool | What to know | What to do |
 |---|---|---|
-| Shopify Horizon theme | Use is limited to Shopify stores. Selling or distributing a theme derived from it is not allowed; delivering it to one merchant's own store is. | Client-store builds only; refuse to package a reusable theme. |
-| Shopify Dawn theme | Use is limited to themes that work with Shopify. | Same rule, a little looser. |
+| Shopify Horizon theme | Use is limited to Shopify stores. Selling or distributing a theme derived from it is not allowed; delivering it to one merchant's own store is. | Client-store builds only; refuse to package a reusable or sellable theme. |
+| Shopify Dawn theme | Use is limited to building themes for Shopify stores. | Same practice as Horizon: build for one merchant's store; do not package a derived theme for sale or reuse until the licence text has been read. |
+| Paid third-party themes | Licence is usually per store; moving it to another store may need a new purchase (check before relying). | Buy under the owner's account, not yours. |
 
-Video, music and stock licences are in the base plugin's `licenses.md` (`ultimatum-launch`); a short version: free tiers of voice and music tools are often non-commercial, free stock needs a log of source and licence, and recognisable people need releases. Company size over 3 people changes the Remotion licence (check before relying).
+Video, music and stock licences are in the base plugin's `licenses.md` (`ultimatum-launch`). Short version: free tiers of voice and music tools are often non-commercial, free stock needs a log of source and licence, and recognisable people need releases. A company of more than 3 people needs a paid Remotion company licence (check before relying).

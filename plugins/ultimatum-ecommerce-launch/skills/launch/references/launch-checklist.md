@@ -1,14 +1,14 @@
 # Launch checklist
 
-Owner-only steps are marked (owner). Do them on a development store first; each live change needs the owner's yes.
+Owner-only steps are marked (owner). Do everything you can on a development or password-protected store first; each live change needs the owner's yes. Tick a line only with evidence: a screenshot, an order number, a test result.
 
 ## Before launch
 
 - [ ] Payments set up, identity checks done (owner)
 - [ ] Domain connected, HTTPS on (owner)
 - [ ] Shipping zones and rates, taxes set (check with an accountant)
-- [ ] Refund, privacy, terms, shipping policies live and signed off (owner)
-- [ ] Every product: title, price, images with alt text, inventory, weight
+- [ ] Refund, privacy, terms, shipping policies live, linked in the footer and signed off (owner); outlines in `policy-pages.md`
+- [ ] Every product: title, price, images to the shot list in `product-photos.md` with alt text, inventory, weight
 - [ ] Compliance review of product claims and any AI imagery
 - [ ] Order emails edited and read on a phone
 
@@ -45,17 +45,30 @@ Owner-only steps are marked (owner). Do them on a development store first; each 
 | Existing channels | Etsy, Instagram bio, packaging inserts point to the store |
 | Friends and first buyers | Ask for honest reviews after delivery |
 
+## Launch week, day by day
+
+Each post, email send and ad spend needs its own yes.
+
+| Day | Do |
+|---|---|
+| Day -7 | Checklist above done; password still on; launch email and 5-7 posts drafted and through compliance review |
+| Day -3 | Final real test order and refund (owner); stock counted; packaging and inserts ready |
+| Day -1 | Ask the user for the go; schedule the "we are open" email; prepare replies to likely questions (shipping time, sizing, returns) |
+| Day 0 | Remove the password (owner, after a yes); place one order yourself to confirm live checkout; send the email; first post; watch orders and the inbox all day |
+| Day 1-2 | Ship the first orders fast; thank first buyers personally; fix anything reported, logged with `ult loop add` |
+| Day 3-5 | One post showing real orders being packed (with permission if a customer is named); reply to every comment |
+| Day 6-7 | First weekly review from `first-30-days.md`; record it with `ult social --results "<numbers>"` |
+
 ## First 30 days
 
-Read numbers from platform exports; rules of thumb below are labelled guesses, not benchmarks (check industry data before relying).
+Daily checks, the weekly review, a funnel diagnosis table and a week-by-week fix list are in `first-30-days.md`. Numbers to read there: conversion rate, average order value, cart abandonment, repeat purchase rate, traffic by source, return rate.
 
-| Metric | What it tells you | If it is low |
-|---|---|---|
-| Conversion rate (orders / sessions) | Is the page persuading? | Fix photos, shipping info, price clarity, reviews |
-| Average order value | Basket size | Bundles, free-shipping threshold, add-ons |
-| Cart abandonment | Checkout friction | Show shipping cost early, add wallets, send reminders |
-| Repeat purchase rate | Product and brand fit | Post-purchase email, refills, loyalty offer |
-| Traffic by source | Where buyers come from | Double down on one channel; cut the rest |
-| Return and refund rate | Description accuracy | Improve sizing and photos |
+## Common launch-day mistakes
 
-Change one thing at a time, note it in `brand/brand.md`, and compare after at least a week. Bring results to the user (`ult social --results` for social) and agree the next test.
+| Mistake | Fix |
+|---|---|
+| Payments still in test mode when the password comes off | Place one real order right after opening |
+| Launch discount code never tested | Try every code at checkout before the email goes out |
+| Shipping zone missing for a country the email reaches | Check zones against where the list and followers are |
+| Launch email links to the home page | Link straight to the product or collection the email is about |
+| Nobody watching the inbox on day 0 | Name who answers, and for how many hours |

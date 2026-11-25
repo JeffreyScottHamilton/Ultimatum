@@ -11,6 +11,8 @@ Tick each line with evidence (a link, a command, a test result). Legal text is t
 - [ ] **Data handling**: what you store, where, how a user exports or deletes it, which vendors see it. Cookie notice where analytics needs one (check before relying: local rules).
 - [ ] **Auth hardening**: run a security review with `ultimatum:work` on sign-in, password reset, sessions, roles and tenant separation. Row-level security tests include "must not see" cases.
 - [ ] **Billing** rehearsed in test mode: sign up, pay, access, change plan, cancel, failed payment, repeat webhook (see `pricing-and-billing.md`).
+- [ ] **Pricing page** matches the billing set-up and the terms: same prices, trial length, refund rule (`pricing-page-examples.md`).
+- [ ] **Onboarding emails** set up, tested in a few mail apps, and approved by the user (`onboarding-emails.md`).
 - [ ] Backups exist and a restore was tried once. Secrets only in environment variables.
 - [ ] Error tracking on, and a named person watching it launch week.
 
@@ -22,19 +24,9 @@ Track the smallest set that answers questions. Name them clearly and keep person
 - Add the traffic source to sign-up. Check the sequence works end to end before launch day.
 - Respect consent rules for analytics tools; choose one tool, not four.
 
-## Launch-week plan
+## Launch week
 
-| Day | Do |
-|---|---|
-| Before | Email the waitlist a date and what is coming; line up a few beta users to say what they got; demo video checked; assets and copy through compliance review |
-| Launch day | Waitlist email first; founder posts on the user's own accounts; launch post on Product Hunt and/or Hacker News if they fit; relevant communities where posting is allowed |
-| Days 2 to 4 | Reply to every comment and email quickly; fix what breaks; share one honest lesson or a number |
-| End of week | Thank-you email, results review (`ult social --results`), pick the next test |
-
-- Product Hunt and Hacker News have their own rules (no vote begging, Hacker News expects a plain title and a "Show HN" fit). Check before relying: each site's current guidelines.
-- Communities ban promotion often; read the rules, lead with usefulness, and ask the user before each post.
-- Demo video: Motion Graphics for a product walk-through; show real screens.
-- Every post, send and ad spend waits for the user's yes.
+Day-by-day plan, what to do if launch day is quiet or something breaks, and common mistakes: `launch-week.md`. Every post, send and ad spend waits for the user's yes.
 
 ## First 30 days
 
@@ -46,5 +38,15 @@ Track the smallest set that answers questions. Name them clearly and keep person
 | Churn (share leaving each month) | Do people keep the value? | Read cancel answers, talk to five churned users, fix the top cause |
 | MRR (monthly recurring revenue) and growth | Is it a business yet? | Revisit price and plans; add annual; focus on the channel that converted |
 
-- Benchmarks vary widely by product; compare to your own previous week first.
+- Benchmarks vary widely by product; compare to your own previous week first. Any outside benchmark is check before relying, with its source named.
 - Review weekly with the user: one number that moved, one cause guess, one change to try. Change one thing at a time.
+
+## Beginner mistakes
+
+| Mistake | Fix |
+|---|---|
+| Ticking lines without evidence | Each tick has a link, a command or a test result |
+| Privacy policy from a template that lists tools you do not use (or misses ones you do) | List the real vendors: hosting, database, email, analytics, billing, error tracking |
+| Restore never tried | A backup that was never restored is a guess; try one restore into a scratch database |
+| Five analytics tools | One tool, the events above, consent handled |
+| Security page claiming certifications you do not have | Claim only what is true; the compliance reviewer checks |
