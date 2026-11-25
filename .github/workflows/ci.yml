@@ -66,9 +66,7 @@ jobs:
           old=$(git show "$BASE:plugins/ultimatum/.claude-plugin/plugin.json" | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])')
           new=$(python3 -c 'import json;print(json.load(open("plugins/ultimatum/.claude-plugin/plugin.json"))["version"])')
           echo "version $old -> $new"
-          # One-time exception: the 1.0.0 suite release reuses the number of the earlier core-only 1.0.0 build.
-          # Remove the 1.0.0 clause once that release is on main.
-          test "$old" != "$new" || [ "$new" = "1.0.0" ] || { echo "::error::plugins/ultimatum changed but version was not bumped"; exit 1; }
+          test "$old" != "$new" || { echo "::error::plugins/ultimatum changed but version was not bumped"; exit 1; }
           grep -qF "## [$new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $new"; exit 1; }
       - name: Head plugin changes bump their version and the changelog
         env:
