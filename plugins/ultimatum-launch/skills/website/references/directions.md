@@ -4,6 +4,8 @@ Three HTML pages that a person could tell apart from across the room. Same conte
 
 ## Make them really different
 
+First classify the page kind and note its effect cap (`design-rules.md`: a law firm gets fewer effects than a launch page). Deal each direction a palette, type pair and layout before any code.
+
 Pick each direction's palette, type pair and hero layout on purpose so no two share more than one of the three. Start from `brand/brand.md` when it exists (all three keep its colours and fonts but differ in layout, scale and motion). Check the user's reference sites: each direction should be close to at least one of them in spirit, never a copy of its layout, words or images.
 
 Each direction gets one motion personality and keeps it on every element:
@@ -26,20 +28,7 @@ Keep the screenshots next to the files. Show 1440 and 375 to the user; the criti
 
 ## Anti-generic list
 
-Before the critic sees anything, remove these unless the brand or a reference site truly calls for one (then say why):
-
-- beige or cream background with a plain grotesk headline
-- grids of identical rounded cards
-- an accordion FAQ as the main way to explain the offer
-- pill-shaped badges above headings
-- three-step "how it works" boxes
-- purple or purple-to-blue gradients
-- an icon tile above every heading
-- the same fade-up on every section
-- fake 01 / 02 / 03 numbering
-- near-black with one acid accent colour
-
-Before you finish each direction, remove one element that does not earn its place. Decoration should carry information (a real photo, a real number, the real product).
+Before the critic sees anything, run the plan, de-generic pass, remove-one habit and lint in `design-rules.md`. The lint is the short list of habits that make a page look machine-made; honour a hit only when the brand or a reference truly calls for it, and say why. Decoration should carry information (a real photo, a real number, the real product).
 
 ## Show the product working
 
@@ -47,4 +36,4 @@ For a product, app or SaaS page, the hero or the next section shows the product 
 
 ## Revision moves
 
-After the user picks, they can steer with plain words. Treat these as named moves: **bolder** (larger type, stronger contrast, fewer elements), **quieter** (less motion, more space, softer colour), **simpler** (cut a section, merge two), **warmer** / **cooler** (palette temperature and photo choice). Re-run the critic after any big move.
+After the user picks, they steer with the verbs in `design-rules.md` (bolder, quieter, tighter, looser, simpler, warmer, cooler, sharper). Re-run the critic after any big move.

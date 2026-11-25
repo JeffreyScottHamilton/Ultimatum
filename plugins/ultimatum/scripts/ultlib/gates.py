@@ -21,11 +21,14 @@ from pathlib import Path
 from .common import project_root, state_dir, write_private
 from .website import brief_path
 
-ITEMS = ("brief", "mockup", "storyboard", "video", "publish", "deploy")
+ITEMS = ("brief", "mockup", "storyboard", "story", "sourcing", "animatic", "video", "publish", "deploy")
 WHAT = {
     "brief": "build brief (Launch Manager shows it before Website starts)",
     "mockup": "website mockup (before production code)",
     "storyboard": "motion storyboard (before production animation)",
+    "story": "brand film story: logline, beats, sub-genre (before any footage is sourced)",
+    "sourcing": "brand film footage plan, spend and consent (before anything is bought, generated or shot)",
+    "animatic": "brand film rough cut or animatic (before paid generation or the final edit)",
     "video": "finished video (before it is delivered or the style guide is saved)",
     "publish": "posting or sending the campaign",
     "deploy": "deploying or releasing",

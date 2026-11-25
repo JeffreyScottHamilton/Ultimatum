@@ -1,18 +1,20 @@
 # brand/brand.md
 
-One file in the user's project that every launch team reads before it writes or designs anything. Keep it to two screens. Commit it with the project (it holds no secrets). Copy this outline and fill it; leave `(guess)` on anything the user has not confirmed.
+One file in the user's project, the shared context every launch team (Website, Marketing, Motion) reads first, before it writes or designs anything. Keep it to two screens. Commit it with the project (it holds no secrets). Copy this outline and fill it; leave `(guess)` on anything the user has not confirmed.
 
 ```markdown
 # Brand: <name>
 
 ## Customer
 - Who buys first: <one concrete person, not "everyone">
-- What they do today instead: <the alternative>
+- What they do today instead: <the competitive alternative>
 - What makes them switch: <the trigger>
 
 ## Positioning
+- Different because: <2–3 unique attributes, each with its proof>
+- Value: <what those attributes give the customer>
+- Best-fit customers: <who cares most>
 - Category: <the frame>
-- Different because: <2–3 points, each with its proof>
 - One promise: <a sentence a customer would repeat>
 
 ## Offer
@@ -25,7 +27,7 @@ One file in the user's project that every launch team reads before it writes or 
 - Checks left to the owner: trademark search, domain, social handles
 
 ## Voice
-- Three words: <e.g. warm, direct, a bit funny>
+- Three adjectives (from the interview): <e.g. warm, direct, a bit funny>
 - We say / we never say: <2–3 pairs>
 - Sample line: <one headline in this voice>
 
@@ -57,4 +59,5 @@ Rules for the file:
 - Fonts must be free for commercial web use (Google Fonts, or a licence the user owns); name the source.
 - Colours: at most one accent; check contrast before writing it down.
 - Sound lives in `brand/sound.md` (Motion writes it); asset credits in `brand/sound-credits.md`.
+- Voice check: other teams read their drafts against Voice; Business flags drift.
 - Marketing appends to **Learnings** after each results read; Business owns everything else.

@@ -12,9 +12,7 @@ Caption: <first line repeats the hook; tracked link or "link in bio">
 Sound: <voiceover / trending sound the user picks / brand music from brand/sound.md>
 ```
 
-Hook kinds to rotate: result first, mistake people make, a question the customer asks, a number, a quick demo, behind the scenes. Note the kind on each script so results can be compared by kind.
-
-Avoid tells that read as machine-written: "In today's fast-paced world", "Let's dive in", "game-changer", lists of three adjectives, emoji on every line.
+Hook types and AI tells are listed below. Note the hook type on each script.
 
 ## Post (carousel, image, text)
 
@@ -37,4 +35,16 @@ These came from search previews, not the platforms' own pages:
 - Instagram: a daily cap on API posts; sources disagree on the number.
 - YouTube: one API upload uses a large share of the default daily quota.
 
-By default, hand over drafts or use a scheduling tool the user already has; post by API only when the user set it up and said yes.
+By default, hand over drafts or use a scheduling tool the user already has (a Postiz connector, only if they have it); post by API only when the user set it up and said yes. Scheduling is still posting: it needs the publish gate.
+
+## Hook types (name one per piece)
+
+Result first, mistake people make, a question the customer asks, a number, a quick demo, behind the scenes, a before/after, a myth to correct. Put the type in the script header so results compare by type.
+
+## Ad-creative hypotheses
+
+For paid or boosted creative, write one line before making it: "If we <change>, then <audience> will <action>, because <reason>." Change one thing per variant (hook, proof, offer wording, first frame) and log it in the learnings log (`references/loop.md`).
+
+## AI tells to strip from copy
+
+Openers like "In today's fast-paced world" and "Let's dive in"; "game-changer", "unlock", "seamless", "elevate"; triple adjective lists; "It's not just X, it's Y"; rhetorical question stacks; emoji on every line; em dashes used as filler; a tidy summary sentence that repeats the point. Read it aloud: if the founder would not say it, rewrite it.

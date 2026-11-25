@@ -59,10 +59,14 @@ class PlainChatRouting(Base):
         "plan instagram reels for my bakery": "ultimatum-launch:social-media",
         "make 5 youtube shorts ideas": "ultimatum-launch:social-media",
         "Make a motion graphic": "ultimatum-launch:motion-graphics",
+        "Make a 30 second launch video": "ultimatum-launch:motion-graphics",
+        "Make an emotional brand film for our launch": "ultimatum-launch:brand-film",
+        "Create a cinematic ad about a nurse coming home": "ultimatum-launch:brand-film",
         "Fix the signup form validation bug": "ultimatum:work",
     }
     SKILLS = {"ultimatum-launch:launch", "ultimatum-launch:business", "ultimatum-launch:website",
-              "ultimatum-launch:social-media", "ultimatum-launch:motion-graphics", "ultimatum:work"}
+              "ultimatum-launch:social-media", "ultimatum-launch:motion-graphics", "ultimatum-launch:brand-film",
+              "ultimatum:work"}
 
     def test_each_plain_prompt_starts_one_workflow(self):
         self.write("index.html", "<nav class='menu'></nav>")
@@ -74,7 +78,7 @@ class PlainChatRouting(Base):
                     self.assertNotIn(f'\\"{other}\\"', out)
 
     def test_plain_questions_get_an_answer(self):
-        for q in ("What is a content calendar?", "How does a soft launch work?", "What is TikTok?",
+        for q in ("What is a brand film?", "What is a content calendar?", "How does a soft launch work?", "What is TikTok?",
                   "How do instagram reels work?"):
             self.assertEqual(hook(q, self.root), "", q)
 
@@ -203,7 +207,7 @@ class SocialAndPublish(Base):
 
     def test_video_step_is_added_when_a_video_helps(self):
         r = self.u("social", "Plan a week of posts with a short reel")
-        self.assertIn("send one video brief to Motion Graphics", r.out)
+        self.assertIn("Brand Film when the message is a feeling", r.out)
         self.assertNotIn("Motion", self.u("social", "Plan a week of posts").out)
 
     def test_publish_needs_a_checked_link_and_is_used_once(self):
@@ -259,6 +263,49 @@ class MotionKinds(Base):
         self.assertIn("motion/style.md", r.out)
         self.assertIn("user approves storyboard", r.out)  # a later video still needs its own storyboard
         self.assertIn("kind: standalone", self.u("motion", "Make a video like this reference").out)
+
+
+class BrandFilm(Base):
+    def manifest(self, clips):
+        self.write("film/footage-manifest.json", json.dumps({"clips": clips}))
+
+    def test_four_gates_in_order(self):
+        r = self.u("film", "Make an anthem film about people who bake at dawn")
+        self.assertIn("sub-genre: montage", r.out)
+        self.assertIn("next: write the logline", r.out)
+        self.assertIn("skills/brand-film/story.md", r.out)
+        self.u("gate", "approve", "story", "yes, the grandmother story")
+        r = self.u("film", "Make a brand film")
+        self.assertIn("sub-genre: character", r.out)
+        self.assertIn("nothing is bought, generated or shot", r.out)
+        self.assertIn("references/footage.md", r.out)
+        self.u("gate", "approve", "sourcing", "ok, 40 dollars of stock")
+        self.assertIn("cut the rough timeline", self.u("film", "Make a brand film").out)
+
+    def test_manifest_needs_sources_costs_and_releases(self):
+        self.assertEqual(self.u("film", "--check").code, 1)
+        ok = {"file": "a.mp4", "source": "pexels", "id": "123", "license": "Pexels", "date": "2026-11-25",
+              "cost": 0, "ai": False, "people": True, "release": "stock licence"}
+        self.manifest([ok, {"file": "b.mp4", "source": "user", "id": "phone-2", "license": "owned",
+                            "date": "2026-11-25", "cost": 0, "ai": False, "people": True}])
+        r = self.u("film", "--check")
+        self.assertEqual(r.code, 1)
+        self.assertIn("b.mp4: shows people but has no release", r.out)
+        self.manifest([ok, {"file": "c.mp4", "source": "ai", "id": "veo-1", "license": "generated",
+                            "date": "2026-11-25", "cost": 4.5, "ai": True, "people": False}])
+        r = self.u("film", "--check")
+        self.assertEqual(r.code, 0, r.all)
+        self.assertIn("spend 4.50, 1 AI-made", r.out)
+        self.assertIn("C2PA", r.out)
+
+    def test_voiceover_pace(self):
+        self.manifest([{"file": "a.mp4", "source": "user", "id": "1", "license": "owned", "date": "x",
+                        "cost": 0, "ai": False, "people": False}])
+        vo = self.write("film/vo.txt", " ".join(["word"] * 60))
+        r = self.u("film", "--check", "--vo", str(vo), "--seconds", "20")
+        self.assertIn("too dense: 3.00 words/s", r.out)
+        r = self.u("film", "--check", "--vo", str(vo), "--seconds", "40")
+        self.assertIn("ok: 1.50 words/s", r.out)
 
 
 @unittest.skipUnless(shutil.which("ffmpeg") and shutil.which("ffprobe"), "ffmpeg not installed")

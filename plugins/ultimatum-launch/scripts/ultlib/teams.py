@@ -53,7 +53,7 @@ def launch_active(root: Path) -> bool:
 # ---------------------------------------------------------------- launch
 
 def board(root: Path) -> dict:
-    g = {i: status(root, i)[0] for i in ("brief", "mockup", "storyboard", "video", "publish")}
+    g = {i: status(root, i)[0] for i in ("brief", "mockup", "storyboard", "story", "video", "publish")}
     drafted = launch_active(root)
     text = _brief_text(root)
     steps = [
@@ -62,7 +62,8 @@ def board(root: Path) -> dict:
         ("website: mockup for the user's approval", g["mockup"]),
         ("website: build, browser review, fixes, checked preview", "after mockup"),
         ("social: drafts from the approved offer while Website builds", "open" if g["brief"] == "approved" else "after brief"),
-        ("motion: only if a video helps; storyboard, then finished video", g["storyboard"]),
+        ("video, only if it helps: Brand Film (a feeling) or Motion Graphics (a feature or number); "
+         "story or storyboard approved first, then the finished video", g["video"]),
         ("user approves publishing (checked live link if the campaign needs one)", g["publish"]),
         ("publish and measure; results back to Business", "done" if RESULTS_HEAD in text else "later"),
     ]
@@ -158,9 +159,11 @@ def social_plan(task: str, root: Path) -> dict:
              "copywriter: posts, each with one clear next step (Social Content, Copywriting)",
              "analyst: what to measure and how each link is tracked (Analytics)"]
     if video:
-        steps.append("motion: " + ("checked export received (brief: Delivered video)" if delivered else
-                                   "send one video brief to Motion Graphics; wait for its checked export"))
-    steps += ["campaign reviewer: claims, links, tracking", "user approves publishing"]
+        steps.append("video: " + ("checked export received (brief: Delivered video)" if delivered else
+                                  "pick the style first: Brand Film when the message is a feeling and people "
+                                  "carry it, Motion Graphics when it is a feature, a number or needs frequent "
+                                  "updates; send one brief to that team and wait for its checked export"))
+    steps += ["campaign reviewer: claims, links, tracking, AI labels", "user approves publishing"]
     return {"workflow": "social", "offer": offer, "video": video, "delivered": delivered,
             "needs_link": bool(_LINK_RE.search(text)) or launch, "steps": steps,
             "publish": status(root, "publish")[0],

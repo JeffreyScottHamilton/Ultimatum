@@ -4,7 +4,7 @@
     "name": "Jeffrey Scott Hamilton"
   },
   "metadata": {
-    "description": "Ultimatum: plain-chat workflows for Claude Code. The core plugin handles code; Ultimatum Launch adds business, website, marketing and motion teams that wait for your approval."
+    "description": "Ultimatum: plain-chat workflows for Claude Code. The core plugin handles code; Ultimatum Launch adds business, website, marketing, motion and film teams that wait for your approval."
   },
   "plugins": [
     {
@@ -23,7 +23,7 @@
     {
       "name": "ultimatum-launch",
       "source": "./plugins/ultimatum-launch",
-      "description": "Launch teams for Ultimatum: intake, business and brand, website, marketing and motion graphics. Every spend, post and deploy waits for your yes.",
+      "description": "Launch teams for Ultimatum: intake, business and brand, website, marketing, motion graphics and brand films. Every spend, post and deploy waits for your yes.",
       "category": "productivity",
       "tags": [
         "launch",

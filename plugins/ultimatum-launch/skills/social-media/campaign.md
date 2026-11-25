@@ -1,8 +1,9 @@
 # Campaign guide (Social Media)
 
-- **Channel:** start with one, where the audience in the brief already spends time. Say why in one line.
-- **Post:** hook in the first line, one idea, one next step. Plain words; no claim the brief cannot back up.
-- **Links:** one destination per post; add a tracking tag (e.g. `?utm_source=instagram&utm_campaign=<name>`) so visits can be counted.
-- **Video brief to Motion:** goal, length, aspect ratio (9:16 for reels and shorts), the post it belongs to, the offer line, any music the user supplied. One brief per video.
-- **Review list:** every claim matches the brief; every link opens and lands on the right page; every link is tracked; captions and alt text are present; nothing is scheduled.
-- **Measure:** views, site visits from the tracked links, inquiries, bookings. Record only numbers you actually saw, with where they came from.
+- **Shared context first:** `brand/brand.md` (audience, voice, offer, learnings) and the build brief. Everyone on the job reads these before writing.
+- **Channel:** start with one, where the audience already spends time. Say why in one line.
+- **Post:** hook in the first line, one idea, one next step; plain words; no claim the brief cannot back. Name the hook type.
+- **Links:** one destination per post, with a tracking tag (e.g. `?utm_source=instagram&utm_campaign=<name>`).
+- **Video brief:** pick the style (`references/video-style.md`), then one brief per video: goal, length, aspect ratio (9:16 for reels and shorts), the post, the offer line, supplied music or footage.
+- **Review list:** claims match the brief; links open, land right and are tracked; captions and alt text present; AI-content labels planned for video; nothing scheduled before the yes.
+- **Measure:** views, tracked visits, signups, inquiries, bookings. Record only numbers you saw, with their source.

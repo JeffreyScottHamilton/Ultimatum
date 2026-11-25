@@ -33,3 +33,7 @@ Business & brand, a store builder, Website (for anything outside the theme), a c
 - [ ] A real test order placed and refunded
 - [ ] Store password removed (owner only, on the live store, after a yes)
 - [ ] Compliance review of product claims and any AI imagery
+
+## Video
+
+Product ads and catalogue promos usually fit **Motion Graphics** variants (one template, many products) or **Higgsfield** product and UGC-style clips, after a credit check. A maker, craft or gifting story fits **Brand Film** with real footage of the maker; do not use AI people for it. Paid ads: check stock and music licences in `licenses.md`.

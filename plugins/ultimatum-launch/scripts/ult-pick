@@ -8,7 +8,7 @@ decides the workflow; `--scope` decides which ones this copy may announce:
   prompts get nothing here.
 - `--scope launch` (run by the ultimatum-launch plugin's own hook): website work,
   a standalone clip, a launch, a social media plan or a business question ->
-  ultimatum-launch:website, :motion-graphics, :launch, :social-media or :business.
+  ultimatum-launch:website, :motion-graphics, :brand-film, :launch, :social-media or :business.
 So the Launch teams are only suggested when that plugin is installed.
 Plain questions, writing help and small talk get nothing, so ordinary chats pay no
 extra tokens. A prompt that starts with "/" is an explicit command and is left alone.
@@ -28,6 +28,8 @@ NOTES = {
         "website": _start("ultimatum-launch:website", "website work", " and let it run the whole job."),
         "motion": _start("ultimatum-launch:motion-graphics", "a motion graphics clip or video",
                          " and let it run the whole job."),
+        "film": _start("ultimatum-launch:brand-film", "an emotional, story-led brand film",
+                       "; it gets the story, footage plan and spend approved before anything is bought or rendered."),
         "launch": _start("ultimatum-launch:launch", "a launch",
                          "; it runs intake, Business, Website, Marketing and Motion and brings every approval "
                          "back to the user."),

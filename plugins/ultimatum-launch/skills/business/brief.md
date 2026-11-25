@@ -1,6 +1,6 @@
 # Build brief (Business, launch mode)
 
-Fill the `## Build brief` section of `.ultimatum/brief.md`. Short lines; label guesses.
+Fill the `## Build brief` section of `.ultimatum/brief.md`. Short lines; label guesses. Draw on `brand/brand.md` (voice, positioning) and the interview in `references/interview.md` when it is missing.
 
 - **Audience:** who visits, in their own words if you have them.
 - **Offer:** what they get, the price or "ask", and the one promise.

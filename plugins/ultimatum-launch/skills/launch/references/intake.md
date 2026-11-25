@@ -4,12 +4,13 @@ Goal: enough to write a one-page brief the user signs off, in as few turns as po
 
 ## How to ask
 
-- **Rounds of 5–8 questions** with AskUserQuestion. Mostly multiple choice, 2–4 options each, plus the tool's free-text option. Put your **recommended answer first** and label it "(recommended)", worded so that picking it is a plain yes.
-- **Open "why" questions one at a time**, in plain chat, never in a batch: why this, why now, why would someone pick you. Wait for the answer before the next.
-- **Vague answer → dig once.** "Everyone" as a customer, "affordable" as a price, "modern" as a look: ask for one concrete example ("name one person who would buy this tomorrow", "what number, per month?", "which site looks the way you mean?").
-- **Skip what you already know** from the user's messages, files, `brand/brand.md` or the current site. Say what you took from where.
-- **"I don't know"** → give a suggested answer, mark it `(guess)` in the brief, and move on. Guesses are listed again on the brief so the user can correct them.
-- Ask about later topics only after the earlier ones are settled when the answer depends on them (route after "what", budget after route).
+- **Decisions in batches.** Rounds of 5–8 questions with AskUserQuestion: mostly multiple choice, 2–4 options plus free text, your **recommended answer first** and labelled "(recommended)" so picking it is a plain yes.
+- **Why-questions one at a time**, in plain chat, never batched: why this, why now, why would someone pick you. Wait for each answer; it shapes the next.
+- **Vague answer → dig once** with a concrete ask: "name one person who would buy tomorrow", "what number, per month?", "which site looks the way you mean?".
+- **Skip what you know** from messages, files, `brand/brand.md` or the current site, and say where you took it from.
+- **"I don't know"** → suggest an answer, mark it `(guess)` in the brief, move on. Guesses show again on the brief for correction.
+- **Facts before the user sees them.** Prices, vendor terms and market claims you offer as options go through the fact-finder: sourced, marked observed or guessed.
+- Ask dependent topics after their parents (route after "what", budget after route).
 
 ## Topics, in order
 
@@ -20,9 +21,11 @@ Goal: enough to write a one-page brief the user signs off, in as few turns as po
 5. **Reference sites.** 3–5 sites the user likes the look or feel of (any industry) and one thing about each.
 6. **Must-haves.** Pages, features and integrations without which it is not a launch (booking, checkout, login, blog, languages).
 7. **Deadline.** A date, an event, or "when it's good".
-8. **Budget for paid tools.** Monthly ceiling for hosting, apps and AI credits; whether the user already pays for any (Shopify, Stripe, Supabase, Vercel, ElevenLabs, Suno, Higgsfield); company size (more than 3 people changes video tool licences).
+8. **Budget for paid tools.** Monthly ceiling for hosting, apps and AI credits; whether the user already pays for any (Shopify, Stripe, Supabase, Vercel, ElevenLabs, Suno, Higgsfield, stock or music libraries); company size (more than 3 people changes video tool licences); whether there is real footage of customers, the team or the place, and anyone willing to be filmed (it decides Brand Film).
 
-A first round usually covers 2, 3, 6, 7 and 8 as choices; 1 and 4 come as one-at-a-time "why" questions; 5 is a free-text ask.
+A first round usually covers 2, 3, 6, 7 and 8 as choices; 1 and 4 come as one-at-a-time why-questions; 5 is a free-text ask.
+
+**Brand interview hand-off.** Intake stops at what, who, price, look and limits. Voice, values, story, fonts and colours are Business's brand interview (`business/SKILL.md`), run after the brief is approved. Pass it the answers and references you gathered so it asks only what is missing.
 
 ## The brief
 

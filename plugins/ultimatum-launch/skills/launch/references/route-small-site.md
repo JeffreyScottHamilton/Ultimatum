@@ -30,3 +30,7 @@ Business & brand (short: positioning and `brand/brand.md`), Website (three direc
 - [ ] Privacy note if anything is collected
 - [ ] 404 page and favicon
 - [ ] `ult gate check deploy` passes before you call it live, then check the live URL
+
+## Video
+
+A founder or origin story, a customer moment or a "why we exist" film usually fits **Brand Film** (`ult film`, four gates: story, sourcing, animatic, video), shot on the owner's own phone with releases. A single offer, price or how-it-works clip fits **Motion Graphics**. Social picks the style; skip video if neither message is clear.

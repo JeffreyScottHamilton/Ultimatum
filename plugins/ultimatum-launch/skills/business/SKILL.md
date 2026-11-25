@@ -19,17 +19,24 @@ Read `shared/defaults.md` once. Run `ult business "<task>" --root .`: it prints 
 - **brand** (the user asked for a name, voice, colours, fonts or a brand file): write or update `brand/brand.md` and show the changes.
 - **change** (a specific site change): hand it to Website (`website/SKILL.md`) or core's `ultimatum:work`, covering only that change.
 
-## Positioning before visuals
+## Interview and positioning
 
-Work in this order and don't skip ahead; each step uses the last one:
+Brand or launch with no brand file: run the 10-question interview in `references/interview.md` (3 groups, ending in three adjectives), one group at a time. Then work in this order, each step using the last:
 
-1. **Alternatives:** what the customer would do if this did not exist.
-2. **What is different:** the two or three things only this offer has, and the proof for each.
-3. **Who cares most:** the customer for whom those differences matter.
-4. **Category:** the frame that makes the value obvious ("a Saturday baking class", not "an experience").
-5. **Voice**, then **name** (only if one is needed), then **colours and fonts**.
+1. **Alternatives:** what the customer would do without this.
+2. **Unique attributes:** what only this offer has, with proof.
+3. **Value:** what those attributes give the customer.
+4. **Best-fit customers:** who cares most.
+5. **Category:** the frame that makes the value obvious ("a Saturday baking class").
+6. Then **voice**, **name** (only if needed), **colours and fonts**.
 
-The brand file layout is in `references/brand-file.md`. It is one living file: update sections in place, keep a dated line under "Changes", never fork a second brand file.
+**Brand phases:** interview, positioning, voice and name, look, then handoff. Tell the user which phase you are in.
+
+`brand/brand.md` is the shared context file: every team (Website, Marketing, Motion) reads it first. Layout in `references/brand-file.md`. Update sections in place, add a dated line under "Changes", never fork a second brand file.
+
+**Voice check.** When another team's draft (copy, ads, scripts) reaches you or is in view, read it against the Voice section and say what drifts.
+
+**Startup numbers** (only when asked or it decides the answer): rough market size, a simple model, 3-5 metrics. See `references/numbers.md`.
 
 ## Roles (one person can do all of them)
 

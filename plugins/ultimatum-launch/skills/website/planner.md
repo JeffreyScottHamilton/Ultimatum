@@ -24,13 +24,13 @@ If the structure itself is unclear (unusual page, many sections, the user is uns
 
 ## 3. Three directions
 
-Follow `references/directions.md`. Real HTML and CSS, real headings, the user's exact words where they gave them and short realistic placeholder copy otherwise (say it is placeholder). No AI image mockups from ChatGPT or similar tools: the user judges something that already moves and scrolls.
+Follow `references/directions.md` and `references/design-rules.md`: name the page kind and its effect cap, deal each direction a palette, type pair and layout, run the lint, and remove one element. Real HTML and CSS, real headings, the user's exact words where they gave them and short realistic placeholder copy otherwise (say it is placeholder). No AI image mockups from ChatGPT or similar tools: the user judges something that already moves and scrolls.
 
 ## 4. Critic, then show and stop
 
-Run the taste critic (`ultimatum-launch:taste-critic`) on the screenshots. Fix what it finds and re-run it, at most three rounds, until a direction scores 8/10 or better.
+Run the taste critic (`ultimatum-launch:taste-critic`) on the screenshots. Findings come as blocker, major, minor or nit; fix blockers and majors and re-run it, at most three rounds, until a direction scores 8/10 or better.
 
-Then show the three: the 1440 and 375 screenshots, the local file to open, and 2–3 plain sentences each (who it suits, what the visitor sees first, how it moves). List open questions and **end your turn**. No production code until the user approves. Asking for changes means revise and show again.
+Then show the three: the 1440 and 375 screenshots, the local file to open, and 2–3 plain sentences each (who it suits, what the visitor sees first, how it moves). List open questions and **end your turn**. No production code until the user approves. Asking for changes means revise and show again; the user can say bolder, quieter, tighter, warmer and so on.
 
 ## 5. Record the approval
 

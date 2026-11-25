@@ -1,6 +1,6 @@
 # Sound effects
 
-Add them last, once the voice and music timings are locked.
+Add them last, once voice and music timings are locked. Keep effects under the voice and music (duck or lower them if they mask words).
 
 ## Order of sources
 

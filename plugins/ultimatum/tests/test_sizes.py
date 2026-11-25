@@ -10,7 +10,7 @@ SKILLS = P / "skills"
 LAUNCH = P.parent / "ultimatum-launch"
 LSKILLS = LAUNCH / "skills"
 WORKFLOWS = {"work"}  # core's model-invocable workflow; the launch workflows live in ultimatum-launch
-LAUNCH_WORKFLOWS = {"launch", "business", "website", "social-media", "motion-graphics"}
+LAUNCH_WORKFLOWS = {"launch", "business", "website", "social-media", "motion-graphics", "brand-film"}
 LOOKUPS = {"status", "doctor"}  # small read-only checks Claude may run when asked about the install
 
 

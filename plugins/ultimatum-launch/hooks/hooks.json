@@ -1,5 +1,5 @@
 {
-  "description": "Before each prompt, website, video, launch, business and social media requests get one line pointing Claude to the matching /ultimatum-launch skill; everything else gets nothing from this plugin. Local, stdlib only; ULTIMATUM_AUTO=0 turns it off.",
+  "description": "Before each prompt, website, video, brand film, launch, business and social media requests get one line pointing Claude to the matching /ultimatum-launch skill; everything else gets nothing from this plugin. Local, stdlib only; ULTIMATUM_AUTO=0 turns it off.",
   "hooks": {
     "UserPromptSubmit": [
       {

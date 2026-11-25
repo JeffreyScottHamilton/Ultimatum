@@ -39,3 +39,7 @@ Business & brand, Website (marketing pages, with "show the product working"), a 
 - [ ] Privacy policy and terms pages exist (owner signs off on legal text)
 - [ ] Compliance review of pricing and claims on the marketing pages
 - [ ] Deploy on the user's yes, then check the live signup path
+
+## Video
+
+Product explainers, feature launches, changelog clips and number-led demos fit **Motion Graphics** (storyboard, audio sheet, checked export). A founder or customer-outcome story for the homepage or an ad fits **Brand Film**, with the product arriving late and enabling the turn. Never film or animate a fake dashboard; show the real product.

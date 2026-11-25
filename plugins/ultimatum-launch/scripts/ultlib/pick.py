@@ -3,6 +3,7 @@
 Used by the `ult-pick` UserPromptSubmit hook so Ultimatum starts without a slash command:
 - website: a website named outright, or interface words inside a website project;
 - motion: a standalone animated clip or video (an animation inside a site stays website);
+- film: an emotional, story-led brand film with people and footage (checked before motion);
 - launch: launching a business, offer or brand (the Launch Manager runs the other teams);
 - social: a content plan or campaign (one tweet stays chat);
 - business: customers, offers, competitors and why people don't book or buy;
@@ -91,10 +92,10 @@ def pick(text: str, root: Path | None = None) -> str:
     d = decide(text[:2000], root=root, use_deps=False, lessons_on=False)
     if d.get("workflow") == "website":
         return "website"
-    if d.get("workflow") == "motion":
+    if d.get("workflow") in ("motion", "film"):
         # "What is motion graphics?" is a question; "Can you make a logo reveal?" is a job.
         if not _QUESTION_RE.search(text) or _MAKE_RE.search(text):
-            return "motion"
+            return d["workflow"]
         return "chat"
     if d.get("workflow") in ("launch", "social", "business"):
         # "What is a content calendar?" is a question; "What's stopping people from booking?" is a job.

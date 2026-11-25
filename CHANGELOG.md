@@ -2,6 +2,29 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [launch 0.2.0] - 2026-11-25
+
+### Added
+- Skill `ultimatum-launch:brand-film` for emotional, story-led films (character or montage). It has four approval gates: story, sourcing, animatic and video. Its references cover story beats, legal footage lanes (the user's own footage, free stock, paid stock, AI b-roll) with a cost table and consent plan, score-first editing and grading, and sound. Spend always needs a yes. A photoreal AI person is never the hero, and media stays out of Git.
+- Social Media picks a video style before briefing a team (`references/video-style.md`): Brand Film when a feeling carried by people is the message, Motion Graphics when it is a feature or a number. Social Media also gains a hook type per piece, a weekly top and bottom 3 review, a niche-outlier study and a learnings log.
+- Website: `references/design-rules.md`. Business: `references/interview.md` and `references/numbers.md`.
+
+### Changed
+- Launch intake, the licence table (8 new rows) and all three route files now cover video, in both film and motion styles.
+- `taste-critic` has a film mode. `compliance-reviewer` has film checks for footage licences, releases, AI labels and C2PA.
+- Motion Graphics: voice-first timing with a frame-timing document per scene, and a hand-off to Brand Film when a feeling is the message. Repeated steps are condensed.
+- Website and Business skills have tighter steps, with their detail moved to references.
+
+## [1.2.0] - 2026-11-25
+
+### Added
+- Film routing: plain-chat requests for a brand film, cinematic or emotional ad, or documentary-style spot now route to `film` (and to `ultimatum-launch:brand-film` when Launch is installed). This check runs before motion.
+- `ult film`: plan (sub-genre, gates, roles, files to load), `--check` (footage manifest, tracked media, voiceover pace) and `--deliver` (manifest check, then the Motion export check).
+- Gates `story`, `sourcing` and `animatic`.
+
+### Changed
+- The `ult social` video step now picks a style first (Brand Film or Motion Graphics). The board shows the film gates.
+
 ## [launch 0.1.0] - 2026-11-25
 
 First release of **Ultimatum Launch** (`plugins/ultimatum-launch/`), a second plugin in the same marketplace. It depends on `ultimatum`.

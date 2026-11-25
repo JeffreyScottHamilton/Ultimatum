@@ -66,6 +66,13 @@ _MOTION_NOT_RE = re.compile(
     r"\b(?:player|upload\w*|endpoint|component|api|thumbnail|bug|test|crash\w*|error|server|database|function|"
     r"stream(?:ing)?|transcod\w*|encoder|decoder|pipeline|webhook|bitrate|codec|loading|spinner|skeleton|"
     r"transition\s+between\s+(?:pages|routes|screens))\b", re.I)
+# An emotional, story-led brand film (people, a feeling, a turn), not animated graphics.
+_FILM_RE = re.compile(
+    r"\b(?:brand\s+films?|short\s+films?|mini[- ]?docs?|(?:documentary|doc)[- ]style\s+(?:ad|video|film|spot)|"
+    r"(?:emotional|cinematic|story[- ]?(?:driven|led|telling)|heartfelt|human|moving|tear[- ]?jerk\w*|feel[- ]good|"
+    r"manifesto|anthem\w*|testimonial)\s+(?:brand\s+)?(?:film|ad|video|spot|commercial|piece|story)s?|"
+    r"(?:film|ad|video|spot|commercial)s?\s+(?:that|which)\s+(?:makes?|will\s+make)\s+(?:people|viewers|them)\s+"
+    r"(?:feel|cry)|human[- ]moment|live[- ]action\s+(?:ad|video|spot|film))\b", re.I)
 # A whole launch: the Launch Manager runs Business, Website, Social and Motion from one chat.
 _LAUNCH_RE = re.compile(
     r"\b(?:launch(?:ing)?|start(?:ing)?|open(?:ing)?)\s+(?:my|our|a|the|this)\s+(?:new\s+|own\s+|small\s+)?"
@@ -254,6 +261,13 @@ def motion_flag(text: str, route: str) -> bool:
     return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text) or _SITE_UI_RE.search(text))
 
 
+def film_flag(text: str, route: str) -> bool:
+    """An emotional, story-led brand film; checked before motion graphics."""
+    if route in SECURITY_ROUTES or not _FILM_RE.search(text):
+        return False
+    return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text))
+
+
 def launch_flag(text: str, route: str) -> str:
     """Launch, Social Media or Business: the non-code workflows. Empty when none fits."""
     if route in SECURITY_ROUTES:
@@ -270,6 +284,8 @@ def launch_flag(text: str, route: str) -> str:
 def workflow_for(text: str, route: str, root: Path | None) -> str:
     if website_flag(text, route, root):
         return "website"
+    if film_flag(text, route):
+        return "film"
     if motion_flag(text, route):
         return "motion"
     return launch_flag(text, route) or "default"
