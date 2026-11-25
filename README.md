@@ -9,6 +9,7 @@
 ```
 /plugin marketplace add JeffreyScottHamilton/Ultimatum
 /plugin install ultimatum@ultimatum
+/plugin install ultimatum-launch@ultimatum   # optional: websites, brand, marketing, video
 /ultimatum:setup
 ```
 
@@ -16,14 +17,14 @@
 
 | Say something like | Team | Command |
 |---|---|---|
-| "Help me launch my business" | Launch runs Business, Website, Social and Motion together | `/ultimatum:launch` |
-| "What's stopping people from booking?" | Business: research, plan, build brief | `/ultimatum:business` |
-| "Build me a website for my coffee shop" | Website: brief, mockup you approve, build, browser check | `/ultimatum:website` |
-| "Make a logo reveal video" | Motion graphics: storyboard you approve, animate, timestamped review | `/ultimatum:motion-graphics` |
-| "Plan a week of posts" | Social media: channel, posts, checks, publish only with your yes | `/ultimatum:social-media` |
+| "Help me launch my business" | Launch runs Business, Website, Social and Motion together | `/ultimatum-launch:launch` |
+| "What's stopping people from booking?" | Business: research, plan, build brief | `/ultimatum-launch:business` |
+| "Build me a website for my coffee shop" | Website: brief, mockup you approve, build, browser check | `/ultimatum-launch:website` |
+| "Make a logo reveal video" | Motion graphics: storyboard you approve, animate, timestamped review | `/ultimatum-launch:motion-graphics` |
+| "Plan a week of posts" | Social media: channel, posts, checks, publish only with your yes | `/ultimatum-launch:social-media` |
 | "Fix the CSV export" | Work: discovery, fixes, features, bugs, CI, security, releases | `/ultimatum:work` |
 
-Plain questions stay in normal chat. A typed command always wins over the router's guess.
+The first five rows need the Ultimatum Launch plugin; the last one is the core plugin. Plain questions stay in normal chat. A typed command always wins over the router's guess.
 
 ## How it stays honest
 
@@ -32,7 +33,7 @@ Plain questions stay in normal chat. A typed command always wins over the router
 - **Evidence before claims.** No "fixed" or "passes" without a check run in the session.
 - **Local first.** The toolbelt is Python standard library with no network access, and what Ultimatum learns stays on your machine unless you choose to share it.
 
-See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) for everything that ships.
+See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) and [`plugins/ultimatum-launch/README.md`](plugins/ultimatum-launch/README.md) for everything that ships.
 
 ## Try it locally
 

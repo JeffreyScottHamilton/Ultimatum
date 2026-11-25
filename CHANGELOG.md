@@ -2,6 +2,31 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [launch 0.1.0] - 2026-11-25
+
+First release of **Ultimatum Launch** (`plugins/ultimatum-launch/`), a second plugin in the same marketplace. It depends on `ultimatum`.
+
+### Added
+- Skills `ultimatum-launch:launch`, `business`, `website`, `social-media` and `motion-graphics`, moved from the core plugin and rewritten as short skill files with a `references/` folder each.
+- Launch intake: rounds of 5 to 8 questions with a recommended answer each, a one-page brief approved with `ult gate`, and route files for a small site, SaaS and e-commerce. Licence notes for vendors are marked "check before relying".
+- Business: positioning before visuals, saved to one living `brand/brand.md`.
+- Website: three HTML directions, each with its own motion personality, screenshotted at 375, 768 and 1440 px. A taste critic scores them and needs at least 8/10 within 3 rounds, using an anti-generic list. The product is shown working, a feel bar is applied, and email signup is deferred.
+- Marketing: hook videos, blog and SEO articles, and scripts. A results loop reads numbers about 48 hours after a post and judges by signups, not views. Nothing is posted without approval.
+- Motion graphics, audio first: storyboard, then an audio sheet (ElevenLabs voice settings and a Suno prompt in the style locked in `brand/sound.md`), then animation timed to the voice and beats, then sound effects. An ffmpeg check targets about -14 LUFS and -1 dBTP. Sound effects come from a CC0 pack first, with per-file licence checks logged in `brand/sound-credits.md`.
+- Agents `taste-critic` and `compliance-reviewer`, both read-only.
+- Its own copy of the toolbelt, kept identical to core by `tools/sync_launch_toolbelt.py`. A test and CI fail on drift.
+
+## [1.1.0] - 2026-11-25
+
+### Changed (breaking)
+- The skills `website`, `launch`, `business`, `social-media` and `motion-graphics` moved to the new **Ultimatum Launch** plugin. Typing `/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media` or `/ultimatum:motion-graphics` no longer works. Install `ultimatum-launch@ultimatum` and use `/ultimatum-launch:<name>` instead.
+- `ult-pick` takes `--scope core|launch`. The core hook emits only the work note, and the launch hook emits only the launch notes. With only core installed, website and launch prompts get no workflow note.
+- `/ultimatum:status` and `/ultimatum:doctor` can now be invoked by the model. `/ultimatum:setup` stays user-only.
+- Shorter plugin and marketplace descriptions.
+
+### Fixed
+- TikTok, Instagram Reels and YouTube Shorts requests ("write a week of tiktok posts") now route to Marketing. Plain questions such as "What is TikTok?" stay in chat.
+
 ## [1.0.0] - 2026-11-25
 
 First stable release. Everything below is new since the 0.x previews.

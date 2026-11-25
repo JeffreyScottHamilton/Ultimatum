@@ -21,8 +21,22 @@ from pathlib import Path
 from .common import project_root
 
 PLUGIN = Path(__file__).resolve().parents[2]
-MODULES_PATH = PLUGIN / "skills" / "work" / "modules.json"
-REFS = PLUGIN / "skills" / "work" / "references"
+# A plugin that ships its own copy of this toolbelt (Ultimatum Launch) keeps the core
+# files it needs under shared/core/, at the same relative paths as in the core plugin.
+CORE_COPY = PLUGIN / "shared" / "core"
+
+
+def plugin_file(rel: str) -> Path:
+    """A plugin file by its core-relative path: this plugin's own, else its shared/core copy."""
+    p = PLUGIN / rel
+    if p.exists():
+        return p
+    alt = CORE_COPY / rel
+    return alt if alt.exists() else p
+
+
+MODULES_PATH = plugin_file("skills/work/modules.json")
+REFS = plugin_file("skills/work/references")
 
 PRIORITY = ["sec-fix", "sec-audit", "sec-review", "bug", "ci-pr", "release", "data-infra", "ui",
             "optimize", "handoff", "improve", "skill-eval", "mcp-build", "skill-author",
@@ -58,11 +72,16 @@ _LAUNCH_RE = re.compile(
     r"(?:business|company|brand|shop|store|startup|studio|practice|bakery|salon|cafe|caf\u00e9|agency|offer|service|course)\b|"
     r"\b(?:go[- ]to[- ]market|launch\s+plan|business\s+launch)\b", re.I)
 # A content plan or campaign, not a single post (one tweet is plain writing help).
+_PLATFORM = r"(?:social|tiktok|instagram|insta|ig|linkedin|facebook|fb|youtube|yt|twitter|threads|pinterest|snapchat)"
+_FORMATS = r"(?:posts|content|reels|tiktoks|captions|shorts|stories|carousels)"
 _SOCIAL_RE = re.compile(
     r"\b(?:social\s+media\s+(?:plan|campaign|calendar|strategy|content|posts?)|content\s+(?:calendar|plan|strategy)|"
-    r"(?:week|month|series|batch|set|calendar)\s+of\s+(?:social\s+)?(?:posts|content|reels|tiktoks|captions)|"
-    r"(?:instagram|tiktok|linkedin|facebook|social)\s+(?:campaign|strategy|calendar|plan)|"
-    r"(?:plan|schedule|draft)\s+(?:our|my|the|a|some)?\s*(?:social\s+)?posts)\b", re.I)
+    r"(?:week|month|series|batch|set|calendar|days?)\s+(?:worth\s+)?of\s+(?:" + _PLATFORM + r"\s+)?" + _FORMATS + r"|"
+    + _PLATFORM + r"\s+(?:campaign|strategy|calendar|plan|content\s+plan|posting\s+plan)|"
+    r"(?:plan|schedule|draft|write|brainstorm|outline|script)\s+(?:out\s+)?(?:our|my|the|a|some|a\s+few)?\s*(?:\d+\s+)?"
+    r"(?:(?:social|" + _PLATFORM + r")\s+)?(?:posts|reels|tiktoks|shorts|stories|carousels)|"
+    r"(?:\d+|three|five|ten|a\s+few|some)\s+(?:" + _PLATFORM + r"\s+)?(?:post|reel|tiktok|shorts?|video|content|hook)s?\s+ideas|"
+    + _PLATFORM + r"\s+(?:post|reel|shorts?|video|content|hook)s?\s+ideas)\b", re.I)
 # Business questions: customers, offers, competitors, conversions.
 _BUSINESS_RE = re.compile(
     r"\b(?:what['\u2019]?s|what\s+is)\s+(?:stopping|keeping|holding\s+back)\s+(?:people|customers|visitors|clients|users)|"
@@ -475,11 +494,14 @@ def cat_paths(paths: list[Path]) -> str:
     out = []
     for p in paths:
         if p.is_file():
-            body = p.read_text(encoding="utf-8").rstrip().replace("${CLAUDE_PLUGIN_ROOT}", str(PLUGIN))
+            base = CORE_COPY if CORE_COPY in p.parents else PLUGIN
+            body = p.read_text(encoding="utf-8").rstrip()
+            body = body.replace("${CLAUDE_PLUGIN_ROOT}/scripts/", str(PLUGIN / "scripts") + "/")
+            body = body.replace("${CLAUDE_PLUGIN_ROOT}", str(base))
             try:
                 label = str(p.relative_to(REFS))
             except ValueError:
-                label = str(p.relative_to(PLUGIN))
+                label = str(p.relative_to(base))
             out.append(f"===== {label} =====\n{body}")
     return "\n".join(out)
 
@@ -491,9 +513,9 @@ def cat_refs(d: dict) -> str:
         files.append("security/secure-implementation.md")
     if d["mode"] == "DEEP" and "code-map.md" not in files:
         files.append("code-map.md")
-    paths = [PLUGIN / "shared" / "defaults.md"] + [REFS / f for f in files]
+    paths = [plugin_file("shared/defaults.md")] + [REFS / f for f in files]
     if d["route"] == "release":
-        paths.append(PLUGIN / "skills" / "release" / "SKILL.md")
+        paths.append(plugin_file("skills/release/SKILL.md"))
     return cat_paths(paths)
 
 

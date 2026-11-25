@@ -13,7 +13,7 @@ import shutil
 from pathlib import Path
 
 from .common import project_root, state_dir, write_private
-from .route import PLUGIN, cat_paths, decide, sanitize
+from .route import cat_paths, plugin_file, decide, sanitize
 from .website import approval, brief_path, record_approval
 
 APPROVED_STORYBOARD = "## Approved storyboard"
@@ -151,7 +151,7 @@ def cmd_motion(args) -> int:
         files = list(p["load"])
         if p["overlay"]:
             files.append("skills/work/references/security/secure-implementation.md")
-        print(cat_paths([PLUGIN / f for f in files]))
+        print(cat_paths([plugin_file(f) for f in files]))
     return 0
 
 

@@ -3,15 +3,12 @@
 One skill for the software work a developer actually does in Claude Code. Install it once, then run one command:
 
 ```
-/ultimatum:work <task>        # default: chat and coding
-/ultimatum:website <task>     # websites and landing pages
-/ultimatum:motion-graphics <task>  # short videos: logo reveals, intros, promos
-/ultimatum:launch <task>  # launch: business, website, social and video together
-/ultimatum:business <task>  # research, offers, why people don't book
-/ultimatum:social-media <task>  # channel, posts, tracking, publish gate
+/ultimatum:work <task>        # chat and coding
 ```
 
-`/ultimatum:website` runs a short team flow. For a new site or a redesign, the Manager plans one brief, an optional Designer adds the look, and you get a ChatGPT-ready mockup prompt (or the mockup itself when an image tool is available) to approve before any production code; then a Builder (mobile, desktop, keyboard) and a Reviewer on the real page, compared with what you approved. Small fixes skip the mockup: brief plan, focused fix, browser check. You don't have to type either command: once the plugin is enabled, a plain request such as "Build me a website for my coffee shop", or "Fix the mobile menu" inside a website project, starts the website workflow by itself, and other coding requests such as "Fix the CSV export" start `/ultimatum:work`, with no line needed in your `CLAUDE.md`. "Make a 15 second logo reveal video" starts `/ultimatum:motion-graphics`: brief, story and sound (`ult beats` gives suggested beats or possible cues to check by ear), a storyboard you approve before production animation, then a render and an export check (`ult media`). "Help me launch my business" starts `/ultimatum:launch` (Business drafts a build brief you approve, then Website, Social and Motion work from it; nothing is published without your yes and a checked live link), "What's stopping people from booking?" starts `/ultimatum:business`, and "Plan a week of posts" starts `/ultimatum:social-media`. Plain questions ("What is a closure?", "How does the export module work?") and writing help stay in normal chat. It is a small local prompt hook; `ULTIMATUM_AUTO=0` turns it off. Typed commands always win.
+You don't have to type it: once the plugin is enabled, a coding request such as "Fix the CSV export" starts `/ultimatum:work` through a small local prompt hook, with no line needed in your `CLAUDE.md`. Plain questions ("What is a closure?", "How does the export module work?") and writing help stay in normal chat. `ULTIMATUM_AUTO=0` turns the hook off, and typed commands always win.
+
+Websites, business and brand, marketing, motion graphics and full launches live in the separate **Ultimatum Launch** plugin (`/ultimatum-launch:website`, `/ultimatum-launch:launch` and so on; see [`../ultimatum-launch/README.md`](../ultimatum-launch/README.md)). Since 1.1.0 the core plugin no longer has those commands.
 
 A local router (`ult route`, no model call) reads the task and picks:
 

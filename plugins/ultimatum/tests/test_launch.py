@@ -11,10 +11,10 @@ import sys
 import unittest
 from pathlib import Path
 
-from _harness import PY, SCRIPTS, UltCase
+from _harness import LAUNCH, LAUNCH_SCRIPTS, LaunchCase, pick_hooks
 
-sys.path.insert(0, SCRIPTS)
-PLUGIN = Path(SCRIPTS).parent
+sys.path.insert(0, LAUNCH_SCRIPTS)
+PLUGIN = LAUNCH
 
 FILLED = ("- Audience: busy parents in Leeds\n- Offer: Saturday baking class, 40 GBP\n"
           "- Main visitor action: book a class\n- Pages: home, classes, book\n"
@@ -22,17 +22,12 @@ FILLED = ("- Audience: busy parents in Leeds\n- Offer: Saturday baking class, 40
           "- Checks that show it works: booking form sends\n")
 
 
-def hook(prompt, cwd):
-    env = dict(os.environ)
-    env.pop("ULTIMATUM_AUTO", None)
-    data = json.dumps({"hook_event_name": "UserPromptSubmit", "prompt": prompt, "cwd": str(cwd)})
-    cp = subprocess.run([PY, os.path.join(SCRIPTS, "ult-pick")], input=data, capture_output=True,
-                        text=True, env=env, timeout=30)
-    assert cp.returncode == 0, cp.stderr
-    return cp.stdout
+def hook(prompt, cwd, scopes=("core", "launch")):
+    """Both plugins' UserPromptSubmit hooks, as Claude Code runs them when both are installed."""
+    return pick_hooks(prompt, cwd, scopes)
 
 
-class Base(UltCase):
+class Base(LaunchCase):
     def u(self, *a):
         return self.ult(*a, "--root", str(self.root))
 
@@ -54,17 +49,20 @@ class Base(UltCase):
 
 class PlainChatRouting(Base):
     CASES = {
-        "Help me launch my business": "ultimatum:launch",
-        "What's stopping people from booking?": "ultimatum:business",
-        "What’s stopping people from booking?": "ultimatum:business",
-        "Build a website": "ultimatum:website",
-        "Fix the mobile menu": "ultimatum:website",
-        "Plan a week of posts": "ultimatum:social-media",
-        "Make a motion graphic": "ultimatum:motion-graphics",
+        "Help me launch my business": "ultimatum-launch:launch",
+        "What's stopping people from booking?": "ultimatum-launch:business",
+        "What’s stopping people from booking?": "ultimatum-launch:business",
+        "Build a website": "ultimatum-launch:website",
+        "Fix the mobile menu": "ultimatum-launch:website",
+        "Plan a week of posts": "ultimatum-launch:social-media",
+        "write a week of tiktok posts": "ultimatum-launch:social-media",
+        "plan instagram reels for my bakery": "ultimatum-launch:social-media",
+        "make 5 youtube shorts ideas": "ultimatum-launch:social-media",
+        "Make a motion graphic": "ultimatum-launch:motion-graphics",
         "Fix the signup form validation bug": "ultimatum:work",
     }
-    SKILLS = {"ultimatum:launch", "ultimatum:business", "ultimatum:website", "ultimatum:social-media",
-              "ultimatum:motion-graphics", "ultimatum:work"}
+    SKILLS = {"ultimatum-launch:launch", "ultimatum-launch:business", "ultimatum-launch:website",
+              "ultimatum-launch:social-media", "ultimatum-launch:motion-graphics", "ultimatum:work"}
 
     def test_each_plain_prompt_starts_one_workflow(self):
         self.write("index.html", "<nav class='menu'></nav>")
@@ -76,12 +74,31 @@ class PlainChatRouting(Base):
                     self.assertNotIn(f'\\"{other}\\"', out)
 
     def test_plain_questions_get_an_answer(self):
-        for q in ("What is a content calendar?", "How does a soft launch work?"):
+        for q in ("What is a content calendar?", "How does a soft launch work?", "What is TikTok?",
+                  "How do instagram reels work?"):
             self.assertEqual(hook(q, self.root), "", q)
 
     def test_slash_commands_win(self):
-        for p in ("/ultimatum:website plan a week of posts", "/ultimatum:social-media build a website"):
+        for p in ("/ultimatum-launch:website plan a week of posts",
+                  "/ultimatum-launch:social-media build a website", "/ultimatum:work build a website"):
             self.assertEqual(hook(p, self.root), "", p)
+
+    def test_each_scope_emits_only_its_own_notes(self):
+        self.write("index.html", "<nav class='menu'></nav>")
+        self.assertEqual(hook("Build a website", self.root, ("core",)), "")
+        self.assertEqual(hook("Fix the signup form validation bug", self.root, ("launch",)), "")
+        core = hook("Fix the signup form validation bug", self.root, ("core",))
+        self.assertIn("ultimatum:work", core)
+        launch = hook("write a week of tiktok posts", self.root, ("launch",))
+        self.assertIn("ultimatum-launch:social-media", launch)
+        self.assertNotIn("ultimatum:work", launch)
+
+    def test_hooks_pass_their_scope(self):
+        from _harness import CORE
+        core = (CORE / "hooks/hooks.json").read_text()
+        launch = (LAUNCH / "hooks/hooks.json").read_text()
+        self.assertIn("--scope core", core)
+        self.assertIn("--scope launch", launch)
 
     def test_engineering_words_stay_work(self):
         from ultlib.pick import pick

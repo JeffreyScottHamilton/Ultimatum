@@ -1,5 +1,5 @@
 {
-  "description": "After a compaction, print the saved handoff back into the chat. On Stop, record local usage observations (counts only, nothing printed; ULTIMATUM_OBSERVE=0 turns it off). Before each prompt, website work gets one line pointing Claude to /ultimatum:website and other coding work to /ultimatum:work; plain questions get nothing (ULTIMATUM_AUTO=0 turns it off). Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
+  "description": "After a compaction, print the saved handoff back into the chat. On Stop, record local usage observations (counts only, nothing printed; ULTIMATUM_OBSERVE=0 turns it off). Before each prompt, coding work gets one line pointing Claude to /ultimatum:work; plain questions get nothing, and website, video, launch, business and social prompts are left to the ultimatum-launch plugin's own hook (ULTIMATUM_AUTO=0 turns both off). Also the chat-size guard, off unless ULTIMATUM_GUARD=1; see the plugin README.",
   "hooks": {
     "SessionStart": [
       {
@@ -33,7 +33,7 @@
           },
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-pick\"",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/ult-pick\" --scope core",
             "timeout": 10
           }
         ]

@@ -1,41 +1,61 @@
 #!/usr/bin/env python3
 """Ultimatum workflow picker: a UserPromptSubmit hook. Local, stdlib only, no network.
 
-It adds one line of context so Ultimatum starts without a slash command:
-- website work (a website named outright, or interface words such as "mobile menu"
-  inside a project that is a website) -> start the ultimatum:website skill;
-- a standalone animated clip or video -> start ultimatum:motion-graphics;
-- a launch, a social media plan or a business question -> ultimatum:launch,
-  ultimatum:social-media or ultimatum:business;
-- other coding work (fix, build, test, review, debug, ship) -> start ultimatum:work.
-Plain questions, writing help and small talk get nothing (ultlib/pick.py), so
-ordinary chats pay no extra tokens. A prompt that
-starts with "/" is an explicit command and is left alone. ULTIMATUM_AUTO=0 turns
-it off. Any error lets the prompt through unchanged.
+It adds one line of context so Ultimatum starts without a slash command. ultlib/pick.py
+decides the workflow; `--scope` decides which ones this copy may announce:
+- `--scope core` (the default, run by the ultimatum plugin): other coding work
+  (fix, build, test, review, debug, ship) -> start ultimatum:work. Launch-type
+  prompts get nothing here.
+- `--scope launch` (run by the ultimatum-launch plugin's own hook): website work,
+  a standalone clip, a launch, a social media plan or a business question ->
+  ultimatum-launch:website, :motion-graphics, :launch, :social-media or :business.
+So the Launch teams are only suggested when that plugin is installed.
+Plain questions, writing help and small talk get nothing, so ordinary chats pay no
+extra tokens. A prompt that starts with "/" is an explicit command and is left alone.
+ULTIMATUM_AUTO=0 turns it off. Any error lets the prompt through unchanged.
 """
 import json
 import os
 import sys
 
+def _start(skill: str, what: str, tail: str) -> str:
+    return (f"Ultimatum: this request is {what}. Start the {skill} skill now "
+            f"(Skill tool, skill \"{skill}\", args: the user's request){tail}")
+
+
 NOTES = {
-    "website": ("Ultimatum: this request is website work. Start the ultimatum:website skill now "
-                "(Skill tool, skill \"ultimatum:website\", args: the user's request) and let it run the whole job."),
-    "motion": ("Ultimatum: this request is a motion graphics clip or video. Start the ultimatum:motion-graphics skill now "
-               "(Skill tool, skill \"ultimatum:motion-graphics\", args: the user's request) and let it run the whole job."),
-    "launch": ("Ultimatum: this request is a launch. Start the ultimatum:launch skill now "
-               "(Skill tool, skill \"ultimatum:launch\", args: the user's request); it runs Business, Website, Social Media "
-               "and Motion and brings every approval back to the user."),
-    "business": ("Ultimatum: this request is a business question. Start the ultimatum:business skill now "
-                 "(Skill tool, skill \"ultimatum:business\", args: the user's request); advice only, no changes unless asked."),
-    "social": ("Ultimatum: this request is a social media plan or campaign. Start the ultimatum:social-media skill now "
-               "(Skill tool, skill \"ultimatum:social-media\", args: the user's request); nothing is posted without approval."),
-    "work": ("Ultimatum: this request is coding work. Start the ultimatum:work skill now "
-             "(Skill tool, skill \"ultimatum:work\", args: the user's request) and follow it."),
+    "launch": {
+        "website": _start("ultimatum-launch:website", "website work", " and let it run the whole job."),
+        "motion": _start("ultimatum-launch:motion-graphics", "a motion graphics clip or video",
+                         " and let it run the whole job."),
+        "launch": _start("ultimatum-launch:launch", "a launch",
+                         "; it runs intake, Business, Website, Marketing and Motion and brings every approval "
+                         "back to the user."),
+        "business": _start("ultimatum-launch:business", "a business question",
+                           "; advice only, no changes unless asked."),
+        "social": _start("ultimatum-launch:social-media", "a social media plan or campaign",
+                         "; nothing is posted without approval."),
+    },
+    "core": {
+        "work": _start("ultimatum:work", "coding work", " and follow it."),
+    },
 }
+
+
+def _scope(argv: list) -> str:
+    for i, a in enumerate(argv):
+        if a.startswith("--scope="):
+            return a.split("=", 1)[1]
+        if a == "--scope" and i + 1 < len(argv):
+            return argv[i + 1]
+    return "core"
 
 
 def main() -> int:
     if os.environ.get("ULTIMATUM_AUTO", "1").strip().lower() in ("0", "false", "no", "off"):
+        return 0
+    notes = NOTES.get(_scope(sys.argv[1:]))
+    if not notes:
         return 0
     sys.dont_write_bytecode = True
     sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
@@ -47,7 +67,7 @@ def main() -> int:
         from pathlib import Path
         from ultlib.pick import pick
         cwd = data.get("cwd") or os.getcwd()
-        note = NOTES.get(pick(prompt[:2000], root=Path(cwd)))
+        note = notes.get(pick(prompt[:2000], root=Path(cwd)))
         if not note:
             return 0
         print(json.dumps({"hookSpecificOutput": {"hookEventName": "UserPromptSubmit",

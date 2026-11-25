@@ -9,20 +9,14 @@ import unittest
 from array import array
 from pathlib import Path
 
-from _harness import PY, SCRIPTS, UltCase
+from _harness import LAUNCH, LAUNCH_SCRIPTS, LaunchCase as UltCase, pick_hooks
 
-sys.path.insert(0, SCRIPTS)
-PLUGIN = Path(SCRIPTS).parent
+sys.path.insert(0, LAUNCH_SCRIPTS)
+PLUGIN = LAUNCH
 
 
 def hook(prompt, cwd):
-    env = dict(os.environ)
-    env.pop("ULTIMATUM_AUTO", None)
-    data = json.dumps({"hook_event_name": "UserPromptSubmit", "prompt": prompt, "cwd": str(cwd)})
-    cp = subprocess.run([PY, os.path.join(SCRIPTS, "ult-pick")], input=data, capture_output=True,
-                        text=True, env=env, timeout=30)
-    assert cp.returncode == 0, cp.stderr
-    return cp.stdout
+    return pick_hooks(prompt, cwd)
 
 
 class PlainChatRouting(UltCase):
@@ -37,22 +31,22 @@ class PlainChatRouting(UltCase):
         self.assertEqual(hook("How does the export module work?", self.root), "")
         cases = {
             "Fix the CSV export": "ultimatum:work",
-            "Build me a website for my coffee shop": "ultimatum:website",
-            "Fix the mobile menu": "ultimatum:website",
-            "Make a 15 second logo reveal video for my bakery": "ultimatum:motion-graphics",
+            "Build me a website for my coffee shop": "ultimatum-launch:website",
+            "Fix the mobile menu": "ultimatum-launch:website",
+            "Make a 15 second logo reveal video for my bakery": "ultimatum-launch:motion-graphics",
         }
         for prompt, skill in cases.items():
             with self.subTest(prompt=prompt):
                 out = hook(prompt, self.root)
                 self.assertIn('"additionalContext"', out)
                 self.assertIn(skill, out)
-                for other in {"ultimatum:work", "ultimatum:website", "ultimatum:motion-graphics"} - {skill}:
+                for other in {"ultimatum:work", "ultimatum-launch:website", "ultimatum-launch:motion-graphics"} - {skill}:
                     self.assertNotIn(f'\\"{other}\\"', out)
 
     def test_animation_inside_a_website_stays_website(self):
         self.site()
         out = hook("Animate the hamburger menu on the landing page", self.root)
-        self.assertIn("ultimatum:website", out)
+        self.assertIn("ultimatum-launch:website", out)
         self.assertNotIn("motion-graphics", out)
 
     def test_motion_questions_get_an_answer_not_a_project(self):

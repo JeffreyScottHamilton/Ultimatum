@@ -1,7 +1,6 @@
 ---
 name: status
-description: Show Ultimatum's version, update state, lessons and pending proposals.
-disable-model-invocation: true
+description: Show Ultimatum's version, update state, lessons and pending proposals. Use when the user asks which Ultimatum version is installed or whether it is up to date.
 ---
 
 Run these and summarize in at most 5 lines (no commentary):

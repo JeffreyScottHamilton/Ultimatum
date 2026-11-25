@@ -14,7 +14,7 @@ from pathlib import Path
 
 from .common import project_root, state_dir, write_private
 from .gates import BRIEF_HEAD, brief_section, status
-from .route import PLUGIN, cat_paths, sanitize
+from .route import cat_paths, plugin_file, sanitize
 from .website import brief_path
 
 BRIEF_FIELDS = ("Audience", "Offer", "Main visitor action", "Pages", "Known business details",
@@ -94,7 +94,7 @@ def cmd_launch(args) -> int:
     print(f"next: {b['next']}")
     print("load: " + ", ".join(b["load"]))
     if args.cat:
-        print(cat_paths([PLUGIN / f for f in b["load"]]))
+        print(cat_paths([plugin_file(f) for f in b["load"]]))
     return 0
 
 
@@ -142,7 +142,7 @@ def cmd_business(args) -> int:
         print(f"rule: {r}")
     print("load: " + ", ".join(p["load"]))
     if args.cat:
-        print(cat_paths([PLUGIN / f for f in p["load"]]))
+        print(cat_paths([plugin_file(f) for f in p["load"]]))
     return 0
 
 
@@ -191,7 +191,7 @@ def cmd_social(args) -> int:
     print(gate + "; no posting, sending, spending or customer-record changes before that")
     print("load: " + ", ".join(p["load"]))
     if args.cat:
-        print(cat_paths([PLUGIN / f for f in p["load"]]))
+        print(cat_paths([plugin_file(f) for f in p["load"]]))
     return 0
 
 

@@ -13,7 +13,7 @@ import re
 from pathlib import Path
 
 from .common import STATE_DIRNAME, project_root, state_dir, write_private
-from .route import PLUGIN, cat_paths, decide, sanitize
+from .route import cat_paths, plugin_file, decide, sanitize
 
 _KEEP_RE = re.compile(r"\b(keep|match|reuse|same as|stick (?:to|with)|don'?t change|no redesign|without changing)\b[^.]{0,30}\b(look|style|styles|design|branding|brand|theme|colou?rs?|fonts?)\b|\bno redesign\b", re.I)
 _NEW_RE = re.compile(r"\b(redesign|re-?style|rebrand|new look|fresh look|new design|new visual|visual direction|from scratch|brand[- ]new|make it look|look (?:better|more|less|modern|premium)|moderni[sz]e|design (?:a|an|the|our|my) )", re.I)
@@ -166,7 +166,7 @@ def format_text(p: dict) -> str:
     if p["size"] == "small":
         lines.append("scope: only the reported bug; findings that were there before your edit are reported, not fixed")
     elif p["approval"] == "waiting":
-        lines.append("gate: brief + design + mockup prompt, then stop until the user approves the look; "
+        lines.append("gate: brief + design + three HTML directions, then stop until the user approves one; "
                      "no production code before that (planner.md)")
     elif p["approval"] == "approved":
         lines.append("gate: approved; build from the brief's Approved direction, then browser review against it")
@@ -195,7 +195,7 @@ def cmd_website(args) -> int:
         files = list(p["load"])
         if p["overlay"]:
             files.append("skills/work/references/security/secure-implementation.md")
-        print(cat_paths([PLUGIN / f for f in files]))
+        print(cat_paths([plugin_file(f) for f in files]))
     return 0
 
 

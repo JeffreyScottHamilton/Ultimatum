@@ -8,7 +8,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from _harness import SCRIPTS, UltCase
+from _harness import LAUNCH, SCRIPTS, LaunchCase, UltCase, pick_hooks
 
 sys.path.insert(0, SCRIPTS)
 from ultlib import route as R  # noqa: E402
@@ -16,6 +16,7 @@ from ultlib.website import plan  # noqa: E402
 
 P = Path(SCRIPTS).parent
 SKILLS = P / "skills"
+LSKILLS = LAUNCH / "skills"  # website and the other launch skills moved to ultimatum-launch
 
 
 def _front(text: str) -> str:
@@ -46,11 +47,11 @@ class WebsiteRouting(unittest.TestCase):
     def test_work_skill_keeps_explicit_command_and_offers_switch(self):
         body = (SKILLS / "work" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("A `workflow:` line (user did not type `/ultimatum:work`)", body)
-        web = (SKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("typed `/ultimatum:website`", web)
+        web = (LSKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("typed `/ultimatum-launch:website`", web)
 
 
-class WebsitePlan(UltCase):
+class WebsitePlan(LaunchCase):
     def test_designer_runs_when_a_new_look_is_asked(self):
         self.write("src/styles.css", "body{}")
         p = plan("Redesign the landing page with a fresh look", root=self.root)
@@ -139,7 +140,7 @@ class SharedSkills(unittest.TestCase):
                 self.assertLessEqual(len(text.encode()), 1536)
 
     def test_website_skill_does_not_load_work(self):
-        body = (SKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
+        body = (LSKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
         self.assertNotIn("work/SKILL.md", body)
         self.assertIn("ult website", body)
 
@@ -147,8 +148,8 @@ class SharedSkills(unittest.TestCase):
         rel = (SKILLS / "release" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("explicit yes", rel)
         self.assertIn("never counts as approval", rel)
-        for name in ("work", "website"):
-            body = (SKILLS / name / "SKILL.md").read_text(encoding="utf-8")
+        for base, name in ((SKILLS, "work"), (LSKILLS, "website")):
+            body = (base / name / "SKILL.md").read_text(encoding="utf-8")
             with self.subTest(skill=name):
                 self.assertIn("explicit yes", body)
         self.assertEqual(R.decide("Build a landing page for our coffee shop")["route"], "ui")
@@ -186,21 +187,15 @@ if __name__ == "__main__":
     unittest.main()
 
 
-class PlainChatPicker(UltCase):
+class PlainChatPicker(LaunchCase):
     """The UserPromptSubmit hook that starts Website or Work from plain chat."""
 
     def pick(self, prompt, cwd=None, auto=None):
-        import json, os, subprocess
-        from _harness import PY, SCRIPTS
-        env = dict(os.environ)
-        env.pop("ULTIMATUM_AUTO", None)
+        import os
+        env = None
         if auto is not None:
-            env["ULTIMATUM_AUTO"] = auto
-        data = json.dumps({"hook_event_name": "UserPromptSubmit", "prompt": prompt, "cwd": str(cwd or self.root)})
-        cp = subprocess.run([PY, os.path.join(SCRIPTS, "ult-pick")], input=data, capture_output=True,
-                            text=True, env=env, timeout=30)
-        self.assertEqual(cp.returncode, 0, cp.stderr)
-        return cp.stdout
+            env = dict(os.environ, ULTIMATUM_AUTO=auto)
+        return pick_hooks(prompt, cwd or self.root, env=env)
 
     def site(self):
         self.write("index.html", "<nav class='menu'></nav>")
@@ -209,24 +204,24 @@ class PlainChatPicker(UltCase):
     def test_new_website_request_starts_website(self):
         out = self.pick("Build me a website for my coffee shop")
         self.assertIn('"additionalContext"', out)
-        self.assertIn("ultimatum:website", out)
+        self.assertIn("ultimatum-launch:website", out)
 
     def test_interface_fix_in_a_website_project_starts_website(self):
         self.site()
-        self.assertIn("ultimatum:website", self.pick("Fix the mobile menu"))
+        self.assertIn("ultimatum-launch:website", self.pick("Fix the mobile menu"))
 
     def test_interface_fix_outside_a_website_project_starts_work(self):
         self.write("app/main.py", "print(1)")
         out = self.pick("Fix the mobile menu")
         self.assertIn("ultimatum:work", out)
-        self.assertNotIn("ultimatum:website", out)
+        self.assertNotIn("ultimatum-launch:website", out)
 
     def test_regular_coding_request_starts_work(self):
         self.site()
         out = self.pick("Fix the CSV export")
         self.assertIn('"additionalContext"', out)
         self.assertIn("ultimatum:work", out)
-        self.assertNotIn("ultimatum:website", out)
+        self.assertNotIn("ultimatum-launch:website", out)
 
     def test_plain_questions_and_writing_help_get_nothing(self):
         self.site()
@@ -243,13 +238,15 @@ class PlainChatPicker(UltCase):
     def test_bad_input_never_blocks(self):
         import os, subprocess
         from _harness import PY, SCRIPTS
-        cp = subprocess.run([PY, os.path.join(SCRIPTS, "ult-pick")], input="not json", capture_output=True, text=True)
-        self.assertEqual((cp.returncode, cp.stdout), (0, ""))
+        for scripts, scope in ((SCRIPTS, "core"), (str(LAUNCH / "scripts"), "launch")):
+            cp = subprocess.run([PY, os.path.join(scripts, "ult-pick"), "--scope", scope], input="not json",
+                                capture_output=True, text=True)
+            self.assertEqual((cp.returncode, cp.stdout), (0, ""))
 
     def test_hook_is_registered_and_skill_runs_the_whole_job(self):
         import json
         from pathlib import Path
-        plug = Path(__file__).resolve().parent.parent
+        plug = LAUNCH
         hooks = json.loads((plug / "hooks/hooks.json").read_text())["hooks"]["UserPromptSubmit"]
         self.assertIn("ult-pick", json.dumps(hooks))
         body = (plug / "skills/website/SKILL.md").read_text()
@@ -264,11 +261,11 @@ class PlainChatPicker(UltCase):
         self.assertIn("scope: only the reported bug", small)
         self.assertNotIn("designer: yes", small)
         new = self.ult("website", "Build me a website for my coffee shop", "--root", str(self.tmp / "empty")).out
-        self.assertIn("gate: brief + design + mockup prompt, then stop", new)
+        self.assertIn("gate: brief + design + three HTML directions, then stop", new)
         self.assertIn("reviewer", new)
 
 
-class VisualApproval(UltCase):
+class VisualApproval(LaunchCase):
     """New sites and redesigns stop for a mockup approval; small fixes never do."""
 
     def test_new_site_stops_for_mockup_approval_before_building(self):
@@ -322,7 +319,7 @@ class VisualApproval(UltCase):
 
     def test_skill_and_planner_spell_out_the_gate(self):
         from pathlib import Path
-        plug = Path(__file__).resolve().parent.parent
+        plug = LAUNCH
         skill = (plug / "skills/website/SKILL.md").read_text()
         for needle in ("**Visual path**", "**Short path**", "stop and wait", "no production code until the user approves",
                        "ult website --approve", "ChatGPT", "No mockup and no approval stop", "compare with the approved direction"):
