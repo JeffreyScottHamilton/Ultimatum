@@ -12,6 +12,8 @@ Ultimatum is the default way of working once it is enabled: short plain answers 
 - **Coding** ("Fix the CSV export") starts `/ultimatum:work`.
 - **Websites, stores, apps, events, social media and video** go to the matching plugin's skill if it is installed: [Website](../ultimatum-website-launch/README.md), [E-commerce](../ultimatum-ecommerce-launch/README.md), [App](../ultimatum-app-launch/README.md), [Event](../ultimatum-event-launch/README.md), [Social media](../ultimatum-social-media/README.md), [Video](../ultimatum-video/README.md). If not, you get a short answer and the `/plugin install <plugin>@ultimatum` line. Each of those plugins is self-contained and none of them needs core.
 
+When a chat starts you see one line: the version, that the skill and toolbelt work, which Ultimatum plugins are on, and whether the chat is held to 200K tokens. If it is not, `ult context --cap 200000` sets `autoCompactWindow` in your user settings for the next chat; a hook cannot change a chat that has already started. `ULTIMATUM_START=0` hides the line.
+
 `ULTIMATUM_AUTO=0` turns the hook off, and typed commands always win.
 
 A local router (`ult route`, no model call) reads the task and picks:

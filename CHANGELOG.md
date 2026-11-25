@@ -2,27 +2,29 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
-## [1.0.0] - 2026-11-25
+## [2.0.0] - 2026-11-25
 
-Ultimatum 1.0.0 is a suite of plugins released together from one marketplace. Every plugin carries version 1.0.0, and each one stands alone: none depends on another.
+Ultimatum 2.0.0 is a suite of plugins released together from one marketplace. Every plugin carries version 2.0.0, and each one stands alone: none depends on another.
 
 | Plugin | What it does |
 |---|---|
-| `ultimatum` | Software work only: routing, coding, debugging, CI, interface work, security review, releases |
+| `ultimatum` | The default way of answering: short answers first, coding work, and a pointer to the right plugin for everything else |
 | `ultimatum-website-launch` | Launching small business, local service, portfolio and creator sites |
 | `ultimatum-ecommerce-launch` | Launching online stores |
 | `ultimatum-app-launch` | Launching web apps, mobile apps and subscription products |
 | `ultimatum-event-launch` | Promoting workshops, classes, webinars, openings, fundraisers and ticketed shows |
 | `ultimatum-social-media` | Social posts, campaigns and video, on their own or outside a launch |
+| `ultimatum-video` | One finished video: product ads, explainers and brand films |
 
 Each launch plugin is one head skill, `launch`, that runs its own Business, Website, Social Media, Brand Film and Motion Graphics teams from guides shipped inside it, with its own `taste-critic` and `compliance-reviewer` agents and its own copy of the `ult` toolbelt. `ultimatum-social-media` is a head of its own, `social-media`, with the Social Media, Motion Graphics, Brand Film and Editors guides. Heads register no hooks.
 
-### Upgrading from the earlier 1.0.0 build
+### Upgrading from 1.0.0
 
-An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will not offer an update for it. Run `/plugin uninstall ultimatum@ultimatum`, then `/plugin marketplace update ultimatum`, then install the plugins you want. The launch and marketing skills (`/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media`, `/ultimatum:motion-graphics`) are gone from core; install the launch plugin for your kind of launch and use `/ultimatum-<kind>-launch:launch`.
+Claude Code offers the update on its own (`claude plugin update ultimatum@ultimatum` forces it). Then install the plugins you want. The launch and marketing skills (`/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media`, `/ultimatum:motion-graphics`) are gone from core; install the launch plugin for your kind of launch and use `/ultimatum-<kind>-launch:launch`.
 
 ### ultimatum
 
+- New `ult-start` SessionStart hook: when a chat starts, one line with the version, a self-check of the work skill and toolbelt, the Ultimatum plugins that are on, and whether the chat is held to 200K tokens. `ult context --cap 200000` sets that cap (`autoCompactWindow` in your user settings) from the next chat. `ULTIMATUM_START=0` turns the line off.
 - The default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Coding goes to `/ultimatum:work`.
 - `ult-pick` (the UserPromptSubmit hook) adds a short style note to plain questions (`ULTIMATUM_STYLE=0` drops it), starts `ultimatum:work` for coding, and sends launch, business, social and video prompts to the matching plugin's skill, or says to install it with `/plugin install <plugin>@ultimatum`.
 - Writing style (shared by every plugin through `shared/defaults.md`): a one-line result by default ("Login works."), with fix and check details only when asked, when a check failed or was skipped, or when the user must decide; otherwise terse bullets, no recap or filler, questions as a numbered list with a recommended answer, and one next step at the end. Easier to scan and fewer tokens.
@@ -87,9 +89,9 @@ An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will 
 - Product and social video uses Higgsfield through its MCP: credit check, plan with costs, yes, one generation, review. Motion graphics is the second choice.
 - ElevenLabs is the default for voice, music and sound effects; Suno stays as a manual option.
 
-### Earlier 1.0.0 build of `ultimatum`
+## [1.0.0]
 
-This is the earlier core-only build, kept for reference. Everything below is new since the 0.x previews.
+The earlier core-only build of `ultimatum`. Everything below is new since the 0.x previews.
 
 
 

@@ -1,8 +1,6 @@
 # Ultimatum
 
-**Build, check and launch with Claude Code.** Ask in plain chat and Ultimatum sends the job to the right team: code, business research, websites, social media, motion graphics or brand film. Every step passes a checker, and nothing is published, posted, deployed or paid for until you approve it.
-
-![Ultimatum workflow map: Launch in the middle, Business and Website on the left, Motion graphics and Social media on the right, shared skills along the top](docs/images/workflow.png)
+**Build, check and launch with Claude Code.** Ask in plain chat: questions get a short answer, code goes to the work skill, and websites, stores, apps, events, social media and video go to the plugin made for them. Every step passes a checker, and nothing is published, posted, deployed or paid for until you approve it.
 
 ## Install
 
@@ -33,21 +31,79 @@ Add the launch plugin for what you are launching, Social Media on its own for po
 | `ultimatum-social-media` | Social posts, campaigns and video, with hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro |
 | `ultimatum-video` | One finished video: Higgsfield product ads, motion-graphics explainers, brand films, with ElevenLabs voice, music and effects |
 
-Upgrading from the earlier 1.0.0 build: it used the same version number, so run `/plugin uninstall ultimatum@ultimatum` and install again. See the [changelog](CHANGELOG.md).
+Upgrading from 1.0.0: Claude Code offers the update itself. See the [changelog](CHANGELOG.md).
 
-## What you can ask
+## How Ultimatum answers
 
-| Say something like | What runs | Command |
+Ultimatum is the default once it is on. Every chat starts with one line: its version, that it works, which Ultimatum plugins are on, and whether the chat is held to 200K tokens.
+
+Then it picks the smallest level that fits, and moves up only when the work turns out bigger. Start a message with `fast:` or `deep:` to choose yourself.
+
+| Level | When | What it does |
 |---|---|---|
-| "Help me launch my coffee shop" | Website Launch: intake, brief, then its Business, Website, Social Media and video teams | `/ultimatum-website-launch:launch` |
-| "Launch my online candle shop" | E-commerce Launch: the same teams with store guidance | `/ultimatum-ecommerce-launch:launch` |
-| "Launch our SaaS invoicing app" | App Launch: the same teams with product guidance | `/ultimatum-app-launch:launch` |
-| "Help me fill my workshop" | Event Launch: intake, ticketing, countdown promotion, run sheet and follow-up | `/ultimatum-event-launch:launch` |
-| "Make a Reel for our new menu" | Social Media: posts and video in the style that fits | `/ultimatum-social-media:social-media` |
-| "Make a 20-second ad for this product" | Video: script, shots, pictures, audio, review, your yes | `/ultimatum-video:video` |
-| "Fix the CSV export" | Work: discovery, fixes, features, bugs, CI, security, releases | `/ultimatum:work` |
+| Answer | A question | 1-3 plain lines first; more only if you ask |
+| FAST | One clear spot to change | Change it, run the closest check, done |
+| STANDARD | A normal fix or feature | Plan, change, test, read the diff |
+| DEEP | Big or spread-out work | Parts with their own checks, a code map, helpers where they save time, one final review |
+| SECURITY | A review, audit or risky change | OWASP-based guides; a second agent re-checks high findings |
+| RECOVERY | After a break or a full chat | Reads the handoff, re-checks what is still true, carries on |
 
-Inside a launch, the manager reads each team's guide when that team's turn comes: Business (research, plan, build brief), Website (brief, mockup you approve, build, browser check), Social Media (posts, checks, publish only after you approve), Motion Graphics (storyboard you approve, animate, timestamped review) and Brand Film (story, sourcing, animatic and cut, each approved). Plain questions stay in normal chat. A typed command always wins.
+Anything that is not code goes to the plugin made for it. If that plugin is not installed, you get a short answer and the line to install it.
+
+## The workflows
+
+![Ultimatum overview: one chat, the right workflow for each job](docs/images/workflow.png)
+
+### Work (core)
+
+![Work workflow](docs/images/work.png)
+
+"Fix the CSV export" → `/ultimatum:work`. Route, find, change, check, read the diff, report in one line.
+Based on: Superpowers, Matt Pocock's skills, Ponytail, Karpathy's guidelines, Caveman, gstack, Graphify, OWASP ASVS and WSTG, Cloudflare's security audit skill.
+
+### Website Launch
+
+![Website Launch workflow](docs/images/website-launch.png)
+
+"Help me launch my coffee shop" → `/ultimatum-website-launch:launch`. Intake, brief you approve, Business, Website (three directions, a mockup you pick, build, browser check), Social, review, publish on your yes, results.
+Based on: Taste, Impeccable, UI/UX Pro Max, shadcn/ui, Radix, GSAP, Playwright, axe-core.
+
+### E-commerce Launch
+
+![E-commerce Launch workflow](docs/images/ecommerce-launch.png)
+
+"Launch my online candle shop" → `/ultimatum-ecommerce-launch:launch`. The Website Launch path plus catalogue, product photos, checkout, a real test order and the first 30 days.
+Based on: the Website Launch sources, plus Shopify and WooCommerce setup and licence notes.
+
+### App Launch
+
+![App Launch workflow](docs/images/app-launch.png)
+
+"Launch our SaaS invoicing app" → `/ultimatum-app-launch:launch`. Positioning, landing page or docs, pricing and billing, onboarding emails, a security check of auth and billing, launch week day by day.
+Based on: the Website Launch sources, plus Ultimatum's own security review.
+
+### Event Launch
+
+![Event Launch workflow](docs/images/event-launch.png)
+
+"Help me fill my workshop" → `/ultimatum-event-launch:launch`. Event page, sign-up or tickets, countdown posts, a test sign-up, a run sheet for the day, follow-up after.
+Based on: the Website Launch and Social Media sources.
+
+### Social Media
+
+![Social Media workflow](docs/images/social-media.png)
+
+"Make a Reel for our new menu" → `/ultimatum-social-media:social-media`. Scope, brand, make, claims and links review, publish on your yes, results by what matters (sign-ups, bookings, sales).
+Based on: Ultimatum's own guides, with hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro.
+
+### Video
+
+![Video workflow](docs/images/video.png)
+
+"Make a 20-second ad for this product" → `/ultimatum-video:video`. Script and shots you approve, pictures (Higgsfield, motion graphics or film), ElevenLabs voice, music and effects, cut, timestamped review, your yes.
+Based on: Higgsfield, ElevenLabs, HyperFrames, ffmpeg, Whisper, librosa, Pexels and Pixabay for licensed footage.
+
+A typed command always wins. Every source is listed with its licence in [`docs/CREDITS.md`](docs/CREDITS.md); all wording and code here are original.
 
 ## How it stays honest
 

@@ -155,7 +155,7 @@ class GuardCase(UltCase):
         cfg = json.loads((Path(SCRIPTS).parent / "hooks" / "hooks.json").read_text())
         guard = "${CLAUDE_PLUGIN_ROOT}/scripts/ult-guard"
         self.assertIn(guard, cfg["hooks"]["UserPromptSubmit"][0]["hooks"][0]["command"])
-        by_matcher = {e["matcher"]: e["hooks"][0]["command"] for e in cfg["hooks"]["SessionStart"]}
+        by_matcher = {e["matcher"]: " ".join(h["command"] for h in e["hooks"]) for e in cfg["hooks"]["SessionStart"]}
         self.assertIn(guard, by_matcher["startup|clear"])
         # the post-compaction hook prints the handoff and never runs the guard
         self.assertIn("handoff show", by_matcher["compact"])

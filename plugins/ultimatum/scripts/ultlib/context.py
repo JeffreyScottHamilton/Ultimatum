@@ -69,7 +69,34 @@ def transcript_stats(path: Path) -> tuple[int, int, float | None]:
     return last, turns, when
 
 
+def set_cap(tokens: int, env=os.environ) -> Path:
+    """Write autoCompactWindow to the user's Claude Code settings; other keys are kept."""
+    path = Path(env.get("CLAUDE_CONFIG_DIR") or Path.home() / ".claude") / "settings.json"
+    data = {}
+    if path.is_file():
+        data = json.loads(path.read_text(encoding="utf-8") or "{}")
+        if not isinstance(data, dict):
+            raise ValueError("settings.json is not a JSON object")
+    data["autoCompactWindow"] = tokens
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".json.ult-tmp")
+    tmp.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, path)
+    return path
+
+
 def cmd_context(args) -> int:
+    if args.cap is not None:
+        if args.cap < 50_000:
+            print("[ult context] --cap must be at least 50000 tokens")
+            return 2
+        try:
+            path = set_cap(args.cap)
+        except (OSError, ValueError) as e:
+            print(f"[ult context] could not set the cap: {e}")
+            return 1
+        print(f"[ult context] autoCompactWindow={args.cap} in {path}; applies from the next chat")
+        return 0
     r = None
     for cand in (Path.cwd().resolve(), project_root()):
         r = latest_context(cand)
@@ -89,4 +116,6 @@ def cmd_context(args) -> int:
 
 def register(sub):
     p = sub.add_parser("context", help="how many tokens each turn of this chat re-reads (exit 3 if high)")
+    p.add_argument("--cap", type=int, help="hold new chats to this many tokens (writes autoCompactWindow "
+                   "in your Claude Code settings), e.g. 200000")
     p.set_defaults(func=cmd_context)

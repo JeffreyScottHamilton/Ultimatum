@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""Ultimatum start check: a SessionStart hook. Local, stdlib only, changes nothing.
+
+When a new chat starts it shows one line to the user:
+  Ultimatum <version> ready · plugins: <installed heads> · context: <window>
+It checks that the work skill is there and that the toolbelt runs (a sample prompt
+is sorted the way the tests expect). The context part says whether this chat is
+held to 200K tokens; if it is not (a 1M model with no cap) it names the one
+command that sets the cap, `ult context --cap 200000`. A hook cannot change the
+window of a chat that has already started, so the cap applies from the next chat.
+ULTIMATUM_START=0 turns it off. Any error is reported, never raised.
+"""
+import json
+import os
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+CAP = 200_000
+HEADS = ("website-launch", "ecommerce-launch", "app-launch", "event-launch", "social-media", "video")
+OFF = ("0", "false", "no", "off")
+
+
+def _json(path: Path) -> dict:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def settings_files(cwd: Path, env=os.environ) -> list:
+    home = Path(env.get("CLAUDE_CONFIG_DIR") or Path.home() / ".claude")
+    return [home / "settings.json", cwd / ".claude" / "settings.json", cwd / ".claude" / "settings.local.json"]
+
+
+def version() -> str:
+    return str(_json(ROOT / ".claude-plugin" / "plugin.json").get("version", "?"))
+
+
+def problems() -> list:
+    out = []
+    if not (ROOT / "skills" / "work" / "SKILL.md").is_file():
+        out.append("work skill missing")
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from ultlib.pick import pick
+        if pick("Fix the CSV export") != "work":
+            out.append("prompt sorting is off")
+    except Exception as e:  # noqa: BLE001 - report, never break the session
+        out.append(f"toolbelt does not load ({type(e).__name__})")
+    return out
+
+
+def heads(files: list) -> list:
+    on = {}
+    for f in files:  # later files override earlier ones, as in Claude Code
+        for key, val in (_json(f).get("enabledPlugins") or {}).items():
+            on[key.split("@", 1)[0]] = bool(val)
+    return [h for h in HEADS if on.get(f"ultimatum-{h}")]
+
+
+def context_note(model: str, files: list, env=os.environ) -> str:
+    cap = env.get("CLAUDE_CODE_AUTO_COMPACT_WINDOW", "").strip()
+    for f in files:
+        cap = str(_json(f).get("autoCompactWindow", "")) or cap
+    if cap.isdigit() and int(cap) <= CAP:
+        return f"context: held to {int(cap) // 1000}K"
+    if "[1m]" in model.lower():
+        return ("context: 1M, not held to 200K. Run `ult context --cap 200000` "
+                "to set it from the next chat")
+    if model:
+        return "context: 200K (model default)"
+    return "context: unknown here"
+
+
+def message(data: dict, env=os.environ) -> str:
+    cwd = Path(data.get("cwd") or os.getcwd())
+    files = settings_files(cwd, env)
+    bad = problems()
+    if bad:
+        return (f"Ultimatum {version()}: not working ({'; '.join(bad)}). "
+                "Reinstall with `/plugin install ultimatum@ultimatum`.")
+    installed = heads(files)
+    model = data.get("model") or ""
+    if isinstance(model, dict):
+        model = model.get("id") or model.get("display_name") or ""
+    parts = [f"Ultimatum {version()} ready",
+             "plugins: " + (", ".join(installed) if installed else "core only"),
+             context_note(str(model), files, env)]
+    return " · ".join(parts)
+
+
+def main() -> int:
+    if os.environ.get("ULTIMATUM_START", "1").strip().lower() in OFF:
+        return 0
+    sys.dont_write_bytecode = True
+    try:
+        raw = sys.stdin.read()
+        data = json.loads(raw) if raw.strip() else {}
+        if not isinstance(data, dict):
+            data = {}
+    except ValueError:
+        data = {}
+    print(json.dumps({"systemMessage": message(data)}))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
