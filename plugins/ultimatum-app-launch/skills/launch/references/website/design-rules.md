@@ -5,7 +5,7 @@ Run this on every direction before the critic, and again on the built site. It l
 ## 1. Plan, de-generic, remove one
 
 1. **Plan (3 lines).** Write the purpose of the page, the one feeling it should leave, and the one thing a visitor will remember. If the third line could describe any site, rewrite it.
-2. **Build** with a deliberate choice for type, colour, space and motion. No default stack.
+2. **Build** with a deliberate choice for type, colour, space and motion (`craft.md`). No default stack.
 3. **De-generic pass.** Reread the page as a stranger. Wherever you can name "that is what every site like this does", change it to something specific to this business: its real photo, number, word or product.
 4. **Remove one element** that does not earn its place. Decoration must carry information.
 

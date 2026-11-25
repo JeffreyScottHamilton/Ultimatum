@@ -39,7 +39,7 @@ An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will 
 ### Team guides (`teams/`, shipped inside each head)
 
 - Business: positioning before visuals, kept in one `brand/brand.md`, with brief, interview and numbers guides.
-- Website: three HTML directions with distinct motion, screenshotted at 375, 768 and 1440 px and scored by the taste critic (8/10 within 3 rounds), plus design rules and a planner. Small fixes skip the mockup but keep the browser check.
+- Website: three HTML directions with distinct motion, screenshotted at 375, 768 and 1440 px and scored by the taste critic (8/10 within 3 rounds), plus design rules, a planner and a craft guide (commit to one tone, display and body type pair, colour variables with one accent, deliberate grid breaks, surface texture, one designed motion moment). Small fixes skip the mockup but keep the browser check.
 - Social Media: picks Brand Film or Motion Graphics per piece, a hook type per post, a results loop read about 48 hours after posting, a weekly top and bottom three, and a learnings log. Nothing is posted without approval.
 - Motion Graphics: storyboard, audio sheet, animation timed to voice and beats, sound effects, and a loudness check (about -14 LUFS, -1 dBTP). Sound effects are CC0 first, with credits logged.
 - Brand Film: story, sourcing, animatic and video gates; legal footage lanes (own footage, free stock, paid stock, AI b-roll) with costs and consent; score-first editing, grading and sound. Spend needs approval, a photoreal AI person is never the hero, and media stays out of Git.
