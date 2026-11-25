@@ -1,0 +1,127 @@
+{
+  "case": "4-ui#t2",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "reuses_dialog": true,
+    "reuses_toast": true,
+    "reuses_button": true,
+    "no_native_confirm": true,
+    "agent_checked_two_viewports": true,
+    "agent_ran_real_browser": true,
+    "probe_375_rows_present": true,
+    "probe_375_no_h_overflow": true,
+    "probe_375_delete_button": true,
+    "probe_375_delete_in_viewport": true,
+    "probe_375_dialog_opens_on_enter": true,
+    "probe_375_focus_in_dialog": true,
+    "probe_375_escape_closes": true,
+    "probe_375_escape_keeps_row": true,
+    "probe_375_confirm_removes_row": true,
+    "probe_375_toast_shown": true,
+    "probe_375_no_page_errors": true,
+    "probe_1280_rows_present": true,
+    "probe_1280_no_h_overflow": true,
+    "probe_1280_delete_button": true,
+    "probe_1280_delete_in_viewport": true,
+    "probe_1280_dialog_opens_on_enter": true,
+    "probe_1280_focus_in_dialog": true,
+    "probe_1280_escape_closes": true,
+    "probe_1280_escape_keeps_row": true,
+    "probe_1280_confirm_removes_row": true,
+    "probe_1280_toast_shown": true,
+    "probe_1280_no_page_errors": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 4,
+    "Read": 2
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Each project row now has a Delete button. It opens a confirmation dialog, and confirming removes the row and shows a toast. I ran it in headless Chrome (Playwright) at 375px and 1280px, and both widths behaved the same.\n\n**What changed**\n- **`app.js`:** the Delete button opens the dialog, and confirming removes the project and shows the toast. The button's accessible name includes the project name.\n- **`styles.css`:** one line so the button doesn't shrink on narrow screens.\n- I reused the existing `Button`, `Dialog` and `Toast` components and the design tokens, so there is no new styling.\n\n**What I checked at each width**\n- There is no horizontal scroll, and every Delete button is fully on screen. This includes the very long unbroken project name, which wraps inside the row.\n- Cancel and Escape both close the dialog and leave all 5 rows in place.\n- Confirming Delete drops the list to 4 rows. The toast reads `Deleted \"<project name>\"`. There were no console errors.\n- I looked at the phone screenshots of the dialog and the toast. Both render cleanly. The screenshots are saved in the scratchpad.\n\n**Limitations**\n- Deletion only changes the in-memory list, so a page reload brings the project back. That fits the app, which has no backend.\n- After a delete, keyboard focus isn't moved anywhere, because the button that opened the dialog is gone.\n\nI didn't add a test to `tests/test_static.py`, and I didn't commit anything.",
+  "is_error": false,
+  "num_turns": 7,
+  "duration_ms": 28331,
+  "cost_usd": 0.10947960000000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 14774,
+    "cache_read_input_tokens": 229696,
+    "output_tokens": 2739
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 2739,
+      "cacheReadInputTokens": 229696,
+      "cacheCreationInputTokens": 14774,
+      "webSearchRequests": 0,
+      "costUSD": 0.10947960000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 116,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14774,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 29.2,
+  "claude_rc": 0,
+  "invalid": null,
+  "probe_notes": [],
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/4-ui#t2__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/4-ui#t2__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.10947960000000001,
+    "input_tokens": 12,
+    "output_tokens": 2739,
+    "cache_read_tokens": 229696,
+    "cache_write_tokens": 14774,
+    "turns": 7,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 247221
+  }
+}

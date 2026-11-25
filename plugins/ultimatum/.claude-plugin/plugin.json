@@ -1,0 +1,24 @@
+{
+  "name": "ultimatum",
+  "version": "1.0.0",
+  "description": "Ultimatum's default way of working in Claude Code: short plain answers first, deeper work only when needed, helpers only when they save time. A local router handles coding, debugging, CI, interface work, security review and releases with checks run in the session, and points website, store, app, event, social and video jobs to the matching Ultimatum plugin.",
+  "author": {
+    "name": "Jeffrey Scott Hamilton"
+  },
+  "homepage": "https://github.com/JeffreyScottHamilton/Ultimatum",
+  "repository": "https://github.com/JeffreyScottHamilton/Ultimatum",
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "debugging",
+    "design",
+    "handoff",
+    "motion",
+    "security-audit",
+    "self-improvement",
+    "tdd",
+    "token-efficiency",
+    "ui",
+    "workflow"
+  ]
+}

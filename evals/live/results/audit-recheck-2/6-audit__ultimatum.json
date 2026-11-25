@@ -1,0 +1,91 @@
+{
+  "case": "6-audit",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": true,
+    "findings_file_validates": true,
+    "states_missing_scanners": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 12,
+    "Agent": 1
+  },
+  "agent_calls": 1,
+  "agent_types": [
+    "ultimatum:security-verifier"
+  ],
+  "agent_descriptions": [
+    "Verify IDOR candidate"
+  ],
+  "final": "**One confirmed vulnerability: any logged-in user can read other tenants' invoices.** I rated it high with high confidence. The repository is unchanged (`git status` is clean). The audit state is outside it.\n\n## Confirmed\n\n| Sev | ID | Finding | Location |\n|---|---|---|---|\n| High | F-001 | Cross-tenant invoice read (CWE-639). `get_invoice` runs `WHERE id = ?` and never checks the caller's tenant. | `invoicer/handlers/invoices.py:20-23` |\n\n- **Who can do it:** any user with a valid bearer token, whatever their tenant. Invoice ids are sequential integers, so enumerating them is trivial.\n- **What leaks:** customer, amount, date, notes (the fixture's \"A: confidential rate card\") and `tenant_id`.\n- **Proof:** with the repo's own test fixtures, the tenant-B token on `GET /api/invoices/2` returned 200 with tenant A's \"Globex\" invoice and its notes. A fresh verifier reproduced it the other way, with tenant A reading tenant B's invoice 3.\n- **Sibling paths:** list (`invoices.py:12`) and report (`reports.py:18`) filter by tenant, and create uses the caller's tenant (`invoices.py:38`). Get-by-id is the only unscoped path, so it looks like an omission.\n- **Suggested fix (not applied):** add `AND tenant_id = ?` bound to `user[\"tenant_id\"]`, keep the 404 on a miss, and add a negative test. I did not start remediation.\n\n## Rejected leads\n\n- **F-002, `ORDER BY` built with an f-string** (`reports.py:18`, the scanner's one high lead, FP-01): the column and direction come only from allowlist dictionaries with fixed defaults (`reports.py:6-17`). A probe with `sort=amount;DROP` returned 200 with the fallback order.\n- **F-003, XSS in the HTML report** (`templates.py:10,12`, FP-06): `customer` and `created` go through `html.escape`, `amount` is a formatted number, and `notes` is never rendered as HTML.\n- **F-004, `DEMO_API_KEY`** (`tests/fixtures.py:12`, FP-05): a documented test placeholder for a throwaway in-memory database. The app code never imports it.\n- **F-005, TypeError from malformed JSON** (`invoices.py:33`, FP-11): `{\"amount_cents\": null}` or a non-object body gives a 500 for that one request only. I found no shared availability impact, so it is a hardening note.\n\n## What I covered\n\nThe ledger has 18 of 18 items closed.\n\n- **Checked (12):** authn, authz-function, authz-object, injection, output-xss, parsing, business-logic, data-exposure, secrets, crypto, config, dependencies.\n- **Not applicable (6):** session (no cookies or sessions), files, ssrf, ci-cd, deploy-iac, ai-agent. Each has a reason backed by a search or the file list.\n- **How:** I read all 316 lines of the repo by hand and ran the built-in `ult scan`. `python3 -m unittest` passed (10 tests, exit 0). I made no network requests and ran no target code beyond the tests and in-process fixture calls.\n\n## Not covered or unknown\n\n- **Dependency advisories:** unknown. There is no manifest, and semgrep, gitleaks and osv-scanner are not installed.\n- **Hardening notes, not findings:**\n  - Negative `amount_cents` is accepted.\n  - `CONTENT_LENGTH` is uncapped.\n  - There are no `nosniff` or CSP headers on the HTML response.\n- **Outside the repo:** tokens are stored in plaintext, and nothing in the repo shows how they are issued or rotated. No TLS, rate limiting or WSGI server config is present.\n- **Verifier line numbers:** it cited some line numbers that don't match the files (for example `app.py:51`). I used my own, taken from the files with `grep -n`.\n\nThe report, findings and ledger are in `/tmp/claude-0/-tmp-claude-0--home-user-Ultimatum-c051b7f5-1efa-5745-8c75-fc5201ebb861-scratchpad-live6-2-6-audit--ultimatum/c722c63c-d549-4fe3-9abf-d223aad5098c/scratchpad/ultimatum/security/`. They are `report.md`, `findings.json`, `ledger.json` and `scan-last.json`. This is a static audit and not evidence of absence.",
+  "is_error": false,
+  "num_turns": 12,
+  "duration_ms": 69610,
+  "cost_usd": 0.3023185,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 33462,
+    "cache_read_input_tokens": 587778,
+    "output_tokens": 7804
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 28,
+      "outputTokens": 9443,
+      "cacheReadInputTokens": 608245,
+      "cacheCreationInputTokens": 38726,
+      "webSearchRequests": 0,
+      "costUSD": 0.3023185,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 448,
+      "cacheCreationEphemeral5mInputTokens": 5264,
+      "cacheCreationEphemeral1hInputTokens": 33462,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 1
+    },
+    "started_in_background": 1,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "ultimatum:security-verifier": 1
+    }
+  },
+  "permission_denials": 0,
+  "wall_s": 73.6,
+  "claude_rc": 0,
+  "invalid": null,
+  "findings_path": "/tmp/claude-0/-tmp-claude-0--home-user-Ultimatum-c051b7f5-1efa-5745-8c75-fc5201ebb861-scratchpad-live6-2-6-audit--ultimatum/c722c63c-d549-4fe3-9abf-d223aad5098c/scratchpad/ultimatum/security/findings.json",
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live6-2/6-audit__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live6-2/6-audit__ultimatum.jsonl"
+}

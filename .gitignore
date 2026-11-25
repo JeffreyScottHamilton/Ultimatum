@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+/.ultimatum/
+plugins/ultimatum/evals/results/
+reports/
+research_notes/

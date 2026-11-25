@@ -1,0 +1,100 @@
+{
+  "case": "h2-noisy-fail#t3",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "fixed_in_stock": true,
+    "tests_unmodified": true,
+    "changes_confined": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done. The suite now passes: exit 0, 7 tests, OK.\n\n- **Cause:** `reorder_qty` in `inventory/stock.py` computed `packs = need // pack_size`, which rounds down. When the need was smaller than one pack it ordered 0, and otherwise it under-ordered. The test failed with `AssertionError: 0 not greater than or equal to 1`.\n- **Why the output was huge:** that test uses `subTest` over 199 values of `need`, so each failing value printed its own traceback. Before the fix, 183 of the 199 failed (the rest are exact multiples of the pack size). The full log is `repro-20261124-175959-01be` (3949 lines).\n- **Fix:** `packs = -(-need // pack_size)`, which rounds up to whole packs.\n\nI didn't add a regression test because `test_reorder_rounds_up_to_whole_pack` already covers this. I also didn't run it against the old code with the fix reverted, but the failing run above is that red state.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 13603,
+  "cost_usd": 0.086715,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 14275,
+    "cache_read_input_tokens": 202550,
+    "output_tokens": 934
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 934,
+      "cacheReadInputTokens": 202550,
+      "cacheCreationInputTokens": 14275,
+      "webSearchRequests": 0,
+      "costUSD": 0.086715,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 41,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14275,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 14.5,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h2-noisy-fail#t3__v2",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h2-noisy-fail#t3__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.086715,
+    "input_tokens": 10,
+    "output_tokens": 934,
+    "cache_read_tokens": 202550,
+    "cache_write_tokens": 14275,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 217769
+  }
+}

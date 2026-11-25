@@ -1,0 +1,101 @@
+{
+  "case": "h1-symptom#t2",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "cli_runs": true,
+    "rows_correct": true,
+    "grand_total_correct": true,
+    "source_changed": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done. The cause was in `billing/totals.py`. `line_total_cents` used float math and Python's `round()`. Floats can't represent values like 1.005 or 2.675 exactly, and `round()` rounds exact halves to the nearest even number, so some rows came out one cent low. The README says amounts round half up.\n\nI switched the calculation to `Decimal` with `ROUND_HALF_UP`. Spot checks now give 1.005 → 101 cents and 2.675 → 268 cents. `python3 -m unittest` ran 6 tests and all passed. I didn't add a regression test for the half-cent cases.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 9739,
+  "cost_usd": 0.0526127,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 7406,
+    "cache_read_input_tokens": 145427,
+    "output_tokens": 843
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 843,
+      "cacheReadInputTokens": 145427,
+      "cacheCreationInputTokens": 7406,
+      "webSearchRequests": 0,
+      "costUSD": 0.0526127,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7406,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 11.0,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h1-symptom#t2__v2",
+  "transcript": "/tmp/ult-live-h/h1-symptom#t2__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0526127,
+    "input_tokens": 8,
+    "output_tokens": 843,
+    "cache_read_tokens": 145427,
+    "cache_write_tokens": 7406,
+    "turns": 4,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 153684
+  }
+}

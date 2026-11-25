@@ -1,0 +1,101 @@
+{
+  "case": "h6-dedupe#t2",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "behaviour_unchanged": true,
+    "single_implementation": true,
+    "tests_unmodified": true,
+    "source_changed": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I moved the duplicated parsing into a new top-level module, `common_dates.py`. It holds one `FORMATS` tuple and one `parse_date(value, label)` function. The four existing tests pass, including the one that checks the error wording.\n\n- **`schedule/dates.py`:** `parse_due_date` now just calls `parse_date(text, \"due date\")`.\n- **`reports/dates.py`:** `parse_report_date` now just calls `parse_date(value, \"report date\")`.\n\nBoth keep their public names and signatures, so `planner.py` and `summary.py` are untouched. Errors still read `unrecognised due date: ...` and `unrecognised report date: ...`.\n\nThe old `reports.dates.FORMATS` constant is gone from that module. Nothing in the repo used it, but anything outside the repo importing it would break. The new module's `FORMATS` is the same tuple.\n\nI put `common_dates.py` at the repo root because the repo has no shared package. If you'd rather it live somewhere like `utils/`, that's an easy move.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 11404,
+  "cost_usd": 0.0554572,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 7496,
+    "cache_read_input_tokens": 138572,
+    "output_tokens": 1160
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1160,
+      "cacheReadInputTokens": 138572,
+      "cacheCreationInputTokens": 7496,
+      "webSearchRequests": 0,
+      "costUSD": 0.0554572,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 60,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7496,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 12.3,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h6-dedupe#t2__vanilla",
+  "transcript": "/tmp/ult-live-h/h6-dedupe#t2__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0554572,
+    "input_tokens": 8,
+    "output_tokens": 1160,
+    "cache_read_tokens": 138572,
+    "cache_write_tokens": 7496,
+    "turns": 4,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 147236
+  }
+}

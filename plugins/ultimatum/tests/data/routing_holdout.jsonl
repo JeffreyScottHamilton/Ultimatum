@@ -1,0 +1,76 @@
+{"task": "fix typo in the README heading, 'Instalation' should be 'Installation'", "route": "small", "addons": [], "overlay": false, "mode": "FAST"}
+{"task": "rename the author field in the footer component to byline, only that file", "route": "small", "addons": [], "overlay": false, "mode": "FAST"}
+{"task": "logout doesnt clear the session cookie, fix it in routes/auth.js", "route": "small", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "the admin page shows up for non admins, the role check in the nav is missing, fix it", "route": "small", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "bump the default page size from 20 to 50 in utils/paginate.ts", "route": "small", "addons": [], "overlay": false, "mode": "FAST"}
+{"task": "we committed our stripe secret key in config.py, move it to an env var and tell me what to rotate", "route": "small", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "how does the job queue retry logic work here, im new to this repo", "route": "discover", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "walk me thru how the build gets from src to dist", "route": "discover", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "where is config loaded and in what order do env vars override it", "route": "discover", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "explain how the webhook retry logic works, support asked and i dont know it", "route": "discover", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "add a dark mode toggle to settings, not sure if we persist it server side or in localStorage", "route": "feature", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "build a notification preferences screen: email vs push per event type, needs schema, api and ui", "route": "feature", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "add a feature flag helper with per-environment overrides read from env vars", "route": "feature", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "add a refund button to the admin orders page that calls the payments api", "route": "feature", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "CORS blocks the new app.example subdomain from calling our api with cookies, allow credentials for it", "route": "feature", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "add Sentry to the frontend, wire the DSN from env and check release tagging", "route": "feature", "addons": ["integrations"], "overlay": false, "mode": "STANDARD"}
+{"task": "let users upload avatars: check file type and size on the server, store in s3", "route": "feature", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "upgrade every package from node 18 to 22 across the monorepo, 12 packages, parallel is fine", "route": "large", "addons": ["architecture"], "overlay": false, "mode": "DEEP"}
+{"task": "split reporting into three packages and update the 14 importers", "route": "large", "addons": ["architecture"], "overlay": false, "mode": "DEEP"}
+{"task": "move our whole frontend from CRA to vite across the 3 apps, can run in parallel", "route": "large", "addons": ["architecture", "react"], "overlay": false, "mode": "DEEP"}
+{"task": "flaky test in date-picker.spec, fails about 1 in 5 runs on CI", "route": "bug", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "after login the dashboard shows another user's name, only sometimes", "route": "bug", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "prod error: TypeError cannot read property 'id' of undefined in the orders list, sentry trace attached", "route": "bug", "addons": ["production"], "overlay": false, "mode": "STANDARD"}
+{"task": "our React list re-renders forever, a useEffect loop started after the data fetch change", "route": "bug", "addons": ["react"], "overlay": false, "mode": "STANDARD"}
+{"task": "the export query breaks when the sort param has a quote, sql is built by string concat", "route": "bug", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "get this PR green, lint fails on 3 files and the e2e job times out", "route": "ci-pr", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "address the review comments on PR 482, reviewer wants the retry loop extracted", "route": "ci-pr", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "CI is red because secret scanning flagged a token in test fixtures", "route": "ci-pr", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "the deploy workflow gives write permissions to every job, tighten the permissions block", "route": "ci-pr", "addons": ["integrations"], "overlay": true, "mode": "STANDARD"}
+{"task": "restyle the pricing card, better spacing and clear hierarchy, keep our brand palette", "route": "ui", "addons": ["design"], "overlay": false, "mode": "STANDARD"}
+{"task": "our design tokens are inconsistent, spacing scale in tokens.css doesnt match figma, fix the tokens", "route": "ui", "addons": ["design"], "overlay": false, "mode": "STANDARD"}
+{"task": "the Dropdown in our next app re-renders on every keystroke, memoize it", "route": "ui", "addons": ["react"], "overlay": false, "mode": "STANDARD"}
+{"task": "the modal slides in too abruptly, add an ease-out fade and respect reduced motion", "route": "ui", "addons": ["motion"], "overlay": false, "mode": "STANDARD"}
+{"task": "pick a table component library for our React admin, need sorting and virtualization, MIT preferred", "route": "ui", "addons": ["components"], "overlay": false, "mode": "STANDARD"}
+{"task": "dropzone copy says Drop files here, change it to Drag your PDF here, that's all", "route": "ui", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "page transitions feel janky on the settings tab switch, add a short animation", "route": "ui", "addons": ["motion", "react"], "overlay": false, "mode": "STANDARD"}
+{"task": "which component library for date pickers, our stack is vue 3 and we need accessibility", "route": "ui", "addons": ["components"], "overlay": false, "mode": "STANDARD"}
+{"task": "add an index on orders.customer_id, the report query takes 9 seconds", "route": "data-infra", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "bump the rds instance from db.t3.medium to db.t3.large in staging via terraform", "route": "data-infra", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "the RLS policy on documents lets users in other tenants read rows, fix the policy", "route": "data-infra", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "write a migration that adds a created_by column to projects and backfills it", "route": "data-infra", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "reduce token usage of our summarizer prompt, it costs too much per call", "route": "optimize", "addons": ["context"], "overlay": false, "mode": "STANDARD"}
+{"task": "the homepage bundle is 1.8MB, get it under 500kb", "route": "optimize", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "search api p95 is 2.4s, make it faster", "route": "optimize", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "chat context keeps growing, trim the tool output we feed back to cut context size", "route": "optimize", "addons": ["context"], "overlay": false, "mode": "STANDARD"}
+{"task": "our image pipeline costs too much on the cloud bill, cut it, we have production metrics", "route": "optimize", "addons": ["production"], "overlay": false, "mode": "STANDARD"}
+{"task": "we're shipping 3.2 tomorrow, do the readiness check and draft release notes", "route": "release", "addons": [], "overlay": false, "mode": "DEEP"}
+{"task": "post-deploy checks for the 2.8 release: migrations applied, smoke tests, error rate", "route": "release", "addons": ["production"], "overlay": false, "mode": "DEEP"}
+{"task": "update the docs for the new flags before we cut the release", "route": "release", "addons": [], "overlay": false, "mode": "DEEP"}
+{"task": "release readiness for the mobile app, check store notes and the version bump", "route": "release", "addons": [], "overlay": false, "mode": "DEEP"}
+{"task": "security review the diff on the export-csv branch before I merge", "route": "sec-review", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "review the diff on feat/markdown-preview for security problems before merge", "route": "sec-review", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "check PR 630 for security problems, it touches our file parser", "route": "sec-review", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "audit the repo for vulnerabilities, thorough pass", "route": "sec-audit", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "find vulnerabilities in the api service, full audit", "route": "sec-audit", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "deep security audit of the backend before our pen test", "route": "sec-audit", "addons": [], "overlay": false, "mode": "SECURITY"}
+{"task": "fix the SQL injection in reports/filter.py, the status param goes straight into the query", "route": "sec-fix", "addons": [], "overlay": true, "mode": "SECURITY"}
+{"task": "remediate the SSRF in the webhook test endpoint, it fetches any URL the user sends", "route": "sec-fix", "addons": [], "overlay": true, "mode": "SECURITY"}
+{"task": "patch the open redirect in the login callback", "route": "sec-fix", "addons": [], "overlay": true, "mode": "SECURITY"}
+{"task": "save progress, I have to stop for today, write the handoff", "route": "handoff", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "resume where we left off on the tooltip alignment fix", "route": "handoff", "addons": [], "overlay": false, "mode": "RECOVERY"}
+{"task": "continue the migration work from yesterday", "route": "handoff", "addons": [], "overlay": false, "mode": "RECOVERY"}
+{"task": "pick up after the compaction, what was I doing", "route": "handoff", "addons": [], "overlay": false, "mode": "RECOVERY"}
+{"task": "do an efficiency review of this session, why so many tokens", "route": "improve", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "daily coach, review my usage and mistakes", "route": "improve", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "learn from this session, what did I keep getting wrong", "route": "improve", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "run the routing eval and tell me accuracy after my router change", "route": "skill-eval", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "improve the trigger phrases of the ultimatum skill, it misses PR review requests", "route": "skill-eval", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "test the skill evaluation harness after my change", "route": "skill-eval", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "build an MCP server in python that exposes a weather lookup tool", "route": "mcp-build", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "make an mcp server for our docs site, read only resources", "route": "mcp-build", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "build an mcp server that runs shell commands for the agent, with permission checks", "route": "mcp-build", "addons": [], "overlay": true, "mode": "STANDARD"}
+{"task": "scaffold an mcp server for sqlite notes with stdio transport", "route": "mcp-build", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "write a claude skill that formats our release notes in house style", "route": "skill-author", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "improve my existing code review skill, it doesnt trigger on PR review requests", "route": "skill-author", "addons": [], "overlay": false, "mode": "STANDARD"}
+{"task": "create a skill that explains our deploy checklist", "route": "skill-author", "addons": [], "overlay": false, "mode": "STANDARD"}

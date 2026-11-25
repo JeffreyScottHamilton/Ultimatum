@@ -1,0 +1,89 @@
+{
+  "case": "6-audit",
+  "arm": "ultimatum",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": false,
+    "states_missing_scanners": true
+  },
+  "passed": false,
+  "score": 0.857,
+  "segments": 2,
+  "tools": {
+    "Read": 4,
+    "Bash": 7,
+    "Agent": 1
+  },
+  "agent_calls": 1,
+  "agent_types": [
+    "ultimatum:security-verifier"
+  ],
+  "agent_descriptions": [
+    "Verify IDOR candidate"
+  ],
+  "final": "I found one confirmed vulnerability: any logged-in user can read other tenants' invoices. I did not modify any project files.\n\nI did not create `.ultimatum/security/` state (ledger, `findings.json`, report), so `ult findings validate` and `render` were not run. The results are in this reply instead.\n\n## Confirmed\n**F-001 (high, confidence high): cross-tenant IDOR in `GET /api/invoices/<id>`**\n- **Where:** `invoicer/handlers/invoices.py:20-23`. The query is `SELECT ... FROM invoices WHERE id = ?` and never uses `user[\"tenant_id\"]`. The route is registered at `invoicer/app.py:10`, and no tenant check runs before it.\n- **Who and what:** any user with a valid bearer token, in any tenant and any role. They can read any other tenant's invoice, including `customer`, `amount_cents` and `notes`, by walking the sequential IDs.\n- **Evidence:** I called the app in-process with the test fixtures.\n  - Tenant B's token on `/api/invoices/2` returned 200 with tenant 1's invoice. The notes field read \"A: confidential rate card\".\n  - Tenant A's token on `/api/invoices/3` returned 200 with tenant 2's invoice.\n- **Why it's an oversight:** `list_invoices` (line 12) does filter by `tenant_id`, so the missing filter is not intended behaviour.\n- **Verification:** a fresh verifier agent, given the candidate but not my reasoning, also confirmed it as high severity with high confidence.\n- **Fix, not applied:** add `AND tenant_id = ?` with `user[\"tenant_id\"]` to the query and return 404 on a miss. The existing tests only cover own-tenant and missing IDs, so they never caught this.\n\n## Leads rejected\n- **`builtin:sql-string-build` at `invoicer/handlers/reports.py:18` (f-string in ORDER BY):** rejected under FP-01. Both interpolated values come only from the fixed dictionaries `SORT_COLUMNS` and `DIRECTIONS`, with a default fallback. `tenant_id` is bound as a parameter. I sent `sort=x;DROP&dir=asc%20;--` and got a normal 200 response.\n- **`DEMO_API_KEY` in `tests/fixtures.py:12`:** rejected under FP-04 and FP-05. It is a test-only demo value for an in-memory database, and the file documents it as non-secret.\n- **HTML report XSS:** rejected. `templates.py` applies `html.escape` to `customer` and `created`, `amount` is numeric, and `notes` is not rendered.\n- **SQL injection elsewhere:** rejected. Every other query is parameterised.\n- **Admin route:** no finding. `admin.list_tenants` checks `is_admin` at `invoicer/handlers/admin.py:6`.\n- **`POST /api/invoices` with a non-object JSON body (e.g. `[1]`):** this raises an unhandled `TypeError`, because only `ValueError` and `KeyError` are caught at `invoicer/handlers/invoices.py:34`. It affects only the single request, so I treat it as a robustness issue (FP-11), not a vulnerability. The server's behaviour on an uncaught exception depends on how it is deployed, which I couldn't check.\n- **Negative `amount_cents`, and `CONTENT_LENGTH` handling:** noted as business-logic and hardening observations. I found no demonstrated security boundary being crossed.\n\n## Covered\nAll 15 tracked files were read in full: `app.py`, `auth.py`, `db.py`, `http.py`, `templates.py`, the three handlers, the tests and fixtures, and the README.\n- **Areas checked:** authn, authz (function and object), injection, XSS, data exposure, secrets, and parsing.\n- **Not applicable:** there is no file handling, outbound requests, crypto, CI, IaC or AI-agent code, and the repo has no dependencies.\n- **Not checked:** `ult scan` ran only its built-in checks. semgrep, gitleaks and osv-scanner are not installed, so dependency advisories are unknown. I did not review deployment facts (TLS, how tokens are stored, rate limiting). This is a source-only audit and not evidence of absence.\n- **Tests:** `python3 -m unittest` passed, 10 tests.\n- **Housekeeping:** my runs created untracked `__pycache__` directories, which I deleted. `git status` is clean.",
+  "is_error": false,
+  "num_turns": 11,
+  "duration_ms": 40845,
+  "cost_usd": 0.21627920000000003,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 27545,
+    "cache_read_input_tokens": 404787,
+    "output_tokens": 3850
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 22,
+      "outputTokens": 5212,
+      "cacheReadInputTokens": 425327,
+      "cacheCreationInputTokens": 32106,
+      "webSearchRequests": 0,
+      "costUSD": 0.21627920000000003,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 334,
+      "cacheCreationEphemeral5mInputTokens": 4561,
+      "cacheCreationEphemeral1hInputTokens": 27545,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 1
+    },
+    "started_in_background": 1,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "ultimatum:security-verifier": 1
+    }
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/6-audit__ultimatum",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live4/6-audit__ultimatum.jsonl"
+}

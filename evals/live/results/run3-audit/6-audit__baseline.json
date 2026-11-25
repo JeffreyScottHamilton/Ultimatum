@@ -1,0 +1,82 @@
+{
+  "case": "6-audit",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": false,
+    "structured_findings_file": false,
+    "states_missing_scanners": false
+  },
+  "passed": false,
+  "score": 0.571,
+  "segments": 1,
+  "tools": {
+    "Bash": 5,
+    "TaskStop": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "## Security audit of invoicer\n\nI read all 183 lines of application code and the tests. I ran the existing test suite (10 tests, all pass). I also ran a few throwaway requests from a script outside the repo. I changed no files.\n\n### Confirmed vulnerability\n\n**1. Cross-tenant invoice read (IDOR / broken access control), High**\n- **Where:** `invoicer/handlers/invoices.py:19-27`, `get_invoice`.\n- **Cause:** The query is `WHERE id = ?` with no `tenant_id` filter. The list and report handlers do filter by tenant.\n- **Proof:** Tenant B's token (`demo-key-tenant-b`) requested `GET /api/invoices/2`. It got HTTP 200 with Tenant A's invoice, including `\"notes\": \"A: confidential rate card\"`.\n- **Impact:** Any authenticated user can read any tenant's invoices, including the free-text notes. Invoice IDs are sequential integers, so they are easy to enumerate.\n- **Fix:** Add `AND tenant_id = ?` with `user[\"tenant_id\"]`. Return 404 for other tenants' invoices so their existence isn't revealed.\n- **Test gap:** The tests don't cover cross-tenant access to a single invoice.\n\n### Leads rejected\n\n- **SQL injection in the report `ORDER BY`** (`handlers/reports.py`): the query is built with an f-string, but `sort` and `dir` only select values from fixed dictionaries (`SORT_COLUMNS`, `DIRECTIONS`) and unknown values fall back to defaults. I tried `sort=x;DROP&dir=y`: it was ignored and the default order was used. `tenant_id` is bound as a parameter, so this is not exploitable.\n- **XSS in the HTML report** (`templates.py`): `customer` and `created` are passed through `html.escape`, and `amount` is computed from a number. I stored a customer named `<script>`, and it came back as `&lt;script&gt;`. Not exploitable. `notes` is not rendered in the report.\n- **Other SQL injection:** every other query uses `?` placeholders. The `date('now')` in the insert is a constant.\n- **Admin endpoint** (`/api/admin/tenants`): the role check works. Tenant B's member token got 403. The tenant list is global by design, and the endpoint is admin-only.\n- **Authentication:** the token lookup is parameterized, and an empty or missing token gives 401.\n  - Tokens are stored in plaintext, and the lookup is not a constant-time comparison. Neither is practically exploitable through a SQLite equality lookup, so I'm noting them as hardening only.\n- **`DEMO_API_KEY` etc. in `tests/fixtures.py`:** these are documented test values for an in-memory database, not real secrets.\n- **Invoice creation:** `tenant_id` comes from the authenticated user, not from the request body, so a caller can't write into another tenant (no mass assignment).\n  - Input parsing catches `ValueError` and `KeyError`. A JSON body that isn't an object (for example `[]`) would raise `TypeError` and give a 500, but that is a robustness issue, not a security one.\n  - `CONTENT_LENGTH` is read without an upper bound, so a large request could use a lot of memory. Normally the server or proxy limits this. It is a low-severity denial-of-service hardening item.\n\n### Hardening notes (not vulnerabilities)\n\n- There is no rate limiting or token expiry.\n- No security headers are set. The HTML response has no `X-Content-Type-Options` or CSP, though the output is escaped.\n- Error responses don't expose internals.\n\n### What I covered\n\n- **Reviewed:** the router, auth, DB schema, HTTP helpers, templates, all three handler modules, the README, and the test fixtures.\n- **Checked:** authentication, per-tenant authorization on every route, SQL injection, XSS, input validation, and secrets.\n- **Not covered:** the WSGI server or deployment setup, since none is in the repo. I also did no dependency review because there are no third-party dependencies.",
+  "is_error": false,
+  "num_turns": 7,
+  "duration_ms": 145883,
+  "cost_usd": 0.0844298,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 10973,
+    "cache_read_input_tokens": 175378,
+    "output_tokens": 2298
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 2298,
+      "cacheReadInputTokens": 175378,
+      "cacheCreationInputTokens": 10973,
+      "webSearchRequests": 0,
+      "costUSD": 0.0844298,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 79,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 10973,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live3/6-audit__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live3/6-audit__baseline.jsonl"
+}

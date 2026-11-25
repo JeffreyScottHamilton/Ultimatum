@@ -1,0 +1,105 @@
+{
+  "case": "h3-reuse-helper#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "us_formats_match": true,
+    "international_match": true,
+    "no_match_empty": true,
+    "reuses_normalize_phone": true,
+    "no_legacy_clean_phone": true,
+    "feature_tested": false
+  },
+  "passed": false,
+  "score": 0.857,
+  "segments": 1,
+  "tools": {
+    "Grep": 1,
+    "Read": 2,
+    "Bash": 2
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I added `find_by_phone(number)` to `ContactStore` in `contacts/store.py`. I ran it on a few sample numbers, and each lookup returned the right contact. I didn't add tests to `tests/test_store.py` or run the existing ones.\n\nIt reuses `normalize_phone`, the function `add()` already uses to store numbers. The number you search for is converted to the same `+<country><digits>` form as the stored ones. So `(555) 123-4567`, `555.123.4567`, `1-555-123-4567` and `+1 555 123 4567` all match the same contact. International numbers work too, for example `0044 20 7946 0958` matches a stored `+44 20 7946 0958`.\n\nIf the number isn't plausible (for example `\"12\"`), the method returns `[]` instead of raising `ValueError`. I chose that because a search for a bad number should just find nothing. If you'd rather it raise, remove the `try/except`.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 13797,
+  "cost_usd": 0.0614011,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 7811,
+    "cache_read_input_tokens": 175471,
+    "output_tokens": 1259
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1259,
+      "cacheReadInputTokens": 175471,
+      "cacheCreationInputTokens": 7811,
+      "webSearchRequests": 0,
+      "costUSD": 0.0614011,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 85,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7811,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 14.7,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h3-reuse-helper#t1__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h3-reuse-helper#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": false,
+    "graders_pass": false,
+    "total_cost_usd": 0.0614011,
+    "input_tokens": 10,
+    "output_tokens": 1259,
+    "cache_read_tokens": 175471,
+    "cache_write_tokens": 7811,
+    "turns": 6,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 184551
+  }
+}

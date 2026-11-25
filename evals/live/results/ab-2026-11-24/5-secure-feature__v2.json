@@ -1,0 +1,104 @@
+{
+  "case": "5-secure-feature",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "probe_ran": true,
+    "owner_gets_200_content": true,
+    "cross_account_blocked": true,
+    "unauthenticated_401": true,
+    "missing_404": true,
+    "test_covers_cross_account": true,
+    "test_covers_authorized": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done. `GET /api/documents/<id>/download` now returns the document's content as `application/octet-stream`.\n\n- **Boundary checked:** account ownership. The route uses `storage.get_document_for_account`, so a document from another account returns 404, the same as a missing id. Requests without a token get 401 from the existing auth.\n- **Verified:** `python3 -m unittest` ran 9 tests, all OK. The new tests cover downloading your own document, 401 without auth, another account's document, and a missing id. As a check, I temporarily swapped in the unscoped `get_document`. `test_download_other_account_denied` then failed, so the test does catch a missing ownership check. I put the scoped lookup back and the suite passed again.\n- **Changed:** `docs_app/routes.py`, `docs_app/tests/test_documents.py`, and a new endpoint line in `README.md`.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 16039,
+  "cost_usd": 0.0851025,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 12299,
+    "cache_read_input_tokens": 185365,
+    "output_tokens": 1735
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1735,
+      "cacheReadInputTokens": 185365,
+      "cacheCreationInputTokens": 12299,
+      "webSearchRequests": 0,
+      "costUSD": 0.0851025,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 23,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 12299,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 17.1,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live/5-secure-feature__v2",
+  "transcript": "/tmp/ult-live/5-secure-feature__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0851025,
+    "input_tokens": 10,
+    "output_tokens": 1735,
+    "cache_read_tokens": 185365,
+    "cache_write_tokens": 12299,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 199409
+  }
+}

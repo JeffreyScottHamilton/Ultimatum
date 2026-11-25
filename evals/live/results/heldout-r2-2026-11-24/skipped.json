@@ -1,0 +1,67 @@
+[
+  {
+    "case": "h4-serve-file#t3",
+    "arm": "v2",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h5-review#t1",
+    "arm": "vanilla",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h5-review#t1",
+    "arm": "v2",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h5-review#t2",
+    "arm": "vanilla",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h5-review#t2",
+    "arm": "v2",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h5-review#t3",
+    "arm": "vanilla",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h5-review#t3",
+    "arm": "v2",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h6-dedupe#t1",
+    "arm": "vanilla",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h6-dedupe#t1",
+    "arm": "v2",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h6-dedupe#t2",
+    "arm": "vanilla",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h6-dedupe#t2",
+    "arm": "v2",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h6-dedupe#t3",
+    "arm": "vanilla",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  },
+  {
+    "case": "h6-dedupe#t3",
+    "arm": "v2",
+    "reason": "remaining $0.47 < per-run budget $0.50"
+  }
+]

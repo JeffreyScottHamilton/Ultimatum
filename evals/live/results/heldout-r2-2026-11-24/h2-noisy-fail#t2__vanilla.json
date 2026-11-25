@@ -1,0 +1,100 @@
+{
+  "case": "h2-noisy-fail#t2",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "fixed_in_stock": true,
+    "tests_unmodified": true,
+    "changes_confined": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 5
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "The suite passes now: all 7 tests, where before 183 subtests failed.\n\nAll of the failures came from one bug in `reorder_qty` in `inventory/stock.py`. It computed the number of packs with floor division (`need // pack_size`), so it rounded down. For example, a need of 5 with 12-unit packs gave 0 units. The test `test_reorder_rounds_up_to_whole_pack` checks that the order is a whole number of packs and at least `need`, and it failed for every `need` it tried. The huge output was that one failing subtest repeated 183 times, plus the chatty event traces.\n\nI changed it to round up: `packs = -(-need // pack_size)`, which is ceiling division.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 11267,
+  "cost_usd": 0.0608311,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 7869,
+    "cache_read_input_tokens": 211911,
+    "output_tokens": 814
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 814,
+      "cacheReadInputTokens": 211911,
+      "cacheCreationInputTokens": 7869,
+      "webSearchRequests": 0,
+      "costUSD": 0.0608311,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7869,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 12.1,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h2-noisy-fail#t2__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h2-noisy-fail#t2__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0608311,
+    "input_tokens": 12,
+    "output_tokens": 814,
+    "cache_read_tokens": 211911,
+    "cache_write_tokens": 7869,
+    "turns": 6,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 220606
+  }
+}

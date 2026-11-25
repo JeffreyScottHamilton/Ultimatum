@@ -1,0 +1,81 @@
+{
+  "case": "6-audit",
+  "arm": "baseline",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": false,
+    "states_missing_scanners": false
+  },
+  "passed": false,
+  "score": 0.714,
+  "segments": 1,
+  "tools": {
+    "Bash": 5
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "## Security audit of `invoicer`\n\nI read all 15 tracked files, about 290 lines of code. The 10 existing tests pass. I changed no files.\n\n### Confirmed vulnerabilities\n\n**1. Cross-tenant invoice read (IDOR). High severity.**\n- **Where:** `invoicer/handlers/invoices.py:16-24`, `get_invoice`.\n- **Cause:** The query is `WHERE id = ?` with no `tenant_id` filter. `list_invoices` and the report handler both filter by tenant, but this one doesn't.\n- **Reproduced:** Using tenant A's token (`demo-key-not-secret`), `GET /api/invoices/3` returned 200 with tenant B's invoice: customer, amount and notes.\n- **Impact:** Any authenticated user can read any tenant's invoices by walking the sequential integer IDs. This breaks the multi-tenant isolation the README promises.\n- **Fix:** Add `AND tenant_id = ?` with `user[\"tenant_id\"]`, and return 404 on a miss.\n\n**2. Unhandled exception on a non-object JSON body. Low severity.**\n- **Where:** `invoices.py:33`, `create_invoice`.\n- **Cause:** Only `ValueError` and `KeyError` are caught. A body like `[1]` or `5` raises `TypeError`, and a body like `{\"customer\": null}` raises it too. The result is an uncaught exception, which WSGI servers usually turn into a 500.\n- **Reproduced:** Posting `[1]` raised `TypeError`.\n- **Impact:** Robustness and noise only. It needs a valid token and doesn't corrupt state.\n- **Fix:** Add `TypeError` to the `except`.\n\n### Leads I rejected\n\n- **SQL injection in the report `ORDER BY`** (`reports.py`): The f-string only interpolates values taken from the `SORT_COLUMNS` and `DIRECTIONS` allowlists, with fallback defaults. User input never reaches the SQL, and every other query is parameterized.\n- **XSS in the HTML report:** `customer` and `created` go through `html.escape`, and the amount is formatted as a number. `notes` isn't rendered there. The `str.format` templates are static, so there is no format-string injection.\n- **Admin endpoint:** `list_tenants` checks the role server-side, and the role comes from the DB, not the request. It does list all tenants' names and invoice counts, but only to admins, as the README says. Tenant-scoped admins are a design question, not a bug.\n- **Auth bypass:** An empty or malformed bearer token returns no row and gets a 401. The token lookup is parameterized and tokens are unique. Plaintext token storage and non-constant-time lookup are hardening points, not exploitable here.\n- **Route matching:** The `^…$` regexes and `\\d+` IDs block path tricks. A trailing newline can't slip through, because `$` in Python matches before a final `\\n` but the PATH_INFO handling is the server's concern. `int()` on the ID is safe.\n- **Hardcoded secrets:** `DEMO_API_KEY` and the other tokens exist only in `tests/fixtures.py`. They are documented as test-only and grant access to a throwaway in-memory DB.\n- **Negative or oversized `CONTENT_LENGTH`:** A negative value makes `read(-1)` read the whole stream, and a very large one reads that much. The WSGI server normally bounds this, so it is a minor hardening note. There is also no cap on body size or on negative `amount_cents`, which is a validation gap rather than a vulnerability.\n\n### Coverage\n\n- **Reviewed:** all of `app.py`, `auth.py`, `db.py`, `http.py`, `templates.py` and the three handlers. I also read the test fixtures and README.\n- **Checked:** authentication, tenant isolation on every route, authorization on admin, SQL injection, XSS and output encoding, input parsing and error handling, and hardcoded secrets.\n- **Ran:** the unit tests, plus two read-only calls through the in-process app.\n- **Not covered:** deployment, the WSGI server and TLS, rate limiting, and dependencies (there are none beyond the standard library). The tests don't cover the IDOR, which is why it went unnoticed.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 24800,
+  "cost_usd": 0.08124390000000001,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 10588,
+    "cache_read_input_tokens": 174619,
+    "output_tokens": 2141
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 2141,
+      "cacheReadInputTokens": 174619,
+      "cacheCreationInputTokens": 10588,
+      "webSearchRequests": 0,
+      "costUSD": 0.08124390000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 148,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 10588,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 0.0,
+  "claude_rc": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/6-audit__baseline",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/c051b7f5-1efa-5745-8c75-fc5201ebb861/scratchpad/live/6-audit__baseline.jsonl"
+}

@@ -1,0 +1,106 @@
+{
+  "case": "5-secure-feature#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "probe_ran": true,
+    "owner_gets_200_content": true,
+    "cross_account_blocked": true,
+    "unauthenticated_401": true,
+    "missing_404": true,
+    "test_covers_cross_account": true,
+    "test_covers_authorized": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Grep": 1,
+    "Bash": 4,
+    "Read": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I added `GET /api/documents/<id>/download` in `docs_app/routes.py`. The full test suite passes, including the new download tests.\n\n- **Response:** a 200 with the raw file content, sent as an attachment (`Content-Disposition`, `application/octet-stream`, `nosniff`). The filename in the header is sanitized.\n- **Access control:** the lookup is scoped to the caller's account. A document that belongs to another account gets the same 404 as a missing one, so the endpoint doesn't reveal which ids exist. Requests without a valid token get a 401.\n- **Tests and docs:** I added tests for downloading your own document, another account's document (404), a missing id (404) and no auth (401). I also added the endpoint to the README.",
+  "is_error": false,
+  "num_turns": 10,
+  "duration_ms": 21289,
+  "cost_usd": 0.0856124,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 11038,
+    "cache_read_input_tokens": 216264,
+    "output_tokens": 1981
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 1981,
+      "cacheReadInputTokens": 216264,
+      "cacheCreationInputTokens": 11038,
+      "webSearchRequests": 0,
+      "costUSD": 0.0856124,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 11038,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 22.2,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/5-secure-feature#t1__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/5-secure-feature#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.0856124,
+    "input_tokens": 12,
+    "output_tokens": 1981,
+    "cache_read_tokens": 216264,
+    "cache_write_tokens": 11038,
+    "turns": 10,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 229295
+  }
+}

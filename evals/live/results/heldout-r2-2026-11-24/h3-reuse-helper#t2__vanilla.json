@@ -1,0 +1,106 @@
+{
+  "case": "h3-reuse-helper#t2",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "us_formats_match": true,
+    "international_match": true,
+    "no_match_empty": true,
+    "reuses_normalize_phone": true,
+    "no_legacy_clean_phone": true,
+    "feature_tested": false
+  },
+  "passed": false,
+  "score": 0.857,
+  "segments": 1,
+  "tools": {
+    "Grep": 2,
+    "Read": 4,
+    "Edit": 1,
+    "Bash": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I added `ContactStore.find_by_phone(number)` in `contacts/store.py`. It normalizes the query with the existing `normalize_phone`, the same function `add()` uses. It then returns every contact stored with that normalized number, as a list like `find_by_name`.\n\nI checked it with a contact added as `(415) 555-0100`. These queries all found it: `415-555-0100`, `+1 415 555 0100` and `14155550100`.\n\nA query that isn't a plausible number, such as `12`, returns `[]` instead of raising `ValueError`. I haven't run the existing tests or added a test for the new method.",
+  "is_error": false,
+  "num_turns": 9,
+  "duration_ms": 13964,
+  "cost_usd": 0.066275,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 8574,
+    "cache_read_input_tokens": 176990,
+    "output_tokens": 1426
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1426,
+      "cacheReadInputTokens": 176990,
+      "cacheCreationInputTokens": 8574,
+      "webSearchRequests": 0,
+      "costUSD": 0.066275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 44,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 8574,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 14.8,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h3-reuse-helper#t2__vanilla",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-h/h3-reuse-helper#t2__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": false,
+    "graders_pass": false,
+    "total_cost_usd": 0.066275,
+    "input_tokens": 10,
+    "output_tokens": 1426,
+    "cache_read_tokens": 176990,
+    "cache_write_tokens": 8574,
+    "turns": 9,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 187000
+  }
+}

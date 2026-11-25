@@ -1,0 +1,103 @@
+{
+  "case": "h6-dedupe#t1",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "behaviour_unchanged": true,
+    "single_implementation": true,
+    "tests_unmodified": true,
+    "source_changed": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Read": 2,
+    "Grep": 1,
+    "Bash": 2
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "I moved the duplicated parsing into a new shared module, `common/dates.py`. It holds `FORMATS` and `parse_date(text, label)`. The 4 existing tests pass.\n\n- **`schedule/dates.py`:** `parse_due_date` now calls `parse_date(text, \"due date\")`. I kept the private `_FORMATS` name as an alias, in case anything imports it.\n- **`reports/dates.py`:** `parse_report_date` now calls `parse_date(value, \"report date\")`. `FORMATS` stays importable from here.\n\nThe only difference between the two copies was the error wording (\"due date\" vs \"report date\"), so that is the `label` argument. Both functions keep their names and signatures, so `planner.py`, `summary.py` and the tests needed no changes.\n\nI haven't committed anything.",
+  "is_error": false,
+  "num_turns": 6,
+  "duration_ms": 10882,
+  "cost_usd": 0.060603899999999995,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 8472,
+    "cache_read_input_tokens": 138599,
+    "output_tokens": 1284
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1284,
+      "cacheReadInputTokens": 138599,
+      "cacheCreationInputTokens": 8472,
+      "webSearchRequests": 0,
+      "costUSD": 0.060603899999999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 44,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 8472,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 12.0,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live-h/h6-dedupe#t1__vanilla",
+  "transcript": "/tmp/ult-live-h/h6-dedupe#t1__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.060603899999999995,
+    "input_tokens": 8,
+    "output_tokens": 1284,
+    "cache_read_tokens": 138599,
+    "cache_write_tokens": 8472,
+    "turns": 6,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 148363
+  }
+}

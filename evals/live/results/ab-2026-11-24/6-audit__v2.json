@@ -1,0 +1,105 @@
+{
+  "case": "6-audit",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "read_only": true,
+    "idor_confirmed": true,
+    "sqli_lead_rejected_or_qualified": true,
+    "demo_key_not_confirmed": true,
+    "coverage_recorded": true,
+    "structured_findings_file": false,
+    "findings_file_validates": false,
+    "states_missing_scanners": false
+  },
+  "passed": false,
+  "score": 0.625,
+  "segments": 1,
+  "tools": {
+    "Bash": 3
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "**Audit of `invoicer`: one confirmed vulnerability, plus one low-severity robustness bug.** I made no changes. The existing tests pass (`python3 -m unittest`: 10 tests, OK).\n\n## Confirmed\n\n**1. Cross-tenant invoice read (IDOR, high).** `invoicer/handlers/invoices.py:18-26`\n- `get_invoice` runs `SELECT ... FROM invoices WHERE id = ?` and never filters on `user[\"tenant_id\"]`. The other handlers do filter on tenant.\n- I ran it against the app. A tenant 1 token requesting `GET /api/invoices/5`, which belongs to tenant 2, returned 200 with `{\"customer\":\"secret\",\"tenant_id\":2,...,\"notes\":\"n\"}`.\n- Any authenticated user can read any tenant's invoices by walking the numeric IDs.\n- The boundary broken is tenant isolation on the invoice read.\n- Fix: add `AND tenant_id = ?` with `user[\"tenant_id\"]`, and return 404 on a miss.\n- Add a negative test where tenant A requests tenant B's invoice and gets 404.\n- I did not check whether the existing tests cover this.\n\n**2. Unhandled exceptions in `create_invoice` (low, availability).** `invoices.py:30-35`\n- It catches only `ValueError` and `KeyError`.\n- A JSON body of `[1]` raises `TypeError` (list indexed by a string). `{\"amount_cents\": null}` raises `TypeError` from `int(None)`.\n- I reproduced both. The exception propagates out of the WSGI app, so the server returns a 500 instead of a 400.\n- This leaks no data. The fix is to also catch `TypeError`.\n\n## Rejected leads\n\n- **SQL injection in the report `ORDER BY`** (`reports.py:18`). The query is an f-string, but `sort` and `dir` only select values from the fixed `SORT_COLUMNS` and `DIRECTIONS` maps, and the tenant value is bound as a parameter.\n- **XSS in the HTML report** (`templates.py`). `customer` and `created` are passed through `html.escape`, and `amount` is a formatted number. `notes` is not rendered there.\n- **Admin route** (`admin.py`). It checks `is_admin` and returns 403 otherwise. Listing all tenants is the intended behaviour for admins.\n- **Authentication** (`auth.py`). The token lookup uses a parameterized query, and a missing or malformed header returns 401. A non-constant-time token comparison in the database lookup is not practically exploitable here.\n- **Creating an invoice for another tenant.** The tenant ID comes from the authenticated user, not from the request body.\n- **Large or negative `CONTENT_LENGTH`.** Reading an oversized body is a memory risk, but the WSGI server normally bounds it. I treated it as a deployment concern, not a code vulnerability, so I did not report it.\n\n## Covered\n\n- All 5 routes and the router in `app.py`.\n- `auth.py`, `db.py`, `http.py` and `templates.py`.\n- All handlers.\n- The schema and the test fixtures.\n\n## Not covered\n\n- There are no dependencies, CI config or secrets files in the repo.\n- Transport, TLS, rate limiting and token storage and rotation are outside this repository.\n- Response headers, such as the missing `X-Content-Type-Options`, are minor and I did not assess them.",
+  "is_error": false,
+  "num_turns": 4,
+  "duration_ms": 21723,
+  "cost_usd": 0.0887693,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 13495,
+    "cache_read_input_tokens": 147133,
+    "output_tokens": 2006
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2006,
+      "cacheReadInputTokens": 147133,
+      "cacheCreationInputTokens": 13495,
+      "webSearchRequests": 0,
+      "costUSD": 0.0887693,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 99,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 13495,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 22.8,
+  "claude_rc": 0,
+  "invalid": null,
+  "findings_path": null,
+  "workspace": "/tmp/ult-live/6-audit__v2",
+  "transcript": "/tmp/ult-live/6-audit__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": false,
+    "graders_pass": false,
+    "total_cost_usd": 0.0887693,
+    "input_tokens": 8,
+    "output_tokens": 2006,
+    "cache_read_tokens": 147133,
+    "cache_write_tokens": 13495,
+    "turns": 4,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 162642
+  }
+}

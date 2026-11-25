@@ -1,0 +1,132 @@
+{
+  "case": "8-large",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "export_md_runs": true,
+    "export_json_runs": true,
+    "export_csv_runs": true,
+    "bogus_format_fails": true,
+    "readme_documents_export": true,
+    "parallel_workers_used": true,
+    "integrated_review": false
+  },
+  "passed": false,
+  "score": 0.875,
+  "segments": 1,
+  "tools": {
+    "Bash": 10,
+    "Agent": 3,
+    "Write": 6
+  },
+  "agent_calls": 3,
+  "agent_types": [
+    "",
+    "",
+    ""
+  ],
+  "agent_descriptions": [
+    "Markdown exporter",
+    "JSON exporter",
+    "CSV exporter"
+  ],
+  "final": "`notes export --format md|json|csv` now works, and all 21 tests pass. `md` is the default format.\n\n**What I built**\n- **Exporters:** three subagents wrote them in parallel. They are `notes/export/md.py`, `jsonfmt.py` and `csvfmt.py`, each with its own test file. I wired `notes/export/__init__.py` and `notes/cli.py` myself, and added `tests/test_export_cli.py`.\n- **Markdown format:** one `## title` section per note, with an `id / created / tags` line and then the body.\n- **JSON format:** an array of note objects, indented.\n- **CSV format:** header `id,title,body,tags,created`, with tags joined by `;`.\n- **README:** I added an Export section and updated the layout list.\n\n**Review of the integrated result**\n- I read all three exporters and ran each format from the CLI against a note with commas, quotes, a newline and tags. They came out correct, and the CSV quoted the awkward fields properly.\n- Output ends with exactly one newline, because the CLI adds one only when the exporter's text lacks it.\n- An unknown format is rejected by argparse.\n\nI used the cheaper haiku model for the exporter subagents. I didn't commit anything, and there are untracked `__pycache__` directories because the repo has no `.gitignore`.",
+  "is_error": false,
+  "num_turns": 8,
+  "duration_ms": 24405,
+  "cost_usd": 0.120425705,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 14353,
+    "cache_read_input_tokens": 220641,
+    "output_tokens": 3221
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 3221,
+      "cacheReadInputTokens": 220641,
+      "cacheCreationInputTokens": 14353,
+      "webSearchRequests": 0,
+      "costUSD": 0.1117101,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 191,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14353,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 4158,
+      "cacheReadInputTokens": 181668,
+      "cacheCreationInputTokens": 38545,
+      "webSearchRequests": 0,
+      "costUSD": 0.008715605,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 528,
+      "cacheCreationEphemeral5mInputTokens": 38545,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 3,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 3
+    },
+    "started_in_background": 3,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 3,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "general-purpose": 3
+    }
+  },
+  "permission_denials": 0,
+  "wall_s": 25.3,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live/8-large__vanilla",
+  "transcript": "/tmp/ult-live/8-large__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": false,
+    "graders_pass": false,
+    "total_cost_usd": 0.120425705,
+    "input_tokens": 12,
+    "output_tokens": 3221,
+    "cache_read_tokens": 220641,
+    "cache_write_tokens": 14353,
+    "turns": 8,
+    "subagents": 3,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 238227
+  }
+}

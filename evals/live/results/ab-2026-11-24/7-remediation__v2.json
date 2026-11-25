@@ -1,0 +1,102 @@
+{
+  "case": "7-remediation",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "exploit_blocked_get_and_put": true,
+    "same_tenant_get_200": true,
+    "same_tenant_put_200": true,
+    "regression_test_added": true,
+    "regression_covers_put": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done. Cross-tenant invoice access is closed.\n\n- **Boundary:** the tenant boundary on `/api/invoices/<id>`. A user from one tenant could read (`get_invoice`) and overwrite (`update_invoice`) another tenant's invoice by id, because both queries filtered on `id` only.\n- **Fix:** both queries in `invoicer/handlers/invoices.py` now also filter `AND tenant_id = ?` with the caller's tenant. Another tenant's invoice returns 404, the same as a missing one.\n- **Fails before, passes after:**\n  - Two new tests, `test_user_cannot_read_other_tenants_invoice` and `test_user_cannot_update_other_tenants_invoice`, cover this. Run against the unpatched code, both failed with `200 != 404`.\n  - After the patch, `python3 -m unittest discover` passes: 13 tests, OK.\n  - I didn't stash the patch to re-run the same tests as a separate check. The failing run came from writing the tests before patching.\n- **Allowed path:** the existing owner tests (`test_get_own_invoice`, `test_update_own_invoice`) still pass.\n- **Variants checked:**\n  - `list_invoices` and `invoice_report` already filter by tenant.\n  - `create_invoice` takes the tenant from the session.\n  - The admin tenant list is outside the invoice scope.\n  - No other invoice routes exist in `app.py`.\n- **Not run:** `ult run` logging, `ult findings validate`, and a pass over other handlers for the same pattern beyond the invoice routes.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 17262,
+  "cost_usd": 0.1019307,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 16301,
+    "cache_read_input_tokens": 189067,
+    "output_tokens": 1780
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1780,
+      "cacheReadInputTokens": 189067,
+      "cacheCreationInputTokens": 16301,
+      "webSearchRequests": 0,
+      "costUSD": 0.1019307,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 37,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 16301,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 18.3,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live/7-remediation__v2",
+  "transcript": "/tmp/ult-live/7-remediation__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.1019307,
+    "input_tokens": 10,
+    "output_tokens": 1780,
+    "cache_read_tokens": 189067,
+    "cache_write_tokens": 16301,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 207158
+  }
+}

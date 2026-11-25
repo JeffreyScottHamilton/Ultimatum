@@ -1,0 +1,103 @@
+{
+  "case": "2-unfamiliar#t2",
+  "arm": "v2",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "summary_runs": true,
+    "amounts_correct": true,
+    "reuses_format_money": true,
+    "reuses_outstanding_for": true,
+    "no_legacy_decoy": true,
+    "test_added": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done. `python3 -m billing.cli summary` now prints one `name<TAB>amount` line per customer. Each amount uses that customer's own currency, so a EUR customer shows `€`.\n\nSample output:\n```\nAcme Corp\t$1,999.50\nGlobex GmbH\t€49.99\nInitech\t$0.00\n```\n\nI added `test_summary` to `billing/tests/test_cli.py`. Before the change, `python3 -m unittest billing.tests.test_cli` failed with 1 error out of 2 tests. After it, `python3 -m unittest` ran 10 tests and all passed. I didn't capture the exact failing assertion line, so the red result is the error count only.\n\nThe change is in `billing/cli.py`. It reuses `invoices.outstanding_for` and `format_money`.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 11950,
+  "cost_usd": 0.087608,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 14063,
+    "cache_read_input_tokens": 200460,
+    "output_tokens": 1129
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 1129,
+      "cacheReadInputTokens": 200460,
+      "cacheCreationInputTokens": 14063,
+      "webSearchRequests": 0,
+      "costUSD": 0.087608,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14063,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 13.5,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/2-unfamiliar#t2__v2",
+  "transcript": "/tmp/claude-0/-home-user-Ultimatum/918c00ce-8a04-5813-ba24-0f3d322bb563/scratchpad/live-o/2-unfamiliar#t2__v2.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.087608,
+    "input_tokens": 10,
+    "output_tokens": 1129,
+    "cache_read_tokens": 200460,
+    "cache_write_tokens": 14063,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 215662
+  }
+}

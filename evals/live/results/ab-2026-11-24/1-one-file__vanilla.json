@@ -1,0 +1,103 @@
+{
+  "case": "1-one-file",
+  "arm": "vanilla",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "only_slugify_changed": true,
+    "no_delegation": true,
+    "no_plan_docs": true
+  },
+  "passed": true,
+  "score": 1.0,
+  "segments": 1,
+  "tools": {
+    "Grep": 1,
+    "Read": 1,
+    "Edit": 1,
+    "Bash": 1
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "`slugify` now keeps digits, so `\"Release 2.0 Notes\"` gives `release-20-notes`. The strip pattern in `textkit/slugify.py` was `[^a-z\\s-]`, which removed every digit. I changed it to `[^a-z0-9\\s-]`. All 10 tests pass, including the existing digit case in `test_slugify.py`.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 7900,
+  "cost_usd": 0.051442299999999996,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 7915,
+    "cache_read_input_tokens": 134163,
+    "output_tokens": 635
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 635,
+      "cacheReadInputTokens": 134163,
+      "cacheCreationInputTokens": 7915,
+      "webSearchRequests": 0,
+      "costUSD": 0.051442299999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 112,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 7915,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 9.3,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live/1-one-file__vanilla",
+  "transcript": "/tmp/ult-live/1-one-file__vanilla.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": true,
+    "graders_pass": true,
+    "total_cost_usd": 0.051442299999999996,
+    "input_tokens": 8,
+    "output_tokens": 635,
+    "cache_read_tokens": 134163,
+    "cache_write_tokens": 7915,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 142721
+  }
+}

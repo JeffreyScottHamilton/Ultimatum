@@ -1,0 +1,101 @@
+{
+  "case": "3-noisy",
+  "arm": "v041",
+  "model": "sonnet",
+  "checks": {
+    "tests_pass": true,
+    "fixed_in_parse": true,
+    "tests_not_edited": true,
+    "key_failure_quoted": true,
+    "raw_output_recoverable": false
+  },
+  "passed": false,
+  "score": 0.8,
+  "segments": 1,
+  "tools": {
+    "Bash": 4
+  },
+  "agent_calls": 0,
+  "agent_types": [],
+  "agent_descriptions": [],
+  "final": "Done.\n\nThe cause was in `parse_amount` in `pipeline/parse.py:17`. It cut the European decimal part to one digit (`frac[:1]`), so `\"1.234,56\"` parsed as 1234.5. I changed it to use the whole fraction. `python3 -m unittest` now passes all 151 tests.",
+  "is_error": false,
+  "num_turns": 5,
+  "duration_ms": 7941,
+  "cost_usd": 0.0731549,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 12137,
+    "cache_read_input_tokens": 188569,
+    "output_tokens": 573
+  },
+  "model_usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 573,
+      "cacheReadInputTokens": 188569,
+      "cacheCreationInputTokens": 12137,
+      "webSearchRequests": 0,
+      "costUSD": 0.0731549,
+      "contextWindow": 200000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 12137,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "permission_denials": 0,
+  "wall_s": 9.0,
+  "claude_rc": 0,
+  "invalid": null,
+  "workspace": "/tmp/ult-live/3-noisy__v041",
+  "transcript": "/tmp/ult-live/3-noisy__v041.jsonl",
+  "arch": {
+    "new_counts": {},
+    "arch_findings": 0,
+    "arch_blocking": 0
+  },
+  "metrics": {
+    "pass": false,
+    "graders_pass": false,
+    "total_cost_usd": 0.0731549,
+    "input_tokens": 10,
+    "output_tokens": 573,
+    "cache_read_tokens": 188569,
+    "cache_write_tokens": 12137,
+    "turns": 5,
+    "subagents": 0,
+    "invalid": false,
+    "arch_measured": true,
+    "arch_blocking": 0,
+    "arch_findings": 0,
+    "total_tokens": 201289
+  }
+}
