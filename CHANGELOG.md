@@ -12,8 +12,10 @@ Ultimatum 1.0.0 is a suite of plugins released together from one marketplace. Ev
 | `ultimatum-website-launch` | Launching small business, local service, portfolio and creator sites |
 | `ultimatum-ecommerce-launch` | Launching online stores |
 | `ultimatum-app-launch` | Launching web apps, mobile apps and subscription products |
+| `ultimatum-event-launch` | Promoting workshops, classes, webinars, openings, fundraisers and ticketed shows |
+| `ultimatum-social-media` | Social posts, campaigns and video, on their own or outside a launch |
 
-Each launch plugin is one head skill, `launch`, that runs its own Business, Website, Social Media, Brand Film and Motion Graphics teams from guides shipped inside it, with its own `taste-critic` and `compliance-reviewer` agents and its own copy of the `ult` toolbelt. Heads register no hooks.
+Each launch plugin is one head skill, `launch`, that runs its own Business, Website, Social Media, Brand Film and Motion Graphics teams from guides shipped inside it, with its own `taste-critic` and `compliance-reviewer` agents and its own copy of the `ult` toolbelt. `ultimatum-social-media` is a head of its own, `social-media`, with the Social Media, Motion Graphics, Brand Film and Editors guides. Heads register no hooks.
 
 ### Upgrading from the earlier 1.0.0 build
 
@@ -37,6 +39,9 @@ An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will 
 - Social Media: picks Brand Film or Motion Graphics per piece, a hook type per post, a results loop read about 48 hours after posting, a weekly top and bottom three, and a learnings log. Nothing is posted without approval.
 - Motion Graphics: storyboard, audio sheet, animation timed to voice and beats, sound effects, and a loudness check (about -14 LUFS, -1 dBTP). Sound effects are CC0 first, with credits logged.
 - Brand Film: story, sourcing, animatic and video gates; legal footage lanes (own footage, free stock, paid stock, AI b-roll) with costs and consent; score-first editing, grading and sound. Spend needs approval, a photoreal AI person is never the hero, and media stays out of Git.
+- Editors: hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro (timeline files, project layout, export), with HyperFrames when there is no editor.
+- Website libraries: when to use React Bits, Watermelon UI and Anime.js, with licence notes.
+- Social Media scope and style guides (own footage, product demo, carousels and stills).
 - Shared licence notes and the two read-only reviewer agents.
 - `tools/sync_plugins.py` copies the guides, agents and toolbelt into every head; `--check` runs in CI and fails on drift. Edit `teams/` and core, never the copies.
 
@@ -54,6 +59,16 @@ An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will 
 
 - Launch manager for web apps, mobile apps, B2B tools, APIs and subscriptions.
 - References: product intake, waitlist, beta and public paths, pricing and billing (with a billing test script and pricing page examples), sign-up and activation, onboarding emails, a launch-week plan, trust basics, 30-day metrics, and common beginner mistakes.
+
+### ultimatum-event-launch
+
+- Launch manager for public events, working back from the date.
+- References: event intake, route, ticketing and sign-up, a countdown promotion plan, a day-of run sheet, follow-up afterwards and a launch checklist.
+
+### ultimatum-social-media
+
+- Social media head for single posts, campaigns and ongoing channels.
+- Picks a video style per piece, plans carousels and posts, and hands edits to the user's editor. Nothing is posted without approval.
 
 ### Earlier 1.0.0 build of `ultimatum`
 

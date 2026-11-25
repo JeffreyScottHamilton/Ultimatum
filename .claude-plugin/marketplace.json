@@ -4,7 +4,7 @@
     "name": "Jeffrey Scott Hamilton"
   },
   "metadata": {
-    "description": "Ultimatum for Claude Code. Every plugin stands alone. The core plugin handles software work; the Website, E-commerce and App Launch plugins each run a whole launch of that kind with their own business, website, social media and video teams."
+    "description": "Ultimatum for Claude Code. Every plugin stands alone. The core plugin handles software work; Social Media makes posts and video; the Website, E-commerce, App and Event Launch plugins each run a whole launch of that kind with their own business, website, social media and video teams."
   },
   "plugins": [
     {
@@ -18,6 +18,19 @@
         "debugging",
         "security",
         "ui"
+      ]
+    },
+    {
+      "name": "ultimatum-social-media",
+      "source": "./plugins/ultimatum-social-media",
+      "description": "Social Media for Ultimatum. Plans and makes social content, from a single post to a campaign or an ongoing channel: video in several styles, carousels and posts, with hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
+      "category": "productivity",
+      "tags": [
+        "social-media",
+        "video",
+        "content",
+        "motion-graphics",
+        "video-editing"
       ]
     },
     {
@@ -55,6 +68,19 @@
         "saas",
         "pricing",
         "onboarding"
+      ]
+    },
+    {
+      "name": "ultimatum-event-launch",
+      "source": "./plugins/ultimatum-event-launch",
+      "description": "Event Launch for Ultimatum. Plans and runs the promotion of a public event, working back from the date: intake, ticketing and sign-up, a countdown promotion plan, a day-of run sheet and the follow-up afterwards. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
+      "category": "productivity",
+      "tags": [
+        "launch",
+        "event",
+        "tickets",
+        "workshop",
+        "promotion"
       ]
     }
   ]

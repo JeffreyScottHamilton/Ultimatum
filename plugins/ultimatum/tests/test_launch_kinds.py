@@ -118,8 +118,9 @@ class KindPluginLayout(unittest.TestCase):
                 self.assertIn("ult gate approve publish", body)
                 for ref in (root / "skills/launch/references").rglob("*.md"):
                     self.assertLessEqual(ref.stat().st_size, 16384, ref)
-                self.assertTrue((root / "skills/launch/references/route.md").is_file())
-                self.assertTrue((root / "skills/launch/references/launch-checklist.md").is_file())
+                refs = root / "skills/launch/references"
+                for name in ("route.md", "launch-checklist.md"):  # flat, or in the kind's own folder
+                    self.assertTrue((refs / name).is_file() or (refs / kind / name).is_file(), name)
 
     def test_shopify_theme_rows_live_with_ecommerce(self):
         from _harness import TEAMS
