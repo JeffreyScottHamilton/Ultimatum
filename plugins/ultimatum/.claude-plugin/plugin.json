@@ -1,7 +1,7 @@
 {
   "name": "ultimatum",
-  "version": "1.3.0",
-  "description": "Developer workflows for Claude Code: a local router sends coding, debugging, CI, UI, security and release work to /ultimatum:work and loads only the guidance it needs. The toolbelt is local and checks every claim.",
+  "version": "1.0.0",
+  "description": "Workflows for Claude Code. A local router reads each request and loads only the guidance it needs for coding, debugging, CI, interface work, security review and releases. Claims are backed by checks run in the session.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },

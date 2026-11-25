@@ -1,6 +1,6 @@
 ---
 name: social-media
-description: "Ultimatum Launch's Marketing workflow. Use it whenever the user asks, in plain chat or with /ultimatum-launch:social-media, for social posts, a content plan or calendar, TikTok, Instagram Reels or YouTube Shorts ideas, hook videos, scripts, blog or SEO articles, or a campaign (\"write a week of tiktok posts\"). It drafts from the brand file, posts nothing without your yes, then reads results after about 48 hours and judges by signups, not views."
+description: "Ultimatum Launch's Marketing workflow. Use it whenever the user asks, in plain chat or with /ultimatum-launch:social-media, for social posts, a content plan or calendar, TikTok, Instagram Reels or YouTube Shorts ideas, hook videos, scripts, blog or SEO articles, or a campaign (\"write a week of tiktok posts\"). It drafts from the brand file, posts nothing without the user's approval, then reads results after about 48 hours and judges by signups, not views."
 argument-hint: "<what to post or write>"
 ---
 

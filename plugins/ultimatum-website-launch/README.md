@@ -1,6 +1,6 @@
 # Ultimatum Website Launch
 
-A launch manager for small business, local service, restaurant or cafe, salon, clinic, trades, agency or consultant, coach, portfolio, creator and personal-brand sites, usually aimed at bookings, calls or enquiries. It runs the shared teams from Ultimatum Launch and every spend, post, publish and deploy waits for your yes.
+A launch manager for small business, local service, restaurant or cafe, salon, clinic, trades, agency or consultant, coach, portfolio, creator and personal-brand sites, usually aimed at bookings, calls or enquiries. It runs the shared teams from Ultimatum Launch and every spend, post, publish and deploy needs your approval.
 
 It needs the core `ultimatum` plugin and the base `ultimatum-launch` plugin.
 

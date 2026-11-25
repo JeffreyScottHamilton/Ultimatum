@@ -1,6 +1,6 @@
 # Ultimatum
 
-**Build, check and launch with Claude Code.** Ask in plain chat and Ultimatum sends the job to the right team: code, websites, motion graphics, business research or social media. Every step passes a checker, and nothing is published, posted or deployed until you say yes.
+**Build, check and launch with Claude Code.** Ask in plain chat and Ultimatum sends the job to the right team: code, business research, websites, social media, motion graphics or brand film. Every step passes a checker, and nothing is published, posted, deployed or paid for until you approve it.
 
 ![Ultimatum workflow map: Launch in the middle, Business and Website on the left, Motion graphics and Social media on the right, shared skills along the top](docs/images/workflow.png)
 
@@ -9,27 +9,46 @@
 ```
 /plugin marketplace add JeffreyScottHamilton/Ultimatum
 /plugin install ultimatum@ultimatum
-/plugin install ultimatum-launch@ultimatum   # optional: websites, brand, marketing, video
 /ultimatum:setup
 ```
+
+Add the launch plugins you need. Each launch add-on requires `ultimatum-launch`.
+
+```
+/plugin install ultimatum-launch@ultimatum             # shared teams: business, website, social, video
+/plugin install ultimatum-website-launch@ultimatum     # small business, local service and portfolio sites
+/plugin install ultimatum-ecommerce-launch@ultimatum   # online stores
+/plugin install ultimatum-app-launch@ultimatum         # web apps, mobile apps, subscriptions
+```
+
+| Plugin | For |
+|---|---|
+| `ultimatum` | Software work: coding, debugging, CI, interface work, security review, releases |
+| `ultimatum-launch` | Shared launch teams used by every add-on below |
+| `ultimatum-website-launch` | Launching a small business, local service, portfolio or creator site |
+| `ultimatum-ecommerce-launch` | Launching an online store |
+| `ultimatum-app-launch` | Launching a web app, mobile app or subscription product |
+
+Upgrading from the earlier 1.0.0 build: it used the same version number, so run `/plugin uninstall ultimatum@ultimatum` and install again. See the [changelog](CHANGELOG.md).
 
 ## What you can ask
 
 | Say something like | Team | Command |
 |---|---|---|
-| "Help me launch my business" | Launch runs Business, Website, Social and Motion together | `/ultimatum-launch:launch` |
+| "Help me launch my business" | Launch runs Business, Website, Social and video together, and hands over to the matching add-on | `/ultimatum-launch:launch` |
 | "What's stopping people from booking?" | Business: research, plan, build brief | `/ultimatum-launch:business` |
 | "Build me a website for my coffee shop" | Website: brief, mockup you approve, build, browser check | `/ultimatum-launch:website` |
 | "Make a logo reveal video" | Motion graphics: storyboard you approve, animate, timestamped review | `/ultimatum-launch:motion-graphics` |
-| "Plan a week of posts" | Social media: channel, posts, checks, publish only with your yes | `/ultimatum-launch:social-media` |
+| "Make an emotional film about our customers" | Brand film: story, sourcing, animatic and cut, each approved | `/ultimatum-launch:brand-film` |
+| "Plan a week of posts" | Social media: channel, posts, checks, publish only after you approve | `/ultimatum-launch:social-media` |
 | "Fix the CSV export" | Work: discovery, fixes, features, bugs, CI, security, releases | `/ultimatum:work` |
 
-The first five rows need the Ultimatum Launch plugin; the last one is the core plugin. Plain questions stay in normal chat. A typed command always wins over the router's guess.
+Every row except the last needs `ultimatum-launch`; the last is the core plugin. Plain questions stay in normal chat. A typed command always wins over the router's guess.
 
 ## How it stays honest
 
 - **Checkers on every step.** A browser reviewer for sites, a timestamped reviewer for videos, a claims and links reviewer for posts. Findings are fixed and rechecked before you see the work.
-- **Six approval stops.** Brief, mockup, storyboard, video, publish and deploy. Each approval is fingerprinted, so if the file changes afterwards you are asked again.
+- **Approval stops.** Brief, mockup, storyboard, story, sourcing, animatic, video, publish and deploy. Each approval is fingerprinted, so if the file changes afterwards you are asked again.
 - **Evidence before claims.** No "fixed" or "passes" without a check run in the session.
 - **Local first.** The toolbelt is Python standard library with no network access, and what Ultimatum learns stays on your machine unless you choose to share it.
 
@@ -77,7 +96,7 @@ Claude Code keeps auto-update off for marketplaces added from GitHub, and a repo
 }
 ```
 
-Merge this with what the file already has. Claude Code then updates the marketplace and the plugin when it starts, so restart it to pick up a new release. Claude Code reads this setting only from user settings, not from project settings. An update installs only when the version in `plugins/ultimatum/.claude-plugin/plugin.json` changes, and only from the default branch (`main`).
+Merge this with what the file already has. Claude Code then updates the marketplace and the plugin when it starts, so restart it to pick up a new release. Claude Code reads this setting only from user settings, not from project settings. A plugin updates only when the version in its `.claude-plugin/plugin.json` changes, and only from the default branch (`main`).
 
 Cloud sessions: install from claude.ai/customize/plugins; each new session downloads the current version. In a session that is already running, `/reload-plugins` picks up an update. Fallback anywhere: `claude plugin update ultimatum@ultimatum`.
 

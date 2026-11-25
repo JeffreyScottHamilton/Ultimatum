@@ -1,6 +1,6 @@
 ---
 name: launch
-description: "Ultimatum E-commerce Launch's manager. Use it whenever the user asks, in plain chat or with /ultimatum-ecommerce-launch:launch, to launch an online store (Shopify, WooCommerce, Etsy-to-own-store, print-on-demand, a small DTC brand). It runs a store intake, writes a one-page brief the user approves, then runs the shared Ultimatum Launch teams (Business, Website, Social Media, video) with an approval before every spend, post and deploy."
+description: "E-commerce Launch manager for online stores: Shopify, WooCommerce, moving from Etsy to an own store, print-on-demand and small DTC brands. Use it in plain chat (\"launch my online shop\") or with /ultimatum-ecommerce-launch:launch. It runs a store intake, writes a one-page brief the user approves, then runs the shared Ultimatum Launch teams (Business, Website, Social Media, video) with an approval before every spend, post and deploy."
 argument-hint: "<the store you are launching>"
 ---
 

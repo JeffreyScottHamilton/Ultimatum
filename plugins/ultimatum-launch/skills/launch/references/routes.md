@@ -1,6 +1,6 @@
 # Routes when no kind plugin is installed
 
-Each kind has its own Launch plugin with deeper steps: `ultimatum-website-launch`, `ultimatum-ecommerce-launch`, `ultimatum-saas-launch`. If the user's kind is installed, hand over to it. If not, use the short notes below, and say once that installing that kind's plugin adds deeper intake, page and launch checklists:
+Each kind has its own Launch plugin with deeper steps: `ultimatum-website-launch`, `ultimatum-ecommerce-launch`, `ultimatum-app-launch`. If the user's kind is installed, hand over to it. If not, use the short notes below, and say once that installing that kind's plugin adds deeper intake, page and launch checklists:
 
 ```
 /plugin install ultimatum-<kind>-launch@ultimatum
@@ -21,7 +21,7 @@ Each kind has its own Launch plugin with deeper steps: `ultimatum-website-launch
 - Product pages: consistent photos, clear titles, honest descriptions, variants that match stock.
 - Video: Motion Graphics for product features and offers; Brand Film for a maker's or founder's story.
 
-## SaaS (software, app, subscription)
+## App (web app, mobile app, software, subscription)
 
 - Path: waitlist → beta → public launch; pick the stage at intake.
 - Site: landing page with one call to action, a pricing page, docs or help.

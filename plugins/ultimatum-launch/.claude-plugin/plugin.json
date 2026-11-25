@@ -1,13 +1,22 @@
 {
   "name": "ultimatum-launch",
-  "version": "0.3.0",
-  "description": "Launch teams for Ultimatum: intake, business and brand, website, marketing, motion graphics and brand films. Every spend, post and deploy waits for your yes.",
+  "version": "1.0.0",
+  "description": "Shared launch teams for Ultimatum: business and brand, website, social media, motion graphics and brand film, with taste and compliance reviewers. Nothing is posted, published, deployed or paid for without your approval.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },
   "homepage": "https://github.com/JeffreyScottHamilton/Ultimatum",
   "repository": "https://github.com/JeffreyScottHamilton/Ultimatum",
   "license": "MIT",
-  "dependencies": ["ultimatum"],
-  "keywords": ["launch", "website", "branding", "marketing", "motion-graphics", "brand-film"]
+  "dependencies": [
+    "ultimatum"
+  ],
+  "keywords": [
+    "launch",
+    "website",
+    "branding",
+    "marketing",
+    "motion-graphics",
+    "brand-film"
+  ]
 }

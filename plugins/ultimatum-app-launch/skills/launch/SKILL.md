@@ -1,22 +1,22 @@
 ---
 name: launch
-description: "Ultimatum SaaS Launch manager. Use it when the user asks, in plain chat or with /ultimatum-saas-launch:launch, to launch a software product: web app, mobile app, B2B tool, API or subscription (\"help me launch my SaaS\"). It runs intake, a one-page brief the user approves, then the shared Ultimatum Launch teams (business, website, social media, video) with SaaS notes, and asks before every post, spend and deploy."
+description: "App Launch manager for software products: web apps, mobile apps, B2B tools, APIs and subscriptions. Use it in plain chat (\"help me launch my app\", \"launch our SaaS\") or with /ultimatum-app-launch:launch. It runs intake, writes a one-page brief the user approves, then runs the shared Ultimatum Launch teams (Business, Website, Social Media, video) with product notes, and asks before every post, spend and deploy."
 argument-hint: "<the product you are launching>"
 ---
 
-# Ultimatum SaaS Launch · Manager
+# Ultimatum App Launch · Manager
 
 Task: $ARGUMENTS (if empty, use the user's latest request)
 
-`ult` = `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ult"`. Guides: `${CLAUDE_PLUGIN_ROOT}/skills/launch/references/` (below, `references/`). Read `${CLAUDE_PLUGIN_ROOT}/shared/defaults.md` once. You are the SaaS Launch Manager; the user talks only to you.
+`ult` = `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ult"`. Guides: `${CLAUDE_PLUGIN_ROOT}/skills/launch/references/` (below, `references/`). Read `${CLAUDE_PLUGIN_ROOT}/shared/defaults.md` once. You are the App Launch Manager; the user talks only to you.
 
 ## Start or resume
 
-Run `ult launch --kind saas --root .`: it prints steps, gate states and a `next:` line. Do that step. An approval reading `changed` means the brief changed after the user's yes: show it again.
+Run `ult launch --kind app --root .`: it prints steps, gate states and a `next:` line. Do that step. An approval reading `changed` means the brief changed after the user's yes: show it again.
 
 ## Teams live in another plugin
 
-They cannot read this plugin's files. Run each with the Skill tool and paste the SaaS notes it needs (audience, pricing, stage, route, the relevant guide sections) into the args:
+They cannot read this plugin's files. Run each with the Skill tool and paste the product notes it needs (audience, pricing, stage, route, the relevant guide sections) into the args:
 
 - `ultimatum-launch:business`, `ultimatum-launch:website`, `ultimatum-launch:social-media`.
 - Video, chosen in the social-media step: `ultimatum-launch:motion-graphics` (product demo, feature, number) or `ultimatum-launch:brand-film` (founder or customer story).

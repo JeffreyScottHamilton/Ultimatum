@@ -1,7 +1,7 @@
 {
   "name": "ultimatum-ecommerce-launch",
-  "version": "0.2.0",
-  "description": "E-commerce Launch for Ultimatum: a manager built for online stores. Platform choice, catalog and product pages, payments, tax, shipping and policies, and a store launch checklist; it runs the shared Ultimatum Launch teams and waits for your yes.",
+  "version": "1.0.0",
+  "description": "E-commerce Launch for Ultimatum. Plans and runs an online store launch: platform and theme choice, catalogue and product photos, payments, tax, shipping, policy pages and a first-30-days review. Requires ultimatum-launch.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },
@@ -15,6 +15,7 @@
   "keywords": [
     "launch",
     "ecommerce",
-    "ultimatum"
+    "online-store",
+    "shopify"
   ]
 }

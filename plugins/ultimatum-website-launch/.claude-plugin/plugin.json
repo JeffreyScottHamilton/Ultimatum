@@ -1,7 +1,7 @@
 {
   "name": "ultimatum-website-launch",
-  "version": "0.2.0",
-  "description": "Website Launch for Ultimatum: a manager built for small business, local service, portfolio and creator sites. Deeper intake, pages and local SEO, and a launch-day checklist; it runs the shared Ultimatum Launch teams and waits for your yes.",
+  "version": "1.0.0",
+  "description": "Website Launch for Ultimatum. Plans and runs the launch of a small business, local service, portfolio or creator site: intake, business-type playbooks, page copy, local SEO and a launch checklist. Requires ultimatum-launch.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },
@@ -15,6 +15,7 @@
   "keywords": [
     "launch",
     "website",
-    "ultimatum"
+    "local-seo",
+    "small-business"
   ]
 }

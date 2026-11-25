@@ -30,7 +30,7 @@ KINDS = {
     "ecommerce": re.compile(r"\b(?:e-?commerce|online\s+(?:store|shop)|store|shop|shopify|woocommerce|etsy|"
                             r"sell(?:ing)?\b[^.]{0,40}?\bonline|sell(?:ing)?\s+(?:products?|my\s+\w+)|products|merch|inventory|"
                             r"checkout|dropship\w*|catalog(?:ue)?|print[- ]on[- ]demand|skus?)\b", re.I),
-    "saas": re.compile(r"\b(?:saas|software|web\s*app|mobile\s+app|app|subscriptions?|"
+    "app": re.compile(r"\b(?:saas|software|web\s*app|mobile\s+app|app|subscriptions?|"
                        r"platform|api|b2b|dashboard|free\s+trial|freemium|sign[- ]?ups?|"
                        r"onboarding|seats?|mrr|churn|product\s+hunt)\b", re.I),
     "website": re.compile(r"\b(?:local|service\s+business|bakery|florist|practice|portfolio|restaurant|caf[eé]|salon|barber|clinic|"
@@ -38,11 +38,11 @@ KINDS = {
                           r"photograph\w*|freelanc\w*|bookings?|appointments?|studio|gym|"
                           r"small\s+business|personal\s+(?:site|brand)|website|landing\s+page)\b", re.I),
 }
-KIND_ORDER = ("ecommerce", "saas", "website")  # tie-break: the more specific kind first
+KIND_ORDER = ("ecommerce", "app", "website")  # tie-break: the more specific kind first
 
 
 def launch_kind(text: str) -> str:
-    """'ecommerce', 'saas', 'website', or '' when the text gives no sign."""
+    """'ecommerce', 'app', 'website', or '' when the text gives no sign."""
     hits = {k: len(KINDS[k].findall(text or "")) for k in KIND_ORDER}
     best = max(KIND_ORDER, key=lambda k: (hits[k], -KIND_ORDER.index(k)))
     return best if hits[best] else ""
@@ -121,7 +121,7 @@ def cmd_launch(args) -> int:
     if b["plugin"]:
         print(f"kind: {b['kind']}  deeper manager: {b['plugin']}:launch (use it if installed; it runs the same teams)")
     else:
-        print("kind: unknown (website, ecommerce or saas); ask in intake, then `ult launch --kind K`")
+        print("kind: unknown (website, ecommerce or app); ask in intake, then `ult launch --kind K`")
     for n, (what, st) in enumerate(b["steps"], 1):
         print(f"{n}. {what}: {st}")
     print("rule: changes to an approved brief and every sign-off go through the Launch Manager")

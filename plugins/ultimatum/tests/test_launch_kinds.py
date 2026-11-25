@@ -1,4 +1,4 @@
-"""The per-kind launch plugins (website, ecommerce, saas): detection, routing, layout and sizes."""
+"""The per-kind launch plugins (website, ecommerce, app): detection, routing, layout and sizes."""
 import json
 import re
 import sys
@@ -18,9 +18,9 @@ class KindDetection(unittest.TestCase):
         "launch my online candle shop": "ecommerce",
         "launch my business selling candles online": "ecommerce",
         "we sell handmade products": "ecommerce",
-        "launch our SaaS invoicing app": "saas",
-        "we are launching our new mobile app next month": "saas",
-        "launch my product on product hunt": "saas",
+        "launch our SaaS invoicing app": "app",
+        "we are launching our new mobile app next month": "app",
+        "launch my product on product hunt": "app",
         "I want to launch my plumbing business": "website",
         "open my new bakery": "website",
         "help me launch my business": "",
@@ -32,7 +32,7 @@ class KindDetection(unittest.TestCase):
                 self.assertEqual(launch_kind(text), kind)
 
     def test_plugin_names(self):
-        self.assertEqual(kind_plugin("saas"), "ultimatum-saas-launch")
+        self.assertEqual(kind_plugin("app"), "ultimatum-app-launch")
 
 
 class KindRouting(unittest.TestCase):
@@ -62,13 +62,13 @@ class KindHookAndBoard(LaunchCase):
     def test_hook_without_a_kind_names_no_kind_plugin(self):
         out = pick_hooks("help me launch my business", self.root, scopes=("launch",))
         self.assertIn("ultimatum-launch:launch", out)
-        self.assertNotRegex(out, r"ultimatum-(website|ecommerce|saas)-launch")
+        self.assertNotRegex(out, r"ultimatum-(website|ecommerce|app)-launch")
 
     def test_board_prints_the_kind(self):
-        r = self.ult("launch", "--root", str(self.root), "--kind", "saas")
+        r = self.ult("launch", "--root", str(self.root), "--kind", "app")
         self.assertEqual(r.code, 0, r.all)
-        self.assertIn("kind: saas", r.out)
-        self.assertIn("ultimatum-saas-launch:launch", r.out)
+        self.assertIn("kind: app", r.out)
+        self.assertIn("ultimatum-app-launch:launch", r.out)
         r = self.ult("launch", "--root", str(self.root))
         self.assertIn("kind: unknown", r.out)
 

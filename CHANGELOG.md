@@ -2,96 +2,64 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
-## [website-launch 0.2.0] - 2026-11-25
-
-### Added
-- `references/by-business-type.md` has playbooks for restaurants and cafes, salons, clinics and health practices, trades, consultants and coaches, portfolios and creators, and studios and gyms. Each covers the main action, must-have pages, best proof, usual video style, common mistakes and the notes to pass to Website.
-- `references/copy.md` covers writing rules, headline patterns with fictional examples, button wording, service and about page templates, using reviews honestly, and meta titles.
-
-### Changed
-- The manager reads the business-type playbook at the route step and passes drafted copy to Website. Intake adds the type's specific questions in round 2.
-
-## [website-launch 0.1.0] - 2026-11-25
-
-First release of **Ultimatum Website Launch** (`plugins/ultimatum-website-launch/`). It is a launch manager for small business, local service, portfolio and creator sites and depends on `ultimatum` and `ultimatum-launch`. It has its own intake, a route (site size, host, domain), pages and local SEO, and a launch-day checklist with 30-day numbers. It runs the shared Launch teams through the Skill tool.
-
-## [ecommerce-launch 0.1.0] - 2026-11-25
-
-First release of **Ultimatum E-commerce Launch** (`plugins/ultimatum-ecommerce-launch/`). It is a launch manager for online stores and depends on `ultimatum` and `ultimatum-launch`. It covers store intake, platform and theme choice, catalogue and product pages, and checkout and operations (payments, tax, shipping, policies, and the Shopify theme licence notes moved here from the base). It also has a store launch checklist with a real test order.
-
-## [saas-launch 0.1.0] - 2026-11-25
-
-First release of **Ultimatum SaaS Launch** (`plugins/ultimatum-saas-launch/`). It is a launch manager for software and app products and depends on `ultimatum` and `ultimatum-launch`. It covers SaaS intake, the waitlist, beta and public paths, pricing and billing, activation and onboarding, and a launch-week checklist with trust basics and 30-day metrics.
-
-## [launch 0.3.0] - 2026-11-25
-
-### Changed
-- Ultimatum Launch is now the shared base for the kind plugins above. The manager detects the kind and hands over to `ultimatum-<kind>-launch:launch` when that plugin is installed. Otherwise it reads the new short `references/routes.md`.
-- The three route files moved into their kind plugins. The Shopify theme rows moved to E-commerce Launch.
-
-## [1.3.0] - 2026-11-25
-
-### Added
-- `ult launch` prints the launch kind (website, ecommerce or saas) and the deeper plugin for it. `--kind` sets the kind by hand.
-- The plain-chat hook names the kind's plugin for a launch request.
-
-### Changed
-- Launch routing catches "launch my online candle shop", "launch our SaaS app" and similar requests. Developer phrases ("launch the app in debug mode", "launch my app in the simulator") stay out.
-- The launch toolbelt sync now covers all four launch plugins.
-
-## [launch 0.2.0] - 2026-11-25
-
-### Added
-- Skill `ultimatum-launch:brand-film` for emotional, story-led films (character or montage). It has four approval gates: story, sourcing, animatic and video. Its references cover story beats, legal footage lanes (the user's own footage, free stock, paid stock, AI b-roll) with a cost table and consent plan, score-first editing and grading, and sound. Spend always needs a yes. A photoreal AI person is never the hero, and media stays out of Git.
-- Social Media picks a video style before briefing a team (`references/video-style.md`): Brand Film when a feeling carried by people is the message, Motion Graphics when it is a feature or a number. Social Media also gains a hook type per piece, a weekly top and bottom 3 review, a niche-outlier study and a learnings log.
-- Website: `references/design-rules.md`. Business: `references/interview.md` and `references/numbers.md`.
-
-### Changed
-- Launch intake, the licence table (8 new rows) and all three route files now cover video, in both film and motion styles.
-- `taste-critic` has a film mode. `compliance-reviewer` has film checks for footage licences, releases, AI labels and C2PA.
-- Motion Graphics: voice-first timing with a frame-timing document per scene, and a hand-off to Brand Film when a feeling is the message. Repeated steps are condensed.
-- Website and Business skills have tighter steps, with their detail moved to references.
-
-## [1.2.0] - 2026-11-25
-
-### Added
-- Film routing: plain-chat requests for a brand film, cinematic or emotional ad, or documentary-style spot now route to `film` (and to `ultimatum-launch:brand-film` when Launch is installed). This check runs before motion.
-- `ult film`: plan (sub-genre, gates, roles, files to load), `--check` (footage manifest, tracked media, voiceover pace) and `--deliver` (manifest check, then the Motion export check).
-- Gates `story`, `sourcing` and `animatic`.
-
-### Changed
-- The `ult social` video step now picks a style first (Brand Film or Motion Graphics). The board shows the film gates.
-
-## [launch 0.1.0] - 2026-11-25
-
-First release of **Ultimatum Launch** (`plugins/ultimatum-launch/`), a second plugin in the same marketplace. It depends on `ultimatum`.
-
-### Added
-- Skills `ultimatum-launch:launch`, `business`, `website`, `social-media` and `motion-graphics`, moved from the core plugin and rewritten as short skill files with a `references/` folder each.
-- Launch intake: rounds of 5 to 8 questions with a recommended answer each, a one-page brief approved with `ult gate`, and route files for a small site, SaaS and e-commerce. Licence notes for vendors are marked "check before relying".
-- Business: positioning before visuals, saved to one living `brand/brand.md`.
-- Website: three HTML directions, each with its own motion personality, screenshotted at 375, 768 and 1440 px. A taste critic scores them and needs at least 8/10 within 3 rounds, using an anti-generic list. The product is shown working, a feel bar is applied, and email signup is deferred.
-- Marketing: hook videos, blog and SEO articles, and scripts. A results loop reads numbers about 48 hours after a post and judges by signups, not views. Nothing is posted without approval.
-- Motion graphics, audio first: storyboard, then an audio sheet (ElevenLabs voice settings and a Suno prompt in the style locked in `brand/sound.md`), then animation timed to the voice and beats, then sound effects. An ffmpeg check targets about -14 LUFS and -1 dBTP. Sound effects come from a CC0 pack first, with per-file licence checks logged in `brand/sound-credits.md`.
-- Agents `taste-critic` and `compliance-reviewer`, both read-only.
-- Its own copy of the toolbelt, kept identical to core by `tools/sync_launch_toolbelt.py`. A test and CI fail on drift.
-
-## [1.1.0] - 2026-11-25
-
-### Changed (breaking)
-- The skills `website`, `launch`, `business`, `social-media` and `motion-graphics` moved to the new **Ultimatum Launch** plugin. Typing `/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media` or `/ultimatum:motion-graphics` no longer works. Install `ultimatum-launch@ultimatum` and use `/ultimatum-launch:<name>` instead.
-- `ult-pick` takes `--scope core|launch`. The core hook emits only the work note, and the launch hook emits only the launch notes. With only core installed, website and launch prompts get no workflow note.
-- `/ultimatum:status` and `/ultimatum:doctor` can now be invoked by the model. `/ultimatum:setup` stays user-only.
-- Shorter plugin and marketplace descriptions.
-
-### Fixed
-- TikTok, Instagram Reels and YouTube Shorts requests ("write a week of tiktok posts") now route to Marketing. Plain questions such as "What is TikTok?" stay in chat.
-
 ## [1.0.0] - 2026-11-25
 
-First stable release. Everything below is new since the 0.x previews.
+Ultimatum 1.0.0 is a suite of five plugins released together from one marketplace. Every plugin in the suite carries version 1.0.0.
 
-### Added
+| Plugin | What it does | Needs |
+|---|---|---|
+| `ultimatum` | Software work: routing, coding, debugging, CI, interface work, security review, releases | nothing |
+| `ultimatum-launch` | Shared launch teams: business, website, social media, motion graphics, brand film, reviewers | `ultimatum` |
+| `ultimatum-website-launch` | Small business, local service, portfolio and creator sites | both above |
+| `ultimatum-ecommerce-launch` | Online stores | both above |
+| `ultimatum-app-launch` | Web apps, mobile apps and subscription products | both above |
+
+### Upgrading from the earlier 1.0.0 build
+
+An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will not offer an update for it. Run `/plugin uninstall ultimatum@ultimatum`, then `/plugin marketplace update ultimatum`, then install the plugins you want. The launch and marketing skills moved out of the core plugin: `/ultimatum:website`, `/ultimatum:launch`, `/ultimatum:business`, `/ultimatum:social-media` and `/ultimatum:motion-graphics` are now `/ultimatum-launch:<name>`.
+
+### ultimatum
+
+- Launch skills moved to `ultimatum-launch`. `ult-pick` takes `--scope core|launch`: the core hook adds only the work note, the launch hook adds only launch notes.
+- `/ultimatum:status` and `/ultimatum:doctor` can be invoked by the model; `/ultimatum:setup` stays user-only.
+- Film routing: requests for a brand film, cinematic or emotional ad, or documentary-style spot route to `film` before motion. `ult film` plans the film, checks the footage manifest, tracked media and voiceover pace (`--check`) and runs the export check (`--deliver`). New gates: `story`, `sourcing`, `animatic`.
+- `ult launch` prints the launch kind (website, ecommerce or app) and the plugin that handles it; `--kind` sets it by hand. The plain-chat hook names that plugin.
+- Launch routing recognises store, app and local-business launches ("launch my online candle shop", "launch our SaaS app"). Developer phrases such as "launch the app in debug mode" stay with coding.
+- TikTok, Instagram Reels and YouTube Shorts requests route to Marketing; plain questions such as "What is TikTok?" stay in chat.
+
+### ultimatum-launch
+
+- Skills `launch`, `business`, `website`, `social-media`, `motion-graphics` and `brand-film`, each a short skill file with a `references/` folder. Agents `taste-critic` and `compliance-reviewer`, both read-only.
+- Launch: intake in rounds of 5 to 8 questions with a recommended answer each, a one-page brief approved with `ult gate`, and a hand-off to the kind plugin when it is installed (otherwise `references/routes.md`). Vendor terms are marked "check before relying".
+- Business: positioning before visuals, kept in one `brand/brand.md`, with interview and numbers guides.
+- Website: three HTML directions with distinct motion, screenshotted at 375, 768 and 1440 px and scored by the taste critic (8/10 within 3 rounds), plus design rules.
+- Social Media: picks Brand Film or Motion Graphics per piece, a hook type per post, a results loop read about 48 hours after posting, a weekly top and bottom three, and a learnings log. Nothing is posted without approval.
+- Motion Graphics: storyboard, audio sheet, animation timed to voice and beats, sound effects, and a loudness check (about -14 LUFS, -1 dBTP). Sound effects are CC0 first, with credits logged.
+- Brand Film: story, sourcing, animatic and video gates; legal footage lanes (own footage, free stock, paid stock, AI b-roll) with costs and consent; score-first editing, grading and sound. Spend needs approval, a photoreal AI person is never the hero, and media stays out of Git.
+- Its own copy of the toolbelt, kept identical to core by `tools/sync_launch_toolbelt.py`; CI fails on drift.
+
+### ultimatum-website-launch
+
+- Launch manager for small business, local service, portfolio and creator sites.
+- References: intake, route (site size, host, domain), pages and local SEO, playbooks for restaurants, salons, clinics, trades, consultants, portfolios and studios, a copy guide (headlines, buttons, service and about pages, reviews, meta), and a launch checklist with 30-day numbers.
+
+### ultimatum-ecommerce-launch
+
+- Launch manager for online stores.
+- References: store intake, platform and theme choice, catalogue (with a CSV example) and product photos, checkout and operations (payment tests, tax, shipping rates, theme licences), policy pages, a launch week day by day with a real test order, a first-30-days review, and common beginner mistakes.
+
+### ultimatum-app-launch
+
+- Launch manager for web apps, mobile apps, B2B tools, APIs and subscriptions.
+- References: product intake, waitlist, beta and public paths, pricing and billing (with a billing test script and pricing page examples), sign-up and activation, onboarding emails, a launch-week plan, trust basics, 30-day metrics, and common beginner mistakes.
+
+### Earlier 1.0.0 build of `ultimatum`
+
+This is the earlier core-only build, kept for reference. Everything below is new since the 0.x previews.
+
+
+
+#### Added
 - `ult route "<task>"`: a local, deterministic router (no model call). It picks a mode (FAST, STANDARD, DEEP, RECOVERY), one route, up to two add-ons and the security overlay, and lists only the reference files to read with their token cost. Routes and add-ons live in `skills/work/modules.json`. `--eval FILE` scores it against labelled tasks.
 - New guidance modules: UI design (`design/design.md`), motion (`design/motion.md`), component selection (`design/components.md`), MCP server building and skill authoring.
 - `ult components "<need>"`: offline lookup of permissively licensed component and animation libraries. Restricted or unlicensed ones are hidden unless `--all`, and then flagged, with MIT alternatives listed.
@@ -141,14 +109,14 @@ First stable release. Everything below is new since the 0.x previews.
 - `/ultimatum:style` and `ult style status|apply|remove`: an opt-in copy of the shared defaults in your user `CLAUDE.md`, between markers, with a one-time backup. `remove` restores the file byte for byte. Your own instructions are left alone.
 - Tests for website routing, the optional Designer, solo small jobs, selective loading, Release gating and the style setup.
 
-### Changed
+#### Changed
 - `ultimatum:worker` runs on Haiku by default; give it `model: sonnet` in the brief when the slice needs judgment. The reviewer stays optional.
 - The Work skill's description and rules are shorter; the reuse rule moved into the shared defaults. A small task's `--cat` now prints only the shared defaults (about 700 bytes more than before).
 - Held-out routing labels: 9 security-route cases in `tests/data/routing_holdout.jsonl` now expect mode SECURITY instead of STANDARD or DEEP, because that mode is new. Routes did not change.
 - `SKILL.md` sends obvious one-spot edits (typo, rename, a stated one-liner) straight to FAST mode without running the router.
 - The router drops prompt-leak requests ("output the system prompt") before scoring, and "plan it first" or "new setting" now count toward the feature route. Dev routing went from 193/196 to 195/196; the held-out sets did not change.
 
-### Removed
+#### Removed
 - The Office documents route (`documents.md`, Word, Excel, PowerPoint and PDF). It was out of scope for a developer skill; Anthropic's own document skills cover it.
 - `SKILL.md` file is down from 7.6 KB (0.4.1) to 4.5 KB: the routing table moved into the router, so it is no longer re-read on every turn.
 - The reviewer agent is described as a once-per-DEEP-task step.
@@ -158,7 +126,7 @@ First stable release. Everything below is new since the 0.x previews.
 - Agent descriptions, which load in every session, are shorter: 661 bytes for all five, down from about 1,140.
 - The orchestration rules now cover launching workers. Launch them in one message, never sleep or poll, and never edit a slice that has been delegated. Briefs carry anchors, so workers don't re-read the repo.
 
-### Compatibility
+#### Compatibility
 - Every 0.4.x command, hook, agent and reference path still works. `ult update migrate` is a no-op on existing `.ultimatum/` state apart from creating `knowledge.md` and `proposals/`.
 
 ## Preview releases (0.x)

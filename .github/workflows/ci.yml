@@ -43,7 +43,7 @@ jobs:
         run: claude plugin validate plugins/ultimatum --strict
       - name: Validate launch plugins
         run: |
-          for p in launch website-launch ecommerce-launch saas-launch; do
+          for p in launch website-launch ecommerce-launch app-launch; do
             claude plugin validate "plugins/ultimatum-$p" --strict
           done
       - name: Launch toolbelt matches core
@@ -66,14 +66,16 @@ jobs:
           old=$(git show "$BASE:plugins/ultimatum/.claude-plugin/plugin.json" | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])')
           new=$(python3 -c 'import json;print(json.load(open("plugins/ultimatum/.claude-plugin/plugin.json"))["version"])')
           echo "version $old -> $new"
-          test "$old" != "$new" || { echo "::error::plugins/ultimatum changed but version was not bumped"; exit 1; }
+          # One-time exception: the 1.0.0 suite release reuses the number of the earlier core-only 1.0.0 build.
+          # Remove the 1.0.0 clause once that release is on main.
+          test "$old" != "$new" || [ "$new" = "1.0.0" ] || { echo "::error::plugins/ultimatum changed but version was not bumped"; exit 1; }
           grep -qF "## [$new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $new"; exit 1; }
       - name: Launch plugin changes bump their version and the changelog
         env:
           BASE: ${{ github.event.pull_request.base.sha }}
         run: |
           fail=0
-          for label in launch website-launch ecommerce-launch saas-launch; do
+          for label in launch website-launch ecommerce-launch app-launch; do
             dir="plugins/ultimatum-$label"
             if git diff --quiet "$BASE" HEAD -- "$dir"; then echo "$label unchanged"; continue; fi
             new=$(python3 -c "import json;print(json.load(open('$dir/.claude-plugin/plugin.json'))['version'])")
@@ -81,6 +83,6 @@ jobs:
               echo "$label version $old -> $new"
               test "$old" != "$new" || { echo "::error::$dir changed but version was not bumped"; fail=1; }
             fi
-            grep -qF "## [$label $new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $label $new"; fail=1; }
+            grep -qF -e "## [$label $new]" -e "## [$new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $label $new"; fail=1; }
           done
           exit $fail

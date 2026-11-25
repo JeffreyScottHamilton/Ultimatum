@@ -1,6 +1,6 @@
 # Ultimatum E-commerce Launch
 
-A launch manager for online stores: Shopify, WooCommerce, Etsy-to-own-store, print-on-demand and small DTC brands. It runs the shared Ultimatum Launch teams with store-specific intake, platform and theme advice, catalogue rules, checkout and operations notes, and a launch checklist. Every spend, post, publish and deploy waits for your yes.
+A launch manager for online stores: Shopify, WooCommerce, Etsy-to-own-store, print-on-demand and small DTC brands. It runs the shared Ultimatum Launch teams with store-specific intake, platform and theme advice, catalogue rules, checkout and operations notes, and a launch checklist. Every spend, post, publish and deploy needs your approval.
 
 It needs the core `ultimatum` plugin and the `ultimatum-launch` plugin, which holds the Business, Website, Social Media, Brand Film and Motion Graphics teams and the reviewer agents.
 

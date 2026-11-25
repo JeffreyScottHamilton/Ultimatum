@@ -10,7 +10,7 @@ decides the workflow; `--scope` decides which ones this copy may announce:
   a standalone clip, a launch, a social media plan or a business question ->
   ultimatum-launch:website, :motion-graphics, :brand-film, :launch, :social-media or :business.
 A launch also names its kind's plugin (ultimatum-website-, -ecommerce- or
-  -saas-launch) to start instead when installed.
+  -app-launch) to start instead when installed.
 So the Launch teams are only suggested when that plugin is installed.
 Plain questions, writing help and small talk get nothing, so ordinary chats pay no
 extra tokens. A prompt that starts with "/" is an explicit command and is left alone.

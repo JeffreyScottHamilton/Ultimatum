@@ -3,7 +3,7 @@
 
 Claude Code gives each plugin its own folder and documents no way for one plugin to
 read another's files, so ultimatum-launch and each kind of launch plugin (website,
-e-commerce, SaaS) ship an exact copy of core's `ult`. Run
+e-commerce, app) ship an exact copy of core's `ult`. Run
 this after changing anything listed below; core's test_toolbelt_copy fails until the
 copy matches again. Standard library only.
 
@@ -22,7 +22,7 @@ REPO = Path(__file__).resolve().parents[1]
 CORE = REPO / "plugins" / "ultimatum"
 LAUNCH = REPO / "plugins" / "ultimatum-launch"
 # The shared launch teams, then one plugin per kind of launch.
-TARGETS = [LAUNCH] + [REPO / "plugins" / f"ultimatum-{k}-launch" for k in ("website", "ecommerce", "saas")]
+TARGETS = [LAUNCH] + [REPO / "plugins" / f"ultimatum-{k}-launch" for k in ("website", "ecommerce", "app")]
 
 # Same path in both plugins.
 SAME_PATH = [

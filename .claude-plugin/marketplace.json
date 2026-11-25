@@ -4,13 +4,13 @@
     "name": "Jeffrey Scott Hamilton"
   },
   "metadata": {
-    "description": "Ultimatum: plain-chat workflows for Claude Code. The core plugin handles code; Ultimatum Launch adds business, website, marketing, motion and film teams that wait for your approval, and the Website, E-commerce and SaaS Launch plugins add a deeper manager for each kind of launch."
+    "description": "Ultimatum for Claude Code. The core plugin handles software work. Ultimatum Launch adds business, website, social media, motion graphics and brand film teams, and the Website, E-commerce and App Launch add-ons give each kind of launch its own guided plan."
   },
   "plugins": [
     {
       "name": "ultimatum",
       "source": "./plugins/ultimatum",
-      "description": "Developer workflows for Claude Code: a local router sends coding, debugging, CI, UI, security and release work to /ultimatum:work. Every claim is backed by a check it ran.",
+      "description": "Workflows for Claude Code. A local router reads each request and loads only the guidance it needs for coding, debugging, CI, interface work, security review and releases. Claims are backed by checks run in the session.",
       "category": "development",
       "tags": [
         "workflow",
@@ -23,7 +23,7 @@
     {
       "name": "ultimatum-launch",
       "source": "./plugins/ultimatum-launch",
-      "description": "Launch teams for Ultimatum: intake, business and brand, website, marketing, motion graphics and brand films. Every spend, post and deploy waits for your yes.",
+      "description": "Shared launch teams for Ultimatum: business and brand, website, social media, motion graphics and brand film, with taste and compliance reviewers. Nothing is posted, published, deployed or paid for without your approval.",
       "category": "productivity",
       "tags": [
         "launch",
@@ -36,7 +36,7 @@
     {
       "name": "ultimatum-website-launch",
       "source": "./plugins/ultimatum-website-launch",
-      "description": "Website Launch for Ultimatum: a manager built for small business, local service, portfolio and creator sites. Deeper intake, pages and local SEO, and a launch-day checklist; it runs the shared Ultimatum Launch teams and waits for your yes.",
+      "description": "Website Launch for Ultimatum. Plans and runs the launch of a small business, local service, portfolio or creator site: intake, business-type playbooks, page copy, local SEO and a launch checklist. Requires ultimatum-launch.",
       "category": "productivity",
       "tags": [
         "launch",
@@ -48,7 +48,7 @@
     {
       "name": "ultimatum-ecommerce-launch",
       "source": "./plugins/ultimatum-ecommerce-launch",
-      "description": "E-commerce Launch for Ultimatum: a manager built for online stores. Platform choice, catalog and product pages, payments, tax, shipping and policies, and a store launch checklist; it runs the shared Ultimatum Launch teams and waits for your yes.",
+      "description": "E-commerce Launch for Ultimatum. Plans and runs an online store launch: platform and theme choice, catalogue and product photos, payments, tax, shipping, policy pages and a first-30-days review. Requires ultimatum-launch.",
       "category": "productivity",
       "tags": [
         "launch",
@@ -58,12 +58,13 @@
       ]
     },
     {
-      "name": "ultimatum-saas-launch",
-      "source": "./plugins/ultimatum-saas-launch",
-      "description": "SaaS Launch for Ultimatum: a manager built for software and app products. Pricing and billing, sign-up and activation, trust and security basics, and a launch-week plan; it runs the shared Ultimatum Launch teams and waits for your yes.",
+      "name": "ultimatum-app-launch",
+      "source": "./plugins/ultimatum-app-launch",
+      "description": "App Launch for Ultimatum. Plans and runs the launch of a web app, mobile app or subscription product: pricing and billing, sign-up and activation, onboarding emails, trust basics and a launch-week plan. Requires ultimatum-launch.",
       "category": "productivity",
       "tags": [
         "launch",
+        "app",
         "saas",
         "pricing",
         "onboarding"
