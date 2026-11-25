@@ -17,7 +17,7 @@ Goal: enough to write a one-page brief the user signs off, in few turns.
 1. **Who is it for?** Solo users or consumers / small teams / mid-size or enterprise companies / developers (recommended: whichever the user names first; ask for one named example).
 2. **The job.** One sentence: "helps [who] do [what] without [pain]". Free text, one at a time if unclear.
 3. **Stage.** Idea / waitlist open / private beta / live and quiet (recommended: be honest; the stage picks the launch path in `route.md`).
-4. **How people buy.** Self-serve sign-up (recommended for under about a few hundred dollars a year; rule of thumb) / sales-led demo call / both.
+4. **How people buy.** Self-serve sign-up / sales-led demo call / both. Recommended: self-serve when one person can decide and pay with a card; sales-led when buyers need a security review, a contract or several approvers (rule of thumb).
 5. **Pricing model.** Free / freemium / free trial / paid only; flat, tiered, per seat or usage. If unsure, recommend tiered with a trial and read `pricing-and-billing.md`.
 6. **Platforms.** Web / iOS and Android / desktop / API only / browser extension.
 7. **Integrations that must exist** at launch (sign-in with Google, Slack, Stripe, calendar, import from a competitor). Free text.

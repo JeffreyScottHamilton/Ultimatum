@@ -35,7 +35,9 @@ Prices, fees and vendor terms you offer as options go through the fact-finder fi
 
 - 3 competitor stores and what you do better.
 - 3-5 stores whose look you like, and one thing about each.
-- Do you have product photos? Real footage of the maker or customers?
+- Do you have product photos? Are they consistent (same background, angles, light)? If not, plan a shoot from `product-photos.md` before the build.
+- Real footage of the maker or customers, with permission to use it?
+- Do refund, shipping, privacy and terms pages exist already? If not, they go on the plan (`policy-pages.md`).
 - Company size (more than 3 people changes video tool licences; see `checkout-and-ops.md`).
 
 ## How answers fill the brief

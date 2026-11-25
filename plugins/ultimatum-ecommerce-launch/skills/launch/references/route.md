@@ -16,13 +16,15 @@ All claims about fees, plans and limits: **check before relying** on the vendor'
 | Digital downloads only | Shopify with a download app, or a digital-sales tool | Check fees and tax handling |
 | Selling mostly on social | A platform with that channel built in | Check per-channel terms |
 
-Rule of thumb (not a fact): the platform you can keep running yourself beats the one with the longest feature list.
+Rule of thumb (not a fact): the platform the owner can keep running alone beats the one with the longest feature list.
+
+Quick test before you recommend: can the owner add a product, change a price and refund an order without help? Show them on the platform's free trial or demo if one exists (check before relying).
 
 Moving from Etsy: keep the Etsy listings live, link to the new store from packaging and the shop About page, and read Etsy's rules on links and off-site sales first (check before relying).
 
 ## Shopify working rules
 
-- Recommend the official **Shopify AI Toolkit** plugin (and its Dev MCP) rather than repeating it; avoid community Shopify skill packs that run code through hooks.
+- Recommend Shopify's official **AI Toolkit** plugin and its Dev MCP rather than repeating what they do (check before relying: current name, install steps and what it can change). Avoid community Shopify skill packs that run code through hooks.
 - Work on a **development store** first. On the live store the **owner confirms every change**: changes through the toolkit may not be undoable.
 - The toolkit's telemetry is on by default. When the store belongs to a client or holds customer data, offer to turn it off before starting. Check before relying: the current opt-out method.
 - Themes: build on **Dawn** or **Horizon** with Shopify CLI and theme check. Licences allow building for a merchant's own store; **never package or sell a reusable theme** derived from them. See `checkout-and-ops.md`.
@@ -33,7 +35,7 @@ Moving from Etsy: keep the Etsy listings live, link to the new store from packag
 |---|---|
 | Small catalogue, bold imagery | Horizon-style theme, a few strong sections |
 | Large catalogue, filters, speed | Dawn, lightly changed |
-| Strong custom look | Start from a free theme, customise sections; paid themes: check licence and price |
+| Strong custom look | Start from a free theme, customise sections; paid themes: check licence and price before relying |
 
 Prefer the theme's built-in sections to custom code; every extra app slows the store. Run the Website team for three look directions, then apply the chosen one to the theme.
 
@@ -65,3 +67,12 @@ Prefer the theme's built-in sections to custom code; every extra app slows the s
 | UGC-style product clips | Higgsfield, after a credit check | Fast variants; label AI content |
 
 Paid ads: check stock and music licences in `checkout-and-ops.md` and the base plugin's `licenses.md`.
+
+## Beginner mistakes at this stage
+
+| Mistake | Fix |
+|---|---|
+| Choosing a platform for one feature they may never use | Choose for daily running; add an app later if the need is real |
+| Buying a theme before the catalogue and photos exist | Pick the theme after `product-photos.md` shots are done; good photos decide most of the look |
+| Installing apps "just in case" | Each app slows pages and adds data sharing to the privacy page; add one per real need |
+| Mega-menu with every category | Four to six top items; collections by what the buyer wants |
