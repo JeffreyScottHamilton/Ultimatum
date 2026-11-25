@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [website-launch 0.2.0] - 2026-11-25
+
+### Added
+- `references/by-business-type.md` has playbooks for restaurants and cafes, salons, clinics and health practices, trades, consultants and coaches, portfolios and creators, and studios and gyms. Each covers the main action, must-have pages, best proof, usual video style, common mistakes and the notes to pass to Website.
+- `references/copy.md` covers writing rules, headline patterns with fictional examples, button wording, service and about page templates, using reviews honestly, and meta titles.
+
+### Changed
+- The manager reads the business-type playbook at the route step and passes drafted copy to Website. Intake adds the type's specific questions in round 2.
+
 ## [website-launch 0.1.0] - 2026-11-25
 
 First release of **Ultimatum Website Launch** (`plugins/ultimatum-website-launch/`). It is a launch manager for small business, local service, portfolio and creator sites and depends on `ultimatum` and `ultimatum-launch`. It has its own intake, a route (site size, host, domain), pages and local SEO, and a launch-day checklist with 30-day numbers. It runs the shared Launch teams through the Skill tool.

@@ -18,10 +18,10 @@ Run `ult launch --kind website --root .`: it prints steps, gate states and a `ne
 
 1. **Intake.** Follow `references/intake.md`: batches of 5-8 mostly multiple-choice questions (AskUserQuestion, recommended answer first), "why" questions one at a time. Skip what files already say.
 2. **Brief.** `ult business --start-brief`, fill `## Build brief` as intake.md shows, show it, stop. Yes: `ult gate approve brief "<their words>"`. Changes: `ult gate revise brief "<their words>"`, fix, show again. Never approve for the user.
-3. **Route.** Read `references/route.md` (site size, host, domain, video style). Check any paid tool, licence or price on the vendor's own page.
+3. **Route.** Read `references/route.md` (site size, host, domain, video style) and the matching section of `references/by-business-type.md` (main action, pages, proof, mistakes to avoid). Check any paid tool, licence or price on the vendor's own page.
 4. **Teams.** They live in another plugin and cannot read these files, so run them with the Skill tool and paste the notes they need (pages, local SEO, booking, hours, area) into the args:
    - `ultimatum-launch:business` for positioning and `brand/brand.md`.
-   - `ultimatum-launch:website` for three directions, critic, the user's pick, build, browser check. Give it `references/pages-and-seo.md` points.
+   - `ultimatum-launch:website` for three directions, critic, the user's pick, build, browser check. Give it `references/pages-and-seo.md` points and copy drafted with `references/copy.md` (headline options, button wording, service and about pages); the owner approves every claim.
    - `ultimatum-launch:social-media` drafts while Website builds. Its video step picks `ultimatum-launch:brand-film` (usually right for a local or people-led business) or `ultimatum-launch:motion-graphics` (one offer, price or how-it-works).
 5. **Review loop.** `ult loop`. Run agents `ultimatum-launch:compliance-reviewer` on anything public and `ultimatum-launch:taste-critic` on designs. Send fixes to the maker, recheck. Open blockers stop delivery.
 6. **Launch.** Work through `references/launch-checklist.md`. Publish only on the user's yes: `ult gate approve publish "<words>" --link <checked live url>`, `ult gate check publish --need-link`, then `ult gate done publish`. Deploys: `ult gate approve deploy` and follow `${CLAUDE_PLUGIN_ROOT}/shared/core/skills/release/SKILL.md`.

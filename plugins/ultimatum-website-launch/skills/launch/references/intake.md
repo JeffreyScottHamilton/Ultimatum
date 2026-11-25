@@ -27,6 +27,8 @@ Goal: enough for a one-page brief the owner signs off, in few turns.
 9. **Date.** A fixed date (opening, season, event) or "when it is good". (Recommended: a date with a two-day buffer.)
 10. **Budget.** Monthly ceiling for hosting, domain, booking tool and any AI or stock credits; who pays for them. (Recommended: start with free or low tiers; confirm current terms on vendor pages.)
 
+After round 1, read the type's section in `by-business-type.md` and add its few specific asks (menu, treatment list, licences, case studies, timetable) to round 2.
+
 Add one free-text ask: 3 sites the owner likes the look of, and one thing about each. Ask one-at-a-time in chat: "Why would a stranger pick you over the nearest alternative?" Also ask if there is real footage and anyone willing to be filmed; that decides the video style (see `route.md`).
 
 ## Brand interview
