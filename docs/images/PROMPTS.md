@@ -348,3 +348,59 @@ Under "Audio": "Voice" → "Music" → "Effects".
 Pills: "compliance-reviewer" and "taste-critic" to "Review".
 Under "Your yes": note "export plus licence log".
 ```
+
+---
+
+## Fix: order inside the launch images
+
+The four launch images show their team panels side by side, so the order is unclear. The real order: **Business runs first**, then **Website**, and the other panels run **at the same time as Website**.
+
+In the same ChatGPT chat as the image, send the matching message below.
+
+### website-launch.png
+
+```
+Same image and style. Change only the arrows into and between the three grey panels:
+- "Route" has one arrow only, into the BUSINESS panel.
+- Put a small black circle with "1" at the top-left of BUSINESS, and a circle with "2" on both WEBSITE and SOCIAL MEDIA.
+- One thick downward arrow from the bottom of BUSINESS to the top of WEBSITE, labelled "then".
+- A bracket joining the left edges of WEBSITE and SOCIAL MEDIA, labelled "at the same time".
+- Only WEBSITE and SOCIAL MEDIA have arrows out to "Review loop". BUSINESS has no arrow to "Review loop".
+Keep every other box, word and position.
+```
+
+### ecommerce-launch.png
+
+```
+Same image and style. Change only the arrows into and between the four grey panels:
+- "Route" has one arrow only, into the BUSINESS panel.
+- Put a small black circle with "1" at the top-left of BUSINESS, and a circle with "2" on WEBSITE (store), CATALOGUE AND STORE OPS and SOCIAL MEDIA.
+- One thick downward arrow from the bottom of BUSINESS to the top of WEBSITE (store), labelled "then".
+- A bracket joining the left edges of WEBSITE (store), CATALOGUE AND STORE OPS and SOCIAL MEDIA, labelled "at the same time".
+- Only the three "2" panels have arrows out to "Review loop". BUSINESS has no arrow to "Review loop".
+Keep every other box, word and position.
+```
+
+### app-launch.png
+
+```
+Same image and style. Change only the arrows into and between the three grey panels:
+- "Route" has one arrow only, into the BUSINESS panel.
+- Put a small black circle with "1" at the top-left of BUSINESS, and a circle with "2" on WEBSITE and MARKETING.
+- One thick downward arrow from the bottom of BUSINESS to the top of WEBSITE, labelled "then".
+- A bracket joining the left edges of WEBSITE and MARKETING, labelled "at the same time".
+- Only WEBSITE and MARKETING have arrows out to "Trust". BUSINESS has no arrow to "Trust".
+Keep every other box, word and position.
+```
+
+### event-launch.png
+
+```
+Same image and style. Change only the arrows into and between the four grey panels:
+- "Route and timeline" has one arrow only, into the BUSINESS panel.
+- Put a small black circle with "1" at the top-left of BUSINESS, and a circle with "2" on WEBSITE, TICKETS and SOCIAL MEDIA.
+- One thick downward arrow from the bottom of BUSINESS to the top of WEBSITE, labelled "then".
+- A bracket joining the left edges of WEBSITE, TICKETS and SOCIAL MEDIA, labelled "at the same time".
+- Only the three "2" panels have arrows out to "Review loop". BUSINESS has no arrow to "Review loop".
+Keep every other box, word and position.
+```

@@ -103,6 +103,23 @@ Based on: Ultimatum's own guides, with hand-off to DaVinci Resolve, Premiere Pro
 "Make a 20-second ad for this product" → `/ultimatum-video:video`. Script and shots you approve, pictures (Higgsfield, motion graphics or film), ElevenLabs voice, music and effects, cut, timestamped review, your yes.
 Based on: Higgsfield, ElevenLabs, HyperFrames, ffmpeg, Whisper, librosa, Pexels and Pixabay for licensed footage.
 
+### Shared steps and team workflows
+
+Every launch opens and closes the same way, and calls the same team workflows in its middle.
+
+![Intake and brief](docs/images/launch-intake-brief.png)
+![Review and publish](docs/images/review-and-publish.png)
+
+| Team | Image | What it does |
+|---|---|---|
+| Business | [team-business.png](docs/images/team-business.png) | Positioning, then `brand/brand.md` |
+| Website | [team-website.png](docs/images/team-website.png) | Three directions, critic, your pick, build, browser check |
+| Social Media | [team-social-media.png](docs/images/team-social-media.png) | Plan, write, video if it helps, review, your yes |
+| Video | [team-video.png](docs/images/team-video.png) | Picks where the pictures come from, then voice, music, cut |
+| Motion Graphics | [team-motion-graphics.png](docs/images/team-motion-graphics.png) | Storyboard, audio sheet, timings, animate |
+| Brand Film | [team-brand-film.png](docs/images/team-brand-film.png) | Story, sourcing, animatic, film: four yeses |
+| Editors | [team-editors.png](docs/images/team-editors.png) | Live control, timeline file, or build it here |
+
 A typed command always wins. Every source is listed with its licence in [`docs/CREDITS.md`](docs/CREDITS.md); all wording and code here are original.
 
 ## How it stays honest
