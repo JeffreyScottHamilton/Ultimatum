@@ -46,6 +46,7 @@ An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will 
 - Editors: hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro (timeline files, project layout, export), with HyperFrames when there is no editor.
 - Website libraries: when to use React Bits, Watermelon UI and Anime.js, with licence notes.
 - Social Media scope and style guides (own footage, product demo, carousels and stills).
+- Video: one pipeline for every video (script, shots, pictures, audio, assembly, review, yes); Higgsfield through its MCP for product video with a credit check before each generation; ElevenLabs by default for voice, music and sound effects, Suno by hand as an option.
 - Shared licence notes and the two read-only reviewer agents.
 - `tools/sync_plugins.py` copies the guides, agents and toolbelt into every head; `--check` runs in CI and fails on drift. Edit `teams/` and core, never the copies.
 
@@ -69,10 +70,22 @@ An earlier build of `ultimatum` also used the number 1.0.0, so Claude Code will 
 - Launch manager for public events, working back from the date.
 - References: event intake, route, ticketing and sign-up, a countdown promotion plan, a day-of run sheet, follow-up afterwards and a launch checklist.
 
+### ultimatum-ecommerce-launch (video)
+
+- Higgsfield through its MCP is the default for product and social video, with the credit-check loop in `video/higgsfield.md`.
+
 ### ultimatum-social-media
 
 - Social media head for single posts, campaigns and ongoing channels.
 - Picks a video style per piece, plans carousels and posts, and hands edits to the user's editor. Nothing is posted without approval.
+- Every video now follows the shared video pipeline in `video/guide.md`.
+
+### ultimatum-video
+
+- New head for making one finished video: product ads, UGC-style clips, explainers, feature demos and brand films (`/ultimatum-video:video`).
+- One fixed pipeline: script, shots (storyboard approval), pictures, audio, assembly, review with both reviewer agents, then the user's yes.
+- Product and social video uses Higgsfield through its MCP: credit check, plan with costs, yes, one generation, review. Motion graphics is the second choice.
+- ElevenLabs is the default for voice, music and sound effects; Suno stays as a manual option.
 
 ### Earlier 1.0.0 build of `ultimatum`
 

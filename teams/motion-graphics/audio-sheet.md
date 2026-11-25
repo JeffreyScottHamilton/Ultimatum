@@ -24,14 +24,14 @@ Voiceover
   Voice: <from brand/sound.md>  Settings: <copied exactly from brand/sound.md>
   Output: mp3 44.1 kHz or wav; file name vo-<name>.mp3
 Music
-  Suno prompt: <the locked style> + <length>, <energy curve: e.g. calm intro, lift at 0:08, end on a hit>
+  Prompt (ElevenLabs music by default; Suno by hand if the user prefers): <the locked style> + <length>, <energy curve: e.g. calm intro, lift at 0:08, end on a hit>
   Instrumental: yes/no   Output: music-<name>.mp3
 ```
 
 Then either:
 
 - the user generates both and pastes the files (or their paths) back, or
-- with the ElevenLabs connector available: say what will be generated and that it spends the user's credits, wait for a yes, generate once (never repeat a call to retry), and save the files under `media/audio/`.
+- with the ElevenLabs connector available (the default; full steps in `../video/audio.md`): say what will be generated and that it spends the user's credits, wait for a yes, generate once (never repeat a call to retry), and save the files under `media/audio/`.
 
 Say once per project: Suno's free plan allows non-commercial use only; a business video needs a paid plan, or use a music source whose licence allows commercial use (see the launch licence notes, and check before relying on them).
 

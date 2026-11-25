@@ -28,7 +28,7 @@ REPO = Path(__file__).resolve().parents[1]
 CORE = REPO / "plugins" / "ultimatum"
 TEAMS = REPO / "teams"
 
-LAUNCH_TEAMS = ("business", "website", "social-media", "motion-graphics", "brand-film", "editors", "shared")
+LAUNCH_TEAMS = ("business", "website", "social-media", "video", "motion-graphics", "brand-film", "editors", "shared")
 # plugin -> (head skill, the team folders it ships). A plugin whose folder does not
 # exist yet is skipped, so a new head can be added here before it lands.
 MANIFEST = {
@@ -36,7 +36,8 @@ MANIFEST = {
     "ultimatum-ecommerce-launch": ("launch", LAUNCH_TEAMS),
     "ultimatum-app-launch": ("launch", LAUNCH_TEAMS),
     "ultimatum-event-launch": ("launch", LAUNCH_TEAMS),
-    "ultimatum-social-media": ("social-media", ("social-media", "motion-graphics", "brand-film", "editors", "shared")),
+    "ultimatum-social-media": ("social-media", ("social-media", "video", "motion-graphics", "brand-film", "editors", "shared")),
+    "ultimatum-video": ("video", ("video", "social-media", "motion-graphics", "brand-film", "editors", "shared")),
 }
 AGENTS = ("compliance-reviewer", "taste-critic")
 

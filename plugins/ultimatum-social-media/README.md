@@ -15,7 +15,7 @@ Say "make a short video from my interview clips" or "plan a month of posts for m
 
 ## What it covers
 
-- Scope questions in one batch: one post, a campaign or a channel; format; platforms; whether you have footage; your editor; the deadline.
+- Scope questions in rounds of 4 until the scope is clear: one post, a campaign or a channel; format; platforms; whether you have footage; your editor; the deadline.
 - Running a channel: content pillars, a posting rate you can keep, a four-week calendar and a weekly results review that changes one thing at a time.
 - Video styles: your own footage (selecting takes from a transcript, cutting, captions, music under speech), product demos (script, recording, zooms, what to blur), motion graphics and brand film.
 - Carousels and single images: slide structure, text sizes for phones, brand use and export sizes.

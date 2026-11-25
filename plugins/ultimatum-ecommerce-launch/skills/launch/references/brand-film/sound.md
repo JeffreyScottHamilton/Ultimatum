@@ -32,6 +32,7 @@ Target **-14 LUFS integrated, true peak at most -1 dBTP**. Measure with `ffmpeg 
 
 All **check before relying**.
 - **Paid ads:** a human-composed track on a business or ad-cleared plan carries the least risk. Epidemic Sound needs its Pro or Enterprise tier for ad campaigns. Artlist's personal licence excludes paid or promoted video. Reports differ on whether Musicbed's Business plan covers client paid ads; ask them.
+- **Generated (default when connected):** ElevenLabs music on a paid plan, made with `../video/audio.md`; check its current terms for the user's plan.
 - **Organic posts:** Suno on a paid plan can suit (commercial use only on paid plans; its ownership wording has changed). Free-plan Suno is non-commercial. Suno has no official public API; the user makes the track by hand.
 - Skip anything marked non-commercial. Skip unofficial API wrappers.
 - Purely AI-made music may not be copyrightable. Tell the client.

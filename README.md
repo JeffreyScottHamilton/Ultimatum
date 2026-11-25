@@ -12,7 +12,7 @@
 /ultimatum:setup
 ```
 
-Add the launch plugin for what you are launching, or Social Media on its own for posts and video. Each one stands alone: it ships its own team guides, reviewer agents and toolbelt, and needs no other plugin.
+Add the launch plugin for what you are launching, Social Media on its own for posts, or Video for one finished video. Each one stands alone: it ships its own team guides, reviewer agents and toolbelt, and needs no other plugin.
 
 ```
 /plugin install ultimatum-website-launch@ultimatum     # small business, local service and portfolio sites
@@ -20,6 +20,7 @@ Add the launch plugin for what you are launching, or Social Media on its own for
 /plugin install ultimatum-app-launch@ultimatum         # web apps, mobile apps, subscriptions
 /plugin install ultimatum-event-launch@ultimatum       # workshops, classes, openings, ticketed events
 /plugin install ultimatum-social-media@ultimatum       # posts, carousels and video for social
+/plugin install ultimatum-video@ultimatum              # one finished video: ad, explainer, brand film
 ```
 
 | Plugin | For |
@@ -30,6 +31,7 @@ Add the launch plugin for what you are launching, or Social Media on its own for
 | `ultimatum-app-launch` | Launching a web app, mobile app or subscription product |
 | `ultimatum-event-launch` | Promoting a workshop, class, webinar, opening, fundraiser or ticketed show |
 | `ultimatum-social-media` | Social posts, campaigns and video, with hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro |
+| `ultimatum-video` | One finished video: Higgsfield product ads, motion-graphics explainers, brand films, with ElevenLabs voice, music and effects |
 
 Upgrading from the earlier 1.0.0 build: it used the same version number, so run `/plugin uninstall ultimatum@ultimatum` and install again. See the [changelog](CHANGELOG.md).
 
@@ -42,6 +44,7 @@ Upgrading from the earlier 1.0.0 build: it used the same version number, so run 
 | "Launch our SaaS invoicing app" | App Launch: the same teams with product guidance | `/ultimatum-app-launch:launch` |
 | "Help me fill my workshop" | Event Launch: intake, ticketing, countdown promotion, run sheet and follow-up | `/ultimatum-event-launch:launch` |
 | "Make a Reel for our new menu" | Social Media: posts and video in the style that fits | `/ultimatum-social-media:social-media` |
+| "Make a 20-second ad for this product" | Video: script, shots, pictures, audio, review, your yes | `/ultimatum-video:video` |
 | "Fix the CSV export" | Work: discovery, fixes, features, bugs, CI, security, releases | `/ultimatum:work` |
 
 Inside a launch, the manager reads each team's guide when that team's turn comes: Business (research, plan, build brief), Website (brief, mockup you approve, build, browser check), Social Media (posts, checks, publish only after you approve), Motion Graphics (storyboard you approve, animate, timestamped review) and Brand Film (story, sourcing, animatic and cut, each approved). Plain questions stay in normal chat. A typed command always wins.
@@ -53,7 +56,7 @@ Inside a launch, the manager reads each team's guide when that team's turn comes
 - **Evidence before claims.** No "fixed" or "passes" without a check run in the session.
 - **Local first.** The toolbelt is Python standard library with no network access, and what Ultimatum learns stays on your machine unless you choose to share it.
 
-See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) and the launch plugins' READMEs ([website](plugins/ultimatum-website-launch/README.md), [e-commerce](plugins/ultimatum-ecommerce-launch/README.md), [app](plugins/ultimatum-app-launch/README.md), [event](plugins/ultimatum-event-launch/README.md)) and [Social Media](plugins/ultimatum-social-media/README.md) for everything that ships.
+See [`plugins/ultimatum/README.md`](plugins/ultimatum/README.md) and the launch plugins' READMEs ([website](plugins/ultimatum-website-launch/README.md), [e-commerce](plugins/ultimatum-ecommerce-launch/README.md), [app](plugins/ultimatum-app-launch/README.md), [event](plugins/ultimatum-event-launch/README.md)) [Social Media](plugins/ultimatum-social-media/README.md) and [Video](plugins/ultimatum-video/README.md) for everything that ships.
 
 ## Try it locally
 
@@ -109,6 +112,7 @@ Cloud sessions: install from claude.ai/customize/plugins; each new session downl
 | `plugins/ultimatum/` | **The core plugin**: skill, references, agents, toolbelt, schemas, unit tests | yes |
 | `plugins/ultimatum-*-launch/` | **The launch plugins**: one head skill each, plus copies of the team guides, agents and toolbelt | yes |
 | `plugins/ultimatum-social-media/` | **Social Media**: one head skill plus the same kind of copies | yes |
+| `plugins/ultimatum-video/` | **Video**: one head skill plus the same kind of copies | yes |
 | `teams/` | Source of the team guides and reviewer agents; `tools/sync_plugins.py` copies them into each head | no (copied) |
 | `fixtures/` | Nine small projects used to test Ultimatum, some with seeded bugs and vulnerabilities. Answer keys are in `fixtures/_answer-keys/` | no |
 | `evals/live/` | Live A/B harness: Ultimatum vs. plain Claude Code on the fixtures, with deterministic graders | no |

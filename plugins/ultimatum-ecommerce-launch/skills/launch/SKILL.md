@@ -24,7 +24,7 @@ Big project (many pages, products, channels or weeks): also `ult board show`, re
 4. **Teams.** Each team is a guide in this plugin; read it when its turn comes and follow it yourself, with the store notes it needs:
    - Business, `references/business/guide.md`: positioning, then `brand/brand.md`.
    - Website, `references/website/guide.md`: store design directions, pick, build, browser check, using the product-page anatomy from `catalog.md` and the shot list from `product-photos.md`.
-   - Social Media, `references/social-media/guide.md`: launch posts; its video step chooses Brand Film (`references/brand-film/guide.md`) or Motion Graphics (`references/motion-graphics/guide.md`).
+   - Social Media, `references/social-media/guide.md`: launch posts; product video uses Higgsfield first (`references/video/higgsfield.md`), else Motion Graphics or Brand Film.
 5. **Catalogue and store ops.** `references/catalog.md` and `product-photos.md` for products; `references/checkout-and-ops.md` for payments, tax, shipping, emails; `references/policy-pages.md` for the four policy pages. Owner-only steps stay with the owner.
 6. **Review loop.** Log each problem with `ult loop add "<finding>" --where "<page or file>" --blocker` (or `--minor`); `ult loop status` shows what is open. Run this plugin's agents `ultimatum-ecommerce-launch:compliance-reviewer` on product claims, images and policies, and `ultimatum-ecommerce-launch:taste-critic` on pages and creative. Open blockers stop delivery.
 7. **Pre-launch.** Work through `references/launch-checklist.md`, including a real test order.

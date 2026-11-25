@@ -48,6 +48,8 @@ Prefer the theme's built-in sections to custom code; every extra app slows the s
 
 ## Higgsfield (product photos, ad packs, UGC-style video)
 
+- **Default for product and social video**, through the Higgsfield MCP when the user has connected it. Follow `video/higgsfield.md`: credit check, plan per shot with costs, the user's yes, one generation, review, then the next. The whole video follows `video/guide.md`; voice, music and effects follow `video/audio.md` (ElevenLabs by default).
+- Not connected: say so, offer Motion Graphics instead, and do not install anything.
 - Only after a **credit check**: say what will be generated, how many, and the estimated credits; wait for the user's yes. Agent use spends credits even on "unlimited" plans. Check before relying: plan prices, which plans allow the MCP, commercial rights on the free tier.
 - One generation per yes; never retry silently. No real people without consent; label AI content where platforms require it.
 - AI product images must still show the real product accurately; a misleading image is a compliance blocker.
@@ -61,6 +63,7 @@ Prefer the theme's built-in sections to custom code; every extra app slows the s
 
 | Content | Style | Why |
 |---|---|---|
+| Product ad or social clip from product photos (most stores) | Higgsfield first, after a credit check; Motion Graphics second | Real product, fast variants; label AI content |
 | Many products, one format | Motion Graphics, one template and many variants | Cheap to repeat per product |
 | Product demo or a number (free shipping, 4.8 stars) | Motion Graphics | Clear, quick to update |
 | Maker, craft or gifting story | Brand Film with real footage of the maker | Feeling carries; no AI people |

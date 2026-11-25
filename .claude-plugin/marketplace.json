@@ -34,6 +34,19 @@
       ]
     },
     {
+      "name": "ultimatum-video",
+      "source": "./plugins/ultimatum-video",
+      "description": "Video for Ultimatum. Makes one finished video, from a product ad or UGC-style clip to an explainer or brand film, through one fixed pipeline: script, shots, pictures (Higgsfield, motion graphics or your footage), ElevenLabs audio, assembly, review and your yes. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
+      "category": "productivity",
+      "tags": [
+        "video",
+        "ads",
+        "motion-graphics",
+        "voiceover",
+        "brand-film"
+      ]
+    },
+    {
       "name": "ultimatum-website-launch",
       "source": "./plugins/ultimatum-website-launch",
       "description": "Website Launch for Ultimatum. Plans and runs the launch of a small business, local service, portfolio or creator site: intake, business-type playbooks, page copy, local SEO and a launch checklist. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
