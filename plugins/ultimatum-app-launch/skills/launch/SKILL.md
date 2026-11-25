@@ -45,4 +45,4 @@ Each team is a guide in this plugin. Read it when its turn comes and follow it y
 
 ## Report
 
-Plain words: what is approved, what waits for the user, what was checked (command, result), and the one next decision.
+Plain words: what is approved, what waits for the user, any check that failed or was skipped, and the one next decision.

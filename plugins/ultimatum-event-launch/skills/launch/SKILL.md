@@ -38,4 +38,4 @@ Scope: public events. Weddings, private parties and festival logistics are out o
 
 ## Report
 
-Plain words: days to the event, what is approved, what waits for the user, what was checked (command and result), the one next decision.
+Plain words: days to the event, what is approved, what waits for the user, any check that failed or was skipped, the one next decision.

@@ -45,4 +45,4 @@ After a long task or a user correction: `ult learn add "<lesson>" --scope projec
 
 ## 4. Report
 
-Answer first, then short bullets: what changed, what you checked (command, result), what needs the user. Never claim more than you ran.
+One line with the result. Fix and check (command, result) only if asked, failed or skipped, or the user must decide. Never claim more than you ran.

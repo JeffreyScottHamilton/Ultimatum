@@ -39,4 +39,4 @@ Run `ult launch --kind ecommerce --root .`: it prints steps, gate states and a `
 
 ## Report
 
-Plain words: what is approved, what waits for the user, what was checked (command and result), the one next decision.
+Plain words: what is approved, what waits for the user, any check that failed or was skipped, the one next decision.

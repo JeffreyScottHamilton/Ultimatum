@@ -34,4 +34,4 @@ Run `ult social --root .`: it prints the steps, the offer status, the video step
 
 ## Report
 
-A table (day, platform, format, hook, next step, status), the video and editor status, what was checked (command and result), and the one approval you need.
+A table (day, platform, format, hook, next step, status), the video and editor status, any check that failed or was skipped, and the one approval you need.
