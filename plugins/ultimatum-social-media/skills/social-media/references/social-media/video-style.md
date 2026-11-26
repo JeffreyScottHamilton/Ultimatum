@@ -8,6 +8,8 @@ Pick the style once per video, before briefing anyone. Ask these five questions 
 4. **Update rate.** Frequent updates (new features, prices, languages) favour motion; a film is costly to redo.
 5. **Budget and access.** Film needs real people, footage or a generator budget. If those are missing, motion is the realistic choice.
 
+**A person talking to camera** (founder, creator, expert, a podcast or stream to clip) carrying the point is a third style: **creator cut** (the Creator Cut guide (`../creator-cut/guide.md`)). It is the cheapest to make often: one recording, several shorts.
+
 Most answers agree: go with it. If they split, show both options with rough cost and time, ask once, and follow the answer.
 
 A film with motion-graphics titles or captions is still a **film** job.

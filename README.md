@@ -7,7 +7,7 @@
 Plain chat in. The right workflow out, with a checker on every step and nothing published, posted, deployed or paid for until you say yes.
 
 [![CI](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.0.2-111111)
+![Version](https://img.shields.io/badge/version-0.0.3-111111)
 ![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-FF5A1F)
 [![License: MIT](https://img.shields.io/badge/license-MIT-111111)](LICENSE)
 
@@ -37,7 +37,7 @@ Seven plugins from one marketplace. The core is the default way Claude answers; 
 | `ultimatum-app-launch` | `/ultimatum-app-launch:launch` | Web apps, mobile apps and subscription products |
 | `ultimatum-event-launch` | `/ultimatum-event-launch:launch` | Workshops, classes, webinars, openings, fundraisers and ticketed shows |
 | `ultimatum-social-media` | `/ultimatum-social-media:social-media` | Posts, carousels, campaigns and short video |
-| `ultimatum-video` | `/ultimatum-video:video` | One finished video: product ad, explainer or brand film |
+| `ultimatum-video` | `/ultimatum-video:video` | One finished video: product ad, explainer, talking-head short or brand film |
 
 ## Install
 
@@ -175,6 +175,7 @@ The launch, social and video plugins share these team workflows. Each is a writt
 | Video | Chooses the picture source, then voice, music and the cut | [view](docs/images/team-video.png) |
 | Motion Graphics | Storyboard, audio sheet, timings, animation | [view](docs/images/team-motion-graphics.png) |
 | Brand Film | Story, sourcing, animatic, film, with four approvals | [view](docs/images/team-brand-film.png) |
+| Creator Cut | Talking-head shorts: paper edit, jump cuts, 9:16 render, captions | - |
 | Editors | Live control of your editor, a timeline file, or a build here | [view](docs/images/team-editors.png) |
 
 ## Approvals and checks

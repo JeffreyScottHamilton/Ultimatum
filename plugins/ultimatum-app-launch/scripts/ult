@@ -31,11 +31,12 @@
   ult loop add|triage|fixed|recheck|status   review loop: blockers hold delivery, minor ones don't
   ult board add|move|show|card              card board for big projects; `show` first after lost context
   ult notes add|show|list|links            linked [[name]] notes (opens as an Obsidian vault)
-  ult gate status|check|approve|revise|done ITEM   user approvals (brief, mockup, storyboard, story, sourcing, animatic, video, publish, deploy)
+  ult gate status|check|approve|revise|done ITEM   user approvals (brief, mockup, storyboard, papercut, story, sourcing, animatic, video, publish, deploy)
   ult launch | ult business "<task>" | ult social "<task>"   Launch Manager board, Business and Social Media plans
   ult shop catalog|numbers|check|emails|scaffold|test-order   store files for E-commerce Launch
   ult posts specs|check|calendar|slides|captions|variant   finished social posts and their results
   ult audio credits add|check, ult audio mix VOICE MUSIC --out F   sound licences and a ducked, -14 LUFS mix
+  ult cut silences|check|render   Creator Cut: jump cuts from pauses, punch-ins, 9:16 render
   ult style status|apply|remove  opt-in shared answer style in ~/.claude/CLAUDE.md
 """
 import argparse
@@ -48,7 +49,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from ultlib import context, doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
 MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
-for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "motion", "film", "media", "loop", "board", "style", "gates", "teams", "shop", "posts", "audio"):
+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "motion", "film", "media", "loop", "board", "style", "gates", "teams", "shop", "posts", "audio", "cut"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
     except ImportError:

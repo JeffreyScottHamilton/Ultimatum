@@ -67,6 +67,7 @@ class PlainChatRouting(Base):
         "Make a 30 second launch video": "motion",
         "Make an emotional brand film for our launch": "film",
         "Create a cinematic ad about a nurse coming home": "film",
+        "Cut my talking head video into shorts": "creator",
         "Fix the signup form validation bug": "work",
     }
 
@@ -79,7 +80,7 @@ class PlainChatRouting(Base):
 
     HEAD = {"launch": None, "business": None, "website": "ultimatum-website-launch:launch",
             "social": "ultimatum-social-media:social-media", "motion": "ultimatum-video:video",
-            "film": "ultimatum-video:video"}
+            "film": "ultimatum-video:video", "creator": "ultimatum-video:video"}
 
     def test_core_hook_sends_each_job_to_its_plugin(self):
         self.write("index.html", "<nav class='menu'></nav>")

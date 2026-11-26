@@ -17,6 +17,7 @@ One fixed pipeline for every video, whatever makes the pictures. Each step has a
 - **Product ad, UGC-style, e-commerce product video:** Higgsfield first (`higgsfield.md`), from the user's own product photos. Motion graphics second.
 - **Explainer, feature, number, how it works:** motion graphics.
 - **Feeling carried by people (brand film):** `../brand-film/guide.md`; own footage or licensed stock first, generated shots only for gaps and labelled.
+- **Someone talking to camera, made into shorts:** `../creator-cut/guide.md` (paper edit, `ult cut` jump cuts, captions).
 - **The user has footage:** use it first; generation fills gaps only.
 
 ## Rules

@@ -6,7 +6,7 @@ the prompt; `--scope core` (run by the ultimatum plugin) adds one short line:
 - chat (questions, writing help, small talk): answer in Ultimatum's style, easy
   first, deeper only when asked. ULTIMATUM_STYLE=0 drops this line.
 - work (fix, build, test, review, debug, ship code): start ultimatum:work.
-- website, launch, business, social, motion, film: use the matching Ultimatum plugin
+- website, launch, business, social, motion, film, creator: use the matching Ultimatum plugin
   if it is installed; if not, a short answer and the one install line.
 Any other scope: nothing (the head plugins have no hook). A prompt that starts with "/"
 is an explicit command and is left alone. ULTIMATUM_AUTO=0 turns it all off. Any
@@ -29,6 +29,7 @@ HEADS = {
     "social": ("social media", "ultimatum-social-media", "social-media"),
     "motion": ("video", "ultimatum-video", "video"),
     "film": ("video", "ultimatum-video", "video"),
+    "creator": ("video", "ultimatum-video", "video"),
 }
 LAUNCH_SKILL = "launch"
 

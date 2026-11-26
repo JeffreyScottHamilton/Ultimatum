@@ -21,7 +21,8 @@ If the format answer is video and the user is unsure about style, ask one follow
 
 | Answers | Style file | Video team guide | Editors guide |
 |---|---|---|---|
-| Video, own footage (talking head, event, behind the scenes) | `styles/own-footage.md` | `brand-film/guide.md` only if the user wants a produced story cut | Yes, when they named an editor |
+| Video, someone talking to camera (tips, opinions, podcast or stream clips) | `styles/own-footage.md` | `creator-cut/guide.md` | Yes, when they named an editor |
+| Video, own footage (event, behind the scenes) | `styles/own-footage.md` | `brand-film/guide.md` only if the user wants a produced story cut | Yes, when they named an editor |
 | Video, screen recording or software walkthrough | `styles/product-demo.md` | `motion-graphics/guide.md` for titles, callouts and the end card | Yes, when they named an editor |
 | Video, no footage, feature or number to explain | none | `motion-graphics/guide.md` | Only if they want to finish it in their editor |
 | Video, no footage, feeling or story to carry | none | `brand-film/guide.md` | Only if they want to finish it in their editor |

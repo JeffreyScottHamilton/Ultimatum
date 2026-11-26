@@ -81,6 +81,14 @@ _FILM_RE = re.compile(
     r"manifesto|anthem\w*|testimonial)\s+(?:brand\s+)?(?:film|ad|video|spot|commercial|piece|story)s?|"
     r"(?:film|ad|video|spot|commercial)s?\s+(?:that|which)\s+(?:makes?|will\s+make)\s+(?:people|viewers|them)\s+"
     r"(?:feel|cry)|human[- ]moment|live[- ]action\s+(?:ad|video|spot|film))\b", re.I)
+# Someone talking to camera cut into short vertical videos (Creator Cut), not a story film.
+_CREATOR_RE = re.compile(
+    r"\b(?:creator[- ]cuts?|talking[- ]heads?|jump[- ]cuts?|face[- ]?cam|short[- ]form\s+(?:videos?|content|clips?|edits?)|"
+    r"(?:cut|remove|trim|delete)\s+(?:out\s+)?(?:the\s+|my\s+|all\s+(?:the\s+)?)?(?:silences?|pauses|dead\s+air|ums?|filler(?:\s+words)?)|"
+    r"(?:clips?|shorts|reels)\s+(?:from|out\s+of)\s+(?:my|our|this|the|a)\s+(?:[\w-]+\s+){0,2}?"
+    r"(?:podcast|stream|livestream|interview|recording|webinar|vlog|youtube\s+video)|"
+    r"(?:repurpose|chop|turn)\s+(?:my|our|this|the|a)\s+(?:[\w-]+\s+){0,3}?(?:podcast|stream|livestream|interview|recording|"
+    r"webinar|vlog|video)\s+(?:in)?to\s+(?:\w+\s+)?(?:shorts|clips|reels|tiktoks))\b", re.I)
 # A whole launch: the Launch Manager runs Business, Website, Social and Motion from one chat.
 _LAUNCH_RE = re.compile(
     r"\b(?:launch(?:ing)?|start(?:ing)?|open(?:ing)?)\s+(?:my|our|a|the|this)\s+(?:[a-z][\w'-]*\s+){0,3}?"
@@ -279,6 +287,13 @@ def film_flag(text: str, route: str) -> bool:
     return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text))
 
 
+def creator_flag(text: str, route: str) -> bool:
+    """A person talking to camera cut into shorts; checked after film, before motion graphics."""
+    if route in SECURITY_ROUTES or not _CREATOR_RE.search(text):
+        return False
+    return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text))
+
+
 def launch_flag(text: str, route: str) -> str:
     """Launch, Social Media or Business: the non-code workflows. Empty when none fits."""
     if route in SECURITY_ROUTES:
@@ -297,6 +312,8 @@ def workflow_for(text: str, route: str, root: Path | None) -> str:
         return "website"
     if film_flag(text, route):
         return "film"
+    if creator_flag(text, route):
+        return "creator"
     if motion_flag(text, route):
         return "motion"
     return launch_flag(text, route) or "default"

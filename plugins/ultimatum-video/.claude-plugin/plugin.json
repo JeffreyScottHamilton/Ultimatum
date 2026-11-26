@@ -1,6 +1,6 @@
 {
   "name": "ultimatum-video",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Video for Ultimatum. Makes one finished video: a product ad, UGC-style clip, explainer or brand film. One fixed pipeline (script, shots, pictures, audio, assembly, review, your yes), with Higgsfield for product and social video, motion graphics for explainers, and ElevenLabs for voice, music and sound effects. Nothing paid is generated without your approval. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
   "author": {
     "name": "Jeffrey Scott Hamilton"

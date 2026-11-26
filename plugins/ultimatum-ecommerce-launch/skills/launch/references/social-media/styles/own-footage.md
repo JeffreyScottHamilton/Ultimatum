@@ -1,6 +1,6 @@
 # Style: the user's own footage
 
-Use this when the user has recorded clips: a talking head, an interview, an event, behind the scenes, a walk-through of a place. The job is to find the strongest moments and cut them into a short vertical video that holds attention and ends on one next step. Platform specifications here are **check before relying** on each platform's own help pages; they change.
+Use this when the user has recorded clips: a talking head, an interview, an event, behind the scenes, a walk-through of a place. The job is to find the strongest moments and cut them into a short vertical video that holds attention and ends on one next step. A talking head cut into shorts follows the Creator Cut guide (`../../creator-cut/guide.md`), which uses this file for the basics and adds the paper edit, `ult cut` and finish checks. Platform specifications here are **check before relying** on each platform's own help pages; they change.
 
 ## Before cutting
 

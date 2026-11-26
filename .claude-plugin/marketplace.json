@@ -36,14 +36,15 @@
     {
       "name": "ultimatum-video",
       "source": "./plugins/ultimatum-video",
-      "description": "Video for Ultimatum. Makes one finished video, from a product ad or UGC-style clip to an explainer or brand film, through one fixed pipeline: script, shots, pictures (Higgsfield, motion graphics or your footage), ElevenLabs audio, assembly, review and your yes. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
+      "description": "Video for Ultimatum. Makes one finished video, from a product ad or UGC-style clip to an explainer, a talking-head short or a brand film, through one fixed pipeline: script, shots, pictures (Higgsfield, motion graphics or your footage), ElevenLabs audio, assembly, review and your yes. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
       "category": "productivity",
       "tags": [
         "video",
         "ads",
         "motion-graphics",
         "voiceover",
-        "brand-film"
+        "brand-film",
+        "creator-cut"
       ]
     },
     {

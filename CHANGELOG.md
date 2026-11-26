@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.3] - 2026-11-26
+
+Creator Cut: a third video style for short-form talking-head content. All seven plugins move to 0.0.3.
+
+- New `teams/creator-cut/` (guide, hooks, edit): intake, transcript, a paper edit approved before rendering, rough cut, finish, review and delivery for vertical shorts cut from someone talking to camera, a podcast or a stream.
+- New `ult cut`: `silences` finds pauses with ffmpeg and writes a cut plan, `check` flags slow hooks, long takes and over-length cuts, `render` makes jump cuts with optional punch-ins and a 9:16 1080x1920 crop, `deliver` runs the export check and records it.
+- New `papercut` gate.
+- Plain-chat routing: talking-head, jump-cut, shorts and clip requests go to `ultimatum-video:video` as the `creator` workflow.
+
 ## [0.0.2] - 2026-11-26
 
 Design skills and cleaner code. All seven plugins move to 0.0.2 because each ships the same toolbelt.

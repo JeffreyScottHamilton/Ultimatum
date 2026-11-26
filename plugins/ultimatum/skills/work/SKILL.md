@@ -12,7 +12,7 @@ Task: $ARGUMENTS
 
 ## 1. Route first
 
-Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them, don't re-read. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow:` line (user did not type `/ultimatum:work`): a launch goes to `ultimatum-<kind>-launch:launch`, social to `ultimatum-social-media:social-media`, motion or film to `ultimatum-video:video`. Not installed: short answer plus `/plugin install <plugin>@ultimatum`.
+Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them, don't re-read. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow:` line (user did not type `/ultimatum:work`): a launch goes to `ultimatum-<kind>-launch:launch`, social to `ultimatum-social-media:social-media`, motion, film or creator to `ultimatum-video:video`. Not installed: short answer plus `/plugin install <plugin>@ultimatum`.
 
 | Mode | Do |
 |---|---|

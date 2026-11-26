@@ -1,6 +1,6 @@
 {
   "name": "ultimatum-event-launch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Event Launch for Ultimatum. Plans and runs the promotion of a public event, working back from the date: intake, ticketing and sign-up, a countdown promotion plan, a day-of run sheet and the follow-up afterwards. Nothing is posted, sent or paid for without your approval. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
