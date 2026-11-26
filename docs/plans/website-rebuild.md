@@ -21,7 +21,7 @@ New for the app size:
 
 ## 2. UI UX Pro Max: rebuilt in full, in our own words
 
-Every part of their repo gets an Ultimatum version. Nothing is cut. Each one is written from primary sources (official docs, standards, font and icon projects' own metadata) and our lessons, never by rewording their rows. Their repo only tells us which topics to cover.
+Every part of their repo gets an Ultimatum version except slides, which is dropped. Nothing else is cut. Each one is written from primary sources (official docs, standards, font and icon projects' own metadata) and our lessons, never by rewording their rows. Their repo only tells us which topics to cover.
 
 | Their part | Their size | Our version |
 |---|---|---|
@@ -43,7 +43,6 @@ Every part of their repo gets an Ultimatum version. Nothing is cut. Each one is 
 | brand skill | brand guide | merged into our `brand/brand.md` flow, expanded |
 | design skill (logo, icon, corporate identity) | generators and data | our own logo, icon and identity guidance |
 | ui-styling | component styling, canvas fonts | our styling guide; fonts linked, not bundled (they carry their own OFL licences) |
-| slides | slide design | kept as our own slide guide |
 
 New tables of our own: Supabase patterns, auth flows, Stripe flows, local trust signals, copy patterns, and the anti-generic lint as searchable rows.
 
@@ -57,7 +56,7 @@ New tables of our own: Supabase patterns, auth flows, Stripe flows, local trust 
 
 ## 4. The other website skills, after UI UX Pro Max
 
-Same method, in this order: Taste, Impeccable, Hallmark, Anatomy, Emil's animation skill, anime.js, gstack's design review and QA. Each gets an in-depth study, an outline of what it knows, and our own expanded version. Coding skills come after.
+Same method, in this order (handed to separate agent sessions with `docs/plans/skill-rebuild-prompt.md`): Taste, Impeccable, Hallmark, Anatomy, Emil's animation skill, anime.js, gstack's design review and QA. Each gets an in-depth study, an outline of what it knows, and our own expanded version. Coding skills come after.
 
 ## 5. Releases
 
