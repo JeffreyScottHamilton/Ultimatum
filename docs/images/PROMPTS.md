@@ -1,73 +1,85 @@
 # Workflow image prompts
 
-Two images: the work diagram and the website diagram.
+Two images: `work.png` and `team-website.png`. Start a new ChatGPT chat for each, paste the style block and then one image block, and save the result in this folder under the file name shown. If a word comes out misspelled, reply: "Same image, fix only this word: …".
 
-For each image:
-1. Start a new ChatGPT chat.
-2. Paste the **style block**, then one image block.
-3. Save the result under the file name shown, in this folder.
-
-If a word comes out misspelled, reply: "Same image, fix only this word: …".
+The style block follows the website builder's own anti-generic lint: no cream paper, pills, glows, sparkles, all-caps labels, numbered sections or dots between words.
 
 ## Style block (paste with every image)
 
 ```
-Draw a detailed system diagram as a flat print graphic, like a page from a well-made technical manual laid out by a human designer in Figma. It must not look AI-generated.
+Draw a clear workflow diagram as a flat print graphic, laid out by a careful human designer. It must not look AI-generated.
 
 Style:
-- Off-white paper background (#F5F2EA). Black ink lines, 2px. One accent colour only: signal orange (#FF5A1F), used for approval stops and nothing else. A light grey (#DDD8CC) is allowed only to fill the background of a nested panel.
-- Steps are plain rectangles with square corners. A nested workflow is a larger panel with a thin black border and its name in small bold caps at its top-left, containing its own row of steps.
-- Helpers and subagents are shown as small rounded "pill" tags with a thin outline, attached to the step that uses them by a short dotted line.
-- Approval stops are small filled orange circles on the top edge of a box, with a tiny label above.
-- Arrows are straight with plain triangle heads and meet at right angles. A dashed arrow means "optional" or "only when needed".
-- Type: one plain sans-serif (Helvetica or Inter), black, left-aligned. Box titles bold. Notes regular and small, at most 6 words. Spell every word exactly as written below and add no other text.
-- Strict grid, even gaps, generous margins, everything aligned. Landscape 16:9, high resolution.
-- Flat only. No gradients, glow, shadows, 3D, glass, neon, sparkles, light rays, bokeh, paper textures, stock icons, robots, brains, people, hands, emoji or futuristic UI. No logo.
-- It should read like a precise engineering diagram printed in ink.
+- Plain white background (#FFFFFF). Black lines, 2px. One accent colour only, signal orange (#FF5A1F), used only for the points where the user must say yes. A pale grey (#EEEEEE) may fill the background of a grouped panel.
+- Steps are rectangles with small, plain corners (4px radius). A group of steps sits inside a larger panel with a thin black border and its name in bold sentence case at its top-left.
+- Helpers are small outlined rectangles, attached to the step that uses them by a short dotted line.
+- Approval points are small filled orange circles on the top edge of a step, with a short label above in black.
+- Arrows are straight, with plain triangle heads, and turn at right angles. A dashed arrow means "only when needed".
+- Type: one sans-serif (Inter or Helvetica), black, sentence case, left-aligned. Step names bold; notes regular, small, at most 6 words. No italics, no capitals-only text, no full stops at the end of labels. Spell every word exactly as written below and add no other text.
+- Strict grid, even gaps, generous margins. Landscape 16:9, high resolution.
+- Flat only. No gradients, glows, shadows, 3D, glass, neon, sparkles, grain, dithering, textures, stock icons, emoji, robots, brains, people or hands. No logo. No numbers in front of steps.
+- It should read like a precise diagram from a good technical manual.
 ```
 
----
-
-## 1. work.png: Work (core)
+## work.png: Work
 
 ```
-Title: "Work"   Subtitle: "/ultimatum:work · for code"
+Title: "Work"   Subtitle: "/ultimatum:work for code"
 
-LEFT: a vertical ladder of six stacked boxes, bottom to top:
-"Answer" — "1-3 plain lines"
-"FAST" — "one small fix"
-"STANDARD" — "plan, change, test"
-"DEEP" — "parts, each with a check"
-"SECURITY" — "defensive review"
-"RECOVERY" — "resume from handoff"
-Beside it, an upward arrow labelled "moves up only when the work needs it".
+Left: a vertical ladder of six stacked steps, bottom to top, each with its note:
+"Answer" - "a question, nothing changed"
+"Fast" - "one small fix"
+"Standard" - "plan, change, test"
+"Deep" - "parts, each with a check"
+"Security" - "defensive review"
+"Recovery" - "resume from a handoff"
+Beside the ladder, an upward arrow labelled "moves up only when needed".
 
-CENTRE: a horizontal row:
-"Route" → "Find" → "Plan the check" → "Change" → "Test" → "Read the diff" → "Report"
-Under "Find": note "ult search · symbols · refs".
-Under "Test": note "ult run, exit codes quoted".
+Centre: a horizontal row of steps joined by arrows:
+"Route" -> "Find" -> "Plan the check" -> "Change" -> "Test" -> "Read the diff" -> "Report"
+Note under "Find": "ult search, symbols, refs".
+Note under "Test": "exit codes quoted".
 
-Helper pills, each joined by a dotted line:
-- to "Find": "scout" — "wide read-only sweep"
-- to "Change": "worker" — "one owned slice"
-- to "Read the diff": "reviewer" — "fresh eyes, DEEP"
-- to "Route" (via SECURITY): "security-hunter" and "security-verifier"
+Helpers, each joined by a dotted line:
+- to "Find": "scout" with note "wide read-only sweep"
+- to "Change": "worker" with note "one owned slice"
+- to "Read the diff": "reviewer" with note "fresh eyes"
+- to "Route", via the "Security" step: "security hunter" and "security verifier"
 
-BOTTOM: panel "BETWEEN CHATS" with three boxes: "Handoff" → "Board of cards" → "Lessons learned".
+Bottom: a panel named "Between chats" holding three steps joined by arrows: "Handoff" -> "Board" -> "Lessons".
 ```
 
-## 2. team-website.png: Website
+## team-website.png: Website
 
 ```
-Title: "Website"   Subtitle: "team workflow · design and build"
+Title: "Website"   Subtitle: "/ultimatum:website for small business sites"
 
-Row:
-"Plan" → "3 directions" → "Taste critic" → "You pick one" (orange dot "you approve") → "Build" → "Browser check"
+Top row, steps joined by arrows:
+"Intake" -> "Brief" -> "Route" -> "Design" -> "Build" -> "Review" -> "Go live" -> "First 30 days"
 
-Under "3 directions": three small boxes side by side, "A", "B", "C", note "different palette, type, layout".
-Pill "taste-critic" dotted to "Taste critic", note "scores 375 · 768 · 1440 px".
-A dashed arrow from "Taste critic" back to "3 directions", labelled "revise".
-Under "Build", small boxes: "Pages and SEO", "Copy", "Components".
-Under "Browser check", small boxes: "375 and 1280 px", "Keyboard", "Console", "Accessibility".
-Pill "worker" dotted to "Build", dashed, note "only when it saves time".
+Notes under the top row:
+- "Intake": "questions until the brief is full"
+- "Brief": "one page"
+- "Route": "size, host, domain"
+- "Go live": "checklist"
+- "First 30 days": "numbers, next change"
+
+Orange approval circles with labels:
+- on "Brief": "you approve"
+- on "Go live": "publish" and "deploy"
+
+Under "Design", a panel named "Design" holding:
+three small steps side by side "Direction A", "Direction B", "Direction C" with note "different palette, type, layout",
+then "Critic" -> "You pick one" (orange approval circle labelled "mockup").
+A dashed arrow from "Critic" back to the three directions, labelled "fix and recheck".
+
+Under "Build", small steps stacked: "Pages and SEO", "Copy", "Design tables".
+Under "Review", small steps stacked: "Phone and desktop", "Keyboard", "Accessibility", "Claims checked".
+
+Helpers, each joined by a dotted line:
+- to "Critic": "taste critic" with note "scores three screen sizes"
+- to "Review": "compliance reviewer" with note "every public page"
+- to "Build": "worker", dashed, with note "only when it saves time"
+
+A dashed arrow from "Intake" straight to "Build", passing above the row, labelled "small fix".
 ```
