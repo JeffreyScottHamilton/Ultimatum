@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.11] - 2026-11-26
+
+Design tables, part 3: our own style guide replaces UI UX Pro Max's.
+
+- `data/design-own/styles.csv`: 88 styles, every one of theirs by name (so the product table still finds them) plus eight new local ones: Local Service Clear, Neighbourhood Warm, Craft Workshop, Clinical Calm, Quiet Luxury, Photo-led Documentary, Public Service Plain and Print Zine.
+- Each style says what it looks like, when to use it and when not, a starting palette, type, layout, motion with a reduced-motion fallback, the slop habits it invites, accessibility risks with WCAG 2.2 criteria, cost, CSS tokens, a CSS starter and a pre-ship checklist.
+- Built by `tools/build_styles.py` from hand-written rows in `tools/style_rows/`; the build rejects rows that recommend a habit the anti-generic lint bans.
+- `ult design system` now lists each chosen style's tokens and the slop to avoid.
+
 ## [0.0.10] - 2026-11-26
 
 Design tables, part 2: our own font pairings replace UI UX Pro Max's.

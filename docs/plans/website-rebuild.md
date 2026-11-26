@@ -1,6 +1,6 @@
 # Plan: a full website builder and our own design knowledge
 
-Status: section 1 shipped in 0.0.8. Section 2 (UI UX Pro Max) is under way: colours shipped in 0.0.9, typography in 0.0.10; section 4 is handed to separate sessions.
+Status: section 1 shipped in 0.0.8. Section 2 (UI UX Pro Max) is under way: colours shipped in 0.0.9, typography in 0.0.10, styles in 0.0.11; section 4 is handed to separate sessions.
 
 ## 1. Scope: every kind of website
 
@@ -26,7 +26,7 @@ Every part of their repo gets an Ultimatum version except slides, which is dropp
 | Their part | Their size | Our version |
 |---|---|---|
 | products | 194 business types | 194 or more, plus local-service detail (booking, calls, quotes, trust signals) |
-| styles | 89 | 89 or more, each with when to use, when not, and the slop habits it invites |
+| styles | 80 | 80 or more (88 shipped), each with when to use, when not, and the slop habits it invites |
 | colors | 194 palettes | 194 or more, every pair checked for WCAG contrast by our own script |
 | typography | 74 pairs | 74 or more, with licence, weights and fallbacks checked against the foundry |
 | google-fonts | 1,934 fonts | rebuilt from Google Fonts' own public metadata (family, category, weights, licence) |

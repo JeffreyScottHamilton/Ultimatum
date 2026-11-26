@@ -21,6 +21,22 @@ Built by `tools/build_palettes.py` from `product-types.txt` (one business type p
 
 Contrast (WCAG 2.2): every text pair is at least 4.5:1 (SC 1.4.3) and the ring at least 3:1 on the page (SC 1.4.11). `tests/test_design_own.py` re-checks every row. Accent is a fill colour, not a text colour on the page.
 
+## styles.csv
+
+Built by `tools/build_styles.py` from the rows in `tools/style_rows/*.json`, written by hand in our own words. The build checks every row (palette has hex colours, tokens are valid custom properties, CSS braces balance, at least two slop habits and three checks) and rejects any row that recommends a habit the anti-generic lint bans, except inside Slop Habits. Style names match UI UX Pro Max's so the product table resolves.
+
+| Column | Meaning |
+|---|---|
+| Style, Aliases | the name and other names people search with |
+| Type | General, Dashboard, Mobile, Design System or Local |
+| Keywords, Looks Like | search words and a short visual description |
+| Use When, Avoid When | who it suits, and who it does not and why |
+| Palette, Type Approach, Layout, Motion | starting colours, fonts, structure, and movement with a reduced-motion fallback |
+| Slop Habits | the generic moves this style tempts people into |
+| Accessibility, Performance | real risks with WCAG 2.2 criteria, and the cost (low, medium, high) |
+| Mode, Effort | light-first, dark-first or both; how hard it is to build well |
+| Tokens, CSS Starter, Checklist | CSS custom properties, a few lines of signature CSS, checks before shipping |
+
 ## typography.csv
 
 Built by `tools/build_typography.py`. The pairings, moods, uses and notes are ours, written in the script. Facts about each family (designer, licence, category, weights, scripts) come from Google Fonts' own `METADATA.pb` files in github.com/google/fonts, cached in `fonts-meta.json` (`--fetch` refreshes it; the build and tests never use the network). The build fails if a pairing asks for a weight the family does not have.
