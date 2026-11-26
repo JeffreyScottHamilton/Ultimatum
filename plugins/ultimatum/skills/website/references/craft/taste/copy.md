@@ -24,7 +24,7 @@ Read at step two, before any layout, whenever you write the words of a page. Voi
 
 - Hero sub-line: software 15–30 words with one fact or mechanism; a place 80 characters or fewer, including today's hours; a hotel names its rooms and town.
 - Section headings: 1–6 words, two lines at most. Use a noun phrase, a verb and its object, or the pattern "we do X for Y". No bare command, question, colon heading or line that only makes sense next to its picture.
-- One two-part heading ("Fast. Fair.") per page at most. A muted second half of a heading only follows a sentence that has ended with a full stop.
+- Headlines and section titles end without a full stop, and clipped two-word rhythm ("Fast. Fair.") is not a default (house lint, `../../website/design-rules.md` §2). The exceptions, each named in the plan with its reason: one two-voice heading per page, where a full stop closes the strong first sentence and a muted line follows (`system.md` § Type), and the full-stop-dot scene on a tech page (`moments-and-scenes.md`).
 - Card titles: verb plus object, one line, never a coy label.
 - Questions belong in the FAQ. A close may ask one plain question if the voice allows it.
 - Links go where their label says. Never "here"; one target, one label; no link to a closed answer.

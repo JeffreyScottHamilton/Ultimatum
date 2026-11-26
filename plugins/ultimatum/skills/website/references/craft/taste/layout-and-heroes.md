@@ -119,7 +119,7 @@ Check the numbers in the browser rather than trusting the table:
 ```js
 // Print the left x of each column of the first .grid on the page.
 const g = document.querySelector('.grid');
-const cols = getComputedStyle(g).gridTemplateColumns.split(' ').map(parseFloat);
+const cols = getComputedStyle(g).gridTemplateColumns.split(' ').filter(t => !t.startsWith('[')).map(parseFloat);
 const gap = parseFloat(getComputedStyle(g).columnGap);
 let x = g.getBoundingClientRect().left;
 console.log(cols.map(w => { const s = Math.round(x); x += w + gap; return s; }));

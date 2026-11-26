@@ -140,7 +140,7 @@ A big scene is a full-screen stretch of a tech page that plays as you scroll. So
 | fly-into-the-shape | between sections, or the product one | gaming, software, tech | 1 | none | finished | the logo as a single path plus a dark photograph |
 | letter-physics | a statement | gaming, software, tech | 1 | none | lighter run | a claim, then its answer |
 | object-through-giant-type | a statement | gaming, software, tech | 1 | one | finished | an object and a quote of 3–5 lines |
-| full-stop-dot | a statement | gaming, software, tech | 1 | none | lighter run | a single claim, 4–6 words long |
+| full-stop-dot | a statement | gaming, software, tech | 1 | none | lighter run | a single claim, 4–6 words long; its closing full stop is a named lint waiver in the plan |
 | letter-bar-floods-the-ground | between sections, or a statement | gaming, software, tech | 1 | none | finished | two statements, then an inverse-ground section |
 
 - **The hero holds one screen.** A scene becomes the hero only with rest height 1, and powers-of-ten-pullback never does (its first screen has no headline or action). The three rest-height-2 scenes go just below the hero as a two-screen section with its own `h2`.

@@ -102,7 +102,7 @@ Starting scale (desktop / phone):
 
 Place pages use a fluid section heading instead: `font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);`.
 
-A two-voice heading (a strong first sentence, a quieter second) is the one decorative heading move:
+A two-voice heading (a strong first sentence, a quieter second) is the one decorative heading move, and the one place a heading may end with a full stop (name it in the plan):
 
 ```html
 <h2 class="split-head">Tables for six or more.
@@ -177,8 +177,8 @@ Under 640 px a fixed bar holds one or two 48 px buttons (for example "Call" and 
   }
   @media (prefers-reduced-motion: reduce) { .action-bar { transition: none; } }
 </style>
-<script>
-  // Hide the bar while any element that offers the same action is visible.
+<script type="module">
+  // Module scripts run after parsing, so every twin below the bar exists. Hide the bar while one is visible.
   const bar = document.getElementById('bar');
   const twins = document.querySelectorAll('[data-same-as-bar]');
   const seen = new Set();
@@ -206,7 +206,7 @@ Every page gets this block (fill in real values; never ship the placeholders):
   <title>[What it is] for [who] in [town] | [Brand]</title>
   <meta name="viewport" content="viewport-fit=cover, initial-scale=1, width=device-width">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta name="theme-color" content="#f4f1ea">
+  <meta name="theme-color" content="[the page's --bg as hex]">
   <meta name="description" content="[One sentence naming the offer, the buyer and its hardest fact.]">
   <meta property="og:image" content="https://example.com/share.png">
   <meta property="og:title" content="[Brand]: [what it is] for [who]">

@@ -71,6 +71,8 @@ function deal(lists, previous = {}) {
 | buttons | solid, arrow, block | solid, block | solid, pill, tonal | solid, tonal | solid, pill |
 | radius | sharp or soft | sharp | soft or round | soft | square |
 
+`arrow` puts an arrow on the one button that moves the reader on, never on every button and link (house lint).
+
 Fallbacks without photographs: nav-cards becomes nav-split or nav-centre; close-photo becomes close-word without the name; media-band becomes space (games keep a setting photo); a place hero becomes a statement hero on the brand ground.
 
 ## Software

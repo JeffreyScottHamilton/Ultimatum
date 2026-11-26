@@ -44,14 +44,18 @@ for (const width of [1440, 390]) {
   page.on('response', async r => { requests++; if (r.status() >= 400) failed++;
     try { bytes += (await r.body()).length; } catch {} });
   await page.goto(url, { waitUntil: 'networkidle' });
-  const m = await page.evaluate(() => {
+  const m = await page.evaluate(async () => {
+    // LCP entries only reach a buffered observer; give up after a second if none was recorded.
+    const lcp = await Promise.race([new Promise(r => setTimeout(() => r(null), 1000)),
+      new Promise(r => new PerformanceObserver(l => r(Math.round(l.getEntries().at(-1).startTime)))
+        .observe({ type: 'largest-contentful-paint', buffered: true }))]);
     const imgs = [...document.images];
     return {
       noSize: imgs.filter(i => !i.getAttribute('width') && getComputedStyle(i).aspectRatio === 'auto').length,
       oversize: imgs.filter(i => i.clientWidth && i.naturalWidth > 2.2 * i.clientWidth).length,
       eagerBelow: imgs.filter(i => i.getBoundingClientRect().top > innerHeight && i.loading !== 'lazy').length,
       overflow: document.documentElement.scrollWidth > innerWidth,
-      lcp: performance.getEntriesByType('largest-contentful-paint').at(-1)?.startTime ?? null,
+      lcp,
     };
   });
   console.log(width, { kib: Math.round(bytes / 1024), requests, failed, ...m });
