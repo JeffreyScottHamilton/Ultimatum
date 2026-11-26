@@ -72,12 +72,12 @@
       "id": "taste",
       "kind": "skill-source",
       "repo": "https://github.com/Leonxlnx/taste-skill",
-      "pin": "6c0b5c7",
+      "pin": "f6b7657",
       "licence": "MIT (photo and icon assets have mixed licences)",
       "decision": "adapt",
-      "modules": ["design"],
-      "reviewed": "2026-11-24",
-      "note": "Adapt the house rules and never-list in own words; skip the scripts, Stop hook and photo and icon assets"
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/taste; skip the kit code, Node scripts, Stop hook and photo and icon assets (see later.md)"
     },
     {
       "id": "remotion",

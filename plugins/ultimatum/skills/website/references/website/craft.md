@@ -2,6 +2,8 @@
 
 Read while building each direction (step 2 of the guide) and again before the build. `design-rules.md` says what to remove; this file says what to put in its place.
 
+For the full craft layer (page plans, heroes, sections, motion, grounds, quality gate), read `../craft/taste/index.md`. This file's rules still win on any conflict.
+
 ## 1. Pick an extreme, then commit
 
 Before any code, name the direction's tone in two or three words, and make them a real position, not "clean and modern". Some starting points to push from:

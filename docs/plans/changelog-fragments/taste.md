@@ -1,4 +1,0 @@
-- Website craft: new `skills/website/references/craft/taste/` (20 files plus `index.md`), rebuilt in our own words from the MIT-licensed Taste skill (Leonxlnx/taste-skill @ f6b7657): principles, copy and voice, page plans, system, layout and heroes, sections, place pages, cards and UI, photos, icons and diagrams, motion, moments and scenes, grounds and effects, effect parts, objects, accessibility, performance, quality gate, and a `later.md` of what is not shipped yet.
-- Adds local-business and app sections, WCAG 2.2 AA and reduced-motion rules to every craft move, and keeps effects to software, gaming and hardware pages.
-- New data table `data/craft/taste/patterns.csv` (grounds, effects, recipes, moments, scenes, heroes, pane pairings) with a README.
-- New `tests/test_craft_taste.py`: index completeness, file size and opening line, https links, relative references and § headings, CSV shape, no credentials, and the copy check against a local source checkout.
