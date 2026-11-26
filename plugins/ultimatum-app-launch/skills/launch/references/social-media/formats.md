@@ -18,6 +18,8 @@ Hook types and AI tells are listed below. Note the hook type on each script.
 
 One idea, the hook in the first line, the next step in the last. Carousels: one point per slide, the last slide repeats the action. Alt text on every image.
 
+Finished files, not just copy: `ult posts slides slides.json --render` makes each slide at the platform's exact size inside its safe zone and writes `alt-text.txt` (spec: `{"platform": "instagram-feed", "brand": {...}, "slides": [{"title", "body", "image", "alt"}]}`). `ult posts captions video.mp4 --script lines.txt --platform reels` burns captions above the platform's bottom UI; `--srt` takes exact timings, `--transcribe --model <file>` uses a local whisper.cpp. Look at every PNG and watch the video before showing it.
+
 ## Blog or SEO article
 
 1. One question a real customer types into search. Write it as the H1 or close to it.
@@ -29,13 +31,15 @@ One idea, the hook in the first line, the next step in the last. Carousels: one 
 
 ## Platform limits (check before relying)
 
+`ult posts specs [platform]` lists the sizes, lengths, caption limits and safe zones the checks use, with the date they were last confirmed.
+
 These came from search previews, not the platforms' own pages:
 
 - TikTok: an app that has not passed TikTok's review may only post privately through the API.
 - Instagram: a daily cap on API posts; sources disagree on the number.
 - YouTube: one API upload uses a large share of the default daily quota.
 
-By default, hand over drafts or use a scheduling tool the user already has (a Postiz connector, only if they have it); post by API only when the user set it up and said yes. Scheduling is still posting: it needs the publish gate.
+By default, hand over drafts or use a scheduling tool the user already has (a Postiz connector, only if they have it); post by API only when the user set it up and said yes. Scheduling is still posting: it needs the publish gate. Without a connector, `ult posts calendar plan.json --to csv` (for a scheduler's bulk import) or `--to ics` (for the user's calendar) hands over the plan without posting anything.
 
 ## Hook types (name one per piece)
 

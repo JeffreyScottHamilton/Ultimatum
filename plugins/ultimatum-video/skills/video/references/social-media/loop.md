@@ -4,11 +4,12 @@ Post, wait, read, adjust. The goal is the main action (signups, bookings, orders
 
 ## Each cycle
 
-1. **Post** an approved batch (or the user posts it). Note per piece: date, channel, format, hook type, tracked link.
+1. **Post** an approved batch (or the user posts it). Note per piece: date, channel, format, hook type, tracked link. Write 2 or 3 hook variants for the same idea and log each with `ult posts variant add <id> --hook-type <type> --text "..."`.
 2. **Wait about 48 hours.** Earlier numbers mostly show the first push.
 3. **Read** views, watch time or completion, clicks and **signups** from the tracked link, via the user, an authorized connector or an export. Record with `ult social --results "<numbers and source, or not available>"`.
 4. **Judge by signups**, then clicks. Many views and no signups is not a winner.
-5. **Adjust the next hook.** Keep the winning type and format; change one thing at a time. About one draft in five tries a new format.
+Enter each variant's real numbers with `ult posts variant result <id> --views N --clicks N --signups N`; never estimate a missing number.
+5. **Adjust the next hook.** `ult posts variant next` ranks hook types by signups per 1,000 views. Keep the winning type and format; change one thing at a time. About one draft in five tries a new format.
 6. **Log the learning** in the Learnings section of `brand/brand.md`: date, hypothesis, what was tried, the number, keep or drop.
 
 ## Weekly review

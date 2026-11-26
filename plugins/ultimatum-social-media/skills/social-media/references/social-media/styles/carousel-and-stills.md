@@ -54,7 +54,7 @@ Confirm each of these on the platform's help page on the day you export; they ch
 | TikTok photo mode | Vertical | Check the current photo count limit |
 | Pinterest | Tall portrait | Check the recommended ratio |
 
-Export every slide at the same size. Use PNG for slides with text and flat colour, JPEG for photos; compress without visible artefacts. Name files in order: `post-name-01.png`, `post-name-02.png`.
+`ult posts slides <spec.json> --render` builds the set at the exact size with Playwright; `ult posts check social/slides/*.png --platform <p>` confirms it. Export every slide at the same size. Use PNG for slides with text and flat colour, JPEG for photos; compress without visible artefacts. Name files in order: `post-name-01.png`, `post-name-02.png`.
 
 ## Alt text and captions
 

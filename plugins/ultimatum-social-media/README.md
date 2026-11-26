@@ -20,6 +20,8 @@ Say "make a short video from my interview clips" or "plan a month of posts for m
 - Video styles: your own footage (selecting takes from a transcript, cutting, captions, music under speech), product demos (script, recording, zooms, what to blur), motion graphics and brand film.
 - Carousels and single images: slide structure, text sizes for phones, brand use and export sizes.
 - Editors: DaVinci Resolve, Premiere Pro and Final Cut Pro, through live control where you have set it up, or a timeline file (FCPXML, OTIO or EDL) and a hand-over folder.
+- Finished files, made on your machine: carousel slides rendered to PNG at each platform's exact size (`ult posts slides`), captions burned into a video above the platform's buttons (`ult posts captions`, from a script, an SRT file or a local whisper.cpp), a pre-post check of sizes, lengths and caption limits (`ult posts check`), and the plan as a CSV sheet or .ics calendar (`ult posts calendar`).
+- Hook testing: log 2 or 3 hook variants per idea and the platform's real numbers, then `ult posts variant next` ranks hook types by signups.
 - Review by a compliance reviewer and a taste critic before anything is shown for approval.
 
 ## What it does not do

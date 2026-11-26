@@ -2,6 +2,19 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [1.0.2] - 2026-11-26
+
+Social Media now makes finished, checked files instead of only scripts and prompts. All seven plugins move to 1.0.2.
+
+- New `ult posts` commands (local only; nothing is posted or scheduled):
+  - `slides`: carousel or story slides as HTML at the platform's exact size inside its safe zone, rendered to PNG with the local Playwright (`--render`), plus `alt-text.txt`.
+  - `captions`: burns captions into a video above the platform's bottom buttons, from a script (timing spread by word count), an SRT file, or a local whisper.cpp model; keeps the SRT for upload.
+  - `check`: image and video size, aspect, length, file size, caption length and hashtag count per platform; exit 1 on blockers.
+  - `specs`: the sizes, limits and safe zones the checks use, dated so they are confirmed before relying on them.
+  - `calendar`: the posting plan as a CSV sheet (for a scheduler's bulk import) or an .ics calendar, with warnings for more than one post a day or a missing hook type.
+  - `variant add|result|next`: hook variants and their real numbers; ranks hook types by signups per 1,000 views and never fills in missing numbers.
+- Social media guides (`guide.md`, `loop.md`, `formats.md`, carousel style) and the Social Media skill point to these commands.
+
 ## [1.0.1] - 2026-11-26
 
 E-commerce Launch now builds and checks a real store instead of only describing one. All seven plugins move to 1.0.1 because each ships the same `ult` toolbelt.

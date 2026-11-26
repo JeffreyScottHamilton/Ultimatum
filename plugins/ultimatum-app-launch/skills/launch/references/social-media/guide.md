@@ -16,11 +16,11 @@ Read `shared/defaults.md` and `campaign.md` once. Read the shared context first:
 
 1. **Offer.** From the request, or the approved offer in the shared brief. If `ult social` says it is not approved, draft only from what the head shared and say so.
 2. **Plan:** one channel to start and why; a week at most; name a hook type per piece; about one draft in five tries a new format.
-3. **Write:** one next step per piece, a tracked link when it points to the site. Strip the AI tells listed in `formats.md`.
+3. **Write:** one next step per piece, a tracked link when it points to the site. Strip the AI tells listed in `formats.md`. Put the plan in `social/plan.json` and run `ult posts calendar social/plan.json` (or `--to ics`) so the user gets a sheet or calendar file.
 4. **Video, only if it helps.** Pick the style first (`video-style.md`): Brand Film when the message is a feeling and people carry it, Motion Graphics when it is a feature, a number or needs frequent updates. Make it by following the Brand Film guide (`../brand-film/guide.md`) or the Motion Graphics guide (`../motion-graphics/guide.md`); use only its checked export and use only that (`## Delivered video`).
-5. **Review:** every claim matches the brief, links open and are tracked. Run the plugin's `compliance-reviewer` agent on the batch (claims, AI disclosure, asset licences). Fixes are rechecked.
+5. **Review:** `ult posts check <files> --platform <p> --caption-file <f>` on every finished file (size, length, caption limits); every claim matches the brief, links open and are tracked. Run the plugin's `compliance-reviewer` agent on the batch (claims, AI disclosure, asset licences). Fixes are rechecked.
 6. **Approval.** Show the batch. Post, schedule, send, spend money or change customer records only after the user's yes (`ult gate approve publish "<words>"`; with site links, `--link <checked url>` and `ult gate check publish --need-link`). After posting, `ult gate done publish`.
-7. **Read and adjust** (`loop.md`): about 48 hours after a post, record views, clicks and **signups** (`ult social --results "..."`). Judge by signups, change the next hook, log the learning in `brand/brand.md`. Review the top and bottom three posts weekly.
+7. **Read and adjust** (`loop.md`): about 48 hours after a post, record views, clicks and **signups** (`ult social --results "..."`). Per hook: `ult posts variant result <id> --views N --signups N`. Judge by signups, change the next hook, log the learning in `brand/brand.md`. Review the top and bottom three posts weekly.
 
 ## Rules
 
