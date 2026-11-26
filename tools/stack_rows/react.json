@@ -19,8 +19,8 @@
 "A value computed from props or state needs no state of its own; storing it creates two truths that drift.",
 "Compute total, filtered list or label in the render body.",
 "Mirror a derived value into state with an effect.",
-"const total = items.reduce((s,i)=>s+i.price,0)",
-"useEffect(()=>setTotal(sum(items)),[items])",
+"const total = items.reduce((sum, it) => sum + it.price * it.qty, 0)",
+"useEffect(() => setTotal(sumOf(items)), [items])",
 "High",
 "/learn/choosing-the-state-structure"
 ],

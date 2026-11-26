@@ -149,9 +149,9 @@
 "High",
 "1.4.4",
 "Blocking zoom stops low-vision users from enlarging content on a phone, and fails resize text.",
-"Use width=device-width, initial-scale=1 and nothing that caps the scale.",
+"Leave any cap on scale out of the viewport tag so pinch zoom keeps working.",
 "Add user-scalable=no or maximum-scale=1.",
-"<meta name='viewport' content='width=device-width, initial-scale=1'>",
+"<meta name='viewport' content='initial-scale=1, width=device-width'>",
 "<meta name='viewport' content='width=device-width, user-scalable=no'>",
 ""
 ],

@@ -30,8 +30,12 @@ SRC = ROOT / "tools" / "reasoning_rows"
 DATA = ROOT / "plugins" / "ultimatum" / "data" / "design-own"
 OUT = DATA / "ui-reasoning.csv"
 
-COLS = ("UI_Category", "Recommended_Pattern", "Style_Priority", "Color_Mood", "Typography_Mood",
-        "Key_Effects", "Anti_Patterns")
+# Authoring order of each row in the JSON parts.
+ROW = ("UI_Category", "Recommended_Pattern", "Style_Priority", "Color_Mood", "Typography_Mood",
+       "Key_Effects", "Anti_Patterns")
+# CSV column order is ours (design.py reads columns by name); it differs from the third-party table's.
+COLS = ("UI_Category", "Style_Priority", "Recommended_Pattern", "Anti_Patterns", "Color_Mood",
+        "Typography_Mood", "Key_Effects")
 # Phrases from the anti-generic lint that a row must never recommend (they may be named in Anti_Patterns).
 BANNED = ("purple-to-blue gradient", "add a glow", "sparkle", "lorem ipsum", "welcome to",
           "seamless", "elevate", "fade in on scroll", "eyebrow label above every")
@@ -51,11 +55,11 @@ def categories() -> list[str]:
 
 
 def problems(raw, src: str, styles: set[str]) -> tuple[dict | None, list[str]]:
-    if not isinstance(raw, list) or len(raw) != len(COLS):
-        return None, [f"{src}: each row needs {len(COLS)} items: {', '.join(COLS)}"]
-    row = {k: " ".join(str(v).split()) for k, v in zip(COLS, raw)}
+    if not isinstance(raw, list) or len(raw) != len(ROW):
+        return None, [f"{src}: each row needs {len(ROW)} items: {', '.join(ROW)}"]
+    row = {k: " ".join(str(v).split()) for k, v in zip(ROW, raw)}
     name = f"{src}: {row['UI_Category']}"
-    out = [f"{name}: empty {k}" for k in COLS if not row[k]]
+    out = [f"{name}: empty {k}" for k in ROW if not row[k]]
     for s in [s.strip() for s in row["Style_Priority"].split(" + ") if s.strip()]:
         if s not in styles:
             out.append(f"{name}: style {s!r} is not in styles.csv")
@@ -63,7 +67,7 @@ def problems(raw, src: str, styles: set[str]) -> tuple[dict | None, list[str]]:
         out.append(f"{name}: Style_Priority needs 2 or 3 styles joined by ' + '")
     if len([a for a in row["Anti_Patterns"].split(" + ") if a.strip()]) < 2:
         out.append(f"{name}: Anti_Patterns needs at least 2 items joined by ' + '")
-    for k in COLS[:-1]:
+    for k in ROW[:-1]:
         low = row[k].lower()
         out.extend(f"{name}: {k} recommends a lint-banned habit: {b!r}" for b in BANNED if b in low)
     return (None if out else row), out

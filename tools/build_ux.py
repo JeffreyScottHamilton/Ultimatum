@@ -27,8 +27,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "tools" / "ux_rows"
 OUT = ROOT / "plugins" / "ultimatum" / "data" / "design-own" / "ux-guidelines.csv"
 
-COLS = ("Category", "Issue", "Platform", "Description", "Do", "Don't", "Code Example Good",
-        "Code Example Bad", "Severity", "WCAG", "Docs URL")
+# Column order is ours (design.py reads columns by name); it differs from the third-party table's.
+COLS = ("Category", "Issue", "Severity", "WCAG", "Platform", "Description", "Do", "Don't",
+        "Code Example Bad", "Code Example Good", "Docs URL")
 ROW = ("Category", "Issue", "Platform", "Severity", "WCAG", "Description", "Do", "Don't",
        "Code Example Good", "Code Example Bad", "Docs URL")
 PLATFORMS = {"All", "Web", "Mobile", "VisionOS"}

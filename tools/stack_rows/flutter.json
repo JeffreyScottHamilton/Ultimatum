@@ -525,8 +525,8 @@
 "darkTheme and themeMode.",
 "Provide both.",
 "Light only.",
-"MaterialApp(theme:light,darkTheme:dark)",
-"MaterialApp(theme:light)",
+"MaterialApp(darkTheme: dark, themeMode: ThemeMode.system, theme: light)",
+"MaterialApp(home: Home(), theme: light)",
 "Medium",
 "/cookbook/design/themes"
 ],

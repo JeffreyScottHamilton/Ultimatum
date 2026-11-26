@@ -32,9 +32,9 @@
 "High",
 "-",
 "Without a viewport tag, phones render a desktop-width page scaled down and the layout never responds.",
-"Include width=device-width, initial-scale=1 in the head.",
+"Put a viewport tag in the head that sets the width to the device width and an initial scale of 1.",
 "Omit the tag.",
-"<meta name='viewport' content='width=device-width, initial-scale=1'>",
+"<meta name='viewport' content='initial-scale=1, width=device-width'>",
 "<head></head>",
 "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Viewport_meta_element"
 ],

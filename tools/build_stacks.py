@@ -74,7 +74,7 @@ def load(stack: str, path: Path) -> tuple[list[dict], list[str]]:
             if url.startswith("http://") or "://" in url:
                 errs.append(f"{where}: Docs URL must be https: {url}")
                 continue
-            url = base.rstrip("/") + "/" + url.lstrip("/")
+            url = base + url.lstrip("/") if base.endswith("#") else base.rstrip("/") + "/" + url.lstrip("/")
         host = urlparse(url).hostname or ""
         if urlparse(url).scheme != "https" or host not in HOSTS[stack]:
             errs.append(f"{where}: doc host {host!r} is not allowed for {stack} ({sorted(HOSTS[stack])})")
@@ -87,9 +87,14 @@ def load(stack: str, path: Path) -> tuple[list[dict], list[str]]:
     return rows, errs
 
 
+# Same ten columns, written in our own order (the readers look columns up by name).
+OUT_COLS = ("Category", "Guideline", "Applies To", "Severity", "Description", "Docs URL", "Do", "Don't",
+            "Code Good", "Code Bad")
+
+
 def render(rows: list[dict]) -> str:
     buf = io.StringIO(newline="")
-    w = csv.DictWriter(buf, COLS, lineterminator="\n")
+    w = csv.DictWriter(buf, OUT_COLS, lineterminator="\n")
     w.writeheader()
     w.writerows(rows)
     return buf.getvalue()

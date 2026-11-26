@@ -188,7 +188,7 @@
 "High",
 "3.3.1",
 "A message that stays after the field is corrected tells users it still fails, and a screen reader keeps announcing it.",
-"Remove the message and aria-invalid as soon as the value passes.",
+"Hide the message and drop the invalid flag the moment the value passes.",
 "Wait for the next submit to clear it.",
 "if(ok){err.hidden=true;input.removeAttribute('aria-invalid')}",
 "/* error stays until submit */",
