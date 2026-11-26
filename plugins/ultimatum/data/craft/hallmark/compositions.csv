@@ -1,0 +1,18 @@
+name,columns,size,use_for,rule
+split,6-12 or 7-12,"440+ tall, 4:3 to 4:5",text with two to four facts or one action beside a visual,swap sides once a page; change ratio between splits
+showcase,12,"560+ tall, 16:9 to 21:9",one hero-size visual under a head block,at most two smaller visuals beneath at 8/4 or 7/5
+grid,12,cells 240+ tall,"three or four plans, products, rooms or dishes",equal heights; no empty frames or icon tiles
+bento,6 or 12,rows 280-360,four to six mixed-span tiles with one clear lead,two tiles at least carry a visual
+rows,12,rows 72-120,"title left, line or figure right, parted by hairlines (FAQ, index, price list)",three to five rows
+table,12,rows 56-72,four or five rows of comparable facts,"tabular numerals, naming column heavier"
+figures,12,small display size,three or four real numbers with labels,only figures the user gave
+steps,12,per stage,a real process the visitor goes through,real ol numerals; visual where material has one
+statement,8-10,section size to display,one sentence with attribution or action,once a page
+band,12 edge to edge,padding 120,"the job's close: times, buy box, store buttons, next date",never an email field by default
+form,6-7 beside head block,inputs 48-56,fields with two to four facts and one primary action,one primary action
+rail,past container edge,per item,"dates, issues, products, rooms, episodes in a horizontal run",five or more items; next one cut by the edge; snap points
+pinned,6-7 sticky plus panels,viewport,one visual changing state while three or four panels scroll,static under 60rem
+switcher,12,per state,two to five real states behind a segmented control,first state visible without script
+index,12,6 to 20 rows,dense list of own items with facts in columns,lead row larger; optional filter
+schedule,12,per slot,time against place or day; opening hours strip,mark current or next slot; only plan-around times
+offer,12,per product,"photo or screen, options, price, action, one terms line",often the hero on a buy page

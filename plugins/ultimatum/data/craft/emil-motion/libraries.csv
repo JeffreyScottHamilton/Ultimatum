@@ -1,0 +1,20 @@
+task,library,url,use_when,skip_when
+"accessible unstyled dialogs, popovers, menus, selects",Base UI,https://base-ui.com,a hand-built div needs focus and dismissal handled,a native dialog element or simple disclosure is enough
+command menu,cmdk,https://cmdk.paco.me,a keyboard palette is wanted,only a few actions exist
+toasts and notifications,Sonner,https://sonner.emilkowal.ski,any app toast,a static banner inside the page
+one-time code input,input-otp,https://input-otp.rodz.dev,a six-digit code field,a plain tel input with autocomplete is enough
+tweak panels,Leva,https://github.com/pmndrs/leva,live-tuning values in dev,production UI
+"general animation, springs, layout and exit",Motion,https://motion.dev,"springs, layout animation, exit, gesture values",a hover or fade; use CSS
+animated numbers,NumberFlow,https://number-flow.barvian.me,price or counter digit transitions,a number that rarely changes
+animated text,Torph,https://torph.lochie.me/,text swapping with motion,static headings
+3D globe,Cobe,https://cobe.vercel.app,a small interactive globe,a flat map would do
+OG images from HTML and CSS,Satori,https://github.com/vercel/satori,dynamic social images,a static image is fine
+syntax highlighting,Shiki,https://shiki.style,code blocks with accurate grammar,no code on the page
+live streaming chart,Liveline,https://github.com/benjitaylor/liveline,data streams in and the chart moves with the clock,static data
+general charts,Recharts,https://recharts.org,dashboards and static charts,a single number or sparkline
+drag and drop,dnd kit,https://dndkit.com,sortable lists and boards,a single draggable sheet or slider
+long lists and tables,Virtuoso,https://virtuoso.dev,hundreds or thousands of rows,a short list
+shared client state,zustand,https://zustand.docs.pmnd.rs,state is passed through many props,local state in one component
+conditional class names,clsx,https://github.com/lukeed/clsx,a few ad hoc conditions,components with real variants
+variant-driven styling,cva,https://cva.style,"size, intent and state variants",a one-off element
+theme switching without flash,next-themes,https://github.com/pacocoursey/next-themes,dark mode in Next.js,a site with one theme

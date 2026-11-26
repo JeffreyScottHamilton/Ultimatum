@@ -1,0 +1,92 @@
+term,group,meaning,not_to_confuse_with,hint
+fade,entrance-exit,Appears or disappears by opacity alone.,scale-in,opacity
+slide-in,entrance-exit,Arrives travelling from off-screen or from an edge.,reveal,translate
+scale-in,entrance-exit,"Grows from a slightly smaller size, usually with a fade.",pop-in,scale + opacity
+pop-in,entrance-exit,"Arrives with a small overshoot, as if bouncing into place.",scale-in,spring with bounce
+reveal,entrance-exit,Content uncovered gradually by a moving clip or mask edge.,slide-in,"clip-path, mask"
+enter-exit,entrance-exit,The motion played when an element is added to or removed from the screen.,none noted,"@starting-style, presence wrappers"
+keyframes,timing,"Named waypoints (0%, 50%, 100%) the browser fills between.",transition,@keyframes
+tween,timing,The computed in-between values from start to end.,spring,interpolation
+stagger,timing,"Several items start one after another with a small gap, forming a cascade.",orchestration,animation-delay per item
+orchestration,timing,Timing many animations so they read as one planned motion.,stagger,"timeline, shared tokens"
+delay,timing,Wait before motion starts.,duration,animation-delay
+duration,timing,How long a motion runs.,delay,animation-duration
+fill-mode,timing,Whether the first or last frame's styles apply outside the run.,none noted,animation-fill-mode
+stepped,timing,"Motion in discrete jumps, such as a countdown.",linear,steps()
+translate,movement,Move along x or y.,none noted,translate()
+scale,movement,"Resize about an origin, children included.",none noted,scale()
+rotate,movement,Turn about a point.,none noted,rotate()
+skew,movement,Shear an element out of its rectangle.,none noted,skew()
+tilt-flip,movement,Rotate in 3D for depth.,none noted,"rotateX, rotateY, preserve-3d"
+perspective,movement,Strength of the 3D effect; a smaller value exaggerates depth.,none noted,perspective
+transform-origin,movement,The anchor point scaling and rotation grow from.,origin-aware,transform-origin
+origin-aware,movement,An element grows from its trigger rather than its own centre.,transform-origin,origin set at the trigger
+crossfade,state-change,One element dissolves while another dissolves in at the same spot.,morph,opacity on both
+continuity,state-change,"A change that keeps the viewer oriented by linking before and after, such as one box resizing.",morph,"same element, new size"
+morph,state-change,One shape turns into another.,crossfade,shape or layout animation
+shared-element,state-change,"An element travels and reshapes between two positions, like a thumbnail becoming a card.",layout-animation,"view transitions, layout ids"
+layout-animation,state-change,An element animates to its new size or place instead of snapping.,shared-element,FLIP
+accordion,state-change,A section grows and shrinks to show or hide content.,none noted,grid-template-rows 0fr to 1fr
+direction-aware,state-change,Content moves one way going forward and the opposite going back.,none noted,sign of travel from step change
+scroll-reveal,scroll,Items fade or slide in as they enter the viewport.,scroll-driven,IntersectionObserver
+scroll-driven,scroll,Progress tied directly to scroll position.,scroll-reveal,animation-timeline
+parallax,scroll,Layers move at different speeds while scrolling.,none noted,scroll-driven transforms
+page-transition,scroll,Motion when navigating between pages or routes.,view-transition,route change
+view-transition,scroll,Browser-made morph between two document states.,page-transition,document.startViewTransition
+hover-effect,feedback,Visual change under the cursor.,none noted,@media (hover: hover)
+press-feedback,feedback,"Slight shrink while pressed, so a control feels physical.",none noted,scale on :active
+hold-to-confirm,feedback,A fill that progresses while the control is held.,none noted,"clip-path overlay, linear"
+drag,feedback,"Moving something by grabbing it, often with momentum on release.",none noted,pointer events
+drag-reorder,feedback,Dragging list items while others shift to make room.,none noted,sortable library
+swipe-dismiss,feedback,Dragging an element away to close it.,none noted,pointer events + velocity
+rubber-banding,feedback,Resistance and snap-back past a boundary.,none noted,damped overshoot
+shake,feedback,Quick side-to-side jitter signalling a rejected input.,none noted,short keyframes
+ripple,feedback,A circle expanding from the touch point.,none noted,radial expansion
+easing,easing,How speed changes across a motion.,none noted,timing function
+ease-out,easing,"Fast start, slow end; default for responses and entrances.",ease-in,cubic-bezier
+ease-in,easing,"Slow start, fast end; mostly avoided in interfaces.",ease-out,cubic-bezier
+ease-in-out,easing,"Slow, fast, slow; for things moving between two on-screen points.",none noted,cubic-bezier
+linear,easing,"Constant speed; for progress, spinners and marquees.",none noted,linear
+cubic-bezier,easing,A custom curve defined by two control points.,none noted,cubic-bezier()
+asymmetric-easing,easing,A curve that speeds up and slows down at different rates.,none noted,uneven control points
+spring,spring,"Motion from physics, with no fixed duration.",tween,"mass, stiffness, damping"
+stiffness,spring,How hard the spring pulls to its target; higher is snappier.,none noted,stiffness
+damping,spring,How fast oscillation dies out; lower means more bounce.,none noted,damping
+mass,spring,How heavy the element feels; more mass is slower.,none noted,mass
+bounce,spring,Overshoot before settling.,none noted,bounce
+perceptual-duration,spring,How long a spring seems to take before it looks finished.,none noted,visual duration
+momentum,spring,"Motion that keeps its velocity, especially after a release.",none noted,inertia
+velocity,spring,"Speed and direction, carried into the next animation on interruption.",none noted,initial velocity
+interruptible,spring,Can be redirected mid-flight rather than finishing first.,none noted,"transition retarget, spring"
+marquee,loop,Content scrolling in a continuous loop.,none noted,linear translate
+loop,loop,Motion that repeats.,none noted,animation-iteration-count
+alternate,loop,A loop that plays forward then backward.,none noted,animation-direction
+orbit,loop,One element circling another.,none noted,3D rotate and translateZ
+pulse,loop,A gentle repeating scale or opacity change that draws the eye.,none noted,keyframes
+float,loop,A slow constant drift up and down.,none noted,keyframes
+idle,loop,Subtle motion while an element waits to be used.,pulse,delayed loop
+blur-mask,polish,A light blur that hides the seam of an imperfect transition.,none noted,filter: blur(2px)
+clip-path,polish,"Cuts an element down to a shape, as in reveals, wipes and sliders.",mask,clip-path: inset()
+mask,polish,Hides parts by a shape or gradient with soft edges.,clip-path,mask-image
+compare-slider,polish,A draggable divider wiping between two stacked images.,none noted,clip-path inset
+line-drawing,polish,A path that draws itself like a pen stroke.,none noted,stroke-dashoffset
+text-morph,polish,Text that changes character by character to draw the eye to a new value.,none noted,per-character transition
+skeleton,polish,A placeholder with a moving sheen while content loads.,none noted,gradient sweep
+number-ticker,polish,Digits that roll or count to a value.,none noted,tabular numerals
+tabular-numbers,polish,Fixed-width digits so changing numbers do not jitter.,none noted,font-variant-numeric: tabular-nums
+typewriter,polish,Text appearing one character at a time.,none noted,steps() or timers
+fps,performance,"Frames per second; 60 is the baseline, 120 on newer screens.",none noted,frame budget
+jank,performance,Visible stutter when frames are late.,none noted,long task
+dropped-frame,performance,A frame that missed its deadline.,none noted,frame timing
+compositing,performance,Moving or fading a layer on the GPU without relayout or repaint.,none noted,"transform, opacity"
+will-change,performance,"A hint that a property will soon change, letting the browser prepare a layer in advance.",none noted,will-change
+layout-thrash,performance,"Forcing recalculation of layout every frame, by animating geometry or by reading and writing layout alternately.",none noted,"width, height, top, left"
+purposeful-motion,principle,"Motion that orients, gives feedback or shows relationships rather than decorating.",none noted,gate.md
+anticipation,principle,A small opposite move that hints at what comes next.,follow-through,pre-move
+follow-through,principle,Parts that keep moving and settle after the main motion stops.,anticipation,overshoot
+squash-stretch,principle,Deforming a moving element to convey weight and speed.,none noted,scale on axes
+perceived-performance,principle,"The feeling of speed, which motion can raise or lower with no change in real time.",none noted,short ease-out
+frequency-of-use,principle,"The more often seen, the shorter and quieter the motion.",none noted,gate.md
+spatial-consistency,principle,An element keeps identity and position across states and leaves by the way it came.,none noted,same-axis enter and exit
+hardware-acceleration,principle,Using the GPU through transform and opacity.,compositing,"transform, opacity"
+reduced-motion,principle,Honouring the user's setting by toning motion down.,none noted,prefers-reduced-motion

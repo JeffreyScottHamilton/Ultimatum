@@ -1,0 +1,51 @@
+slug,name,genre,posture,paper_band,paper_lightness,paper_hue,display_class,display_face,accent_band,accent_hue,photo_treatment,routes_from
+almanac,Almanac,editorial,restrained,mid,84,245,grotesk-sans,Hanken Grotesk,chromatic-magenta,350,muted,almanac | yearbook | field guide | reference | handbook
+arcade,Arcade,playful,full-palette,dark,14,312,pixel,Silkscreen and Bungee,chromatic-ember,40,tint accent,game | indie | game studio | launch party | demo night
+atelier,Atelier,editorial,restrained,light,94.5,76,roman-serif,Sentient,cool,248,warm con=-6 vib=-10,fashion | atelier | couture | fragrance | gallery
+bloom,Bloom,atmospheric,committed,light,97,72,grotesk-sans,Ranade,warm,36,warm exp=4,generative | ai creative | music | song | video
+blueprint,Blueprint,modern-minimal,drenched,mid,35,256,geometric-sans,Chakra Petch,neutral,240,duotone paper-3 ink con=30 exp=-10,architecture | architect | engineering | construction | structural
+broadside,Broadside,editorial,committed,light,92,88,display-condensed,Six Caps,warm,33,duotone ink paper con=20,auction | sale | market | fair | event
+brutal,Brutal,editorial,committed,light,97.5,95,grotesk-heavy,Libre Franklin,chromatic-yellow,105,duotone ink paper con=24,brutalist | raw | bold | high-contrast | statement
+carnival,Carnival,editorial,full-palette,light,92,50,display-heavy,Big Shoulders Display,chromatic-yellow,95,natural vib=20 con=10,record label | podcast | comedy | indie | zine
+cobalt,Cobalt,modern-minimal,restrained,light,98.5,250,grotesk-sans,Familjen Grotesk,cool,256,duotone graphite paper,api | sdk | cli | dev tool | developer platform
+console,Console,modern-minimal,restrained,dark,17,250,grotesk-sans,Host Grotesk,chromatic-amber,80,duotone paper-3 ink,lab | laboratory | protocol | experiment | notebook
+coral,Coral,modern-minimal,restrained,light,97,55,grotesk-sans,General Sans,warm,30,muted sepia=8,saas | platform | billing | payments | invoicing
+darkroom,Darkroom,atmospheric,restrained,dark,12.5,55,display-condensed,Sofia Sans Extra Condensed,chromatic-amber,58,mono high=-20 shad=-12,photographer | photography | film | analogue | darkroom
+dose,Dose,modern-minimal,committed,light,97.6,88,grotesk-sans,Schibsted Grotesk,chromatic-green,160,natural sat=-15 con=-6,health | medication | pharmacy | care | carer
+dusk,Dusk,modern-minimal,committed,dark,17.5,268,grotesk-sans,Wix Madefor Display,cool,274,natural con=4 vib=6,treasury | banking | fintech | payments | reconciliation
+editorial,Editorial,editorial,restrained,light,97,86,display-condensed,Bricolage Grotesque,chromatic-green,152,natural sat=-10 con=4,magazine | editorial | feature | culture | fashion
+formwork,Formwork,editorial,restrained,mid,74,80,display-condensed,Oswald,warm,38,natural sat=-100 con=35 exp=8,construction | concrete | skatepark | contractor | civil
+furrow,Furrow,modern-minimal,committed,light,96,85,grotesk-sans,Red Hat Display,warm,40,natural con=8 sat=-6,farm | agriculture | land | field | livestock
+garden,Garden,editorial,committed,light,95.8,90,roman-serif,Vollkorn,chromatic-green,140,natural con=6 sat=-6,farm | apiary | honey | cidery | orchard
+grid,Grid,editorial,full-palette,light,97.5,90,grotesk-sans,Radio Canada Big,cool,266,duotone ink paper-2 con=12,identity | brand system | wayfinding | signage | design studio
+halftone,Halftone,playful,committed,light,96.2,94,slab-serif,Ultra,warm,33,natural vib=25 sat=10 con=6,drinks | soda | food brand | print shop | zine
+hedgerow,Hedgerow,editorial,drenched,dark,24,158,high-contrast-serif,Prata,chromatic-green,118,natural sat=-10 con=8 exp=-8,distillery | gin | brewery | forager | botanicals
+hum,Hum,playful,full-palette,light,97,95,rounded-sans,Chillax,chromatic-yellow,95,natural vib=12 exp=4,daily | habit | streak | practice | learning
+ink,Ink,editorial,restrained,light,99.5,100,grotesk-sans,Epilogue,chromatic-teal,190,muted,library | lending | community | civic | notice board
+kiln,Kiln,atmospheric,full-palette,dark,13,40,high-contrast-serif,Boska,warm,45,warm sepia=50 sat=-12 con=8 exp=-6,kiln | ceramics | pottery | firing | glaze
+loom,Loom,editorial,committed,light,95,85,roman-serif,Libre Caslon Display,cool,266,natural sat=-12 con=-4,weaving | textile | linen | wool | weaving studio
+lumen,Lumen,atmospheric,restrained,dark,12.5,290,roman-serif,Instrument Serif,warm,62,duotone paper ink-2,inference | model | llm | ai tool | agent
+manifesto,Manifesto,editorial,committed,dark,13,60,display-condensed,Anton,warm,28,duotone paper ink con=24,manifesto | statement | declaration | principles | beliefs
+midnight,Midnight,atmospheric,committed,dark,14,264,grotesk-sans,Mona Sans,cool,230,duotone paper ink-2,render | 3d | animation | vfx | film
+newsprint,Newsprint,editorial,restrained,light,94,92,slab-serif,Zilla Slab,warm,32,mono,newspaper | broadsheet | journalism | publication | magazine
+overprint,Overprint,playful,full-palette,light,91.5,92,grotesk-heavy,Anybody,cool,212,mono con=30,venue | gigs | live music | festival | music
+pasteup,Paste-up,playful,committed,mid,73,70,display-condensed,League Gothic,chromatic-yellow,112,mono con=45,zine | fair | market | festival | print fair
+piste,Piste,playful,committed,light,98.5,260,display-condensed,Barlow Condensed,cool,265,natural con=10 vib=15,ski | mountain | resort | snow | winter
+refract,Refract,atmospheric,restrained,light,98.2,95,grotesk-sans,Funnel Display,cool,232,natural con=3 exp=4,pool | lido | swim | spa | hotel
+ribbon,Ribbon,atmospheric,committed,light,98.5,85,grotesk-sans,Instrument Sans,chromatic-teal,190,muted sepia=14,sleep | sound | soundscape | audio | night
+rim,Rim,modern-minimal,committed,dark,9,75,grotesk-sans,Switzer,warm,45,natural sat=-20 con=10,space | satellite | earth observation | orbit | imagery
+riso,Riso,editorial,committed,light,97,90,grotesk-heavy,Cabinet Grotesk,chromatic-pink,356,duotone ink paper-2 con=14,risograph | riso | print studio | print fair | zine
+solstice,Solstice,editorial,restrained,light,94,80,high-contrast-serif,Yeseva One,warm,24,warm high=-12,farm | orchard | cider | perry | winery
+specimen,Specimen,editorial,restrained,light,96.5,82,high-contrast-serif,Bodoni Moda,cool,262,duotone ink paper con=8,typography | type specimen | foundry | letterform | portfolio
+spore,Spore,atmospheric,committed,dark,15,60,roman-serif,Young Serif,warm,30,warm con=6 exp=-4,grower | mushroom | fungi | farm | food
+sport,Sport,editorial,restrained,light,98,250,display-condensed,Saira Condensed,chromatic-volt,120,duotone ink paper con=20,running | marathon | race | training | fitness
+squeeze,Squeeze,playful,drenched,mid,41,154,geometric-sans,Gabarito,warm,56,natural vib=12 con=4,fruit | food box | grocer | market | delivery
+sticker,Sticker,playful,full-palette,light,95.7,82,display-heavy,Bowlby One SC,chromatic-magenta,2,natural vib=15 con=5,stickers | print | merch | shop | maker
+studio,Studio,editorial,restrained,light,97.2,215,roman-serif,Hedvig Letters Serif,warm,52,natural,design studio | creative studio | branding | brand identity | art direction
+terminal,Terminal,atmospheric,committed,dark,12.5,150,mono,Martian Mono,chromatic-green,142,duotone paper accent con=20,cli | terminal | shell | command-line | tui
+terrazzo,Terrazzo,modern-minimal,restrained,light,96,82,geometric-sans,Syne,warm,38,natural con=4,materials | library | architects | samples | catalogue
+ultraviolet,Ultraviolet,modern-minimal,committed,light,95,300,geometric-sans,Outfit,cool,290,tint accent con=10,music | audio | stems | remix | dj
+vantage,Vantage,modern-minimal,restrained,dark,13.5,235,grotesk-sans,Geologica,chromatic-lime,126,muted con=6 sat=-20,lidar | scan | survey | mapping | 3d
+vellum,Vellum,editorial,committed,light,94,82,blackletter,Grenze Gotisch,cool,268,warm con=6,roastery | coffee | bakery | wine | cellar
+wayfind,Wayfind,modern-minimal,committed,light,95.5,250,mono,Chivo Mono,cool,264,natural sat=-12 con=10,transit | metro | rail | station | wayfinding
+werkstatt,Werkstatt,playful,full-palette,mid,84,82,geometric-sans,Jost,cool,264,mono,school | programme | workshop | maker | course
