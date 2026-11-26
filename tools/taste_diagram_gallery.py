@@ -61,7 +61,7 @@ def page() -> str:
     </div>
   </div>
 </main>
-<script src="diagram.js" type="module"></script>
+<script defer src="diagram.js"></script>
 </body>
 </html>
 """
