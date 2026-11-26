@@ -8,4 +8,4 @@ What the repository does say: `package.json` and two package manifests declare `
 
 To unblock: the upstream adds a LICENSE file, or the user decides the manifest declarations are enough. Then rebuild from a fresh pin.
 
-Nothing from the source was read beyond the files needed for this check, and nothing was run.
+Nothing from the source was run, and none of its text is used.
