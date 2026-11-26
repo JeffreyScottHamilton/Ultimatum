@@ -93,11 +93,37 @@ class CraftTaste(unittest.TestCase):
             with self.subTest(file=path.name):
                 self.assertIsNone(secret.search(path.read_text(encoding="utf-8")))
 
+    def test_shipped_kit_paths_exist(self):
+        text = (CRAFT / "later.md").read_text(encoding="utf-8")
+        section = text.split("## Shipped kit", 1)[1].split("\n## ", 1)[0]
+        named = set(re.findall(r"`([\w./*-]+\.(?:css|html|svg|js|json|py|cjs))`", section))
+        self.assertGreater(len(named), 10)
+        for ref in sorted(named):
+            if ref.startswith("scripts/"):
+                base = P
+            elif ref.startswith("tools/"):
+                base = REPO
+            elif ref.startswith("test_"):
+                base = P / "tests"
+            else:
+                base = DATA / "kit"
+            with self.subTest(ref=ref):
+                self.assertTrue(list(base.glob(ref)), f"{ref} named in later.md § Shipped kit but not found")
+
+    def test_kit_makes_no_network_requests(self):
+        url = re.compile(r"https?://(?!www\.w3\.org/)[^\s\"')]+")
+        for path in sorted((DATA / "kit").rglob("*")):
+            if path.suffix in {".html", ".css", ".js", ".svg"}:
+                with self.subTest(file=str(path.relative_to(DATA))):
+                    self.assertEqual(url.findall(path.read_text(encoding="utf-8")), [])
+
     @unittest.skipUnless(SOURCE.is_dir(), "source checkout not present (set TASTE_SOURCE)")
     def test_copy_check_passes(self):
-        res = subprocess.run([sys.executable, str(REPO / "tools" / "copy_check.py"), str(CRAFT), str(SOURCE)],
-                             capture_output=True, text=True, timeout=300)
-        self.assertEqual(res.returncode, 0, res.stdout[-2000:])
+        for ours in (CRAFT, DATA / "kit"):
+            res = subprocess.run([sys.executable, str(REPO / "tools" / "copy_check.py"), str(ours), str(SOURCE)],
+                                 capture_output=True, text=True, timeout=300)
+            with self.subTest(folder=ours.name):
+                self.assertEqual(res.returncode, 0, res.stdout[-2000:])
 
 
 if __name__ == "__main__":

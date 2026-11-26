@@ -11,7 +11,7 @@ Read when a page might show a modelled object: a printed or engraved object on a
 | Scene objects | photographs or a generic form run through a print and alive under the pointer (exploded layers, a dot object, a split reveal, a turntable, a dither sequence) | a kit gallery only; a turntable only when the form is the product's own |
 | Product render | any physical product composed from a spec of simple parts and lit in real materials | a product page whose brief asks for 3D |
 
-The source kit ships these as code (a print core, scene modules and a render builder). Their scripts are not part of this plugin (`later.md` § Source kit); the rules below apply to whatever renderer you use.
+The source kit ships these as code (a print core, scene modules and a render builder). Their scripts are not part of this plugin (`later.md` § Source kit still to do); the rules below apply to whatever renderer you use.
 
 ## Who gets an object
 

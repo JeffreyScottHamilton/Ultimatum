@@ -1005,7 +1005,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | I29 | Marks under half violet drawn as is | icons-and-diagrams.md §On dark grounds | covered |
 | I30 | Icon layout classes (tile, row, chip, stack, mosaic, file) | icons-and-diagrams.md §Layouts | covered |
 | I31 | Icon sizes 16-56; icons never animate | icons-and-diagrams.md §Layouts | covered |
-| I32 | Demo page of icon layouts | later.md §Source kit | later (source kit) |
+| I32 | Demo page of icon layouts | kit/icons/index.html (later.md §Shipped kit) | covered |
 | I33 | Shape classes by aspect ratio | icons-and-diagrams.md §Layouts | covered |
 | I34 | Tile fill 70% width / 68% height | icons-and-diagrams.md §Layouts | covered |
 | I35 | File cards and integration grids at 20-40px | icons-and-diagrams.md §Layouts | covered |
@@ -1016,7 +1016,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 |---|---|---|---|
 | D1 | Diagram engine draws node-and-line visuals from JSON | icons-and-diagrams.md §Diagrams | covered (own SVG approach) |
 | D2 | 27 preset specs tagged by page kind | icons-and-diagrams.md §Diagram layouts | covered |
-| D3 | Demo and builder pages | later.md §Source kit | later (source kit) |
+| D3 | Demo and builder pages | kit/diagrams/index.html, a generated gallery (later.md §Shipped kit); no builder page yet | covered |
 | D4 | Diagram shows connection; UI fragment shows what users see | icons-and-diagrams.md §Diagrams | covered |
 | D5 | One per section, two per page (tech); one still on product/service; none on place | icons-and-diagrams.md §Diagrams | covered |
 | D6 | Game diagrams show a system, never replace pictures | icons-and-diagrams.md §Diagrams | covered |
@@ -1128,7 +1128,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | L23 | Hero picture by kind | layout-and-heroes.md §Picking a hero | covered |
 | L24 | App store links as text, not badges | sections.md §Hero copy | covered |
 | L25 | Window heroes: at most two fragments, never tilted/scaled | layout-and-heroes.md §Window heroes | covered |
-| L26 | Phone device frame hero 280x570 | later.md | later (mobile app showcase) |
+| L26 | Phone device frame hero 280x570 | kit/ui/phone.html (later.md §Shipped kit) | covered |
 | L27 | Dimension drawing SVG at true mm scale beside specs | icons-and-diagrams.md §Dimension drawing | covered |
 | L28 | logo-row: up to 6 real logos, one still row | sections.md §Proof | covered |
 | L29 | quote-stat: named quote ≤40 words with portrait beside a stat | sections.md §Proof | covered |
@@ -1341,7 +1341,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CT1 | [rule] Models pick safe, common phrasing; specifics must come from the input, and every ban needs a positive move beside it. | copy.md §Truth | covered |
 | CT2 | [rule] One tell proves little; clusters … (shortened) | copy.md §Tells | covered |
 | CT3 | [rule] Old-generation ban words (about 50, e.g. delve, tapestry, elevate, seamless, robust); literal trade uses stay; client's own brand name gets one WARN. | copy.md §Tells | covered |
-| CT4 | [later] Ban words are copy-slop-word; brand-name check is copy-brand-word. | later.md §Source kit | later |
+| CT4 | [later] Ban words are copy-slop-word; brand-name check is copy-brand-word. | scripts/ultlib/copylint.py worn-word rule; no brand-name check yet (later.md §Source tooling) | covered |
 | CT5 | [rule] Stock lines to avoid (e.g. "In today's fast-paced world", "Look no further", "Let that sink in"); id copy-stock-phrase. | copy.md §Tells | covered |
 | CT6 | [rule] Residue is the strongest tell: chatbot lines, template tokens, lorem, markdown, [NEED] (copy-residue). | copy.md §Tells | covered |
 | CT7 | [pattern] The -ing rider tacked onto a fact (copy-ing-rider). | copy.md §Tells | covered |
@@ -1408,7 +1408,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CV23 | [rule] Draft: one admission per page; proof beside its claim; numbers with units; risk reversal only when given. | voice.md §Copy moves | covered |
 | CV24 | [rule] Draft: microcopy carries voice; sentence length follows meaning; repeat the product name. | voice.md §Voice card | covered |
 | CV25 | [table] Device budget: columns Device / Budget / Note; 15 rows (two-fragment heading, number-pair, negation run, contrast, dry closer, brand pun, footer sign-off, strip of figures, virtue words, lists of three, step numbers, eye | voice.md §Device budget | covered |
-| CV26 | [later] copy-lint WARNs over budget and FAILs at twice budget plus one (scripts/copy-lint.mjs named). | later.md §Source kit | later |
+| CV26 | [later] copy-lint WARNs over budget and FAILs at twice budget plus one (scripts/copy-lint.mjs named). | scripts/ultlib/copylint.py: a warning above the per-page cap, a failure at 2 × cap + 1 | covered |
 | CV27 | [rule] Check 1: run copy-lint; fix FAILs; fix or justify WARNs. | voice.md §Checks | covered |
 | CV28 | [rule] Check 2: rival-name test; a line that still fits a rival is rewritten from the fact sheet. | voice.md §Fact sheet | covered |
 | CV29 | [rule] Check 3: sameness across pages; lint several pages together and compare headings. | voice.md §Checks | covered |
@@ -2358,10 +2358,10 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SX33 | [later] consistency.mjs (11,485 lines): real-browser checker over HTTP at 1440, 1024, 768, 390; PASS, WARN or FAIL per check. | later.md §Source tooling | later |
 | SX34 | [rule] consistency categories: layout, containment, text, nav, buttons, motion, visuals, copy, wiring, leftovers, system, ink, render, screens. | later.md §Source tooling | later |
 | SX35 | [rule] consistency numbers: body text 7:1 … (shortened) | later.md §Source tooling | later |
-| SX36 | [later] copy-lint.mjs: counts AI-written copy tells in a page, folder or draft; exit 1 on any FAIL. | later.md §Source kit | later |
-| SX37 | [rule] copy-lint FAILs: chatbot residue (lorem ipsum, "certainly!", [NEED]), markdown leaks, old slop words, stock phrases, devices used as tics. | later.md §Source tooling | later |
+| SX36 | [later] copy-lint.mjs: counts AI-written copy tells in a page, folder or draft; exit 1 on any FAIL. | scripts/ultlib/copylint.py (later.md §Shipped kit) | covered |
+| SX37 | [rule] copy-lint FAILs: chatbot residue (lorem ipsum, "certainly!", [NEED]), markdown leaks, old slop words, stock phrases, devices used as tics. | scripts/ultlib/copylint.py: residue, worn word, stock line and capped-device rules; no markdown-leak rule yet | covered |
 | SX38 | [rule] copy-lint WARNs: over-budget devices, virtue words (honest, calm, genuine), stock cast names and company names. | later.md §Source tooling | later |
-| SX39 | [table] copy-lint finding ids: 28 ids … (shortened) | later.md §Source kit | later |
+| SX39 | [table] copy-lint finding ids: 28 ids … (shortened) | scripts/ultlib/copylint.py: our own rule names, not the source's ids | covered |
 | SX40 | [later] gate.mjs (891 lines): finish gate, one GATE line per run, hook modes for claude, codex and antigravity. | later.md §Source tooling | later |
 | SX41 | [rule] gate runs: consistency --quick at 1440 and 390 (plus 320), layout check at 1440x900 and 390x844, kit-edited and checker-gaming static checks, copy-lint. | later.md §Source tooling | later |
 | SX42 | [rule] gate holds two WARNs as FAILs: hero-enter and moment-none; up to 3 rounds; waivers capped at 5 in .taste-skill/waivers.json. | later.md §Source kit | later |
@@ -2589,7 +2589,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 |---|---|---|---|
 | AUI200 | [code] ui.js loads fragments into [data-ui-load] placeholders; cards.css gives feature-card panels. | cards-and-ui.md §Interface fragments | covered |
 | AUI201 | [code] window: product window with sidebar counts and a conversation list that updates rows. | cards-and-ui.md §Interface fragments | covered |
-| AUI202 | [code] chat: assistant answer typed word by word with two source chips. | later.md §Source kit | covered |
+| AUI202 | [code] chat: assistant answer typed word by word with two source chips. | kit/ui/chat.html, static (the answer shows whole; no word-by-word typing) | covered |
 | AUI203 | [code] cursor: drafted refund reply; pointer glides, clicks, status turns Sent. | cards-and-ui.md §Interface fragments | covered |
 | AUI204 | [code] notify: three notifications with avatars; a new one slides in. | cards-and-ui.md §Interface fragments | covered |
 | AUI205 | [code] toggles: titled rule list, one switch flips at a time. | cards-and-ui.md §Interface fragments | covered |
@@ -2615,13 +2615,13 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 |---|---|---|---|
 | AT221 | [code] starter.html: page template; data-type, data-radius, data-ground, data-buttons, data-motion set on html; bracket placeholders like [Name]. | system.md §One system | covered |
 | AT222 | [code] system.js: phone nav sheet, accordion, Escape, tabs, FAQ answers open, opening hours marked by time zone. | later.md §Source kit (behaviour script; our page parts each carry their own small script) | later |
-| AT223 | [table] system.css palette: --p-bg, --p-surface, --p-ink, --p-muted, --p-accent, --p-accent-ink, --p-action, --p-action-ink, plus eight --p-inv-* inverse tokens. | later.md §Source kit | covered |
+| AT223 | [table] system.css palette: --p-bg, --p-surface, --p-ink, --p-muted, --p-accent, --p-accent-ink, --p-action, --p-action-ink, plus eight --p-inv-* inverse tokens. | kit/system.css (later.md §Shipped kit) | covered |
 | AT224 | [table] system.css lit ground: --ground-bg, --ground-surface, --ground-ink, --ground-muted, --ground-accent, set per data-ground. | grounds-and-effects.md §Ground tokens | covered |
 | AT225 | [table] system.css fonts: --font-display, --font-text, --font-mono; … (shortened) | performance.md §Fonts | covered |
 | AT226 | [table] system.css type scale: --t-label 13, --t-small 14, --t-body 16, --t-lead 18, --t-card 18, --t-h3 24, --t-h2 30 to 48, --t-h1 38 to 72, --t-stat 28 to 38px. | system.md §Type | covered |
 | AT227 | [table] system.css spacing: --s-1 to --s-10, … (shortened) | system.md §Spacing | covered |
 | AT228 | [table] system.css radii: soft --r-sm 8, --r-md 12, --r-lg 20, --r-btn 8; sharp and round sets via data-radius. | system.md §Radius | covered |
-| AT229 | [table] system.css layout tokens: --container 1280px, … (shortened) | later.md §Source kit | covered |
+| AT229 | [table] system.css layout tokens: --container 1280px, … (shortened) | kit/system.css (later.md §Shipped kit) | covered |
 | AT230 | [table] system.css controls: --btn-h 44px, --btn-h-sm 36px, --icon 16px, --card-pad 16px, --card-gap 16px, --line and --line-strong via color-mix. | system.md §Buttons | covered |
 | AT231 | [table] system.css motion: --ease cubic-bezier(.2, .8, .2, 1) (one curve), --dur 180ms. | motion.md §Tokens | covered |
 
@@ -2629,9 +2629,11 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 
 | Status | Rows |
 |---|---|
-| covered | 1510 |
-| later | 165 |
+| covered | 1518 |
+| later | 157 |
 | merged | 36 |
 | expanded | 29 |
 
 The 129 rows first matched only by keyword (`covered (check)`) were each reopened against the source and our files in the taste-2 pass: pointers now name the exact section; 5 became `expanded` (new rules on GLSL reserved words, hardware prints, the studio render, divider bands and logo sweeps), 2 `merged`, 11 `later`, 111 `covered` (source tooling, the photo library and notes with nothing to carry).
+
+Kit pass (taste-2 steps 2 to 6): 8 `later` rows became `covered` now that our own kit ships the piece (phone frame L26, icon page I32, diagram page D3, copy lint SX36, SX37, SX39, CT4, CV26), and 3 `covered` rows were repointed from `later.md` to the kit file (AT223, AT229, AUI202). The rest of the kit gap is listed in `later.md` § Source kit still to do.

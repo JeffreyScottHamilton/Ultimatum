@@ -28,6 +28,8 @@ Read when a website build wants the full craft layer: one line per file, with th
 - `accessibility.md`: Which WCAG 2.2 AA checks must every craft move pass?
 - `performance.md`: What are the byte, request, paint and WebGL budgets, and how do I measure them?
 - `quality-gate.md`: Which checks, widths, rounds and waivers apply before a page is finished, and what goes in the report?
-- `later.md`: Which source kit pieces, tools and video rules are not shipped yet, and what would each take?
+- `later.md`: Which kit pieces ship here, which source kit pieces, tools and video rules do not yet, and what would each take?
 
 Data: the pattern table (grounds, effects, moments, hero layouts) is `../../../../../data/craft/taste/patterns.csv`.
+
+Kit: our starter page, grounds, UI fragments, icons, diagrams and three effects are in `../../../../../data/craft/taste/kit/`; `later.md` § Shipped kit lists each with its check.
