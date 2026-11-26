@@ -83,3 +83,16 @@ Built by `tools/build_landing.py` from `tools/landing_rows/*.json`.
 | Mobile, Accessibility | phone behaviour; WCAG 2.2 criteria |
 | Color Strategy, Recommended Effects | colour and motion limits |
 | Conversion Optimization, Slop Habits | what lifts results; generic moves to avoid |
+
+## app-interface.csv, react-performance.csv, charts.csv, motion.csv
+
+Built by `tools/build_tables.py` from the rows in `tools/table_rows/<table>/*.json`, written by hand from primary sources (MDN, WCAG 2.2, web.dev, react.dev, Next.js docs, chart library docs, our `craft/emil-motion` and `craft/taste` notes). `--check` fails if a CSV differs from its rows. Column order is ours on purpose, so even the header row shares no run of words with the third-party tables.
+
+| Table | Rows | Extra columns | Notes |
+|---|---|---|---|
+| app-interface | 38 | Code Example Bad, Platform, Docs URL | Severity Critical/High/Medium/Low; examples are small HTML, CSS or JS |
+| react-performance | 49 | Code Example Bad, Platform, Docs URL | every Docs URL is on react.dev or nextjs.org |
+| charts | 27 | Docs URL | each library names its permissive licence (MIT, ISC, BSD, Apache-2.0) |
+| motion | 26 (23 + 3 personalities) | Reduced Motion (required on every row) | personalities: Snappy and precise, Soft and floaty, Cinematic and bold |
+
+The build rejects empty cells, non-https or off-list doc hosts, unbalanced brackets, identical good/bad examples, chart libraries without a licence, and motion rows without a number in Duration.

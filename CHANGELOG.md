@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.18] - 2026-11-26
+
+Website design data: our own app-interface, React performance, chart and motion tables.
+
+- Own `app-interface.csv` (38 rows), `react-performance.csv` (49), `charts.csv` (27) and `motion.csv` (26, including three motion personalities), built by `tools/build_tables.py` from hand-written rows with a docs link on each row.
+- App and React rows carry a bad and a good example; React docs links are limited to react.dev and nextjs.org; every chart library names its permissive licence; every motion row has a reduced-motion fallback.
+- The app HTML and CSS examples were loaded in headless Chromium and the React examples syntax-checked with TypeScript; the docs links were not fetched (blocked here). New `tests/test_design_own_tables.py`.
+
 ## [0.0.17] - 2026-11-26
 
 Website design data: our own product and landing-page tables.

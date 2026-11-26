@@ -7,8 +7,8 @@
   "Description": "A button that shows only a glyph has no text for a screen reader to speak, so it is announced as just 'button'. The name has to come from markup, not from the picture.",
   "Do": "Give every icon-only control a short verb phrase as its accessible name, and mark the SVG itself as hidden from the tree.",
   "Don't": "Do not rely on a tooltip, a title attribute or the file name of the icon to name a control.",
-  "Code Example Good": "<button type='button' aria-label='Close dialog'><svg aria-hidden='true' focusable='false' viewBox='0 0 24 24'><path d='M6 6l12 12M18 6L6 18'/></svg></button>",
-  "Code Example Bad": "<button type='button'><svg viewBox='0 0 24 24'><path d='M6 6l12 12M18 6L6 18'/></svg></button>",
+  "Code Example Good": "<button type='button' aria-label='Close dialog'><svg aria-hidden='true' focusable='false' width='20' height='20'><line x1='4' y1='4' x2='16' y2='16'/><line x1='16' y1='4' x2='4' y2='16'/></svg></button>",
+  "Code Example Bad": "<button type='button'><svg width='20' height='20'><line x1='4' y1='4' x2='16' y2='16'/></svg></button>",
   "Severity": "Critical",
   "Docs URL": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label"
  },
@@ -20,7 +20,7 @@
   "Description": "A placeholder disappears as soon as someone types and is not a reliable name for the field. Each input needs a label that stays on screen and is tied to it in markup.",
   "Do": "Wrap or link a visible label to every field; keep hint text in a separate element referenced by aria-describedby.",
   "Don't": "Do not use the placeholder as the only label, and do not leave a label unconnected to its input.",
-  "Code Example Good": "<label for='email'>Email</label><input id='email' name='email' type='email' autocomplete='email' aria-describedby='email-hint'><p id='email-hint'>We only use it to send your receipt.</p>",
+  "Code Example Good": "<label for='contact'>Your email address</label>\n<input id='contact' type='email' name='contact' autocomplete='email' aria-describedby='why'>\n<small id='why'>Used only for your receipt.</small>",
   "Code Example Bad": "<input type='email' placeholder='Email'>",
   "Severity": "Critical",
   "Docs URL": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
@@ -358,7 +358,7 @@
   "Description": "Phones have notches and gesture bars. Content or tap targets under them are hidden or hard to press.",
   "Do": "Opt in with viewport-fit=cover and pad fixed bars with env(safe-area-inset-*).",
   "Don't": "Do not fix a toolbar flush to the bottom without padding for the home indicator.",
-  "Code Example Good": "<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover'>\n.bar { padding-bottom: max(12px, env(safe-area-inset-bottom)); }",
+  "Code Example Good": "/* page head: viewport-fit=cover in the viewport meta tag, then in CSS: */\n.bar { padding-bottom: max(12px, env(safe-area-inset-bottom)); }",
   "Code Example Bad": ".bar { position: fixed; bottom: 0; padding-bottom: 0; }",
   "Severity": "High",
   "Docs URL": "https://developer.mozilla.org/en-US/docs/Web/CSS/env"
