@@ -2,6 +2,17 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.15] - 2026-11-26
+
+Website craft: gstack's design review and QA, rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/design-review-qa/` (23 files plus `index.md`), rebuilt in our own words from the design-review, plan-design-review, qa and qa-only parts of the MIT-licensed gstack (garrytan/gstack @ 7dace1f): review modes, first impression, page modes, visual and behaviour checklists, generic-look tells, flows, scoring and baselines, the fix loop, craft audit, plan review, second opinions, and QA taxonomy, health score, functional tests, reports and regression tests.
+- Two Playwright scripts of our own: a design audit (fonts, overflow, tap targets, heading order, console errors, reduced motion) and a one-page QA sweep (broken links, dead buttons, silent forms, console errors), both run against a local scratch page with planted flaws.
+- Three new tables under `data/craft/design-review-qa/` (74 design checks, 44 generic-look tells, 12 QA issue kinds) with a README.
+- Findings use the blocker, major, minor and nit scale from `design-rules.md` and WCAG 2.2 criteria. Uses only the preinstalled Playwright, not gstack's browser daemon.
+- `craft.md` points to the folder; `taste-critic` uses its second-opinion checks. Upstream record and credits updated; some gstack design rule names trace back to Impeccable (Apache-2.0), and only names and ideas were kept.
+- Not shipped yet: image mockups, outside-model review, the fixture preview server and the shared dashboard (`later.md`). New `tests/test_craft_design_review_qa.py`.
+
 ## [0.0.14] - 2026-11-26
 
 Website craft: Emil Kowalski's animation skills, rebuilt in our own words.

@@ -23,7 +23,7 @@ Choose the highest level that truly applies and write down the impact and any wo
 6. **Console and errors:** uncaught exceptions, failed requests (4xx, 5xx), deprecation warnings, cross-origin errors, mixed content, content-security-policy violations.
 7. **Accessibility:** missing alt text, unlabelled inputs, keyboard path broken, focus traps, wrong or missing ARIA, low contrast, content a screen reader cannot reach.
 
-When one root cause shows up on several pages, file it once. When a finding fits two categories, pick by this order: links, accessibility, functional, performance, visual, content, UX, console.
+When one root cause shows up on several pages, file it once. When a finding fits two categories, prefer whichever comes first in this list: links, accessibility, functional, then performance, visual, content, UX and console.
 
 ## Per-page walk
 

@@ -56,7 +56,7 @@ People scan, they do not read; each screen has one obvious next step; every page
 
 ## The passes
 
-**1. Information architecture.** Does the plan say what is seen first, second, third? Fix: add the hierarchy and an ASCII sketch of each screen and the navigation. Ask "if only three things fit, which three?". For a Persuade page (landing, pricing, waitlist, campaign) the plan must settle the checks in `page-modes.md` and `craft-audit.md` § Claims; missing proof is a finding, and you never invent it.
+**1. Information architecture.** Does the plan say what is seen first, second, third? Fix: add the hierarchy and an ASCII sketch of each screen and the navigation. Ask "if only three things fit, which three?". For a Persuade page (landing, pricing, waitlist, campaign) the plan must settle the checks in `page-modes.md` and the claims rules in `craft-audit.md`. Missing proof is a finding, and you never invent it.
 
 **2. Interaction states.** Loading, empty, error, success and partial for every feature, described as what the person sees:
 

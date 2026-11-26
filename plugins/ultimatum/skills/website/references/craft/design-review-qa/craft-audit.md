@@ -18,17 +18,17 @@ For example data in product shots and tables:
 
 - Skip stock names and brands (Jane Doe, Acme, Nexus). Give each avatar a different face and each row a different date.
 - Round sample figures read as made up: 99.99 per cent, exactly 50 per cent, "1,000+", "10x". Use odd, specific values.
-- Avoid filler vocabulary: elevate, seamless, effortless, supercharge, streamline, revolutionise, unlock, empower, unleash, next-gen, game-changer, delve, tapestry.
+- Avoid filler vocabulary: tapestry, delve, game-changer, next-gen, unleash, empower, unlock, revolutionise, streamline, supercharge, effortless, seamless, elevate.
 - Headings in sentence case. An error message says what went wrong and the next step, never "Oops!". Success messages stay calm, with no exclamation mark.
 
 ## 4. Ship floor (full HTML documents)
 
-- Head: `<title>`, meta description, favicon (an inline SVG of the brand mark if no file exists). A page meant for sharing also gets `og:title` and `og:description`; `og:image` only when a URL was supplied.
+- Head: `<title>`, meta description, favicon (an inline SVG of the brand mark if no file exists). For a page people will share, add `og:title`, `og:description` and, only if a URL was supplied, `og:image`.
 - Accessibility basics: a skip link that comes first in tab order, stays hidden until focused and jumps to `<main>` ([bypass blocks](https://www.w3.org/TR/WCAG22/#bypass-blocks)); header, nav, main and footer landmarks; descriptive `alt` on meaningful images and an empty `alt` on decorative ones.
 - Footer: privacy and terms links, pointing at the owner's real URLs.
 - Forms: required fields and email format checked as the person types, tied to the message with `aria-invalid` and `aria-describedby`.
 - Links: each one leads somewhere real. No `href="#"` and no guessed path; a control without a destination is disabled. The nav marks the current page with `aria-current="page"`.
-- Dead ends: an unknown address shows a designed 404 with a way back, every page offers a next move, and a cookie notice appears only where the law asks for one.
+- Dead ends: a made-up address lands on a designed 404 that links back, every page offers a next move, and a cookie notice appears only where the law asks for one.
 - Local business: opening hours and address as real text (not baked into an image) and business schema (`../../pages-and-seo.md`).
 
 ## 5. Motion rules for the one authored moment

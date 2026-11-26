@@ -102,6 +102,17 @@
       "note": "Rebuilt in own words as skills/website/references/craft/emil-motion; native, Expo and Swift material is in later.md"
     },
     {
+      "id": "design-review-qa",
+      "kind": "skill-source",
+      "repo": "https://github.com/garrytan/gstack",
+      "pin": "7dace1f",
+      "licence": "MIT (some design text derives from Impeccable, Apache-2.0; see its NOTICE.md)",
+      "decision": "adapt",
+      "modules": ["design", "website", "review"],
+      "reviewed": "2026-11-26",
+      "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; skip the browser daemon, mockup generator and outside-model review (see later.md)"
+    },
+    {
       "id": "remotion",
       "kind": "skill-source",
       "repo": "https://github.com/remotion-dev/skills",

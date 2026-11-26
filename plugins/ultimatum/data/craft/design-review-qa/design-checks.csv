@@ -14,10 +14,10 @@ c2-04,Typography,"Line length 45 to 75 characters, near 66 ideal.",checklist-vis
 c2-05,Typography,Heading levels never skip (h1 to h3 with no h2).,checklist-visual.md
 c2-06,Typography,At least two weights create the hierarchy.,checklist-visual.md
 c2-07,Typography,"No novelty or banned faces (script and brush fonts, Papyrus, Comic Sans, Impact, Courier New as body).",checklist-visual.md
-c2-08,Typography,"A display face on the overused list is flagged (slop-tells.md § Fonts), except as body or UI text on an Operate or Read surface when the design doc says so.",checklist-visual.md
+c2-08,Typography,An overused display face is flagged (slop-tells.md § Fonts); the exception is body or interface text on an Operate or Read page where the design doc assigns it that job.,checklist-visual.md
 c2-09,Typography,text-wrap: balance (or pretty) on headings. Check: getComputedStyle(h1).textWrap.,checklist-visual.md
-c2-10,Typography,"Typographic quotes and a real ellipsis character, not straight quotes or three dots.",checklist-visual.md
-c2-11,Typography,font-variant-numeric: tabular-nums on number columns and prices.,checklist-visual.md
+c2-10,Typography,Curly quotes and the single ellipsis character instead of straight quotes and three full stops.,checklist-visual.md
+c2-11,Typography,Digits that line up (font-variant-numeric: tabular-nums) in number columns and prices.,checklist-visual.md
 c2-12,Typography,Body at least 16 px; captions and labels at least 12 px.,checklist-visual.md
 c2-13,Typography,No letter-spacing on lowercase running text.,checklist-visual.md
 c3-01,Colour and contrast,A coherent palette: no more than about 12 distinct non-grey colours; neutrals all warm or all cool.,checklist-visual.md
@@ -29,7 +29,7 @@ c4-01,Spacing and layout,A grid that holds at every breakpoint; nothing floats o
 c4-02,Spacing and layout,"Spacing from a scale on a 4 or 8 px base, not one-off values (the extraction in design-audit-recipes.md lists the values in use).",checklist-visual.md
 c4-03,Spacing and layout,Related items sit close; distinct sections sit apart (rhythm).,checklist-visual.md
 c4-04,Spacing and layout,"A radius hierarchy, not one big radius everywhere. A nested element's radius is the outer radius minus the gap.",checklist-visual.md
-c4-05,Spacing and layout,A maximum content width; no full-bleed body text.,checklist-visual.md
+c4-05,Spacing and layout,"A cap on content width, so body text never runs edge to edge.",checklist-visual.md
 c4-06,Spacing and layout,env(safe-area-inset-*) where notches matter ([env()](https://developer.mozilla.org/en-US/docs/Web/CSS/env)).,checklist-visual.md
 c4-07,Spacing and layout,"Filters, tabs and pages live in the URL so links and the back button work.",checklist-visual.md
 c4-08,Spacing and layout,"Layout uses flex or grid, not script measurement.",checklist-visual.md
@@ -40,11 +40,11 @@ c5-03,Interaction states,Active (pressed) state with a small depth or colour shi
 c5-04,Interaction states,"Disabled state: reduced opacity and cursor: not-allowed, and a reason where it is not obvious.",checklist-behaviour.md
 c5-05,Interaction states,"Loading shows skeleton shapes that match the real layout, not a generic spinner.",checklist-behaviour.md
 c5-06,Interaction states,"Empty states have a warm line, a primary action and a picture or hint, not ""No items.""",checklist-behaviour.md
-c5-07,Interaction states,Errors say what happened and what to do next.,checklist-behaviour.md
+c5-07,Interaction states,An error names what failed and the next step.,checklist-behaviour.md
 c5-08,Interaction states,Success confirms by colour or a short animation and dismisses itself.,checklist-behaviour.md
 c5-09,Interaction states,Touch targets at least 44 by 44 px (the WCAG 2.2 minimum is 24 px: [target size minimum](https://www.w3.org/TR/WCAG22/#target-size-minimum); the house uses 44).,checklist-behaviour.md
-c5-10,Interaction states,"**Mindless-choice audit:** every decision point (button, link, menu, modal choice) should be an obvious click. If a click needs thought about whether it is the right one, that is high impact.",checklist-behaviour.md
-c5-11,Interaction states,"Browser surfaces themed from the palette (selection, caret, scrollbar, focus ring, underline offset, tabular figures).",checklist-behaviour.md
+c5-10,Interaction states,"**No-thought test:** at each decision point (button, link, menu, modal choice) the right click should be obvious. A choice that makes someone stop and wonder is a high-impact finding.",checklist-behaviour.md
+c5-11,Interaction states,"Browser-drawn parts follow the palette: text selection, caret, scrollbar, focus ring, underline offset and tabular figures.",checklist-behaviour.md
 c6-01,Responsive design,"The phone layout is designed, not stacked desktop columns.",checklist-visual.md
 c6-02,Responsive design,"No sideways scroll at any width, down to 320 ([reflow](https://www.w3.org/TR/WCAG22/#reflow)).",checklist-visual.md
 c6-03,Responsive design,"Images respond (srcset and sizes, or contained by CSS).",checklist-visual.md
@@ -57,7 +57,7 @@ c7-03,Motion and animation,"Every animation communicates something: a state chan
 c7-04,Motion and animation,"prefers-reduced-motion: reduce is honoured in CSS and in any JS or WebGL animation. Check by emulating it, not by reading the CSS ([MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)).",checklist-behaviour.md
 c7-05,Motion and animation,Never transition: all; list the properties.,checklist-behaviour.md
 c7-06,Motion and animation,"Animate transform and opacity, not width, height, top or left.",checklist-behaviour.md
-c7-07,Motion and animation,One authored motion moment per page. Not the same entrance on every section; not a hover effect on everything. Content never waits on an animation to become visible.,checklist-behaviour.md
+c7-07,Motion and animation,One authored motion moment per page: no identical entrance repeated down the page and no hover effect on every element. Content must never be held back by an animation.,checklist-behaviour.md
 c7-08,Motion and animation,Check long frames while scrolling: ../../website/feel-bar.md § How to check it.,checklist-behaviour.md
 c8-01,Content and microcopy,"Button labels name the outcome (""Save API key"", ""Book a visit""), not ""Submit"" or ""Continue"".",checklist-behaviour.md
 c8-02,Content and microcopy,"No placeholder or lorem ipsum text; no href=""#"" links.",checklist-behaviour.md
@@ -65,8 +65,8 @@ c8-03,Content and microcopy,"Long text truncates on purpose: ellipsis, line clam
 c8-04,Content and microcopy,"Active voice (""Install the CLI"").",checklist-behaviour.md
 c8-05,Content and microcopy,"In-progress labels end with a real ellipsis (""Saving…"").",checklist-behaviour.md
 c8-06,Content and microcopy,Destructive actions ask for confirmation or offer undo.,checklist-behaviour.md
-c8-07,Content and microcopy,"**Happy talk:** welcome paragraphs and self-praise. Flag them and report ""This page has X words; Y (Z per cent) are happy talk.""",checklist-behaviour.md
-c8-08,Content and microcopy,Instructions longer than a sentence mean the interface failed; flag the instructions and the interaction they prop up.,checklist-behaviour.md
+c8-07,Content and microcopy,"**Happy talk:** welcome paragraphs and self-praise. Flag them and give the share, in the form ""X words on this page, Y of them (Z per cent) happy talk"".",checklist-behaviour.md
+c8-08,Content and microcopy,Instructions that run past one sentence signal a failed interface. Flag both the text and the interaction it props up.,checklist-behaviour.md
 c8-09,Content and microcopy,Voice and wording rules continue in ../../copy.md and ../taste/copy.md.,checklist-behaviour.md
 c10-01,Performance as design,"Largest paint under 2.0 s for apps, under 1.5 s for brochure sites; layout shift under 0.1 ([Web Vitals](https://web.dev/articles/vitals)).",checklist-behaviour.md
 c10-02,Performance as design,Skeletons match the final layout.,checklist-behaviour.md

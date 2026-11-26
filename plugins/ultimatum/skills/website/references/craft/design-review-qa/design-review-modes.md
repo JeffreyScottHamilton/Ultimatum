@@ -19,7 +19,7 @@ If the target has no UI (a pure backend change), say a design review does not ap
 - **Target URL.** A local dev URL or a static build served on `127.0.0.1`. Nothing remote unless the owner names it and accepts that the review touches a live site. No URL on a feature branch: scope to the pages the diff touches (see Diff-aware below).
 - **Scope.** Whole site, one page, or one flow.
 - **Depth.** Quick, Full or Deep (below).
-- **Design system.** Look in the repo root for a design doc (`DESIGN.md`, `brand/brand.md`, a style guide), then for tokens the code ships: `:root` custom properties, Tailwind config, a theme file. Judge against that system; a deviation from the project's own system outranks a generic taste call. With neither, use the house rules (`../../website/design-rules.md`) and offer to write the inferred system down.
+- **Design system.** Look in the repo root for a design doc (a file named DESIGN.md, a brand guide, a style guide), then for tokens the code ships: `:root` custom properties, Tailwind config, a theme file. Judge against that system; a deviation from the project's own system outranks a generic taste call. With neither, use the house rules (`../../website/design-rules.md`) and offer to write the inferred system down.
 - **Auth.** Never type or ask for credentials. If the page bounces to a sign-in wall (URL contains `login`, `signin`, `auth` or `sso`), say so, ask the owner to supply a signed-in state, and review only what is reachable.
 
 ## Depth modes
