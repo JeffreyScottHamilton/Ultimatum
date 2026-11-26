@@ -1,0 +1,17 @@
+{"rows": [
+["lucide","shopping-cart","Commerce","cart basket checkout buy order trolley add to cart","Cart link and add-to-cart buttons","Show the item count as text and announce changes politely.","Link named 'Cart, 2 items'"],
+["lucide","shopping-bag","Commerce","bag purchase order buy shop fashion carrier bag","Shop and bag links on fashion sites","Pick either bag or cart for a whole site, not both.","Link named 'Bag, 2 items'"],
+["lucide","credit-card","Commerce","payment card pay checkout visa debit credit billing","Payment methods and card forms","Show accepted cards as text or labelled images.","Decorative beside 'Pay by card'"],
+["lucide","pound-sterling","Commerce","price cost pounds money quote fee charges sterling gbp","Prices and quotes in pounds","Prefer the real symbol in text for the price itself.","Decorative beside the price"],
+["lucide","wallet","Commerce","wallet balance money funds account credit digital wallet","Balances and stored funds","Use for stored money rather than checkout.","Link named 'Wallet'"],
+["lucide","banknote","Commerce","cash money pay in cash banknote payment on delivery","Cash payments and refunds","Say if you take cash on the day.","Decorative beside the text"],
+["lucide","tag","Commerce","tag price label category offer product label sale","Price tags and categories","Pair with a price in text.","Decorative beside the label"],
+["lucide","badge-percent","Commerce","discount sale offer deal percent off reduced promotion","Discount badges","State the real saving and end date.","Text such as '20% off until 31 May'"],
+["lucide","gift","Commerce","gift voucher present gift card birthday offer reward","Gift cards and rewards","Show expiry and terms in text.","Decorative beside 'Gift cards'"],
+["lucide","receipt-text","Commerce","receipt invoice bill order history paid statement","Invoices and order history","Provide a downloadable copy.","Link named 'Receipt for order <number>'"],
+["lucide","ticket","Commerce","ticket event entry pass admission booking show tickets","Event tickets and entry passes","Show date, time and venue in text.","Link named 'Buy tickets'"],
+["lucide","package-check","Commerce","delivered parcel order complete shipped received package","Delivered orders","Use after dispatch; package alone for packing stage.","Visible text 'Delivered'"],
+["lucide","package","Commerce","parcel box package shipping product order postage","Parcels and product boxes","Use package for items and truck for movement.","Decorative beside text"],
+["phosphor","hand-coins","Commerce","fees pricing cost payment hand money charges pay what you owe","Fee and payment explanations","Use on pricing pages next to plain-language fee lists.","Decorative beside the heading"],
+["phosphor","shopping-cart-simple","Commerce","cart simple checkout trolley basket light bag","Compact cart icon in dense headers","Same job as the Lucide cart; stay with one family.","Link named 'Cart, 2 items'"]
+]}

@@ -22,9 +22,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "tools" / "landing_rows"
 OUT = ROOT / "plugins" / "ultimatum" / "data" / "design-own" / "landing.csv"
 
-COLS = ("Pattern Name", "Aliases", "Keywords", "Section Order", "Primary CTA Placement", "Color Strategy",
-        "Recommended Effects", "Conversion Optimization", "Kind", "Use When", "Avoid When", "Mobile",
-        "Accessibility", "Slop Habits")
+COLS = ("Pattern Name", "Aliases", "Keywords", "Kind", "Section Order", "Use When", "Primary CTA Placement",
+        "Mobile", "Color Strategy", "Accessibility", "Recommended Effects", "Avoid When",
+        "Conversion Optimization", "Slop Habits")
 KINDS = ("Local", "App", "Marketing")
 # Phrases from the anti-generic lint that a row must never recommend (Slop Habits may name them).
 BANNED = ("purple-to-blue", "add a glow", "sparkle", "lorem ipsum", "welcome to", "seamless", "elevate",

@@ -137,7 +137,7 @@
   "Description": "A modal that traps people must also let them out: the Escape key, a visible close control and a return of focus to what opened it.",
   "Do": "Use the native dialog element with showModal, a visible Close button and let Escape work; focus returns to the trigger on close.",
   "Don't": "Do not build a full-screen overlay with no exit, and do not disable Escape on a dismissible dialog.",
-  "Code Example Good": "<dialog id='d'><form method='dialog'><p>Discard changes?</p><button>Keep editing</button><button value='discard'>Discard</button></form></dialog>\n<script>openBtn.onclick = () => d.showModal();</script>",
+  "Code Example Good": "<button id='openBtn'>Edit</button><dialog id='d'><form method='dialog'><p>Discard changes?</p><button>Keep editing</button><button value='discard'>Discard</button></form></dialog>\n<script>openBtn.onclick = () => d.showModal();</script>",
   "Code Example Bad": "<div class='overlay' style='position:fixed;inset:0'>...no close control...</div>",
   "Severity": "High",
   "Docs URL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"

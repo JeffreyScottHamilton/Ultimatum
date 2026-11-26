@@ -1,0 +1,8 @@
+{"rows": [
+["phosphor","instagram-logo","Social","instagram photos follow feed social profile","Link to the business Instagram profile","Open in a new tab only if you warn the user.","Link named 'Instagram'"],
+["phosphor","facebook-logo","Social","facebook page follow community events social profile","Link to the Facebook page","Icon links need their own names; never rely on the logo alone.","Link named 'Facebook'"],
+["phosphor","tiktok-logo","Social","tiktok video short clips follow social","Link to a TikTok profile","Include only channels the business really posts to.","Link named 'TikTok'"],
+["phosphor","youtube-logo","Social","youtube video channel watch tutorials subscribe","Link to a YouTube channel","Embed videos lazily rather than linking when they matter.","Link named 'YouTube'"],
+["phosphor","linkedin-logo","Social","linkedin professional company network b2b profile","Link to a LinkedIn page","Best for firms selling to other businesses.","Link named 'LinkedIn'"],
+["phosphor","x-logo","Social","x twitter post follow updates social network","Link to an X profile","Do not confuse with the close icon; give it a name.","Link named 'X (Twitter)'"]
+]}

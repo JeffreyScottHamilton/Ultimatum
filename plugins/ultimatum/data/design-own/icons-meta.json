@@ -1,0 +1,3092 @@
+{
+ "lucide": {
+  "accessibility": {
+   "categories": [
+    "accessibility",
+    "medical"
+   ],
+   "export_found": true,
+   "pascal": "Accessibility",
+   "tags": [
+    "disability",
+    "disabled",
+    "dda",
+    "wheelchair"
+   ]
+  },
+  "activity": {
+   "categories": [
+    "medical",
+    "account",
+    "social"
+   ],
+   "export_found": true,
+   "pascal": "Activity",
+   "tags": [
+    "pulse",
+    "action",
+    "motion",
+    "movement",
+    "exercise",
+    "fitness",
+    "healthcare",
+    "heart rate monitor",
+    "vital signs",
+    "vitals",
+    "emergency room",
+    "er",
+    "intensive care",
+    "hospital",
+    "defibrillator",
+    "earthquake",
+    "seismic",
+    "magnitude",
+    "richter scale",
+    "aftershock",
+    "tremor",
+    "shockwave",
+    "audio",
+    "waveform",
+    "synthesizer",
+    "synthesiser",
+    "music"
+   ]
+  },
+  "arrow-left": {
+   "categories": [
+    "arrows"
+   ],
+   "export_found": true,
+   "pascal": "ArrowLeft",
+   "tags": [
+    "$group:direction-left",
+    "$group:navigation-previous",
+    "previous",
+    "<-"
+   ]
+  },
+  "arrow-right": {
+   "categories": [
+    "arrows"
+   ],
+   "export_found": true,
+   "pascal": "ArrowRight",
+   "tags": [
+    "$group:direction-right",
+    "$group:navigation-next",
+    "next",
+    "->"
+   ]
+  },
+  "arrow-up": {
+   "categories": [
+    "arrows"
+   ],
+   "export_found": true,
+   "pascal": "ArrowUp",
+   "tags": [
+    "$group:direction-up",
+    "$group:navigation-previous",
+    "forward"
+   ]
+  },
+  "award": {
+   "categories": [
+    "account",
+    "sports",
+    "gaming"
+   ],
+   "export_found": true,
+   "pascal": "Award",
+   "tags": [
+    "achievement",
+    "badge",
+    "rosette",
+    "prize",
+    "winner",
+    "skill",
+    "skills",
+    "expertise"
+   ]
+  },
+  "badge-check": {
+   "categories": [
+    "social"
+   ],
+   "export_found": true,
+   "pascal": "BadgeCheck",
+   "tags": [
+    "$extends:badge",
+    "$group:check",
+    "premium",
+    "vip",
+    "exclusive",
+    "pro",
+    "guarantee",
+    "warranty"
+   ]
+  },
+  "badge-percent": {
+   "categories": [
+    "finance",
+    "shopping",
+    "math"
+   ],
+   "export_found": true,
+   "pascal": "BadgePercent",
+   "tags": [
+    "$extends:badge",
+    "$group:percent",
+    "sell",
+    "selling",
+    "promotion",
+    "promo"
+   ]
+  },
+  "banknote": {
+   "categories": [
+    "finance"
+   ],
+   "export_found": true,
+   "pascal": "Banknote",
+   "tags": [
+    "currency",
+    "money",
+    "payment",
+    "bill",
+    "cash",
+    "funds",
+    "transaction",
+    "finance",
+    "salary"
+   ]
+  },
+  "bed-double": {
+   "categories": [
+    "$extends:bed"
+   ],
+   "export_found": true,
+   "pascal": "BedDouble",
+   "tags": [
+    "$extends:bed"
+   ]
+  },
+  "bell": {
+   "categories": [
+    "account",
+    "notifications"
+   ],
+   "export_found": true,
+   "pascal": "Bell",
+   "tags": [
+    "alarm",
+    "notification",
+    "sound",
+    "reminder"
+   ]
+  },
+  "bike": {
+   "categories": [
+    "transportation"
+   ],
+   "export_found": true,
+   "pascal": "Bike",
+   "tags": [
+    "bicycle",
+    "transport",
+    "trip"
+   ]
+  },
+  "building": {
+   "categories": [
+    "account",
+    "buildings"
+   ],
+   "export_found": true,
+   "pascal": "Building",
+   "tags": [
+    "organisation",
+    "organization"
+   ]
+  },
+  "calendar": {
+   "categories": [
+    "time"
+   ],
+   "export_found": true,
+   "pascal": "Calendar",
+   "tags": [
+    "day",
+    "date",
+    "month",
+    "year",
+    "timestamp",
+    "event",
+    "birthday",
+    "birthdate"
+   ]
+  },
+  "calendar-check": {
+   "categories": [
+    "$extends:calendar"
+   ],
+   "export_found": true,
+   "pascal": "CalendarCheck",
+   "tags": [
+    "$extends:calendar",
+    "$group:check",
+    "subscribe",
+    "schedule",
+    "today"
+   ]
+  },
+  "calendar-clock": {
+   "categories": [
+    "$extends:calendar"
+   ],
+   "export_found": true,
+   "pascal": "CalendarClock",
+   "tags": [
+    "$extends:calendar",
+    "$group:clock"
+   ]
+  },
+  "camera": {
+   "categories": [
+    "photography",
+    "devices",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "Camera",
+   "tags": [
+    "photography",
+    "lens",
+    "focus",
+    "capture",
+    "shot",
+    "visual",
+    "image",
+    "device",
+    "equipment",
+    "photo",
+    "webcam",
+    "video"
+   ]
+  },
+  "car": {
+   "categories": [
+    "transportation"
+   ],
+   "export_found": true,
+   "pascal": "Car",
+   "tags": [
+    "vehicle",
+    "drive",
+    "trip",
+    "journey"
+   ]
+  },
+  "chart-column": {
+   "categories": [
+    "charts"
+   ],
+   "export_found": true,
+   "pascal": "ChartColumn",
+   "tags": [
+    "$group:chart",
+    "categorical",
+    "comparison"
+   ]
+  },
+  "chart-pie": {
+   "categories": [
+    "charts"
+   ],
+   "export_found": true,
+   "pascal": "ChartPie",
+   "tags": [
+    "$group:chart"
+   ]
+  },
+  "check": {
+   "categories": [
+    "notifications"
+   ],
+   "export_found": true,
+   "pascal": "Check",
+   "tags": [
+    "$group:check"
+   ]
+  },
+  "chevron-down": {
+   "categories": [
+    "arrows"
+   ],
+   "export_found": true,
+   "pascal": "ChevronDown",
+   "tags": [
+    "$group:direction-down",
+    "$group:navigation-next",
+    "backwards",
+    "reverse",
+    "slow",
+    "dropdown"
+   ]
+  },
+  "chevron-right": {
+   "categories": [
+    "arrows",
+    "math",
+    "development"
+   ],
+   "export_found": true,
+   "pascal": "ChevronRight",
+   "tags": [
+    "$group:direction-right",
+    "$group:navigation-next",
+    "next",
+    "more than",
+    "greater",
+    "menu",
+    "code",
+    "coding",
+    "command line",
+    "terminal",
+    "prompt",
+    "shell",
+    ">"
+   ]
+  },
+  "circle-check": {
+   "categories": [
+    "notifications"
+   ],
+   "export_found": true,
+   "pascal": "CircleCheck",
+   "tags": [
+    "$group:check"
+   ]
+  },
+  "circle-exclamation-point": {
+   "categories": [
+    "notifications"
+   ],
+   "export_found": true,
+   "pascal": "CircleExclamationPoint",
+   "tags": [
+    "$group:exclamation-mark"
+   ]
+  },
+  "circle-question-mark": {
+   "categories": [
+    "accessibility",
+    "text",
+    "notifications"
+   ],
+   "export_found": true,
+   "pascal": "CircleQuestionMark",
+   "tags": [
+    "$group:question-mark"
+   ]
+  },
+  "circle-user": {
+   "categories": [
+    "account"
+   ],
+   "export_found": true,
+   "pascal": "CircleUser",
+   "tags": [
+    "$group:user"
+   ]
+  },
+  "circle-x": {
+   "categories": [
+    "math",
+    "notifications"
+   ],
+   "export_found": true,
+   "pascal": "CircleX",
+   "tags": [
+    "$group:x",
+    "incorrect",
+    "wrong",
+    "mistake",
+    "failure",
+    "linter",
+    "multiply",
+    "multiplication"
+   ]
+  },
+  "clipboard-list": {
+   "categories": [
+    "$extends:clipboard"
+   ],
+   "export_found": true,
+   "pascal": "ClipboardList",
+   "tags": [
+    "$extends:clipboard",
+    "tasks",
+    "checklist"
+   ]
+  },
+  "clock": {
+   "categories": [
+    "time"
+   ],
+   "export_found": true,
+   "pascal": "Clock",
+   "tags": [
+    "$group:clock",
+    "alarm"
+   ]
+  },
+  "code": {
+   "categories": [
+    "text",
+    "development"
+   ],
+   "export_found": true,
+   "pascal": "Code",
+   "tags": [
+    "$group:code",
+    "source",
+    "html",
+    "xml"
+   ]
+  },
+  "coffee": {
+   "categories": [
+    "food-beverage"
+   ],
+   "export_found": true,
+   "pascal": "Coffee",
+   "tags": [
+    "drink",
+    "cup",
+    "mug",
+    "tea",
+    "cafe",
+    "hot",
+    "beverage"
+   ]
+  },
+  "columns-2": {
+   "categories": [
+    "layout",
+    "design",
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Columns2",
+   "tags": [
+    "lines",
+    "list",
+    "queue",
+    "preview",
+    "panel",
+    "parallel",
+    "series",
+    "split",
+    "vertical",
+    "horizontal",
+    "half",
+    "center",
+    "middle",
+    "even",
+    "sidebar",
+    "drawer",
+    "gutter",
+    "fold",
+    "reflow",
+    "typography",
+    "pagination",
+    "pages"
+   ]
+  },
+  "copy": {
+   "categories": [
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Copy",
+   "tags": [
+    "clone",
+    "duplicate",
+    "multiple"
+   ]
+  },
+  "credit-card": {
+   "categories": [
+    "account",
+    "finance"
+   ],
+   "export_found": true,
+   "pascal": "CreditCard",
+   "tags": [
+    "bank",
+    "purchase",
+    "payment",
+    "cc",
+    "cashier",
+    "merchant"
+   ]
+  },
+  "database": {
+   "categories": [
+    "devices",
+    "development"
+   ],
+   "export_found": true,
+   "pascal": "Database",
+   "tags": [
+    "storage",
+    "memory",
+    "container",
+    "tin",
+    "pot",
+    "bytes",
+    "servers",
+    "sql",
+    "db",
+    "query",
+    "sqlite",
+    "mysql",
+    "backup",
+    "export",
+    "import",
+    "dump",
+    "restore",
+    "migration",
+    "schema",
+    "records",
+    "tables",
+    "snapshot",
+    "archive",
+    "server",
+    "attachment",
+    "artifact",
+    "log",
+    "relational",
+    "dataset",
+    "dbms",
+    "structured data",
+    "data source",
+    "data"
+   ]
+  },
+  "dog": {
+   "categories": [
+    "animals"
+   ],
+   "export_found": true,
+   "pascal": "Dog",
+   "tags": [
+    "animal",
+    "pet",
+    "puppy",
+    "hound",
+    "canine"
+   ]
+  },
+  "download": {
+   "categories": [
+    "arrows",
+    "files"
+   ],
+   "export_found": true,
+   "pascal": "Download",
+   "tags": [
+    "import",
+    "export",
+    "save",
+    "pull",
+    "install",
+    "installation"
+   ]
+  },
+  "droplet": {
+   "categories": [
+    "weather"
+   ],
+   "export_found": true,
+   "pascal": "Droplet",
+   "tags": [
+    "water",
+    "weather",
+    "liquid",
+    "fluid",
+    "wet",
+    "moisture",
+    "damp",
+    "bead",
+    "globule"
+   ]
+  },
+  "dumbbell": {
+   "categories": [
+    "navigation",
+    "sports"
+   ],
+   "export_found": true,
+   "pascal": "Dumbbell",
+   "tags": [
+    "barbell",
+    "weight",
+    "workout",
+    "gym"
+   ]
+  },
+  "ellipsis": {
+   "categories": [
+    "layout",
+    "development"
+   ],
+   "export_found": true,
+   "pascal": "Ellipsis",
+   "tags": [
+    "et cetera",
+    "etc",
+    "loader",
+    "loading",
+    "progress",
+    "pending",
+    "throbber",
+    "menu",
+    "options",
+    "operator",
+    "code",
+    "coding",
+    "spread",
+    "rest",
+    "more",
+    "further",
+    "extra",
+    "overflow",
+    "dots",
+    "\u2026",
+    "...",
+    "meatball menu",
+    "three dots",
+    "3 dots"
+   ]
+  },
+  "external-link": {
+   "categories": [
+    "arrows",
+    "text",
+    "social"
+   ],
+   "export_found": true,
+   "pascal": "ExternalLink",
+   "tags": [
+    "outbound",
+    "open",
+    "share",
+    "redirect"
+   ]
+  },
+  "eye": {
+   "categories": [
+    "accessibility",
+    "photography",
+    "design",
+    "security"
+   ],
+   "export_found": true,
+   "pascal": "Eye",
+   "tags": [
+    "view",
+    "watch",
+    "see",
+    "show",
+    "expose",
+    "reveal",
+    "display",
+    "visible",
+    "visibility",
+    "vision",
+    "preview",
+    "read",
+    "eyes"
+   ]
+  },
+  "eye-off": {
+   "categories": [
+    "$extends:eye"
+   ],
+   "export_found": true,
+   "pascal": "EyeOff",
+   "tags": [
+    "$extends:eye",
+    "$group:off",
+    "conceal",
+    "mask"
+   ]
+  },
+  "file-text": {
+   "categories": [
+    "$extends:file",
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "FileText",
+   "tags": [
+    "$extends:file",
+    "data",
+    "txt",
+    "pdf",
+    "doc",
+    "docx",
+    "word",
+    "docs"
+   ]
+  },
+  "flame": {
+   "categories": [
+    "weather",
+    "social",
+    "gaming"
+   ],
+   "export_found": true,
+   "pascal": "Flame",
+   "tags": [
+    "heat",
+    "burn",
+    "light",
+    "glow",
+    "ignite",
+    "passion",
+    "ember",
+    "fire",
+    "lit",
+    "burning",
+    "spark",
+    "embers",
+    "smoke",
+    "firefighter",
+    "fireman",
+    "department",
+    "brigade",
+    "station",
+    "emergency"
+   ]
+  },
+  "folder": {
+   "categories": [
+    "files"
+   ],
+   "export_found": true,
+   "pascal": "Folder",
+   "tags": [
+    "directory"
+   ]
+  },
+  "funnel": {
+   "categories": [
+    "layout"
+   ],
+   "export_found": true,
+   "pascal": "Funnel",
+   "tags": [
+    "filter",
+    "hopper"
+   ]
+  },
+  "gift": {
+   "categories": [
+    "gaming",
+    "shopping"
+   ],
+   "export_found": true,
+   "pascal": "Gift",
+   "tags": [
+    "present",
+    "box",
+    "birthday",
+    "party"
+   ]
+  },
+  "git-branch": {
+   "categories": [
+    "development"
+   ],
+   "export_found": true,
+   "pascal": "GitBranch",
+   "tags": [
+    "code",
+    "version control",
+    "vcs",
+    "repository"
+   ]
+  },
+  "globe": {
+   "categories": [
+    "navigation",
+    "connectivity"
+   ],
+   "export_found": true,
+   "pascal": "Globe",
+   "tags": [
+    "world",
+    "browser",
+    "language",
+    "translate",
+    "location",
+    "country",
+    "coverage",
+    "publish",
+    "connection",
+    "global",
+    "earth",
+    "globe",
+    "internet",
+    "planet",
+    "network",
+    "www",
+    "http",
+    "https",
+    "website"
+   ]
+  },
+  "graduation-cap": {
+   "categories": [
+    "buildings",
+    "education"
+   ],
+   "export_found": true,
+   "pascal": "GraduationCap",
+   "tags": [
+    "school",
+    "university",
+    "learn",
+    "study",
+    "mortarboard",
+    "education",
+    "ceremony",
+    "academic",
+    "hat",
+    "diploma",
+    "bachelor's",
+    "master's",
+    "doctorate",
+    "skill",
+    "skills",
+    "expertise"
+   ]
+  },
+  "hammer": {
+   "categories": [
+    "tools",
+    "home"
+   ],
+   "export_found": true,
+   "pascal": "Hammer",
+   "tags": [
+    "mallet",
+    "nails",
+    "diy",
+    "toolbox",
+    "build",
+    "construction"
+   ]
+  },
+  "hand-heart": {
+   "categories": [
+    "social"
+   ],
+   "export_found": true,
+   "pascal": "HandHeart",
+   "tags": [
+    "$group:heart",
+    "emotion"
+   ]
+  },
+  "handshake": {
+   "categories": [
+    "social",
+    "finance"
+   ],
+   "export_found": true,
+   "pascal": "Handshake",
+   "tags": [
+    "agreement",
+    "partnership",
+    "deal",
+    "business",
+    "assistance",
+    "cooperation",
+    "friendship",
+    "union",
+    "terms"
+   ]
+  },
+  "hard-hat": {
+   "categories": [
+    "tools"
+   ],
+   "export_found": true,
+   "pascal": "HardHat",
+   "tags": [
+    "helmet",
+    "construction",
+    "safety"
+   ]
+  },
+  "heart": {
+   "categories": [
+    "medical",
+    "social",
+    "emoji",
+    "gaming",
+    "shapes"
+   ],
+   "export_found": true,
+   "pascal": "Heart",
+   "tags": [
+    "$group:heart",
+    "emotion",
+    "suit",
+    "playing",
+    "cards"
+   ]
+  },
+  "house": {
+   "categories": [
+    "buildings",
+    "home",
+    "navigation"
+   ],
+   "export_found": true,
+   "pascal": "House",
+   "tags": [
+    "home",
+    "living",
+    "building",
+    "residence",
+    "architecture",
+    "homepage"
+   ]
+  },
+  "image": {
+   "categories": [
+    "photography",
+    "text",
+    "multimedia",
+    "files"
+   ],
+   "export_found": true,
+   "pascal": "Image",
+   "tags": [
+    "picture",
+    "photo"
+   ]
+  },
+  "info": {
+   "categories": [
+    "accessibility",
+    "notifications"
+   ],
+   "export_found": true,
+   "pascal": "Info",
+   "tags": [
+    "$group:letter",
+    "about",
+    "advice",
+    "clue",
+    "details",
+    "help",
+    "hint",
+    "indicator",
+    "information",
+    "knowledge",
+    "notice",
+    "status",
+    "support",
+    "tooltip"
+   ]
+  },
+  "key-round": {
+   "categories": [
+    "$extends:key"
+   ],
+   "export_found": true,
+   "pascal": "KeyRound",
+   "tags": [
+    "$extends:key"
+   ]
+  },
+  "languages": {
+   "categories": [
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Languages",
+   "tags": [
+    "$group:letter",
+    "translate"
+   ]
+  },
+  "laptop": {
+   "categories": [
+    "devices"
+   ],
+   "export_found": true,
+   "pascal": "Laptop",
+   "tags": [
+    "computer",
+    "screen",
+    "remote"
+   ]
+  },
+  "layout-grid": {
+   "categories": [
+    "design",
+    "layout"
+   ],
+   "export_found": true,
+   "pascal": "LayoutGrid",
+   "tags": [
+    "app",
+    "home",
+    "start",
+    "apps",
+    "menu",
+    "block",
+    "applications",
+    "collection",
+    "dashboard",
+    "overview",
+    "tiles",
+    "grid",
+    "matrix",
+    "launcher",
+    "widgets",
+    "ui",
+    "circles",
+    "shortcuts"
+   ]
+  },
+  "layout-list": {
+   "categories": [
+    "design",
+    "layout",
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "LayoutList",
+   "tags": [
+    "todo",
+    "tasks",
+    "items",
+    "pending",
+    "image",
+    "photo"
+   ]
+  },
+  "link": {
+   "categories": [
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Link",
+   "tags": [
+    "chain",
+    "url",
+    "www",
+    "http",
+    "https",
+    "website"
+   ]
+  },
+  "list-checks": {
+   "categories": [
+    "$extends:list"
+   ],
+   "export_found": true,
+   "pascal": "ListChecks",
+   "tags": [
+    "$group:check",
+    "items",
+    "pending",
+    "checklist"
+   ]
+  },
+  "loader-circle": {
+   "categories": [
+    "cursors"
+   ],
+   "export_found": true,
+   "pascal": "LoaderCircle",
+   "tags": [
+    "$extends:loader",
+    "circle"
+   ]
+  },
+  "lock": {
+   "categories": [
+    "security"
+   ],
+   "export_found": true,
+   "pascal": "Lock",
+   "tags": [
+    "$group:lock",
+    "admin"
+   ]
+  },
+  "lock-open": {
+   "categories": [
+    "$extends:lock"
+   ],
+   "export_found": true,
+   "pascal": "LockOpen",
+   "tags": [
+    "$extends:lock"
+   ]
+  },
+  "log-in": {
+   "categories": [
+    "arrows",
+    "account"
+   ],
+   "export_found": true,
+   "pascal": "LogIn",
+   "tags": [
+    "sign in",
+    "arrow",
+    "enter",
+    "auth"
+   ]
+  },
+  "log-out": {
+   "categories": [
+    "arrows",
+    "account"
+   ],
+   "export_found": true,
+   "pascal": "LogOut",
+   "tags": [
+    "sign out",
+    "arrow",
+    "exit",
+    "auth",
+    "quit"
+   ]
+  },
+  "mail": {
+   "categories": [
+    "mail"
+   ],
+   "export_found": true,
+   "pascal": "Mail",
+   "tags": [
+    "email",
+    "message",
+    "letter",
+    "unread"
+   ]
+  },
+  "map": {
+   "categories": [
+    "navigation",
+    "travel"
+   ],
+   "export_found": true,
+   "pascal": "Map",
+   "tags": [
+    "location",
+    "navigation",
+    "travel"
+   ]
+  },
+  "map-pin": {
+   "categories": [
+    "navigation",
+    "travel"
+   ],
+   "export_found": true,
+   "pascal": "MapPin",
+   "tags": [
+    "location",
+    "waypoint",
+    "marker",
+    "drop"
+   ]
+  },
+  "menu": {
+   "categories": [
+    "layout"
+   ],
+   "export_found": true,
+   "pascal": "Menu",
+   "tags": [
+    "bars",
+    "navigation",
+    "hamburger",
+    "options"
+   ]
+  },
+  "message-circle": {
+   "categories": [
+    "social",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "MessageCircle",
+   "tags": [
+    "comment",
+    "chat",
+    "conversation",
+    "dialog",
+    "feedback",
+    "speech bubble"
+   ]
+  },
+  "message-square-quote": {
+   "categories": [
+    "$extends:message-square",
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "MessageSquareQuote",
+   "tags": [
+    "$extends:message-square",
+    "blockquote",
+    "quotation",
+    "indent",
+    "reply",
+    "response"
+   ]
+  },
+  "mic": {
+   "categories": [
+    "devices",
+    "communication",
+    "multimedia"
+   ],
+   "export_found": true,
+   "pascal": "Mic",
+   "tags": [
+    "record",
+    "sound",
+    "listen",
+    "radio",
+    "podcast",
+    "microphone"
+   ]
+  },
+  "minus": {
+   "categories": [
+    "math",
+    "development",
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Minus",
+   "tags": [
+    "$group:minus",
+    "decrease",
+    "decrement",
+    "negative",
+    "calculate",
+    "line",
+    "divider",
+    "separator",
+    "horizontal rule",
+    "hr",
+    "html",
+    "markup",
+    "markdown",
+    "---",
+    "toolbar",
+    "operator",
+    "code",
+    "coding",
+    "minimum",
+    "downgrade"
+   ]
+  },
+  "moon": {
+   "categories": [
+    "accessibility",
+    "weather"
+   ],
+   "export_found": true,
+   "pascal": "Moon",
+   "tags": [
+    "dark",
+    "night"
+   ]
+  },
+  "navigation": {
+   "categories": [
+    "navigation"
+   ],
+   "export_found": true,
+   "pascal": "Navigation",
+   "tags": [
+    "location",
+    "travel"
+   ]
+  },
+  "package": {
+   "categories": [
+    "files",
+    "development",
+    "logistics"
+   ],
+   "export_found": true,
+   "pascal": "Package",
+   "tags": [
+    "box",
+    "container",
+    "storage",
+    "sealed",
+    "delivery",
+    "undelivered",
+    "unopened",
+    "packed",
+    "archive",
+    "zip",
+    "module",
+    "shipping",
+    "recipient",
+    "inventory",
+    "logistics",
+    "tracking",
+    "order",
+    "product"
+   ]
+  },
+  "package-check": {
+   "categories": [
+    "$extends:package"
+   ],
+   "export_found": true,
+   "pascal": "PackageCheck",
+   "tags": [
+    "$extends:package",
+    "$group:check",
+    "delivered"
+   ]
+  },
+  "paint-roller": {
+   "categories": [
+    "design",
+    "home",
+    "tools"
+   ],
+   "export_found": true,
+   "pascal": "PaintRoller",
+   "tags": [
+    "brush",
+    "color",
+    "colour",
+    "decoration",
+    "diy"
+   ]
+  },
+  "panel-left": {
+   "categories": [
+    "layout"
+   ],
+   "export_found": true,
+   "pascal": "PanelLeft",
+   "tags": [
+    "$group:position-left",
+    "primary",
+    "drawer"
+   ]
+  },
+  "paperclip": {
+   "categories": [
+    "files",
+    "mail"
+   ],
+   "export_found": true,
+   "pascal": "Paperclip",
+   "tags": [
+    "attachment",
+    "file"
+   ]
+  },
+  "pause": {
+   "categories": [
+    "multimedia"
+   ],
+   "export_found": true,
+   "pascal": "Pause",
+   "tags": [
+    "$group:pause",
+    "music"
+   ]
+  },
+  "pencil": {
+   "categories": [
+    "design",
+    "cursors",
+    "tools",
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Pencil",
+   "tags": [
+    "$group:pen",
+    "rubber",
+    "stationery",
+    "artist"
+   ]
+  },
+  "phone": {
+   "categories": [
+    "connectivity",
+    "devices",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "Phone",
+   "tags": [
+    "call"
+   ]
+  },
+  "phone-call": {
+   "categories": [
+    "connectivity",
+    "devices",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "PhoneCall",
+   "tags": [
+    "ring"
+   ]
+  },
+  "play": {
+   "categories": [
+    "multimedia"
+   ],
+   "export_found": true,
+   "pascal": "Play",
+   "tags": [
+    "$group:play",
+    "music",
+    "audio",
+    "video"
+   ]
+  },
+  "plug": {
+   "categories": [
+    "devices",
+    "connectivity"
+   ],
+   "export_found": true,
+   "pascal": "Plug",
+   "tags": [
+    "electricity",
+    "energy",
+    "electronics",
+    "socket",
+    "outlet",
+    "power",
+    "voltage",
+    "current",
+    "charger"
+   ]
+  },
+  "plus": {
+   "categories": [
+    "math",
+    "development",
+    "cursors"
+   ],
+   "export_found": true,
+   "pascal": "Plus",
+   "tags": [
+    "$group:plus",
+    "positive",
+    "calculate",
+    "toolbar",
+    "crosshair",
+    "aim",
+    "target",
+    "scope",
+    "sight",
+    "reticule",
+    "maximum",
+    "upgrade"
+   ]
+  },
+  "pound-sterling": {
+   "categories": [
+    "finance"
+   ],
+   "export_found": true,
+   "pascal": "PoundSterling",
+   "tags": [
+    "$group:currency"
+   ]
+  },
+  "printer": {
+   "categories": [
+    "devices"
+   ],
+   "export_found": true,
+   "pascal": "Printer",
+   "tags": [
+    "fax",
+    "office",
+    "device"
+   ]
+  },
+  "quote": {
+   "categories": [
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Quote",
+   "tags": [
+    "quotation"
+   ]
+  },
+  "receipt-text": {
+   "categories": [
+    "$extends:receipt"
+   ],
+   "export_found": true,
+   "pascal": "ReceiptText",
+   "tags": [
+    "$extends:receipt",
+    "details",
+    "small print",
+    "terms",
+    "conditions",
+    "contract"
+   ]
+  },
+  "refresh-cw": {
+   "categories": [
+    "arrows"
+   ],
+   "export_found": true,
+   "pascal": "RefreshCw",
+   "tags": [
+    "$group:sync",
+    "rotate",
+    "arrows",
+    "circular"
+   ]
+  },
+  "save": {
+   "categories": [
+    "files"
+   ],
+   "export_found": true,
+   "pascal": "Save",
+   "tags": [
+    "floppy disk"
+   ]
+  },
+  "scissors": {
+   "categories": [
+    "text",
+    "design",
+    "tools"
+   ],
+   "export_found": true,
+   "pascal": "Scissors",
+   "tags": [
+    "cut",
+    "snip",
+    "chop",
+    "stationery",
+    "crafts"
+   ]
+  },
+  "search": {
+   "categories": [
+    "text"
+   ],
+   "export_found": true,
+   "pascal": "Search",
+   "tags": [
+    "$group:search",
+    "enlarge"
+   ]
+  },
+  "send": {
+   "categories": [
+    "mail",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "Send",
+   "tags": [
+    "email",
+    "message",
+    "mail",
+    "paper airplane",
+    "paper aeroplane",
+    "submit",
+    "invite",
+    "invitation"
+   ]
+  },
+  "settings": {
+   "categories": [
+    "account"
+   ],
+   "export_found": true,
+   "pascal": "Settings",
+   "tags": [
+    "$group:cog"
+   ]
+  },
+  "share-2": {
+   "categories": [
+    "$extends:share"
+   ],
+   "export_found": true,
+   "pascal": "Share2",
+   "tags": [
+    "$extends:share"
+   ]
+  },
+  "shield-check": {
+   "categories": [
+    "account",
+    "security",
+    "development",
+    "gaming"
+   ],
+   "export_found": true,
+   "pascal": "ShieldCheck",
+   "tags": [
+    "$extends:shield",
+    "$group:check",
+    "secured",
+    "guarded",
+    "defended",
+    "blocked",
+    "prevented",
+    "active",
+    "activated",
+    "scanned",
+    "found",
+    "audited",
+    "certification",
+    "certified",
+    "tested",
+    "passed",
+    "qualified",
+    "cleared",
+    "cleaned",
+    "disinfected",
+    "uninfected",
+    "checked",
+    "insurance",
+    "guarantee",
+    "warranty"
+   ]
+  },
+  "shopping-bag": {
+   "categories": [
+    "shopping"
+   ],
+   "export_found": true,
+   "pascal": "ShoppingBag",
+   "tags": [
+    "ecommerce",
+    "cart",
+    "purchase",
+    "store"
+   ]
+  },
+  "shopping-cart": {
+   "categories": [
+    "shopping"
+   ],
+   "export_found": true,
+   "pascal": "ShoppingCart",
+   "tags": [
+    "trolley",
+    "cart",
+    "basket",
+    "e-commerce",
+    "store",
+    "purchase",
+    "products",
+    "items",
+    "ingredients"
+   ]
+  },
+  "smartphone": {
+   "categories": [
+    "devices"
+   ],
+   "export_found": true,
+   "pascal": "Smartphone",
+   "tags": [
+    "phone",
+    "cellphone",
+    "device",
+    "mobile",
+    "screen",
+    "display",
+    "touchscreen",
+    "portable",
+    "responsive"
+   ]
+  },
+  "star": {
+   "categories": [
+    "social",
+    "shapes",
+    "emoji",
+    "gaming"
+   ],
+   "export_found": true,
+   "pascal": "Star",
+   "tags": [
+    "$group:star"
+   ]
+  },
+  "stethoscope": {
+   "categories": [
+    "science",
+    "medical"
+   ],
+   "export_found": true,
+   "pascal": "Stethoscope",
+   "tags": [
+    "phonendoscope",
+    "medical",
+    "heart",
+    "lungs",
+    "sound",
+    "patient"
+   ]
+  },
+  "store": {
+   "categories": [
+    "buildings",
+    "navigation",
+    "shopping"
+   ],
+   "export_found": true,
+   "pascal": "Store",
+   "tags": [
+    "shop",
+    "supermarket",
+    "stand",
+    "boutique",
+    "building",
+    "sell",
+    "selling",
+    "merchant"
+   ]
+  },
+  "sun": {
+   "categories": [
+    "accessibility",
+    "weather",
+    "sustainability"
+   ],
+   "export_found": true,
+   "pascal": "Sun",
+   "tags": [
+    "brightness",
+    "weather",
+    "light",
+    "summer"
+   ]
+  },
+  "tag": {
+   "categories": [
+    "account",
+    "shopping"
+   ],
+   "export_found": true,
+   "pascal": "Tag",
+   "tags": [
+    "label",
+    "badge",
+    "ticket",
+    "mark",
+    "sell",
+    "selling",
+    "promotion",
+    "promo"
+   ]
+  },
+  "terminal": {
+   "categories": [
+    "development"
+   ],
+   "export_found": true,
+   "pascal": "Terminal",
+   "tags": [
+    "$group:code",
+    "code",
+    "command line",
+    "prompt",
+    "shell"
+   ]
+  },
+  "thermometer": {
+   "categories": [
+    "weather"
+   ],
+   "export_found": true,
+   "pascal": "Thermometer",
+   "tags": [
+    "temperature",
+    "celsius",
+    "fahrenheit",
+    "weather"
+   ]
+  },
+  "thumbs-up": {
+   "categories": [
+    "social",
+    "emoji"
+   ],
+   "export_found": true,
+   "pascal": "ThumbsUp",
+   "tags": [
+    "like",
+    "good",
+    "emotion",
+    "recommend",
+    "recommendation"
+   ]
+  },
+  "ticket": {
+   "categories": [
+    "account",
+    "transportation"
+   ],
+   "export_found": true,
+   "pascal": "Ticket",
+   "tags": [
+    "entry",
+    "pass",
+    "voucher",
+    "event",
+    "concert",
+    "show",
+    "perforated",
+    "dashed",
+    "invite",
+    "invitation"
+   ]
+  },
+  "trash": {
+   "categories": [
+    "files",
+    "mail"
+   ],
+   "export_found": true,
+   "pascal": "Trash",
+   "tags": [
+    "$group:minus",
+    "empty",
+    "deletion",
+    "cleanup",
+    "junk",
+    "garbage",
+    "bin",
+    "waste",
+    "recycle",
+    "discard",
+    "rubbish"
+   ]
+  },
+  "trending-down": {
+   "categories": [
+    "charts",
+    "arrows"
+   ],
+   "export_found": true,
+   "pascal": "TrendingDown",
+   "tags": [
+    "$group:chart",
+    "$group:direction-down"
+   ]
+  },
+  "trending-up": {
+   "categories": [
+    "charts",
+    "arrows"
+   ],
+   "export_found": true,
+   "pascal": "TrendingUp",
+   "tags": [
+    "$group:chart",
+    "$group:direction-up"
+   ]
+  },
+  "triangle-exclamation-point": {
+   "categories": [
+    "$extends:triangle",
+    "notifications",
+    "development"
+   ],
+   "export_found": true,
+   "pascal": "TriangleExclamationPoint",
+   "tags": [
+    "$group:exclamation-mark",
+    "linter"
+   ]
+  },
+  "truck": {
+   "categories": [
+    "transportation",
+    "logistics"
+   ],
+   "export_found": true,
+   "pascal": "Truck",
+   "tags": [
+    "delivery",
+    "van",
+    "shipping",
+    "haulage",
+    "lorry"
+   ]
+  },
+  "undo-2": {
+   "categories": [
+    "$extends:undo"
+   ],
+   "export_found": true,
+   "pascal": "Undo2",
+   "tags": [
+    "$extends:undo",
+    "back",
+    "return",
+    "reverse",
+    "revert",
+    "direction",
+    "u-turn"
+   ]
+  },
+  "upload": {
+   "categories": [
+    "arrows",
+    "files"
+   ],
+   "export_found": true,
+   "pascal": "Upload",
+   "tags": [
+    "file"
+   ]
+  },
+  "user": {
+   "categories": [
+    "account"
+   ],
+   "export_found": true,
+   "pascal": "User",
+   "tags": [
+    "$group:user"
+   ]
+  },
+  "user-plus": {
+   "categories": [
+    "$extends:user"
+   ],
+   "export_found": true,
+   "pascal": "UserPlus",
+   "tags": [
+    "$extends:user",
+    "$group:plus",
+    "follow",
+    "subscribe",
+    "invite",
+    "invitation"
+   ]
+  },
+  "users": {
+   "categories": [
+    "account",
+    "people"
+   ],
+   "export_found": true,
+   "pascal": "Users",
+   "tags": [
+    "$group:user",
+    "group"
+   ]
+  },
+  "utensils": {
+   "categories": [
+    "food-beverage",
+    "travel",
+    "navigation"
+   ],
+   "export_found": true,
+   "pascal": "Utensils",
+   "tags": [
+    "fork",
+    "knife",
+    "cutlery",
+    "flatware",
+    "tableware",
+    "silverware",
+    "food",
+    "restaurant",
+    "meal",
+    "breakfast",
+    "dinner",
+    "supper"
+   ]
+  },
+  "video": {
+   "categories": [
+    "devices",
+    "communication",
+    "photography",
+    "multimedia"
+   ],
+   "export_found": true,
+   "pascal": "Video",
+   "tags": [
+    "camera",
+    "movie",
+    "film",
+    "recording",
+    "motion picture",
+    "camcorder",
+    "reel"
+   ]
+  },
+  "volume-2": {
+   "categories": [
+    "$extends:volume"
+   ],
+   "export_found": true,
+   "pascal": "Volume2",
+   "tags": [
+    "$extends:volume"
+   ]
+  },
+  "wallet": {
+   "categories": [
+    "account",
+    "finance"
+   ],
+   "export_found": true,
+   "pascal": "Wallet",
+   "tags": [
+    "money",
+    "finance",
+    "pocket",
+    "budget"
+   ]
+  },
+  "wifi": {
+   "categories": [
+    "connectivity",
+    "devices"
+   ],
+   "export_found": true,
+   "pascal": "Wifi",
+   "tags": [
+    "connection",
+    "signal",
+    "wireless",
+    "network"
+   ]
+  },
+  "wifi-off": {
+   "categories": [
+    "$extends:wifi"
+   ],
+   "export_found": true,
+   "pascal": "WifiOff",
+   "tags": [
+    "$extends:wifi",
+    "$group:off",
+    "disconnected"
+   ]
+  },
+  "wrench": {
+   "categories": [
+    "account",
+    "development",
+    "tools"
+   ],
+   "export_found": true,
+   "pascal": "Wrench",
+   "tags": [
+    "account",
+    "settings",
+    "spanner",
+    "diy",
+    "toolbox",
+    "build",
+    "construction"
+   ]
+  },
+  "x": {
+   "categories": [
+    "notifications",
+    "math",
+    "letters-digits"
+   ],
+   "export_found": true,
+   "pascal": "X",
+   "tags": [
+    "$group:letter",
+    "$group:x",
+    "math",
+    "multiply",
+    "multiplication"
+   ]
+  },
+  "zap": {
+   "categories": [
+    "photography",
+    "weather",
+    "devices"
+   ],
+   "export_found": true,
+   "pascal": "Zap",
+   "tags": [
+    "flash",
+    "camera",
+    "lightning",
+    "electricity",
+    "energy",
+    "power",
+    "quick",
+    "thunder",
+    "thunderbolt"
+   ]
+  }
+ },
+ "phosphor": {
+  "airplane": {
+   "categories": [
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Airplane",
+   "tags": [
+    "vehicles",
+    "airports",
+    "flights",
+    "flying",
+    "planes",
+    "transit",
+    "transportation",
+    "traveling"
+   ]
+  },
+  "ambulance": {
+   "categories": [
+    "health",
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Ambulance",
+   "tags": [
+    "first-aid",
+    "emt",
+    "medical",
+    "medicine",
+    "injury",
+    "safety",
+    "emergency",
+    "doctor",
+    "vehicles"
+   ]
+  },
+  "baby": {
+   "categories": [
+    "health",
+    "people"
+   ],
+   "export_found": true,
+   "pascal": "Baby",
+   "tags": [
+    "infant",
+    "child",
+    "children",
+    "toddler"
+   ]
+  },
+  "bank": {
+   "categories": [
+    "finance",
+    "map"
+   ],
+   "export_found": true,
+   "pascal": "Bank",
+   "tags": [
+    "banking",
+    "checking",
+    "money",
+    "savings",
+    "deposit",
+    "withdraw",
+    "places",
+    "locations"
+   ]
+  },
+  "basket": {
+   "categories": [
+    "commerce",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Basket",
+   "tags": [
+    "ecommerce",
+    "market",
+    "cart",
+    "buying",
+    "shopping",
+    "groceries",
+    "checkout",
+    "places",
+    "locations"
+   ]
+  },
+  "battery-charging": {
+   "categories": [
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "BatteryCharging",
+   "tags": [
+    "charged",
+    "charger",
+    "charging",
+    "power"
+   ]
+  },
+  "beer-stein": {
+   "categories": [
+    "commerce",
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "BeerStein",
+   "tags": [
+    "drinks",
+    "beverages",
+    "places",
+    "locations",
+    "bars",
+    "restaurants",
+    "food",
+    "dining"
+   ]
+  },
+  "book-open": {
+   "categories": [
+    "media",
+    "objects",
+    "office"
+   ],
+   "export_found": true,
+   "pascal": "BookOpen",
+   "tags": [
+    "reading",
+    "reader",
+    "novel",
+    "story",
+    "library"
+   ]
+  },
+  "bowl-food": {
+   "categories": [
+    "commerce",
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "BowlFood",
+   "tags": [
+    "ramen",
+    "food",
+    "meal",
+    "eating",
+    "restaurants",
+    "dining",
+    "locations"
+   ]
+  },
+  "broom": {
+   "categories": [
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Broom",
+   "tags": [
+    "sweeping",
+    "cleaning"
+   ]
+  },
+  "buildings": {
+   "categories": [
+    "commerce",
+    "map"
+   ],
+   "export_found": true,
+   "pascal": "Buildings",
+   "tags": [
+    "places",
+    "locations",
+    "company",
+    "business"
+   ]
+  },
+  "bus": {
+   "categories": [
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Bus",
+   "tags": [
+    "vehicles",
+    "automobile",
+    "public transit",
+    "transportation",
+    "commuter",
+    "traveling",
+    "places",
+    "locations"
+   ]
+  },
+  "certificate": {
+   "categories": [
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Certificate",
+   "tags": [
+    "awards",
+    "certification",
+    "degree",
+    "diploma"
+   ]
+  },
+  "chat-circle-text": {
+   "categories": [
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "ChatCircleText",
+   "tags": [
+    "send",
+    "sent",
+    "messages",
+    "messaging",
+    "sms",
+    "texting",
+    "comment",
+    "round",
+    "bubble"
+   ]
+  },
+  "church": {
+   "categories": [
+    "map"
+   ],
+   "export_found": true,
+   "pascal": "Church",
+   "tags": [
+    "christ",
+    "christianity",
+    "cathedral",
+    "religion",
+    "worship"
+   ]
+  },
+  "cooking-pot": {
+   "categories": [
+    "commerce",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "CookingPot",
+   "tags": [
+    "stew",
+    "kitchen",
+    "steaming",
+    "restaurants",
+    "food",
+    "dining"
+   ]
+  },
+  "door-open": {
+   "categories": [
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "DoorOpen",
+   "tags": [
+    "entrance",
+    "exit"
+   ]
+  },
+  "drop": {
+   "categories": [
+    "nature",
+    "weather"
+   ],
+   "export_found": true,
+   "pascal": "Drop",
+   "tags": [
+    "droplet",
+    "teardrop",
+    "raindrop",
+    "raining",
+    "meteorology",
+    "water",
+    "blur"
+   ]
+  },
+  "ear": {
+   "categories": [
+    "media",
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "Ear",
+   "tags": [
+    "hearing",
+    "audio",
+    "sound"
+   ]
+  },
+  "facebook-logo": {
+   "categories": [
+    "brand",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "FacebookLogo",
+   "tags": [
+    "logos",
+    "social media"
+   ]
+  },
+  "file-pdf": {
+   "categories": [
+    "editor",
+    "office"
+   ],
+   "export_found": true,
+   "pascal": "FilePdf",
+   "tags": [
+    "documents",
+    "files",
+    "acrobat"
+   ]
+  },
+  "fingerprint": {
+   "categories": [
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "Fingerprint",
+   "tags": [
+    "security",
+    "secured",
+    "authentication",
+    "authenticated",
+    "login",
+    "locked",
+    "biometrics",
+    "encrypted",
+    "encryption"
+   ]
+  },
+  "first-aid-kit": {
+   "categories": [
+    "health"
+   ],
+   "export_found": true,
+   "pascal": "FirstAidKit",
+   "tags": [
+    "bandages",
+    "medical",
+    "medicine",
+    "injury",
+    "safety",
+    "emergency",
+    "doctor"
+   ]
+  },
+  "flower-lotus": {
+   "categories": [
+    "nature"
+   ],
+   "export_found": true,
+   "pascal": "FlowerLotus",
+   "tags": [
+    "plants",
+    "green",
+    "environmental",
+    "spirituality"
+   ]
+  },
+  "google-logo": {
+   "categories": [
+    "brand"
+   ],
+   "export_found": true,
+   "pascal": "GoogleLogo",
+   "tags": [
+    "logos",
+    "search engine",
+    "phone",
+    "mobile",
+    "android"
+   ]
+  },
+  "hand-coins": {
+   "categories": [
+    "commerce",
+    "finance",
+    "people"
+   ],
+   "export_found": true,
+   "pascal": "HandCoins",
+   "tags": [
+    "donation",
+    "payment",
+    "money",
+    "paying",
+    "purchase"
+   ]
+  },
+  "heartbeat": {
+   "categories": [
+    "health",
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "Heartbeat",
+   "tags": [
+    "wellness",
+    "healthy",
+    "ecg",
+    "ekg",
+    "vitals",
+    "monitor"
+   ]
+  },
+  "hourglass": {
+   "categories": [
+    "objects",
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "Hourglass",
+   "tags": [
+    "times",
+    "timer",
+    "alarms",
+    "clock",
+    "schedule",
+    "events",
+    "waiting",
+    "progress"
+   ]
+  },
+  "identification-card": {
+   "categories": [
+    "people"
+   ],
+   "export_found": true,
+   "pascal": "IdentificationCard",
+   "tags": [
+    "license",
+    "badge",
+    "credentials",
+    "nametag",
+    "user",
+    "verification"
+   ]
+  },
+  "instagram-logo": {
+   "categories": [
+    "brand",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "InstagramLogo",
+   "tags": [
+    "logos",
+    "social media",
+    "photography",
+    "camera"
+   ]
+  },
+  "lightbulb": {
+   "categories": [
+    "objects",
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "Lightbulb",
+   "tags": [
+    "flashlight",
+    "bulbs",
+    "lighting",
+    "led",
+    "energy",
+    "idea"
+   ]
+  },
+  "linkedin-logo": {
+   "categories": [
+    "brand",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "LinkedinLogo",
+   "tags": [
+    "logos",
+    "jobs",
+    "employment",
+    "social media"
+   ]
+  },
+  "medal": {
+   "categories": [
+    "games",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Medal",
+   "tags": [
+    "ribbons",
+    "winning",
+    "victory",
+    "awards",
+    "rosette"
+   ]
+  },
+  "music-notes": {
+   "categories": [
+    "media"
+   ],
+   "export_found": true,
+   "pascal": "MusicNotes",
+   "tags": [
+    "songs",
+    "audio",
+    "playlist",
+    "albums"
+   ]
+  },
+  "paw-print": {
+   "categories": [
+    "commerce",
+    "health",
+    "nature"
+   ],
+   "export_found": true,
+   "pascal": "PawPrint",
+   "tags": [
+    "pets",
+    "pet store",
+    "pet shop",
+    "animals",
+    "cat",
+    "dog",
+    "veterinarian"
+   ]
+  },
+  "pill": {
+   "categories": [
+    "health"
+   ],
+   "export_found": true,
+   "pascal": "Pill",
+   "tags": [
+    "capsule",
+    "medicine",
+    "rx",
+    "pharmacy",
+    "pharmacist",
+    "pharmaceuticals",
+    "prescription",
+    "drugs"
+   ]
+  },
+  "plant": {
+   "categories": [
+    "commerce",
+    "nature"
+   ],
+   "export_found": true,
+   "pascal": "Plant",
+   "tags": [
+    "sprout",
+    "vegan",
+    "farm",
+    "farming",
+    "garden",
+    "gardening"
+   ]
+  },
+  "qr-code": {
+   "categories": [
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "QrCode",
+   "tags": [
+    "upc",
+    "barcode",
+    "products",
+    "shopping",
+    "scanner"
+   ]
+  },
+  "seal-warning": {
+   "categories": [
+    "design"
+   ],
+   "export_found": true,
+   "pascal": "SealWarning",
+   "tags": [
+    "badge",
+    "unverified",
+    "verification",
+    "errors",
+    "shapes",
+    "polygons",
+    "circle-wavy"
+   ]
+  },
+  "shopping-cart-simple": {
+   "categories": [
+    "commerce",
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "ShoppingCartSimple",
+   "tags": [
+    "ecommerce",
+    "market",
+    "basket",
+    "buying",
+    "groceries",
+    "checkout",
+    "places",
+    "locations"
+   ]
+  },
+  "signpost": {
+   "categories": [
+    "map"
+   ],
+   "export_found": true,
+   "pascal": "Signpost",
+   "tags": [
+    "direction",
+    "traffic",
+    "road sign",
+    "transit",
+    "transportation"
+   ]
+  },
+  "sliders-horizontal": {
+   "categories": [
+    "media",
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "SlidersHorizontal",
+   "tags": [
+    "music",
+    "audio",
+    "faders",
+    "filters",
+    "equalizer",
+    "volume",
+    "settings",
+    "preferences"
+   ]
+  },
+  "star": {
+   "categories": [
+    "communication",
+    "map",
+    "nature"
+   ],
+   "export_found": true,
+   "pascal": "Star",
+   "tags": [
+    "rate",
+    "ratings",
+    "favorites",
+    "favorited"
+   ]
+  },
+  "syringe": {
+   "categories": [
+    "health"
+   ],
+   "export_found": true,
+   "pascal": "Syringe",
+   "tags": [
+    "needle",
+    "hypodermic",
+    "vaccine",
+    "medicine",
+    "doctor",
+    "shot",
+    "hospital"
+   ]
+  },
+  "tiktok-logo": {
+   "categories": [
+    "brand",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "TiktokLogo",
+   "tags": [
+    "logos",
+    "social media"
+   ]
+  },
+  "timer": {
+   "categories": [
+    "objects",
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "Timer",
+   "tags": [
+    "clock",
+    "alarm",
+    "schedule",
+    "events",
+    "stopwatch",
+    "sports"
+   ]
+  },
+  "toilet": {
+   "categories": [
+    "health",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Toilet",
+   "tags": [
+    "bathroom",
+    "restroom",
+    "lavatory",
+    "water closet"
+   ]
+  },
+  "tooth": {
+   "categories": [
+    "health"
+   ],
+   "export_found": true,
+   "pascal": "Tooth",
+   "tags": [
+    "teeth",
+    "dentistry",
+    "medical",
+    "medicine",
+    "doctor",
+    "cavity"
+   ]
+  },
+  "train": {
+   "categories": [
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Train",
+   "tags": [
+    "vehicles",
+    "subway",
+    "light rail",
+    "public transit",
+    "transportation",
+    "commuter",
+    "traveling",
+    "places",
+    "locations"
+   ]
+  },
+  "translate": {
+   "categories": [
+    "communication",
+    "system"
+   ],
+   "export_found": true,
+   "pascal": "Translate",
+   "tags": [
+    "translation",
+    "languages",
+    "internationalization",
+    "i18n",
+    "speech"
+   ]
+  },
+  "tree": {
+   "categories": [
+    "nature"
+   ],
+   "export_found": true,
+   "pascal": "Tree",
+   "tags": [
+    "plants",
+    "branches",
+    "leaves",
+    "green",
+    "environmental"
+   ]
+  },
+  "trophy": {
+   "categories": [
+    "games",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Trophy",
+   "tags": [
+    "ribbons",
+    "medals",
+    "winning",
+    "victory",
+    "awards",
+    "prize"
+   ]
+  },
+  "users-three": {
+   "categories": [
+    "people"
+   ],
+   "export_found": true,
+   "pascal": "UsersThree",
+   "tags": [
+    "user",
+    "group",
+    "team",
+    "community",
+    "people",
+    "profiles",
+    "accounts",
+    "contacts"
+   ]
+  },
+  "whatsapp-logo": {
+   "categories": [
+    "brand",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "WhatsappLogo",
+   "tags": [
+    "logos",
+    "messages",
+    "messaging"
+   ]
+  },
+  "wheelchair": {
+   "categories": [
+    "health",
+    "map",
+    "people"
+   ],
+   "export_found": true,
+   "pascal": "Wheelchair",
+   "tags": [
+    "handicapped",
+    "medical",
+    "disabled",
+    "differently abled",
+    "accessible",
+    "accessibility",
+    "a11y"
+   ]
+  },
+  "wine": {
+   "categories": [
+    "commerce",
+    "map",
+    "objects"
+   ],
+   "export_found": true,
+   "pascal": "Wine",
+   "tags": [
+    "drinks",
+    "beverages",
+    "vineyard",
+    "places",
+    "locations",
+    "bars",
+    "restaurants",
+    "food",
+    "dining"
+   ]
+  },
+  "x-logo": {
+   "categories": [
+    "brand",
+    "communication"
+   ],
+   "export_found": true,
+   "pascal": "XLogo",
+   "tags": [
+    "twitter",
+    "logos",
+    "social media",
+    "tweets"
+   ]
+  },
+  "youtube-logo": {
+   "categories": [
+    "brand",
+    "communication",
+    "media"
+   ],
+   "export_found": true,
+   "pascal": "YoutubeLogo",
+   "tags": [
+    "logos",
+    "google",
+    "videos",
+    "movies",
+    "social media"
+   ]
+  }
+ },
+ "sources": {
+  "lucide": {
+   "commit": "9cb3934c3628dfe3fbb34bc4c12209b2cee3a49f",
+   "licence": "ISC License",
+   "licence_id": "ISC",
+   "npm_package": "lucide-react",
+   "npm_version": "1.81.0",
+   "repo": "https://github.com/lucide-icons/lucide"
+  },
+  "phosphor": {
+   "commit": "2b75f3ad12b420c9504ef05df8d2564a28f8500e",
+   "licence": "MIT License",
+   "licence_id": "MIT",
+   "npm_package": "@phosphor-icons/react",
+   "npm_version": "2.1.10",
+   "repo": "https://github.com/phosphor-icons/core"
+  }
+ }
+}

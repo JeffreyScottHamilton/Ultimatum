@@ -1,0 +1,19 @@
+{"rows": [
+["lucide","circle-check","Status","success done complete confirmed ok valid saved sent","Success messages and completed steps","Pair with text such as 'Message sent'; announce with role=status.","Visible text; icon aria-hidden"],
+["lucide","circle-x","Status","error failed invalid wrong rejected cross","Failed actions and invalid fields","Never rely on red alone; add the reason in words.","Visible text; icon aria-hidden"],
+["lucide","triangle-exclamation-point","Status","warning caution careful alert hazard risk attention","Warnings the user can still act on","Reserve for real risk; too many warnings are ignored.","Prefix text with 'Warning:' when the icon is the only cue"],
+["lucide","circle-exclamation-point","Status","alert problem notice important error attention exclamation","Inline field errors and important notices","Place beside the message and link it to the field with aria-describedby.","Visible error text; icon aria-hidden"],
+["lucide","info","Status","information note tip help details about notice","Neutral notes and hints","Use for facts, not for warnings.","Visible text; icon aria-hidden"],
+["lucide","circle-question-mark","Status","help question support faq unknown why explain","Help links and tooltips","Make the tooltip reachable by keyboard and tap.","Button named 'Help about <topic>'"],
+["lucide","loader-circle","Status","loading spinner wait busy progress sending processing","Short waits under a few seconds","Add text such as 'Sending'; stop spinning under reduced motion.","Region with role=status and text 'Loading'"],
+["phosphor","hourglass","Status","pending waiting queue processing in progress delayed","Orders or bookings waiting for approval","Pair with the status word; do not animate by default.","Visible text 'Pending'"],
+["lucide","badge-check","Trust","verified approved trusted checked genuine official","Verified businesses, reviews and accounts","Only show it when you verified something and say what in a tooltip or text.","Text such as 'Verified'"],
+["lucide","shield-check","Trust","secure safe protected privacy guarantee insured safeguarding","Security notes by payment and sign-up forms","Do not put it beside claims you cannot back up.","Decorative beside text such as 'Payments are encrypted'"],
+["lucide","bell","Status","notifications alerts reminders updates bell ring","Notification entry point","Show a count in text and cap it at 9+.","Button named 'Notifications, 3 unread'"],
+["lucide","wifi-off","Status","offline no connection disconnected network lost","Offline banners","Say what still works offline.","Visible text 'You are offline'"],
+["lucide","lock","Status","locked private secure restricted password members only","Private or locked content","Explain how to unlock it; a lock with no way forward frustrates.","Visible text such as 'Members only'"],
+["lucide","lock-open","Status","unlocked open public accessible available unlock","Unlocked state next to a lock","Pair with text; the glyph difference is small.","Visible text 'Unlocked'"],
+["lucide","eye","Status","show view reveal visible preview password visible","Reveal a password or preview content","Toggle with aria-pressed.","Button named 'Show password'"],
+["lucide","eye-off","Status","hide hidden conceal private password hidden invisible","Hide a revealed password","Swap with the eye icon on toggle.","Button named 'Hide password'"],
+["phosphor","seal-warning","Status","flagged review needed attention problem badge issue","Badges that need review","Better than a triangle for labels on cards.","Visible text 'Needs review'"]
+]}

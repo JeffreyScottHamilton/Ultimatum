@@ -1,0 +1,19 @@
+{"rows": [
+["lucide","search","Actions","search find magnifier look up query","Site search field and button","Put the field label in text; the icon is just a hint.","Button named 'Search'; the field has its own label"],
+["lucide","funnel","Actions","filter narrow refine sort results funnel","Narrowing a list by category, price or date","Show the count of active filters beside it.","Button named 'Filter' plus the count, e.g. 'Filter, 2 applied'"],
+["lucide","plus","Actions","add create new more increase quantity","Add buttons and quantity steppers","Pair with the noun: 'Add item', not a bare plus.","Button named 'Add <thing>'"],
+["lucide","minus","Actions","remove reduce decrease less subtract collapse quantity","Quantity steppers and collapse toggles","Disable it at the minimum rather than hiding it.","Button named 'Remove one <thing>'"],
+["lucide","pencil","Actions","edit change modify write rename update","Edit buttons on saved content","Use for changing existing content, plus for adding.","Button named 'Edit <thing>'"],
+["lucide","trash","Actions","delete remove bin discard rubbish destroy","Deleting items","Ask for confirmation and offer undo; colour alone must not signal danger.","Button named 'Delete <thing>'"],
+["lucide","copy","Actions","copy duplicate clipboard clone","Copying a link, code or address","Confirm with a short 'Copied' message announced politely.","Button named 'Copy <thing>'"],
+["lucide","download","Actions","download save file get export pdf","Downloading brochures, menus, price lists","State the file type and size in the label.","Link named 'Download <file> (PDF, 1.2 MB)'"],
+["lucide","upload","Actions","upload attach send file photo add file import","Adding photos or documents to a form","Show accepted file types beside the control.","Button named 'Upload <thing>'"],
+["lucide","share-2","Actions","share send link social post forward","Sharing a page or listing","Use the native share sheet on phones where it exists.","Button named 'Share'"],
+["lucide","save","Actions","save store keep floppy disk draft","Saving edits in tools and admin screens","Show saved state in text, not only by icon change.","Button named 'Save'"],
+["lucide","refresh-cw","Actions","refresh reload sync update retry again","Reloading data or trying again","Spin only while work is happening and stop under reduced motion.","Button named 'Refresh'"],
+["lucide","undo-2","Actions","undo revert reverse back out step undone","Undoing the last change","Offer it in the toast right after a delete.","Button named 'Undo'"],
+["lucide","link","Actions","link url chain permalink hyperlink anchor","Copying or inserting a link","Do not use it as the icon for every link on a page.","Button named 'Copy link'"],
+["lucide","printer","Actions","print paper hard copy page printout voucher","Print buttons for tickets, recipes and vouchers","Provide a print stylesheet or the button disappoints.","Button named 'Print'"],
+["phosphor","qr-code","Actions","qr code scan barcode menu table ticket scan me","Table menus, tickets and app links","Always show the link in text too, since scanners fail.","Image alt describing where the code leads"],
+["lucide","check","Actions","tick confirm done select ok accept checkmark","Checkbox ticks and selected items","In a list, pair with text; colour must not be the only cue.","Decorative; the control carries the checked state"]
+]}

@@ -1,0 +1,19 @@
+{"rows": [
+["lucide","stethoscope","Health","doctor gp clinic medical check up nurse surgery appointment","GP surgeries and medical clinics","Do not use it to imply a diagnosis service you do not offer.","Decorative beside the service name"],
+["phosphor","tooth","Health","dentist dental teeth hygienist orthodontist smile check up","Dental practices","Pair with treatment names and prices.","Decorative beside the service name"],
+["phosphor","heartbeat","Health","heart pulse health wellbeing cardiology vitals monitor care","Health, vitals and wellbeing","Do not use it as a generic loading indicator.","Decorative beside the heading"],
+["phosphor","first-aid-kit","Health","first aid emergency injury kit safety plasters treatment","First aid courses and urgent care","Link to emergency numbers where it matters.","Decorative beside the heading"],
+["phosphor","pill","Health","pharmacy medicine tablets prescription chemist drugs capsule","Pharmacy and prescriptions","Always point to professional advice near medical text.","Decorative beside the service name"],
+["phosphor","syringe","Health","vaccination injection jab clinic needle flu vaccine","Vaccination services","Use with a clear booking link.","Decorative beside the service name"],
+["phosphor","ambulance","Health","ambulance emergency 999 urgent paramedic transport patient","Emergency and patient transport","Show real emergency numbers as text.","Decorative beside the heading"],
+["phosphor","wheelchair","Health","wheelchair accessible access step free disabled mobility","Access information for premises","Say exactly what access exists, such as 'ramp at rear'.","Decorative beside the access text"],
+["phosphor","ear","Health","hearing audiology ear listen hearing aid ears loop","Hearing services and loop systems","Say whether a hearing loop is fitted.","Decorative beside the heading"],
+["lucide","hand-heart","Health","care charity donate volunteer kindness support compassion giving","Care services and donations","Pair with a clear donate or help link.","Decorative beside the heading"],
+["lucide","utensils","Food and Drink","restaurant menu food dining eat cutlery lunch dinner","Menus and restaurant sections","Link to a real text menu, not a PDF only.","Decorative beside 'Menu'"],
+["lucide","coffee","Food and Drink","coffee cafe cup tea hot drink espresso bakery","Cafes and hot drinks","Use for cafe, tea or break sections.","Decorative beside the heading"],
+["phosphor","cooking-pot","Food and Drink","kitchen cooking pot stew soup recipe catering home cooked","Kitchen, catering and recipe content","Good for 'made fresh' claims you can back up.","Decorative beside the heading"],
+["phosphor","beer-stein","Food and Drink","beer pub brewery pint tap room ale drinks","Pubs and breweries","Mention age rules where the law needs them.","Decorative beside the heading"],
+["phosphor","wine","Food and Drink","wine glass wine bar vineyard cellar bottle","Wine bars and tastings","Pair with the real list of wines.","Decorative beside the heading"],
+["phosphor","bowl-food","Food and Drink","bowl meal takeaway street food lunch dish noodles","Takeaway and street food","Use for dish lists and daily specials.","Decorative beside the heading"],
+["phosphor","basket","Food and Drink","basket farm shop groceries market produce picnic hamper","Farm shops and produce boxes","Use for baskets of goods; the cart icon is for checkout.","Decorative beside the heading"]
+]}

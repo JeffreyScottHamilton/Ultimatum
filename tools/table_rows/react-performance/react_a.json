@@ -371,8 +371,8 @@
   "Description": "A heavy list update triggered by typing blocks the input.",
   "Do": "Mark the slow update as a transition so typing stays urgent.",
   "Don't": "Do not wrap the controlled input value itself.",
-  "Code Example Good": "const [pending, start] = useTransition();\nonChange={e => { setText(e.target.value); start(() => setFilter(e.target.value)); }}",
-  "Code Example Bad": "onChange={e => setFilter(e.target.value)} // 10,000 rows re-render per key",
+  "Code Example Good": "const [pending, start] = useTransition();\n<input value={text} onChange={e => { setText(e.target.value); start(() => setFilter(e.target.value)); }} />",
+  "Code Example Bad": "<input onChange={e => setFilter(e.target.value)} /> // 10,000 rows re-render per key",
   "Severity": "High",
   "Docs URL": "https://react.dev/reference/react/useTransition"
  },
@@ -515,7 +515,7 @@
   "Do": "Load fonts through next/font, which self-hosts and sets size-adjusted fallbacks.",
   "Don't": "Do not link a font stylesheet in the head by hand.",
   "Code Example Good": "import { Fraunces } from 'next/font/google';\nconst display = Fraunces({ subsets: ['latin'], display: 'swap' });",
-  "Code Example Bad": "<link href='https://fonts.googleapis.com/css2?family=Fraunces' rel='stylesheet'>",
+  "Code Example Bad": "<link href='https://fonts.googleapis.com/css2?family=Fraunces' rel='stylesheet' />",
   "Severity": "Medium",
   "Docs URL": "https://nextjs.org/docs/app/api-reference/components/font"
  },

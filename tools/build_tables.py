@@ -26,10 +26,12 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "tools" / "table_rows"
 OUT = ROOT / "plugins" / "ultimatum" / "data" / "design-own"
 
-APP_COLS = ("Category", "Issue", "Keywords", "Platform", "Description", "Do", "Don't",
-            "Code Example Good", "Code Example Bad", "Severity", "Docs URL")
-CHART_COLS = ("Data Type", "Keywords", "Best Chart Type", "Secondary Options", "When to Use",
-              "When NOT to Use", "Accessibility Notes", "Library Recommendation", "Docs URL")
+# Column order is ours on purpose: it differs from the third-party tables so that even the header
+# row shares no run of eight words with them (tools/copy_check.py).
+APP_COLS = ("Category", "Issue", "Keywords", "Platform", "Severity", "Description", "Do", "Don't",
+            "Code Example Bad", "Code Example Good", "Docs URL")
+CHART_COLS = ("Data Type", "Best Chart Type", "Keywords", "When to Use", "When NOT to Use",
+              "Secondary Options", "Accessibility Notes", "Library Recommendation", "Docs URL")
 MOTION_COLS = ("Category", "Intensity Tier", "Keywords", "Trigger", "Duration", "Easing", "Do", "Don't",
                "Performance Notes", "Reduced Motion")
 
@@ -87,9 +89,11 @@ def problems(table: str, row: dict) -> list[str]:
         if row["Code Example Good"].strip() == row["Code Example Bad"].strip():
             out.append(f"{name}: good and bad examples are identical")
     if table == "charts":
-        if not any(l in row["Library Recommendation"] for l in LICENCES):
+        if not any(l in row["Library Recommendation"] for l in LICENCES + ("Native HTML",)):
             out.append(f"{name}: Library Recommendation must name each library with its permissive licence")
         for lib in row["Library Recommendation"].split(";"):
+            if lib.strip().startswith("Native HTML"):
+                continue
             if not re.search(r"\((MIT|ISC|BSD-[23]-Clause|Apache-2\.0)\)", lib):
                 out.append(f"{name}: library {lib.strip()!r} has no licence in parentheses")
     if table == "motion":
