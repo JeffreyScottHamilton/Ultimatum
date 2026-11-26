@@ -13,6 +13,7 @@ Thank you to the authors and maintainers of these projects.
 | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `5eedffa87476` | Apache-2.0 | Repository graphs with confidence-tagged edges, queried rather than dumped (`ult map`) |
 | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | `3dc497a7f858` | Apache-2.0 | Terse voice that keeps every technical fact, command compression, role-based model routing |
 | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `f6b76575f949` | MIT | Deliberate visual direction, anti-generic design rules, bounded critique gates; website craft references (page plans, heroes, sections, motion, grounds, quality gate) |
+| [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | `1482e84` | MIT | Explanatory isometric figures: craft, shading, motion, WebGL, print and publishing (website craft references) |
 | [OWASP/ASVS](https://github.com/OWASP/ASVS) | `62981c68fd06` | CC BY-SA 4.0 | Requirement chapters used as the security coverage model (IDs cited only) |
 | [OWASP/wstg](https://github.com/OWASP/wstg) | `e493506b9cde` | CC BY-SA 4.0 | Test categories mapped to source-level questions (IDs cited only) |
 | [anthropics/skills](https://github.com/anthropics/skills) | `2c5958ecac7c` | Apache-2.0 (skill-creator `LICENSE.txt`) | Skill evaluation: with/without-skill comparisons, discriminating assertions, trigger tests (skill-creator, Apache-2.0) |

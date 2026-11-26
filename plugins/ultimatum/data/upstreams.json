@@ -80,6 +80,17 @@
       "note": "Rebuilt in own words as skills/website/references/craft/taste; skip the kit code, Node scripts, Stop hook and photo and icon assets (see later.md)"
     },
     {
+      "id": "anatomy",
+      "kind": "skill-source",
+      "repo": "https://github.com/wheresryan22/anatomy",
+      "pin": "1482e84",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/anatomy; skip the kit code and scripts (see later.md)"
+    },
+    {
       "id": "remotion",
       "kind": "skill-source",
       "repo": "https://github.com/remotion-dev/skills",

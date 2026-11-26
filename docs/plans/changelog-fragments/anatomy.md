@@ -1,0 +1,5 @@
+- Added Anatomy craft references for explanatory isometric figures: 20 short files under `skills/website/references/craft/anatomy/`, indexed, each with a "Read when" opener.
+- Covers when a figure earns its place, workflow, solid-part craft, shading, motion, WebGL and light-theme effects, turning parts, verification, print sheets, publishing, React.
+- Adds what the source lacked: WCAG 2.2 and reduced-motion rules, local-business and app use, and ties to the anti-generic lint.
+- Adds a technique table (`data/craft/anatomy/figures.csv`) and a runnable isometric sketch, checked in Chromium.
+- Source kit code and scripts are listed in `later.md`, not shipped. Tests: `test_craft_anatomy.py`.

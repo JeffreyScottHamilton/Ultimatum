@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.13] - 2026-11-26
+
+Website craft: the Anatomy skill, rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/anatomy/` (20 files plus `index.md`), rebuilt in our own words from the MIT-licensed Anatomy skill (wheresryan22/anatomy @ 1482e84): explanatory isometric figures, from when a figure earns its place through solid-part craft, shading, motion, WebGL and light-theme effects, turning parts, verification, print sheets, publishing and React.
+- Adds WCAG 2.2 and reduced-motion rules, local-business and app uses, a worked bakery example, and ties to the anti-generic lint.
+- New data table `data/craft/anatomy/figures.csv` (27 techniques) with a README, and our own isometric sketch `iso-slabs.html`, checked in Chromium.
+- `craft.md` points to the Anatomy folder; `taste-critic` checks figures against its verify checklist. Upstream record and credits added.
+- Not shipped yet: the source's kit code and scripts (listed in `later.md`). New `tests/test_craft_anatomy.py`.
+
 ## [0.0.12] - 2026-11-26
 
 Website craft: the Taste skill, rebuilt in our own words.
