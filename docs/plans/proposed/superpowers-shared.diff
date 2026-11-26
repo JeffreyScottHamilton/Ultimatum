@@ -1,0 +1,47 @@
+# Proposed edits to shared files for the Superpowers rebuild. Not applied.
+
+--- a/plugins/ultimatum/skills/work/references/debugging.md
++++ b/plugins/ultimatum/skills/work/references/debugging.md
+@@ ## 2. Narrow (after the instrumentation rules paragraph)
++Deeper moves (tracing a bad value to its origin, layered guards, waiting on conditions, finding a polluting test): `craft/superpowers/debugging-moves.md`.
+
+--- a/plugins/ultimatum/skills/work/references/tdd.md
++++ b/plugins/ultimatum/skills/work/references/tdd.md
+@@ ## 4. Test through behavior (end of section)
++Judgement calls on expected values, mocks and test-only code: `craft/superpowers/test-judgement.md`.
+
+--- a/plugins/ultimatum/skills/work/references/feature-planning.md
++++ b/plugins/ultimatum/skills/work/references/feature-planning.md
+@@ ## 0. Flow: brainstorm, plan, slice, verify (end of section)
++The shaping conversation in detail: `craft/superpowers/shaping-conversation.md`; the plan document: `craft/superpowers/plan-writing.md`.
+
+--- a/plugins/ultimatum/skills/work/references/orchestration.md
++++ b/plugins/ultimatum/skills/work/references/orchestration.md
+@@ ## 6. Collect and verify (end of section)
++Running a written plan task by task, with a ledger and rulings: `craft/superpowers/plan-execution.md`.
+@@ ## 8. Single integrated review (end of section)
++Review briefs and handling the comments that come back: `craft/superpowers/review-rounds.md`.
+@@ ## 5. Isolation: worktrees (end of section)
++One branch from worktree setup to merge or discard: `craft/superpowers/branch-close.md`.
+
+--- a/plugins/ultimatum/data/upstreams.json
++++ b/plugins/ultimatum/data/upstreams.json
+@@ "id": "superpowers"
+-      "modules": ["engineering"],
+-      "reviewed": "2026-11-24",
++      "modules": ["engineering", "work"],
++      "reviewed": "2026-11-26",
+
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+@@
+-| [obra/superpowers](https://github.com/obra/superpowers) | `22f0b463e7a5` | MIT | Brainstorm/plan/execute flow, subagent-driven development, worktrees, systematic debugging, verification before completion |
++| [obra/superpowers](https://github.com/obra/superpowers) | `22f0b463e7a5` | MIT | Brainstorm/plan/execute flow, subagent-driven development, worktrees, systematic debugging, verification before completion; rebuilt as `skills/work/references/craft/superpowers/` |
+
+--- a/docs/CREDITS.md
++++ b/docs/CREDITS.md
+@@
+-| [obra/superpowers](https://github.com/obra/superpowers) | `22f0b463e7a5` | MIT | Brainstorm/plan/execute flow, subagent-driven development, worktrees, systematic debugging, verification before completion |
++| [obra/superpowers](https://github.com/obra/superpowers) | `22f0b463e7a5` | MIT | Brainstorm/plan/execute flow, subagent-driven development, worktrees, systematic debugging, verification before completion; rebuilt as `skills/work/references/craft/superpowers/` |
+
+# SKILL.md: no change needed (the craft folder is reached through the base references).
