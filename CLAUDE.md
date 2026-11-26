@@ -9,3 +9,4 @@
 - Claim only what was run. Live evals (`evals/live/run_live.py`) cost money; ask before running them.
 
 ## Learned
+- Versioning after 1.0.0: one patch release per major change (1.0.1, 1.0.2, ...), applied to every plugin the change touches, with one CHANGELOG entry per release. Pushing a release to `main` still needs the user's yes.
