@@ -133,3 +133,10 @@ Built by `tools/build_reasoning.py` from `tools/reasoning_rows/*.json`: one row 
 | Style_Priority | two or three styles from `styles.csv`, joined by " + " |
 | Recommended_Pattern, Color_Mood, Typography_Mood, Key_Effects | the page shape and the moods to start from |
 | Anti_Patterns | what to avoid for this kind of site |
+
+## stacks/*.csv
+Built by `tools/build_stacks.py` from `tools/stack_rows/<stack>.json`, written by hand from each
+framework's official docs. Each row has a Docs URL; the build fails on a non-https URL or a host outside
+that stack's allow-list (the framework's domain, plus Stripe's docs for stacks with a checkout recipe, plus
+W3C/MDN for html-tailwind). Columns: Category, Guideline, Applies To, Severity (Critical/High/Medium/Low),
+Description, Docs URL, Do, Don't, Code Good, Code Bad. `--check` fails if a CSV is out of date.

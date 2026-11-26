@@ -110,7 +110,7 @@ def credit() -> str:
 
 
 def stacks() -> list[str]:
-    return sorted(p.stem for p in (DATA / "stacks").glob("*.csv"))
+    return sorted({p.stem for d in (OWN, DATA) for p in (d / "stacks").glob("*.csv")})
 
 
 def rank(rows, cols, query: str, n: int = 3) -> list[tuple[float, dict]]:

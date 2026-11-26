@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.21] - 2026-11-26
+
+Website design data: our own stack guideline tables.
+
+- Own stack guideline tables for 12 stacks (astro, flutter, html-tailwind, nextjs, nuxtjs, react, react-native, shadcn, svelte, swiftui, threejs, vue; 707 rows), written from each framework's official docs and built by `tools/build_stacks.py`. Each row links its doc page on an allow-listed https host.
+- Rows cover WCAG 2.2, reduced motion, forms, images, click-to-call, booking forms, sign-in, and Stripe Checkout where the stack has an official way to do it.
+- `ult design` now lists our stack tables as well as the bundled ones; ours win when names match. New `tests/test_design_own_stacks.py`. The docs links were not fetched (blocked here), and only the three.js snippets were syntax-checked.
+
 ## [0.0.20] - 2026-11-26
 
 Website design data: our own UX guideline and UI reasoning tables.
