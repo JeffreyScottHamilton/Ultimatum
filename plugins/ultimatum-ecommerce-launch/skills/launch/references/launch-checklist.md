@@ -8,12 +8,14 @@ Owner-only steps are marked (owner). Do everything you can on a development or p
 - [ ] Domain connected, HTTPS on (owner)
 - [ ] Shipping zones and rates, taxes set (check with an accountant)
 - [ ] Refund, privacy, terms, shipping policies live, linked in the footer and signed off (owner); outlines in `policy-pages.md`
+- [ ] `ult shop catalog` shows 0 blockers; `ult shop numbers` shows money left on every product after shipping and fees
 - [ ] Every product: title, price, images to the shot list in `product-photos.md` with alt text, inventory, weight
 - [ ] Compliance review of product claims and any AI imagery
 - [ ] Order emails edited and read on a phone
 
 ## Test orders
 
+- [ ] `ult shop test-order` run with `node`; every screenshot read
 - [ ] One order in payment test mode, start to confirmation email
 - [ ] One real low-value order, then refunded (owner, after a yes)
 - [ ] Each shipping zone and one discount code tried
@@ -25,6 +27,7 @@ Owner-only steps are marked (owner). Do everything you can on a development or p
 
 - [ ] Home, collection and product pages load fast on mobile (rule of thumb: main image visible in about 2-3 seconds; test with the browser check)
 - [ ] Images compressed, few apps installed, no unused scripts
+- [ ] `ult shop check` on the saved or built pages shows 0 blockers
 - [ ] Links, forms and the 404 page work
 - [ ] Taste critic pass on home and one product page
 

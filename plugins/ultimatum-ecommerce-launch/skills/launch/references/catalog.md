@@ -4,6 +4,8 @@ Hand the relevant parts of this file to the Website and Social Media teams when 
 
 ## Product data
 
+Keep the sheet as a CSV and run `ult shop catalog products.csv` on it; the columns it reads are listed in `store-build.md`.
+
 Keep one sheet (CSV) as the source of truth:
 
 | Field | Notes |

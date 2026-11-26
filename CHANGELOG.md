@@ -2,6 +2,19 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [1.0.1] - 2026-11-26
+
+E-commerce Launch now builds and checks a real store instead of only describing one. All seven plugins move to 1.0.1 because each ships the same `ult` toolbelt.
+
+- New `ult shop` commands (standard library, local files only):
+  - `catalog`: reads a product sheet or an Etsy export, lists blockers (missing price, repeated SKU, cost at or above price) and fixes (no weight, image, alt text), and writes a Shopify or WooCommerce import CSV with every product as a draft.
+  - `numbers`: money left per sale after cost, shipping, fees and returns, the most an ad can cost per sale, break-even ROAS and sales needed for monthly costs.
+  - `scaffold`: a starter static store from the sheet, with Product structured data, policy stubs, a 404 page and Stripe Payment Link buttons.
+  - `check`: pre-launch check of any folder of store pages (title, description, viewport, h1, alt text, heavy or missing images, dead links, Product data, link previews).
+  - `emails`: welcome, abandoned cart, order and shipping email templates with a placeholder list.
+  - `test-order`: writes a Playwright script that walks home to checkout at phone size with a screenshot per step, typing a card only on a Stripe test-mode checkout.
+- E-commerce Launch: new `store-build.md` (Shopify, WooCommerce and Stripe build paths, and the test order); the skill, catalogue, checkout and launch checklist use the new commands; a "real files first" rule.
+
 ## [1.0.0] - 2026-11-25
 
 Ultimatum 1.0.0 is a suite of plugins released together from one marketplace. Every plugin carries version 1.0.0, and each one stands alone: none depends on another.

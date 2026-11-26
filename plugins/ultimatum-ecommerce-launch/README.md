@@ -20,11 +20,13 @@ Say "Help me launch my online store", or type `/ultimatum-ecommerce-launch:launc
 | Area | What you get |
 |---|---|
 | Intake | Store questions in rounds with recommended answers: catalogue, fulfilment, platform, payments, tax, returns, channels |
+| Store tools | `ult shop`: checks the product sheet and writes the Shopify or WooCommerce import file, works out margin and what ads can cost, builds a starter store with Stripe Payment Links, checks built pages before launch, writes order emails, and writes a test-order script that screenshots each step |
 | Route | Shopify vs WooCommerce and other choices, theme choice, store structure, which video style fits |
 | Catalogue | Product data sheet with an example, titles and descriptions, product-page anatomy, reviews, cross-sell |
 | Product photos | A shot list per product and per category, a cheap home setup, an editing pass, rules for AI images |
 | Checkout and ops | Payments tested step by step, tax basics (not tax advice), how to set shipping rates, abandoned cart, emails, inventory, fraud |
 | Policy pages | Outlines for refund, shipping, privacy and terms pages and how to get them signed off (not legal advice) |
+| Store build | Three real build paths (Shopify, WooCommerce, a small Stripe store) in `store-build.md` |
 | Checklist | Test orders, mobile checkout, speed, analytics events, a day-by-day launch week |
 | First 30 days | Daily checks, a weekly review, a funnel diagnosis table and a week-by-week fix list |
 

@@ -58,7 +58,7 @@ Four pages live before launch: refund and returns, shipping, privacy, terms. Out
 
 ## Order emails
 
-Edit the defaults: order confirmation, shipping confirmation, delivery, refund. Use the brand voice, show the logo, add support contact, and say what happens next. Send test orders to yourself and read them on a phone.
+Edit the defaults, starting from `ult shop emails` (welcome, abandoned cart, order, shipping) mapped to the platform's own variables: order confirmation, shipping confirmation, delivery, refund. Use the brand voice, show the logo, add support contact, and say what happens next. Send test orders to yourself and read them on a phone.
 
 ## Inventory
 
