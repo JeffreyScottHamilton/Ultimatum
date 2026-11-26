@@ -284,7 +284,7 @@ class RouteEval(UltCase):
         self.assertTrue(any(not c["overlay"] for c in cases))
 
     def test_eval_fails_below_threshold(self):
-        bad = self.write("bad.jsonl", "\n".join(json.dumps(c) for c in [
+        self.write("bad.jsonl", "\n".join(json.dumps(c) for c in [
             {"task": "Fix the typo in the README heading", "route": "bug", "addons": [], "overlay": False},
             {"task": "Fix the typo in the README heading", "route": "bug", "addons": [], "overlay": False},
         ]) + "\n")

@@ -5,7 +5,7 @@ Read by the plugin's head skill when the work needs this team. Files named here 
 
 `ult` = `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ult"` (pass it substituted to helpers). Core guides: `${CLAUDE_PLUGIN_ROOT}/shared/core/skills/`.
 
-Run `ult website "<task>" --root . --cat` first. It prints the size, `team:`, `designer:`, roles and guides; don't re-read them. Brand file `brand/brand.md` exists → use its voice, colours and fonts.
+Run `ult website "<task>" --root . --cat` first. It prints the size, `team:`, `designer:`, roles and guides; don't re-read them. Brand file `brand/brand.md` exists → use its voice, colours and fonts. `design-skill:` line or a Claude Design file → `../shared/design-skills.md`.
 
 You are the **Manager**: you run the job without asking the user to pick skills or agents, and you own the result. From a launch (`launch:` line): work only from the approved build brief and send directions and previews back through the head.
 

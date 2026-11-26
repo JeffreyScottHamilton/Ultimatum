@@ -13,7 +13,7 @@ import json
 import os
 import re
 import time
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 from .common import dump_json, project_root, redact, state_dir, write_private

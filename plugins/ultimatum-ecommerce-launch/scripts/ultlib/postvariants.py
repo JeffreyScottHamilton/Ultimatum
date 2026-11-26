@@ -28,7 +28,7 @@ def load() -> dict:
     try:
         return json.loads(p.read_text(encoding="utf-8"))
     except ValueError:
-        raise SystemExit(f"[ult] {p} is not valid JSON; fix or remove it")
+        raise SystemExit(f"[ult] {p} is not valid JSON; fix or remove it") from None
 
 
 def save(data: dict) -> None:

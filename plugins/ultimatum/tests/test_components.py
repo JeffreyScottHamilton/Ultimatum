@@ -12,7 +12,6 @@ from _harness import SCRIPTS, UltCase
 
 sys.path.insert(0, SCRIPTS)
 from ultlib import components as comp  # noqa: E402
-from ultlib import upstreams as ups  # noqa: E402
 
 DATA_DIR = Path(SCRIPTS).parent / "data"
 MOD_FILES = [Path(SCRIPTS) / "ultlib" / "components.py", Path(SCRIPTS) / "ultlib" / "upstreams.py"]

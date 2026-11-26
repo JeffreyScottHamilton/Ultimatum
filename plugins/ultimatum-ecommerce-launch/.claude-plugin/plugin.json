@@ -1,6 +1,6 @@
 {
   "name": "ultimatum-ecommerce-launch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "E-commerce Launch for Ultimatum. Plans and runs an online store launch: platform and theme choice, catalogue and product photos, payments, tax, shipping, policy pages and a first-30-days review. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
   "author": {
     "name": "Jeffrey Scott Hamilton"

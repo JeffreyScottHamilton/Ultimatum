@@ -110,7 +110,6 @@ class PlainChatRouting(Base):
             self.assertNotIn("/plugin install", out, q)
 
     def test_style_line_can_be_turned_off(self):
-        import os
         env = dict(os.environ, ULTIMATUM_STYLE="0")
         env.pop("ULTIMATUM_AUTO", None)
         self.assertEqual(pick_hooks("What is TikTok?", self.root, env=env), "")

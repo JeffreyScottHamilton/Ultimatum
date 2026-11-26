@@ -28,6 +28,14 @@ jobs:
         # Browser tests skip themselves when Playwright is not installed.
         run: uv run --python ${{ matrix.python }} --no-project python -m unittest discover -s plugins/ultimatum/tests -v
 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Ruff (real-bug rules from ruff.toml)
+        run: uvx ruff@0.16.9 check .
+
   validate-plugin:
     runs-on: ubuntu-latest
     steps:

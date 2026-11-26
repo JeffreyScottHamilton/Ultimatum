@@ -253,7 +253,7 @@ class Deps(ArchCase):
 
     def test_limit_caps_output_with_more_line(self):
         for i in range(5):
-            self.write(f"fan/m{i}.py", f"from pkg import core\n")
+            self.write(f"fan/m{i}.py", "from pkg import core\n")
         self.write("fan/hub.py", "".join(f"from fan import m{i}\n" for i in range(5)))
         out = self.lines("fan/hub.py", "--limit", "2")
         self.assertEqual(out[0], "deps: fan/hub.py -> 5 (local)")

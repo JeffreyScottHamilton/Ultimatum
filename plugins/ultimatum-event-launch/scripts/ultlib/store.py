@@ -12,7 +12,6 @@ import re
 import secrets
 import sqlite3
 import time
-from pathlib import Path
 
 from .common import raw_lines, redact, safe_id, state_dir
 

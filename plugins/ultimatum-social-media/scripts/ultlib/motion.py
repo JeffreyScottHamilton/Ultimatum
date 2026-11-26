@@ -12,6 +12,7 @@ import re
 import shutil
 from pathlib import Path
 
+from .designskill import line as design_line
 from .common import project_root, state_dir, write_private
 from .route import cat_paths, plugin_file, decide, sanitize
 from .website import approval, brief_path, record_approval
@@ -94,6 +95,7 @@ def plan(task: str, root: Path | None = None) -> dict:
         "release": "asked (publish only on the user's explicit yes)" if ship else "not asked",
         "load": load,
         "overlay": d["overlay"],
+        "design_skill": design_line(root or project_root(), "motion") if not small else None,
     }
 
 
@@ -122,6 +124,8 @@ def format_text(p: dict) -> str:
                      "the user approves it; no production animation before that (storyboard.md)")
     else:
         lines.append("gate: approved; animate from the brief's Approved storyboard, then review the export against it")
+    if p.get("design_skill"):
+        lines.append(p["design_skill"])
     if p["overlay"]:
         lines.append("overlay: security (skills/work/references/security/secure-implementation.md)")
     return "\n".join(lines)

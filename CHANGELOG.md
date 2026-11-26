@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.2] - 2026-11-26
+
+Design skills and cleaner code. All seven plugins move to 0.0.2 because each ships the same toolbelt.
+
+- `ult website` and `ult motion` print a `design-skill:` line on visual jobs. It names an installed design skill (for example Anthropic's `frontend-design`, or a renderer's own skill such as Remotion's) to read before the directions or storyboard, or says none is installed. It only looks in local skill folders and skips Ultimatum's own.
+- New `teams/shared/design-skills.md`: how to use an installed design skill without skipping a gate, and how to start from a design the user made in Claude Design (tokens, critique, approval, build, compare).
+- The core design skill starts by using the user's design skill or Claude Design file.
+- Code quality: removed unused imports and variables, re-raised parse errors without the extra traceback, and added a `ruff.toml` with real-bug rules plus a CI lint job.
+- Tests no longer see the machine's installed skills (`ULTIMATUM_SKILL_DIRS`).
+
 ## [0.0.1] - 2026-11-26
 
 Version numbers restart here. Every plugin carries 0.0.1, and later releases go 0.0.2, 0.0.3 and so on. The 1.0.0 to 1.0.3 builds below were never released; everything in them ships in 0.0.1.

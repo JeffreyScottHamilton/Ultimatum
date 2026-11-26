@@ -111,7 +111,7 @@ def _check_regex(pattern: str, ignore_case: bool) -> None:
     try:
         re.compile(pattern, re.IGNORECASE if ignore_case else 0)
     except re.error as e:
-        raise SystemExit(f"[ult] invalid regex {pattern!r}: {e}")
+        raise SystemExit(f"[ult] invalid regex {pattern!r}: {e}") from None
 
 
 def _search(root, pattern, scope, glob, ignore_case=False):

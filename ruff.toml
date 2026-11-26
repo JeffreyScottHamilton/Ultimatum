@@ -1,0 +1,9 @@
+# Lint for the toolbelt, tests and tools. Real-bug rules only; style is left to review.
+target-version = "py39"
+extend-exclude = ["research", "reports", "fixtures", "plugins/ultimatum-*"]
+
+[lint]
+select = ["F", "E9", "B", "PLE"]
+# B905: zip(strict=) needs 3.10. B023: lambdas here run inside the loop.
+# PLE2502/PLE2515: the scanner and its tests hold hidden characters on purpose.
+ignore = ["B905", "B023", "PLE2502", "PLE2515"]

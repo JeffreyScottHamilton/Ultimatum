@@ -12,6 +12,7 @@ import os
 import re
 from pathlib import Path
 
+from .designskill import line as design_line
 from .common import STATE_DIRNAME, project_root, state_dir, write_private
 from .route import cat_paths, plugin_file, decide, sanitize
 
@@ -151,6 +152,7 @@ def plan(task: str, root: Path | None = None) -> dict:
         "release": "asked (deploy only on the user's explicit yes)" if ship else "not asked",
         "load": load,
         "overlay": d["overlay"],
+        "design_skill": design_line(root or project_root(), "ui") if visual else None,
     }
 
 
@@ -170,6 +172,8 @@ def format_text(p: dict) -> str:
                      "no production code before that (planner.md)")
     elif p["approval"] == "approved":
         lines.append("gate: approved; build from the brief's Approved direction, then browser review against it")
+    if p.get("design_skill"):
+        lines.append(p["design_skill"])
     if p["overlay"]:
         lines.append("overlay: security (skills/work/references/security/secure-implementation.md)")
     return "\n".join(lines)

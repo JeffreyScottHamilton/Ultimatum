@@ -694,7 +694,7 @@ def _grade(cid, arm, args, outdir, scratch, ws, grader, lines, rc, wall):
           f"turns={run.get('num_turns')} agents={run['agent_calls']} in={u.get('input_tokens')} out={u.get('output_tokens')} "
           f"cache_r={u.get('cache_read_input_tokens')} wall={run['wall_s']}s", flush=True)
     q = rec["arch"]
-    print(f"   arch: " + (f"new findings {q['arch_findings']}, blocking {q['arch_blocking']}" if q else "not measured"), flush=True)
+    print("   arch: " + (f"new findings {q['arch_findings']}, blocking {q['arch_blocking']}" if q else "not measured"), flush=True)
     if run["invalid"]:
         print(f"   INVALID RUN ({run['invalid']}): not graded; rerun", flush=True)
     failed = [k for k, v in checks.items() if not v]

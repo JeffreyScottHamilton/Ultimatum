@@ -343,7 +343,7 @@ def _resolve_log(lid: str) -> Path:
     try:
         safe_id(lid)
     except ValueError:
-        raise SystemExit(f"invalid log id: {lid!r}")
+        raise SystemExit(f"invalid log id: {lid!r}") from None
     p = logs / f"{lid}.log"
     if not p.exists():
         cands = sorted(logs.glob(f"*{glob_escape(lid)}*.log"))

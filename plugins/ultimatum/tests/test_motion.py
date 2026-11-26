@@ -1,13 +1,11 @@
 """Motion Graphics: plain-chat routing, storyboard gate, beats/media checks, and the review loop."""
 import json
 import math
-import os
 import shutil
 import subprocess
 import sys
 import unittest
 from array import array
-from pathlib import Path
 
 from _harness import LAUNCH, LAUNCH_SCRIPTS, TEAMS, LaunchCase as UltCase, pick_hooks
 

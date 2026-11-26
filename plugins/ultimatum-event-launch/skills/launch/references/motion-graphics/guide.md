@@ -7,7 +7,7 @@ Read by the plugin's head skill when the work needs this team. Files named here 
 
 **Feeling or people story, not a feature or number?** Hand it to the Brand Film guide (`../brand-film/guide.md`) instead.
 
-Run `ult motion "<task>" --root . --cat` first: size, roles, renderer, `gate:` and the guides to follow. Don't read them again. You are the **Manager** and own the result.
+Run `ult motion "<task>" --root . --cat` first: size, roles, renderer, `gate:` and the guides to follow. Don't read them again. `design-skill:` line → `../shared/design-skills.md`. You are the **Manager** and own the result.
 
 **New clip** (`gate:` waiting), audio first:
 1. **Brief:** goal, audience, length, format, assets. Ask only about gaps that change the plan. A reference clip is for pacing, never to copy.

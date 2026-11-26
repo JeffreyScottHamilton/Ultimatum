@@ -455,7 +455,7 @@ def run_eval(path: Path, root: Path | None) -> tuple[str, bool]:
             try:
                 cases.append(json.loads(line))
             except ValueError as e:
-                raise SystemExit(f"[ult route] {path}:{n}: bad JSON ({e})")
+                raise SystemExit(f"[ult route] {path}:{n}: bad JSON ({e})") from None
     total = len(cases)
     r_ok = o_ok = a_ok = 0
     m_total = m_ok = 0

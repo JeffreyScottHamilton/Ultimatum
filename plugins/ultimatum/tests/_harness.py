@@ -59,6 +59,7 @@ class UltCase(unittest.TestCase):
     def env(self):
         e = dict(os.environ)
         e["ULTIMATUM_ROOT"] = str(self.root)
+        e.setdefault("ULTIMATUM_SKILL_DIRS", "")  # don't see the machine's installed skills
         return e
 
     def ult(self, *args, cwd=None, input=None, timeout=120):

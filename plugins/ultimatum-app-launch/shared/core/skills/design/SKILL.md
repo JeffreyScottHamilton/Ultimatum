@@ -8,6 +8,7 @@ disable-model-invocation: true
 
 For the Designer, used only when the brief needs a new look. Refs: `${CLAUDE_PLUGIN_ROOT}/skills/work/references/` (read only the sections named).
 
+0. **Use what the user has:** a `design-skill:` line (e.g. `frontend-design`) → read it first for look and craft; these steps and the approval still apply. A Claude Design file is the starting direction: use its tokens, critique it, get approval.
 1. **See what exists** (`ui.md` §1): current tokens, fonts, components and brand assets. Keep what the user wants kept.
 2. **Direction card** (`ui.md` §3): purpose and audience, one clear visual idea, layout (grid, spacing scale), colour roles (background, surface, text, accent, states; text contrast at least 4.5:1), type (at most two families, one scale), motion stance.
 3. **Skip generic defaults** (`ui.md` §6) unless the brief earns them.
