@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.20] - 2026-11-26
+
+Website design data: our own UX guideline and UI reasoning tables.
+
+- Own `ux-guidelines.csv` (232 rows), each tied to a WCAG 2.2 success criterion where one applies, with a bad and a good code example and an https docs link, built by `tools/build_ux.py`; the build rejects any criterion number that is not in WCAG 2.2.
+- Own `ui-reasoning.csv` (224 rows, one per product type), built by `tools/build_reasoning.py`; every style must exist in `styles.csv`, and habits the anti-generic lint bans may appear only under Anti_Patterns.
+- New `tests/test_design_own_ux.py`, including 30 real `ult design search --in ux` requests. The docs links were not fetched (blocked here).
+
 ## [0.0.19] - 2026-11-26
 
 Website design data: our own icon table.

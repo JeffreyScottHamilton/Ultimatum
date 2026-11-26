@@ -108,3 +108,28 @@ Built by `tools/build_icons.py` from our rows in `tools/icon_rows/*.json` (what 
 | Import Code | `import { Name } from 'lucide-react'` or `'@phosphor-icons/react'` |
 | Best For, Usage | the use, and a ready JSX line with `aria-hidden="true"` plus advice |
 | Accessible Name | how to label it when it stands alone, or why it is decorative |
+
+## ux-guidelines.csv
+
+Built by `tools/build_ux.py` from `tools/ux_rows/*.json`, written by hand from WCAG 2.2 (Understanding docs), MDN, platform guidelines and our anti-generic lint. The builder keeps the list of all 86 WCAG 2.2 success criteria and fails on any other number (4.1.1 was removed in 2.2). Rows with a criterion link its Understanding page unless they name a better one. Links were not fetched here (no network in the build or tests).
+
+| Column | Meaning |
+|---|---|
+| Category, Issue | topic and the named guideline |
+| Severity | Critical, High, Medium or Low |
+| WCAG | the success criterion (for example 2.4.7), or `-` where none applies |
+| Platform | All, Web, Mobile or VisionOS |
+| Description, Do, Don't | why it matters, the fix, the habit to avoid |
+| Code Example Bad, Code Example Good | small examples of our own |
+| Docs URL | https link to the standard or official docs |
+
+## ui-reasoning.csv
+
+Built by `tools/build_reasoning.py` from `tools/reasoning_rows/*.json`: one row for every line of `product-types.txt`, so `ult design system` finds it by UI_Category = Product Type. The build fails on a missing or extra category, a style not in `styles.csv` (Style or Aliases), or a lint-banned habit recommended outside Anti_Patterns. Anti_Patterns (joined by " + ") are the lint's banned habits plus the mistakes common to that trade.
+
+| Column | Meaning |
+|---|---|
+| UI_Category | the product type |
+| Style_Priority | two or three styles from `styles.csv`, joined by " + " |
+| Recommended_Pattern, Color_Mood, Typography_Mood, Key_Effects | the page shape and the moods to start from |
+| Anti_Patterns | what to avoid for this kind of site |
