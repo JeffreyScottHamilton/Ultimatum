@@ -1,6 +1,7 @@
 """`ult design` - offline search over the bundled design tables, and a starting design system.
 
-The tables in data/design/ are third-party data (UI UX Pro Max, MIT; see NOTICE.md there).
+The tables in data/design/ are third-party data (UI UX Pro Max, MIT; see NOTICE.md there),
+being replaced one by one by our own in data/design-own/ (tools/build_palettes.py and others).
 This module is original: a small BM25 ranker over chosen columns, and `system`, which joins
 the product, reasoning, palette, style, landing and font tables into one brief section.
 Standard library only; nothing is fetched.
@@ -21,6 +22,9 @@ from pathlib import Path
 from .common import dump_json
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "design"
+# Ultimatum's own tables, written from primary sources. A table here replaces the
+# third-party one of the same name; the rest still come from DATA until rebuilt.
+OWN = DATA.parent / "design-own"
 
 # domain -> (file, columns searched, columns shown)
 DOMAINS: dict[str, tuple[str, tuple[str, ...], tuple[str, ...]]] = {
@@ -30,9 +34,9 @@ DOMAINS: dict[str, tuple[str, tuple[str, ...], tuple[str, ...]]] = {
     "style": ("styles.csv", ("Style Category", "Aliases", "Keywords", "Best For", "Type"),
               ("Style Category", "Keywords", "Primary Colors", "Effects & Animation", "Best For", "Do Not Use For",
                "Accessibility", "Performance", "CSS/Technical Keywords", "Design System Variables")),
-    "color": ("colors.csv", ("Product Type", "Notes"),
+    "color": ("colors.csv", ("Product Type", "Family", "Notes"),
               ("Product Type", "Primary", "Secondary", "Accent", "Background", "Foreground", "Muted", "Border",
-               "Destructive", "Notes")),
+               "Destructive", "Ring", "Notes", "Avoid")),
     "typography": ("typography.csv", ("Font Pairing Name", "Category", "Mood/Style Keywords", "Best For",
                                       "Heading Font", "Body Font"),
                    ("Font Pairing Name", "Heading Font", "Body Font", "Mood/Style Keywords", "Best For",
@@ -62,14 +66,14 @@ STACK_SHOW = ("Category", "Guideline", "Severity", "Do", "Don't", "Docs URL")
 STOP = frozenset("a an and the for of to with in on or is are my our we i it this that me make build "
                  "want need new site website page app".split())
 # Ultimatum's own additions: everyday words for a business mapped to the words the product
-# table uses, so "coffee shop" finds Bakery/Cafe. Applied to `system` briefs only.
+# table uses, so "coffee shop" finds Bakery/Cafe. Applied to business-keyed searches and `system`.
 SYNONYMS = {
     "coffee": "cafe", "espresso": "cafe", "barista": "cafe", "cafes": "cafe", "bakeries": "bakery",
     "gym": "fitness", "crossfit": "fitness", "yoga": "fitness wellness", "pilates": "fitness wellness",
     "clothing": "fashion e-commerce", "apparel": "fashion e-commerce", "boutique": "fashion",
     "nonprofit": "non profit charity", "ngo": "non profit charity", "shelter": "charity",
     "dentist": "dental clinic", "doctor": "medical clinic", "therapist": "mental health",
-    "lawyer": "legal", "attorney": "legal", "realtor": "real estate", "plumber": "home services",
+    "vet": "veterinary", "vets": "veterinary", "lawyer": "legal", "attorney": "legal", "realtor": "real estate", "plumber": "home services",
     "electrician": "home services", "contractor": "home services", "salon": "beauty", "barber": "beauty",
     "startup": "saas", "chatbot": "ai", "jewelry": "luxury e-commerce", "jeweler": "luxury e-commerce",
 }
@@ -87,10 +91,23 @@ def tokens(text: str) -> list[str]:
     return out
 
 
+def source(file: str) -> Path:
+    """Our own table when we have one, else the bundled third-party one."""
+    own = OWN / file
+    return own if own.is_file() else DATA / file
+
+
 @lru_cache(maxsize=None)
 def table(file: str) -> tuple[dict, ...]:
-    with (DATA / file).open(encoding="utf-8", newline="") as fh:
+    with source(file).open(encoding="utf-8", newline="") as fh:
         return tuple(csv.DictReader(fh))
+
+
+def credit() -> str:
+    """Which tables are ours and which are still the bundled third-party data."""
+    ours = sorted(p.stem for p in OWN.glob("*.csv"))
+    theirs = "UI UX Pro Max data, MIT"
+    return f"{', '.join(ours)}: Ultimatum's own; the rest: {theirs}" if ours else theirs
 
 
 def stacks() -> list[str]:
@@ -119,6 +136,14 @@ def rank(rows, cols, query: str, n: int = 3) -> list[tuple[float, dict]]:
     return scored[:n]
 
 
+BY_BUSINESS = frozenset({"product", "color", "reasoning"})
+
+
+def expand(query: str) -> str:
+    """Add the table's words for everyday business words (SYNONYMS)."""
+    return " ".join([query, *(SYNONYMS[t] for t in tokens(query) if t in SYNONYMS)])
+
+
 def search(query: str, domain: str, n: int = 3) -> list[dict]:
     if domain.startswith("stack:"):
         name = domain.split(":", 1)[1]
@@ -128,6 +153,8 @@ def search(query: str, domain: str, n: int = 3) -> list[dict]:
     else:
         file, cols, show = DOMAINS[domain]
         rows = table(file)
+        if domain in BY_BUSINESS:
+            query = expand(query)
     return [dict({c: r.get(c, "") for c in show}, score=s) for s, r in rank(rows, cols, query, n)]
 
 
@@ -176,7 +203,7 @@ def system(brief: str, stack: str = "") -> dict:
     rows = table("products.csv")
     names = [set(tokens(r["Product Type"])) for r in rows]
     df = Counter(t for n in names for t in n)
-    query = " ".join([brief, *(SYNONYMS[t] for t in tokens(brief) if t in SYNONYMS)])
+    query = expand(brief)
     want = set(tokens(query))
     found = []
     for s, r in rank(rows, DOMAINS["product"][1], query, 10):
@@ -223,7 +250,7 @@ def render(ds: dict) -> str:
     pal = ds["palette"]
     lines = [
         "## Design system (starting point)",
-        f"Source: Ultimatum design tables (UI UX Pro Max data, MIT). Closest product: **{ds['product']}**"
+        f"Source: Ultimatum design tables ({credit()}). Closest product: **{ds['product']}**"
         + (f" (next: {ds['also_close']})" if ds["also_close"] else "") + ". Adjust to the brief; the tables are a start, not the answer.",
         "",
         f"- **Style:** {' + '.join(ds['styles']) or '-'}" + (f"; also fits {ds['secondary_styles']}" if ds["secondary_styles"] else ""),
@@ -266,7 +293,8 @@ def _print_rows(rows: list[dict]) -> None:
 def cmd_design(args) -> int:
     if args.action == "domains":
         for name, (file, _, _) in DOMAINS.items():
-            print(f"{name:<10} {len(table(file)):>4} rows  {file}")
+            mark = "  (ours)" if source(file).parent == OWN else ""
+            print(f"{name:<10} {len(table(file)):>4} rows  {file}{mark}")
         print(f"stack:NAME       {', '.join(stacks())}")
         return 0
     text = " ".join(args.text).strip()

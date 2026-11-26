@@ -6,7 +6,7 @@ For website work. `ult website` prints a `design-skill:` line on visual jobs.
 
 - **Found** (for example Anthropic's `frontend-design` for pages, or a renderer's own skill such as Remotion's for clips): read its SKILL.md before the three directions (or the storyboard) and again before the build. Use it for look, type, layout, motion and craft.
 - **Where it conflicts with these guides:** the approval stops, the taste critic, the browser and media checks, licences and the user's brand file still win. The skill shapes the work; it never skips a gate.
-- **None installed:** use the built-in design guide (core `design/SKILL.md`, `../website/craft.md`, `../website/design-rules.md`) and `ult design system "<brief>"`, which searches the bundled design tables (styles, palettes, font pairs, page patterns, UX checks; UI UX Pro Max data, MIT). Don't install anything. Mention once, at the end, that the user can add Anthropic's `frontend-design` plugin from the official marketplace.
+- **None installed:** use the built-in design guide (core `design/SKILL.md`, `../website/craft.md`, `../website/design-rules.md`) and `ult design system "<brief>"`, which searches the bundled design tables (styles, palettes, font pairs, page patterns, UX checks; palettes are our own, the rest UI UX Pro Max data, MIT). Don't install anything. Mention once, at the end, that the user can add Anthropic's `frontend-design` plugin from the official marketplace.
 
 ## A design from Claude Design
 

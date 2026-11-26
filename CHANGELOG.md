@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.9] - 2026-11-26
+
+Design tables, part 1: our own colour palettes replace UI UX Pro Max's.
+
+- `data/design-own/colors.csv`: 224 palettes (all 194 business types plus 30 local services such as barbers, roofers, locksmiths, tutors and food trucks), in 17 colour families with notes on why they fit and the colour habits to avoid.
+- Built by `tools/build_palettes.py` in OKLCH; every text pair meets WCAG 2.2 contrast (4.5:1) and the focus ring 3:1, and the brand colour stays clear of the error red. The tests re-check every row.
+- `ult design` reads our table first and says which tables are ours; business searches understand everyday words ("coffee shop", "vet").
+- `tools/copy_check.py` (shared with the skill rebuilds) confirms no 8-word run is shared with the upstream data.
+
 ## [0.0.8] - 2026-11-26
 
 Website builder: every size of site, up to web apps with sign-in, a database and payments.
