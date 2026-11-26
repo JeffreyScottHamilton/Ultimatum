@@ -136,7 +136,7 @@ research/                         upstream notes, pinned revisions and architect
 tools/                            maintenance scripts (design-data import)
 ```
 
-Earlier versions also shipped e-commerce, app, event, social media and video plugins. They were removed in 0.0.6 and can be restored from git (commit `9643d69`).
+Earlier versions also shipped e-commerce, app, event, social media and video plugins. They were removed in 0.0.5 and can be restored from git (commit `9643d69`).
 
 ## Development
 
