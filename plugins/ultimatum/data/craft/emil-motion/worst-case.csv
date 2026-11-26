@@ -1,0 +1,72 @@
+kind,value,breaks,fix_hint
+name,Aleksandra Wisniewska-Kowalczyk,two-line wrap at a hyphen; overflows one-line rows,min-width 0 on the text column; decide wrap or truncate
+name,Christopher Alexander Montgomery III,naive first and last initials give CI,"initials from first and last word, ignore suffix"
+name,Jo,leaves the column empty; initials give one letter,design the row for two-letter names
+name,J,one-letter initials and tiny link target,min target size; fallback avatar
+name,Dang Thi Ngoc Han with stacked accents,accents clipped by tight line-height and overflow hidden,looser line-height; no clipping on text
+name,a Chinese three-character name with no spaces,word-based initials find one word; wraps anywhere,grapheme-aware initials
+name,"an Arabic name, right to left",punctuation and icons end up on the wrong side,dir auto on the text
+name,a name that starts with an emoji,charAt(0) returns half a surrogate pair,Intl.Segmenter for graphemes
+name,a joined emoji sequence in the name,length and slicing split it,"slice by grapheme, not by code unit"
+name,"leading, trailing and repeated spaces","empty words in initials code, uneven gaps",trim and collapse before use
+name,"missing, only an email exists",blank row,fall back to the email local part or a label
+email,maximilian.oberhofer@riverside-consulting-partners.example.com,no break opportunity; pushes siblings off the row,overflow-wrap anywhere; min-width 0
+email,a@b.example,layout built for long emails looks empty,do not centre on assumed width
+email,first.last+billing@example.com,validation rejects plus; truncation hides the meaningful part,accept plus; truncate the end of the domain only if needed
+url,a long path with query string on example.com,overflow; end truncation hides the part that differs,middle truncation or wrap anywhere
+identifier,a UUID,monospace width,middle truncation
+filename,Q3 Board Deck FINAL (revised) v12 [approved].pdf,end truncation hides version and extension,middle truncation keeps the extension
+filename,IMG_20250914_183022_HDR_edited_edited.HEIC,"unbreakable camera name, uppercase extension",wrap anywhere or middle truncation
+handle,@a and a very long permitted handle,extreme widths,test both ends
+label,"Senior Product Design Engineer, Platform Infrastructure",three lines in a secondary slot,clamp to two lines
+label,Invitation expired 12 days ago as a badge,badge wraps or squeezes the name,nowrap and flex-shrink 0 on the badge
+label,a 30-letter German compound word,"unbreakable, overflows","overflow-wrap anywhere, hyphens auto with lang set"
+label,French or German translation of a short button,about 30 percent longer,content-sized width with min-width
+label,twelve tags on one item,wall of tags,show a few and a plus-count
+label,one tag wider than its container,overflow,max-width with truncation
+label,"empty string, spaces only or Untitled",zero-height row or collapsed heading,fallback title
+label,"angle-bracket tags, an ampersand entity, markdown stars",escaping layer wrong,render as literal text
+label,a newline in a one-line field,doubles row height or drops text,collapse whitespace or allow two lines
+label,a 2000-character pasted description,pushes the layout,clamp with a show more control
+number,0,"zero state, empty bar, division by zero",check zero before dividing
+number,1,"1 members, 1 days ago",Intl.PluralRules
+number,1284,needs a thousands separator,Intl.NumberFormat
+number,1000000,badge width,compact notation where precision does not matter
+number,12345678.9 as money,overflow in totals,currency format; room for the column
+number,-42.5,sign and colour logic,explicit negative style
+number,0.1 plus 0.2,0.30000000000000004 printed,format before render
+number,142 percent or -3 percent,bars and meters beyond bounds,"clamp the bar, show the real value"
+number,"null, undefined, NaN",printed literally,guard and show a dash on purpose
+number,1.284 in a German locale,hard-coded separators wrong,user locale formatting
+number,99 changing to 100 live,width jump and jitter,tabular-nums and min-width
+collection,0 items,no empty state,design the empty state
+collection,1 item,grid looks broken; 1 of 1,test single-item layouts
+collection,exactly page size and page size plus one,"off-by-one, empty page 2",test both edges
+collection,1000 plus unpaginated,slow render and scroll,virtualise or paginate
+collection,one item ten times larger than the rest,grid rows stretch,align-items start; max heights
+collection,identical names,name is the only difference,show a second field
+time,just now,0 seconds ago,switch to just now under a minute
+time,"12 days, 11 months and 3 years ago",thresholds missing,absolute date after about a week
+time,a future date,negative relative time,Intl.RelativeTimeFormat
+time,1970-01-01,zero timestamp shown as a date,treat as missing
+time,a time near midnight with an offset,different day in UTC and local,format in the viewer zone
+time,a duration of 1284 hours,never rolls up to days,roll up units
+media,an avatar URL that returns 404,broken-image icon,error fallback to initials
+media,no avatar,fallback size and colour mismatch,same size as real avatars
+media,a 4000 by 200 panorama,distortion,object-fit cover
+media,a 200 by 4000 tall image,blows out card height,max-height and cover
+media,a dark logo in dark mode,invisible,tokenised logo variants
+media,a slow image,layout shift,"width, height or aspect-ratio"
+state,loading,skeleton mismatches final layout,match skeleton to layout
+state,API error,raw error text shown,human message and retry
+state,partial data,misaligned rows,reserve or omit consistently
+state,every status in one list,varying badge widths,fixed min-width or nowrap
+state,no permission,disabled actions change layout,keep the row layout
+state,the signed-in user in the list,actions that should not apply,You label and hide self-actions
+environment,container 320 px wide,every overflow at once,test at 320
+environment,280 px sidebar,full-width design reused narrow,container queries
+environment,2560 px wide,lines too long,max-width on content
+environment,200 percent zoom or large text,fixed heights clip,"min-height, rem spacing"
+environment,dark mode,"hard-coded colours, invisible borders",tokens
+environment,right-to-left direction,"icons, chevrons and padding wrong",logical properties
+environment,touch device,hover-only actions unreachable,always-visible or tap target

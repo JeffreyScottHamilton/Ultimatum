@@ -1,0 +1,17 @@
+element,enter_ms,exit_ms,curve,note,file
+press feedback,100-160,100-160,ease-out,scale about .97 on :active; release can be as quick,easing-and-duration.md
+hover colour or opacity,120-180,120-180,ease,gate behind hover and fine pointer; no scale on touch,reduced-motion.md
+tooltip first show,125-200,100-150,ease-out,skip the delay and enter motion when moving between neighbours,components.md
+small popover or menu,150-200,100-150,ease-out,"grow from the trigger, not the centre",components.md
+dropdown or select,150-250,100-180,ease-out,never ease-in,components.md
+modal dialog,200-300,150-200,ease-out,stays centred; fade plus small scale from about .96,components.md
+drawer or sheet,300-500,200-350,sheet curve,edge-attached; one duration and curve for container and content,components.md
+toast enter,250-400,150-250,ease-out,opacity plus height; stack moves with the same curve,components.md
+accordion,200-300,150-250,ease-out,"grid-template-rows from 0fr to 1fr, plus opacity",components.md
+tab indicator,150-250,150-250,ease-in-out,element moves between two on-screen points,components.md
+list stagger step,30-60 between items,none,ease-out,cap the whole cascade near 400 ms; never block input while it plays,choreography.md
+scroll reveal,300-500,none,ease-out,"once per element, first view only",components.md
+hold to confirm fill,1000-2000,200 snap back,linear,"fill is progress, so linear; release returns fast",components.md
+page or route change,200-350,150-250,ease-out,exit faster than enter; respect reduced motion,choreography.md
+marketing sequence,400-1200,300-600,tokens in taste/motion.md,house tokens win on brand pages,easing-and-duration.md
+looping ambient motion,3000+ per cycle,none,linear or ease-in-out,pause off screen; stop or slow under reduced motion,reduced-motion.md

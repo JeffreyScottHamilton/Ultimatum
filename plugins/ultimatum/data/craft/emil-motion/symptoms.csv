@@ -1,0 +1,23 @@
+area,symptom,likely_cause,first_fix,file
+performance,Drag lags more as the page grows,layout reads or style changes on every move,write a transform from the move handler and nothing else,performance.md
+performance,Animation stutters only while the page loads,"main thread busy, animation driven by script",move to a CSS transition or WAAPI so the compositor runs it,performance.md
+performance,Sidebar slide janks,animating margin or width,animate translateX,performance.md
+performance,Every item re-renders during a drag,motion value held in framework state,"write the value straight to the element, or use a motion value",performance.md
+performance,Blur makes frames drop,large or animated blur radius,"blur small areas, short, or fade a pre-blurred layer",performance.md
+performance,Whole subtree repaints on one change,an inherited CSS variable changed on a parent,set the variable on the element that uses it,performance.md
+performance,Memory climbs on a page of cards,will-change left on many elements,"apply it just before the animation, remove after",performance.md
+performance,Thousands of rows stagger slowly,too many animated nodes,virtualise and animate only visible rows,performance.md
+mobile,Hover stays after tap,touch emulates hover,gate hover with hover and fine pointer,mobile-web.md
+mobile,Grey flash on tap,default tap highlight,transparent tap highlight plus own :active,mobile-web.md
+mobile,Hero or bottom bar cut by the URL bar,100vh is the tallest viewport,"100dvh for shells, 100svh for heroes",mobile-web.md
+mobile,Page zooms on input focus,input font under 16 px,16 px minimum,mobile-web.md
+mobile,Tap feels slow,feedback only on click,"style :active, touch-action manipulation",mobile-web.md
+mobile,Pulling down refreshes the page behind a sheet,scroll chaining,"overscroll-behavior none on root, contain on scrollers",mobile-web.md
+mobile,Header sits under the notch,no viewport-fit cover or no safe-area padding,viewport-fit cover plus env() inset padding,mobile-web.md
+mobile,Long press selects a button label,default text selection,user-select none on controls only,mobile-web.md
+mobile,Carousel moves the page too,browser guesses the axis,touch-action pan-y or native scroll snap,mobile-web.md
+mobile,Browser bar the wrong colour,one theme-color,one meta per colour scheme,mobile-web.md
+feel,Reversing mid-animation looks wrong,keyframes restart from the start,use transitions or springs that retarget from the current value,springs.md
+feel,Dismiss gesture ignores a quick flick,decision by distance only,also decide by velocity sign at release,gestures.md
+feel,Drag ends with a hard stop at the edge,clamped value,damped resistance past the boundary,springs.md
+feel,Popover grows from the wrong corner,origin at centre,transform-origin at the trigger,ui-details.md

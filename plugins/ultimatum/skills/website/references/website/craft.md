@@ -3,6 +3,10 @@
 Read while building each direction (step 2 of the guide) and again before the build. `design-rules.md` says what to remove; this file says what to put in its place.
 
 For the full craft layer (page plans, heroes, sections, motion, grounds, quality gate), read `../craft/taste/index.md`. This file's rules still win on any conflict.
+For floor and gate checks, page shapes, hero postures and themes, read `../craft/hallmark/index.md`.
+For design audits, plan reviews and QA runs, read `../craft/design-review-qa/index.md`.
+For motion on product UI (timing, springs, gestures, review, mobile web), read `../craft/emil-motion/index.md`.
+For explanatory isometric figures (how a product or process works), read `../craft/anatomy/index.md`.
 
 ## 1. Pick an extreme, then commit
 

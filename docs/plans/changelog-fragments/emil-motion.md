@@ -1,0 +1,5 @@
+- Added a website craft folder `emil-motion`: 17 short files on when to animate, easing and timing, springs, component recipes, choreography, gestures, performance, reduced motion and review.
+- Added files for mobile web fixes, worst-case data testing, variant prototyping, library picks and toasts, plus a motion vocabulary and small UI polish fixes.
+- Added five lookup tables (timing, symptoms, vocabulary, worst-case values, libraries) under `data/craft/emil-motion`.
+- Native app, Expo and Swift material is listed in `later.md`, not shipped.
+- Added `tests/test_craft_emil_motion.py` for index, size, links, tables and a copy check.

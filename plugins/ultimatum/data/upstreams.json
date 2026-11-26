@@ -80,6 +80,50 @@
       "note": "Rebuilt in own words as skills/website/references/craft/taste; skip the kit code, Node scripts, Stop hook and photo and icon assets (see later.md)"
     },
     {
+      "id": "anatomy",
+      "kind": "skill-source",
+      "repo": "https://github.com/wheresryan22/anatomy",
+      "pin": "1482e84",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/anatomy; skip the kit code and scripts (see later.md)"
+    },
+    {
+      "id": "emil-motion",
+      "kind": "skill-source",
+      "repo": "https://github.com/emilkowalski/skills",
+      "pin": "715c180",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/emil-motion; native, Expo and Swift material is in later.md"
+    },
+    {
+      "id": "design-review-qa",
+      "kind": "skill-source",
+      "repo": "https://github.com/garrytan/gstack",
+      "pin": "7dace1f",
+      "licence": "MIT (some design text derives from Impeccable, Apache-2.0; see its NOTICE.md)",
+      "decision": "adapt",
+      "modules": ["design", "website", "review"],
+      "reviewed": "2026-11-26",
+      "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; skip the browser daemon, mockup generator and outside-model review (see later.md)"
+    },
+    {
+      "id": "hallmark",
+      "kind": "skill-source",
+      "repo": "https://github.com/nutlope/hallmark",
+      "pin": "04977e1",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/hallmark and data/craft/hallmark; skip the Node linters, theme tool, photo library and theme pictures (see later.md)"
+    },
+    {
       "id": "remotion",
       "kind": "skill-source",
       "repo": "https://github.com/remotion-dev/skills",

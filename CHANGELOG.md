@@ -2,6 +2,47 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.16] - 2026-11-26
+
+Website craft: Hallmark rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/hallmark/` (30 files plus `index.md`), rebuilt in our own words from the MIT-licensed Hallmark skill (nutlope/hallmark @ 04977e1): the floor and gate tiers, stamps and waivers, page shapes, hero postures, section compositions, themes, imagery slots, interaction states, motion and finish checks.
+- Adds what the source lacks: local-business jobs (calls, bookings, quotes, trust signals), app screens (sign-up, pricing, dashboards, checkout), WCAG 2.2 and reduced-motion rules, and ties to the anti-generic lint.
+- Five new tables under `data/craft/hallmark/` (90 gates, 21 page shapes, 8 hero postures, 17 compositions, 50 themes) with a README.
+- Overlaps with Taste, `craft.md`, `copy.md` and `design-rules.md` point to those files instead of repeating them. Code snippets were run in headless Chromium; one reduced-motion bug found and fixed.
+- Not shipped yet: the source's Node linters, theme tool, photo library and theme pictures (`later.md`). New `tests/test_craft_hallmark.py`.
+
+## [0.0.15] - 2026-11-26
+
+Website craft: gstack's design review and QA, rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/design-review-qa/` (23 files plus `index.md`), rebuilt in our own words from the design-review, plan-design-review, qa and qa-only parts of the MIT-licensed gstack (garrytan/gstack @ 7dace1f): review modes, first impression, page modes, visual and behaviour checklists, generic-look tells, flows, scoring and baselines, the fix loop, craft audit, plan review, second opinions, and QA taxonomy, health score, functional tests, reports and regression tests.
+- Two Playwright scripts of our own: a design audit (fonts, overflow, tap targets, heading order, console errors, reduced motion) and a one-page QA sweep (broken links, dead buttons, silent forms, console errors), both run against a local scratch page with planted flaws.
+- Three new tables under `data/craft/design-review-qa/` (74 design checks, 44 generic-look tells, 12 QA issue kinds) with a README.
+- Findings use the blocker, major, minor and nit scale from `design-rules.md` and WCAG 2.2 criteria. Uses only the preinstalled Playwright, not gstack's browser daemon.
+- `craft.md` points to the folder; `taste-critic` uses its second-opinion checks. Upstream record and credits updated; some gstack design rule names trace back to Impeccable (Apache-2.0), and only names and ideas were kept.
+- Not shipped yet: image mockups, outside-model review, the fixture preview server and the shared dashboard (`later.md`). New `tests/test_craft_design_review_qa.py`.
+
+## [0.0.14] - 2026-11-26
+
+Website craft: Emil Kowalski's animation skills, rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/emil-motion/` (17 files plus `index.md`), rebuilt in our own words from the MIT-licensed skills at emilkowalski/skills @ 715c180: a motion gate, easing and duration, springs, component recipes, choreography, gestures, performance, reduced motion, review and audit, vocabulary, UI details, fluid interfaces, mobile web, worst-case data, prototype variants, and library and toast picks.
+- Merges with the existing motion rules (`work` design motion, Taste motion, `libraries.md`) by pointer instead of repeating them.
+- Five new tables under `data/craft/emil-motion/` (timing, symptoms, vocabulary, worst-case values, libraries) with a README.
+- `craft.md` points to the folder; `taste-critic` checks product-UI motion against its gate and reduced-motion rules. Upstream record and credits updated.
+- Not shipped yet: the native, Expo and Swift material (listed in `later.md`). New `tests/test_craft_emil_motion.py`.
+
+## [0.0.13] - 2026-11-26
+
+Website craft: the Anatomy skill, rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/anatomy/` (20 files plus `index.md`), rebuilt in our own words from the MIT-licensed Anatomy skill (wheresryan22/anatomy @ 1482e84): explanatory isometric figures, from when a figure earns its place through solid-part craft, shading, motion, WebGL and light-theme effects, turning parts, verification, print sheets, publishing and React.
+- Adds WCAG 2.2 and reduced-motion rules, local-business and app uses, a worked bakery example, and ties to the anti-generic lint.
+- New data table `data/craft/anatomy/figures.csv` (27 techniques) with a README, and our own isometric sketch `iso-slabs.html`, checked in Chromium.
+- `craft.md` points to the Anatomy folder; `taste-critic` checks figures against its verify checklist. Upstream record and credits added.
+- Not shipped yet: the source's kit code and scripts (listed in `later.md`). New `tests/test_craft_anatomy.py`.
+
 ## [0.0.12] - 2026-11-26
 
 Website craft: the Taste skill, rebuilt in our own words.
