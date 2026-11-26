@@ -27,7 +27,7 @@ class TestDesignSearch(UltCase):
         self.assertEqual(r.code, 0, r.out)
         rows = json.loads(r.out)
         self.assertTrue(rows)
-        self.assertIn("glass", rows[0]["Style Category"].lower())
+        self.assertIn("glass", rows[0]["Style"].lower())
 
     def test_search_in_a_stack(self):
         r = self.ult("design", "search", "image optimization", "--in", "stack:nextjs", "--json")

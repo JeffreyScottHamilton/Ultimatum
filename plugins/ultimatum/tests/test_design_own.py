@@ -187,4 +187,61 @@ class TestOwnTypography(UltCase):
 
     def test_system_credits_our_typography(self):
         r = self.ult("design", "system", "coffee shop")
-        self.assertRegex(r.out, r"colors, typography[^:]*: Ultimatum's own")
+        self.assertRegex(r.out, r"\btypography\b[^:]*: Ultimatum's own")
+
+
+# Real requests and the style each must land on.
+STYLE_REQUESTS = {
+    "glassmorphism frosted": "Glassmorphism",
+    "plumber call quote": "Local Service Clear",
+    "independent cafe shop": "Neighbourhood Warm",
+    "potter joiner workshop": "Craft Workshop",
+    "dentist clinic calm": "Clinical Calm",
+    "jeweller hotel luxury": "Quiet Luxury",
+    "photographer documentary": "Photo-led Documentary",
+    "council public service": "Public Service Plain",
+    "zine band gig": "Print Zine",
+    "brutalism raw": "Brutalism",
+    "bento grid": "Bento Box Grid",
+    "executive kpi dashboard": "Executive Dashboard",
+}
+
+
+class TestOwnStyles(UltCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(OWN / "styles.csv", newline="", encoding="utf-8") as f:
+            cls.rows = list(csv.DictReader(f))
+
+    def test_covers_every_upstream_style_by_name(self):
+        with open(THEIRS / "styles.csv", newline="", encoding="utf-8") as f:
+            theirs = {r["Style Category"] for r in csv.DictReader(f)}
+        ours = {r["Style"] for r in self.rows}
+        self.assertEqual(len(ours), len(self.rows))
+        self.assertEqual(sorted(theirs - ours), [])
+        self.assertGreaterEqual(len(ours), len(theirs) + 8)
+
+    def test_every_product_style_resolves(self):
+        with open(THEIRS / "products.csv", newline="", encoding="utf-8") as f:
+            wanted = {s.strip() for r in csv.DictReader(f)
+                      for s in __import__("re").split(r"\s\+\s", r["Primary Style Recommendation"]) if s.strip()}
+        names = {r["Style"] for r in self.rows}
+        self.assertEqual(sorted(wanted - names), [])
+
+    def test_csv_matches_a_fresh_build(self):
+        p = subprocess.run([sys.executable, str(REPO / "tools" / "build_styles.py"), "--check"],
+                           capture_output=True, text=True)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+
+    def test_requests_land_on_the_right_style(self):
+        for q, want in STYLE_REQUESTS.items():
+            r = self.ult("design", "search", *q.split(), "--in", "style", "-n", "1", "--json")
+            self.assertEqual(r.code, 0, r.err)
+            got = [x["Style"] for x in json.loads(r.out)]
+            self.assertEqual(got[:1], [want], q)
+
+    def test_system_shows_our_style_tokens(self):
+        r = self.ult("design", "system", "plumber")
+        self.assertEqual(r.code, 0, r.err)
+        self.assertIn("tokens:", r.out)
+        self.assertRegex(r.out, r"\bstyles\b[^:]*: Ultimatum's own")

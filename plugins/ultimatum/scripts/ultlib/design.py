@@ -31,9 +31,9 @@ DOMAINS: dict[str, tuple[str, tuple[str, ...], tuple[str, ...]]] = {
     "product": ("products.csv", ("Product Type", "Keywords", "Key Considerations"),
                 ("Product Type", "Primary Style Recommendation", "Secondary Styles", "Landing Page Pattern",
                  "Color Palette Focus", "Key Considerations")),
-    "style": ("styles.csv", ("Style Category", "Aliases", "Keywords", "Best For", "Type"),
-              ("Style Category", "Keywords", "Primary Colors", "Effects & Animation", "Best For", "Do Not Use For",
-               "Accessibility", "Performance", "CSS/Technical Keywords", "Design System Variables")),
+    "style": ("styles.csv", ("Style", "Aliases", "Keywords", "Use When", "Type"),
+              ("Style", "Type", "Looks Like", "Use When", "Avoid When", "Palette", "Motion", "Slop Habits",
+               "Accessibility", "Performance", "Tokens")),
     "color": ("colors.csv", ("Product Type", "Family", "Notes"),
               ("Product Type", "Primary", "Secondary", "Accent", "Background", "Foreground", "Muted", "Border",
                "Destructive", "Ring", "Notes", "Avoid")),
@@ -163,10 +163,10 @@ def _by(file: str, col: str, value: str) -> dict | None:
 
 
 def _style(name: str) -> dict | None:
-    hit = _by("styles.csv", "Style Category", name)
+    hit = _by("styles.csv", "Style", name)
     if hit:
         return hit
-    ranked = rank(table("styles.csv"), ("Style Category", "Aliases"), name, 1)
+    ranked = rank(table("styles.csv"), ("Style", "Aliases"), name, 1)
     return ranked[0][1] if ranked else None
 
 
@@ -221,10 +221,10 @@ def system(brief: str, stack: str = "") -> dict:
         "brief": brief,
         "product": kind,
         "also_close": found[1][1]["Product Type"] if len(found) > 1 else "",
-        "styles": [s["Style Category"] for s in styles],
+        "styles": [s["Style"] for s in styles],
         "secondary_styles": product.get("Secondary Styles", ""),
-        "style_notes": [{k: s.get(k, "") for k in ("Style Category", "Effects & Animation", "Accessibility",
-                                                    "Design System Variables")} for s in styles],
+        "style_notes": [{k: s.get(k, "") for k in ("Style", "Motion", "Accessibility", "Slop Habits",
+                                                    "Tokens")} for s in styles],
         "palette": {k: v for k, v in (_by("colors.csv", "Product Type", kind) or {}).items() if k != "Product Type"},
         "fonts": [{k: f[k] for k in ("Pairing", "Heading Font", "Body Font", "Google Fonts URL")} for f in fonts],
         "landing": _by("landing.csv", "Pattern Name", product.get("Landing Pattern Match", "")) or {},
@@ -271,8 +271,10 @@ def render(ds: dict) -> str:
     if ds["avoid"]:
         lines.append("- **Avoid:** " + "; ".join(ds["avoid"]))
     for s in ds["style_notes"]:
-        if s.get("Design System Variables"):
-            lines.append(f"- **{s['Style Category']} tokens:** {s['Design System Variables']}")
+        if s.get("Tokens"):
+            lines.append(f"- **{s['Style']} tokens:** {s['Tokens']}")
+        if s.get("Slop Habits"):
+            lines.append(f"- **{s['Style']} slop to avoid:** {s['Slop Habits']}")
     lines += ["", "Checks before delivery:"]
     lines += [f"- [{c['Severity']}] {c['Category']}, {c['Issue']}: {c['Do']}" for c in ds["checks"]]
     if ds.get("stack_checks"):
