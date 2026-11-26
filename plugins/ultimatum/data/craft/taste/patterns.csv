@@ -1,0 +1,90 @@
+name,kind,use_for,avoid_for,build,reduced_motion,file
+mist,ground,calm wash behind a features or FAQ band,a band already holding a photo,two-hue radial gradients in page tokens,still,grounds-and-effects.md
+halo,ground,one centred line of copy or a closing call,split layouts with text on one side,one radial light behind the centre,still,grounds-and-effects.md
+ruled,ground,technical or docs sections that want a visible frame,photo sections; next to dots,repeating hairline linear gradients on the grid,still,grounds-and-effects.md
+dots,ground,margins and corners of a tech band,behind headings; next to ruled,radial-gradient dot field masked clear in the middle,still,grounds-and-effects.md
+arcs,ground,the closing call to action,the hero; next to halo,concentric radial rings anchored below the box,still,grounds-and-effects.md
+liquid,ground,one slow hero or closing band (the only moving CSS ground),any page that already has an effect,two blurred blobs in neighbouring hues on a 20 s clock,still; liquid holds its first frame,grounds-and-effects.md
+grain,ground,one strong tinted band,behind body copy at small size,tinted field plus an SVG turbulence grain layer,still,grounds-and-effects.md
+dusk,ground,a band that bridges two tones,next to band or field,one linear gradient between two neighbouring tones,still,grounds-and-effects.md
+band,ground,a second-tone section lit from one corner,next to dusk,second tone with one corner radial light,still,grounds-and-effects.md
+field,ground,one strong grainy band in one colour family,next to grain,one-family gradient under grain,still,grounds-and-effects.md
+photo,ground,a calm photograph behind a short statement,busy photos; body copy,img layer with text on its calm part (photos.md),still,grounds-and-effects.md
+horizon,ground,a dark launch or closing band,light pages,dark band with one lit curved rim near the foot,still,grounds-and-effects.md
+deep,ground,a near-black product band,next to horizon,"almost black, a cool pool of light at the top, a bright edge",still,grounds-and-effects.md
+paper,ground,"the page ground itself, never flat",panels inside cards,page colour with a faint grain,still,grounds-and-effects.md
+topglow,ground,light just under the navigation,below the first screen,radial light scoped to the page top,still,grounds-and-effects.md
+stage,ground,one panel a single card sits on,full sections; more than once per page,vivid grainy mesh scoped to one panel,still,grounds-and-effects.md
+grain-gradient,effect-quiet,even field behind UI in cards or hero,text over its busy part,soft drifting shapes under baked grain,poster still,grounds-and-effects.md
+painterly-landscape,effect-quiet,calm hero field for outdoor or travel tech,dark inverse grounds,blurred hills and sky in broad dabs,poster still,grounds-and-effects.md
+gradient-mesh,effect-quiet,colour islands behind product UI,next to another mesh,colour islands on a folding surface,poster still,grounds-and-effects.md
+silk-folds,effect-quiet,satin field in one colour,pattern effects on the same page,one-colour folds shaded in a fragment shader,poster still,grounds-and-effects.md
+fluted-glass,effect-quiet,ribbed glass bending what is behind,frosted panels; text behind it,vertical flutes refracting a gradient,poster still,grounds-and-effects.md
+orb-sphere,effect-focal,one lit sphere as the hero subject,cards; beside another focal effect,ray-marched sphere with a rim light,poster still,grounds-and-effects.md
+spotlight-cone,effect-focal,a stage light landing on the product,light pages,cone plus floor pool,poster still,grounds-and-effects.md
+god-rays,effect-focal,shafts through haze in a dark hero,text across the shafts,radial blur from one light source,poster still,grounds-and-effects.md
+aurora-curtains,effect-focal,night-sky curtains on dark or colour pages,light pages,layered noise curtains,poster still,grounds-and-effects.md
+caustics,effect-focal,water light on a pool floor,next to pattern effects,animated caustic noise,poster still,grounds-and-effects.md
+ruled-grounds,effect-pattern,a hairline frame in the hero or data-visual,behind UI,shader hairlines on the grid,poster still,grounds-and-effects.md
+grid-pulse,effect-pattern,signals travelling a hairline grid,behind UI,grid with short bright dashes,poster still,grounds-and-effects.md
+contour-lines,effect-pattern,"map-like contours for land, data or terrain",behind UI,isolines of a noise field,poster still,grounds-and-effects.md
+dot-terrain,effect-pattern,land drawn as a point cloud,behind UI,height-mapped dots,poster still,grounds-and-effects.md
+dotted-globe,effect-pattern,"real global reach only (named, never dealt)",any page without real global reach,dots on a sphere,poster still,grounds-and-effects.md
+ridgeline,effect-pattern,stacked lines rising into peaks (named only),behind UI,offset line plots,poster still,grounds-and-effects.md
+halftone-screen,effect-pattern,a print look on a tech band,over a photograph,dot screen by luminance,poster still,grounds-and-effects.md
+bayer-dither,effect-pattern,an ordered dither field once per page,over a photograph; behind body text,4x4 Bayer threshold,poster still,grounds-and-effects.md
+ascii-shade,effect-pattern,a sphere drawn in monospace characters,behind UI,luminance to glyph ramp,poster still,grounds-and-effects.md
+line-engraving,effect-pattern,engraved line shading on a tech band,over a photograph,hatching by luminance,poster still,grounds-and-effects.md
+duotone-grade,effect-pattern,a two-tone grade on its own art (named only),a client photo,two-stop luminance map,poster still,grounds-and-effects.md
+film-light-leak,effect-other,light bleeding in from one edge of the hero,next to another light effect,edge radial light with grain,poster still,grounds-and-effects.md
+prism-dispersion,effect-other,a beam split into a spectrum,light pages,three offset beams in RGB,poster still,grounds-and-effects.md
+soft-light-bars,effect-other,upright light bars beside an empty area,behind text,soft vertical gradients,poster still,grounds-and-effects.md
+edge-glow,effect-other,light running round one border (named only),more than one border per page,conic gradient masked to the border,poster still,grounds-and-effects.md
+studio-sweep,recipe,a product on a curved floor,non-tech pages; behind body text,"floor curving into the wall, lit from above",still,grounds-and-effects.md
+corner-glow,recipe,one dark band,non-tech pages; behind body text,one soft light from a single corner,still,grounds-and-effects.md
+painterly-field,recipe,a soft landscape field,non-tech pages; behind body text,"blurred dabs, sky over hills",still,grounds-and-effects.md
+spotlight-floor,recipe,an object standing in a pool of light,non-tech pages; behind body text,slanted beam ending in a pool,still,grounds-and-effects.md
+product-colour-wash,recipe,choosing a colourway,non-tech pages; behind body text,"ground cross-fades on click, never on scroll",still,grounds-and-effects.md
+woven-tile,recipe,one textured band,non-tech pages; behind body text,woven tile or ordered dither once per page,still,grounds-and-effects.md
+grid-marks,recipe,one dark technical band,non-tech pages; behind body text,registration crosses,still,grounds-and-effects.md
+ledger-rules,recipe,rows inside one section,non-tech pages; behind body text,"hairline rows, never between sections",still,grounds-and-effects.md
+word-highlight,moment,one statement sentence,more than one per page,see the catalogue row,whole statement in ink,moments-and-scenes.md
+picture-develops,moment,one large photo with a clear subject,print look on calm kinds,see the catalogue row,photo shown still,moments-and-scenes.md
+photo-chapters,moment,a story in 3-5 full-width photos,places with fewer than eight photos; pages with pinned-chapters,see the catalogue row,photos side by side,moments-and-scenes.md
+pinned-chapters,moment,2-4 steps beside two live screens,pages with photo-chapters,see the catalogue row,static rows with pictures,moments-and-scenes.md
+counter-rolls,moment,real proof figures,inside a card; calm kinds; invented numbers,see the catalogue row,final figures,moments-and-scenes.md
+giant-type-pass,moment,a statement over a mid-to-dark photo,calm kinds,see the catalogue row,photo inside smaller letters,moments-and-scenes.md
+letters-assemble,moment,a 2-5 word line set very large,calm kinds,see the catalogue row,line as written,moments-and-scenes.md
+marquee-row,moment,"a row of real words, with a pause button",logos; calm kinds,see the catalogue row,wrapped still row,moments-and-scenes.md
+line-carries-colour,moment,an inset panel on a new ground,calm kinds,see the catalogue row,blocks shown whole,moments-and-scenes.md
+iris-opens,moment,an inset panel on a new ground,calm kinds,see the catalogue row,blocks shown whole,moments-and-scenes.md
+cursor-spotlight,moment,the hero frame,touch screens; calm kinds,see the catalogue row,light rests,moments-and-scenes.md
+liquid-type,moment,a statement of six words or fewer,calm kinds; touch,see the catalogue row,headline as written,moments-and-scenes.md
+liquid-hover,moment,one photo with clear edges and detail,calm kinds; touch,see the catalogue row,"plain photo, no canvas",moments-and-scenes.md
+descend-through-weather,scene,below the hero,"places, services, plain products; a page with another effect","needs two photos of one world, high and low",finished composition,moments-and-scenes.md
+shaped-window-over-fixed-world,scene,below the hero,"places, services, plain products; a page with another effect",needs one wide photo of the world,finished composition,moments-and-scenes.md
+fixed-hero-object,scene,below the hero,"places, services, plain products; a page with another effect","needs an object render, 1-4 chapters",finished composition,moments-and-scenes.md
+powers-of-ten-pullback,scene,a product section,"places, services, plain products; a page with another effect",needs the product UI at true size,finished composition,moments-and-scenes.md
+product-assembles-into-its-action,scene,a product section,"places, services, plain products; a page with another effect",needs the screen as HTML in 4-6 steps,finished composition,moments-and-scenes.md
+parts-lock-into-the-whole,scene,a product section,"places, services, plain products; a page with another effect",needs the screen cut along its panels,finished composition,moments-and-scenes.md
+fly-into-the-shape,scene,between sections,"places, services, plain products; a page with another effect",needs the mark as one path and one dark photo,finished composition,moments-and-scenes.md
+letter-physics,scene,a statement,"places, services, plain products; a page with another effect",needs a claim and its answer,finished composition,moments-and-scenes.md
+object-through-giant-type,scene,a statement,"places, services, plain products; a page with another effect",needs a 3-5 line quote and an object,finished composition,moments-and-scenes.md
+full-stop-dot,scene,a statement,"places, services, plain products; a page with another effect",needs one claim of 4-6 words,finished composition,moments-and-scenes.md
+letter-bar-floods-the-ground,scene,between sections or a statement,"places, services, plain products; a page with another effect",needs two statements and an inverse section after,finished composition,moments-and-scenes.md
+split,hero,all kinds but place,place,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+photo,hero,product and service with a strong photo,software without photos,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+product,hero,product and hardware,service,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+editorial,hero,service and product,tech,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+collage,hero,software and tech,calm kinds,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+word,hero,tech only,calm kinds; games,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+film,hero,tech and games with real footage,calm kinds,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+statement,hero,service and software,games; product,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+triptych,hero,product and tech,place,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+centred,hero,software,place; product,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+place,hero,"cafes, shops, studios, salons, clinics (fixed, never dealt)",every other kind,see the hero catalogue,entrance shown finished,layout-and-heroes.md
+code-review,pane-pairing,list of changes beside the open diff,generic dashboards; stock people at screens,two-pane app frame,static,sections.md
+support-desk,pane-pairing,ticket queue beside the open thread,generic dashboards; stock people at screens,two-pane app frame,static,sections.md
+docs,pane-pairing,page tree beside the open article,generic dashboards; stock people at screens,two-pane app frame,static,sections.md
+ci,pane-pairing,pipeline runs beside the open job log,generic dashboards; stock people at screens,two-pane app frame,static,sections.md
+booking,pane-pairing,day list beside the open appointment,generic dashboards; stock people at screens,two-pane app frame,static,sections.md

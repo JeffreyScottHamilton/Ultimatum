@@ -2,6 +2,17 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.12] - 2026-11-26
+
+Website craft: the Taste skill, rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/taste/` (20 files plus `index.md`), rebuilt in our own words from the MIT-licensed Taste skill (Leonxlnx/taste-skill @ f6b7657): principles, copy and voice, page plans, system, layout and heroes, sections, place pages, cards and UI, photos, icons and diagrams, motion, moments and scenes, grounds and effects, effect parts, objects, accessibility, performance, quality gate, and a `later.md` of what is not shipped yet.
+- Adds local-business and app sections, WCAG 2.2 AA and reduced-motion rules to every craft move, and keeps effects to software, gaming and hardware pages.
+- New data table `data/craft/taste/patterns.csv` (grounds, effects, recipes, moments, scenes, heroes, pane pairings) with a README.
+- `craft.md` points to the Taste craft folder; `taste-critic` scores Taste-built pages against its quality gate.
+- Upstream record and credits updated to the commit rebuilt from (f6b7657).
+- New `tests/test_craft_taste.py`: index completeness, file size and opening line, https links, relative references and § headings, CSV shape, no credentials, and the copy check against a local source checkout.
+
 ## [0.0.11] - 2026-11-26
 
 Design tables, part 3: our own style guide replaces UI UX Pro Max's.
