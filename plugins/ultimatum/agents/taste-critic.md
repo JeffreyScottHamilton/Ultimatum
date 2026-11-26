@@ -19,6 +19,7 @@ Process:
    - Hierarchy, spacing rhythm, type scale, contrast (WCAG AA), tap targets on mobile, nothing cut off or overflowing at 375.
    - Does the motion personality fit the brand, and does it respect reduced motion?
    - If the build used `references/craft/taste/`, check it against that folder's `quality-gate.md` too, and flag any effect on a page that is not software, gaming or hardware.
+   - If the page has product-UI motion, check it against `references/craft/emil-motion/gate.md` and `reduced-motion.md`: no ease-in on entrances, no `transition: all`.
    - If the page has an explanatory figure, check it against `references/craft/anatomy/verify.md`: one idea per figure, true numbers, a still version under reduced motion.
 3. Score each direction 0–10. 8 means you would show it to a paying client as is. Be strict; do not round up.
 

@@ -12,7 +12,7 @@ Name the cause before touching code; "I added `will-change` and it feels better"
 
 | Tier | Properties | Cost |
 |---|---|---|
-| Compositor only | `transform`, `opacity`; in current Chrome and Firefox also `filter`, `clip-path`, `background-color` (test per browser) | cheapest, own layer |
+| Compositor only | `transform`, `opacity`; `filter` often too. Treat `clip-path` and `background-color` as repaints unless DevTools shows otherwise in the browser you target | cheapest, own layer |
 | Paint, then composite | `box-shadow`, `border-radius`, `color` | repainted on each frame |
 | Layout, then paint, then composite | `height`, `width`, `margin`, `padding`, `left`, `top`, `border-width` | costliest, and pushes neighbours around |
 

@@ -91,6 +91,17 @@
       "note": "Rebuilt in own words as skills/website/references/craft/anatomy; skip the kit code and scripts (see later.md)"
     },
     {
+      "id": "emil-motion",
+      "kind": "skill-source",
+      "repo": "https://github.com/emilkowalski/skills",
+      "pin": "715c180",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/emil-motion; native, Expo and Swift material is in later.md"
+    },
+    {
       "id": "remotion",
       "kind": "skill-source",
       "repo": "https://github.com/remotion-dev/skills",

@@ -20,7 +20,7 @@ Thank you to the authors and maintainers of these projects.
 | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) | `c1c8a8c14710` | MIT | Coverage-driven audits, independent validation, three-verdict findings, ledgers |
 | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | `8fd2fcade2fd` | MIT | Business and Social Media roles: customer research, competitor profiling, product marketing, offers, analytics, conversion tracking, content strategy, social content, copywriting |
 | [dequelabs/axe-core](https://github.com/dequelabs/axe-core) | `c50bf8e8933e` | MPL-2.0 | Accessibility rule engine (optional), and the limits of automated a11y checks |
-| [emilkowalski/skills](https://github.com/emilkowalski/skills) | `715c1807e08c` | MIT | Motion and interaction craft: purpose, duration, easing, interruptibility |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | `715c1807e08c` | MIT | Motion and interaction craft: purpose, duration, easing, interruptibility; website motion craft references (craft/emil-motion) |
 | [garrytan/gstack](https://github.com/garrytan/gstack) | `7dace1fdeabc` | MIT | Ship, review, QA, release, and post-deploy workflows |
 | [getsentry/plugin-claude](https://github.com/getsentry/plugin-claude) | `1b082a07d1a8` | MIT | Production issue investigation from error events (optional integration) |
 | [getsentry/skills](https://github.com/getsentry/skills) | `e94f22214528` | Apache-2.0 | iterate-pr: CI failure and review-feedback loop with priority triage (Apache-2.0) |

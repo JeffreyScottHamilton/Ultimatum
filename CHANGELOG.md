@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.14] - 2026-11-26
+
+Website craft: Emil Kowalski's animation skills, rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/emil-motion/` (17 files plus `index.md`), rebuilt in our own words from the MIT-licensed skills at emilkowalski/skills @ 715c180: a motion gate, easing and duration, springs, component recipes, choreography, gestures, performance, reduced motion, review and audit, vocabulary, UI details, fluid interfaces, mobile web, worst-case data, prototype variants, and library and toast picks.
+- Merges with the existing motion rules (`work` design motion, Taste motion, `libraries.md`) by pointer instead of repeating them.
+- Five new tables under `data/craft/emil-motion/` (timing, symptoms, vocabulary, worst-case values, libraries) with a README.
+- `craft.md` points to the folder; `taste-critic` checks product-UI motion against its gate and reduced-motion rules. Upstream record and credits updated.
+- Not shipped yet: the native, Expo and Swift material (listed in `later.md`). New `tests/test_craft_emil_motion.py`.
+
 ## [0.0.13] - 2026-11-26
 
 Website craft: the Anatomy skill, rebuilt in our own words.
