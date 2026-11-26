@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Icons and layouts | Taste kit</title>
+<meta content="initial-scale=1, width=device-width" name="viewport">
+<link href="../system.css" rel="stylesheet">
+<link href="icons.css" rel="stylesheet">
+<style>
+  .glyphs { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); padding: 0; list-style: none; gap: 12px; display: grid; }
+  .glyphs li { align-items: center; display: flex; gap: 10px; }
+  .demo { display: grid; gap: 32px; }
+  .demo > section { display: grid; gap: 12px; }
+</style>
+</head>
+<body>
+<!-- The sprite below is glyphs.svg, inlined; a test keeps the two the same. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Taste kit interface glyphs, drawn for this kit on a 24-unit grid.
+       Stroke, width and joins come from icons.css (.ic), so each glyph takes the text colour. -->
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 20 20"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15.5M13.5 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6 18 18M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4.5v15M4.5 12h15"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 7h17M3.5 12h17M3.5 17h17"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6.5 9.5 12 15l5.5-5.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-date" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.25"/></symbol>
+  <symbol id="i-call" viewBox="0 0 24 24"><path d="M5 4h3.5l1.75 4.5-2.25 1.5a10.5 10.5 0 0 0 6 6l1.5-2.25L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M12 3.5v11.5M7 10.5l5 5 5-5M4.5 19.5h15"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M13.5 4.5h6v6M19.5 4.5 11 13M17 14.5V19a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V8.5a1 1 0 0 1 1-1H10"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M5.5 3.5h8.5l4.5 4.5v12.5h-13Z"/><path d="M14 3.5V8h4.5"/></symbol>
+</svg>
+<main class="block">
+  <div class="wrap demo">
+    <header class="intro">
+      <h1>Icons and layouts</h1>
+      <p>Sixteen interface glyphs drawn for this kit, and the six icon layouts. Lettered tiles hold the place of real brand marks.</p>
+    </header>
+    <section>
+      <h2>Glyphs</h2>
+      <ul class="glyphs" role="list">
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-search"/></svg><code>i-search</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-arrow"/></svg><code>i-arrow</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-check"/></svg><code>i-check</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-close"/></svg><code>i-close</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-plus"/></svg><code>i-plus</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-menu"/></svg><code>i-menu</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-down"/></svg><code>i-down</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-clock"/></svg><code>i-clock</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-date"/></svg><code>i-date</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-pin"/></svg><code>i-pin</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-call"/></svg><code>i-call</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-mail"/></svg><code>i-mail</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-lock"/></svg><code>i-lock</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-save"/></svg><code>i-save</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-out"/></svg><code>i-out</code></li>
+      <li><svg class="ic ic--24" aria-hidden="true"><use href="#i-doc"/></svg><code>i-doc</code></li>
+      </ul>
+    </section>
+    <section>
+      <h2>Rows</h2>
+      <div>
+        <div class="ic-row"><span class="ic-mark" data-mark="xero">X</span><b>Xero</b><span>Invoices every hour</span></div>
+        <div class="ic-row"><span class="ic-mark" data-mark="stripe">S</span><b>Stripe</b><span>Payouts each morning</span></div>
+      </div>
+    </section>
+    <section>
+      <h2>Chips and a stack</h2>
+      <p><span class="ic-chip"><span class="ic-mark" data-mark="slack">S</span>Slack</span>
+         <span class="ic-chip"><span class="ic-mark" data-mark="github">G</span>GitHub</span></p>
+      <div class="ic-stack" aria-label="Works with Slack, GitHub and Linear" role="img">
+        <span class="ic-mark" data-mark="slack">S</span><span class="ic-mark" data-mark="github">G</span><span class="ic-mark" data-mark="linear">L</span>
+      </div>
+    </section>
+    <section>
+      <h2>Integration grid</h2>
+      <div class="ic-mosaic">
+        <figure><span class="ic-mark" data-mark="xero">X</span><figcaption>Xero</figcaption></figure>
+        <figure><span class="ic-mark" data-mark="stripe">S</span><figcaption>Stripe</figcaption></figure>
+        <figure><span class="ic-mark" data-mark="slack">S</span><figcaption>Slack</figcaption></figure>
+        <figure><span class="ic-mark" data-mark="github">G</span><figcaption>GitHub</figcaption></figure>
+      </div>
+    </section>
+    <section>
+      <h2>File cards</h2>
+      <div class="ic-file"><span class="ic-file__type"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg><i>PDF</i></span>
+        <div><b>March statement</b><small>PDF, 212 KB</small></div></div>
+      <div class="ic-file"><span class="ic-file__type"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg><i>CSV</i></span>
+        <div><b>Payouts, Q1</b><small>CSV, 48 KB</small></div></div>
+    </section>
+    <section>
+      <h2>Beside a label</h2>
+      <p><a class="btn btn--go" href="#top">Book a call <svg class="ic ic--16" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+      <p><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> Great Junction Street, Leith</p>
+      <p><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> Tuesday to Saturday, 9:00 to 18:00</p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

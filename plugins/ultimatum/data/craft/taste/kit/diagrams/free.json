@@ -1,0 +1,7 @@
+{"id": "free", "layout": "free", "size": "card", "pulse": true, "lines": "elbow",
+ "title": "Two warehouses kept in step through one stock ledger",
+ "nodes": [{"id": "a", "label": "Leeds stock", "x": 110, "y": 90},
+           {"id": "b", "label": "Bristol stock", "x": 110, "y": 250},
+           {"id": "core", "label": "Stockline", "x": 300, "y": 170, "core": true},
+           {"id": "c", "label": "Shop", "x": 470, "y": 170}],
+ "edges": [["a", "core"], ["b", "core"], ["core", "c"]]}

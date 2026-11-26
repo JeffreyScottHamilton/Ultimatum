@@ -1,0 +1,3 @@
+{"id": "bowtie", "layout": "fan-in", "size": "card", "pulse": true, "lines": "curve",
+ "title": "Orders from three shops gather in Packwell and leave by Royal Mail or DPD",
+ "core": "Packwell", "nodes": ["Shopify", "Etsy", "eBay"], "out": ["Royal Mail", "DPD"]}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Diagrams | Taste kit</title>
+<meta content="initial-scale=1, width=device-width" name="viewport">
+<link href="../system.css" rel="stylesheet">
+<link href="diagram.css" rel="stylesheet">
+<style>
+  .boards { display: flex; flex-wrap: wrap; gap: 24px; }
+  .boards > * { flex: 1 1 480px; min-inline-size: 0; }
+  .dg-card { margin: 0; }
+  .dg-card h2 { font-size: 20px; margin: 0; }
+  .dg-card p { margin: 4px 0 16px; }
+</style>
+</head>
+<body>
+<!-- Written by tools/taste_diagram_gallery.py from the *.json specs here. Do not edit by hand. -->
+<main class="block">
+  <div class="wrap">
+    <header class="intro">
+      <h1>Diagrams</h1>
+      <p>Each card is drawn by <code>ult diagram</code> from the spec named under its title. Hover or tab into a card to run its pulse again.</p>
+    </header>
+    <div class="boards">
+    <figure class="dg-card tile" tabindex="0">
+      <h2>Bow-tie with curves</h2>
+      <p><code>bowtie.json</code></p>
+      <svg class="dg" role="img" aria-labelledby="bowtie-title" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
+<title id="bowtie-title">Orders from three shops gather in Packwell and leave by Royal Mail or DPD</title>
+<g class="dg-lines" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="1"><path d="M129.5 70C182.95 70 182.95 170 236.4 170" id="bowtie-e0"/><path d="M118.4 170C177.4 170 177.4 170 236.4 170" id="bowtie-e1"/><path d="M118.4 270C177.4 270 177.4 170 236.4 170" id="bowtie-e2"/><path d="M323.6 170C371.5 170 371.5 95 419.4 95" id="bowtie-e3"/><path d="M323.6 170C384.45 170 384.45 245 445.3 245" id="bowtie-e4"/></g>
+<g class="dg-pulse" fill="none"><use href="#bowtie-e0" style="--d:0.00s"/><use href="#bowtie-e1" style="--d:0.32s"/><use href="#bowtie-e2" style="--d:0.64s"/><use href="#bowtie-e3" style="--d:0.96s"/><use href="#bowtie-e4" style="--d:1.28s"/></g>
+<g class="dg-node dg-core"><rect fill="var(--ink, #1c2126)" height="40" rx="10" width="87.2" x="236.4" y="150"/><text fill="var(--bg, #fff)" font-size="14" text-anchor="middle" x="280" y="174.5">Packwell</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="79.8" x="49.7" y="55"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="89.6" y="74.5">Shopify</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="57.6" x="60.8" y="155"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="89.6" y="174.5">Etsy</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="57.6" x="60.8" y="255"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="89.6" y="274.5">eBay</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="102" x="419.4" y="80"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="470.4" y="99.5">Royal Mail</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="50.2" x="445.3" y="230"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="470.4" y="249.5">DPD</text></g>
+</svg>
+    </figure>
+    <figure class="dg-card tile" tabindex="0">
+      <h2>Free layout with elbows</h2>
+      <p><code>free.json</code></p>
+      <svg class="dg" role="img" aria-labelledby="free-title" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
+<title id="free-title">Two warehouses kept in step through one stock ledger</title>
+<g class="dg-lines" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="1"><path d="M110 90H195Q205 90 205 100V160Q205 170 215 170H300" id="free-e0"/><path d="M110 250H195Q205 250 205 240V180Q205 170 215 170H300" id="free-e1"/><path d="M300 170L470 170" id="free-e2"/></g>
+<g class="dg-pulse" fill="none"><use href="#free-e0" style="--d:0.00s"/><use href="#free-e1" style="--d:0.32s"/><use href="#free-e2" style="--d:0.64s"/></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="109.4" x="55.3" y="75"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="110" y="94.5">Leeds stock</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="124.2" x="47.9" y="235"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="110" y="254.5">Bristol stock</text></g>
+<g class="dg-node dg-core"><rect fill="var(--ink, #1c2126)" height="40" rx="10" width="94.6" x="252.7" y="150"/><text fill="var(--bg, #fff)" font-size="14" text-anchor="middle" x="300" y="174.5">Stockline</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="57.6" x="441.2" y="155"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="470" y="174.5">Shop</text></g>
+</svg>
+    </figure>
+    <figure class="dg-card tile" tabindex="0">
+      <h2>Spokes from one centre</h2>
+      <p><code>hub.json</code></p>
+      <svg class="dg" role="img" aria-labelledby="hub-title" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
+<title id="hub-title">Ledgerline sends each paid invoice to Xero, Stripe, Slack, HubSpot and Google Sheets</title>
+<g class="dg-lines" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="1"><path d="M280 150L280 40" id="hub-e0"/><path d="M331 158.662L460.701 129.828" id="hub-e1"/><path d="M301.237 190L391.679 275.172" id="hub-e2"/><path d="M258.763 190L168.321 275.172" id="hub-e3"/><path d="M229 158.662L99.2993 129.828" id="hub-e4"/></g>
+<g class="dg-pulse" fill="none"><use href="#hub-e0" style="--d:0.00s"/><use href="#hub-e1" style="--d:0.32s"/><use href="#hub-e2" style="--d:0.64s"/><use href="#hub-e3" style="--d:0.96s"/><use href="#hub-e4" style="--d:1.28s"/></g>
+<g class="dg-node dg-core"><rect fill="var(--ink, #1c2126)" height="40" rx="10" width="102" x="229" y="150"/><text fill="var(--bg, #fff)" font-size="14" text-anchor="middle" x="280" y="174.5">Ledgerline</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="57.6" x="251.2" y="25"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="280" y="44.5">Xero</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="72.4" x="424.501" y="114.828"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="460.701" y="134.328">Stripe</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="65" x="359.179" y="260.172"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="391.679" y="279.672">Slack</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="79.8" x="128.421" y="260.172"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="168.321" y="279.672">HubSpot</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="124.2" x="37.1993" y="114.828"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="99.2993" y="134.328">Google Sheets</text></g>
+</svg>
+    </figure>
+    <figure class="dg-card tile" tabindex="0">
+      <h2>Timeline, still</h2>
+      <p><code>timeline.json</code></p>
+      <svg class="dg" role="img" aria-labelledby="timeline-title" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
+<title id="timeline-title">A repair goes from drop-off to collection in four steps</title>
+<g class="dg-lines" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="1"><path d="M143.6 170L187.5 170" id="timeline-e0"/><path d="M252.5 170L303.8 170" id="timeline-e1"/><path d="M376.2 170L420.1 170" id="timeline-e2"/></g>
+
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="87.2" x="56.4" y="155"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="100" y="174.5">Drop off</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="65" x="187.5" y="155"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="220" y="174.5">Quote</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="72.4" x="303.8" y="155"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="340" y="174.5">Repair</text></g>
+<g class="dg-node"><rect fill="var(--surface, #fff)" stroke="var(--line, #d9dde1)" height="30" rx="7.5" width="79.8" x="420.1" y="155"/><text fill="var(--ink, #1c2126)" font-size="13" text-anchor="middle" x="460" y="174.5">Collect</text></g>
+</svg>
+    </figure>
+    </div>
+  </div>
+</main>
+<script src="diagram.js" type="module"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@
  
  MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
 -for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "loop", "board", "style", "gates", "design"):
-+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "loop", "board", "style", "gates", "design", "copylint"):
++for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "loop", "board", "style", "gates", "design", "copylint", "diagram"):
      try:
          MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
      except ImportError:
