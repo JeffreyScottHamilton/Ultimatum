@@ -1,0 +1,4 @@
+- Website craft: new `impeccable` folder with 12 topics: audit scorecard, critique, hardening, microcopy, refine moves, adapting to contexts, native iOS and Android, direction process, surface details, delight and onboarding, and heavy browser techniques.
+- Pointers from Taste, Hallmark, Emil motion and design review QA to the deeper Impeccable topics, instead of second copies.
+- An example page for hardening (long text, right-to-left, Intl formats, top-layer popover, interrupted drag) with a 15-check Playwright script.
+- Source: pbakaus/impeccable at 3c5e75f, Apache-2.0; all wording and code are our own.

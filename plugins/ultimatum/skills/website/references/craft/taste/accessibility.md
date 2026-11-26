@@ -67,3 +67,5 @@ Target: WCAG 2.2 level AA. The numbers below are the criteria's own thresholds; 
 3. Emulate reduced motion: the page calms down (see `motion.md` for what that means).
 4. Run axe or Lighthouse in the browser for contrast, names and labels; it finds about a third of problems, so the manual steps still count. axe rules: https://dequeuniversity.com/rules/axe/
 5. Screen reader spot check on the hero, menu, main form and any custom widget.
+
+Deeper: `../impeccable/audit-scorecard.md` scores a page on five areas out of 20 with WCAG numbers and P0 to P3 severity.

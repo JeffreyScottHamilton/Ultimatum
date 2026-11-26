@@ -54,3 +54,5 @@ Wrap what must be read in full to identify (names, detail titles; two lines fine
 ## Report
 
 One row per break, worst first: number, severity, field, value, what happens, fix. Severity levels: Broken (unreadable, unreachable, wrong data), Ugly (readable but plainly off), Fragile (works today, a realistic input away from failing, for instance no limit or no fallback). Say which rows you saw rendered and which you reasoned from the CSS.
+
+Deeper: `../impeccable/harden.md` covers languages, scripts, error states by status and interrupted gestures.

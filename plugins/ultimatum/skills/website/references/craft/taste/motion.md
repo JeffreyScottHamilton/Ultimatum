@@ -163,3 +163,5 @@ Honour `prefers-reduced-motion: reduce` (WCAG 2.3.3 Animation from Interactions)
 - Flashing more than three times a second, anywhere (WCAG 2.3.1).
 
 Check every interaction by eye on a demo page at 1440 and 390, with and without reduced motion.
+
+Deeper: `../impeccable/ambitious-tech.md` covers heavy techniques (view transitions, scroll timelines, WebGL) and their safety rules.

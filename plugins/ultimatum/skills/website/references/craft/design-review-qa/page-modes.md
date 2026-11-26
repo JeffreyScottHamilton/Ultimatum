@@ -87,3 +87,5 @@ Generated interfaces drift into one of three looks whatever the product: (1) cre
 ## Merge note
 
 The Persuade, Operate and Read rules extend `../../website/design-rules.md` § 3 (page kind and effect caps); that table decides how much may move, this file decides how the page is composed.
+
+Deeper: `../impeccable/direction-process.md` covers where each truth lives, questions by mode and testing a direction.

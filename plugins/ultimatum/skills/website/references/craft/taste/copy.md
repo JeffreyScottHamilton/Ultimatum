@@ -106,3 +106,5 @@ Persuasion is the genre of a sales page. The test is whether each line stands on
 1. Read every line aloud as the client would say it; cut what they wouldn't.
 2. Replace any line that would still be true for a competitor.
 3. Run the checks in `voice.md` § Checks and the lint in `../../website/design-rules.md` §2.
+
+Deeper: `../impeccable/microcopy.md` covers interface wording: buttons, fields, errors, empty and loading states.

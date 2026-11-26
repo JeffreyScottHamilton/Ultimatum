@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Hardening demo</title>
+<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1">
+<style>
+  :root { --ink: #1d232b; --paper: #f7f6f2; --accent: #1f5fbf; --line: #c9c6bd; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); margin: 0; font: 1rem/1.5 system-ui, sans-serif;
+         padding-inline: max(16px, env(safe-area-inset-left)); }
+  ::selection { background: var(--accent); color: #fff; }
+  input, textarea { caret-color: var(--accent); accent-color: var(--accent); }
+  h1 { text-wrap: balance; max-inline-size: 22ch; }
+  p { text-wrap: pretty; max-inline-size: 68ch; }
+
+  /* 1. A row that survives a very long name: the text cell may shrink below its content. */
+  .row { display: flex; gap: 12px; align-items: center; border: 1px solid var(--line);
+         padding-block: 8px; padding-inline: 12px; max-inline-size: 360px; }
+  .row .name { overflow: hidden; min-inline-size: 0; text-overflow: ellipsis; flex: 1; white-space: nowrap; }
+  .row .badge { flex: none; }
+
+  /* 2. Logical properties: the marker follows reading direction with no RTL override. */
+  .note { border-inline-start: 4px solid var(--accent); padding-inline-start: 12px; margin-block: 16px; }
+
+  /* 3. Directional icon flips only where direction matters. */
+  [dir="rtl"] .next-arrow { transform: scaleX(-1); }
+
+  /* 4. A clipped card that still shows its menu: the popover renders in the top layer. */
+  .clip { overflow: hidden; block-size: 64px; border: 1px solid var(--line); padding: 8px; }
+  [popover] { border: 1px solid var(--line); padding: 12px; }
+
+  .track { position: relative; block-size: 32px; inline-size: 240px; background: #e4e1d8;
+           touch-action: pan-y; border-radius: 16px; }
+  .thumb { position: absolute; inset-block: 0; inline-size: 32px; border-radius: 16px; background: var(--accent); }
+  @media (pointer: coarse) { .track { block-size: 44px; } .thumb { inline-size: 44px; } }
+</style>
+</head>
+<body>
+<h1>Orders placed this week by every branch of the cooperative</h1>
+<p>Each block below is one hardening move: long text, direction, locale formatting, plural rules, an overlay that escapes its clipped parent, and a drag that recovers when the browser cancels it.</p>
+
+<div class="row" id="row"><span class="name" id="name"></span><span class="badge">Paid</span></div>
+
+<div class="note" id="note-ltr">Left-to-right note.</div>
+<div dir="rtl"><div class="note" id="note-rtl">ملاحظة من اليمين إلى اليسار <span class="next-arrow" id="arrow-rtl">→</span></div></div>
+
+<ul id="formats"></ul>
+
+<div class="clip" id="clip">
+  <button popovertarget="menu" id="open-menu">Actions</button>
+  <div popover id="menu"><button>Rename</button> <button>Archive</button></div>
+</div>
+
+<div class="track" id="track" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+  <div class="thumb" id="thumb"></div>
+</div>
+<output id="drag-state">idle</output>
+
+<script>
+  document.getElementById('name').textContent =
+    'Bartholomew-Alexandrescu Wilhelmina Kowalczyk-Featherstonehaugh of the Northern Allotments';
+
+  const out = document.getElementById('formats');
+  const item = (label, value) => { const li = document.createElement('li'); li.dataset.k = label; li.textContent = label + ': ' + value; out.append(li); };
+  item('fa-IR', new Intl.NumberFormat('fa-IR').format(1234567));
+  item('de-DE', new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(1234.5));
+  const plural = new Intl.PluralRules('ar');
+  item('ar-plural', [0, 1, 2, 5, 11, 100].map(n => n + '=' + plural.select(n)).join(' '));
+  item('zwnj', 'می‌خواهم'.includes('‌') ? 'kept' : 'lost');
+
+  // Drag that ends cleanly on cancel or lost capture, and ignores a second pointer.
+  const track = document.getElementById('track'), thumb = document.getElementById('thumb'), state = document.getElementById('drag-state');
+  let active = null;
+  const place = x => { const r = track.getBoundingClientRect(); const max = r.width - thumb.offsetWidth;
+    const v = Math.min(max, Math.max(0, x - r.left - thumb.offsetWidth / 2)); thumb.style.insetInlineStart = v + 'px';
+    track.setAttribute('aria-valuenow', Math.round(v / max * 100)); };
+  track.addEventListener('pointerdown', e => { if (active !== null) return; active = e.pointerId;
+    track.setPointerCapture(e.pointerId); state.textContent = 'dragging'; place(e.clientX); });
+  track.addEventListener('pointermove', e => { if (e.pointerId === active) place(e.clientX); });
+  const end = why => e => { if (e.pointerId !== active) return; active = null; state.textContent = 'idle:' + why; };
+  track.addEventListener('pointerup', end('up'));
+  track.addEventListener('pointercancel', end('cancel'));
+  track.addEventListener('lostpointercapture', end('lost'));
+  window.addEventListener('blur', () => { active = null; state.textContent = 'idle:blur'; });
+</script>
+</body>
+</html>
