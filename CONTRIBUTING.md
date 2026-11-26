@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping. A few rules keep the plugins working for everyone who installs them.
+Thanks for helping. A few rules keep the plugin working for everyone who installs them.
 
 ## Before you open a pull request
 
@@ -11,15 +11,11 @@ Thanks for helping. A few rules keep the plugins working for everyone who instal
    ```
 
    ```bash
-   python3 tools/sync_plugins.py --check
-   ```
-
-   ```bash
    claude plugin validate . --strict
    ```
 
 2. **Bump the version.** Claude Code only updates an installed plugin when the `version` in its `.claude-plugin/plugin.json` changes. Any change inside a plugin needs a version bump and a `CHANGELOG.md` entry. CI enforces both.
-3. **Edit shared guides in `teams/`**, never in a plugin's copy, then run `python3 tools/sync_plugins.py`.
+3. **Website guides live in `plugins/ultimatum/skills/website/references/`.** Edit them there.
 
 ## Code and writing
 

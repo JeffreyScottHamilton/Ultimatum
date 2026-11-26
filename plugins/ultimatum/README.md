@@ -1,8 +1,9 @@
 # Ultimatum
 
-One skill for the software work a developer actually does in Claude Code. Install it once, then run one command:
+A website builder and coding helper for Claude Code. Install it once, then run one command:
 
 ```
+/ultimatum:website <site>     # build or change a website
 /ultimatum:work <task>        # chat and coding
 ```
 
@@ -10,9 +11,9 @@ Ultimatum is the default way of working once it is enabled: short plain answers 
 
 - **Questions** ("What is a closure?") get a one-line style note: answer first in 1-3 plain lines. `ULTIMATUM_STYLE=0` drops it.
 - **Coding** ("Fix the CSV export") starts `/ultimatum:work`.
-- **Websites, stores, apps, events, social media and video** go to the matching plugin's skill if it is installed: [Website](../ultimatum-website-launch/README.md), [E-commerce](../ultimatum-ecommerce-launch/README.md), [App](../ultimatum-app-launch/README.md), [Event](../ultimatum-event-launch/README.md), [Social media](../ultimatum-social-media/README.md), [Video](../ultimatum-video/README.md). If not, you get a short answer and the `/plugin install <plugin>@ultimatum` line. Each of those plugins is self-contained and none of them needs core.
+- **Websites** ("Build a site for my cafe") start `/ultimatum:website`: a short interview, a one-page brief you approve, three design directions, the build, a browser check, and going live only on your yes. Shops, apps, social media and video are not part of this version.
 
-When a chat starts you see one line: the version, that the skill and toolbelt work, which Ultimatum plugins are on, and whether the chat is held to 200K tokens. If it is not, `ult context --cap 200000` sets `autoCompactWindow` in your user settings for the next chat; a hook cannot change a chat that has already started. `ULTIMATUM_START=0` hides the line.
+When a chat starts you see one line: the version, that the skill and toolbelt work, and whether the chat is held to 200K tokens. If it is not, `ult context --cap 200000` sets `autoCompactWindow` in your user settings for the next chat; a hook cannot change a chat that has already started. `ULTIMATUM_START=0` hides the line.
 
 `ULTIMATUM_AUTO=0` turns the hook off, and typed commands always win.
 

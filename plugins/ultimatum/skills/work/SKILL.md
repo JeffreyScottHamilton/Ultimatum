@@ -1,6 +1,6 @@
 ---
 name: work
-description: "Ultimatum's default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Covers questions and all software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI, security review and remediation, data and infra, releases, MCP servers and skills, handoff and resume. Website, store, app, event, social and video jobs go to the matching Ultimatum plugin, or it says which one to install."
+description: "Ultimatum's default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Covers questions and all software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI, security review and remediation, data and infra, releases, MCP servers and skills, handoff and resume. Website jobs go to the `website` skill."
 argument-hint: "<task>"
 ---
 
@@ -12,7 +12,7 @@ Task: $ARGUMENTS
 
 ## 1. Route first
 
-Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them, don't re-read. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow:` line (user did not type `/ultimatum:work`): a launch goes to `ultimatum-<kind>-launch:launch`, social to `ultimatum-social-media:social-media`, motion, film or creator to `ultimatum-video:video`. Not installed: short answer plus `/plugin install <plugin>@ultimatum`.
+Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them, don't re-read. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow: website` line (user did not type `/ultimatum:work`): switch to the `website` skill (`${CLAUDE_PLUGIN_ROOT}/skills/website/SKILL.md`).
 
 | Mode | Do |
 |---|---|

@@ -2,6 +2,17 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.5] - 2026-11-26
+
+Ultimatum is now a website builder plus the coding core. Shops, launches, social media and video are on hold; everything removed can be restored from commit `9643d69`.
+
+- Removed the six head plugins (`ultimatum-app-launch`, `-ecommerce-launch`, `-event-launch`, `-website-launch`, `-social-media`, `-video`), the shared `teams/` folder, `tools/sync_plugins.py`, and the social, video, motion, business and launch skills and toolbelt commands.
+- New `ultimatum:website` skill: intake, a one-page brief the owner approves, three design directions, the build, a browser check, the review loop and go-live. Website guides now live in `skills/website/references/`.
+- `ultimatum:taste-critic` and `ultimatum:compliance-reviewer` review websites only; their film checks are gone.
+- Approval gates are brief, mockup, publish and deploy.
+- `ult-start` no longer lists plugins. The marketplace lists one plugin.
+- README, CONTRIBUTING, CI and the image prompts cover the website workflow only.
+
 ## [0.0.4] - 2026-11-26
 
 Design tables: `ult design` searches UI UX Pro Max's design data offline. All seven plugins move to 0.0.4.

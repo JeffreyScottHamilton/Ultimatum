@@ -1,4 +1,4 @@
-"""Approval gates the Manager keeps for the user: brief, mockup, storyboard, video, publish, deploy.
+"""Approval gates the Manager keeps for the user: brief, mockup, publish, deploy.
 
 State lives in .ultimatum/approvals.json next to the shared brief (.ultimatum/brief.md).
 Each approval stores the user's words, the time, and a fingerprint of the "## Build brief"
@@ -21,17 +21,11 @@ from pathlib import Path
 from .common import project_root, state_dir, write_private
 from .website import brief_path
 
-ITEMS = ("brief", "mockup", "storyboard", "papercut", "story", "sourcing", "animatic", "video", "publish", "deploy")
+ITEMS = ("brief", "mockup", "publish", "deploy")
 WHAT = {
-    "brief": "build brief (Launch Manager shows it before Website starts)",
+    "brief": "build brief (shown to the user before the build starts)",
     "mockup": "website mockup (before production code)",
-    "storyboard": "motion storyboard (before production animation)",
-    "papercut": "creator cut paper edit: hook, kept lines and their order (before the cut is rendered)",
-    "story": "brand film story: logline, beats, sub-genre (before any footage is sourced)",
-    "sourcing": "brand film footage plan, spend and consent (before anything is bought, generated or shot)",
-    "animatic": "brand film rough cut or animatic (before paid generation or the final edit)",
-    "video": "finished video (before it is delivered or the style guide is saved)",
-    "publish": "posting or sending the campaign",
+    "publish": "putting the site live (domain, hosting, listings)",
     "deploy": "deploying or releasing",
 }
 BRIEF_HEAD = "## Build brief"
@@ -175,7 +169,7 @@ def cmd_gate(args) -> int:
 
 
 def register(sub):
-    p = sub.add_parser("gate", help="user approvals: brief, mockup, storyboard, video, publish, deploy")
+    p = sub.add_parser("gate", help="user approvals: brief, mockup, publish, deploy")
     p.add_argument("action", choices=["status", "check", "approve", "revise", "done"])
     p.add_argument("rest", nargs="*", help="ITEM then the user's words")
     p.add_argument("--link", help="live link that was checked (publish, deploy)")

@@ -49,13 +49,6 @@ jobs:
         run: claude plugin validate . --strict
       - name: Validate plugin
         run: claude plugin validate plugins/ultimatum --strict
-      - name: Validate head plugins
-        run: |
-          for d in plugins/ultimatum-*/; do
-            claude plugin validate "${d%/}" --strict
-          done
-      - name: Head plugins match teams/ and the core toolbelt
-        run: python3 tools/sync_plugins.py --check
 
   version-bump:
     # Installs only update when the manifest version changes, so a plugin change
@@ -76,19 +69,3 @@ jobs:
           echo "version $old -> $new"
           test "$old" != "$new" || { echo "::error::plugins/ultimatum changed but version was not bumped"; exit 1; }
           grep -qF "## [$new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $new"; exit 1; }
-      - name: Head plugin changes bump their version and the changelog
-        env:
-          BASE: ${{ github.event.pull_request.base.sha }}
-        run: |
-          fail=0
-          for dir in plugins/ultimatum-*; do
-            label="${dir#plugins/ultimatum-}"
-            if git diff --quiet "$BASE" HEAD -- "$dir"; then echo "$label unchanged"; continue; fi
-            new=$(python3 -c "import json;print(json.load(open('$dir/.claude-plugin/plugin.json'))['version'])")
-            if old=$(git show "$BASE:$dir/.claude-plugin/plugin.json" 2>/dev/null | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])' 2>/dev/null); then
-              echo "$label version $old -> $new"
-              test "$old" != "$new" || { echo "::error::$dir changed but version was not bumped"; fail=1; }
-            fi
-            grep -qF -e "## [$label $new]" -e "## [$new]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $label $new"; fail=1; }
-          done
-          exit $fail

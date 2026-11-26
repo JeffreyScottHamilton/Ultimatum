@@ -6,9 +6,8 @@ the prompt; `--scope core` (run by the ultimatum plugin) adds one short line:
 - chat (questions, writing help, small talk): answer in Ultimatum's style, easy
   first, deeper only when asked. ULTIMATUM_STYLE=0 drops this line.
 - work (fix, build, test, review, debug, ship code): start ultimatum:work.
-- website, launch, business, social, motion, film, creator: use the matching Ultimatum plugin
-  if it is installed; if not, a short answer and the one install line.
-Any other scope: nothing (the head plugins have no hook). A prompt that starts with "/"
+- website (build, redesign or fix a site): start ultimatum:website.
+Any other scope: nothing. A prompt that starts with "/"
 is an explicit command and is left alone. ULTIMATUM_AUTO=0 turns it all off. Any
 error lets the prompt through unchanged.
 """
@@ -24,58 +23,15 @@ def _start(skill: str, what: str, tail: str) -> str:
 STYLE = ("Ultimatum style: answer first in 1-3 plain lines, no preamble; go deeper or use "
          "helpers only if the question needs it or the user asks.")
 
-# Non-code jobs and the plugin that makes them: (what, plugin, skill).
-HEADS = {
-    "social": ("social media", "ultimatum-social-media", "social-media"),
-    "motion": ("video", "ultimatum-video", "video"),
-    "film": ("video", "ultimatum-video", "video"),
-    "creator": ("video", "ultimatum-video", "video"),
-}
-LAUNCH_SKILL = "launch"
-
-
-def _head(kind: str, prompt: str) -> str:
-    if kind in HEADS:
-        what, plugin, skill = HEADS[kind]
-    else:
-        from ultlib.teams import kind_plugin, launch_kind
-        what = {"website": "website", "launch": "launch", "business": "business"}[kind]
-        lk = "website" if kind == "website" else launch_kind(prompt)
-        if not lk:
-            return (f"Ultimatum: this is a {what} job, made by an Ultimatum launch plugin "
-                    "(ultimatum-website-launch, -ecommerce-launch, -app-launch or -event-launch). "
-                    "If one fits and its `launch` skill is available, start it with the user's request. "
-                    "If none is installed, give a short useful answer in Ultimatum style, then one line: "
-                    "install the one that fits with `/plugin install ultimatum-<kind>-launch@ultimatum`.")
-        plugin, skill = kind_plugin(lk), LAUNCH_SKILL
-    return (f"Ultimatum: this is a {what} job, made by the {plugin} plugin. If the skill "
-            f"\"{plugin}:{skill}\" is available, start it now with the user's request. If not, "
-            f"give a short useful answer in Ultimatum style, then one line: install it with "
-            f"`/plugin install {plugin}@ultimatum`.")
-
-
-ASKS = ("what", "how", "why", "when", "who", "which", "is ", "are ", "can ", "does ", "do ", "should ")
-EVENT_ASKS = ("fill", "promote", "sell tickets", "launch", "announce", "plan", "market", "advertise", "get people")
-
-
-def _event_request(prompt: str) -> bool:
-    """An event job ("help me fill my workshop") that pick reads as chat; questions stay chat."""
-    from ultlib.teams import launch_kind
-    low = prompt.lower().strip()
-    if low.endswith("?") or low.startswith(ASKS):
-        return False
-    return launch_kind(prompt) == "event" and any(w in low for w in EVENT_ASKS)
-
-
 def note_for(kind: str, prompt: str, env=os.environ) -> str:
     if kind == "work":
         return _start("ultimatum:work", "coding work", " and follow it.")
-    if kind == "chat" and _event_request(prompt):
-        return _head("launch", prompt)
     if kind == "chat":
         off = env.get("ULTIMATUM_STYLE", "1").strip().lower() in ("0", "false", "no", "off")
         return "" if off else STYLE
-    return _head(kind, prompt)
+    if kind == "website":
+        return _start("ultimatum:website", "website work", " and let it run the whole job.")
+    return ""
 
 
 def _scope(argv: list) -> str:

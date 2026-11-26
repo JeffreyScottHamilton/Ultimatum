@@ -33,7 +33,7 @@ class StartCheck(unittest.TestCase):
         version = json.loads((REPO / "plugins/ultimatum/.claude-plugin/plugin.json").read_text())["version"]
         msg = self.start("claude-opus-5-5")
         self.assertIn(f"Ultimatum {version} ready", msg)
-        self.assertIn("plugins: core only", msg)
+        self.assertNotIn("plugins:", msg)
         self.assertIn("context: 200K (model default)", msg)
 
     def test_1m_chat_without_a_cap_is_named_with_the_fix(self):
@@ -45,11 +45,6 @@ class StartCheck(unittest.TestCase):
         self.assertIn("held to 200K", self.start("claude-opus-5-5[1m]", CLAUDE_CODE_AUTO_COMPACT_WINDOW="200000"))
         self.settings(autoCompactWindow=200000)
         self.assertIn("held to 200K", self.start("claude-opus-5-5[1m]"))
-
-    def test_enabled_heads_are_listed(self):
-        self.settings(enabledPlugins={"ultimatum-video@ultimatum": True, "ultimatum-social-media@ultimatum": False,
-                                      "ultimatum-event-launch@ultimatum": True})
-        self.assertIn("plugins: event-launch, video", self.start("claude-opus-5-5"))
 
     def test_off_switch_and_bad_input_never_break_the_session(self):
         self.assertEqual(self.start(ULTIMATUM_START="0"), "")

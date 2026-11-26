@@ -4,97 +4,20 @@
     "name": "Jeffrey Scott Hamilton"
   },
   "metadata": {
-    "description": "Ultimatum for Claude Code. Every plugin stands alone. The core plugin handles software work; Social Media makes posts and video; the Website, E-commerce, App and Event Launch plugins each run a whole launch of that kind with their own business, website, social media and video teams."
+    "description": "Ultimatum for Claude Code: a website builder for small business, local, portfolio and creator sites, plus a coding helper for everyday software work."
   },
   "plugins": [
     {
       "name": "ultimatum",
       "source": "./plugins/ultimatum",
-      "description": "Workflows for Claude Code. A local router reads each request and loads only the guidance it needs for coding, debugging, CI, interface work, security review and releases. Claims are backed by checks run in the session.",
+      "description": "A website builder for Claude Code: a short interview, a one-page brief you approve, three design directions, the build, a browser check, and going live only on your yes. Also handles everyday coding, debugging, review and releases with checks run in the session.",
       "category": "development",
       "tags": [
-        "workflow",
-        "code-review",
-        "debugging",
-        "security",
-        "ui"
-      ]
-    },
-    {
-      "name": "ultimatum-social-media",
-      "source": "./plugins/ultimatum-social-media",
-      "description": "Social Media for Ultimatum. Plans and makes social content, from a single post to a campaign or an ongoing channel: video in several styles, carousels and posts, with hand-off to DaVinci Resolve, Premiere Pro or Final Cut Pro. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
-      "category": "productivity",
-      "tags": [
-        "social-media",
-        "video",
-        "content",
-        "motion-graphics",
-        "video-editing"
-      ]
-    },
-    {
-      "name": "ultimatum-video",
-      "source": "./plugins/ultimatum-video",
-      "description": "Video for Ultimatum. Makes one finished video, from a product ad or UGC-style clip to an explainer, a talking-head short or a brand film, through one fixed pipeline: script, shots, pictures (Higgsfield, motion graphics or your footage), ElevenLabs audio, assembly, review and your yes. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
-      "category": "productivity",
-      "tags": [
-        "video",
-        "ads",
-        "motion-graphics",
-        "voiceover",
-        "brand-film",
-        "creator-cut"
-      ]
-    },
-    {
-      "name": "ultimatum-website-launch",
-      "source": "./plugins/ultimatum-website-launch",
-      "description": "Website Launch for Ultimatum. Plans and runs the launch of a small business, local service, portfolio or creator site: intake, business-type playbooks, page copy, local SEO and a launch checklist. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
-      "category": "productivity",
-      "tags": [
-        "launch",
         "website",
-        "local-seo",
-        "small-business"
-      ]
-    },
-    {
-      "name": "ultimatum-ecommerce-launch",
-      "source": "./plugins/ultimatum-ecommerce-launch",
-      "description": "E-commerce Launch for Ultimatum. Plans and runs an online store launch: platform and theme choice, catalogue and product photos, payments, tax, shipping, policy pages and a first-30-days review. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
-      "category": "productivity",
-      "tags": [
-        "launch",
-        "ecommerce",
-        "online-store",
-        "shopify"
-      ]
-    },
-    {
-      "name": "ultimatum-app-launch",
-      "source": "./plugins/ultimatum-app-launch",
-      "description": "App Launch for Ultimatum. Plans and runs the launch of a web app, mobile app or subscription product: pricing and billing, sign-up and activation, onboarding emails, trust basics and a launch-week plan. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
-      "category": "productivity",
-      "tags": [
-        "launch",
-        "app",
-        "saas",
-        "pricing",
-        "onboarding"
-      ]
-    },
-    {
-      "name": "ultimatum-event-launch",
-      "source": "./plugins/ultimatum-event-launch",
-      "description": "Event Launch for Ultimatum. Plans and runs the promotion of a public event, working back from the date: intake, ticketing and sign-up, a countdown promotion plan, a day-of run sheet and the follow-up afterwards. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
-      "category": "productivity",
-      "tags": [
-        "launch",
-        "event",
-        "tickets",
-        "workshop",
-        "promotion"
+        "web-design",
+        "small-business",
+        "workflow",
+        "code-review"
       ]
     }
   ]
