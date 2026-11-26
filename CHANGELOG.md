@@ -2,6 +2,13 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.6] - 2026-11-26
+
+Website designs: a longer list of AI-design habits to avoid.
+
+- The anti-generic lint in `design-rules.md` is grouped into type, layout, colour and words, and adds: default display serifs, italics in every title, tight letter-spacing everywhere, monospace for prose, ALL CAPS subtitles and eyebrow labels, full stops in titles, bordered boxes and squircles everywhere, decorative pills and tags, dividers everywhere, code-style labels, over-detailed mockups and diagrams, many tints of one colour, gradient backgrounds, dithering and ASCII art, and padded or repeated copy.
+- `ultimatum:taste-critic` checks the full lint and marks each hit as major.
+
 ## [0.0.5] - 2026-11-26
 
 Ultimatum is now a website builder plus the coding core. Shops, launches, social media and video are on hold; everything removed can be restored from commit `9643d69`.

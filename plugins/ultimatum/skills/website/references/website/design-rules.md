@@ -11,17 +11,37 @@ Run this on every direction before the critic, and again on the built site. It l
 
 ## 2. Anti-generic lint
 
-Fail the direction on any of these unless the brand or a reference site truly asks for it (say why in the file's top comment):
+Fail the direction on any of these unless the brand or a reference site truly asks for it (say why in the file's top comment). Most are fine once; the defect is the habit of reaching for them by default.
 
+**Type**
 - one font family for headings and body, at one weight
-- cards nested inside cards, or a grid of identical rounded cards
-- the stock cream background with terracotta or clay accent
-- gradient-blob or aurora heroes; purple-to-blue gradients
+- the fashionable display serif of the moment (e.g. Instrument Serif) picked without a reason from the brand
+- italics used for emphasis in most headings, or a single italic word in every title
+- tight negative letter-spacing on every heading, not only the big display line
+- monospace for text that is not code, numbers or data
+- ALL CAPS subtitles, and a small uppercase "eyebrow" label above every heading
+- a full stop at the end of headlines and section titles
+
+**Layout and decoration**
+- cards nested inside cards, a grid of identical rounded cards, or a bordered box around every block
+- squircle corners on everything; pills and tag chips used as decoration, or a pill badge above the headline
+- a divider line between every section or list item
+- fake 01 / 02 / 03 section numbering; three-step "how it works" boxes
+- code-style labels as decoration (`~/about`, `// services`, `<section>`, breadcrumbs on a one-level site)
+- a mocked-up app screen or diagram with more detail than anyone can read; show the real thing or simplify it
+
+**Colour and effects**
+- the stock cream background with terracotta or clay accent; near-black with one acid accent
+- gradient backgrounds, gradient-blob or aurora heroes; purple-to-blue gradients
+- many tints and opacities of one colour instead of a few chosen colours
+- dithering, halftone grain or ASCII-art images as a style
 - emoji used as icons; an icon tile above every heading
-- the same fade-up on every section; fake 01 / 02 / 03 numbering
-- pill badge above the headline; three-step "how it works" boxes
-- near-black with one acid accent; stock photos of people at laptops
+- the same fade-up on every section
+
+**Words and photos**
+- copy that says the same thing twice, or a paragraph where a sentence would do
 - lorem ipsum, or "Welcome to ..." as the headline
+- stock photos of people at laptops
 
 ## 3. Page kind and effect caps
 

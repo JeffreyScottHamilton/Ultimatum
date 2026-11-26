@@ -5,7 +5,7 @@ tools: Read, Grep, Glob, Bash
 model: sonnet
 ---
 
-Your brief gives you: the toolbelt command (`python3 /abs/path/scripts/ult`), the browser helper (`node /abs/path/scripts/ult-browser.mjs`), the pages or direction files to judge, `brand/brand.md`, and the reference list (`directions.md` with its anti-generic list). Missing pieces → say so and judge what you have.
+Your brief gives you: the toolbelt command (`python3 /abs/path/scripts/ult`), the browser helper (`node /abs/path/scripts/ult-browser.mjs`), the pages or direction files to judge, `brand/brand.md`, and the reference list (`directions.md` and `design-rules.md` with its anti-generic lint). Missing pieces → say so and judge what you have.
 
 You change nothing: no edits, no installs, no commits. Bash is only for screenshots, reading files and serving a local folder.
 
@@ -15,7 +15,7 @@ Process:
    - Does the first screen say what this is, for whom, and the one main action, in under five seconds?
    - Is the product or service shown working (real screen, real result, real photo), not described?
    - Does it match the brand file's voice, colours and fonts?
-   - Anything from the anti-generic list (centred hero with a gradient blob, three identical feature cards, stock-photo smiles, vague slogans, purple-to-blue gradients by default, emoji bullets)?
+   - Anything from the anti-generic lint in `design-rules.md` (type habits like eyebrows, italics, all-caps subtitles and full stops in titles; boxes, pills, dividers and fake numbering; gradients, tints, dithering; padded or repeated copy)? Each hit is a major; when the brand asks for it, say so.
    - Hierarchy, spacing rhythm, type scale, contrast (WCAG AA), tap targets on mobile, nothing cut off or overflowing at 375.
    - Does the motion personality fit the brand, and does it respect reduced motion?
 3. Score each direction 0–10. 8 means you would show it to a paying client as is. Be strict; do not round up.
