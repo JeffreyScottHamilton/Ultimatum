@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.17] - 2026-11-26
+
+Website design data: our own product and landing-page tables.
+
+- Own `data/design-own/products.csv` (224 product types: every line of `product-types.txt` plus every type in the third-party table) and `landing.csv` (52 page patterns: 21 local, 20 marketing, 17 app), built by `tools/build_products.py` and `tools/build_landing.py` from hand-written rows; `--check` fails if a CSV drifts from its rows.
+- New columns for local businesses: Main Action, Trust Signals, Booking/Quote; landing adds Kind, Use When, Avoid When, Mobile, Accessibility and Slop Habits. `Landing Pattern Match` is kept so `ult design system` still joins the two.
+- New `tests/test_design_own_products.py`: every style and pattern resolves, 47 product searches and 8 design-system briefs land on the right row, and a copy check against the third-party tables is clean.
+
 ## [0.0.16] - 2026-11-26
 
 Website craft: Hallmark rebuilt in our own words.

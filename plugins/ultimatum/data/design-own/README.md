@@ -55,3 +55,31 @@ Built by `tools/build_typography.py`. The pairings, moods, uses and notes are ou
 | Notes | how to use the pair well, and where it breaks |
 
 Rules the tests hold it to: no generic face (Inter, Roboto, Arial, Open Sans) as the display face, no monospace body text, and no body face in more than four pairings. Fonts are linked, never bundled.
+
+## products.csv
+Built by `tools/build_products.py` from `tools/product_rows/*.json` (a family's shared answers plus one row per type). The build fails unless every type in `product-types.txt` and in their table has a row, every style exists in `styles.csv` and every landing pattern in `landing.csv`.
+
+| Column | Meaning |
+|---|---|
+| Product Type, Keywords | the business or product and the words people search with |
+| Main Action | the one thing a visitor should do (call, book, quote, sign up, buy) |
+| Primary Style Recommendation | one or two style names joined by ` + `, all in `styles.csv` |
+| Landing Page Pattern, Landing Pattern Match | the page pattern; the exact `landing.csv` Pattern Name that `ult design system` joins on |
+| Secondary Styles | other fitting styles, comma separated |
+| Trust Signals | what proves the business is real |
+| Dashboard Style (if applicable) | the dashboard style, or `none needed` |
+| Color Palette Focus, Booking/Quote | colour direction; how bookings or quotes arrive |
+| Key Considerations | what to watch for |
+
+## landing.csv
+Built by `tools/build_landing.py` from `tools/landing_rows/*.json`.
+
+| Column | Meaning |
+|---|---|
+| Pattern Name, Aliases, Keywords | name and search words |
+| Kind | Local, App or Marketing |
+| Section Order, Primary CTA Placement | sections joined by ` > `; where the main button goes |
+| Use When, Avoid When | fit and misfit |
+| Mobile, Accessibility | phone behaviour; WCAG 2.2 criteria |
+| Color Strategy, Recommended Effects | colour and motion limits |
+| Conversion Optimization, Slop Habits | what lifts results; generic moves to avoid |
