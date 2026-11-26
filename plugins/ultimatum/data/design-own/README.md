@@ -96,3 +96,15 @@ Built by `tools/build_tables.py` from the rows in `tools/table_rows/<table>/*.js
 | motion | 26 (23 + 3 personalities) | Reduced Motion (required on every row) | personalities: Snappy and precise, Soft and floaty, Cinematic and bold |
 
 The build rejects empty cells, non-https or off-list doc hosts, unbalanced brackets, identical good/bad examples, chart libraries without a licence, and motion rows without a number in Duration.
+
+## icons.csv
+
+Built by `tools/build_icons.py` from our rows in `tools/icon_rows/*.json` (what each icon is for, search words, how to label it). Facts about the icons come from the projects' own metadata, cached in `icons-meta.json` (`--fetch` refreshes it from GitHub raw, `git ls-remote` and the npm registry; the build and tests never use the network): Lucide (ISC, `icons/<name>.json`, package `lucide-react`) and Phosphor (MIT, `src/icons.ts` in phosphor-icons/core, package `@phosphor-icons/react`). The cache holds names, tags, categories, licence, repo commit and npm version only, no artwork. The build fails if an icon is not in the cache for its library, or if its React export name was not found in the published npm package at fetch time (Lucide: PascalCase of the file name, checked against the `.d.ts`; Phosphor: the catalog's `pascal_name`, checked against `dist/csr/`).
+
+| Column | Meaning |
+|---|---|
+| Category, Icon Name, Keywords | the UI job, the icon's file name, search words |
+| Library, Style, Licence | Lucide or Phosphor; stroke or weight; ISC or MIT |
+| Import Code | `import { Name } from 'lucide-react'` or `'@phosphor-icons/react'` |
+| Best For, Usage | the use, and a ready JSX line with `aria-hidden="true"` plus advice |
+| Accessible Name | how to label it when it stands alone, or why it is decorative |

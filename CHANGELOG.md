@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.19] - 2026-11-26
+
+Website design data: our own icon table.
+
+- Own `icons.csv` (195 icons: 137 Lucide, 58 Phosphor), built by `tools/build_icons.py`, with local-business icons (phone, map pin, calendar, reviews, trades, health, food), Style, Licence and Accessible Name columns.
+- Icon facts come from the projects' own metadata, cached in `icons-meta.json` (names, tags, licence, commit and npm version; no artwork): Lucide (ISC) and Phosphor (MIT). The build fails if an icon's React export was not found in the published package.
+- New `tests/test_design_own_icons.py`, including 26 real `ult design search --in icon` requests.
+
 ## [0.0.18] - 2026-11-26
 
 Website design data: our own app-interface, React performance, chart and motion tables.
