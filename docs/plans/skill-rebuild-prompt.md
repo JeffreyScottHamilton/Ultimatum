@@ -1,6 +1,6 @@
 # Hand-off prompt: rebuild the website skills in Ultimatum's own words
 
-Paste everything below the line into a fresh agent session that has this repository checked out. One skill per session works best; tell it which one at the end.
+Paste everything below the line into a fresh agent session that has this repository checked out. One skill per session. You can name it in the last line, or leave it blank and the agent takes the next one not yet started.
 
 ---
 
@@ -80,4 +80,4 @@ Not in this list:
 - UI UX Pro Max: the maintainer rebuilds it separately, and its slides part is dropped.
 - Remotion: it has no licence, so skip it.
 
-**Your skill for this session:** <write the name here>
+**Your skill for this session:** if a name is written here, use it: ____. If not, don't ask: run `git ls-remote origin 'refs/heads/claude/rebuild-*'` and take the first skill in the table above that has no `claude/rebuild-<slug>` branch yet. Say which one you picked in your first line.
