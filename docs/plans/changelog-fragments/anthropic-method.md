@@ -1,0 +1,5 @@
+- Added Anthropic-method craft references: 7 short files under `skills/work/references/craft/anthropic-method/`, indexed, each with a "Read when" opener.
+- Covers skill frontmatter limits and layout, eval iteration folders with baselines, grading records and reviewer roles, trigger tuning with a held-out split, MCP tool design (names, hints, results, two error channels, transport), MCP eval question sets, web app test recipes, and a design brief pass that points to the website craft.
+- Adds what the source lacked: hint annotations are not a security control, HTTP transport checks from the security overlay, untrusted text in skills you update, and asking before any paid eval run.
+- Adds six stdlib scripts in `data/craft/anthropic-method/`: `skill_lint.py`, `bench_summary.py`, `trigger_split.py`, `mcp_eval_check.py`, `mcp_smoke.py` and `with_ports.py`. Tests: `test_craft_anthropic_method.py`.
+- Office documents, brand guidelines, fonts, the eval viewer, packaging, model-driven loops and SDK listings are listed in `later.md`, not shipped.
