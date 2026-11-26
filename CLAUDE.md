@@ -5,7 +5,7 @@
 - Validation: `claude plugin validate . --strict` and `claude plugin validate plugins/ultimatum --strict`
 - The toolbelt (`scripts/ult`, `scripts/ultlib/`) is Python standard library only, with no network access.
 - Any change to the plugin bumps `version` in `plugins/ultimatum/.claude-plugin/plugin.json` and adds a `CHANGELOG.md` entry, otherwise installs don't update.
-- Original wording and code only; never copy upstream text (`research/REVISIONS.md`).
+- Original wording and code only; never copy upstream text (`research/REVISIONS.md`). One exception, approved by the user: `plugins/ultimatum/data/design/` ships UI UX Pro Max's MIT data with its LICENSE and `NOTICE.md`; keep both with it.
 - Claim only what was run. Live evals (`evals/live/run_live.py`) cost money; ask before running them.
 
 ## Learned

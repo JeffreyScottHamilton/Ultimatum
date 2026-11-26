@@ -91,6 +91,7 @@ def pairs() -> list[tuple[Path, Path]]:
         out += [(p, root / "scripts" / "ultlib" / p.name) for p in sorted((CORE / "scripts" / "ultlib").glob("*.py"))]
         out += [(CORE / rel, root / "shared" / "core" / rel) for rel in CORE_DOCS]
         out += [(TEAMS / "agents" / f"{a}.md", root / "agents" / f"{a}.md") for a in AGENTS]
+        out += _tree(CORE / "data" / "design", root / "data" / "design")  # `ult design`, with its LICENSE
         for team in teams:
             out += _tree(TEAMS / team, root / "skills" / head / "references" / team)
     return out
@@ -100,7 +101,7 @@ def _managed_dirs() -> list[Path]:
     """Folders whose every file is a copy, so anything else in them is stale."""
     dirs = []
     for root, head, teams in heads():
-        dirs += [root / "scripts" / "ultlib", root / "agents", root / "shared" / "core"]
+        dirs += [root / "scripts" / "ultlib", root / "agents", root / "shared" / "core", root / "data" / "design"]
         dirs += [root / "skills" / head / "references" / t for t in teams]
     return dirs
 

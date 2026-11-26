@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.4] - 2026-11-26
+
+Design tables: `ult design` searches UI UX Pro Max's design data offline. All seven plugins move to 0.0.4.
+
+- New `data/design/`: 12 tables (products, styles, palettes, font pairs, landing patterns, UI reasoning, UX guidelines, app interface, React performance, charts, motion, icons) and 12 stack guides, from nextlevelbuilder/ui-ux-pro-max-skill at `3442615`, shipped with its MIT licence. `NOTICE.md` lists the changes: deprecated styles and bookkeeping columns dropped, each product linked to a landing pattern that exists, cells trimmed. `tools/import_design_data.py` repeats the import.
+- New `ult design search "<words>" --in DOMAIN` (BM25 ranking) and `ult design system "<brief>" [--stack NAME]`: a starting style, palette, fonts, page pattern, things to avoid, and the most severe UX and stack checks for the brief. Everyday words ("coffee", "gym", "nonprofit", "plumber") map to the table's business types; niche checks (maps, AI, spatial, security) only show when the brief names them. Search code is original.
+- The design skill, website directions and shared design-skills guide use `ult design system` when there is no brand yet.
+- `ult website`/`ult motion` now recognise installed `ui-ux-pro-max`, `hallmark`, `anatomy` and `animejs` skills.
+- Head plugins get a copy of `data/design/` through `tools/sync_plugins.py`.
+
 ## [0.0.3] - 2026-11-26
 
 Creator Cut: a third video style for short-form talking-head content. All seven plugins move to 0.0.3.

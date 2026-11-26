@@ -10,7 +10,8 @@ import os
 from pathlib import Path
 
 # Skill folder name -> kind. Exact names first; then the substring rules below.
-KNOWN = {"frontend-design": "ui", "design-handoff": "ui", "remotion-best-practices": "motion"}
+KNOWN = {"frontend-design": "ui", "design-handoff": "ui", "ui-ux-pro-max": "ui", "hallmark": "ui",
+         "remotion-best-practices": "motion", "anatomy": "motion", "animejs": "motion", "anime-js": "motion"}
 UI_WORDS = ("frontend-design", "ui-design", "web-design", "webdesign", "design-system")
 MOTION_WORDS = ("remotion", "motion", "hyperframes", "animation")
 

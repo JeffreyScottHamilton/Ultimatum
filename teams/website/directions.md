@@ -6,7 +6,7 @@ Three HTML pages that a person could tell apart from across the room. Same conte
 
 First classify the page kind and note its effect cap (`design-rules.md`: a law firm gets fewer effects than a launch page). Deal each direction a palette, type pair and layout before any code.
 
-Pick each direction's palette, type pair and hero layout on purpose so no two share more than one of the three. Start from `brand/brand.md` when it exists (all three keep its colours and fonts but differ in layout, scale and motion). Check the user's reference sites: each direction should be close to at least one of them in spirit, never a copy of its layout, words or images.
+Pick each direction's palette, type pair and hero layout on purpose so no two share more than one of the three. No brand → run `ult design system "<brief>"` once and use it for one direction and as the checklist for all three; the other two go elsewhere on purpose. Start from `brand/brand.md` when it exists (all three keep its colours and fonts but differ in layout, scale and motion). Check the user's reference sites: each direction should be close to at least one of them in spirit, never a copy of its layout, words or images.
 
 Each direction gets one motion personality and keeps it on every element:
 
