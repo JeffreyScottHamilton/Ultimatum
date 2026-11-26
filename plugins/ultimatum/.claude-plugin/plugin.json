@@ -1,6 +1,6 @@
 {
   "name": "ultimatum",
-  "version": "1.0.3",
+  "version": "0.0.1",
   "description": "Ultimatum's default way of working in Claude Code: short plain answers first, deeper work only when needed, helpers only when they save time. A local router handles coding, debugging, CI, interface work, security review and releases with checks run in the session, and points website, store, app, event, social and video jobs to the matching Ultimatum plugin.",
   "author": {
     "name": "Jeffrey Scott Hamilton"

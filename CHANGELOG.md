@@ -2,9 +2,13 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
-## [1.0.3] - 2026-11-26
+## [0.0.1] - 2026-11-26
 
-Music and voice end as real, licensed, mixed files instead of prompts. All seven plugins move to 1.0.3.
+Version numbers restart here. Every plugin carries 0.0.1, and later releases go 0.0.2, 0.0.3 and so on. The 1.0.0 to 1.0.3 builds below were never released; everything in them ships in 0.0.1.
+
+### Audio files (was 1.0.3)
+
+Music and voice end as real, licensed, mixed files instead of prompts.
 
 - New `ult audio` commands (local ffmpeg only):
   - `mix VOICE MUSIC --out FILE`: ducks the music under the voice with a sidechain compressor, normalises in two passes to -14 LUFS with true peak at most -1 dBTP, can put the mix on a video, and prints the measured numbers (exit 1 when out of range).
@@ -12,9 +16,9 @@ Music and voice end as real, licensed, mixed files instead of prompts. All seven
 - Audio guide order: ElevenLabs (with a yes before spending credits), then own or licensed tracks, then Suno only by hand when asked.
 - Shared defaults gain rule 7, "Real files first": deliver the made and checked file, not a prompt, unless no local tool or authorized connector can make it.
 
-## [1.0.2] - 2026-11-26
+### Finished social files (was 1.0.2)
 
-Social Media now makes finished, checked files instead of only scripts and prompts. All seven plugins move to 1.0.2.
+Social Media now makes finished, checked files instead of only scripts and prompts.
 
 - New `ult posts` commands (local only; nothing is posted or scheduled):
   - `slides`: carousel or story slides as HTML at the platform's exact size inside its safe zone, rendered to PNG with the local Playwright (`--render`), plus `alt-text.txt`.
@@ -25,9 +29,9 @@ Social Media now makes finished, checked files instead of only scripts and promp
   - `variant add|result|next`: hook variants and their real numbers; ranks hook types by signups per 1,000 views and never fills in missing numbers.
 - Social media guides (`guide.md`, `loop.md`, `formats.md`, carousel style) and the Social Media skill point to these commands.
 
-## [1.0.1] - 2026-11-26
+### Store building (was 1.0.1)
 
-E-commerce Launch now builds and checks a real store instead of only describing one. All seven plugins move to 1.0.1 because each ships the same `ult` toolbelt.
+E-commerce Launch now builds and checks a real store instead of only describing one. Every plugin ships the same `ult` toolbelt, so all seven carry it.
 
 - New `ult shop` commands (standard library, local files only):
   - `catalog`: reads a product sheet or an Etsy export, lists blockers (missing price, repeated SKU, cost at or above price) and fixes (no weight, image, alt text), and writes a Shopify or WooCommerce import CSV with every product as a draft.
@@ -38,9 +42,9 @@ E-commerce Launch now builds and checks a real store instead of only describing 
   - `test-order`: writes a Playwright script that walks home to checkout at phone size with a screenshot per step, typing a card only on a Stripe test-mode checkout.
 - E-commerce Launch: new `store-build.md` (Shopify, WooCommerce and Stripe build paths, and the test order); the skill, catalogue, checkout and launch checklist use the new commands; a "real files first" rule.
 
-## [1.0.0] - 2026-11-25
+### The plugin suite (was 1.0.0)
 
-Ultimatum 1.0.0 is a suite of plugins released together from one marketplace. Every plugin carries version 1.0.0, and each one stands alone: none depends on another.
+Ultimatum is a suite of plugins released together from one marketplace. Each one stands alone: none depends on another.
 
 | Plugin | What it does |
 |---|---|
@@ -55,7 +59,7 @@ Ultimatum 1.0.0 is a suite of plugins released together from one marketplace. Ev
 Each launch plugin is one head skill, `launch`, that runs its own Business, Website, Social Media, Brand Film and Motion Graphics teams from guides shipped inside it, with its own `taste-critic` and `compliance-reviewer` agents and its own copy of the `ult` toolbelt. `ultimatum-social-media` is a head of its own, `social-media`, with the Social Media, Motion Graphics, Brand Film and Editors guides. Heads register no hooks.
 
 
-### ultimatum
+#### ultimatum
 
 - New `ult-start` SessionStart hook: when a chat starts, one line with the version, a self-check of the work skill and toolbelt, the Ultimatum plugins that are on, and whether the chat is held to 200K tokens. `ult context --cap 200000` sets that cap (`autoCompactWindow` in your user settings) from the next chat. `ULTIMATUM_START=0` turns the line off.
 - The default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Coding goes to `/ultimatum:work`.
@@ -71,7 +75,7 @@ Each launch plugin is one head skill, `launch`, that runs its own Business, Webs
 - TikTok, Instagram Reels and YouTube Shorts requests route to social media; plain questions such as "What is TikTok?" stay in chat.
 - The toolbelt finds team guides inside whichever head runs it (`teams/<team>/...` resolves to `skills/<head>/references/<team>/...`).
 
-### Team guides (`teams/`, shipped inside each head)
+#### Team guides (`teams/`, shipped inside each head)
 
 - Business: positioning before visuals, kept in one `brand/brand.md`, with brief, interview and numbers guides.
 - Website: three HTML directions with distinct motion, screenshotted at 375, 768 and 1440 px and scored by the taste critic (8/10 within 3 rounds), plus design rules, a planner and a craft guide (commit to one tone, display and body type pair, colour variables with one accent, deliberate grid breaks, surface texture, one designed motion moment). Small fixes skip the mockup but keep the browser check.
@@ -85,37 +89,37 @@ Each launch plugin is one head skill, `launch`, that runs its own Business, Webs
 - Shared licence notes and the two read-only reviewer agents.
 - `tools/sync_plugins.py` copies the guides, agents and toolbelt into every head; `--check` runs in CI and fails on drift. Edit `teams/` and core, never the copies.
 
-### ultimatum-website-launch
+#### ultimatum-website-launch
 
 - Launch manager for small business, local service, portfolio and creator sites.
 - References: intake, route (site size, host, domain), pages and local SEO, playbooks for restaurants, salons, clinics, trades, consultants, portfolios and studios, a copy guide (headlines, buttons, service and about pages, reviews, meta), and a launch checklist with 30-day numbers.
 
-### ultimatum-ecommerce-launch
+#### ultimatum-ecommerce-launch
 
 - Launch manager for online stores.
 - References: store intake, platform and theme choice, catalogue (with a CSV example) and product photos, checkout and operations (payment tests, tax, shipping rates, theme licences), policy pages, a launch week day by day with a real test order, a first-30-days review, and common beginner mistakes.
 
-### ultimatum-app-launch
+#### ultimatum-app-launch
 
 - Launch manager for web apps, mobile apps, B2B tools, APIs and subscriptions.
 - References: product intake, waitlist, beta and public paths, pricing and billing (with a billing test script and pricing page examples), sign-up and activation, onboarding emails, a launch-week plan, trust basics, 30-day metrics, and common beginner mistakes.
 
-### ultimatum-event-launch
+#### ultimatum-event-launch
 
 - Launch manager for public events, working back from the date.
 - References: event intake, route, ticketing and sign-up, a countdown promotion plan, a day-of run sheet, follow-up afterwards and a launch checklist.
 
-### ultimatum-ecommerce-launch (video)
+#### ultimatum-ecommerce-launch (video)
 
 - Higgsfield through its MCP is the default for product and social video, with the credit-check loop in `video/higgsfield.md`.
 
-### ultimatum-social-media
+#### ultimatum-social-media
 
 - Social media head for single posts, campaigns and ongoing channels.
 - Picks a video style per piece, plans carousels and posts, and hands edits to the user's editor. Nothing is posted without approval.
 - Every video now follows the shared video pipeline in `video/guide.md`.
 
-### ultimatum-video
+#### ultimatum-video
 
 - New head for making one finished video: product ads, UGC-style clips, explainers, feature demos and brand films (`/ultimatum-video:video`).
 - One fixed pipeline: script, shots (storyboard approval), pictures, audio, assembly, review with both reviewer agents, then the user's yes.
@@ -198,9 +202,9 @@ The core-only build of `ultimatum` that came before the suite. Everything below 
 #### Compatibility
 - Every 0.4.x command, hook, agent and reference path still works. `ult update migrate` is a no-op on existing `.ultimatum/` state apart from creating `knowledge.md` and `proposals/`.
 
-## Preview releases (0.x)
+## Preview releases (before the reset)
 
-These came before 1.0 and are kept for reference.
+These came before the version reset and are kept for reference; their numbers are older than 0.0.1.
 
 ### [0.4.1] - 2026-11-23
 

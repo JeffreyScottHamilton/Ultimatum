@@ -7,7 +7,7 @@
 Plain chat in. The right workflow out, with a checker on every step and nothing published, posted, deployed or paid for until you say yes.
 
 [![CI](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-1.0.0-111111)
+![Version](https://img.shields.io/badge/version-0.0.1-111111)
 ![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-FF5A1F)
 [![License: MIT](https://img.shields.io/badge/license-MIT-111111)](LICENSE)
 

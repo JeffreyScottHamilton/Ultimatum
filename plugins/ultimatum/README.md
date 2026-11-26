@@ -75,7 +75,7 @@ Claude Code compacts automatically; you only set where. On a 1M-token model the 
 - **One run:** `claude --autocompact 200000`.
 - **Cloud sessions (claude.ai/code):** add the environment variable `CLAUDE_CODE_AUTO_COMPACT_WINDOW=200000` in the environment's settings, or commit the project `.claude/settings.json` above.
 
-Measured token use, so far: in the live A/B run (`evals/live/results/final`, 10 test tasks, one run each, made with a version before 0.3.0), Ultimatum cost 1.2× to 4.3× more per task than plain Claude Code and passed 9 of 10 tasks against 5 of 10. 1.0 has not been measured live yet. What has been measured offline is in `research/ultimatum-2/OFFLINE-EVALS.md`. Track your own use with `ult budget` and `ult usage report`.
+Measured token use, so far: in the live A/B run (`evals/live/results/final`, 10 test tasks, one run each, made with a version before 0.3.0), Ultimatum cost 1.2× to 4.3× more per task than plain Claude Code and passed 9 of 10 tasks against 5 of 10. 0.0.1 has not been measured live yet. What has been measured offline is in `research/ultimatum-2/OFFLINE-EVALS.md`. Track your own use with `ult budget` and `ult usage report`.
 
 ## It learns, locally
 
@@ -136,7 +136,7 @@ testing, shipping, or explaining code), invoke the `ultimatum:work` skill first 
 Skip it only for questions unrelated to a codebase.
 ```
 
-This applies Ultimatum, and its extra cost (1.2× to 4.3× per task in the last live A/B run, before 0.4.0; 1.0 not yet measured live), to every coding task. Leave it out if you'd rather call `/ultimatum:work` only when you want it.
+This applies Ultimatum, and its extra cost (1.2× to 4.3× per task in the last live A/B run, before 0.4.0; 0.0.1 not yet measured live), to every coding task. Leave it out if you'd rather call `/ultimatum:work` only when you want it.
 
 Requirements: Claude Code with plugin support and Python 3.9+ (unit tests pass on 3.9, 3.11, 3.12 and 3.13). Browser checks need Node and Playwright.
 
