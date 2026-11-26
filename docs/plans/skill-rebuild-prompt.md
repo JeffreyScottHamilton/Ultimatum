@@ -26,7 +26,7 @@ Only shrink a point when it is truly a duplicate. Merge it with the existing poi
 5. **No credentials** anywhere: no keys, tokens or emails in files, prompts or logs.
 6. **The toolbelt stays stdlib-only Python with no network access** (`plugins/ultimatum/scripts/ult`, `scripts/ultlib/`). Any new script follows that.
 7. **Claim only what you ran.** Quote the exact commands and exit codes. Never invent counts, benchmarks or results. Don't run paid live evals (`evals/live/`).
-8. **Git:** work on your own branch, `claude/rebuild-<skill>`. Never push to `main`, never open or merge a PR, never publish a release.
+8. **Git:** work on your own branch, `claude/rebuild-<skill>`, started from `origin/claude/affectionate-turing-qr3gau` (it has `tools/copy_check.py` and the latest plugin). Never push to `main`, never open or merge a PR, never publish a release.
 9. **Don't touch shared files.** Leave these alone: `plugin.json` version, `CHANGELOG.md`, `README.md`, `skills/website/SKILL.md`, `design-rules.md`, `agents/*.md`, `data/design/`, `data/upstreams.json`, `CREDITS.md`. Put your edits to them in your report as proposed diffs. The maintainer merges and does the version bump.
 
 ## Where your work goes
@@ -39,6 +39,7 @@ Only shrink a point when it is truly a duplicate. Merge it with the existing poi
 
 ## Steps
 
+0. **Claim the skill.** Create your branch, add `docs/plans/coverage/<skill-slug>.md` with one line ("in progress"), commit and push at once, so a parallel session sees the branch and picks another skill.
 1. **Inventory.** List every file in the source at the pinned commit, with its size. For each, write down every distinct rule, technique, pattern, code example, table and link it contains, in your own short words. Save this as `docs/plans/coverage/<skill-slug>.md`.
 2. **Coverage map.** In the same file, add a table with these columns: source item → our file and section → status. Status is one of: covered, expanded, merged with X, or not website-related (moved to "later"). Every source item gets a row. Items for other areas (slides, mobile apps, video) aren't dropped; they're listed under "later".
 3. **Check against what exists.** Read `skills/website/references/website/` (craft.md, design-rules.md, directions.md, feel-bar.md, guide.md, libraries.md, planner.md), `references/copy.md`, `references/pages-and-seo.md` and `agents/taste-critic.md`. Don't duplicate them. Where the source goes deeper, write the deeper version in your folder and propose a one-line pointer from the existing file.
@@ -71,7 +72,7 @@ Only shrink a point when it is truly a duplicate. Merge it with the existing poi
 | Hallmark | `nutlope/hallmark`, folder `skills/hallmark` (includes 21+ page macrostructures) | `04977e1` | MIT | `hallmark` |
 | Anatomy | `wheresryan22/anatomy` (craft, kit, 3d, webgl, print, walkthrough, publish) | `1482e84` | MIT | `anatomy` |
 | Emil's animation skills | `emilkowalski/skills` | `715c180` | MIT | `emil-motion` |
-| anime.js | `BowTiedSwan/animejs-skills` (no LICENSE file, MIT only stated in README: confirm with the maintainer before writing) | `cf2bed8` | see note | `animejs` |
+| anime.js | `BowTiedSwan/animejs-skills` (no LICENSE file, MIT only stated in README) | `cf2bed8` | see note | `animejs` |
 | gstack design review and QA | `garrytan/gstack`, only its design-review and QA parts | `7dace1f` | MIT | `design-review-qa` |
 
 Clone with `git clone https://github.com/<repo> /tmp/src/<slug> && git -C /tmp/src/<slug> checkout <commit>`. If the commit no longer exists, stop and report; don't switch to a different one.
@@ -80,4 +81,6 @@ Not in this list:
 - UI UX Pro Max: the maintainer rebuilds it separately, and its slides part is dropped.
 - Remotion: it has no licence, so skip it.
 
-**Your skill for this session:** if a name is written here, use it: ____. If not, don't ask: run `git ls-remote origin 'refs/heads/claude/rebuild-*'` and take the first skill in the table above that has no `claude/rebuild-<slug>` branch yet. Say which one you picked in your first line.
+**Your skill for this session:** if a name is written here, use it: ____. If not, don't ask: run `git ls-remote origin 'refs/heads/claude/rebuild-*'` and take the first skill in the table above that has no `claude/rebuild-<slug>` branch yet. Skip anime.js unless the maintainer has written "anime.js licence confirmed" in `docs/plans/skill-rebuild-prompt.md`; if it is the only one left, stop and report. Say which one you picked in your first line.
+
+**Continuing a skill:** if you are told to continue one whose branch already exists, check it out, read its coverage file and carry on from the first item not marked covered.
