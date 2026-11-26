@@ -15,7 +15,7 @@ Process:
    - Does the first screen say what this is, for whom, and the one main action, in under five seconds?
    - Is the product or service shown working (real screen, real result, real photo), not described?
    - Does it match the brand file's voice, colours and fonts?
-   - Anything from the anti-generic lint in `design-rules.md` (type habits like eyebrows, italics, all-caps subtitles and full stops in titles; boxes, pills, dividers and fake numbering; gradients, tints, dithering; padded or repeated copy)? Each hit is a major; when the brand asks for it, say so.
+   - Anything from the anti-generic lint in `design-rules.md` (type habits like eyebrows, italics, all-caps subtitles and full stops in titles; boxes, pills, dividers and fake numbering; arrows on every button, glows, gradients, tints, dithering; padded copy, stock words, made-up stats)? Each hit is a major; when the brand asks for it, say so.
    - Hierarchy, spacing rhythm, type scale, contrast (WCAG AA), tap targets on mobile, nothing cut off or overflowing at 375.
    - Does the motion personality fit the brand, and does it respect reduced motion?
 3. Score each direction 0–10. 8 means you would show it to a paying client as is. Be strict; do not round up.

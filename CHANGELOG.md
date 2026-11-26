@@ -2,6 +2,13 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.7] - 2026-11-26
+
+Website designs: more AI-design habits to avoid.
+
+- The anti-generic lint adds: arrows on every button, middle dots between words, cream backgrounds by default, sparkle icons, pulsing green "live" dots, blurry glows behind the hero, coloured left borders, three icon cards in a row, sections fading in on scroll, clipped two-word sentences, stock words ("quiet", "real" and similar) and stats nobody can back up.
+- `copy.md`: "How it works" is the real steps as a short list, not three matching boxes.
+
 ## [0.0.6] - 2026-11-26
 
 Website designs: a longer list of AI-design habits to avoid.

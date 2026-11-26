@@ -21,25 +21,32 @@ Fail the direction on any of these unless the brand or a reference site truly as
 - monospace for text that is not code, numbers or data
 - ALL CAPS subtitles, and a small uppercase "eyebrow" label above every heading
 - a full stop at the end of headlines and section titles
+- little middle dots (·) strung between words or links
 
 **Layout and decoration**
 - cards nested inside cards, a grid of identical rounded cards, or a bordered box around every block
 - squircle corners on everything; pills and tag chips used as decoration, or a pill badge above the headline
+- three icon cards in a row; a coloured left border on quotes, notes or cards
+- an arrow (→) on every button and link, not only the one that moves you on
 - a divider line between every section or list item
 - fake 01 / 02 / 03 section numbering; three-step "how it works" boxes
 - code-style labels as decoration (`~/about`, `// services`, `<section>`, breadcrumbs on a one-level site)
 - a mocked-up app screen or diagram with more detail than anyone can read; show the real thing or simplify it
 
 **Colour and effects**
-- the stock cream background with terracotta or clay accent; near-black with one acid accent
-- gradient backgrounds, gradient-blob or aurora heroes; purple-to-blue gradients
+- a cream or off-white background by default (with or without a terracotta or clay accent); near-black with one acid accent
+- gradient backgrounds, gradient-blob or aurora heroes, a blurry glow behind the hero; purple-to-blue gradients
 - many tints and opacities of one colour instead of a few chosen colours
 - dithering, halftone grain or ASCII-art images as a style
-- emoji used as icons; an icon tile above every heading
-- the same fade-up on every section
+- emoji or sparkle (✦) icons; an icon tile above every heading
+- a pulsing green "live" dot when nothing is live
+- sections that fade or slide in on scroll, the same way every time
 
 **Words and photos**
 - copy that says the same thing twice, or a paragraph where a sentence would do
+- clipped two-word sentences used for rhythm ("Fast. Simple. Yours.")
+- the stock words "quiet", "real", "crafted", "seamless", "elevate" where a plain, specific word fits
+- numbers nobody can back up: every stat, rating and count comes from the owner and is checked
 - lorem ipsum, or "Welcome to ..." as the headline
 - stock photos of people at laptops
 

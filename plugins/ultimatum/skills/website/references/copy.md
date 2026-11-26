@@ -40,7 +40,7 @@ Use the action and the object, the same words everywhere.
 1. **Heading:** the service in the customer's words, plus the place if local.
 2. **Who it is for:** one or two lines naming the situation.
 3. **What is included:** a short list.
-4. **How it works:** three or four numbered steps, from first contact to done.
+4. **How it works:** the real steps from first contact to done, as a short ordered list (not three matching boxes).
 5. **Price:** a price, a "from" price or "free quote", as the owner chooses.
 6. **Proof:** one review or one job photo about this service.
 7. **Questions:** three to five real ones from customers, with short answers.
