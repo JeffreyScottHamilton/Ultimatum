@@ -36,7 +36,7 @@ Target: WCAG 2.2 level AA. The numbers below are the criteria's own thresholds; 
 
 ## Content that moves, flashes or appears
 
-- Anything that moves on its own for more than 5 seconds (carousels, marquees, looping video, animated backgrounds) has a visible pause control (2.2.2 Pause, Stop, Hide). Reduced-motion alone does not satisfy this.
+- Any automatic movement lasting over 5 seconds (carousels, marquees, looping video, animated backgrounds) has a visible pause control (2.2.2 Pause, Stop, Hide). Reduced-motion alone does not satisfy this.
 - Nothing flashes more than three times a second (2.3.1).
 - Motion triggered by scrolling or hovering can be switched off (2.3.3, AAA, but we treat it as required): honour `prefers-reduced-motion` (see `motion.md`).
 - Tooltips and popovers that appear on hover or focus can be dismissed with Escape, stay while the pointer moves onto them, and stay until dismissed (1.4.13).
