@@ -16,18 +16,19 @@ Read when the user asks to lock the system ("give me a design.md", "make this po
 
 ## System
 - Genre: <editorial | modern-minimal | atmospheric | playful>
-- Shape of the first page: <named shape or app screen>
-- Theme: <catalog name, or custom (vibe in 4-8 words)>
-- Axes: paper band, display class, accent band; posture: <posture>
+- First-page shape: <named shape, or the app's first screen>
+- Theme: <name from the catalog, or custom with a 4-8 word vibe>
+- Axes: paper band, display class, accent band. Hero posture: <posture>
 
 ## Tokens
-tokens.css is the source of truth; roles listed with values.
+Source of truth: tokens.css. List each role with its value.
 
 ## Buttons
-- Primary: fill, radius, height. Secondary: outline or text with matching radius and height.
+- Secondary: outline or text, sharing the primary's radius and height.
+- Primary: fill, radius, height.
 
 ## Motion
-- Character: still | severe | brisk | calm. At most one reveal; reduced motion ends everything at once.
+- Character: calm | brisk | severe | still. At most one reveal; reduced motion ends everything at once.
 
 ## Exports
 tokens.css here; other formats added on request.
@@ -42,7 +43,7 @@ tokens.css here; other formats added on request.
 | Space | ten steps from 2px–144px; container, gutter, column gap, three section gaps |
 | Shape | card radius, pill radius, hairline, card shadow |
 | Motion | three easings; durations 120, 220, 420ms |
-| Layers | z-index steps: base 1, raised 10, dropdown 100, sticky 200, sticky nav 300, modal 400, toast 500, tooltip 600 |
+| Layers | z-index ladder: tooltip 600, toast 500, modal 400, nav 300, sticky 200, dropdown 100, raised 10, base 1 |
 
 Nothing downstream may use a token the stylesheet does not declare.
 
@@ -54,16 +55,16 @@ Place the token file next to the entry stylesheet and import it right after the 
 
 ```css
 @import "tailwindcss";
-@import "./tokens.css";
 @import "./base.css" layer(base);
+@import "./tokens.css";
 ```
 ```css
 @theme static {
-  --color-paper: oklch(96% 0.01 80);
   --font-display: "Fraunces", serif;
+  --color-paper: oklch(96% 0.01 80);
   --radius-card: 6px;
 }
-:root { --space-lg: 24px; --dur-short: 220ms; --z-modal: 400; }
+:root { --z-modal: 400; --space-lg: 24px; --dur-short: 220ms; }
 ```
 
 - Colour, font, text, tracking, radius, shadow and easing tokens go in `@theme static` so they become utilities and stay variables. The rest stays in `:root`.
@@ -75,7 +76,7 @@ Place the token file next to the entry stylesheet and import it right after the 
 
 ## DTCG tokens.json
 
-For Style Dictionary or Tokens Studio. A `$type` on every token; OKLCH as strings (say so if converting to hex loses accuracy); fluid sizes export their maximum.
+Export for Style Dictionary or Tokens Studio. A `$type` on every token; OKLCH as strings (say so if converting to hex loses accuracy); fluid sizes export their maximum.
 
 ```json
 {

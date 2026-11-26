@@ -19,6 +19,7 @@ Process:
    - Hierarchy, spacing rhythm, type scale, contrast (WCAG AA), tap targets on mobile, nothing cut off or overflowing at 375.
    - Does the motion personality fit the brand, and does it respect reduced motion?
    - If the build used `references/craft/taste/`, check it against that folder's `quality-gate.md` too, and flag any effect on a page that is not software, gaming or hardware.
+   - On any page build, run the Hallmark floor in `references/craft/hallmark/principles.md` and the tell and fix table in `data/craft/hallmark/gates.csv`.
    - For a plan review or second opinion, use `references/craft/design-review-qa/second-opinion.md` and the hard rejections in `page-modes.md`; give each finding a file and line.
    - If the page has product-UI motion, check it against `references/craft/emil-motion/gate.md` and `reduced-motion.md`: no ease-in on entrances, no `transition: all`.
    - If the page has an explanatory figure, check it against `references/craft/anatomy/verify.md`: one idea per figure, true numbers, a still version under reduced motion.

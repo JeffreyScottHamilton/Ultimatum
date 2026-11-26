@@ -16,7 +16,7 @@ Overused but good (justify each in the Picks block): Playfair Display, Cormorant
 
 - Google Fonts: free CDN, the default.
 - Fontshare: free for commercial use, loaded with a stylesheet link such as `<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@500&display=swap">`.
-- A foundry (Klim, Pangram Pangram, Production Type, Lineto, Colophon) only with a confirmed licence.
+- Commercial foundries (Lineto, Klim, Colophon, Production Type, Pangram Pangram) only once a licence is confirmed.
 
 ## Alternatives by class
 
@@ -37,7 +37,7 @@ Body sans options: General Sans, Switzer, Manrope, Archivo, Public Sans, Karla, 
 
 ## Wordmark
 
-On pages with a strong tone, set the wordmark in its own face; merging it into the body family flattens the hierarchy.
+When a page has a strong tone, the wordmark gets its own face. Folding it into the body family would flatten the hierarchy.
 
 ```css
 :root {
@@ -54,5 +54,5 @@ Stay with one family only when the reading voice is the brand, as in letters and
 - Load only used weights, one `<link>` per source with `display=swap`, preceded by `rel="preconnect"`.
 - For self-hosted `@font-face`, use `font-display: swap` with a fallback tuned via `size-adjust` and the ascent, descent and line-gap overrides, so swapping does not shift the fold. Docs: https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
 - Set `font-synthesis: none` and load a real italic wherever a heading needs one.
-- A variable font loads once and gives every weight.
+- One variable font file serves every weight.
 - Body text 16px or more, honouring user font size (WCAG 1.4.4).

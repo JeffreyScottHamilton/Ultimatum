@@ -26,7 +26,7 @@ Each entry gives the action, the sections and the close.
 
 **Sign up (software, API, developer tool).** The action is start-free in nav and hero with its terms in a line; developer tools may make the install command the action. Sections: the product working (captured or built), named moments, a code sample or integration, a pricing table with a billing-period switch, questions. Close on a short band repeating the hero action, or on the code sample. A newsletter never closes it.
 
-**Hire (studio, freelancer, architect).** The action is a plain way to reach them (email, phone or "Talk to us"), placed in the nav and once more after the work, with no form required. Sections: the work is the page, as a list or Index of projects with pictures (name, client, year, place), one of them opened up as a case study; a short list of what the studio does; location. Close with contact details, per office.
+**Hire (studio, freelancer, architect).** The action is a plain way to reach them (email, phone or "Talk to us"), shown in the nav and again after the work; a form is optional. Sections: the work is the page, as a list or Index of projects with pictures (name, client, year, place), one of them opened up as a case study; a short list of what the studio does; location. Close with contact details, per office.
 
 **Join (club, community, membership).** The hero action is join or "your first visit". Sections: a session shown as it feels; when and where, as a Schedule or list of places; membership options as priced rows; guidance for a first visit; people appear only in the owner's own pictures. Close with the first visit, the options or a sign-up field.
 

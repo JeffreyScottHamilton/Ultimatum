@@ -53,7 +53,7 @@ Write the scores, name the weakest axis and say what you did about it. A run of 
 - F11 a highlighter stripe drawn on the baseline rather than behind the x-height, an underline thicker than 2px, or an offset beyond 0.25em.
 - F12 a flex row with unequal heights and no centre alignment. F13 an outlier typeface doing two jobs. F14 a helper-text slot with no line of height held back.
 - F15 broken page invariants: a single primary button style, a single container width, a single column gap beneath the hero, one radius at each nesting depth, and centred heading groups never outnumbering left-aligned ones.
-- F16 selection, caret or scrollbar colour left at browser defaults on a page with a committed palette.
+- F16 selection, caret or scrollbar colour left at browser defaults although the palette is committed.
 - F17 at 1440, a text block crushed to a narrow sliver. F18 a slot under 40px in either dimension, or slots with no fill script.
 - F19 over three font weights in running use. F20 a lone item on the last row of a grid under a fuller row.
 - F21 skipped heading level. F22 hyphenless justified text. F23 a document with no `lang`, `<title>` or meta description.

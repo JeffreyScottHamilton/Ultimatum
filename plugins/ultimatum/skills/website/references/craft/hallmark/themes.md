@@ -8,7 +8,7 @@ Read when picking a theme for a catalog build, or when writing a new theme. The 
 
 ## A theme is a material
 
-A theme describes the stuff of the page: paper, ink, typefaces, rules, corner radius, depth, texture, buttons, movement and voice. It leaves out the page's contents, order, shape and spacing, and ships no component (no signature object, no named part a page must include). Space and hero size belong to `layout.md`. Whatever the floor or craft files already govern stays out.
+A theme describes the stuff of the page: paper, ink, typefaces, rules, corner radius, depth, texture, buttons, movement and voice. It leaves out the page's contents, order, shape and spacing, and ships no component, so there is no signature object and no named part a page must include. Spacing and hero size belong to `layout.md`. Whatever the floor or craft files already govern stays out.
 
 ## Header facts
 

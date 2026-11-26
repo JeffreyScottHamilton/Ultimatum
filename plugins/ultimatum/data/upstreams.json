@@ -113,6 +113,17 @@
       "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; skip the browser daemon, mockup generator and outside-model review (see later.md)"
     },
     {
+      "id": "hallmark",
+      "kind": "skill-source",
+      "repo": "https://github.com/nutlope/hallmark",
+      "pin": "04977e1",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/hallmark and data/craft/hallmark; skip the Node linters, theme tool, photo library and theme pictures (see later.md)"
+    },
+    {
       "id": "remotion",
       "kind": "skill-source",
       "repo": "https://github.com/remotion-dev/skills",

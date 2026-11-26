@@ -17,24 +17,24 @@ Read in the last pass of a page or component, and when styling controls, inputs,
 ## Content blocks
 
 - **Testimonials:** include them only when the user provided them. Align attributions at the bottom, show the real person's photo or none, and hang the quote marks.
-- **Pricing:** highlight a tier through its button and a label, not a different card colour. Align the buttons along the bottom of every tier. A taller featured tier is a grid sibling on explicit rows; negative margins are out.
-- **Tables:** sentence-case heads that never wrap, horizontal rules only, no outer border or card, full width. On a phone keep the naming column and the acting column in view: restack rows as labelled blocks or pin the first column.
+- **Pricing:** highlight a tier through its button and a label, not a different card colour. Align the buttons along the bottom of every tier. Make a taller featured tier a grid sibling on explicit rows, and never use negative margins.
+- **Tables:** full width, with heads in sentence case that never wrap, only horizontal rules, and no outer border or card. On a phone keep the naming column and the acting column in view: restack rows as labelled blocks or pin the first column.
 - **Stats:** their titles never wrap and carry no icon. **Features and metadata** use a `<dl>` whose `<dt>` is one weight bolder. **Logo rows** split evenly, 3 + 3 rather than 5 + 1.
 - **Images:** use `alt=""` if the subject is named beside the picture; give every `<img>` `width` and `height` and make sure the file exists; footer links keep body weight.
 
 ## Responsive
 
 - Small UI near body text (meta, nav links, controls) runs larger on phones and shrinks at 60rem; body text itself stays at 16px or above.
-- A desktop sidebar or filter column folds into a menu or disclosure; for widgets that depend on their own box, use container queries for widgets whose layout depends on their own box (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries). Wider rules in `responsive.md`.
+- A desktop sidebar or filter column folds into a menu or disclosure; for a widget whose layout depends on the space it is given, use container queries (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries). Wider rules in `responsive.md`.
 
 ## Nav
 
 - A single line, 56–80px tall. If a sticky nav is taller than `scroll-padding-top`, raise that value.
-- Text links keep one weight in every state, showing state through colour or a soft background rather than a primary fill. A row of tabs scrolls sideways instead of wrapping; below 60rem links that no longer fit move into a menu. The logo links home and has an `aria-label`.
+- Text links hold one weight in all states and show state through colour or a soft background instead of a primary fill. Tabs scroll sideways and do not wrap; under 60rem the links that stop fitting go into a menu. The logo links to the homepage and has an `aria-label`.
 
-## The document
+## Document basics
 
-- `lang`, a `<title>` in the page's own words, a one-sentence meta description (F23). Heading levels step one at a time (F21).
+- Set `lang`. Give a `<title>` in the page's own words and a meta description of one sentence (F23). Heading levels descend one step at a time (F21).
 - Browser surfaces (F16): keep what the base styles theme: `::selection`, `caret-color`, `scrollbar-color`, the focus ring, link underline.
 - Local sites: add the schema, title and description rules in `../../pages-and-seo.md`; they sit on top of this list.
 

@@ -19,11 +19,9 @@ Read only when the chosen theme names a texture, or a bespoke direction descends
 :root { --texture-opacity: 0.07; }
 .speckled { position: relative; isolation: isolate; }
 .speckled::before {
-  content: ""; position: absolute; inset: 0;
-  background-size: 180px; opacity: var(--texture-opacity);
-  pointer-events: none;
-  background-image:
-    url("data:image/svg+xml,%3Csvg width='180' height='180' xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' type='fractalNoise' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 .1, 0 0 0 0 .1, 0 0 0 0 .1, 0 0 0 8 -3.5'/%3E%3C/filter%3E%3Crect style='filter:url(%23n)' height='100%25' width='100%25'/%3E%3C/svg%3E");
+  inset: 0; position: absolute; content: "";
+  opacity: var(--texture-opacity); pointer-events: none;
+  background: center / 180px url("data:image/svg+xml,%3Csvg height='180' width='180' xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cfilter id='g'%3E%3CfeTurbulence stitchTiles='stitch' baseFrequency='0.85' numOctaves='3' type='fractalNoise'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 .12  0 0 0 0 .12  0 0 0 0 .12  0 0 0 8 -3.5'/%3E%3C/filter%3E%3Crect height='100%25' width='100%25' style='filter:url(%23g)'/%3E%3C/svg%3E");
 }
 ```
 
@@ -44,8 +42,9 @@ On dark grounds make the specks light (first three matrix rows end in `1` instea
   position: absolute; inset: 0; z-index: -1;
 }
 .offset-ink::before { color: var(--color-accent); translate: -2px -1px; }
-.offset-ink::after { translate: 2px 1px;
-  color: var(--color-accent-2, var(--color-focus)); }
+.offset-ink::after {
+  translate: 2px 1px; color: var(--color-accent-2, currentColor);
+}
 ```
 
 **Scanline.** Faint horizontal stripes fixed over the page, for arcade-like directions only. Atmosphere, never a drawn monitor frame.

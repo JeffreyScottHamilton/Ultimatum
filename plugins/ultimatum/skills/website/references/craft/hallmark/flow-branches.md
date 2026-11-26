@@ -56,7 +56,7 @@ Ultimatum app scope adds, because the website skill builds full apps:
 Used by polish (`redesign.md`) and by pages built by another tool. Differences from a build:
 
 - Work out the genre from the finished page and state it. If two genres fit, name both and apply the universal gates alone.
-- Repair in place, limited to the material half. That covers tokens, colour, type, motion, states, contrast and single elements: fold an eyebrow into its heading, add a missing focus ring, flatten a gradient. Do not restructure.
+- Repair in place, limited to the material half. That means tokens, colour, type, motion, states, contrast and single elements: merge an eyebrow into its heading, add a missing focus ring, flatten a gradient. Do not restructure.
 - Structural findings (hero, page shape, section rhythm, repeated composition, chrome, screen budget) get a file:line reference and a one-line suggestion; leave them unbuilt.
 - A polish logs its redesign entry; a sweep of someone else's output logs nothing.
 - The check stamp replaces the build stamp: `checked`, genre, floor count, fixed gates, structural printed, and `built: the project` or `built: external`.

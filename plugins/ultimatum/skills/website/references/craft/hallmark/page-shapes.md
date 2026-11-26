@@ -2,75 +2,75 @@
 
 Read at the shape step, after the material inventory and the job are written down. The 21 shapes are a table, `../../../../../data/craft/hallmark/page-shapes.csv` (one row each: heading, body, divider, button, image, reveal, when to reach for it, when to avoid it, the layout compositions it uses). This file holds how to choose, the six-axis fingerprint, and the two shape notes the table cannot carry.
 
-## A vocabulary, not a menu
+## Shapes are a vocabulary
 
-Design the page the prompt asks for first, then name the shape you made so the log and gate 32 have something to compare. Reaching into the list and building what comes back collapses 21 shapes into the same three. If nothing fits, describe your own fingerprint on the six axes below and give it a short name ("a season page").
+Design the page the brief asks for first, then name the shape that came out, so the log and gate 32 have something to compare. Picking from the list and building whatever it returns squeezes 21 shapes into the same three. If none fits, write your own fingerprint on the six axes below and give it a short name ("a season page").
 
-The 21: bento grid, long document, marquee hero, stat-led, workbench, conversational FAQ, manifesto, photographic, quote-led, specimen, catalogue, letter, index-first, narrative workflow, split studio, feature stack, type specimen, portfolio grid, map or diagram, ecosystem index, component playground. Nav and footer belong to the shape and are settled with the hero.
+The 21 shapes, in alphabetical order: bento grid, catalogue, component playground, conversational FAQ, ecosystem index, feature stack, index-first, letter, long document, manifesto, map or diagram, marquee hero, narrative workflow, photographic, portfolio grid, quote-led, specimen, split studio, stat-led, type specimen, workbench. Nav and footer belong to the shape and are settled together with the hero.
 
-## How to pick
+## Choosing one
 
-1. Read the material inventory. A shape that runs on captures or figures needs them (real, or slots the user asked for). With neither, take a shape that carries type and facts.
-2. Note words in the prompt that signal a shape ("data heavy", "tell a story", "a list of links", "many small features", "personal note").
-3. Read the log and any stamp in the project; exclude the last three shapes.
-4. Match against the table and the domain list below; choose the one most distant from the logged shapes, then run the mirror test from `principles.md`.
-5. State the pick once in the Picks block and the stamp.
-6. Two pages for two prompts must look like different sites, not colour swaps of one template. A vague tone word ("modern", "clean") is read through the genre and stated as an inference, never asked again.
+1. Read the material inventory. A shape built on captures or figures requires them, either real or as slots the owner asked for. Without either, choose a shape that runs on type and facts.
+2. Listen for shape cues in the brief, such as "a personal note", "tell a story", "data heavy", "many small features" or "a list of links".
+3. Read the project's log and any stamp, and exclude the last three shapes used.
+4. Compare with the table and the domain list below. Take the candidate furthest from the logged shapes, then run the mirror test from `principles.md`.
+5. State the choice once in the Picks block and in the stamp.
+6. Two briefs must yield two sites that look different, not one template in two colours. A vague tone word ("modern", "clean") is interpreted through the genre and noted as an inference; do not ask about it again.
 
-## Domain to three candidates (when the prompt names no shape)
+## Domain words to three candidates (when the brief names no shape)
 
-Take three from different families (grid-led, document-led, poster-led, product-led); pick the one most distant from the last logged shape.
+Pick three from separate families (product-led, poster-led, document-led, grid-led), then take whichever sits furthest from the last logged shape.
 
-| Domain words | Candidates |
+| Candidates | Domain words |
 |---|---|
-| podcast, audio, music | photographic, quote-led, letter |
-| shop, product, merch, commerce | catalogue, photographic, bento grid |
-| docs, CLI, SDK, API, open source | workbench, long document, component playground |
-| platform, infra, B2B tool | bento grid, workbench, stat-led |
-| agency, studio, portfolio | portfolio grid, split studio, index-first |
-| personal one-pager, resume | long document, letter, index-first |
-| restaurant, cafe, bar, menu | photographic, long document, catalogue |
-| fashion, beauty, lookbook | photographic (real photos), catalogue, marquee hero |
-| fintech, banking, payments | stat-led, workbench, long document |
-| manifesto, campaign, cause | manifesto, quote-led, stat-led |
-| editorial, foundry, magazine | specimen, long document, type specimen |
-| product launch, SaaS marketing | bento grid, workbench, stat-led |
-| conference, event, speaker | marquee hero, manifesto, photographic |
-| no signal | bento grid, long document, manifesto |
+| photographic, quote-led, letter | podcast, audio, music |
+| catalogue, photographic, bento grid | shop, product, merch, commerce |
+| workbench, long document, component playground | docs, CLI, SDK, API, open source |
+| bento grid, workbench, stat-led | platform, infra, B2B tool |
+| portfolio grid, split studio, index-first | agency, studio, portfolio |
+| long document, letter, index-first | personal one-pager, resume |
+| photographic, long document, catalogue | restaurant, cafe, bar, menu |
+| photographic (real photos), catalogue, marquee hero | fashion, beauty, lookbook |
+| stat-led, workbench, long document | fintech, banking, payments |
+| manifesto, quote-led, stat-led | manifesto, campaign, cause |
+| specimen, long document, type specimen | editorial, foundry, magazine |
+| bento grid, workbench, stat-led | product launch, SaaS marketing |
+| marquee hero, manifesto, photographic | conference, event, speaker |
+| bento grid, long document, manifesto | nothing in the brief to go on |
 
-Developer docs and developer marketing are different prompts: a walkthrough wants workbench, the landing wants bento plus stat-led. A one-pager and a case-study portfolio differ too; the "use" answer decides. For our local-business sites, restaurant, studio, shop and trade rows map to photographic, catalogue, index-first and long document; add the call, booking or quote action from `anatomy.md`.
+Developer docs and developer marketing are different briefs: a walkthrough fits workbench, while a landing page fits bento plus stat-led. A one-pager differs from a case-study portfolio too, and the page's purpose decides. For our local-business sites, the restaurant, studio, shop and trade rows map to photographic, catalogue, index-first and long document; add the call, booking or quote action from `anatomy.md`.
 
 ## The six-axis fingerprint
 
-Write one choice per axis, such as `Hanging|Asymmetric spans|Hairline|Outlined|Margin-aligned|None`.
+Choose one value per axis, written like `Centred / Single column / Double rule / Typographic / Inline / Fade-up`.
 
-1. **Heading placement:** left-margin (a label beside a heading is an eyebrow), hanging above in air, centred display, bottom-aligned, overlapping a photo or block, sticky, numbered by structure (a real `<ol>` with counters or one graphic numeral), inline with the body. Any is fair; a narrow auto-centred head over full-width left-flush content reads as a mistake.
-2. **Body composition:** single column; two-column asymmetric (wide body, narrow caption margin); multi-column justified with hyphenation; marginalia; three equal columns for reference density; full-bleed with margin reset (65ch body, pull quotes and images bleed); asymmetric spans (2-1-3).
-3. **Divider language:** hairline (0.5–1px, inset or bleed), ornament, negative space, bleed-colour block, double rule. One language per page, varied in weight and placement per seam.
-4. **Button voice:** solid, outlined, unstyled underlined word, oversized solid, typographic only, form as the call.
-5. **Image treatment:** full-bleed, cropped to grid, inline with text, margin-aligned, none.
-6. **Reveal:** fade-up stagger (once), horizontal sweep, type unmask (a clip-path opening over text), number tick (real figures only), typewriter (terminal only), none.
+1. **Heading placement:** in the left margin (a label beside a heading counts as an eyebrow), hanging above in open space, centred display, bottom-aligned, overlapping a photo or block, sticky, numbered by structure (a real `<ol>` with counters, or one graphic numeral), or inline with the body. Any of these works; a narrow, auto-centred heading above full-width, left-flush content looks like a mistake.
+2. **Body composition:** single column; two asymmetric columns (wide body, narrow caption margin); multi-column justified with hyphenation; marginalia; three equal columns for reference density; full-bleed with the margins reset, body held at 65ch while pull quotes and images break out; asymmetric spans (2-1-3).
+3. **Divider language:** hairline (0.5–1px, inset or bleeding), ornament, empty space, a block of bleed colour, or a double rule. Keep one language per page, varying weight and placement from seam to seam.
+4. **Button voice:** solid, outlined, an unstyled underlined word, oversized solid, type only, or the form itself as the call.
+5. **Image treatment:** full-bleed, cropped to the grid, inline with text, aligned to the margin, or none.
+6. **Reveal:** staggered fade-up (once), horizontal sweep, number tick (real figures only), type unmasking (text revealed by an opening clip-path), typewriter (terminal pages only), or none.
 
-Two rules: choices come from the same world (a justified newspaper body wants a typographic call, not an oversized solid), and no more than three of six axes are shared with any of the last three logged entries (a None forced by theme or material is not a shared choice).
+Two rules apply. Choices must come from one world: a justified newspaper body calls for a typographic action, not an oversized solid button. And no more than three of the six axes may repeat from any of the last three logged entries, and a None imposed by the theme or material is not counted as shared.
 
-## SaaS section deck (deal it, do not sequence it)
+## SaaS section deck (dealt, not sequenced)
 
-For a B2B SaaS page on the bento, stat-led, workbench or marquee shapes. Cards have roles, not positions.
+For a B2B SaaS page in the bento, stat-led, workbench or marquee shapes. Cards carry roles, not positions.
 
 | Base card | Role | Composition |
 |---|---|---|
-| Spec sheet | what it is in figures it ships with: limits, formats, versions, regions | table or rows |
-| Worked example | the product doing one real job on the user's material | showcase or split |
-| Changelog | last 3–4 entries with real dates | rows |
-| Comparison | the product beside today's way, row by row, no scores | table |
-| Pricing | the real price, 2–3 tiers; "Contact sales" on every tier says the brand distrusts the buyer | pricing rules in `craft-finish.md` |
-| FAQ | real objections answered like a person | conversational FAQ shape |
-| Call strip | the ask once, one button | band |
-| Footer | the close in the theme's voice | `hero-and-page.md` |
+| Spec sheet | the product in figures: limits, formats, versions, regions | table or rows |
+| Worked example | one real job done in the product on the owner's own material | showcase or split |
+| Changelog | last 3–4 entries, real dates | rows |
+| Comparison | the product beside the current way of doing it, row by row, no scores | table |
+| Pricing | the real price in 2–3 tiers; a "Contact sales" label on every tier signals distrust of the buyer | pricing rules in `craft-finish.md` |
+| FAQ | actual objections, answered like a person would | conversational FAQ shape |
+| Call strip | the one ask, one button | band |
+| Footer | the closing voice of the theme | `hero-and-page.md` |
 
-Material cards exist only when the user supplied the material (and the Picks block says so): hero visual (a real capture, else the product built in a slot or a type hero), logo row (own customers, with permission; otherwise absent, no "trusted by" line), three features (three named capabilities each with a capture or figure; otherwise fold into the example or spec), testimonials (verbatim with name, role, company; otherwise absent).
+Material cards appear only when the owner supplied the material, and the Picks block says so. Hero visual: a real capture, else the product built in a slot, else a type hero. Logo row: the owner's own customers, with permission; otherwise omit it, with no "trusted by" line. Features: three capabilities by name, each backed by a capture or a figure, otherwise fold them into the example or spec. Testimonials: verbatim, with name, role and company, otherwise omit.
 
-Every deal deviates twice: drop at least one base card and name it (the call strip is the usual cut; the footer never drops), and either promote a second base card into the hero's place (a spec sheet as hero says "the numbers are the pitch") or reorder one adjacent pair (pricing before the example). Record it as `deck: -cta +changelog`. Fewer than five cards is a landing strip: add cards or change shape. Gaps mix the three section-gap steps. Non-SaaS shapes (editorial, manifesto, letter, long document, quote-led) skip the deck; a bakery does not need a tier comparison.
+Every deal must deviate in two ways. First, name and remove at least one base card (the call strip is the usual cut and the footer always stays). Second, either promote another base card into the hero's slot (a spec sheet as hero says "the numbers are the pitch") or swap one adjacent pair (pricing ahead of the example). Record it like `deck: -cta +changelog`. With fewer than five cards you have a landing strip, so add cards or switch shape. Mix the three section-gap steps for spacing. Shapes outside SaaS (editorial, manifesto, letter, long document, quote-led) skip the deck; a bakery needs no tier comparison.
 
 ## Shape notes
 
@@ -80,7 +80,7 @@ Every deal deviates twice: drop at least one base card and name it (the call str
 <article class="prose">
   <p>Opening paragraph.</p>
   <h2 class="run-in">A short head.</h2>
-  <p>Text that continues on the same line. <a href="#prices">See the prices</a></p>
+  <p>The text carries on along the same line. <a href="#prices">Prices are below</a></p>
 </article>
 <style>
   .prose { max-width: 65ch; line-height: 1.7; }

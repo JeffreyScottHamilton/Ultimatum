@@ -1,6 +1,6 @@
 # Patterns: small code shapes that pass the gates
 
-Read before building controls, forms, a rail, a reveal, figures or any loop.  Borrow the shape, not the names or the copy. Each block was run in Chromium through Playwright on a scratch page (the coverage file lists what was asserted). Custom properties such as `--ink` stand for tokens in your own `:root` block (`craft-type-colour.md`).
+Read before building controls, forms, a rail, a reveal, figures or any loop.  Borrow the shape, not the names or the copy. The button, choice, loop and skip-link blocks were exercised in Chromium through Playwright, and the rest loaded without errors; the coverage file lists what was asserted. Custom properties such as `--ink` stand for tokens in your own `:root` block (`craft-type-colour.md`).
 
 ## Button with all eight states
 
@@ -172,22 +172,22 @@ Use only figures the owner gave, each with a unit and a note saying what is coun
 Any motion lasting beyond five seconds (marquee, ambient loop, looping video) must start still, stop when off-screen and under reduced motion, pause while hovered or focused, and offer a visible pause button (WCAG success criterion 2.2.2).
 
 ```html
-<figure data-loop>
+<figure data-motion>
   <div class="ticker">…</div>
-  <button type="button" data-loop-toggle class="action quiet">Pause</button>
+  <button type="button" data-motion-toggle class="action quiet">Pause</button>
 </figure>
 ```
 
 ```css
-[data-loop]:not(.running) * { animation-play-state: paused !important; }
-html:not(.js) [data-loop-toggle] { visibility: hidden; }
-@media (prefers-reduced-motion: reduce) { [data-loop-toggle] { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { [data-motion-toggle] { visibility: hidden; } }
+[data-motion]:not(.running) * { animation-play-state: paused; }
+html:not(.js) [data-motion-toggle] { visibility: hidden; }
 ```
 
 ```js
-for (const box of document.querySelectorAll('[data-loop]')) {
+for (const box of document.querySelectorAll('[data-motion]')) {
   const on = { visible: false, hovered: false, paused: matchMedia('(prefers-reduced-motion: reduce)').matches };
-  const toggle = box.querySelector('[data-loop-toggle]');
+  const toggle = box.querySelector('[data-motion-toggle]');
   const refresh = () => {
     box.classList.toggle('running', on.visible && !on.hovered && !on.paused);
     toggle.textContent = on.paused ? 'Play' : 'Pause';

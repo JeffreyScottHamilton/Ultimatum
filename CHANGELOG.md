@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.16] - 2026-11-26
+
+Website craft: Hallmark rebuilt in our own words.
+
+- Website craft: new `skills/website/references/craft/hallmark/` (30 files plus `index.md`), rebuilt in our own words from the MIT-licensed Hallmark skill (nutlope/hallmark @ 04977e1): the floor and gate tiers, stamps and waivers, page shapes, hero postures, section compositions, themes, imagery slots, interaction states, motion and finish checks.
+- Adds what the source lacks: local-business jobs (calls, bookings, quotes, trust signals), app screens (sign-up, pricing, dashboards, checkout), WCAG 2.2 and reduced-motion rules, and ties to the anti-generic lint.
+- Five new tables under `data/craft/hallmark/` (90 gates, 21 page shapes, 8 hero postures, 17 compositions, 50 themes) with a README.
+- Overlaps with Taste, `craft.md`, `copy.md` and `design-rules.md` point to those files instead of repeating them. Code snippets were run in headless Chromium; one reduced-motion bug found and fixed.
+- Not shipped yet: the source's Node linters, theme tool, photo library and theme pictures (`later.md`). New `tests/test_craft_hallmark.py`.
+
 ## [0.0.15] - 2026-11-26
 
 Website craft: gstack's design review and QA, rebuilt in our own words.
