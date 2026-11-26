@@ -20,7 +20,7 @@ A control missing one is not finished. Our own checklist for the same area is `.
 ## Focus ring and hit targets
 
 - One ring for the page: 2px solid in the focus colour with a 2px offset, inset on inputs (negative offset) so it never meets the next field. 3:1 against the element and the page. Use `:focus-visible` (https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible). Never `outline: none` without a replacement.
-- 44 x 44 CSS px for anything a finger reaches (WCAG 2.2 target size: https://www.w3.org/TR/WCAG22/#target-size-minimum). Grow a small control without changing its look with a pseudo-element:
+- 44×44 CSS px for anything a finger reaches (WCAG 2.2 target size: https://www.w3.org/TR/WCAG22/#target-size-minimum). Grow a small control without changing its look with a pseudo-element:
 
 ```css
 .icon-btn { position: relative; }
@@ -56,9 +56,9 @@ The border never changes width. Move state into background, border colour, outli
 | Success | only after a real check returned; clears when the user edits |
 | Loading | a small spinner in the right slot; the field stays editable, submit waits |
 
-- Match the height of the button beside it (44 to 52px marketing). Vertical padding is `(height - line-height) / 2`.
+- Match the height of the button beside it (44–52px marketing). Vertical padding is `(height - line-height) / 2`.
 - Reserve about 24px at the right edge for a clear button, error glyph or spinner so nothing reflows.
-- Label 4 to 8px above; helper about 4px below, quieter, in a line reserving `min-height: 1lh`; the error replaces the helper, never adds a second line.
+- Label 4–8px above; helper about 4px below, quieter, in a line reserving `min-height: 1lh`; the error replaces the helper, never adds a second line.
 - Never transition `border-width`, `padding` or `height`; never animate the ring.
 - **Other controls:** textarea `resize: vertical` with a 6rem minimum; select native with a custom chevron on its wrapper (fully custom only if it keeps native keyboard and screen-reader behaviour); checkbox and radio native with `accent-color` and CSS state, never toggled by script; a switch is a checkbox with the same contract; range thumb has a 44px target; file input uses a styled label; a combobox's listbox sits below without pushing content, `aria-expanded` mirrors it, arrows cycle, Enter selects, Escape closes.
 
@@ -74,7 +74,7 @@ Use the Popover API for light dismiss, stacking and Escape (https://developer.mo
 
 ## Undo over confirm
 
-Reversible actions run at once and offer Undo for 5 to 10 seconds. Irreversible ones (delete an account, drop a table) keep the confirm and ask the user to type the name of what is being destroyed. For an app with Stripe or Supabase data, deletes of paid records are the irreversible kind.
+Reversible actions run at once and offer Undo for 5–10 seconds. Irreversible ones (delete an account, drop a table) keep the confirm and ask the user to type the name of what is being destroyed. For an app with Stripe or Supabase data, deletes of paid records are the irreversible kind.
 
 ## Loading and empty
 

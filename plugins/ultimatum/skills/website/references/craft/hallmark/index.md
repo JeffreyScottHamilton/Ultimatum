@@ -26,7 +26,7 @@ Read when a website build wants the Hallmark layer on top of Taste: one line per
 - `patterns.md`: How are buttons, slots, forms, switchers, stats and skip links built?
 - `interaction-and-states.md`: What are the eight states, the field recipe, overlays, undo and loading?
 - `microinteractions.md`: How does each stateful widget move, and in which motion character?
-- `responsive.md`: Which breakpoints, units and table rules keep 320 to 1920 working?
+- `responsive.md`: Which breakpoints, units and table rules keep 320–1920 working?
 - `texture.md`: When may a page carry grain, halftone, misregistration or scanlines, and within what budget?
 - `scroll-choreography.md`: Which one scroll-linked pattern is allowed, and how does it degrade?
 - `dark-mode.md`: How are both modes derived from one token set?

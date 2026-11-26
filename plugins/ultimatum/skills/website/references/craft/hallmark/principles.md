@@ -21,7 +21,7 @@ Read first when a build should look designed rather than generated: it holds the
 9. No eyebrow; no label, caption, table head, tag or nav link in tracked capitals or small caps. These use the body face a step smaller, in sentence case, untracked.
 10. No middle-dot meta strings, no arrow glued to link text, no decorative status dot.
 11. No purple-to-blue gradient, card in a card, emoji as an icon, or hand-drawn browser or OS window.
-12. Headline, one sentence and the main action all sit inside 1280 x 800 without scrolling.
+12. Headline, one sentence and the main action all sit inside 1280×800 without scrolling.
 13. About 80 words a screen; the hero text is a headline, one sentence and its actions.
 14. A capped, centred container: at 1920 the gutters grow, the measure and grids do not.
 15. A first-line CSS stamp naming the build, then a critique line, then any waivers (`gates.md` § Stamp, waivers and answers).
@@ -46,7 +46,7 @@ One message, even for a five-word prompt. Four questions, material first because
 1. **Material:** what can the page show? Screenshots or a screen recording (or a URL or folder to run and capture), real photos, real numbers, a named quote, logos that may be used. Without photos, stand-ins from a photo library are placed in slots and credited; a number, quote or logo is never invented.
 2. **Audience:** who uses it and what do they care about.
 3. **Use:** the one action the page drives.
-4. **Tone:** choose an extreme (editorial, brutalist, soft, utilitarian, luxury, playful, technical, austere); "clean and modern" is not a tone. Add the vibe in four to eight words and an anchor colour if there is one.
+4. **Tone:** choose an extreme (editorial, brutalist, soft, utilitarian, luxury, playful, technical, austere); "clean and modern" is not a tone. Add the vibe in 4–8 words and an anchor colour if there is one.
 
 Skipped answers are opt-outs: infer them, state the inferences in one line, stamp them. Facts are never inferred: a missing number, quote or logo is absent and a missing picture is a stand-in in a slot. For our local sites also ask the business facts that `../../intake.md` covers before this list, and do not ask twice.
 

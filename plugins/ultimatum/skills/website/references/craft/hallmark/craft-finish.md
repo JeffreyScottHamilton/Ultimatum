@@ -4,33 +4,33 @@ Read in the last pass of a page or component, and when styling controls, inputs,
 
 ## Controls
 
-- One filled primary per page (a dialog counts as its own page). Secondary buttons are outlined or typographic, never louder than the primary; nav actions quieter than the hero's.
-- Marketing controls 44 to 52px tall; app UI 32 to 40px with a 44px hit area (48px on coarse pointers). Two button sizes at most, 6px or more apart. An input matches the button beside it. Delete takes a secondary style unless deleting is the page's one action.
+- Only one filled primary button per page, with each dialog counted as its own page. Secondary buttons are outlined or plain text and never outshine it; actions in the nav stay quieter than the hero's.
+- On marketing pages controls are 44–52px high; in app UI they are 32–40px with a 44px target (48px for coarse pointers). Use at most two button sizes, differing by 6px or more. An input matches the height of the button next to it. A delete button looks secondary unless deleting is the page's single purpose.
 
 ## Inputs
 
-- Constant border width. The focus ring is an `outline` (inset on inputs), never a border change.
-- Disabled uses opacity about 0.55, `cursor: not-allowed` and the native attribute together.
-- Reserve a line of height for helper text (`min-height: 1lh`), 16px type on mobile, a `name`, an `autocomplete`, the right `type` and `inputmode`, and a `<label>` or `aria-label` on every field. Never block paste. Keep submit enabled until the request starts; a failed submit focuses the first invalid field. Every `<button>` gets an explicit `type`.
-- One-field form: about 20rem wide, never an input and a button sharing one border.
+- Keep border width fixed. Draw the focus ring with `outline`, inset on inputs, and never by changing the border.
+- Mark disabled controls with roughly 0.55 opacity, `cursor: not-allowed` and the native attribute, all three.
+- Leave `min-height: 1lh` for helper text and use 16px type on mobile. Each field needs a `name`, an `autocomplete`, a correct `type` and `inputmode`, plus a `<label>` or `aria-label`. Pasting is always allowed. Submit stays enabled until a request begins, and after a failed submit focus moves to the first invalid field. Give every `<button>` an explicit `type`.
+- A one-field form is around 20rem wide; the input and button never share a single border.
 
 ## Content blocks
 
-- **Testimonials:** only if the user supplied them. Attribution bottom-aligned, the avatar the real person or nothing, hanging punctuation on pull quotes.
-- **Pricing:** emphasise a tier with its button and a word, never a different card colour. Buttons align at the bottom across tiers. A taller featured tier is a grid sibling on explicit rows, never negative margins.
+- **Testimonials:** include them only when the user provided them. Align attributions at the bottom, show the real person's photo or none, and hang the quote marks.
+- **Pricing:** highlight a tier through its button and a label, not a different card colour. Align the buttons along the bottom of every tier. A taller featured tier is a grid sibling on explicit rows; negative margins are out.
 - **Tables:** sentence-case heads that never wrap, horizontal rules only, no outer border or card, full width. On a phone keep the naming column and the acting column in view: restack rows as labelled blocks or pin the first column.
-- **Stats:** a title that never wraps, no icon. **Features and metadata** are a `<dl>` with the `<dt>` one weight heavier. **Logo rows** split evenly (3 + 3, never 5 + 1).
-- **Images:** `alt=""` when the subject is named beside the picture; `width` and `height` on every `<img>`, and a file that exists; footer links at body weight.
+- **Stats:** their titles never wrap and carry no icon. **Features and metadata** use a `<dl>` whose `<dt>` is one weight bolder. **Logo rows** split evenly, 3 + 3 rather than 5 + 1.
+- **Images:** use `alt=""` if the subject is named beside the picture; give every `<img>` `width` and `height` and make sure the file exists; footer links keep body weight.
 
 ## Responsive
 
-- Body-adjacent UI (meta, nav links, controls) is larger on a phone and steps down at 60rem; body text never under 16px.
-- Every desktop sidebar or filter column collapses into a menu or disclosure; use container queries for widgets whose layout depends on their own box (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries). Wider rules in `responsive.md`.
+- Small UI near body text (meta, nav links, controls) runs larger on phones and shrinks at 60rem; body text itself stays at 16px or above.
+- A desktop sidebar or filter column folds into a menu or disclosure; for widgets that depend on their own box, use container queries for widgets whose layout depends on their own box (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries). Wider rules in `responsive.md`.
 
 ## Nav
 
-- One line, 56 to 80px. A sticky nav taller than the scaffold's `scroll-padding-top` raises it.
-- Text links in one weight across states; state is a colour or soft background, never a primary fill. A tab row scrolls sideways rather than wrapping; under 60rem links that no longer fit go behind a menu. The logo links home with an `aria-label`.
+- A single line, 56–80px tall. If a sticky nav is taller than `scroll-padding-top`, raise that value.
+- Text links keep one weight in every state, showing state through colour or a soft background rather than a primary fill. A row of tabs scrolls sideways instead of wrapping; below 60rem links that no longer fit move into a menu. The logo links home and has an `aria-label`.
 
 ## The document
 
@@ -40,4 +40,4 @@ Read in the last pass of a page or component, and when styling controls, inputs,
 
 ## Overlap
 
-Merged with `../taste/cards-and-ui.md` (cards, buttons), `../taste/accessibility.md` (focus, labels, targets, WCAG 2.2 AA) and `../../website/design-rules.md` § 7 (interface basics). New here: the 44 to 52 versus 32 to 40 split, the one-primary rule and the table-on-phone rule.
+Merged with `../taste/cards-and-ui.md` (cards, buttons), `../taste/accessibility.md` (focus, labels, targets, WCAG 2.2 AA) and `../../website/design-rules.md` § 7 (interface basics). New here: the 44–52 versus 32–40 split, the one-primary rule and the table-on-phone rule.

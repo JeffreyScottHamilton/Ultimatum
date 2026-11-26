@@ -4,23 +4,23 @@ Read only when an image generator is available and the user wants it (or has sup
 
 ## What a comp is
 
-| It is | It is not |
+| A comp is | A comp is not |
 |---|---|
-| a composition proposal: mass, interval, alignment, where the eye lands first | a design system; palette and type were set in the picks block |
+| a layout proposal covering weight, spacing, alignment and the spot the eye reaches first | a design system; palette and type were fixed earlier in the picks block |
 | the first viewport only, at its real size | a full page |
 | a target to measure the build against | a texture or asset; nothing from it ships or is committed |
 
-The comp has no vote on the floor. Generators hand back eyebrows, violet gradients, glass cards and fake browser frames. Take the composition, not the compliance; "the comp had it" is never a waiver reason.
+A comp cannot override the floor. Generators return eyebrows, violet gradients, glass cards and fake browser frames. Borrow the composition only; "it was in the comp" never justifies a waiver.
 
 ## The call
 
-Two comps (three if the direction truly forks). Build the prompt from the picks block, not the user's prompt: the first viewport as planned, the idea in plain words, ground and accent as plain colours, the display class (not a face name), the page shape as a compositional instruction, then one clause naming what the category usually does and must not appear. Example: "Web page hero, top 1280x800 only. A rowing club's season as one race timetable, the next race the largest line. White ground, deep green ink, one signal-yellow mark. Heavy grotesk headline flush left over five columns; timetable across seven. Flat, printed. Not centred, no cards, no gradient, no device mockup."
+Two comps (three if the direction truly forks). Build the prompt from the picks block, not the user's prompt: the first viewport as planned, the idea in plain words, ground and accent as plain colours, the display class (not a face name), the page shape as a compositional instruction, then one clause naming what the category usually does and must not appear. Example prompt: a hero, first 1280x800 only, for a rowing club whose season is a single race timetable with the next race largest; pale ground, deep green ink, one yellow mark; heavy grotesk headline set left across five columns and the timetable across seven; flat and printed; avoid centring, cards, gradients and device frames.
 
-Vary the comps on one axis only (composition), holding the system fixed.
+Change only one axis between comps (the composition) and keep the system fixed.
 
 ## Approval
 
-Show both side by side with one line on how they differ and ask which, or neither. Do not build past an unchosen comp. If neither, change the axis and re-call once; two rounds is the limit, then build without a comp and say so.
+Lay both next to each other, add a line on what differs, and ask for a pick or a rejection. Building starts only after a pick. On rejection, shift the axis and generate again once; after two rounds, build with no comp and say that.
 
 ## Reproduction check
 
@@ -28,7 +28,7 @@ A model reliably believes its recreation matched when it did not. So:
 
 1. Screenshot the build at exactly the comp's size (1280x800).
 2. Put them side by side and answer, one line each: Mass (same place, same size?), Interval (same proportions between major elements?), Entry (same first thing seen?).
-3. Name the largest divergence and fix it, or say why the build is right. Silence is not allowed.
+3. State the biggest difference and fix it, or explain why the build is better. Saying nothing is not an option.
 
 ```python
 from playwright.sync_api import sync_playwright
@@ -37,7 +37,7 @@ with sync_playwright() as p:
     pg.goto("file:///abs/path/index.html"); pg.screenshot(path="build-1280x800.png"); b.close()
 ```
 
-Stamp: `comp: 2 rendered, c1 approved, reproduced (checked at 1280x800)` or `comp: skipped`.
+Stamp it, for example `comp: two made, first chosen, matched at 1280x800`, or `comp: skipped`.
 
 ## Medium inventory
 
@@ -49,7 +49,7 @@ Before coding, write one line per region of the approved comp naming how it will
 | raster (supplied or generated) | material, grain, cloth, paper, photography, painted surfaces |
 | neither | a region the comp invented that the copy does not support; cut it now |
 
-A CSS gradient is not a texture. A raster region needs a real source (user asset, library photo, or generated still), never a photo from memory, and a region painted as a picture never becomes a drawing. No silent medium changes mid-build.
+A CSS gradient does not stand in for a texture. Raster regions need a real source (the user's asset, a licensed library photo or a generated still); a region drawn as a photograph in the comp is never swapped for line art. Switching a region's medium mid-build must be announced.
 
 ## Generated stills
 

@@ -6,8 +6,8 @@ Read when the page shows charts, figures or a dashboard. The aim: a table-like s
 
 | Data | Form |
 |---|---|
-| one value | stat tile: big figure plus a worded qualifier; never a one-bar chart |
-| 2 to 5 values compared | stat row or horizontal bars |
+| one value | stat tile: a large figure with a short worded qualifier, not a single-bar chart |
+| 2–5 values compared | stat row or horizontal bars |
 | series over time | line; a sparkline when it sits inside another component |
 | more than about 7 categories | a table, not more colours |
 | parts of a whole | one stacked horizontal bar; no pie, donut or gauge |
@@ -16,9 +16,9 @@ Emphasis is the underused tool: one accent series, the rest neutral.
 
 ## Build (inline SVG written for the data, no library)
 
-- Bars: 24px thick at most, 2 to 4px gaps, baseline at zero, rounded only at the data end (2px max).
+- Bars: 24px thick at most, 2–4px gaps, baseline at zero, rounded only at the data end (2px max).
 - Lines: 2px stroke; markers only on annotated points (6px or more). A sparkline may fade its fill to transparent.
-- Gridlines: 1px solid in the rule colour, 3 to 5 of them, never dashed; the axis is the first gridline.
+- Gridlines: 1px solid in the rule colour, 3–5 of them, never dashed; the axis is the first gridline.
 - One y-axis. Different units get two small charts, not dual axes.
 - No shadows, 3D or gradients on marks. Sparklines have no axes, grid or second colour.
 - Each chart gets a text alternative: a `<figure>` with `<figcaption>` stating the finding, plus the data as a table or `aria-describedby` (WCAG 1.1.1, 1.4.11 for non-text contrast 3:1, https://www.w3.org/TR/WCAG22/#non-text-contrast).
@@ -34,7 +34,7 @@ Emphasis is the underused tool: one accent series, the rest neutral.
 
 ## Colour
 
-- One series: the accent. Several: a lightness ramp of the accent hue (steps of 12 to 15%, chroma constant) in fixed order; reference series in the muted colour. A second hue only under a full-palette posture.
+- One series: the accent. Several: a lightness ramp of the accent hue (steps of 12–15%, chroma constant) in fixed order; reference series in the muted colour. A second hue only under a full-palette posture.
 - Text never takes the data colour; a swatch beside the label identifies the series.
 - Tabular numerals on every number (`font-variant-numeric: tabular-nums`).
 - Never rely on colour alone; add direct labels or patterns.

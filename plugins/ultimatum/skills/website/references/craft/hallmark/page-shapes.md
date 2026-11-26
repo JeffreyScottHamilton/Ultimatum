@@ -46,7 +46,7 @@ Write one choice per axis, such as `Hanging|Asymmetric spans|Hairline|Outlined|M
 
 1. **Heading placement:** left-margin (a label beside a heading is an eyebrow), hanging above in air, centred display, bottom-aligned, overlapping a photo or block, sticky, numbered by structure (a real `<ol>` with counters or one graphic numeral), inline with the body. Any is fair; a narrow auto-centred head over full-width left-flush content reads as a mistake.
 2. **Body composition:** single column; two-column asymmetric (wide body, narrow caption margin); multi-column justified with hyphenation; marginalia; three equal columns for reference density; full-bleed with margin reset (65ch body, pull quotes and images bleed); asymmetric spans (2-1-3).
-3. **Divider language:** hairline (0.5 to 1px, inset or bleed), ornament, negative space, bleed-colour block, double rule. One language per page, varied in weight and placement per seam.
+3. **Divider language:** hairline (0.5–1px, inset or bleed), ornament, negative space, bleed-colour block, double rule. One language per page, varied in weight and placement per seam.
 4. **Button voice:** solid, outlined, unstyled underlined word, oversized solid, typographic only, form as the call.
 5. **Image treatment:** full-bleed, cropped to grid, inline with text, margin-aligned, none.
 6. **Reveal:** fade-up stagger (once), horizontal sweep, type unmask (a clip-path opening over text), number tick (real figures only), typewriter (terminal only), none.
@@ -61,9 +61,9 @@ For a B2B SaaS page on the bento, stat-led, workbench or marquee shapes. Cards h
 |---|---|---|
 | Spec sheet | what it is in figures it ships with: limits, formats, versions, regions | table or rows |
 | Worked example | the product doing one real job on the user's material | showcase or split |
-| Changelog | last three or four entries with real dates | rows |
+| Changelog | last 3–4 entries with real dates | rows |
 | Comparison | the product beside today's way, row by row, no scores | table |
-| Pricing | the real price, two or three tiers; "Contact sales" on every tier says the brand distrusts the buyer | pricing rules in `craft-finish.md` |
+| Pricing | the real price, 2–3 tiers; "Contact sales" on every tier says the brand distrusts the buyer | pricing rules in `craft-finish.md` |
 | FAQ | real objections answered like a person | conversational FAQ shape |
 | Call strip | the ask once, one button | band |
 | Footer | the close in the theme's voice | `hero-and-page.md` |

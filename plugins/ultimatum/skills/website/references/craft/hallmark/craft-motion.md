@@ -4,30 +4,30 @@ Read when deciding what moves on a page, how long it takes and what shows under 
 
 ## Who decides
 
-The theme's motion section first; a shape's reveal runs only where the theme allows one; the genre default only where the theme is silent.
+Defer to the theme's motion section; a page shape's reveal runs only if the theme permits one, and the genre default applies only if the theme says nothing.
 
-## The hero entrance
+## Hero entrance
 
-- One settle of 0.4 to 0.8s including stagger, starting from an already visible default. A fade with an 8px rise counts as one motion.
+- A single entrance of 0.4–0.8 seconds counting the stagger, built from a visible default state. Fading in while rising 8px counts as one motion.
 - Never a fade, a sweep and a scale on one element. No bounce, no starfield, no mouse parallax, no auto-rotating carousel.
 - Before shipping the hero visual: it shows the real thing, is big, holds the accent under its footprint, weighs under 2 MB, and has a reduced-motion fallback that changes the visual, never the copy.
 
 ## Rules for every page
 
-- **Animate only `transform` and `opacity`;** blur, `clip-path`, mask and shadow may join when smooth on that element alone (MDN on performance: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/CSS_JavaScript_animation_performance).
-- **Easing tokens:** an out curve for arrivals, an in curve for exits, in-out for toggles. Never the browser `ease`; `linear` only for progress and scrubbing; no overshoot on UI state (gate 12).
-- **Durations:** micro 120ms (press, tick, colour), short 220ms (hover, tooltip, menu), long 420ms (modal, drawer, accordion, reveal). Exits run at 60 to 75% of the enter. Stagger 30 to 50ms between rows, 60 to 100ms between blocks, 500ms in total at most, once.
-- **One reveal per page,** staggered by an index custom property, 0.4 to 0.8s in all, content visible without it (gate 62). Under reduced motion every reveal shows its end state at once; anything that must still run (a loader, a 150ms fade) opts out with a keep-motion class.
-- **Scroll:** IntersectionObserver for reveals and thresholds (https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API); a passive, frame-throttled scroll listener only where direction matters; scroll-scrubbed motion is one pattern from `scroll-choreography.md` and no more (F8).
-- **State feedback:** hover is one signal that raises contrast (a colour step, or a 1px lift at micro duration on a control that keeps its colour). Tooltips wait 800 to 1000ms on hover and 0 on focus. Focus rings never animate. Menus, modals and accordions follow `microinteractions.md`.
-- **Never:** parallax, custom cursors, cursor followers, a marquee that will not pause on hover and focus, `will-change` on a whole class, a pulsing dot, a caret blinking more than five beats, an infinite loop other than a loader. Allowed loops: one small loop of 4s or less, or one ambient loop of 8s or slower a theme declares. Every loop stops under reduced motion and off-screen; one past 5 seconds has a visible pause control (WCAG 2.2.2: https://www.w3.org/TR/WCAG22/#pause-stop-hide).
+- **Stick to `transform` and `opacity`;** blur, `clip-path`, mask and shadow may join when smooth on that element alone (MDN on performance: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/CSS_JavaScript_animation_performance).
+- **Easing tokens:** decelerate arrivals, accelerate exits, use in-out for toggles. Never the default `ease`; reserve `linear` for progress and scrubbing; no overshoot for interface state (gate 12).
+- **Durations:** micro 120ms (press, tick, colour), short 220ms (hover, tooltip, menu), long 420ms (modal, drawer, accordion, reveal). Exits take 60–75% of the entrance time. Stagger rows by 30–50ms and blocks by 60–100ms, capped at 500ms overall and played once.
+- **One reveal for the page,** staggered through an index custom property and lasting 0.4–0.8s in total, with content visible when it does not run (gate 62). With reduced motion, reveals jump to their end state; anything essential (a loader, a 150ms fade) opts out through a keep-motion class.
+- **Scroll:** use IntersectionObserver for reveals and thresholds (https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API); a passive, frame-throttled scroll listener only where direction matters; scroll-scrubbed motion is one pattern from `scroll-choreography.md` and no more (F8).
+- **State feedback:** hover gives one signal that raises contrast, either a colour step or a 1px lift at micro speed on a control that keeps its colour. Tooltips wait 800–1000ms on hover and show immediately on focus. Focus rings stay static. Menus, modals and accordions follow `microinteractions.md`.
+- **Avoid:** parallax, custom or following cursors, a marquee that keeps going when hovered or focused, `will-change` applied to a whole class, pulsing dots, a text caret that blinks beyond five beats, and endless loops apart from a loader. Loops that are allowed: one small loop of four seconds or under, or one slow ambient loop (eight seconds or more) that a theme declares. Every loop halts under reduced motion and when off screen, and any running longer than five seconds gets a visible pause control (WCAG 2.2.2: https://www.w3.org/TR/WCAG22/#pause-stop-hide).
 
 ## A reveal that survives no script
 
 ```html
 <style>
-  .js .reveal { opacity: 0; transform: translateY(8px); transition: opacity .42s ease-out, transform .42s ease-out; }
-  .js .reveal.in { opacity: 1; transform: none; }
+  .js .reveal { opacity: 0; translate: 0 8px; transition: opacity .4s ease-out, translate .4s ease-out; }
+  .js .reveal.in { opacity: 1; translate: 0 0; }
   @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 <script>document.documentElement.classList.add('js')</script>

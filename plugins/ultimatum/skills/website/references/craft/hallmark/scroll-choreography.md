@@ -1,32 +1,35 @@
 # Scroll choreography: one earned pattern
 
-Read only when content has a sequence worth pinning or scrubbing. The default is none: the one-time reveal in `craft-motion.md` is the norm.
+Read only when the content is a sequence that earns pinning or scrubbing. Usually skip it: the single reveal in `craft-motion.md` is the baseline.
 
 ## Rules
 
 - One scroll-linked pattern per page; it counts as one of the three motion ideas.
-- Never on body text. Targets are structure: a pinned section, one display element, a 2px spine.
+- Keep it off paragraphs. It may act on structure: one pinned section, a single display element, or a thin progress line.
 - It does not replace the hero entrance, and no element carries both.
-- The base CSS shows the finished page. The effect lives inside `@supports (animation-timeline: view())` and `@media (prefers-reduced-motion: no-preference) and (min-width: 40rem)`. Reduced motion, phones and old browsers see the complete static page (WCAG 2.3.3).
+- Base CSS draws the finished page. Wrap the effect in a support query for `animation-timeline` plus a no-preference motion query and a 40rem minimum width, so reduced-motion users, phones and older browsers get the full static page (WCAG 2.3.3).
 - Declare `animation-timeline` and `animation-range` after the `animation` shorthand, which resets them.
 - Use `linear`: scrubbing maps distance to progress.
 - Docs: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline
 
 ## Pinned chapter
 
-A tall track owns a named view timeline; the steps inside the sticky pane read slices of it (a stuck element cannot drive its own `view()`).
+The tall wrapper owns a named view timeline and each step inside the sticky pane reads a slice of it, because a stuck element cannot time itself.
 
 ```css
 .chapter { min-height: 280vh; }
-.chapter__pin { position: sticky; top: var(--space-xl); }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (min-width: 40rem) {
-    .chapter { view-timeline: --chapter block; }
-    .chapter__steps li { animation: step linear both; animation-timeline: --chapter; }
-    .chapter__steps li:nth-child(1) { animation-range: contain 5% contain 30%; }
-    .chapter__steps li:nth-child(2) { animation-range: contain 30% contain 55%; }
-    .chapter__steps li:nth-child(3) { animation-range: contain 55% contain 80%; }
-    @keyframes step { from { opacity: .2; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.chapter__pin { position: sticky; top: 2rem; }
+@media (min-width: 40rem) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .chapter { view-timeline: --story block; }
+    .chapter__steps li {
+      animation: rise linear both; animation-timeline: --story;
+      animation-range: contain calc(var(--i) * 25% + 5%) contain calc(var(--i) * 25% + 30%);
+    }
+    .chapter__steps li:nth-child(1) { --i: 0; }
+    .chapter__steps li:nth-child(2) { --i: 1; }
+    .chapter__steps li:nth-child(3) { --i: 2; }
+    @keyframes rise { from { opacity: .25; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
   }
 }
 ```
@@ -37,7 +40,7 @@ One mid-page statement heading (never the hero h1) wipes in with a `clip-path` o
 
 ## Progress spine
 
-A fixed 2px rule at the left whose `::after` scales on `scaleY` from 0 to 1 with `animation-timeline: scroll(root)`. Hidden under 40rem. A functional indicator.
+A fixed 2px rule at the left whose `::after` scales on `scaleY` from 0–1 with `animation-timeline: scroll(root)`. Hidden under 40rem. A functional indicator.
 
 ## Sticky diptych
 
@@ -48,11 +51,15 @@ Two columns (5fr/7fr), one pane `position: sticky` below any sticky nav, the oth
 Without `animation-timeline`, use only the once-only IntersectionObserver reveal, never a scroll listener or scrub polyfill. Hide `[data-reveal]` only under a `.js` class that the script adds, so no-script visitors see everything (see `craft-motion.md`).
 
 ```js
-if (!CSS.supports("animation-timeline: view()")) {
-  const io = new IntersectionObserver((es) => es.forEach((e) => {
-    if (e.isIntersecting) { e.target.classList.add("is-seen"); io.unobserve(e.target); }
-  }), { rootMargin: "0px 0px -20%" });
-  document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+if (!CSS.supports("animation-timeline", "view()")) {
+  const watcher = new IntersectionObserver((entries, obs) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add("is-seen");
+      obs.unobserve(entry.target);
+    }
+  }, { rootMargin: "0px 0px -15% 0px" });
+  document.querySelectorAll("[data-reveal]").forEach((node) => watcher.observe(node));
 }
 ```
 

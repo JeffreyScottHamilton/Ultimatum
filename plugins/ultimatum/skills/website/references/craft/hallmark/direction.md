@@ -8,7 +8,7 @@ Nothing is dealt: no theme, shape, section list or palette recipe. Keep the floo
 
 - Unique means specific: subject, place, materials, numbers, how the people talk. Put the nearest competitor's name on it; if it still works, go further.
 - Clean means exact: a few type sizes far apart, one spacing rhythm, aligned edges, and one thing on every screen strong enough to be its reason.
-- Full means a whole site, usually six to nine sections each built round something worth looking at (a working product, a photo, real facts set large, something to try). A head plus a paragraph is unfinished.
+- Full means a whole site, usually 6–9 sections each built round something worth looking at (a working product, a photo, real facts set large, something to try). A head plus a paragraph is unfinished.
 - Free means dark or light, one colour or four, type as picture or photos edge to edge, a structure no template has.
 
 ## Before any code
@@ -43,7 +43,7 @@ The floor, every gate (a custom hero is free of the hero-composition gates), the
 - One or two families, a third only as an outlier with one role; the display face is one no catalog theme uses (`fonts.md`).
 - Colour in OKLCH under any posture, reason stated in the stamp; contrast and focus unchanged.
 - Picks block: Shape and Theme become Idea (one sentence) and Look (ground, ink, accent, faces with provenance).
-- Stamp: `theme: custom`, the idea, a 4 to 8 word vibe, paper, accent, faces, hero in your own words, posture and axes (paper light/mid/dark; display class; accent warm/cool/neutral/chromatic-hue).
+- Stamp: `theme: custom`, the idea, a 4–8 word vibe, paper, accent, faces, hero in your own words, posture and axes (paper light/mid/dark; display class; accent warm/cool/neutral/chromatic-hue).
 
 ## Local business and app notes
 

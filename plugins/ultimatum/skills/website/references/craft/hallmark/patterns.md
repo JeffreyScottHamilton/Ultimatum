@@ -1,176 +1,217 @@
 # Patterns: small code shapes that pass the gates
 
-Read once before building controls, forms, a rail, a reveal, stats or any loop. Take the shape, never the names or copy. Each block was run in Chromium with Playwright against a scratch page (see the coverage file for what was asserted). Tokens such as `--color-ink` come from your own `:root` block (`craft-type-colour.md`).
+Read before building controls, forms, a rail, a reveal, figures or any loop.  Borrow the shape, not the names or the copy. Each block was run in Chromium through Playwright on a scratch page (the coverage file lists what was asserted). Custom properties such as `--ink` stand for tokens in your own `:root` block (`craft-type-colour.md`).
 
 ## Button with all eight states
 
 ```css
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs);
-  min-height: 48px; padding-inline: var(--space-lg); border: 1px solid var(--color-ink); border-radius: var(--radius-control);
-  background: var(--color-ink); color: var(--color-paper); font: 500 1rem/1 var(--font-body); white-space: nowrap; text-decoration: none; cursor: pointer;
-  transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
-.btn:hover { background: var(--color-ink-2); }
-.btn:active { transform: translateY(1px); }
-.btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; transition: none; }
-.btn:disabled, .btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; transform: none; }
-.btn[aria-busy="true"] { cursor: progress; }
-.btn.quiet { background: transparent; color: var(--color-ink); border-color: var(--color-rule); }
-@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+.action {
+  display: inline-flex; gap: var(--s-1); align-items: center; justify-content: center;
+  padding-inline: var(--s-4); min-height: 48px;
+  font: 500 1rem/1 var(--body); cursor: pointer; white-space: nowrap; text-decoration: none;
+  color: var(--paper); background: var(--ink);
+  border: 1px solid var(--ink); border-radius: var(--r-control);
+  transition: background-color var(--t-short) var(--ease), translate var(--t-micro) var(--ease);
+}
+.action:hover { background: var(--ink-soft); }
+.action:active { translate: 0 1px; }
+.action:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; transition: none; }
+.action:disabled, .action[aria-disabled="true"] { opacity: .55; cursor: not-allowed; translate: none; }
+.action[aria-busy="true"] { cursor: progress; }
+.action.quiet { color: var(--ink); background: none; border-color: var(--hair); }
+@media (prefers-reduced-motion: reduce) { .action { transition: none; } }
 ```
 
-One filled primary per page. Error and success belong to the form, not the button.
+A page gets one filled primary. Errors and success belong to the form, not the button.
 
-## Photo in a slot, with a fact caption
+## Photo in a slot, with a factual caption
 
 ```html
-<figure class="photo" data-slot="hero" data-alt="Rows of trees in October light">
+<figure class="shot" data-slot="hero" data-alt="Rows of trees in autumn light">
   <img src="orchard-1280.jpg" srcset="orchard-960.jpg 960w, orchard-1280.jpg 1280w" sizes="(min-width: 60rem) 45vw, 100vw"
-       width="1280" height="1600" alt="Rows of apple trees in October light" fetchpriority="high">
-  <figcaption>Picking runs from September to the first frost.</figcaption>
+       width="1280" height="1600" alt="Rows of apple trees in autumn light" fetchpriority="high">
+  <figcaption>Picking runs from September until the first frost.</figcaption>
 </figure>
 ```
 
 ```css
-.photo { margin: 0; }
-.photo img { aspect-ratio: 4/5; width: 100%; height: auto; min-height: 440px; object-fit: cover; border-radius: var(--radius-card);
-  outline: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent); outline-offset: -1px; }
-.photo figcaption { margin-top: var(--space-sm); font-size: .875rem; color: var(--color-ink-2); }
+.shot { margin: 0; }
+.shot img {
+  width: 100%; height: auto; min-height: 440px; aspect-ratio: 4 / 5; object-fit: cover;
+  border-radius: var(--r-card);
+  outline-offset: -1px; outline: solid 1px color-mix(in oklab, var(--ink) 8%, transparent);
+}
+.shot figcaption { margin-top: var(--s-2); font-size: .875rem; color: var(--ink-soft); }
 ```
 
-The caption is a fact from the prompt, outside the frame; the credit goes in the footer line.
+The caption states a fact from the brief and sits outside the frame; credits go in the footer line.
 
 ## A choice among a few (segmented radios)
 
 ```html
-<fieldset class="seg"><legend>Size</legend>
-  <input type="radio" name="size" id="s1" checked><label for="s1">One box</label>
-  <input type="radio" name="size" id="s2"><label for="s2">Two boxes</label>
+<fieldset class="choice"><legend>Quantity</legend>
+  <input id="box-1" type="radio" name="boxes" checked><label for="box-1">One box</label>
+  <input id="box-2" type="radio" name="boxes"><label for="box-2">Two boxes</label>
 </fieldset>
 ```
 
 ```css
-.seg input { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.seg label { display: inline-flex; align-items: center; min-height: 44px; padding-inline: var(--space-md); border: 1px solid var(--color-rule); cursor: pointer; }
-.seg input:checked + label { background: var(--color-ink); color: var(--color-paper); }
-.seg input:focus-visible + label { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.choice input { opacity: 0; position: absolute; height: 1px; width: 1px; }
+.choice label {
+  min-height: 44px; padding-inline: var(--s-3); cursor: pointer;
+  display: inline-flex; align-items: center; border: 1px solid var(--hair);
+}
+.choice input:checked + label { color: var(--paper); background: var(--ink); }
+.choice input:focus-visible + label { outline-offset: 2px; outline: 2px solid var(--ring); }
 ```
 
-The radios stay in the flow at one pixel (gate 53), the label carries state and ring.
+Keep the radios in the flow, one pixel square (gate 53); the label shows state and focus ring.
 
 ## Rail and switcher
 
 ```html
-<ul class="rail" tabindex="0" aria-label="Upcoming dates">
-  <li><time datetime="2027-06-12">12 June</time> Whitby</li><!-- five or more; the next is cut by the edge -->
+<ul class="strip" aria-label="Coming dates" tabindex="0">
+  <li>Whitby, <time datetime="2027-06-12">Sat 12 June</time></li><!-- 5 or more, so the next is clipped by the edge -->
 </ul>
 ```
 
 ```css
-.rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(16rem, 22%); gap: var(--gap-columns);
-  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); padding-inline: var(--gutter); overscroll-behavior-x: contain; }
-.rail > * { scroll-snap-align: start; }
-.rail:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
+.strip {
+  gap: var(--col-gap); display: grid; grid-auto-columns: minmax(16rem, 22%); grid-auto-flow: column;
+  padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+}
+.strip > * { scroll-snap-align: start; }
+.strip:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
 ```
 
-Scroll snap reference: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap. A switcher is a tablist of buttons plus tabpanels; arrow keys move the selection (a few lines set `aria-selected`, `tabindex` and `hidden`), and without script every panel shows in order (ARIA pattern: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). A pinned pair is `position: sticky; top: var(--space-2xl)` on the visual's column, released under 60rem.
+Scroll snap reference: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap. A switcher is a row of tab buttons over tab panels. Arrow keys move the selection (a few lines flip `aria-selected`, `tabindex` and `hidden`), and with no script every panel stacks open (ARIA pattern: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). For a pinned pair, put `position: sticky` and a `top` offset on the visual's column and release it below 60rem.
 
-## A fact the prompt did not give
+## A fact the brief left out
 
 ```html
-<p>Doors at <span class="fill" data-fill="time">time to be announced</span>.</p>
+<p>Doors open at <span class="tbd" data-gap="time">time to be confirmed</span>.</p>
 ```
 
 ```css
-.fill { padding-inline: .25em; border: 1px dashed color-mix(in oklch, var(--color-muted) 70%, transparent); border-radius: 3px; color: var(--color-muted); box-decoration-break: clone; }
+.tbd {
+  padding-inline: .25em; color: var(--mute); border-radius: 3px;
+  box-decoration-break: clone; border: 1px dashed color-mix(in srgb, var(--mute) 70%, transparent);
+}
 ```
 
-Two per page at most, each named in the handoff.
+At most two per page, each listed in the handoff.
 
-## A form that posts nowhere yet
+## A form wired to nothing yet
 
 ```html
-<form id="signup" data-endpoint="" novalidate>
-  <label for="email">Email address</label>
-  <div class="row"><input id="email" name="email" type="email" autocomplete="email" required>
-  <button class="btn" type="submit">Send me the date</button></div>
-  <p id="help" aria-live="polite"></p>
+<form data-endpoint="" id="join" novalidate>
+  <label for="addr">Email address</label>
+  <div class="line">
+    <input id="addr" type="email" name="email" required autocomplete="email">
+    <button type="submit" class="action">Tell me the date</button>
+  </div>
+  <p id="note" aria-live="polite"></p>
 </form>
 <script>
-  const form = document.getElementById('signup'), input = form.email, help = document.getElementById('help');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!input.checkValidity()) { input.setAttribute('aria-invalid', 'true'); help.textContent = 'That address looks incomplete. Write it with an at sign and a domain.'; input.focus(); return; }
-    input.removeAttribute('aria-invalid');
-    if (!form.dataset.endpoint) { help.textContent = 'Nothing was sent: this form is not connected yet.'; return; }
+  const form = document.getElementById('join'), field = form.email, note = document.getElementById('note');
+  const failed = 'It did not go through. Please try again shortly.';
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    if (!field.checkValidity()) {
+      field.setAttribute('aria-invalid', 'true');
+      note.textContent = 'That address looks unfinished. It needs an @ sign and a domain.';
+      field.focus(); return;
+    }
+    field.removeAttribute('aria-invalid');
+    if (!form.dataset.endpoint) { note.textContent = 'Not connected yet, so nothing has been sent.'; return; }
     try {
-      const r = await fetch(form.dataset.endpoint, { method: 'POST', body: new FormData(form) });
-      help.textContent = r.ok ? 'Thanks, it is on its way.' : 'That did not go through. Try again in a minute.';
-    } catch { help.textContent = 'That did not go through. Try again in a minute.'; }
+      const res = await fetch(form.dataset.endpoint, { body: new FormData(form), method: 'POST' });
+      note.textContent = res.ok ? 'Thanks, it is on its way.' : failed;
+    } catch { note.textContent = failed; }
   });
 </script>
 ```
 
 ```css
-.row { display: flex; gap: var(--space-xs); }
-.row input { flex: 1; min-width: 0; min-height: 48px; padding-inline: var(--space-md); border: 1px solid var(--color-muted); outline: 2px solid transparent; outline-offset: -3px; background: var(--color-paper); color: var(--color-ink); }
-.row input:focus-visible { outline-color: var(--color-focus); }
-.row input[aria-invalid] { border-color: var(--color-error); }
-#help { min-height: 1lh; margin-top: var(--space-2xs); color: var(--color-muted); }
+.line { display: flex; gap: var(--s-1); }
+.line input {
+  min-height: 48px; min-width: 0; flex: 1 1 0; padding-inline: var(--s-3);
+  color: var(--ink); background: var(--paper);
+  border: 1px solid var(--mute); outline: 2px solid transparent; outline-offset: -3px;
+}
+.line input:focus-visible { outline-color: var(--ring); }
+.line input[aria-invalid] { border-color: var(--bad); }
+#note { min-height: 1lh; margin-top: var(--s-half); color: var(--mute); }
 ```
 
-For a site we ship with a real backend (a Supabase insert or a form service), fill `data-endpoint` and keep the same four outcomes: invalid, not connected, sent, failed.
+On a site shipped with a real backend (a Supabase insert or a form service), fill `data-endpoint` and keep all four outcomes: invalid, not connected, sent, failed.
 
 ## One reveal that survives no script
 
-Use the pattern in `craft-motion.md` § A reveal that survives no script, plus an observer that adds the `in` class once per element (https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver). Stagger by setting `transition-delay: calc(var(--i, 0) * 40ms)`.
+Start from the reveal in `craft-motion.md` § A reveal that survives no script, then add an observer that sets the `in` class once per element (https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver). Stagger with `transition-delay: calc(var(--i, 0) * 40ms)`.
 
-## Figures that compare
+## Figures side by side
 
 ```css
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.stats > * { padding-inline: var(--space-lg); border-left: 1px solid var(--color-rule); }
-.stats > :first-child { padding-left: 0; border-left: 0; }
-.stats b { display: block; font: 600 var(--text-3xl)/1 var(--font-display); font-variant-numeric: tabular-nums; }
-@media (max-width: 60rem) { .stats { grid-template-columns: minmax(0, 1fr); }
-  .stats > * { padding: var(--space-md) 0; border-left: 0; border-top: 1px solid var(--color-rule); } .stats > :first-child { border-top: 0; } }
+.figures { display: grid; grid-template: auto / repeat(3, 1fr); }
+.figures > * { padding-inline: var(--s-4); border-left: 1px solid var(--hair); }
+.figures > :first-child { padding-left: 0; border: 0; }
+.figures b { font: 600 var(--size-3xl)/1 var(--display); font-variant-numeric: tabular-nums; display: block; }
+@media (max-width: 60rem) {
+  .figures { grid-template-columns: minmax(0, 1fr); }
+  .figures > * { border-left: 0; padding: var(--s-3) 0; border-top: 1px solid var(--hair); }
+  .figures > :first-child { border-top: 0; }
+}
 ```
 
-Only figures the user gave, each with unit and what it counts.
+Use only figures the owner gave, each with a unit and a note saying what is counted.
 
-## A loop that can pause
+## A loop with a pause control
 
-Anything moving for over five seconds (marquee, ambient loop, looping video) holds still until script runs, stops off-screen and under reduced motion, pauses on hover and focus, and has a visible pause button (WCAG 2.2.2).
+Any motion lasting beyond five seconds (marquee, ambient loop, looping video) must start still, stop when off-screen and under reduced motion, pause while hovered or focused, and offer a visible pause button (WCAG success criterion 2.2.2).
 
 ```html
-<figure data-loop><div class="marquee">…</div><button class="btn quiet" type="button" data-loop-toggle>Pause</button></figure>
+<figure data-loop>
+  <div class="ticker">…</div>
+  <button type="button" data-loop-toggle class="action quiet">Pause</button>
+</figure>
 ```
 
 ```css
 [data-loop]:not(.running) * { animation-play-state: paused !important; }
-html:not(.js) [data-loop-toggle] { display: none; }
-@media (prefers-reduced-motion: reduce) { [data-loop-toggle] { display: none; } }
+html:not(.js) [data-loop-toggle] { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { [data-loop-toggle] { visibility: hidden; } }
 ```
 
 ```js
-document.querySelectorAll('[data-loop]').forEach((el) => {
-  const s = { seen: false, over: false, held: matchMedia('(prefers-reduced-motion: reduce)').matches };
-  const btn = el.querySelector('[data-loop-toggle]');
-  const sync = () => { el.classList.toggle('running', s.seen && !s.over && !s.held); btn.textContent = s.held ? 'Play' : 'Pause'; };
-  btn.onclick = () => { s.held = !s.held; sync(); };
-  for (const [ev, v] of [['pointerenter', true], ['focusin', true], ['pointerleave', false], ['focusout', false]]) el.addEventListener(ev, () => { s.over = v; sync(); });
-  new IntersectionObserver(([e]) => { s.seen = e.isIntersecting; sync(); }).observe(el);
-});
+for (const box of document.querySelectorAll('[data-loop]')) {
+  const on = { visible: false, hovered: false, paused: matchMedia('(prefers-reduced-motion: reduce)').matches };
+  const toggle = box.querySelector('[data-loop-toggle]');
+  const refresh = () => {
+    box.classList.toggle('running', on.visible && !on.hovered && !on.paused);
+    toggle.textContent = on.paused ? 'Play' : 'Pause';
+  };
+  toggle.onclick = () => { on.paused = !on.paused; refresh(); };
+  for (const [type, value] of [['pointerleave', false], ['focusout', false], ['pointerenter', true], ['focusin', true]]) {
+    box.addEventListener(type, () => { on.hovered = value; refresh(); });
+  }
+  new IntersectionObserver((entries) => { on.visible = entries[0].isIntersecting; refresh(); }).observe(box);
+}
 ```
 
-For looping video also call `pause()` and `play()` in `sync`.
+When the loop is a video, call `pause()` or `play()` inside `refresh`.
 
-## A way past the nav
+## Skipping the nav
 
 ```html
-<a class="skip" href="#main">Skip to content</a>
+<a href="#main" class="jump">Skip to content</a>
 ```
 
 ```css
-.skip { position: absolute; left: var(--space-md); top: -6rem; z-index: 600; padding: var(--space-xs) var(--space-md); background: var(--color-ink); color: var(--color-paper); }
-.skip:focus-visible { top: var(--space-md); }
+.jump {
+  position: absolute; z-index: 600; top: -6rem; left: var(--s-3);
+  padding: var(--s-1) var(--s-3); color: var(--paper); background: var(--ink);
+}
+.jump:focus-visible { top: var(--s-3); }
 ```
