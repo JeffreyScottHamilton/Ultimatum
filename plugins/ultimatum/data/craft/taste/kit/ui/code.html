@@ -1,0 +1,12 @@
+<figure class="frag frag--dark" role="img" aria-label="Code editor with two tabs open on a rate limiter, line 6 highlighted">
+  <div class="f-tabs"><span class="is-open">limiter.py</span><span>test_limiter.py</span></div>
+  <div class="f-lines f-mono"><code><span class="f-k">class</span> Bucket:</code>
+<code>    <span class="f-k">def</span> __init__(self, rate, burst):</code>
+<code>        self.rate = rate</code>
+<code>        self.burst = self.tokens = burst</code>
+<code></code>
+<code class="is-hot">    <span class="f-k">def</span> take(self, now):</code>
+<code>        self.refill(now)</code>
+<code>        <span class="f-k">if</span> self.tokens &lt; 1:</code>
+<code>            <span class="f-k">return</span> <span class="f-s">"wait"</span></code></div>
+</figure>

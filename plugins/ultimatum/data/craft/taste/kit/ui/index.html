@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta content="initial-scale=1, width=device-width" name="viewport">
+<title>Interface fragments | Taste kit</title>
+<link href="../system.css" rel="stylesheet">
+<link href="ui.css" rel="stylesheet">
+<style>
+  .shelf { margin-top: 40px; display: grid; gap: 40px 32px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)); }
+  .shelf > section { display: grid; gap: 10px; align-content: start; justify-items: start; }
+  .shelf h2 { font: 500 var(--fs-label)/1.3 var(--face-text); margin: 0; }
+</style>
+</head>
+<body>
+<main class="block g-paper">
+<div class="wrap">
+<h1>Interface fragments</h1>
+<p class="lead">Generated from the partials in this folder by tools/taste_ui_gallery.py. Edit the partials, not this page.</p>
+<div class="shelf">
+<section id="apps">
+<h2>apps</h2>
+<figure class="frag" role="img" aria-label="Fourteen connected apps shown as marks">
+  <!-- Lettered tiles are slots: swap in each brand's own glyph mark, one treatment for the set. -->
+  <div class="f-top"><span class="f-title">Works with the tools you have</span><span class="f-meta">14 apps</span></div>
+  <div class="f-body f-apps">
+    <span class="f-tile" data-mark="xero">X</span><span class="f-tile" data-mark="stripe">S</span><span class="f-tile" data-mark="slack">#</span><span class="f-tile" data-mark="gmail">G</span><span class="f-tile" data-mark="outlook">O</span><span class="f-tile" data-mark="shopify">Sh</span><span class="f-tile" data-mark="quickbooks">qb</span>
+    <span class="f-tile" data-mark="hubspot">H</span><span class="f-tile" data-mark="notion">N</span><span class="f-tile" data-mark="dropbox">D</span><span class="f-tile" data-mark="zapier">Z</span><span class="f-tile" data-mark="calendly">C</span><span class="f-tile" data-mark="paypal">P</span><span class="f-tile" data-mark="whatsapp">W</span>
+  </div>
+</figure>
+</section>
+<section id="calendar">
+<h2>calendar</h2>
+<figure class="frag" role="img" aria-label="December 2026 with the stay from the 10th to the 14th marked and two key dates listed" style="--fit-max: 320px">
+  <div class="f-top"><span class="f-title">December 2026</span><span class="f-meta">4 nights</span></div>
+  <div class="f-body">
+    <div class="f-month">
+      <span class="dow">M</span><span class="dow">T</span><span class="dow">W</span><span class="dow">T</span><span class="dow">F</span><span class="dow">S</span><span class="dow">S</span>
+      <span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+      <span>7</span><span>8</span><span class="today">9</span><span class="start">10</span><span class="in">11</span><span class="in">12</span><span class="in">13</span>
+      <span class="end">14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+      <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+      <span>28</span><span>29</span><span>30</span><span>31</span>
+    </div>
+  </div>
+  <ul class="f-list">
+    <li><span class="f-grow">Check in from 3pm</span><span class="f-meta">Thu 10 Dec</span></li>
+    <li><span class="f-grow">Free cancellation ends</span><span class="f-meta">Mon 7 Dec</span></li>
+  </ul>
+</figure>
+</section>
+<section id="chat">
+<h2>chat</h2>
+<figure class="frag" role="img" aria-label="Assistant answers how long refunds take, citing the refund policy and the payouts log">
+  <div class="f-top"><span class="f-title">Ask Tidewater</span><span class="f-meta">Help centre</span></div>
+  <div class="f-body f-say">
+    <p class="f-ask">How long until a refund shows on my card?</p>
+    <p>Refunds leave us the same day we approve them. Most banks show them within 5 to 7 working days; American Express can take up to 10.</p>
+    <div class="f-sources"><span class="f-chip">Refund policy, section 3</span><span class="f-chip">Payouts log, 24 Nov</span></div>
+  </div>
+</figure>
+</section>
+<section id="checklist">
+<h2>checklist</h2>
+<figure class="frag f-checklist" role="img" aria-label="Shop setup checklist: three of five steps done">
+  <div class="f-top"><span class="f-title">Open your shop</span><span class="f-meta">3 of 5</span></div>
+  <div class="f-body" style="padding-bottom:0"><div class="f-bar" style="--done:60%"><span></span></div></div>
+  <ul class="f-list f-steps">
+    <li class="is-done"><span class="f-tick"></span><span class="f-label">Add your business address</span></li>
+    <li class="is-done"><span class="f-tick"></span><span class="f-label">Connect a bank account</span></li>
+    <li class="is-done"><span class="f-tick"></span><span class="f-label">Upload five products</span></li>
+    <li><span class="f-tick"></span><span class="f-label">Set delivery prices</span></li>
+    <li><span class="f-tick"></span><span class="f-label">Choose a domain</span></li>
+  </ul>
+</figure>
+</section>
+<section id="code">
+<h2>code</h2>
+<figure class="frag frag--dark" role="img" aria-label="Code editor with two tabs open on a rate limiter, line 6 highlighted">
+  <div class="f-tabs"><span class="is-open">limiter.py</span><span>test_limiter.py</span></div>
+  <div class="f-lines f-mono"><code><span class="f-k">class</span> Bucket:</code>
+<code>    <span class="f-k">def</span> __init__(self, rate, burst):</code>
+<code>        self.rate = rate</code>
+<code>        self.burst = self.tokens = burst</code>
+<code></code>
+<code class="is-hot">    <span class="f-k">def</span> take(self, now):</code>
+<code>        self.refill(now)</code>
+<code>        <span class="f-k">if</span> self.tokens &lt; 1:</code>
+<code>            <span class="f-k">return</span> <span class="f-s">"wait"</span></code></div>
+</figure>
+</section>
+<section id="cursor">
+<h2>cursor</h2>
+<figure class="frag" role="img" aria-label="A drafted refund reply is sent; its status changes from Draft to Sent">
+  <div class="f-top"><span class="f-title">Re: Order 4471</span><span class="f-state"><span class="f-chip was">Draft</span><span class="f-chip f-chip--mark now">Sent</span></span></div>
+  <div class="f-body">
+    <div class="f-draft">Hi Priya, sorry about the missing charger. We've refunded &pound;19 to your card and a new one ships today by first-class post.</div>
+    <div class="f-foot">
+      <span class="f-btn f-btn--quiet">Save</span><span class="f-btn">Send</span>
+      <svg class="f-pointer" viewBox="0 0 14 20" aria-hidden="true"><path d="M1 1v15l4-3.5 2.6 5.8 2.4-1.1-2.6-5.7H13z" fill="#16191d" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+</figure>
+</section>
+<section id="diff-review">
+<h2>diff-review</h2>
+<figure class="frag" role="img" aria-label="Pull request file billing/vat.py with 4 lines added and 1 removed, and a reviewer comment with an Apply button">
+  <div class="f-top"><span class="f-title f-mono f-cut">billing/vat.py</span><span class="f-mono"><span class="f-plus">+4</span> <span class="f-minus">&minus;1</span></span></div>
+  <div class="f-lines f-mono"><code>def vat_due(net, country):</code>
+<code class="del">    return net * 0.2</code>
+<code class="add">    rate = RATES.get(country)</code>
+<code class="add">    if rate is None:</code>
+<code class="add">        raise KeyError(country)</code>
+<code class="add">    return round(net * rate, 2)</code></div>
+  <div class="f-comment">
+    <div class="f-row"><span><span class="f-face">JL</span> <span class="f-title">Jo Lindqvist</span></span><span class="f-meta">2m</span></div>
+    <p style="margin:0">Round with Decimal here, floats drift on large invoices.</p>
+    <div><span class="f-btn">Apply suggestion</span></div>
+  </div>
+</figure>
+</section>
+<section id="doc">
+<h2>doc</h2>
+<figure class="frag" role="img" aria-label="Tenancy agreement with two phrases marked and a note on the notice period">
+  <div class="f-top"><span class="f-title">Tenancy agreement, 14 Leith Walk</span><span class="f-meta">Page 3 of 9</span></div>
+  <div class="f-page">
+    <h4>7. Ending the tenancy</h4>
+    <p>The tenant may end this agreement by giving <mark class="is-now">at least 28 days' notice in writing</mark>. The landlord must give the notice set out in <mark>Schedule 5 of the 2016 Act</mark>.</p>
+    <div class="f-aside"><span class="f-title">Notice period</span><span class="f-meta">28 days matches the legal minimum for a private residential tenancy.</span></div>
+  </div>
+</figure>
+</section>
+<section id="files">
+<h2>files</h2>
+<figure class="frag" role="img" aria-label="Project files synced two minutes ago: a quote, a site plan, a schedule and three photos">
+  <div class="f-top"><span class="f-title">Harbour Street flats</span><span class="f-chip f-chip--mark">Synced 2 min ago</span></div>
+  <div class="f-body f-files">
+    <div class="f-file"><span class="f-ext" style="background:#b42828">PDF</span><span class="f-cut">Quote v3</span><span class="f-meta">212 KB</span></div>
+    <div class="f-file"><span class="f-ext" style="background:#1d5fa8">DWG</span><span class="f-cut">Site plan</span><span class="f-meta">4.1 MB</span></div>
+    <div class="f-file"><span class="f-ext" style="background:#1a7f37">XLSX</span><span class="f-cut">Schedule</span><span class="f-meta">88 KB</span></div>
+    <div class="f-file"><span class="f-ext" style="background:#5a616a">JPG</span><span class="f-cut">Roof, north</span><span class="f-meta">2.3 MB</span></div>
+    <div class="f-file"><span class="f-ext" style="background:#5a616a">JPG</span><span class="f-cut">Roof, south</span><span class="f-meta">2.0 MB</span></div>
+    <div class="f-file"><span class="f-ext" style="background:#5a616a">JPG</span><span class="f-cut">Stairwell</span><span class="f-meta">1.7 MB</span></div>
+  </div>
+</figure>
+</section>
+<section id="integrations">
+<h2>integrations</h2>
+<figure class="frag" role="img" aria-label="Integrations: Xero and Stripe connected, Slack not yet connected">
+  <!-- The lettered tiles are slots: replace each with the brand's own glyph mark from its press kit. -->
+  <div class="f-top"><span class="f-title">Integrations</span><span class="f-meta">3 of 12</span></div>
+  <ul class="f-list">
+    <li><span class="f-tile" data-mark="xero">X</span><span class="f-grow"><span class="f-title">Xero</span><span class="f-meta f-cut">Posts paid invoices to your ledger</span></span><span class="f-chip">Connected</span></li>
+    <li><span class="f-tile" data-mark="stripe">S</span><span class="f-grow"><span class="f-title">Stripe</span><span class="f-meta f-cut">Takes card payments on quotes</span></span><span class="f-chip">Connected</span></li>
+    <li><span class="f-tile" data-mark="slack">#</span><span class="f-grow"><span class="f-title">Slack</span><span class="f-meta f-cut">Sends late-payment alerts to a channel</span></span><span class="f-btn">Connect</span></li>
+  </ul>
+</figure>
+</section>
+<section id="notify">
+<h2>notify</h2>
+<figure class="frag" role="img" aria-label="Three notifications: a new booking from Ewan Fraser arrives above two older ones">
+  <div class="f-stack">
+    <div class="f-note"><span class="f-face">EF</span><span class="f-grow"><span class="f-title">Ewan Fraser booked a service</span><span class="f-meta f-cut">Tuesday 2 Dec, drop-off before 10</span></span><span class="f-meta">now</span></div>
+    <div class="f-note"><span class="f-face">LS</span><span class="f-grow"><span class="f-title">Lena Schulz approved a quote</span><span class="f-meta f-cut">&pound;84 for chain, cassette and labour</span></span><span class="f-meta">12m</span></div>
+    <div class="f-note"><span class="f-face">RD</span><span class="f-grow"><span class="f-title">Rory Doyle left a review</span><span class="f-meta f-cut">"Back the same week, brakes feel new"</span></span><span class="f-meta">1h</span></div>
+  </div>
+</figure>
+</section>
+<section id="phone">
+<h2>phone</h2>
+<figure class="handset" aria-label="The booking app on a phone">
+  <!-- Slot: a real 390x844 screenshot of the client's app. Never a drawn mock-up. -->
+  <img src="app-screen.svg" width="390" height="844" alt="The client’s booking screen">
+</figure>
+</section>
+<section id="pipeline-board">
+<h2>pipeline-board</h2>
+<figure class="frag" role="img" aria-label="CI run 1042 on main is running: build and lint done, tests in progress">
+  <div class="f-top"><span class="f-title">Run 1042 &middot; main</span><span class="f-chip"><span class="f-dot"></span>Running 3m 12s</span></div>
+  <div class="f-body f-run">
+    <div><span class="f-mono">a3f9e21</span> <span class="f-meta">Round VAT with Decimal</span></div>
+    <div class="f-jobs"><span class="f-chip">build 48s</span><span class="f-chip">lint 21s</span><span class="f-chip">test</span><span class="f-chip">deploy</span></div>
+    <div><span class="f-btn f-btn--quiet">Cancel run</span></div>
+  </div>
+</figure>
+</section>
+<section id="search">
+<h2>search</h2>
+<figure class="frag f-search" role="img" aria-label="Command bar searching for refund policy, with the first of three results selected">
+  <div class="f-query"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16"><circle cx="7" cy="7" fill="none" r="4.6" stroke="#5a616a" stroke-width="1.6"/><path d="M10.4 10.4 14 14" stroke="#5a616a" stroke-width="1.6"/></svg><span class="f-typed">refund pol</span><span class="f-grow"></span><span class="f-key">Esc</span></div>
+  <ul class="f-list">
+    <li class="is-picked"><span class="f-grow"><span class="f-title">Refund policy</span><span class="f-meta f-cut">Help centre article, edited 3 days ago</span></span><span class="f-key">&crarr;</span></li>
+    <li><span class="f-grow"><span class="f-title">Refund a payment</span><span class="f-meta f-cut">Action in Payments</span></span></li>
+    <li><span class="f-grow"><span class="f-title">Refunds this month</span><span class="f-meta f-cut">Report, 41 rows</span></span></li>
+  </ul>
+</figure>
+</section>
+<section id="slider">
+<h2>slider</h2>
+<figure class="frag" role="img" aria-label="Layer properties: corner radius 12, opacity 80 percent, clip content on" style="--fit-max: 280px">
+  <div class="f-top"><span class="f-title">Card</span><span class="f-meta">Frame</span></div>
+  <div class="f-body">
+    <div class="f-prop"><div class="f-row"><span>Corner radius</span><span class="f-meta">12</span></div><div class="f-track" style="--at:38%"><span></span></div></div>
+    <div class="f-prop"><div class="f-row"><span>Opacity</span><span class="f-meta">80%</span></div><div class="f-track" style="--at:80%"><span></span></div></div>
+    <div class="f-prop"><div class="f-row"><span>Clip content</span><span class="f-switch is-on"></span></div></div>
+  </div>
+</figure>
+</section>
+<section id="stat">
+<h2>stat</h2>
+<figure class="frag" role="img" aria-label="1,284 orders in the last 14 days, up 9 percent, with today the highest bar">
+  <div class="f-body">
+    <span class="f-meta">Orders, last 14 days</span>
+    <div class="f-row"><span class="f-big">1,284</span><span class="f-chip">+9% on the 14 before</span></div>
+    <div class="f-bars" aria-hidden="true">
+      <i style="--h:42%"></i><i style="--h:55%"></i><i style="--h:48%"></i><i style="--h:61%"></i><i style="--h:38%"></i><i style="--h:30%"></i><i style="--h:57%"></i>
+      <i style="--h:64%"></i><i style="--h:59%"></i><i style="--h:70%"></i><i style="--h:52%"></i><i style="--h:44%"></i><i style="--h:73%"></i><i style="--h:88%"></i>
+    </div>
+  </div>
+</figure>
+</section>
+<section id="terminal-run">
+<h2>terminal-run</h2>
+<figure class="frag frag--dark" role="img" aria-label="Terminal running the test suite: 182 of 214 tests passed so far">
+  <div class="f-top"><span class="f-meta f-mono">~/shop-api</span><span class="f-meta">zsh</span></div>
+  <div class="f-term f-mono">
+    <span>$ make test</span>
+    <span><span class="f-ok">pass</span> billing/test_vat.py        24</span>
+    <span><span class="f-ok">pass</span> orders/test_refunds.py     61</span>
+    <span><span class="f-ok">pass</span> orders/test_shipping.py    97</span>
+    <span>running stock/test_sync.py ...</span>
+    <span class="f-meta">182 of 214</span>
+    <div class="f-bar" style="--done:85%"><span></span></div>
+  </div>
+</figure>
+</section>
+<section id="toggles">
+<h2>toggles</h2>
+<figure class="frag f-toggles" role="img" aria-label="Alert rules: late payments and failed backups on, weekly digest switching on, marketing tips off">
+  <div class="f-top"><span class="f-title">Alert rules</span><span class="f-meta">Email and app</span></div>
+  <ul class="f-list">
+    <li><span class="f-grow">Payment more than 7 days late</span><span class="f-switch is-on"></span></li>
+    <li><span class="f-grow">Nightly backup failed</span><span class="f-switch is-on"></span></li>
+    <li><span class="f-grow">Weekly cash-flow digest</span><span class="f-switch is-on f-flip"></span></li>
+    <li><span class="f-grow">Tips and product news</span><span class="f-switch"></span></li>
+  </ul>
+</figure>
+</section>
+<section id="voice">
+<h2>voice</h2>
+<figure class="frag" role="img" aria-label="Call with the booking assistant, 2 minutes 14 seconds in, captioned" style="--fit-max: 320px">
+  <div class="f-voice">
+    <span class="f-meta">Booking line &middot; 02:14</span>
+    <span class="f-orb" aria-hidden="true"></span>
+    <p class="f-caption"><b>Assistant:</b> Tuesday at nine is free. Shall I hold a rack for the cargo bike?</p>
+    <span class="f-btn f-btn--quiet">End call</span>
+  </div>
+</figure>
+</section>
+<section id="window">
+<h2>window</h2>
+<figure class="frag" role="img" aria-label="Tidewater Desk inbox: 12 open conversations, a new one from Priya Natarajan arriving at the top">
+  <div class="f-window">
+    <ul class="f-side">
+      <li class="is-here"><span>Open</span><span class="f-meta">12</span></li>
+      <li><span>Mine</span><span class="f-meta">4</span></li>
+      <li><span>Waiting</span><span class="f-meta">7</span></li>
+      <li><span>Closed</span><span class="f-meta">318</span></li>
+    </ul>
+    <ul class="f-list">
+      <li class="f-new"><span class="f-face">PN</span><span class="f-grow"><span class="f-title f-cut">Priya Natarajan</span><span class="f-meta f-cut">Order 4471 arrived without the charger</span></span><span class="f-meta">now</span></li>
+      <li><span class="f-face">TO</span><span class="f-grow"><span class="f-title f-cut">Tom O'Neill</span><span class="f-meta f-cut">Can I move my delivery to Friday?</span></span><span class="f-meta">9m</span></li>
+      <li><span class="f-face">AK</span><span class="f-grow"><span class="f-title f-cut">Aiko Kimura</span><span class="f-meta f-cut">Invoice needs our VAT number</span></span><span class="f-meta">22m</span></li>
+      <li><span class="f-face">MB</span><span class="f-grow"><span class="f-title f-cut">Marta B&aacute;rta</span><span class="f-meta f-cut">Thanks, the swap worked</span></span><span class="f-meta">1h</span></li>
+    </ul>
+  </div>
+</figure>
+</section>
+</div>
+</div>
+</main>
+</body>
+</html>
