@@ -52,7 +52,7 @@ Bottom: a panel named "Between chats" holding three steps joined by arrows: "Han
 ## team-website.png: Website
 
 ```
-Title: "Website"   Subtitle: "/ultimatum:website for small business sites"
+Title: "Website"   Subtitle: "/ultimatum:website from small sites to web apps"
 
 Top row, steps joined by arrows:
 "Intake" -> "Brief" -> "Route" -> "Design" -> "Build" -> "Review" -> "Go live" -> "First 30 days"

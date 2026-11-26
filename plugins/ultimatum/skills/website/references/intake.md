@@ -31,6 +31,17 @@ After round 1, read the type's section in `by-business-type.md` and add its few 
 
 Add one free-text ask: 3 sites the owner likes the look of, and one thing about each. Ask one-at-a-time in chat: "Why would a stranger pick you over the nearest alternative?"
 
+## Round 3: apps only
+
+Ask when round 1 or 2 mentions logins, members, a dashboard, saved data, a shop or subscriptions.
+
+11. **Accounts.** Who signs up (customers, staff, both) and how: email and password, magic link, Google, Apple. (Recommended: magic link or Google for customers; password plus a second factor for staff.)
+12. **Roles.** What each kind of user may see and change. (Recommended: member and admin only, until a real need appears.)
+13. **Data.** What the app stores about each user, how long, and who may see it. (Recommended: the least that makes the main action work.)
+14. **Payments.** One-off or subscription, prices, trial, refunds, currencies and countries; who handles sales tax. (Recommended: Stripe Checkout in test mode first; offer a payment link if nothing on the site depends on paying.)
+
+Then read `app/route.md` and add its brief lines (Accounts, Data, Payments, Emails).
+
 ## Brand interview
 
 After the brief is approved, fill `brand/brand.md` (voice, values, story, fonts, colours) with a few short asks, only for what intake did not already answer.

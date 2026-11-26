@@ -7,7 +7,7 @@
 Tell it about the business in plain chat. It asks a few questions, writes a one-page brief you approve, shows three design directions, builds the one you pick, checks it in a real browser, and puts nothing live until you say yes.
 
 [![CI](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.0.7-111111)
+![Version](https://img.shields.io/badge/version-0.0.8-111111)
 ![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-FF5A1F)
 [![License: MIT](https://img.shields.io/badge/license-MIT-111111)](LICENSE)
 
@@ -31,7 +31,7 @@ One plugin with two commands:
 
 | Command | For |
 |---|---|
-| `/ultimatum:website` | New sites, redesigns and fixes for small business, local service, portfolio and creator sites |
+| `/ultimatum:website` | New sites, redesigns and fixes, from small business and local service sites to web apps with sign-in, Supabase and Stripe |
 | `/ultimatum:work` | Short answers first, and everyday coding work: fixes, features, debugging, review and releases |
 
 Shops, apps, social media and video are not part of this version.
@@ -82,6 +82,8 @@ How to read the diagrams: orange dots are your approvals, rounded pills are suba
 5. **Build and check:** built phase by phase, then checked in a real browser at phone, tablet and desktop sizes.
 6. **Review:** the compliance reviewer checks claims, licences and links; blockers are fixed and rechecked.
 7. **Go live on your yes**, then the first-30-days numbers.
+
+Sites with accounts, saved data or payments add three things: a data model you approve (Supabase, with row-level security tested as a second user), sign-in flows, and Stripe in test mode until you approve real payments.
 
 Small fixes skip the interview and the directions: the bug is seen in the browser, fixed, and checked again.
 

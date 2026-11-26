@@ -1,6 +1,6 @@
 # Plan: a full website builder and our own design knowledge
 
-Status: outline for the user's review. Nothing here is built yet.
+Status: section 1 shipped in 0.0.8. Section 2 (UI UX Pro Max) is next; section 4 is handed to separate sessions.
 
 ## 1. Scope: every kind of website
 

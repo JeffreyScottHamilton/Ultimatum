@@ -1,6 +1,6 @@
 # Route: website
 
-For small business, local service, restaurant or cafe, salon, clinic, trades, agency or consultant, coach, portfolio, creator and personal-brand sites. Mostly static; the goal is calls, bookings or enquiries. No accounts or carts. If the brief needs logins or a catalogue with checkout, tell the user that is out of scope for now (shops and apps may come later).
+For every size of site: small business and local service sites (restaurant or cafe, salon, clinic, trades, agency or consultant, coach, portfolio, creator, personal brand), content sites (blog, docs, many locations), and web apps with accounts, saved data or payments. Most small sites are static and aim at calls, bookings or enquiries. If the brief needs logins, saved data, members-only pages or payments, read `app/route.md` as well.
 
 ## Team
 
@@ -15,6 +15,8 @@ Rules of thumb, not laws:
 | One page | One service or offer, a new business with little content, a portfolio, an event, a link-in-bio style creator page | Hero with the action, services, proof, about, contact or booking, all on one scroll |
 | 4-6 pages | Several services, several towns, a clinic or salon with a menu of treatments, a consultant with case studies | Home, Services (or one page per main service), About, Proof (reviews, work), Contact or Booking; optional Blog or FAQ |
 | 7+ pages | Many services or locations, each worth searching for | Add one page per service or town only when real, distinct content exists for it |
+| Content site | A blog, guides or docs, a business with many locations, a members-info site | Page templates (article, location, category), search, a content source the owner can edit (a headless CMS, Markdown in Git, or a builder), redirects from old URLs |
+| App | Accounts, saved data, a dashboard, subscriptions or a custom checkout | `app/route.md`: data model, sign-in, payments, and two extra approvals |
 
 Recommend the smaller size unless the owner has content to fill more. A thin page is worse than none. Detail per page is in `pages-and-seo.md`.
 

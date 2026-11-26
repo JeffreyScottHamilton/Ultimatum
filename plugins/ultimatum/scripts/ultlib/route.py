@@ -43,7 +43,7 @@ WEBSITE_ROUTES = {"ui", "feature", "small", "large"}
 
 _RECOVERY_RE = re.compile(r"\b(resume|resuming|pick up (?:where|from|the work|again)|picking up (?:where|from)|after compaction|after the compaction|continue)\b", re.I)
 _DEEP_RE = re.compile(r"\b(audit|thorough|deep)\b", re.I)
-_WEBSITE_RE = re.compile(r"\b(websites?|web ?sites?|web ?pages?|landing ?pages?|home ?pages?|marketing (?:site|page)s?|portfolio (?:site|page)s?|personal site|static site|docs site|microsite)\b", re.I)
+_WEBSITE_RE = re.compile(r"\b(websites?|web ?sites?|web ?pages?|landing ?pages?|home ?pages?|marketing (?:site|page)s?|portfolio (?:site|page)s?|personal site|static site|docs site|microsite|(?:members?|membership|booking|client|online shop|online store) (?:sites?|areas?|portals?))\b", re.I)
 # Interface words that mean website work only inside a project that is a website.
 _SITE_UI_RE = re.compile(r"\b(menu|nav(?:bar|igation)?|header|footer|hero|navbar|hamburger|layout|responsive|mobile view|on (?:phones?|mobile)|css|styles?|styling|stylesheet|dark mode|font|colou?rs?|buttons?|sidebar|modal|carousel|gallery|landing|homepage|page)\b", re.I)
 _SITE_DEPS = {"next", "react", "react-dom", "vue", "nuxt", "svelte", "@sveltejs/kit", "astro", "vite", "gatsby",

@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.8] - 2026-11-26
+
+Website builder: every size of site, up to web apps with sign-in, a database and payments.
+
+- New app guides in `skills/website/references/app/`: when a site needs to be an app, the default stack, Supabase (keys, data model, row-level security, the second-user test, migrations), sign-in (flows, server checks, redirects, abuse), Stripe (Checkout, webhooks as the source of truth, the customer portal, test mode, going live) and an app go-live checklist.
+- Two new approvals: `ult gate approve data-model ... --file <migration>` (reopens when the file changes) and `live-payments` (used once).
+- Intake asks about accounts, roles, data and payments when the site needs them; the route covers content sites and apps. The old "shops and apps are out of scope" rule is gone; the simplest fit (a payment link, a hosted shop) is still offered first.
+- Member sites, client portals and online shops now go to the website workflow.
+
 ## [0.0.7] - 2026-11-26
 
 Website designs: more AI-design habits to avoid.

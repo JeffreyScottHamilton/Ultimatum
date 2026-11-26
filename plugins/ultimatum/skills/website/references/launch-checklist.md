@@ -1,6 +1,6 @@
 # Go-live checklist
 
-Tick each item with evidence (a command, a screenshot or a live URL), not a guess. Owner-only steps (domain purchase, DNS and listing logins) stay with the owner.
+Tick each item with evidence (a command, a screenshot or a live URL), not a guess. Owner-only steps (domain purchase, DNS and listing logins) stay with the owner. Sites with accounts, data or payments also run `app/checklist.md`.
 
 ## Before launch
 
