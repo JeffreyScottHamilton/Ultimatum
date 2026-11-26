@@ -18,7 +18,7 @@ Say "make a 20-second ad for this product" or "an explainer for our new feature"
 - **Product and social video:** Higgsfield, through its official MCP server, from your own product photos. It checks your credits, shows the plan and its cost, waits for your yes, then makes one shot at a time and reviews each before the next. Higgsfield charges credits for every generation made through MCP, even on an unlimited plan.
 - **Explainers and feature videos:** motion graphics, rendered on your computer.
 - **Brand films:** your footage or licensed stock first; generated shots only for gaps, and labelled.
-- **Voice, music and sound effects:** ElevenLabs by default, mixed with music ducked under the voice and checked for loudness. Suno is an option if you make the track yourself.
+- **Voice, music and sound effects:** ElevenLabs by default (with your yes before credits are spent), then your own or licensed tracks, Suno only if you ask. `ult audio mix` ducks music under the voice and normalises to -14 LUFS on your machine; `ult audio credits` keeps the licence log and blocks non-commercial tracks.
 
 ## What it does not do
 

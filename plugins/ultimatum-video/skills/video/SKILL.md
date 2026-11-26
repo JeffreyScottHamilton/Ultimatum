@@ -23,9 +23,9 @@ Follow the pipeline in `references/video/guide.md`; never skip ahead.
 1. **Intake.** Rounds of 4 AskUserQuestion questions (kind of video, length, platforms and aspect ratio, own footage or product photos, voice or none, deadline, budget for credits), recommended answer first plus "skip, use your pick", until the shot list can be written. Read `brand/brand.md` and `brand/sound.md` first and skip what they answer.
 2. **Script and shots.** `video/<name>/script.md` and `shots.md`, each shot with its source. Show them; on the user's yes, `ult gate approve storyboard "<their words>"`.
 3. **Pictures.** Product ad, UGC or e-commerce: `references/video/higgsfield.md` (credit check, plan, yes, one generation, review). Explainer or feature: `references/motion-graphics/guide.md`. Feeling carried by people: `references/brand-film/guide.md`. Own clips or a demo: the matching file in `references/social-media/styles/`.
-4. **Audio.** `references/video/audio.md`: ElevenLabs voice first, then music and effects; Suno only by hand if the user prefers.
+4. **Audio.** `references/video/audio.md`: ElevenLabs voice first, then own or licensed music, Suno last; mix with `ult audio mix`, log with `ult audio credits add`.
 5. **Assemble.** Cut to the voice, then the music. Locally, in an ElevenLabs composition, or in the user's editor (`references/editors/guide.md`).
-6. **Review.** `ult media FILE`, the audio check, stills at each cut. Log problems with `ult loop add "<finding>" --blocker` (or `--minor`). Run agents `ultimatum-video:compliance-reviewer` (claims, consent, licences, AI labels) and `ultimatum-video:taste-critic` (hook, pacing, layout). Fix, recheck; open blockers stop delivery.
+6. **Review.** `ult media FILE`, `ult audio credits check --dir media/audio`, stills at each cut. Log problems with `ult loop add "<finding>" --blocker` (or `--minor`). Run agents `ultimatum-video:compliance-reviewer` (claims, consent, licences, AI labels) and `ultimatum-video:taste-critic` (hook, pacing, layout). Fix, recheck; open blockers stop delivery.
 7. **Yes.** Show the export and the licence log. Only on the user's words: `ult gate approve video "<their words>"`.
 
 ## Rules

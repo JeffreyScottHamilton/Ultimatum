@@ -1,6 +1,6 @@
 # Video · Audio (ElevenLabs by default)
 
-Voice, music and sound effects come from ElevenLabs when its connector or API is available, so one account covers all three. Otherwise the user makes them by hand and pastes the files back. Checked against the ElevenLabs connector's own model list in November 2026; check the current list (`creative_get_flow_node_types`, or the API reference) before relying on any name below.
+Order of sources: (1) ElevenLabs through its connector or API, when available and the user said yes to the credits; (2) the user's own recordings, or music and effects whose licence allows commercial use (CC0, or a paid library plan that fits the use), each logged; (3) Suno by hand, only when the user asks for it. Every file ends up as a real file in `media/audio/` with a row in `brand/sound-credits.md`; a prompt alone is not a delivery. Checked against the ElevenLabs connector's own model list in November 2026; check the current list (`creative_get_flow_node_types`, or the API reference) before relying on any name below.
 
 ## Before any generation
 
@@ -19,7 +19,8 @@ Voice, music and sound effects come from ElevenLabs when its connector or API is
 
 - Music node, instrumental unless the user wants vocals, length set to the cut (3 s to 10 min). Prompt: the locked style from `brand/sound.md` plus the energy curve (calm intro, lift at the hook, end on a hit).
 - Already have the picture? The video-to-music node scores a connected video; add the locked style as the prompt.
-- **Suno (optional, by hand):** if the user prefers Suno, write the prompt for them; they generate it and paste the file. Suno has no official public API; free-plan tracks are non-commercial.
+- **No ElevenLabs:** ask for the user's own track or a licensed one first (`../shared/licenses.md`); log it with `ult audio credits add <file> --source <page> --licence "<licence>"`.
+- **Suno (last, by hand):** only if the user asks; write the prompt, they generate it and paste the file. Suno has no official public API; free-plan tracks are non-commercial, and `ult audio credits check` blocks them.
 
 ## Sound effects
 
@@ -29,6 +30,6 @@ Voice, music and sound effects come from ElevenLabs when its connector or API is
 
 ## Mix
 
-- ElevenLabs Composition node: connect voice, music and effects; it levels each clip by role and ducks music under speech. Or mix locally with ffmpeg (`sidechaincompress`, then two-pass `loudnorm`).
+- ElevenLabs Composition node: connect voice, music and effects; it levels each clip by role and ducks music under speech. Or mix here: `ult audio mix vo.wav music.mp3 --out media/audio/mix.m4a [--video cut.mp4] [--loop]` ducks the music under the voice (about 8 dB, `--duck`), normalises in two passes and prints the measured loudness and true peak; exit 1 when out of range.
 - Target -14 LUFS integrated, true peak at most -1 dBTP; run the audio check in `../motion-graphics/audio-sheet.md` and report the measured numbers.
-- Log every clip in `brand/sound-credits.md`: file, tool and model, date, plan, licence.
+- Log every clip in `brand/sound-credits.md`: `ult audio credits add <file> --source <tool or page> --licence "<plan or licence>"`. Before delivery run `ult audio credits check --dir media/audio` (add `--use paid-ad` for paid ads); blockers stop delivery.

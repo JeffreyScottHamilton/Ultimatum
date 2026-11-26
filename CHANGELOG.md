@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [1.0.3] - 2026-11-26
+
+Music and voice end as real, licensed, mixed files instead of prompts. All seven plugins move to 1.0.3.
+
+- New `ult audio` commands (local ffmpeg only):
+  - `mix VOICE MUSIC --out FILE`: ducks the music under the voice with a sidechain compressor, normalises in two passes to -14 LUFS with true peak at most -1 dBTP, can put the mix on a video, and prints the measured numbers (exit 1 when out of range).
+  - `credits add` and `credits check`: rows in `brand/sound-credits.md`; the check blocks non-commercial or missing licences, flags owed credits and audio files with no row, and has a stricter `--use paid-ad` mode.
+- Audio guide order: ElevenLabs (with a yes before spending credits), then own or licensed tracks, then Suno only by hand when asked.
+- Shared defaults gain rule 7, "Real files first": deliver the made and checked file, not a prompt, unless no local tool or authorized connector can make it.
+
 ## [1.0.2] - 2026-11-26
 
 Social Media now makes finished, checked files instead of only scripts and prompts. All seven plugins move to 1.0.2.

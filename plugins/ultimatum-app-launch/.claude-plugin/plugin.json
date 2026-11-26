@@ -1,6 +1,6 @@
 {
   "name": "ultimatum-app-launch",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "App Launch for Ultimatum. Plans and runs the launch of a web app, mobile app or subscription product: pricing and billing, sign-up and activation, onboarding emails, trust basics and a launch-week plan. Self-contained: ships its own team guides, reviewer agents and toolbelt.",
   "author": {
     "name": "Jeffrey Scott Hamilton"

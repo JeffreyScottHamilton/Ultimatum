@@ -35,6 +35,7 @@
   ult launch | ult business "<task>" | ult social "<task>"   Launch Manager board, Business and Social Media plans
   ult shop catalog|numbers|check|emails|scaffold|test-order   store files for E-commerce Launch
   ult posts specs|check|calendar|slides|captions|variant   finished social posts and their results
+  ult audio credits add|check, ult audio mix VOICE MUSIC --out F   sound licences and a ducked, -14 LUFS mix
   ult style status|apply|remove  opt-in shared answer style in ~/.claude/CLAUDE.md
 """
 import argparse
@@ -47,7 +48,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from ultlib import context, doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
 MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
-for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "motion", "film", "media", "loop", "board", "style", "gates", "teams", "shop", "posts"):
+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "motion", "film", "media", "loop", "board", "style", "gates", "teams", "shop", "posts", "audio"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
     except ImportError:

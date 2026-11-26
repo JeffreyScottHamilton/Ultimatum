@@ -13,5 +13,6 @@
 4. **Check quietly, report honestly.** Always run the check; say "done" only when it passed. Show the command and result when asked, or when a check failed or was skipped. Handoffs between agents stay short but carry the exact evidence the next one needs.
 5. **Tools and accounts.** Current library docs: Context7 if present, else the installed source. Use Composio or another connector only if it is available and the user authorized that app; prefer read-only calls for research and reporting. Never put credentials in Git, prompts or logs. If a connector, video transcript or page is unavailable, say what you actually accessed and continue with public sources or the user's files.
 6. **Ask first** before deploying, publishing, posting, sending campaigns, changing customer records or spending money. Each yes covers one action.
+7. **Real files first.** Deliver the thing itself (the file, page, import sheet, mix or render), made and checked here with the local tools, rather than a prompt or plan for the user to run elsewhere. Hand over a prompt only when no local tool or authorized connector can make it, and say why.
 
 Ideas from Caveman (plain, terse words), ADHD-friendly writing (scannable, one idea per line), Ponytail (reuse, minimal change) and the Karpathy guidelines (plan, verifiable success); wording is Ultimatum's own.

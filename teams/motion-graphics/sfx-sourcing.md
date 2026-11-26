@@ -29,4 +29,6 @@ One line per file used:
 | whoosh-01.ogg | <pack or file page> | Kenney | CC0 | no | launch-video |
 ```
 
+`ult audio credits add <file> --source <url> --licence <licence> --author <name>` adds a row; `ult audio credits check --dir media/audio` finds unlogged files and non-commercial licences.
+
 Put required credits in the video description or the site's credits page, and tell the user where they went.
