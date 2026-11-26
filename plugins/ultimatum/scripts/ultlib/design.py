@@ -37,10 +37,9 @@ DOMAINS: dict[str, tuple[str, tuple[str, ...], tuple[str, ...]]] = {
     "color": ("colors.csv", ("Product Type", "Family", "Notes"),
               ("Product Type", "Primary", "Secondary", "Accent", "Background", "Foreground", "Muted", "Border",
                "Destructive", "Ring", "Notes", "Avoid")),
-    "typography": ("typography.csv", ("Font Pairing Name", "Category", "Mood/Style Keywords", "Best For",
-                                      "Heading Font", "Body Font"),
-                   ("Font Pairing Name", "Heading Font", "Body Font", "Mood/Style Keywords", "Best For",
-                    "Google Fonts URL", "Notes")),
+    "typography": ("typography.csv", ("Pairing", "Mood", "Best For", "Heading Font", "Body Font", "Kind"),
+                   ("Pairing", "Heading Font", "Body Font", "Mood", "Best For", "Heading Weights", "Body Weights",
+                    "Licence", "Google Fonts URL", "Notes")),
     "landing": ("landing.csv", ("Pattern Name", "Aliases", "Keywords", "Conversion Optimization"),
                 ("Pattern Name", "Section Order", "Primary CTA Placement", "Color Strategy", "Recommended Effects",
                  "Conversion Optimization")),
@@ -84,8 +83,8 @@ NICHE = frozenset({"maps", "ai interaction", "spatial ui", "security"})
 def tokens(text: str) -> list[str]:
     out = []
     for w in re.findall(r"[a-z0-9]+", (text or "").lower()):
-        if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
-            w = w[:-1]
+        if len(w) > 3 and w.endswith("s") and not w.endswith("ss") and w[:-1] not in STOP:
+            w = w[:-1]  # plural to singular, but "news" must not become the stop word "new"
         if w not in STOP:
             out.append(w)
     return out
@@ -227,7 +226,7 @@ def system(brief: str, stack: str = "") -> dict:
         "style_notes": [{k: s.get(k, "") for k in ("Style Category", "Effects & Animation", "Accessibility",
                                                     "Design System Variables")} for s in styles],
         "palette": {k: v for k, v in (_by("colors.csv", "Product Type", kind) or {}).items() if k != "Product Type"},
-        "fonts": [{k: f[k] for k in ("Font Pairing Name", "Heading Font", "Body Font", "Google Fonts URL")} for f in fonts],
+        "fonts": [{k: f[k] for k in ("Pairing", "Heading Font", "Body Font", "Google Fonts URL")} for f in fonts],
         "landing": _by("landing.csv", "Pattern Name", product.get("Landing Pattern Match", "")) or {},
         "effects": why.get("Key_Effects", ""),
         "avoid": [a.strip() for a in why.get("Anti_Patterns", "").split("+") if a.strip()],
@@ -261,7 +260,7 @@ def render(ds: dict) -> str:
                      + (f". {pal['Notes']}" if pal.get("Notes") else ""))
     for i, f in enumerate(ds["fonts"]):
         label = "Fonts" if i == 0 else "Alt fonts"
-        lines.append(f"- **{label}:** {f['Heading Font']} / {f['Body Font']} ({f['Font Pairing Name']})")
+        lines.append(f"- **{label}:** {f['Heading Font']} / {f['Body Font']} ({f['Pairing']})")
     if ds["landing"]:
         lp = ds["landing"]
         lines.append(f"- **Page pattern:** {lp['Pattern Name']}: {lp.get('Section Order', '')}. CTA: {lp.get('Primary CTA Placement', '')}")

@@ -104,7 +104,7 @@ class TestOwnColors(UltCase):
         r = self.ult("design", "domains")
         self.assertRegex(r.out, r"color\s+\d+ rows\s+colors.csv\s+\(ours\)")
         r = self.ult("design", "system", "plumber")
-        self.assertIn("colors: Ultimatum's own", r.out)
+        self.assertIn("Ultimatum's own", r.out)
 
     def test_guidance_does_not_push_generic_colour_habits(self):
         text = (OWN / "colors.csv").read_text(encoding="utf-8").lower()
@@ -114,6 +114,77 @@ class TestOwnColors(UltCase):
     def test_no_shared_word_runs_with_the_upstream_source(self):
         if not VAULT.is_dir():
             self.skipTest("upstream copy not present (git-ignored vault)")
-        p = subprocess.run([sys.executable, str(REPO / "tools" / "copy_check.py"), str(OWN), str(VAULT)],
+        p = subprocess.run([sys.executable, str(REPO / "tools" / "copy_check.py"), str(OWN), str(VAULT),
+                            "--skip", "fonts-meta.json"],
                            capture_output=True, text=True)
         self.assertEqual(p.returncode, 0, p.stdout[-2000:])
+
+
+# Real requests and the pairing each must land on.
+FONT_REQUESTS = {
+    "plumber": "Workshop", "cafe": "Kneaded", "law firm": "Counsel", "saas dashboard": "Product",
+    "arabic": "Arabic Pair", "kids game": "Puzzle Box", "wedding photographer": "Keepsake",
+    "vet clinic": "Paws", "nail salon": "Nail Bar", "fintech app": "Ledger App", "barber": "Chair",
+    "hindi": "Devanagari Pair", "brewery": "Taproom", "museum": "Exhibit", "restaurant": "Supper",
+    "gym": "Training Floor", "florist": "Bloom", "hotel": "Front Desk", "charity": "Good Cause",
+    "university": "Campus", "news site": "Broadsheet", "documentation": "Docs", "japanese": "Japanese Pair",
+}
+GENERIC_DISPLAY = {"Inter", "Roboto", "Arial", "Open Sans"}  # craft.md: not as the display face
+LICENCES = {"SIL Open Font License 1.1", "Apache 2.0", "Ubuntu Font Licence 1.0"}
+
+
+class TestOwnTypography(UltCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(OWN / "typography.csv", newline="", encoding="utf-8") as f:
+            cls.rows = list(csv.DictReader(f))
+        cls.meta = json.loads((OWN / "fonts-meta.json").read_text(encoding="utf-8"))
+
+    def test_covers_at_least_as_many_pairings_as_upstream(self):
+        with open(THEIRS / "typography.csv", newline="", encoding="utf-8") as f:
+            theirs = sum(1 for _ in csv.DictReader(f))
+        self.assertGreaterEqual(len(self.rows), theirs)
+        self.assertEqual(len({r["Pairing"] for r in self.rows}), len(self.rows))
+        for r in self.rows:
+            self.assertTrue(all(v.strip() for v in r.values()), r["Pairing"])
+
+    def test_weights_exist_in_the_foundry_metadata(self):
+        for r in self.rows:
+            for fam, col in (("Heading Font", "Heading Weights"), ("Body Font", "Body Weights")):
+                m = self.meta[r[fam]]
+                for w in r[col].split(", "):
+                    w = int(w)
+                    ok = m["wght"][0] <= w <= m["wght"][1] if m["wght"] else w in m["weights"]
+                    self.assertTrue(ok, f"{r['Pairing']}: {r[fam]} {w}")
+
+    def test_licences_are_open_and_urls_load_only_used_weights(self):
+        for r in self.rows:
+            for lic in r["Licence"].split("; "):
+                self.assertIn(lic, LICENCES, r["Pairing"])
+            url = r["Google Fonts URL"]
+            self.assertTrue(url.startswith("https://fonts.googleapis.com/css2?family="), url)
+            self.assertTrue(url.endswith("&display=swap"), url)
+            self.assertNotIn("ital,", url)
+
+    def test_follows_the_type_lint(self):
+        for r in self.rows:
+            self.assertNotIn(r["Heading Font"], GENERIC_DISPLAY, r["Pairing"])
+            self.assertNotIn("monospace", r["Kind"].split(" + ")[1], f"{r['Pairing']}: mono body text")
+        bodies = __import__("collections").Counter(r["Body Font"] for r in self.rows)
+        self.assertLessEqual(max(bodies.values()), 4, bodies.most_common(3))
+
+    def test_csv_matches_a_fresh_build(self):
+        p = subprocess.run([sys.executable, str(REPO / "tools" / "build_typography.py"), "--check"],
+                           capture_output=True, text=True)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+
+    def test_requests_land_on_the_right_pairing(self):
+        for q, want in FONT_REQUESTS.items():
+            r = self.ult("design", "search", *q.split(), "--in", "typography", "-n", "1", "--json")
+            self.assertEqual(r.code, 0, r.err)
+            got = [x["Pairing"] for x in json.loads(r.out)]
+            self.assertEqual(got[:1], [want], q)
+
+    def test_system_credits_our_typography(self):
+        r = self.ult("design", "system", "coffee shop")
+        self.assertRegex(r.out, r"colors, typography[^:]*: Ultimatum's own")

@@ -1,6 +1,6 @@
 # Plan: a full website builder and our own design knowledge
 
-Status: section 1 shipped in 0.0.8. Section 2 (UI UX Pro Max) is under way: colours shipped in 0.0.9; section 4 is handed to separate sessions.
+Status: section 1 shipped in 0.0.8. Section 2 (UI UX Pro Max) is under way: colours shipped in 0.0.9, typography in 0.0.10; section 4 is handed to separate sessions.
 
 ## 1. Scope: every kind of website
 

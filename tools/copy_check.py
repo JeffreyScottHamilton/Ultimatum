@@ -68,7 +68,7 @@ def allowed_spans(tokens: list[str], n: int) -> set[int]:
     return ok
 
 
-def check(ours: Path, source: Path, n: int) -> list[str]:
+def check(ours: Path, source: Path, n: int, leave_out: tuple[str, ...] = ()) -> list[str]:
     shingles: set[tuple[str, ...]] = set()
     for _, text in read_texts(source):
         toks = [w for w, _ in words(text)]
@@ -76,6 +76,8 @@ def check(ours: Path, source: Path, n: int) -> list[str]:
 
     hits: list[str] = []
     for path, text in read_texts(ours):
+        if any(path.match(g) for g in leave_out):
+            continue
         pairs = words(text)
         toks = [w for w, _ in pairs]
         skip = allowed_spans(toks, n)
@@ -97,11 +99,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("ours", type=Path)
     ap.add_argument("source", type=Path)
     ap.add_argument("--words", type=int, default=8, help="shared run length that counts as a hit")
+    ap.add_argument("--skip", action="append", default=[],
+                    help="glob of our files to leave out, e.g. cached third-party facts")
     args = ap.parse_args(argv)
     if not args.ours.is_dir() or not args.source.is_dir() or args.words < 2:
         print("copy_check: both arguments must be folders and --words at least 2", file=sys.stderr)
         return 2
-    hits = check(args.ours, args.source, args.words)
+    hits = check(args.ours, args.source, args.words, tuple(args.skip))
     for h in hits:
         print(h)
     print(f"copy_check: {len(hits)} shared run(s) of {args.words}+ words")

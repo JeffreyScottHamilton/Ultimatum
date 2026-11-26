@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.10] - 2026-11-26
+
+Design tables, part 2: our own font pairings replace UI UX Pro Max's.
+
+- `data/design-own/typography.csv`: 85 pairings (theirs had 74) for local services, shops, apps, health, culture, community, games and eight non-Latin scripts, each with mood, uses, the weights to load, licence, fallback stacks, a Google Fonts link and notes on where it breaks.
+- Built by `tools/build_typography.py`; weights, licences and scripts are checked against Google Fonts' own metadata, cached in `fonts-meta.json` so tests run offline.
+- Tests hold the table to the type lint: no generic display face, no monospace body text, no body face in more than four pairings.
+- Fix: searches for "news" no longer drop the word (plural trimming turned it into the stop word "new").
+- `tools/copy_check.py --skip` leaves out cached third-party facts.
+
 ## [0.0.9] - 2026-11-26
 
 Design tables, part 1: our own colour palettes replace UI UX Pro Max's.
