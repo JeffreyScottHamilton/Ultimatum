@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <!-- Taste kit grain tile: black specks whose alpha follows the noise. -->
+  <filter id="speck" x="0" y="0" width="100%" height="100%">
+    <feTurbulence baseFrequency=".78" seed="7" numOctaves="3" type="fractalNoise"/>
+    <feColorMatrix type="luminanceToAlpha"/>
+  </filter>
+  <rect height="100%" width="100%" filter="url(#speck)"/>
+</svg>
