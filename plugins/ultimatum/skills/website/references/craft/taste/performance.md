@@ -104,5 +104,6 @@ Tech pages only.
 - Every WebGL piece has a still fallback for no WebGL2, a failed shader, phones and reduced motion.
 - Draw a still ground once, copy it to an image, and release the context (`WEBGL_lose_context`).
 - Pause off screen and in a hidden tab (`visibilitychange`).
+- Name shader variables and functions so they never clash with a word GLSL ES reserves (for example `input`, `output`, `filter`, `sample`, `active`, `common`, `partition`): some drivers refuse to compile the shader and the poster is all that shows. Spec list of reserved words: https://registry.khronos.org/OpenGL/specs/es/3.0/GLSL_ES_Specification_3.00.pdf
 - Measuring with WebGL off is only a proxy for CPU cost; shader compile time on the GPU is not measured by these checks.
 - WebGL best practices: https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices

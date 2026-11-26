@@ -22,6 +22,8 @@ The source kit ships these as code (a print core, scene modules and a render bui
 - A render never shows a different kind of object, a drawn SVG, loose primitives, mood stock or another maker's product, and never leaves an order form alone in one half of a split hero.
 - **A game without art:** its name large over a stand-in photo of its setting; the world section is the widest photo, full bleed. No render unless the brief requests 3D.
 - **Software, AI and games with art:** a print object is placed on the card whose topic it shows (say, a globe on the card about regions), or the game's own world object holds a fixed hero.
+- **A hardware print** (say, a drone, a camera, a chair or a pair of headphones) appears only when the product is that very thing, once per page, with the heading naming it. A product none of them matches gets its own photographs, never the closest print.
+- **Use the print look, not the smooth "studio" shading, on a page.** Smooth shading sampled once per pixel leaves jagged edges, and beside real product photos its forms look like toys. Shops and product pages use the client's photographs instead.
 
 ## Placement
 
