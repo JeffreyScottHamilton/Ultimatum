@@ -28,7 +28,7 @@ Thank you to the authors and maintainers of these projects.
 | [gitleaks/gitleaks](https://github.com/gitleaks/gitleaks) | `5f6ec56cfa6f` | MIT | Secret detection and redaction (optional integration; Ultimatum uses its own small pattern set) |
 | [google/osv-scanner](https://github.com/google/osv-scanner) | `02f96a40691c` | Apache-2.0 | Dependency advisory checks (optional integration) |
 | [hashicorp/agent-skills](https://github.com/hashicorp/agent-skills) | `5e30fa5c867b` | MPL-2.0 | Terraform module design and testing practices |
-| [mattpocock/skills](https://github.com/mattpocock/skills) | `4ae2317ddb22` | MIT | Requirements interviews, domain modeling, prototyping, TDD, tickets, handoffs |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | `d65391149dbb` | MIT | Requirements interviews, domain modeling, prototyping, TDD, tickets, handoffs; rebuilt as `skills/work/references/craft/mattpocock/` |
 | [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli) | `9166133dd68a` | Apache-2.0 | Browser interaction, snapshots, sessions, screenshots |
 | [mksglu/context-mode](https://github.com/mksglu/context-mode) | `3a3ef7d53c9a` | Elastic License 2.0 | Store-then-retrieve for large outputs with full-text search (ideas only; ELv2 code not used) |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | `2c606141936f` | MIT (stated in README) | Think before coding, simplicity, surgical changes, verifiable success criteria |

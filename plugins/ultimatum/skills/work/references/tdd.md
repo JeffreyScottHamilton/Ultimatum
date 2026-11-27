@@ -13,6 +13,8 @@ Goal: every new or fixed behavior is pinned by a test you watched fail for the r
 5. **REFACTOR.** Only while green. Remove duplication you introduced, rename, extract. Rerun the file after each step. No new behavior in this step.
 6. Repeat from 1. Do not write a batch of tests ahead of the code; one slice at a time keeps each failure interpretable.
 
+Agreeing seams first and client-shaped fakes: `craft/mattpocock/test-seams.md`; interface design: `craft/mattpocock/deep-modules.md`.
+
 ## 2. Stop conditions
 
 - The test passes immediately in step 3: you are testing existing behavior, a vacuous assertion, or the wrong path. Run the flip check (§6), fix the test, or conclude the behavior already exists and say so.

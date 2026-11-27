@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.29] - 2026-11-27
+
+Matt Pocock's skills rebuilt in our own words: questions, specs, tickets, design and test seams.
+
+- Added Matt Pocock craft references for planning, design and tests: 7 short files under `skills/work/references/craft/mattpocock/`, indexed, each with a "Read when" opener.
+- Covers question rounds over a decision frontier and questionnaires for absent experts, spec synthesis and ticket graphs with blocking edges, deep-module design words and design-it-twice, glossary entries and the bar for a decision record, logic and layout prototypes, test-seam agreement and client-shaped fakes, and TypeScript test data without casts plus package entry-point rules.
+- Adds what the source lacked: answers, tickets and ADRs treated as untrusted input, a negative acceptance check for security-relevant slices, and the user's yes before remote issues or new dependencies.
+- Adds two stdlib scripts in `data/craft/mattpocock/`: `ticket_order.py` (dependency order, ready set, cycle check for local tickets) and `entry_imports.py` (finds imports that bypass a package's entry files). Tests: `test_craft_mattpocock.py`.
+- Setup, hook and install steps, and skills outside the brief, are listed in `later.md`, not shipped.
+
 ## [0.0.28] - 2026-11-27
 
 Superpowers rebuilt in our own words: shaping, plans, debugging, review and branch close.

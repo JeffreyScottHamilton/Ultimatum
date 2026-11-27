@@ -1,0 +1,5 @@
+- Added Matt Pocock craft references for planning, design and tests: 7 short files under `skills/work/references/craft/mattpocock/`, indexed, each with a "Read when" opener.
+- Covers question rounds over a decision frontier and questionnaires for absent experts, spec synthesis and ticket graphs with blocking edges, deep-module design words and design-it-twice, glossary entries and the bar for a decision record, logic and layout prototypes, test-seam agreement and client-shaped fakes, and TypeScript test data without casts plus package entry-point rules.
+- Adds what the source lacked: answers, tickets and ADRs treated as untrusted input, a negative acceptance check for security-relevant slices, and the user's yes before remote issues or new dependencies.
+- Adds two stdlib scripts in `data/craft/mattpocock/`: `ticket_order.py` (dependency order, ready set, cycle check for local tickets) and `entry_imports.py` (finds imports that bypass a package's entry files). Tests: `test_craft_mattpocock.py`.
+- Setup, hook and install steps, and skills outside the brief, are listed in `later.md`, not shipped.

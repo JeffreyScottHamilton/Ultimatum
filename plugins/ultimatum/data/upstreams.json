@@ -262,8 +262,8 @@
       "pin": "d653911",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["deep", "website"],
-      "reviewed": "2026-11-24",
+      "modules": ["deep", "website", "work"],
+      "reviewed": "2026-11-26",
       "note": "Requirements questions, small steps and TDD ideas in own words"
     },
     {
