@@ -16,22 +16,20 @@ For every line, seam and tick row, find where it begins and ends. Each end must 
 
 ## Audit table
 
-Make a table with one row per check and a count of failures. All counts must be zero:
+Every count must be zero. Run `figure_audit.py` over the figure's scene to count them (`audit.md`); without a scene, walk the table by eye on 4x close-ups and write down each result.
 
 | Check | Fails when |
 |---|---|
-| clearance | a pipe is nearer than 1.5 radii to a part it should miss |
-| terminals | a pipe end is not on a port |
-| loose ends | a line ends in open space |
-| folds | a bend folds back on itself |
-| self overlaps | a part overlaps its own neighbour wrongly |
-| crowding | parts are closer than a readable gap |
-| stand-ins | a placeholder shape stands where a real part belongs |
-| wobble | a part drifts between frames when it should not |
-| seats | a part does not rest on what holds it |
-| depth order | a nearer part draws behind a farther one |
-
-If you hand-build with no tool, walk the table by eye on 4x close-ups and write down each result.
+| `clearance` | a pipe is nearer than 1.5 radii to a part it should miss |
+| `terminals` | a pipe end is not on its port |
+| `loose-ends` | a pipe ends in open space or names no port |
+| `folds` | a bend folds back on itself |
+| `overlaps` | two parts share volume without being meant to |
+| `crowding` | parts are closer than a readable gap |
+| `stand-ins` | a placeholder shape stands where a real part belongs |
+| `wobble` | a part drifts between frames when it should not |
+| `seats` | a part does not rest on what holds it |
+| `depth-order` | a nearer part draws behind a farther one |
 
 ## Close-ups
 

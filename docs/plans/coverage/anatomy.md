@@ -104,7 +104,7 @@ Source: Anatomy at commit 1482e84 (MIT, checked). Ours: `plugins/ultimatum/skill
 | KIT10 | React components | react.md §Layout for one figure | covered |
 | KIT11 | Round parts on | kit-api.md §What the upstream kit offers | later (module, see later.md §Kit modules) |
 | KIT12 | Pipes, tubes and | kit-api.md §What the upstream kit offers | later (module, see later.md §Kit modules) |
-| KIT13 | The audit (kit/audit.mjs) | verify.md §Audit table | covered (check) |
+| KIT13 | The audit (kit/audit.mjs) | audit.md, verify.md §Audit table | expanded (`figure_audit.py`, 0.0.41) |
 | KIT14 | The WebGL layer | webgl.md §The camera contract | covered |
 | KIT15 | Tools | later.md §Source tooling | later |
 | KIT16 | Turning groups (kit/turn.mjs, | turning-groups.md §Group kinds | covered |
@@ -255,7 +255,7 @@ Source: Anatomy at commit 1482e84 (MIT, checked). Ours: `plugins/ultimatum/skill
 | K1 | iso-kit.mjs / iso-kit.ts | kit-api.md | later (port) |
 | K2 | lathe.mjs | kit-api.md | later |
 | K3 | tube.mjs | kit-api.md | later |
-| K4 | audit.mjs | verify.md §Audit table | later (checks done by hand) |
+| K4 | audit.mjs | audit.md | expanded (own `figure_audit.py` on a JSON scene, 0.0.41) |
 | K5 | canvas-painter.mjs | later.md | later |
 | K6 | gl.mjs, gl-shared.mjs | webgl.md | later (rules shipped, code not) |
 | K7 | turn.mjs | turning-groups.md | later |
@@ -294,9 +294,9 @@ Source: Anatomy at commit 1482e84 (MIT, checked). Ours: `plugins/ultimatum/skill
 | Status | Rows |
 |---|---|
 | covered | 104 |
-| later | 37 |
-| covered (check) | 26 |
+| later | 36 |
+| covered (check) | 25 |
 | merged | 7 |
-| expanded | 6 |
+| expanded | 8 |
 | not applicable | 2 |
 | total | 182 |

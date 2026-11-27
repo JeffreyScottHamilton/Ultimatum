@@ -25,7 +25,7 @@ The Anatomy project ships a Node kit (MIT) of modules. We do not install or run 
 |---|---|
 | projection, boxes, depth sort | `iso-math.md` and the runnable `iso-slabs.html` |
 | curved shading | gradient rules in `craft-shading.md` |
-| clearance, loose ends, depth checks | the checklists in `verify.md`; run them by eye and by the DOM probes there |
+| clearance, loose ends, folds, overlaps, crowding, stand-ins, wobble, seats, depth order | `figure_audit.py` over the figure's JSON scene (`audit.md`); line ends and close-ups by eye (`verify.md`) |
 | motion loop | the pattern in `motion.md` |
 
 Everything the kit does beyond that is in `later.md` with an honest note on why we did not rebuild it.

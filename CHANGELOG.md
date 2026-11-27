@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.41] - 2026-11-27
+
+Anatomy figure audit
+
+- New `data/craft/anatomy/figure_audit.py`: stdlib audit of a figure's JSON scene with the ten checks from the audit table (clearance, terminals, loose ends, folds, overlaps, crowding, stand-ins, wobble, seats, depth order); prints a count per check and each fault by name.
+- New `craft/anatomy/audit.md`: the scene format, what each check means and what it cannot see; clean and faulty example scenes.
+- `verify.md` audit table now uses the script's check names; `kit-api.md` and `later.md` point to the script.
+- Closes the anatomy gap in `docs/plans/comparison.md`.
+- Tests: `test_craft_anatomy_audit.py` (8).
+
 ## [0.0.40] - 2026-11-27
 
 Interface icons and banner sizes

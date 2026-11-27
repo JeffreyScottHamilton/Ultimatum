@@ -18,7 +18,7 @@ Five questions, each scored ours better / even / upstream better:
 
 | Set | Ours | Upstream | Gaps | Verdict | Where upstream still wins |
 |---|---|---|---|---|---|
-| anatomy | 21 files, 49 KB | 392 KB | 37 (kit modules, audit script) | upstream on tooling, ours on load cost | A runnable figure audit; we check by hand |
+| anatomy | 22 files, 53 KB, 1 script | 392 KB | 36 (kit modules) | even (was upstream on tooling) | Fixed in 0.0.41: `figure_audit.py` runs the ten audit checks on a JSON scene; upstream's kit also draws the parts and audits turning groups |
 | anthropic-method | 9 files, 29 KB, 6 scripts | 2.2 MB | 10 (eval viewer, packaging, office formats) | ours | Office-format skills, out of scope |
 | caveman | 6 files, 19 KB, 1 script | 880 KB | 16 (runtime, hooks, cloud) | ours | Hook-driven mode; runtime, out of scope |
 | coding-discipline | 5 files, 1 script | not read (no licence) | n/a | ours on checkability (`diff_scope.py`) | Unknown; text not read |

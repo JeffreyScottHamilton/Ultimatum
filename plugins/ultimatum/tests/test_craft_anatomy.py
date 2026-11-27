@@ -88,7 +88,7 @@ class CraftAnatomy(unittest.TestCase):
 
     def test_no_credentials(self):
         secret = re.compile(r"(api[_-]?key|secret|token)\s*[:=]\s*['\"][A-Za-z0-9_\-]{16,}|[\w.+-]+@[\w-]+\.[a-z]{2,}", re.I)
-        for path in _md() + list(DATA.iterdir()):
+        for path in _md() + [p for p in DATA.rglob("*") if p.is_file()]:
             with self.subTest(file=path.name):
                 self.assertIsNone(secret.search(path.read_text(encoding="utf-8")))
 
