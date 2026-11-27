@@ -1,0 +1,3 @@
+{"id": "timeline", "layout": "timeline", "size": "card",
+ "title": "A repair goes from drop-off to collection in four steps",
+ "nodes": ["Drop off", "Quote", "Repair", "Collect"]}

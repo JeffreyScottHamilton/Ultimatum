@@ -1,0 +1,197 @@
+/* Taste kit: the sixteen named section grounds (grounds-and-effects.md § Named grounds).
+   Tech pages only; product, service and place pages keep the three flat ground tokens.
+   Use: <section class="block g-mist"> ... </section>. Load after system.css.
+   Tuning, set on the section:
+     --g-hue       hue of the tint (default 195, a sea teal; keep it away from 270–330)
+     --g-strength  0..1, how loud the ground is (default .6)
+     --g-angle     direction of washes (default 160deg)
+     --g-x, --g-y  where a light or pool sits (defaults vary)
+     --g-grain     grain opacity, 0..0.1 (only grounds that carry grain)
+   Dark grounds switch ink and muted text themselves. Every class is measured by
+   tools/taste_contrast.cjs: body text must reach 4.5:1 on its real pixels. */
+
+:is(.g-mist, .g-halo, .g-ruled, .g-dots, .g-arcs, .g-liquid, .g-grain, .g-dusk, .g-band,
+    .g-field, .g-photo, .g-horizon, .g-deep, .g-paper, .g-topglow, .g-stage) {
+  --g-angle: 160deg; --g-hue: 195; --g-strength: .6; isolation: isolate; position: relative;
+}
+
+/* Grain sits behind the content, never over the text. */
+.g-grain::before, .g-field::before, .g-paper::before, .g-stage::before, .g-deep::before {
+  background: url("grain.svg") 0 0 / 240px 240px;
+  content: "";
+  inset: 0;
+  mix-blend-mode: overlay;
+  opacity: var(--g-grain, .07);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Dark grounds: light ink, muted text kept at 4.5:1 or more. */
+.g-dusk, .g-band, .g-horizon, .g-deep {
+  --ink: #eef1f2;
+  --line: rgb(238 241 242 / .16);
+  --muted: #b4bcc2;
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+/* Mid-tone grounds (grain, field, stage): muted text one step darker to keep 4.5:1. */
+.g-grain, .g-field, .g-stage { --muted: #464c54; }
+
+/* ---- Soft family: behind content ---- */
+
+/* mist: two neighbouring hues washed across a light ground */
+.g-mist {
+  background:
+    radial-gradient(70% 90% at var(--g-x, 15%) var(--g-y, 10%), oklch(0.93 calc(0.05 * var(--g-strength)) var(--g-hue)) 0%, transparent 70%),
+    radial-gradient(60% 80% at 90% 90%, oklch(0.94 calc(0.045 * var(--g-strength)) calc(var(--g-hue) - 35)) 0%, transparent 70%),
+    oklch(0.975 0.006 var(--g-hue));
+}
+
+/* halo: one soft light behind a centred line */
+.g-halo {
+  background:
+    radial-gradient(38% 46% at var(--g-x, 50%) var(--g-y, 42%), oklch(0.995 0.02 var(--g-hue)) 0%, oklch(0.95 calc(0.05 * var(--g-strength)) var(--g-hue)) 55%, transparent 100%),
+    oklch(0.94 0.02 var(--g-hue));
+  text-align: center;
+}
+.g-halo :is(h1, h2, p) { margin-inline: auto; }
+
+/* ruled: a fine grid framing the page, faded out where the words sit */
+.g-ruled { background: oklch(0.975 0.006 var(--g-hue)); }
+.g-ruled::after {
+  background:
+    linear-gradient(to right, oklch(0.3 0.02 var(--g-hue) / calc(0.12 * var(--g-strength))) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(to bottom, oklch(0.3 0.02 var(--g-hue) / calc(0.12 * var(--g-strength))) 1px, transparent 1px) 0 0 / 48px 48px;
+  content: "";
+  inset: 0;
+  -webkit-mask-image: radial-gradient(closest-side at 50% 50%, transparent 55%, #000 100%);
+          mask-image: radial-gradient(closest-side at 50% 50%, transparent 55%, #000 100%);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+/* dots: a dot field in the corners, clear behind the headings */
+.g-dots { background: oklch(0.975 0.006 var(--g-hue)); }
+.g-dots::after {
+  background: radial-gradient(circle, oklch(0.45 0.05 var(--g-hue) / calc(0.5 * var(--g-strength))) 1.2px, transparent 1.6px) 0 0 / 18px 18px;
+  content: "";
+  inset: 0;
+  -webkit-mask-image: radial-gradient(farthest-corner at 50% 50%, transparent 45%, #000 95%);
+          mask-image: radial-gradient(farthest-corner at 50% 50%, transparent 45%, #000 95%);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+/* arcs: rings rising from below, for a closing call */
+.g-arcs {
+  background:
+    repeating-radial-gradient(circle at 50% 135%, transparent 0 46px, oklch(0.55 0.06 var(--g-hue) / calc(0.22 * var(--g-strength))) 46px 47px),
+    oklch(0.97 0.008 var(--g-hue));
+  text-align: center;
+}
+.g-arcs > * { position: relative; }
+.g-arcs::after {
+  background: linear-gradient(oklch(0.97 0.008 var(--g-hue)) 30%, transparent 75%);
+  content: ""; inset: 0; pointer-events: none; position: absolute; z-index: -1;
+}
+.g-arcs :is(h2, p) { margin-inline: auto; }
+
+/* liquid: two slow blobs in neighbouring hues; the only CSS ground that moves.
+   It drifts once for 4.5 s on load and then holds, so it needs no pause button. */
+.g-liquid {
+  background:
+    radial-gradient(40% 55% at var(--b1x, 25%) 40%, oklch(0.9 calc(0.07 * var(--g-strength)) var(--g-hue)) 0%, transparent 70%),
+    radial-gradient(45% 60% at var(--b2x, 75%) 65%, oklch(0.91 calc(0.06 * var(--g-strength)) calc(var(--g-hue) + 30)) 0%, transparent 70%),
+    oklch(0.97 0.008 var(--g-hue));
+  animation: g-drift 4.5s var(--ease-settle, ease-out) 1 both;
+}
+@property --b1x { syntax: "<percentage>"; inherits: false; initial-value: 25%; }
+@property --b2x { syntax: "<percentage>"; inherits: false; initial-value: 75%; }
+@keyframes g-drift {
+  from { --b1x: 15%; --b2x: 85%; }
+  to   { --b1x: 30%; --b2x: 68%; }
+}
+
+/* ---- Hard family: one strong band per page ---- */
+
+/* grain: a tinted field with fine grain */
+.g-grain { background: oklch(0.9 calc(0.04 * var(--g-strength)) var(--g-hue)); --g-grain: .09; }
+
+/* dusk: one dark tone melting into the next, five stops in OKLCH */
+.g-dusk {
+  background: linear-gradient(in oklch var(--g-angle),
+    oklch(0.2 0.03 var(--g-hue)) 0%, oklch(0.24 0.045 var(--g-hue)) 30%,
+    oklch(0.27 0.055 calc(var(--g-hue) - 20)) 55%, oklch(0.3 0.06 calc(var(--g-hue) - 40)) 80%,
+    oklch(0.32 0.065 calc(var(--g-hue) - 50)) 100%);
+}
+
+/* band: a second tone lit from one corner */
+.g-band {
+  background:
+    radial-gradient(90% 120% at var(--g-x, 0%) var(--g-y, 0%), oklch(0.36 calc(0.08 * var(--g-strength)) var(--g-hue)) 0%, transparent 65%),
+    oklch(0.19 0.025 var(--g-hue));
+}
+
+/* field: a grainy gradient inside one colour family */
+.g-field {
+  --g-grain: .08;
+  background: linear-gradient(in oklch var(--g-angle),
+    oklch(0.95 0.02 var(--g-hue)), oklch(0.9 0.045 var(--g-hue)) 40%,
+    oklch(0.86 0.06 var(--g-hue)) 75%, oklch(0.84 0.065 calc(var(--g-hue) + 10)));
+}
+
+/* photo: a calm photograph; the scrim keeps the text side readable */
+.g-photo {
+  background:
+    linear-gradient(90deg, oklch(0.98 0.005 var(--g-hue) / .94) 0%, oklch(0.98 0.005 var(--g-hue) / .82) 45%, transparent 75%),
+    var(--g-photo, oklch(0.8 0.03 var(--g-hue))) center / cover no-repeat;
+}
+
+/* horizon: a dark band whose lower edge glows along a curve */
+.g-horizon {
+  background:
+    radial-gradient(140% 90% at 50% 175%, oklch(0.14 0.02 var(--g-hue)) 59.4%, oklch(0.78 calc(0.12 * var(--g-strength)) var(--g-hue)) 60%, oklch(0.4 0.08 var(--g-hue) / .5) 61.2%, transparent 68%),
+    oklch(0.13 0.015 var(--g-hue));
+}
+
+/* deep: almost black, a cool pool of light at the top, a bright top edge */
+.g-deep {
+  --g-grain: .05;
+  background:
+    linear-gradient(90deg, transparent, oklch(0.85 0.06 var(--g-hue) / .7), transparent) top / 100% 1px no-repeat,
+    radial-gradient(60% 45% at var(--g-x, 50%) 0%, oklch(0.3 calc(0.07 * var(--g-strength)) var(--g-hue)) 0%, transparent 100%),
+    oklch(0.1 0.012 var(--g-hue));
+}
+
+/* ---- Page and panel ---- */
+
+/* paper: the page ground with fine grain, never flat */
+.g-paper { background: oklch(0.975 0.008 var(--g-hue)); --g-grain: .06; }
+
+/* topglow: light pooled under the nav, for the top of a page */
+.g-topglow {
+  background:
+    radial-gradient(55% 340px at var(--g-x, 50%) 0%, oklch(0.92 calc(0.06 * var(--g-strength)) var(--g-hue)) 0%, transparent 100%),
+    oklch(0.975 0.006 var(--g-hue));
+}
+
+/* stage: a vivid grainy mesh that one card sits on (a panel, not a page) */
+.g-stage {
+  --g-grain: .09;
+  background:
+    radial-gradient(50% 60% at 20% 25%, oklch(0.78 0.11 var(--g-hue)) 0%, transparent 70%),
+    radial-gradient(55% 65% at 85% 30%, oklch(0.82 0.09 calc(var(--g-hue) - 40)) 0%, transparent 70%),
+    radial-gradient(60% 60% at 55% 95%, oklch(0.74 0.1 calc(var(--g-hue) + 25)) 0%, transparent 70%),
+    oklch(0.84 0.06 var(--g-hue));
+  border-radius: var(--round-tile, 20px);
+  padding: clamp(24px, 6vw, 64px);
+}
+.g-stage > .tile { background: var(--surface, #fff); }
+
+@media (prefers-reduced-motion: reduce) {
+  .g-liquid { animation: none; }
+}

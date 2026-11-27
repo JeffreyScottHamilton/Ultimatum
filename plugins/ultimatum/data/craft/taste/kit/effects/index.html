@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta content="initial-scale=1, width=device-width" name="viewport">
+<title>Taste kit: effects</title>
+<link href="../system.css" rel="stylesheet">
+<link href="effects.css" rel="stylesheet">
+<style>
+  .fx-list { display: flex; flex-direction: column; gap: 56px; }
+  .fx-list figure { margin: 0; }
+  .fx-list figcaption { margin-top: 12px; max-width: 62ch; }
+  .fx-list h2 { font-size: 20px; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<main class="block">
+  <div class="wrap">
+    <h1>Effects, three of them</h1>
+    <p class="lead">One per group from the effects catalogue. Each frame shows its still poster first; the canvas fades in over it, runs for eight seconds and holds. Tech pages only, one effect per page: this page breaks that rule on purpose to show all three.</p>
+    <div class="fx-list">
+      <figure>
+        <div class="fx" data-fx="grain-gradient" data-seed="2"></div>
+        <figcaption><h2>Grain gradient</h2><p>Background group. Soft shapes in the accent family under still grain; it may sit behind a card or a hero line.</p></figcaption>
+      </figure>
+      <figure>
+        <div class="fx" data-fx="orb-sphere" data-seed="1"></div>
+        <figcaption><h2>Lit sphere</h2><p>Focal group. A single sphere with a rim light that leans toward a mouse pointer; it stands alone in the hero.</p></figcaption>
+      </figure>
+      <figure>
+        <div class="fx" data-fx="grid-pulse" data-seed="4"></div>
+        <figcaption><h2>Grid pulse</h2><p>Pattern group. Signals travel along a hairline grid and fade out at the end of the run; never put text or UI over it.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</main>
+<script defer src="effects.js"></script>
+</body>
+</html>

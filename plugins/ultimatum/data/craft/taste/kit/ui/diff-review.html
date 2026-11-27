@@ -1,0 +1,14 @@
+<figure class="frag" role="img" aria-label="Pull request file billing/vat.py with 4 lines added and 1 removed, and a reviewer comment with an Apply button">
+  <div class="f-top"><span class="f-title f-mono f-cut">billing/vat.py</span><span class="f-mono"><span class="f-plus">+4</span> <span class="f-minus">&minus;1</span></span></div>
+  <div class="f-lines f-mono"><code>def vat_due(net, country):</code>
+<code class="del">    return net * 0.2</code>
+<code class="add">    rate = RATES.get(country)</code>
+<code class="add">    if rate is None:</code>
+<code class="add">        raise KeyError(country)</code>
+<code class="add">    return round(net * rate, 2)</code></div>
+  <div class="f-comment">
+    <div class="f-row"><span><span class="f-face">JL</span> <span class="f-title">Jo Lindqvist</span></span><span class="f-meta">2m</span></div>
+    <p style="margin:0">Round with Decimal here, floats drift on large invoices.</p>
+    <div><span class="f-btn">Apply suggestion</span></div>
+  </div>
+</figure>

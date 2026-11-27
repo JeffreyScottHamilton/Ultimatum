@@ -160,5 +160,6 @@ Effects inside one element (headline fill, button fill, rings, charts, feature-c
 - On a page that is not tech: WebGL, gradients, grain, print looks or any effect.
 - An effect where a photo or the product belongs. A print, dither or grade over a photograph.
 - Cards holding a moving canvas or live effect, or cards that animate as you scroll.
+- A drawn divider band between sections (a band is not a section), or a light sweeping across a logo row.
 - Captions that explain a picture. Blinking or random change. Violet or lavender.
 - Copying another site's code, assets or signature device.

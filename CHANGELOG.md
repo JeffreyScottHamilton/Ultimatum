@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.25] - 2026-11-27
+
+Taste part 2: the kit, effects and two new `ult` tools.
+
+- Taste kit, our own code in `data/craft/taste/kit/`: a starter page and system stylesheet, all 16 named grounds, 19 interface fragments with a phone frame, 16 icon glyphs, and a diagram page.
+- Three WebGL effects (grain-gradient, orb-sphere, grid-pulse), each inside the performance budget, with a CSS poster for reduced motion, phones and missing WebGL2.
+- New stdlib scripts: `scripts/ultlib/copylint.py` flags generic page copy, and `scripts/ultlib/diagram.py` draws a diagram as SVG from a small JSON spec. Both are now `ult copylint` and `ult diagram`.
+- Repo test tools: `tools/taste_contrast.cjs` measures text contrast on real pixels; `tools/taste_fx_check.cjs` checks the effects' budget and fallbacks in Chromium.
+- All 129 keyword-matched coverage rows were reviewed; `later.md` now lists what ships and what is left (22 effects, effect parts, objects, moments, the icon resolver, more diagram layouts).
+
 ## [0.0.24] - 2026-11-27
 
 Logo and identity guide, in our own words.

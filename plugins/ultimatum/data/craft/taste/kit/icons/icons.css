@@ -1,0 +1,82 @@
+/* Taste kit: interface glyphs and icon layouts (icons-and-diagrams.md § Layouts).
+   Glyphs live in glyphs.svg as <symbol>s; inline that sprite once per page and draw with
+   <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg> beside a text label.
+   Brand marks are not shipped: each layout has a slot (data-mark) for the real mark,
+   written to a local SVG from a pinned set, never a look-alike. */
+
+.ic {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+  fill: none;
+  block-size: var(--ic, 20px);
+  display: inline-block;
+  flex: none;
+  inline-size: var(--ic, 20px);
+  vertical-align: -0.2em;
+}
+.ic--16 { --ic: 16px; } .ic--24 { --ic: 24px; } .ic--32 { --ic: 32px; } .ic--48 { --ic: 48px; }
+
+/* A mark slot until the real file is in place: the tool's name, lettered, on a soft tile. */
+.ic-mark {
+  align-items: center;
+  background: var(--surface, #fff);
+  border-radius: calc(var(--ic-tile, 40px) * .26);
+  color: var(--ink, #1c2126);
+  outline: 1px solid var(--line, #d9dde1);
+  outline-offset: -1px;
+  display: inline-flex;
+  font: 600 max(10px, calc(var(--ic-tile, 40px) * .36)) / 1 var(--font-body, system-ui, sans-serif);
+  block-size: var(--ic-tile, 40px);
+  inline-size: var(--ic-tile, 40px);
+  justify-content: center;
+}
+.ic-mark img { block-size: 68%; inline-size: 70%; object-fit: contain; }
+
+/* row: icon, name, short fact */
+.ic-row { align-items: center; display: flex; gap: 12px; padding-block: 10px; }
+.ic-row + .ic-row { border-top: 1px solid var(--line, #d9dde1); }
+.ic-row b { font-weight: 600; }
+.ic-row span:last-child { color: var(--muted, #5a616a); margin-inline-start: auto; }
+
+/* chip: a name with a small icon inline */
+.ic-chip {
+  align-items: center;
+  border: 1px solid var(--line, #d9dde1);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 6px;
+  padding: 4px 10px 4px 6px;
+  --ic-tile: 20px;
+}
+
+/* stack: overlapping round tiles for "works with" */
+.ic-stack { display: flex; --ic-tile: 36px; }
+.ic-stack .ic-mark { outline: 2px solid var(--bg, #fff); outline-offset: 0; border-radius: 50%; }
+.ic-stack .ic-mark + .ic-mark { margin-inline-start: -10px; }
+
+/* mosaic: an integration grid of tiles with names under them */
+.ic-mosaic { --ic-tile: 48px; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 16px; display: grid; }
+.ic-mosaic figure { align-items: center; display: grid; gap: 8px; justify-items: center; margin: 0; }
+.ic-mosaic figcaption { font-size: 14px; }
+
+/* file card: a document-type icon with name and size */
+.ic-file { align-items: center; border: 1px solid var(--line, #d9dde1); border-radius: 12px; display: flex; gap: 12px; padding: 12px 14px; }
+.ic-file__type { position: relative; color: var(--muted, #5a616a); --ic: 36px; }
+.ic-file__type i {
+  background: var(--ink, #1c2126);
+  border-radius: 3px;
+  bottom: 4px;
+  color: var(--bg, #fff);
+  font: 700 8px/1 var(--font-mono, ui-monospace, monospace);
+  font-style: normal;
+  left: -4px;
+  letter-spacing: .04em;
+  padding: 2px 3px;
+  position: absolute;
+}
+.ic-file small { color: var(--muted, #5a616a); display: block; }
+
+/* On dark grounds marks keep their colours on a soft light tile. */
+:is(.g-dusk, .g-band, .g-horizon, .g-deep) .ic-mark { background: #f4f6f7; color: #1c2126; }

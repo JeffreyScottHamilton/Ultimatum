@@ -6,7 +6,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 
 - The inventory below is generated from a walk of the source tree at the pinned commit (`.git` excluded). Folders of demo icons and sample photos are grouped with counts and total bytes.
 - Items for SKILL.md, the gate, system, performance, icons, diagrams, backgrounds and sections-library were mapped by hand while writing (tables marked "hand-mapped").
-- Items for the other references and the asset folders were listed by hand, then assigned to one of our sections by a keyword match restricted to the files that cover that source file. Rows whose match was weak are marked `covered (check)`: the idea is in the named file, but the section pointer may be the nearest rather than the exact one.
+- Items for the other references and the asset folders were listed by hand, then assigned to one of our sections by a keyword match restricted to the files that cover that source file. Rows whose match was weak were first marked `covered (check)`; the taste-2 pass reopened every one and replaced it with a checked pointer and status (see Totals).
 - Status values: `covered` (same idea, our words), `expanded` (we add rules), `merged with X` (a duplicate folded into X), `later` (in `later.md`, not shipped yet).
 - Item text is our own one-line summary. Where a summary still shared an 8-word run with the source (mostly lists of source identifiers), it is cut short and marked `(shortened)` so this file passes the same copy check as the craft files.
 
@@ -1005,7 +1005,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | I29 | Marks under half violet drawn as is | icons-and-diagrams.md §On dark grounds | covered |
 | I30 | Icon layout classes (tile, row, chip, stack, mosaic, file) | icons-and-diagrams.md §Layouts | covered |
 | I31 | Icon sizes 16-56; icons never animate | icons-and-diagrams.md §Layouts | covered |
-| I32 | Demo page of icon layouts | later.md §Source kit | later (source kit) |
+| I32 | Demo page of icon layouts | kit/icons/index.html (later.md §Shipped kit) | covered |
 | I33 | Shape classes by aspect ratio | icons-and-diagrams.md §Layouts | covered |
 | I34 | Tile fill 70% width / 68% height | icons-and-diagrams.md §Layouts | covered |
 | I35 | File cards and integration grids at 20-40px | icons-and-diagrams.md §Layouts | covered |
@@ -1016,7 +1016,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 |---|---|---|---|
 | D1 | Diagram engine draws node-and-line visuals from JSON | icons-and-diagrams.md §Diagrams | covered (own SVG approach) |
 | D2 | 27 preset specs tagged by page kind | icons-and-diagrams.md §Diagram layouts | covered |
-| D3 | Demo and builder pages | later.md §Source kit | later (source kit) |
+| D3 | Demo and builder pages | kit/diagrams/index.html, a generated gallery (later.md §Shipped kit); no builder page yet | covered |
 | D4 | Diagram shows connection; UI fragment shows what users see | icons-and-diagrams.md §Diagrams | covered |
 | D5 | One per section, two per page (tech); one still on product/service; none on place | icons-and-diagrams.md §Diagrams | covered |
 | D6 | Game diagrams show a system, never replace pictures | icons-and-diagrams.md §Diagrams | covered |
@@ -1128,7 +1128,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | L23 | Hero picture by kind | layout-and-heroes.md §Picking a hero | covered |
 | L24 | App store links as text, not badges | sections.md §Hero copy | covered |
 | L25 | Window heroes: at most two fragments, never tilted/scaled | layout-and-heroes.md §Window heroes | covered |
-| L26 | Phone device frame hero 280x570 | later.md | later (mobile app showcase) |
+| L26 | Phone device frame hero 280x570 | kit/ui/phone.html (later.md §Shipped kit) | covered |
 | L27 | Dimension drawing SVG at true mm scale beside specs | icons-and-diagrams.md §Dimension drawing | covered |
 | L28 | logo-row: up to 6 real logos, one still row | sections.md §Proof | covered |
 | L29 | quote-stat: named quote ≤40 words with portrait beside a stat | sections.md §Proof | covered |
@@ -1192,9 +1192,9 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 |---|---|---|---|
 | CP1 | [rule] Say what it is in words a stranger gets in five seconds; no metaphor, poetry, invented terms or ad wording. | copy.md §The test | covered |
 | CP2 | [rule] Studied sites are description only: copy their plain category-first style, never their words, code, pictures or effect. | copy.md §The test | covered |
-| CP3 | [pattern] Copy layer is four files read at step 2: copy-voice, copy-registers, copy-moves, copy-tells. | copy.md §Tells | covered (check) |
+| CP3 | [pattern] Copy layer is four files read at step 2: copy-voice, copy-registers, copy-moves, copy-tells. | copy.md §The test | merged with voice.md |
 | CP4 | [later] copy-lint: `node … (shortened) | later.md §Source tooling | later |
-| CP5 | [rule] Where files differ, copy.md wins. | copy.md §The test | covered (check) |
+| CP5 | [rule] Where files differ, copy.md wins. | copy.md §The test | covered |
 | CP6 | [rule] Rule 1: h1 names the category (2-8 words), or buyer/place for an unknown brand; place h1 at most 40 characters; game = name plus genre. | copy.md §Headings and buttons | covered |
 | CP7 | [rule] Rule 2: first screen holds one hard fact: number, place, price or date. | copy.md §Headings and buttons | covered |
 | CP8 | [rule] Rule 3: every heading has a noun for a thing or section; one brand line per page, never the h1. | copy.md §Headings and buttons | covered |
@@ -1203,7 +1203,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CP11 | [table] Plain versions: columns Vague / Plain; 4 rows (e.g. "Come climb" becomes a day pass with price). | copy.md §Headings and buttons | covered |
 | CP12 | [rule] Hero sub-line: software 15-30 words; place 80 characters at most with today's hours; hotel names rooms and town. | copy.md §Headings and buttons | covered |
 | CP13 | [rule] Section headings 1-6 words, two … (shortened) | copy.md §Headings and buttons | covered |
-| CP14 | [rule] At most one two-fragment heading per page. | copy.md §Headings and buttons | covered (check) |
+| CP14 | [rule] At most one two-fragment heading per page. | copy.md §Headings and buttons | covered |
 | CP15 | [rule] Card titles: verb plus object, one line, no coy label. | copy.md §Headings and buttons | covered |
 | CP16 | [rule] Grey second half of a … (shortened) | copy.md §Headings and buttons | covered |
 | CP17 | [rule] Under-heading line 10-40 words; card body 1-2 sentences, 25 words max; no paragraph over five lines at 1440. | copy.md §Budget | covered |
@@ -1212,7 +1212,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CP20 | [rule] Numbers sit in sentences with units; a sourced claim gets a numbered footnote near footer, 13px or larger. | copy.md §Budget | covered |
 | CP21 | [rule] Pictures sit beside short copy; all words are live text. | copy.md §Budget | covered |
 | CP22 | [rule] Form labels name the input; errors name the field; sent line names what was sent. | copy.md §Truth | covered |
-| CP23 | [rule] Self-check: read each line aloud; then copy-voice section 6 and copy-lint. | copy.md §Before handing over | covered (check) |
+| CP23 | [rule] Self-check: read each line aloud; then copy-voice section 6 and copy-lint. | copy.md §Before handing over | covered |
 | CP24 | [rule] Prices, address, hours and dates … (shortened) | copy.md §Truth | covered |
 | CP25 | [rule] Each assumed value carries `data-assumed` … (shortened) | copy.md §Truth | covered |
 | CP26 | [code] Two markup examples: a price span and an hours `<dl>`, both with `data-assumed`. | copy.md §Truth | covered |
@@ -1251,18 +1251,18 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CM4 | [table] Hero forms: columns Form / Example / When; 8 rows (category and buyer, place, twist, customer, scope, year, superlative, name and genre). | voice.md §Copy moves | covered |
 | CM5 | [rule] Greeting, mood, question, imperative, enemy, idiom and product news never take the h1; they fit sub-line, section opener, close or brand line. | voice.md §Copy moves | covered |
 | CM6 | [pattern] Reader-state sub-line example (inbox sorted before opening). | voice.md §Copy moves | covered |
-| CM7 | [pattern] Enemy-as-habit sub-line example (booking forms asking for too much). | voice.md §Copy moves | covered (check) |
+| CM7 | [pattern] Enemy-as-habit sub-line example (booking forms asking for too much). | voice.md §Copy moves | covered |
 | CM8 | [pattern] Plain product-news line example (new model, same price). | voice.md §Copy moves | covered |
 | CM9 | [rule] Software sub-line 15-30 words, one fact or mechanism; place sub-line 80 characters with hours. | copy.md §Headings and buttons | covered |
 | CM10 | [rule] Default heading: name of the part plus a claim line under it. | copy.md §Tells | covered |
 | CM11 | [pattern] Verb-and-thing heading for reader actions (send invoices from the van). | voice.md §Copy moves | covered |
 | CM12 | [pattern] Plain claim with its noun heading (pays staff on the same day). | copy.md §Headings and buttons | covered |
-| CM13 | [pattern] Figure-from-brief heading (routes count, reset schedule). | voice.md §Copy moves | covered (check) |
+| CM13 | [pattern] Figure-from-brief heading (routes count, reset schedule). | voice.md §Copy moves | covered |
 | CM14 | [rule] Questions only in the FAQ; a close may ask once plainly if the register allows. | voice.md §Copy moves | covered |
 | CM15 | [rule] About story opens on a … (shortened) | voice.md §Copy moves | covered |
 | CM16 | [rule] About uses anecdotes, timelines or questions, never value pillars. | voice.md §Copy moves | covered |
 | CM17 | [rule] Failure and luck belong in the story when the brief has them. | voice.md §Copy moves | covered |
-| CM18 | [rule] Founders shown as people; only brief-given names. | copy.md §Tells | covered (check) |
+| CM18 | [rule] Founders shown as people; only brief-given names. | voice.md §Copy moves | covered |
 | CM19 | [rule] Values written as behaviours with numbers, not adjectives. | voice.md §Copy moves | covered |
 | CM20 | [rule] About ends in a modest present tense. | voice.md §Copy moves | covered |
 | CM21 | [rule] Say how to reach them: form, street, hours. | voice.md §Copy moves | covered |
@@ -1282,19 +1282,19 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CM35 | [rule] Prices, FAQ and booking drop to plain facts. | voice.md §Voice card | covered |
 | CM36 | [pattern] Perks priced literally (late checkout fee, hire per day). | voice.md §Copy moves | covered |
 | CM37 | [rule] Risk reversal beside the button … (shortened) | voice.md §Copy moves | covered |
-| CM38 | [pattern] Admit limits in the FAQ. | voice.md §Copy moves | covered (check) |
+| CM38 | [pattern] Admit limits in the FAQ. | voice.md §Copy moves | covered |
 | CM39 | [pattern] Answer the buyer's real objection flatly (data export). | voice.md §Copy moves | covered |
 | CM40 | [rule] Button is verb plus real object. | copy.md §Headings and buttons | covered |
 | CM41 | [rule] Button wording literal even when the register plays. | voice.md §Copy moves | covered |
-| CM42 | [pattern] Low-pressure browse exit for browsers ("See the rooms first" style). | copy.md §Tells | covered (check) |
+| CM42 | [pattern] Low-pressure browse exit for browsers ("See the rooms first" style). | voice.md §Copy moves | covered |
 | CM43 | [rule] Close restates the hero promise with one fact and the main action verbatim. | copy.md §Headings and buttons | covered |
 | CM44 | [rule] Microcopy written whenever it exists; form rules still hold. | voice.md §Copy moves | covered |
 | CM45 | [pattern] Form error sample: closed day, choose another. | voice.md §Copy moves | covered |
 | CM46 | [pattern] Sent-message sample naming the request and reply time from the brief. | copy.md §Truth | covered |
-| CM47 | [pattern] Empty-state sample (first item lands here). | voice.md §Copy moves | covered (check) |
-| CM48 | [pattern] 404 sample pointing to menu and hours. | copy.md §Truth | covered (check) |
+| CM47 | [pattern] Empty-state sample (first item lands here). | voice.md §Copy moves | covered |
+| CM48 | [pattern] 404 sample pointing to menu and hours. | voice.md §Copy moves | covered |
 | CM49 | [pattern] Newsletter confirmation sample with the mailing rhythm from the brief. | voice.md §Copy moves | covered |
-| CM50 | [pattern] Field-hint sample, only for what the brief promises. | copy.md §Truth | covered (check) |
+| CM50 | [pattern] Field-hint sample, only for what the brief promises. | voice.md §Copy moves | covered |
 | CM51 | [rule] Footer: facts only (legal row, street, district, place hours); no sign-off or name pun. | voice.md §Copy moves | covered |
 | CM52 | [rule] Odd human numbers beat round big ones, when the brief gives them. | voice.md §Copy moves | covered |
 | CM53 | [rule] Every number sits in a sentence beside its claim. | voice.md §Copy moves | covered |
@@ -1341,41 +1341,41 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CT1 | [rule] Models pick safe, common phrasing; specifics must come from the input, and every ban needs a positive move beside it. | copy.md §Truth | covered |
 | CT2 | [rule] One tell proves little; clusters … (shortened) | copy.md §Tells | covered |
 | CT3 | [rule] Old-generation ban words (about 50, e.g. delve, tapestry, elevate, seamless, robust); literal trade uses stay; client's own brand name gets one WARN. | copy.md §Tells | covered |
-| CT4 | [later] Ban words are copy-slop-word; brand-name check is copy-brand-word. | later.md §Source kit | later |
+| CT4 | [later] Ban words are copy-slop-word; brand-name check is copy-brand-word. | scripts/ultlib/copylint.py worn-word rule; no brand-name check yet (later.md §Source tooling) | covered |
 | CT5 | [rule] Stock lines to avoid (e.g. "In today's fast-paced world", "Look no further", "Let that sink in"); id copy-stock-phrase. | copy.md §Tells | covered |
 | CT6 | [rule] Residue is the strongest tell: chatbot lines, template tokens, lorem, markdown, [NEED] (copy-residue). | copy.md §Tells | covered |
 | CT7 | [pattern] The -ing rider tacked onto a fact (copy-ing-rider). | copy.md §Tells | covered |
 | CT8 | [pattern] Question answered at once and the colon reveal (copy-reveal). | copy.md §Tells | covered |
 | CT9 | [pattern] "serves as", "stands as", "plays … (shortened) | copy.md §Tells | covered |
-| CT10 | [rule] Em dashes are a tell (copy-em-dash). | copy.md §Tells | covered (check) |
+| CT10 | [rule] Em dashes are a tell (copy-em-dash). | copy.md §Tells | covered |
 | CT11 | [rule] Exclamation marks in body copy (copy-exclaim). | copy.md §Tells | covered |
 | CT12 | [rule] Emoji bullets and arrows after link words. | copy.md §Tells | covered |
 | CT13 | [pattern] Dead metaphors: landscape, ecosystem, journey, … (shortened) | copy.md §Tells | covered |
 | CT14 | [pattern] House voice: warm, wry, literary for every client (the meta tell). | copy.md §Tells | covered |
 | CT15 | [rule] Invented specifics such as batch numbers or percentages nobody measured (ban). | copy.md §Tells | covered |
 | CT16 | [pattern] Strip of three or four figures under hero or story (copy-stat-strip); menu prices and timetables are not strips. | copy.md §Tells | covered |
-| CT17 | [rule] Two-fragment "X. Y." heading, cap 1 (copy-two-fragment). | copy.md §Headings and buttons | covered (check) |
+| CT17 | [rule] Two-fragment "X. Y." heading, cap 1 (copy-two-fragment). | voice.md §Device budget | covered |
 | CT18 | [rule] Number-pair headings like "Four X, four Y", cap 0-1 (copy-number-pair). | copy.md §Headings and buttons | covered |
-| CT19 | [rule] Contrast frames and their substitutes, cap 2 together (copy-contrast). | copy.md §Tells | covered (check) |
+| CT19 | [rule] Contrast frames and their substitutes, cap 2 together (copy-contrast). | voice.md §Device budget | covered |
 | CT20 | [rule] Negation runs, cap 1, only when each item is a checkable refusal (copy-negation). | copy.md §Tells | covered |
 | CT21 | [rule] Virtue words about ourselves are … (shortened) | copy.md §Tells | covered |
-| CT22 | [pattern] Dry closer on paragraphs (joke at end). | copy.md §Tells | covered (check) |
-| CT23 | [rule] Footer sign-off line (copy-footer-signoff); footer holds the legal row only. | copy.md §Truth | covered (check) |
-| CT24 | [pattern] Name's metaphor run into the … (shortened) | copy.md §Tells | covered (check) |
+| CT22 | [pattern] Dry closer on paragraphs (joke at end). | voice.md §Device budget | covered |
+| CT23 | [rule] Footer sign-off line (copy-footer-signoff); footer holds the legal row only. | voice.md §Device budget | covered |
+| CT24 | [pattern] Name's metaphor run into the … (shortened) | copy.md §Tells | covered |
 | CT25 | [pattern] Origin-story template with year and two founders; use brief's real story or none. | copy.md §Tells | covered |
 | CT26 | [rule] Polished testimonials, three each with punchline (copy-quotes); none unless brief gives them. | copy.md §Tells | covered |
 | CT27 | [rule] Default cast names for people and companies to avoid (copy-cast, copy-cast-company). | copy.md §Tells | covered |
 | CT28 | [pattern] Section template: eyebrow, claim heading, lede, three cards, "Kind words", numbered steps, "Most popular" (copy-numbered, copy-eyebrows). | copy.md §Tells | covered |
-| CT29 | [rule] Response-time promise: one, from the brief, same wording (copy-response-time). | copy.md §Truth | covered (check) |
-| CT30 | [rule] "Since [year]" once where it matters (copy-since). | copy.md §Truth | covered (check) |
+| CT29 | [rule] Response-time promise: one, from the brief, same wording (copy-response-time). | voice.md §Device budget | covered |
+| CT30 | [rule] "Since [year]" once where it matters (copy-since). | voice.md §Device budget | covered |
 | CT31 | [rule] Proof figures like "3x faster" must carry brief units and sources (copy-proof-figure). | copy.md §Truth | covered |
 | CT32 | [rule] Perfect evenness of card and paragraph lengths is a tell (copy-rhythm). | copy.md §Tells | covered |
-| CT33 | [rule] Microcopy left unwritten under a hand-tuned hero. | copy.md §Tells | covered (check) |
+| CT33 | [rule] Microcopy left unwritten under a hand-tuned hero. | voice.md §Copy moves | covered |
 | CT34 | [pattern] Process talk: "This section shows", "Below, you'll find", "We've added" (copy-reveal). | copy.md §Tells | covered |
 | CT35 | [rule] A copyright year older than this year (copy-stale-year). | copy.md §Tells | covered |
-| CT36 | [table] Over-correction: columns Rule applied / Habit it breeds / Counter; 10 rows (e.g. no em dashes breeds comma splices). | copy.md §Tells | covered (check) |
+| CT36 | [table] Over-correction: columns Rule applied / Habit it breeds / Counter; 10 rows (e.g. no em dashes breeds comma splices). | voice.md §Over-correction | covered |
 | CT37 | [rule] Not tells: plain "is"/"has", "in order to", title case house style, a true "no card needed", a provable superlative, purposeful refrain, a real list of three. | copy.md §Tells | covered |
-| CT38 | [rule] Client-written copy is exempt; copy-lint waivers via gate.md (cross-reference). | copy.md §The test | covered (check) |
+| CT38 | [rule] Client-written copy is exempt; copy-lint waivers via gate.md (cross-reference). | copy.md §The test | covered |
 | CT39 | [rule] Persuasion is the genre on … (shortened) | copy.md §Tells | covered |
 | CT40 | [later] Bracketed ids are copy-lint.mjs ids (scripts/copy-lint.mjs named at the top). | later.md §Source tooling | later |
 
@@ -1386,7 +1386,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CV1 | [rule] Copy-voice decides what words say and how they sound; read at step 2, checked at step 6 by copy-tells and copy-lint. | voice.md §Copy moves | covered |
 | CV2 | [pattern] Why model copy reads as model copy: one voice for every client, same devices every section, sincerity said not shown, invented detail with recurring names. | voice.md §Why model copy reads as model copy | covered |
 | CV3 | [rule] Professional copy differs in five ways: true details, each device used once, own voice, real risks, uneven pages. | voice.md §Why model copy reads as model copy | covered |
-| CV4 | [rule] The fix is facts and … (shortened) | voice.md §Why model copy reads as model copy | covered (check) |
+| CV4 | [rule] The fix is facts and … (shortened) | voice.md §Why model copy reads as model copy | covered |
 | CV5 | [table] Fact sheet: columns Field / What it holds / Where it goes; 11 rows (what it is, for whom, today's alternative, true difference, customer words, numbers, people, odd details, a limit, an enemy, the offer). | voice.md §Fact sheet | covered |
 | CV6 | [rule] Nothing invented beyond copy.md's allowances; an empty field shrinks or removes its section; no [NEED] or "coming soon". | voice.md §Fact sheet | covered |
 | CV7 | [rule] Thin brief is not a … (shortened) | voice.md §Fact sheet | covered |
@@ -1403,25 +1403,25 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CV18 | [rule] A section exists only with true material; five real sections beat eight padded ones. | voice.md §Order and length | covered |
 | CV19 | [rule] Counts follow the content (four features, one quote, two plans). | voice.md §Order and length | covered |
 | CV20 | [pattern] Organising idea (a menu as the page, timetable, founder's letter, one object) may break the template once. | voice.md §Order and length | covered |
-| CV21 | [rule] Do not use the default skeleton in every section; vary lists, tables, letters, paragraphs. | voice.md §Registers | covered (check) |
+| CV21 | [rule] Do not use the default skeleton in every section; vary lists, tables, letters, paragraphs. | voice.md §Order and length | covered |
 | CV22 | [rule] Draft: facts replace adjectives; proper nouns over categories; mechanism in verb steps; customer's pain in their words. | voice.md §Copy moves | covered |
 | CV23 | [rule] Draft: one admission per page; proof beside its claim; numbers with units; risk reversal only when given. | voice.md §Copy moves | covered |
 | CV24 | [rule] Draft: microcopy carries voice; sentence length follows meaning; repeat the product name. | voice.md §Voice card | covered |
 | CV25 | [table] Device budget: columns Device / Budget / Note; 15 rows (two-fragment heading, number-pair, negation run, contrast, dry closer, brand pun, footer sign-off, strip of figures, virtue words, lists of three, step numbers, eye | voice.md §Device budget | covered |
-| CV26 | [later] copy-lint WARNs over budget and FAILs at twice budget plus one (scripts/copy-lint.mjs named). | later.md §Source kit | later |
-| CV27 | [rule] Check 1: run copy-lint; fix FAILs; fix or justify WARNs. | voice.md §Order and length | covered (check) |
+| CV26 | [later] copy-lint WARNs over budget and FAILs at twice budget plus one (scripts/copy-lint.mjs named). | scripts/ultlib/copylint.py: a warning above the per-page cap, a failure at 2 × cap + 1 | covered |
+| CV27 | [rule] Check 1: run copy-lint; fix FAILs; fix or justify WARNs. | voice.md §Checks | covered |
 | CV28 | [rule] Check 2: rival-name test; a line that still fits a rival is rewritten from the fact sheet. | voice.md §Fact sheet | covered |
 | CV29 | [rule] Check 3: sameness across pages; lint several pages together and compare headings. | voice.md §Checks | covered |
 | CV30 | [rule] Check 4: read aloud as the client; cut anything they would not say. | copy.md §Before handing over | covered |
 | CV31 | [rule] Check 5: look for the over-correction habit that replaced the removed one. | voice.md §Checks | covered |
-| CV32 | [pattern] Check 6: fresh-reader subagent given page text only; never iterate to beat an AI detector. | voice.md §Checks | covered (check) |
+| CV32 | [pattern] Check 6: fresh-reader subagent given page text only; never iterate to beat an AI detector. | voice.md §Checks | covered |
 | CV33 | [rule] Report carries the one-line voice card, every assumed value, and what the client must supply. | voice.md §Checks | covered |
 
 ### skills/taste-skill/references/cards.md (24292 bytes)
 
 | # | Source item | Our file § | Status |
 |---|---|---|---|
-| CD1 | [pattern] Method: cards measured from a reference recording (x.ai Grok Bot 2x2 and Figma tile wall) and 41 company sites. | cards-and-ui.md §Interface fragments | covered (check) |
+| CD1 | [pattern] Method: cards measured from a reference recording (x.ai Grok Bot 2x2 and Figma tile wall) and 41 company sites. | none (source's method note: how its cards were measured; no rule to carry) | later |
 | CD2 | [link] assets/ui/cards.html: nine layouts, light and dark (showcase). | cards-and-ui.md §Interface fragments | covered |
 | CD3 | [link] assets/ui/index.html: every fragment on its own. | sections.md §Rules for every section | covered |
 | CD4 | [link] assets/ui/cards.css and assets/ui/base.css: card, panel, placement and fragment styles. | cards-and-ui.md §The card | covered |
@@ -1437,7 +1437,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CD14 | [rule] Grid rows: … (shortened) | sections.md §App screens | covered |
 | CD15 | [rule] Radius --r-lg (20; 18 on … (shortened) | cards-and-ui.md §The card | covered |
 | CD16 | [rule] Title one line at 20/18 weight 500; body 16/24 in ink at 84%, max 46ch; muted small text only for labels. | cards-and-ui.md §The card | covered |
-| CD17 | [rule] `.card--row` holds lines at two from 1024px. | cards-and-ui.md §The card | covered (check) |
+| CD17 | [rule] `.card--row` holds lines at two from 1024px. | cards-and-ui.md §The card | covered |
 | CD18 | [rule] 32px from last line to panel edge; one --p-h per group. | cards-and-ui.md §The card | covered |
 | CD19 | [code] Phone media query sets a panel height (`#features .panel` at max-width 639px) to fit four two-line tiles in two screens. | sections.md §Features | covered |
 | CD20 | [rule] Two levels only: card > panel > fragment; never a patterned panel with a white card inside, never card-in-card text, never glass. | cards-and-ui.md §Depth | covered |
@@ -1468,16 +1468,16 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CD45 | [rule] Every edge keeps 24px of … (shortened) | cards-and-ui.md §Interface fragments | covered |
 | CD46 | [rule] Fades (stage--fade-b, … (shortened) | cards-and-ui.md §Interface fragments | covered |
 | CD47 | [rule] A fade never covers the point: the thing the card is about stays above 100% minus --fade-h. | cards-and-ui.md §The card | covered |
-| CD48 | [rule] Measure at 1440, 1024, 768 and 390. | cards-and-ui.md §Widths | covered (check) |
+| CD48 | [rule] Measure at 1440, 1024, 768 and 390. | cards-and-ui.md §Interface fragments | covered |
 | CD49 | [rule] Shader grounds only on tech pages, one per card group, from the page's effect family (effects-usage.md); product pages use a photo or diagram on a flat panel. | cards-and-ui.md §Grounds | covered |
 | CD50 | [rule] One ground id per group; … (shortened) | cards-and-ui.md §Grounds | covered |
-| CD51 | [rule] Soft fields behind UI: painterly-landscape, … (shortened) | cards-and-ui.md §Grounds | covered (check) |
-| CD52 | [rule] Banned behind UI: grid-pulse, ruled-grounds, … (shortened) | cards-and-ui.md §Grounds | covered (check) |
+| CD51 | [rule] Soft fields behind UI: painterly-landscape, … (shortened) | cards-and-ui.md §Grounds | covered |
+| CD52 | [rule] Banned behind UI: grid-pulse, ruled-grounds, … (shortened) | cards-and-ui.md §Grounds | covered |
 | CD53 | [table] Palettes: columns Name / Colours / Notes; 4 rows (painting, sand, sky, sage; sky silk-folds takes #7f9fbd with tone 1). | sections.md §Navigation | covered |
-| CD54 | [code] Painting palette parameters: blur 1, … (shortened) | cards-and-ui.md §Grounds | covered (check) |
+| CD54 | [code] Painting palette parameters: blur 1, … (shortened) | effect-parts.md §Feature-card panels | merged with effect-parts.md |
 | CD55 | [rule] Panels that hold UI get a lit palette 3:1 or more against the dark card, or a step darker than white UI on light. | cards-and-ui.md §Grounds | covered |
 | CD56 | [rule] At most one painted panel per card group; the rest use sand, sky or sage. | cards-and-ui.md §The card | covered |
-| CD57 | [rule] Accent never violet or lavender. | cards-and-ui.md §Grounds | covered (check) |
+| CD57 | [rule] Accent never violet or lavender. | cards-and-ui.md §Grounds | covered |
 | CD58 | [rule] Hold grounds still: speed 0 or drift 0, grainMotion 0 on grain-gradient; calmY near 1 where a fade meets it. | cards-and-ui.md §Grounds | covered |
 | CD59 | [rule] A ground shows something behind something; decorative strips under stats are not allowed. | cards-and-ui.md §Grounds | covered |
 | CD60 | [rule] Laptop GPU budget: `ui.grounds(document, fx)` bakes each still ground at up to 2 device pixels, one at a time, then frees its WebGL context. | cards-and-ui.md §Grounds | covered |
@@ -1486,7 +1486,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | CD63 | [rule] Object or raymarch canvas mounts … (shortened) | cards-and-ui.md §Grounds | covered |
 | CD64 | [rule] Loops are for tech pages: `data-ui-loop` on the one loop per group; all others hold their finished picture. | cards-and-ui.md §Loops | covered |
 | CD65 | [rule] system.js marks others `data-ui-still`; under 640px every fragment except voice is still. | cards-and-ui.md §Loops | covered |
-| CD66 | [rule] Without system.js: `ui.loadAll` and `ui.startAll` do the same, whenever a page has any `data-ui-loop`. | sections.md §Rules for every section | covered (check) |
+| CD66 | [rule] Without system.js: `ui.loadAll` and `ui.startAll` do the same, whenever a page has any `data-ui-loop`. | cards-and-ui.md §Loops | covered |
 | CD67 | [rule] The group loop is the … (shortened) | cards-and-ui.md §Loops | covered |
 | CD68 | [rule] Below the hero, two loops … (shortened) | cards-and-ui.md §Loops | covered |
 | CD69 | [rule] Pause button: a 32px disc in the card beside the title (44px kept clear), or 12px in from bottom-right of a panel; keyboard focus plays a held cycle once. | cards-and-ui.md §Loops | covered |
@@ -1557,7 +1557,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | PH45 | [table] Library frame counts: columns Trade / Frames; 16 rows (cafe 19 through wine 0; bakery 4, hotel 9, bike 6, workshop 5, studio 5, books 5, office 3, bar 0, outdoors 0). | photos.md §Stand-ins | covered |
 | PH46 | [later] Trades with three or fewer frames are marked `thin` by list. | later.md §Source kit | later |
 | PH47 | [rule] Place pages use 4:5, 4:3 … (shortened) | photos.md §Layouts | covered |
-| PH48 | [rule] Container lines: x 120-1320 on … (shortened) | photos.md §Stand-ins | covered (check) |
+| PH48 | [rule] Container lines: x 120-1320 on … (shortened) | layout-and-heroes.md §Grid | covered |
 | PH49 | [rule] One visual world: one light, … (shortened) | photos.md §Layouts | covered |
 | PH50 | [rule] Product page shows the product whole in at most three sections. | photos.md §Layouts | covered |
 | PH51 | [rule] Hero: plain full-colour; place hero … (shortened) | photos.md §Layouts | covered |
@@ -1597,11 +1597,11 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SC1 | [rule] Write the plan first: line … (shortened) | sections.md §Rules for every section | covered |
 | SC2 | [rule] Every section shows real material (photo, portrait, real icons, client UI, diagram card, or tech-only effect). | sections.md §Rules for every section | covered |
 | SC3 | [rule] Picture-less sections are allowed only for a price list, FAQ, specs table, booking form, or dealt statement moment, each once. | sections.md §Rules for every section | covered |
-| SC4 | [rule] Two picture-less sections never sit side by side; the short-page no-photo case is the sole exception. | layout-and-heroes.md §Hero catalogue | covered (check) |
+| SC4 | [rule] Two picture-less sections never sit side by side; the short-page no-photo case is the sole exception. | sections.md §Rules for every section | covered |
 | SC5 | [rule] A quote needs a face beside it or it merges into the section above. | sections.md §Rules for every section | covered |
 | SC6 | [rule] A picture takes at least … (shortened) | sections.md §Rules for every section | covered |
 | SC7 | [rule] One object never carries the page: the whole object leads the hero plus at most two sections; three object plan lines at most. | layout-and-heroes.md §Picking a hero | covered |
-| SC8 | [rule] Testing evidence: a robot arm … (shortened) | sections.md §Navigation | covered (check) |
+| SC8 | [rule] Testing evidence: a robot arm … (shortened) | grounds-and-effects.md §Who gets effects | covered |
 | SC9 | [rule] Other picture sections use a visual kind from the table, none more than twice; a recolour or crop of the whole still counts as the object. | sections.md §Rules for every section | covered |
 | SC10 | [rule] A use photograph counts as … (shortened) | layout-and-heroes.md §Picking a hero | covered |
 | SC11 | [table] Kind-by-visual table; columns "Kind", "the … (shortened) | layout-and-heroes.md §Hero catalogue | covered |
@@ -1629,16 +1629,16 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SC33 | [code] Shell one-liner that randomly picks one entry per option list (nav, footer, close, rhythm, buttons, mark) from pipe-separated arguments. | place-pages.md §Close and footer | covered |
 | SC34 | [rule] Hero and pairing come from deal.mjs and start.mjs, never from the one-liner; a place takes the place hero. | layout-and-heroes.md §Place hero | covered |
 | SC35 | [rule] Write dealt results on plan … (shortened) | layout-and-heroes.md §Screens | covered |
-| SC36 | [rule] Re-deal a part only when … (shortened) | place-pages.md §Short page | covered (check) |
+| SC36 | [rule] Re-deal a part only when … (shortened) | page-plans.md §Deal lists | covered |
 | SC37 | [rule] With no photograph: nav-cards becomes nav-split (no panel) or nav-centre; close-photo becomes close-word without the name. | sections.md §Close | covered |
 | SC38 | [rule] With no photograph: media-band becomes space (games keep it as a setting photo) and a place hero becomes the statement hero on .ground-brand. | layout-and-heroes.md §Picking a hero | covered |
 | SC39 | [technique] Nav options: nav-mega (link columns, one picture card), nav-cards (three or four cards), nav-centre, nav-split; nav--tone is tech only. | sections.md §Navigation | covered |
 | SC40 | [technique] Footer options: footer-columns, footer-dark, footer-statement (tech only, lit ground), footer-visit (places or services with a door). | sections.md §Footer | covered |
 | SC41 | [technique] Close options: close-type (h2, a line, full-width big button), close-photo (head row then photograph), close-word (h2, button, name set across the wrap). | sections.md §Close | covered |
-| SC42 | [technique] dark-band: one inverse-ground section at mid-page or later, holding the strongest visual. | sections.md §Rules for every section | covered (check) |
+| SC42 | [technique] dark-band: one inverse-ground section at mid-page or later, holding the strongest visual. | page-plans.md §Rhythm | covered |
 | SC43 | [technique] media-band: one full-width photograph layer … (shortened) | layout-and-heroes.md §Place hero | covered |
 | SC44 | [technique] surface-pairs: one surface band of … (shortened) | sections.md §Rules for every section | covered |
-| SC45 | [technique] Buttons set on the html data-buttons attribute: solid, pill, tonal, arrow, block. | sections.md §Local business | covered (check) |
+| SC45 | [technique] Buttons set on the html data-buttons attribute: solid, pill, tonal, arrow, block. | page-plans.md §Deal lists | covered |
 | SC46 | [technique] A mark sits beside the name in nav and footer; a client's own logo replaces it. | sections.md §Navigation | covered |
 | SC47 | [rule] Optional parts go in brackets, listed in page order; tell it as a story (say, show, prove, explore); tabs only on software and only on click. | place-pages.md §Order by trade | covered |
 | SC48 | [pattern] Software plan: nav, hero, optional docked logo row, app-frame, two or three feature sections, integrations diagram, proof, pricing or comparison, FAQ, footer.closing. | sections.md §Rules for every section | covered |
@@ -1646,7 +1646,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SC50 | [rule] Software pictures: the client's live HTML screens, else assets/ui fragments rewritten to the product's own subject; diagram cards; real tool icons. | cards-and-ui.md §Interface fragments | covered |
 | SC51 | [rule] Software integrations: fanin-warehouse or hub-tools … (shortened) | sections.md §Features | covered |
 | SC52 | [rule] Software proof: quote-stat or customer-proof-row … (shortened) | sections.md §Proof | covered |
-| SC53 | [rule] Software options: nav-mega, nav-cards or nav-centre; footer-dark, footer-statement or footer-columns; close-type or close-word; rhythm dark-band, surface-pairs or space; buttons solid, pill, tonal or arrow. | sections.md §Footer | covered (check) |
+| SC53 | [rule] Software options: nav-mega, nav-cards or nav-centre; footer-dark, footer-statement or footer-columns; close-type or close-word; rhythm dark-band, surface-pairs or space; buttons solid, pill, tonal or arrow. | page-plans.md §Deal lists | covered |
 | SC54 | [rule] Software never: stock people at … (shortened) | sections.md §App screens | covered |
 | SC55 | [pattern] Gaming plan: nav, named hero, trailer frame, full-bleed world sections, screenshot strip of three to five cards, system diagram, platforms, press, FAQ, footer with action. | sections.md §Rules for every section | covered |
 | SC56 | [rule] Testing: a game page that … (shortened) | layout-and-heroes.md §Picking a hero | covered |
@@ -1660,7 +1660,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SC64 | [rule] One shader effect may sit behind words in its own section, never on the photographs; a rendered hero object only when the brief asks for 3D. | layout-and-heroes.md §Picking a hero | covered |
 | SC65 | [rule] Every stand-in frame is listed in the report with the art that should replace it. | sections.md §Rules for every section | covered |
 | SC66 | [rule] Platforms: real Steam, PlayStation and … (shortened) | sections.md §Features | covered |
-| SC67 | [rule] Gaming options: nav-mega, nav-centre or nav-cards; footer-dark or footer-statement; close-word or close-type; rhythm dark-band, media-band or space; buttons solid, pill or block. | sections.md §Rules for every section | covered (check) |
+| SC67 | [rule] Gaming options: nav-mega, nav-centre or nav-cards; footer-dark or footer-statement; close-word or close-type; rhythm dark-band, media-band or space; buttons solid, pill or block. | page-plans.md §Deal lists | covered |
 | SC68 | [rule] Gaming never: a hero that … (shortened) | layout-and-heroes.md §Picking a hero | covered |
 | SC69 | [rule] Gaming never: UI fragments, dashboards or SaaS widgets (no UI kit on gaming), stock players at screens, or drawn SVG or empty panels in place of the world. | sections.md §App screens | covered |
 | SC70 | [pattern] Product plan: nav, hero, range … (shortened) | layout-and-heroes.md §Picking a hero | covered |
@@ -1675,13 +1675,13 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SC79 | [rule] Never show one view twice: … (shortened) | sections.md §Rules for every section | covered |
 | SC80 | [rule] Product rule 3: every promise … (shortened) | layout-and-heroes.md §Screens | covered |
 | SC81 | [rule] Product rule 4: each picture section takes a composition from bleed, pair, trio, strip or tall-small; neighbours differ; the order section comes last. | sections.md §Rules for every section | covered |
-| SC82 | [technique] Product bleed: the product at … (shortened) | place-pages.md §Compositions | covered (check) |
-| SC83 | [technique] Product pair: two views at one ratio, side by side. | sections.md §Rules for every section | covered (check) |
-| SC84 | [technique] Product trio: the whole product, a part, and a detail. | sections.md §Rules for every section | covered (check) |
-| SC85 | [technique] Product strip: four close-ups of … (shortened) | sections.md §Navigation | covered (check) |
+| SC82 | [technique] Product bleed: the product at … (shortened) | page-plans.md §Product | covered |
+| SC83 | [technique] Product pair: two views at one ratio, side by side. | page-plans.md §Product | covered |
+| SC84 | [technique] Product trio: the whole product, a part, and a detail. | page-plans.md §Product | covered |
+| SC85 | [technique] Product strip: four close-ups of … (shortened) | page-plans.md §Product | covered |
 | SC86 | [technique] Product tall-small: the product in use shown tall, a detail small beside it. | sections.md §Rules for every section | covered |
 | SC87 | [technique] Product split: text beside one … (shortened) | sections.md §Rules for every section | covered |
-| SC88 | [rule] One section stands on a … (shortened) | sections.md §Rules for every section | covered (check) |
+| SC88 | [rule] One section stands on a … (shortened) | page-plans.md §Rhythm | covered |
 | SC89 | [rule] Product rule 5: colour swatches swap the product picture; render swatches carry data-product-swatch and value attributes; photographs swap src and alt per colour. | place-pages.md §Photographs | covered |
 | SC90 | [rule] Every colour offered must be shown at least once on the page; an offered colour never shown is a fault. | sections.md §Rules for every section | covered |
 | SC91 | [rule] Product rule 6: no fact twice; the stat strip takes the three selling figures (load, range, price) and spec rows take the rest. | layout-and-heroes.md §Screens | covered |
@@ -1692,14 +1692,14 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SC96 | [later] Product stand-in hero: deal.mjs --type … (shortened) | later.md §Source tooling | later |
 | SC97 | [rule] A colour the stand-ins cannot … (shortened) | place-pages.md §Order by trade | covered |
 | SC98 | [rule] Hardware without photos: stand-ins of … (shortened) | layout-and-heroes.md §Picking a hero | covered |
-| SC99 | [rule] A render only when the … (shortened) | sections.md §Local business | covered (check) |
+| SC99 | [rule] A render only when the … (shortened) | objects.md §Who gets an object | covered |
 | SC100 | [later] Render path: product-render helper from … (shortened) | later.md §Source kit | later |
 | SC101 | [rule] Renders stay still by default, … (shortened) | cards-and-ui.md §Grounds | covered |
 | SC102 | [rule] Product never: photographs of something else, app screens the product lacks, logo rows, tabs, or copy apologising for missing material. | sections.md §App screens | covered |
 | SC103 | [rule] Product never: a mid-size product in a grey panel, the whole product in more than three sections, a repeated view, or a repeated fact. | sections.md §Rules for every section | covered |
 | SC104 | [pattern] Service plan: nav, hero, services list (with price from when given), work grid of three to six photos or photo-pair, steps, people row, proof quote, pricing, FAQ, booking form with address, footer.closing. | sections.md §Rules for every section | covered |
 | SC105 | [rule] Service pictures: photographs of the work, team and rooms, one or two per screen; real icons only for tools a studio really uses. | sections.md §Rules for every section | covered |
-| SC106 | [rule] Service options: nav-mega, nav-split or nav-centre; footer-visit, footer-dark or footer-columns; close-type or close-photo; rhythm surface-pairs, dark-band or space; buttons solid, tonal, block or arrow. | sections.md §Footer | covered (check) |
+| SC106 | [rule] Service options: nav-mega, nav-split or nav-centre; footer-visit, footer-dark or footer-columns; close-type or close-photo; rhythm surface-pairs, dark-band or space; buttons solid, tonal, block or arrow. | page-plans.md §Deal lists | covered |
 | SC107 | [rule] Service never: product UI the … (shortened) | sections.md §Proof | covered |
 | SC108 | [rule] Place kind: cafes, bars, bakeries, restaurants, guesthouses, shops, bookshops, florists, bike shops, local studios; the door decides, so a maker who teaches or sells online still counts as a place. | layout-and-heroes.md §Place hero | covered |
 | SC109 | [rule] Place markup: html data-type="place", meta … (shortened) | place-pages.md §What a place page is | covered |
@@ -1799,7 +1799,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SC203 | [rule] Real icons: every tool, app … (shortened) | sections.md §Rules for every section | covered |
 | SC204 | [pattern] Shader grounds: tech only, the … (shortened) | cards-and-ui.md §Grounds | covered |
 | SC205 | [later] Photographs: the client's first, else … (shortened) | later.md §Video | later |
-| SC206 | [link] No URLs appear in this … (shortened) | sections.md §Local business | covered (check) |
+| SC206 | [link] No URLs appear in this … (shortened) | none (the source file has no links) | covered |
 
 ### skills/taste-skill/references/layout-v4.md (23591 bytes)
 
@@ -1889,7 +1889,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | LY82 | [table] Check findings table; columns "Finding" and "Means"; eight rows (hero-fold; hero-maxchars and hero-lines; screen-short and screen-height; sparse; neighbour and neighbour-ground; edge-left, edge-right, spill, bleed-one-si | layout-and-heroes.md §Checks | covered |
 | LY83 | [rule] Run without --no-stress; every finding … (shortened) | layout-and-heroes.md §Checks | covered |
 | LY84 | [later] In-page use: evaluate the layout-check … (shortened) | later.md §Source kit | later |
-| LY85 | [link] No URLs appear in this file; Google Fonts is named but no link is given. | place-pages.md §Visit | covered (check) |
+| LY85 | [link] No URLs appear in this file; Google Fonts is named but no link is given. | none (the source file has no links) | covered |
 
 ### skills/taste-skill/references/motion.md (19242 bytes)
 
@@ -1911,7 +1911,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | MO14 | [rule] UI … (shortened) | moments-and-scenes.md §Moments | covered |
 | MO15 | [rule] Entrances … (shortened) | moments-and-scenes.md §Moments | covered |
 | MO16 | [rule] --m-ease-io … (shortened) | motion.md §Tokens | covered |
-| MO17 | [rule] No curve overshoots or bounces. | motion.md §Tokens | covered (check) |
+| MO17 | [rule] No curve overshoots or bounces. | motion.md §Tokens | covered |
 | MO18 | [rule] Motion layer animates only transform, scale and opacity. Hovers may also change colour. Width, height, top, left, margin and padding never animate. | motion.md §Tokens | covered |
 | MO19 | [rule] Dealt moments may additionally animate clip-path (wipe), filter (photo developing), text colour, and on tech only background-position; each is named in meta.json. | moments-and-scenes.md §Moments | covered |
 | MO20 | [rule] Distances: card lift 2px; photo … (shortened) | motion.md §Hover and press | covered |
@@ -2040,12 +2040,12 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | MM51 | [rule] Loader links each moment's CSS … (shortened) | moments-and-scenes.md §Moments | covered |
 | MM52 | [rule] Moments use the page's tokens: … (shortened) | moments-and-scenes.md §Moments | covered |
 | MM53 | [rule] Page models: … (shortened) | moments-and-scenes.md §Moments | covered |
-| MM54 | [rule] data-moments-over and … (shortened) | moments-and-scenes.md §Moments | covered (check) |
+| MM54 | [rule] data-moments-over and … (shortened) | moments-and-scenes.md §Moments | covered |
 | MM55 | [rule] Scroll moments scrub inside their own 1 to 2 screen section, do one purposeful thing, and show a finished state at top and bottom; transitions finish before the section top is a fifth down the screen. | moments-and-scenes.md §Moments | covered |
 | MM56 | [rule] consistency.mjs reports scroll findings inside a dealt [data-moment] as expected; any other scroll finding is a fault. | moments-and-scenes.md §Moments | covered |
 | MM57 | [rule] Words are in HTML at their finished place; no moment hides a headline on load. | moments-and-scenes.md §Moments | covered |
 | MM58 | [rule] Place, product and service moments use the client's own photos (or passing library photos), each used once; words are the page's real copy. | moments-and-scenes.md §Moments | covered |
-| MM59 | [rule] One count per page: counter-rolls or data-m-count, never both. | moments-and-scenes.md §Moments | covered (check) |
+| MM59 | [rule] One count per page: counter-rolls or data-m-count, never both. | moments-and-scenes.md §Moments | covered |
 | MM60 | [rule] Nothing blinks, bounces or overshoots. Settle ease cubic-bezier(.22,1,.36,1); reveals 600 to 1000ms; photo develop 1.6 to 1.8s; a scrubbed wipe takes about half its chapter's share and holds the rest. | moments-and-scenes.md §Moments | covered |
 | MM61 | [rule] Moment text sits in .container or .wrap like any section. Transition covers are inset panels with an even gutter, so headings, paragraphs, buttons and pictures are never cut by the line or disc. | moments-and-scenes.md §Moments | covered |
 | MM62 | [rule] No captions; photo credits go in the footer line. | moments-and-scenes.md §Moments | covered |
@@ -2084,7 +2084,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SN23 | [rule] Under 768px every scene shows … (shortened) | moments-and-scenes.md §Big scenes | covered |
 | SN24 | [rule] Reduced motion, no script or failed module: finished composition (the hold's end). Object scenes show their still picture and mount no WebGL. | moments-and-scenes.md §Big scenes | covered |
 | SN25 | [rule] WebGL: one context per scene … (shortened) | moments-and-scenes.md §Moments | covered |
-| SN26 | [rule] Never a GLSL ES reserved … (shortened) | moments-and-scenes.md §Big scenes | covered (check) |
+| SN26 | [rule] Never a GLSL ES reserved … (shortened) | performance.md §WebGL | expanded |
 | SN27 | [rule] Text over photos stands on a flat band of the ground or the photo's calm dark part: 4.5:1 body, 3:1 display. No scrim or gradient over photos. | moments-and-scenes.md §Big scenes | covered |
 | SN28 | [rule] Cost: animate transform, opacity and … (shortened) | moments-and-scenes.md §Big scenes | covered |
 | SN29 | [rule] No explanatory captions; no card chrome, chips or labels moving with scroll. | moments-and-scenes.md §Moments | covered |
@@ -2129,10 +2129,10 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | EU23 | [rule] At most two effect ids … (shortened) | grounds-and-effects.md §Effects catalogue | covered |
 | EU24 | [rule] Effects on the inverse ground use an id made for the dark palette (--palette dark). If pick finds nothing for a slot, drop the slot. | grounds-and-effects.md §Effects catalogue | covered |
 | EU25 | [rule] Retired or renamed ids: mesh-gradient … (shortened) | grounds-and-effects.md §Effects catalogue | covered |
-| EU26 | [code] Node one-liner that deals one … (shortened) | grounds-and-effects.md §Ground tokens | covered (check) |
+| EU26 | [code] Node one-liner that deals one … (shortened) | later.md §Source tooling (the source's deal script is not shipped) | later |
 | EU27 | [rule] Big scene dealt only from … (shortened) | grounds-and-effects.md §Who gets effects | covered |
 | EU28 | [rule] A scene is the hero only when restH is 1; the three hero scenes go below the hero as two-screen sections. | grounds-and-effects.md §Placement | covered |
-| EU29 | [rule] Scene height: hold 1 and --h = restH; no page CSS; stays one or two screens. | grounds-and-effects.md §Who gets effects | covered (check) |
+| EU29 | [rule] Scene height: hold 1 and --h = restH; no page CSS; stays one or two screens. | moments-and-scenes.md §Big scenes | covered |
 | EU30 | [rule] Effect placement: hero frame (.frame--hero … (shortened) | grounds-and-effects.md §Placement | covered |
 | EU31 | [rule] Hero with an effect in … (shortened) | grounds-and-effects.md §Placement | covered |
 | EU32 | [technique] Split frame: .frame--split holding .stage; … (shortened) | grounds-and-effects.md §Placement | covered |
@@ -2182,28 +2182,28 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | EC28 | [rule] At most two panels run a short pointer demo (glide, click, state change, rest), one per row. | effect-parts.md §Feature-card panels | covered |
 | EC29 | [rule] Rejected: small dialog on empty ground; orb or sphere ground; landscape in accent hue only (reads as filter, orange turns rust); warm accent in dark ground; complementary accent on colour page (mud). | effect-parts.md §Feature-card panels | covered |
 | EC30 | [technique] fx-dither-object: a real object built … (shortened) | effect-parts.md §Parts | covered |
-| EC31 | [rule] Dither objects: headphones (on cups), … (shortened) | effect-parts.md §Parts | covered (check) |
+| EC31 | [rule] Dither objects: headphones (on cups), … (shortened) | objects.md §Who gets an object | expanded |
 | EC32 | [technique] Dither object motion: idle sway; pointed at, it turns to the pointer, light follows the pointer, and working parts respond (sound rings from cups, seat swivels, lens zooms and focus ring turns, rotors spin into discs and | effect-parts.md §Parts | covered |
 | EC33 | [rule] Accent paints one part only (ear cups, seat and back, camera band and shutter, drone shell); shaded side is deep accent, never grey. | grounds-and-effects.md §Brand band | covered |
 | EC34 | [rule] Only a product object the … (shortened) | effect-parts.md §Parts | covered |
 | EC35 | [rule] A product none of the … (shortened) | grounds-and-effects.md §Who gets effects | covered |
-| EC36 | [rule] data-cx-render="studio" is not for pages yet: edges stair-step at one sample per px; use the print or client photos. | effect-parts.md §Parts | covered (check) |
+| EC36 | [rule] data-cx-render="studio" is not for pages yet: edges stair-step at one sample per px; use the print or client photos. | objects.md §Who gets an object | expanded |
 | EC37 | [rule] Reduced motion: one still picture, … (shortened) | grounds-and-effects.md §Motion and cost | covered |
 | EC38 | [rule] A dither object is a … (shortened) | grounds-and-effects.md §Who gets effects | covered |
 | EC39 | [technique] fx-map: streets, water, parks, rails and stations of a real place drawn as a map app would; baked once at build time with bake.mjs (one Overpass request to OpenStreetMap), about 55KB (18KB gzipped) for 3x2 km; up to 14 s | effect-parts.md §Parts | covered |
-| EC40 | [code] bake.mjs invocation with --lat, --lon, --out and --from (none by default; auto or lat,lon with --from-name adds a walk at 80 m/min from a station 150m to 1.6km away). Tooling. [later] | grounds-and-effects.md §Motion and cost | covered (check) |
+| EC40 | [code] bake.mjs invocation with --lat, --lon, --out and --from (none by default; auto or lat,lon with --from-name adds a walk at 80 m/min from a station 150m to 1.6km away). Tooling. [later] | later.md §Source tooling (the source's map bake script is not shipped) | later |
 | EC41 | [rule] Map data inlined as script type application/json with class cx-map__data, or named by data-cx-map. | grounds-and-effects.md §Named grounds | covered |
 | EC42 | [rule] Map fits pin, walk and names in free space: right of the card from 900px width; under 900px the card sits below. Never closer than about 1 m per pixel; names on the side the walk does not use. | grounds-and-effects.md §Named grounds | covered |
 | EC43 | [rule] Light map: white streets with … (shortened) | effect-parts.md §Parts | covered |
 | EC44 | [technique] Map walk draws from station … (shortened) | effect-parts.md §Parts | covered |
 | EC45 | [rule] Drawn only for a street … (shortened) | effect-parts.md §Parts | covered |
-| EC46 | [link] https://www.openstreetmap.org/search?query=<street>+<district> is the Get directions target: a search URL with street and district, never coordinates or a route. | effect-parts.md §Parts | covered (check) |
+| EC46 | [link] https://www.openstreetmap.org/search?query=<street>+<district> is the Get directions target: a search URL with street and district, never coordinates or a route. | sections.md §Local business | covered |
 | EC47 | [rule] Place pages bake with --from … (shortened) | effect-parts.md §Parts | covered |
 | EC48 | [rule] No network at build time, … (shortened) | effect-parts.md §Parts | covered |
 | EC49 | [technique] fx-photo: client photo in natural … (shortened) | effect-parts.md §Parts | covered |
 | EC50 | [rule] fx-photo takes no filter (no halftone, dither, dissolve, print, duotone, blur; data-cx-grade stays off). Credit goes in the footer line. Its effects list is empty and data-cx-effect ignored; no WebGL; under reduced motio | grounds-and-effects.md §Who gets effects | covered |
 | EC51 | [technique] windows(host, targets): one canvas seen … (shortened) | effect-parts.md §Parts | covered |
-| EC52 | [technique] cx-ring: a host shown only … (shortened) | grounds-and-effects.md §Effect parts | covered (check) |
+| EC52 | [technique] cx-ring: a host shown only … (shortened) | effect-parts.md §Parts | covered |
 | EC53 | [technique] cx-glow: a host blurred into … (shortened) | grounds-and-effects.md §Recipes | covered |
 | EC54 | [technique] pauser(host): a round pause button … (shortened) | grounds-and-effects.md §Motion and cost | covered |
 | EC55 | [technique] fill(el, id): fills the glyphs … (shortened) | effect-parts.md §Parts | covered |
@@ -2222,7 +2222,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | EC68 | [technique] fx-bars: monthly figures on a … (shortened) | effect-parts.md §Parts | covered |
 | EC69 | [technique] fx-photo: the client's own photo of the subject in colour; not mood stock, blank notebooks or filters. | effect-parts.md §Parts | covered |
 | EC70 | [technique] fx-avatar: calls, presence or a team list; not static team grids. | effect-parts.md §Parts | covered |
-| EC71 | [technique] fx-pricing: the recommended plan only, not all plans. | effect-parts.md §Parts | covered (check) |
+| EC71 | [technique] fx-pricing: the recommended plan only, not all plans. | effect-parts.md §Parts | covered |
 | EC72 | [technique] fx-progress: only inside a product … (shortened) | effect-parts.md §Parts | covered |
 | EC73 | [rule] Panel grounds in feature cards: … (shortened) | effect-parts.md §Feature-card panels | covered |
 | EC74 | [rule] Inside letters and digits: silk-folds … (shortened) | effect-parts.md §Parts | covered |
@@ -2255,8 +2255,8 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | EO12 | [rule] A game without art: hero is its name large over a stand-in photo of its setting (deal.mjs software gaming, setting, photo hero); world section is the widest photo full bleed. Render only if the brief asks for 3D. | objects.md §Who gets an object | covered |
 | EO13 | [rule] Software, AI and games with … (shortened) | objects.md §Who gets an object | covered |
 | EO14 | [rule] Photo prints and photo scenes stay in the kit gallery, never on a page; product-turntable only when its form is the product's own. | objects.md §Families | covered |
-| EO15 | [code] Print mount markup: panel with … (shortened) | objects.md §Who gets an object | covered (check) |
-| EO16 | [rule] Photo scenes mount with data-scene … (shortened) | objects.md §Families | covered (check) |
+| EO15 | [code] Print mount markup: panel with … (shortened) | later.md §Source kit (mount markup of the source's print core) | later |
+| EO16 | [rule] Photo scenes mount with data-scene … (shortened) | objects.md §Families | covered |
 | EO17 | [technique] Script API: obj.mount(el, opts). Print objects take place, params and palette; photo prints and scenes take src, params and palette. Controllers have pause, resume, setPalette and destroy. | objects.md §Placement | covered |
 | EO18 | [rule] Print placements: card large, cut … (shortened) | objects.md §Placement | covered |
 | EO19 | [rule] Palette from tokens --bg, --surface, … (shortened) | objects.md §Palette and motion | covered |
@@ -2318,18 +2318,18 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 
 | # | Source item | Our file § | Status |
 |---|---|---|---|
-| RR1 | [rule] LICENSE is MIT, copyright Leonxlnx 2026; the repo ships one skill, design-taste-frontend. | later.md §Source kit | covered (check) |
-| RR2 | [pattern] README pitch: company sites at figma.com and x.ai level, real photos and UI, browser-checked. | principles.md §The bar | covered (check) |
+| RR1 | [rule] LICENSE is MIT, copyright Leonxlnx 2026; the repo ships one skill, design-taste-frontend. | index.md (intro) | covered |
+| RR2 | [pattern] README pitch: company sites at figma.com and x.ai level, real photos and UI, browser-checked. | principles.md §The bar | covered |
 | RR3 | [rule] README requires Node 22+ and … (shortened) | later.md §Source tooling | later |
 | RR4 | [pattern] README build flow: classify business kind, deal palette and hero, real UI and photos, effects only on tech pages, browser check. | principles.md §Deal | covered |
 | RR5 | [pattern] Business kinds named in README: software, gaming, tech, product, service, place; effects restricted to software, tech, gaming. | principles.md §The bar | covered |
 | RR6 | [later] Install paths: npx skills add, Claude Code marketplace, Codex marketplace, or install.sh symlink from a clone. | later.md §Source tooling | later |
 | RR7 | [link] https://github.com/vercel-labs/agent-skills - the npx skills CLI the README install uses. | later.md §Source tooling | later |
 | RR8 | [link] https://github.com/Leonxlnx/taste-skill-classics - new home of seven classic skills, same install names. | later.md §Source kit | later |
-| RR9 | [link] https://github.com/Leonxlnx/imagegen-skills - home of imagegen-frontend-web/mobile, brandkit and image-to-code. | later.md §Video | covered (check) |
-| RR10 | [link] https://github.com/Leonxlnx/unlazy - named as the replacement for the removed full-output-enforcement skill. | later.md §Source tooling | covered (check) |
+| RR9 | [link] https://github.com/Leonxlnx/imagegen-skills - home of imagegen-frontend-web/mobile, brandkit and image-to-code. | none (another repository of the source author; not website craft) | later |
+| RR10 | [link] https://github.com/Leonxlnx/unlazy - named as the replacement for the removed full-output-enforcement skill. | none (another repository of the source author; not website craft) | later |
 | RR11 | [link] https://tastecode.dev - TasteCode desktop app with a built-in design agent, advertised in README. | later.md §Video | later |
-| RR12 | [link] https://tasteskill.dev - project website, linked from the README badge row. | later.md §Source tooling | covered (check) |
+| RR12 | [link] https://tasteskill.dev - project website, linked from the README badge row. | none (the source project's own website; not website craft) | later |
 | RR13 | [link] https://github.com/Leonxlnx/taste-skill/releases/tag/v2.0.0 - v2.0.0 launch film, linked from README. | later.md §Video | later |
 | RR14 | [link] https://github.com/sponsors/Leonxlnx - sponsorship page; README also lists sponsor logos (Kimi, Vercel OSS, interfaces.dev, React Bits, IMG.LY, Sent.dm). | later.md §Source tooling | later |
 | RR15 | [later] install.sh (bash, about 150 lines): symlinks each skill into ~/.claude/skills or ~/.codex/skills; flags --list, --uninstall, --all-agents. | later.md §Source tooling | later |
@@ -2347,8 +2347,8 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | RR27 | [later] .claude-plugin/marketplace.json: marketplace entry, plugin taste-skill 2.5.1, skills ./skills/taste-skill. | later.md §Source kit | later |
 | RR28 | [later] .codex-plugin/plugin.json: version 2.5.1, skills ./skills/, Codex interface text and three default prompts. | later.md §Source tooling | later |
 | RR29 | [later] .agents/plugins/marketplace.json: Codex marketplace pointing at the git repo, ref main, installation AVAILABLE. | later.md §Source kit | later |
-| RR30 | [link] examples/v2/CREDITS.md: 52 credited photographs and films for four example pages (Nachtschicht, Bohne & Söhne, Atelier Nord, Margin). | principles.md §The bar | covered (check) |
-| RR31 | [link] CREDITS hosts: 48 entries on https://commons.wikimedia.org, 3 on https://www.metmuseum.org, 1 on https://www.flickr.com. | later.md §Video | covered (check) |
+| RR30 | [link] examples/v2/CREDITS.md: 52 credited photographs and films for four example pages (Nachtschicht, Bohne & Söhne, Atelier Nord, Margin). | photos.md §Captions and credits | covered |
+| RR31 | [link] CREDITS hosts: 48 entries on https://commons.wikimedia.org, 3 on https://www.metmuseum.org, 1 on https://www.flickr.com. | photos.md §Stand-ins | covered |
 | RR32 | [rule] CREDITS licences: CC0, public domain, CC BY, CC BY 2.0 and CC BY-SA variants, each with photographer and source page. | later.md §Source kit | covered |
 
 ### 2. skills/taste-skill/scripts (10 .mjs, 2 templates, plus library/ data)
@@ -2358,10 +2358,10 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | SX33 | [later] consistency.mjs (11,485 lines): real-browser checker over HTTP at 1440, 1024, 768, 390; PASS, WARN or FAIL per check. | later.md §Source tooling | later |
 | SX34 | [rule] consistency categories: layout, containment, text, nav, buttons, motion, visuals, copy, wiring, leftovers, system, ink, render, screens. | later.md §Source tooling | later |
 | SX35 | [rule] consistency numbers: body text 7:1 … (shortened) | later.md §Source tooling | later |
-| SX36 | [later] copy-lint.mjs: counts AI-written copy tells in a page, folder or draft; exit 1 on any FAIL. | later.md §Source kit | later |
-| SX37 | [rule] copy-lint FAILs: chatbot residue (lorem ipsum, "certainly!", [NEED]), markdown leaks, old slop words, stock phrases, devices used as tics. | later.md §Source tooling | later |
+| SX36 | [later] copy-lint.mjs: counts AI-written copy tells in a page, folder or draft; exit 1 on any FAIL. | scripts/ultlib/copylint.py (later.md §Shipped kit) | covered |
+| SX37 | [rule] copy-lint FAILs: chatbot residue (lorem ipsum, "certainly!", [NEED]), markdown leaks, old slop words, stock phrases, devices used as tics. | scripts/ultlib/copylint.py: residue, worn word, stock line and capped-device rules; no markdown-leak rule yet | covered |
 | SX38 | [rule] copy-lint WARNs: over-budget devices, virtue words (honest, calm, genuine), stock cast names and company names. | later.md §Source tooling | later |
-| SX39 | [table] copy-lint finding ids: 28 ids … (shortened) | later.md §Source kit | later |
+| SX39 | [table] copy-lint finding ids: 28 ids … (shortened) | scripts/ultlib/copylint.py: our own rule names, not the source's ids | covered |
 | SX40 | [later] gate.mjs (891 lines): finish gate, one GATE line per run, hook modes for claude, codex and antigravity. | later.md §Source tooling | later |
 | SX41 | [rule] gate runs: consistency --quick at 1440 and 390 (plus 320), layout check at 1440x900 and 390x844, kit-edited and checker-gaming static checks, copy-lint. | later.md §Source tooling | later |
 | SX42 | [rule] gate holds two WARNs as FAILs: hero-enter and moment-none; up to 3 rounds; waivers capped at 5 in .taste-skill/waivers.json. | later.md §Source kit | later |
@@ -2410,26 +2410,26 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | # | Source item | Our file § | Status |
 |---|---|---|---|
 | ACO72 | [code] shared.js: four ways an effect shows outside a background: fill (glyphs), windows (holes), ring (border), background. | effect-parts.md §Parts | covered |
-| ACO73 | [code] fx-avatar: speaker ring showing an effect in a thin border. | effect-parts.md §Parts | covered (check) |
-| ACO74 | [code] fx-band: divider band (the ridgeline effect). | effect-parts.md §Parts | covered (check) |
-| ACO75 | [code] fx-bars: bar chart with grain-filled bars. | effect-parts.md §Parts | covered (check) |
-| ACO76 | [code] fx-button: button whose label shows an effect. | later.md §Video | covered (check) |
+| ACO73 | [code] fx-avatar: speaker ring showing an effect in a thin border. | effect-parts.md §Parts | covered |
+| ACO74 | [code] fx-band: divider band (the ridgeline effect). | grounds-and-effects.md §Never | expanded |
+| ACO75 | [code] fx-bars: bar chart with grain-filled bars. | effect-parts.md §Parts | covered |
+| ACO76 | [code] fx-button: button whose label shows an effect. | effect-parts.md §Parts | covered |
 | ACO77 | [code] fx-chart: area chart filled with an effect. | effect-parts.md §Parts | covered |
-| ACO78 | [code] fx-dither-object: objects rendered in dither. | effect-parts.md §Parts | covered (check) |
+| ACO78 | [code] fx-dither-object: objects rendered in dither. | objects.md §Families | covered |
 | ACO79 | [code] fx-feature-card: feature cards with inset effect panels. | effect-parts.md §Feature-card panels | covered |
-| ACO80 | [code] fx-globe: globe data card. | effect-parts.md §Parts | covered (check) |
+| ACO80 | [code] fx-globe: globe data card. | effect-parts.md §Parts | covered |
 | ACO81 | [code] fx-headline: headline whose letters show an effect. | effect-parts.md §Parts | covered |
 | ACO82 | [code] fx-icon-tiles: icon tiles on effect grounds. | effect-parts.md §Parts | covered |
-| ACO83 | [code] fx-logos: logo row with a light sweep. | effect-parts.md §Parts | covered (check) |
-| ACO84 | [code] fx-map: street map of the place. | effect-parts.md §Parts | covered (check) |
-| ACO85 | [code] fx-photo: photograph with copy. | effect-parts.md §Parts | covered (check) |
+| ACO83 | [code] fx-logos: logo row with a light sweep. | grounds-and-effects.md §Never | expanded |
+| ACO84 | [code] fx-map: street map of the place. | effect-parts.md §Parts | covered |
+| ACO85 | [code] fx-photo: photograph with copy. | effect-parts.md §Parts | covered |
 | ACO86 | [code] fx-pricing: pricing card with an effect border. | effect-parts.md §Parts | covered |
 | ACO87 | [code] fx-progress: import progress bar with a light fill. | effect-parts.md §Parts | covered |
-| ACO88 | [code] fx-prompt: prompt field with edge glow. | effect-parts.md §Parts | covered (check) |
-| ACO89 | [code] fx-search: search field with ambient glow. | effect-parts.md §Parts | covered (check) |
-| ACO90 | [code] fx-spotlight: spotlight cards. | effect-parts.md §Parts | covered (check) |
+| ACO88 | [code] fx-prompt: prompt field with edge glow. | effect-parts.md §Parts | covered |
+| ACO89 | [code] fx-search: search field with ambient glow. | effect-parts.md §Parts | covered |
+| ACO90 | [code] fx-spotlight: spotlight cards. | effect-parts.md §Parts | covered |
 | ACO91 | [code] fx-stat: stat numbers filled with an effect. | effect-parts.md §Parts | covered |
-| ACO92 | [code] fx-tabs: tabs with a grain indicator. | effect-parts.md §Parts | covered (check) |
+| ACO92 | [code] fx-tabs: tabs with a grain indicator. | effect-parts.md §Parts | covered |
 
 ### diagrams/ (diagram.js, diagram.css, mount.js, presets.json, demo.html, lab.html)
 
@@ -2450,8 +2450,8 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | AEF100 | [code] film-light-leak: light bleeds from one frame edge with moving film grain (WebGL). | grounds-and-effects.md §Named grounds | covered |
 | AEF101 | [code] grain-gradient: soft page-coloured shapes drifting under fine grain (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
 | AEF102 | [code] ascii-shade: slowly turning sphere drawn from monospace characters (2D canvas). | grounds-and-effects.md §Effects catalogue | covered |
-| AEF103 | [code] bayer-dither: soft glow rendered in ordered-dither square pixels (WebGL). | grounds-and-effects.md §Named grounds | covered (check) |
-| AEF104 | [code] halftone-screen: gradient or lit sphere printed as a rotated round-dot screen (WebGL). | grounds-and-effects.md §Effects catalogue | covered (check) |
+| AEF103 | [code] bayer-dither: soft glow rendered in ordered-dither square pixels (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
+| AEF104 | [code] halftone-screen: gradient or lit sphere printed as a rotated round-dot screen (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
 | AEF105 | [code] line-engraving: parallel lines swelling in shadows over hills or a sphere (WebGL, still motion). | grounds-and-effects.md §Motion and cost | covered |
 | AEF106 | [code] aurora-curtains: S-curved light curtains over a night sky; dark and colour only (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
 | AEF107 | [code] gradient-mesh: soft colour islands over a folding surface, optional mesh grid (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
@@ -2466,11 +2466,11 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | AEF116 | [code] dot-terrain: rolling land drawn as a laser-scan point cloud (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
 | AEF117 | [code] grid-pulse: hairline grid with signals running along lines (2D canvas). | grounds-and-effects.md §Effects catalogue | covered |
 | AEF118 | [code] ruled-grounds: fine dot ruling with crosses and a drifting soft light (WebGL). | grounds-and-effects.md §Named grounds | covered |
-| AEF119 | [code] contour-lines: topographic contour lines with accent index lines (WebGL). | grounds-and-effects.md §Effects catalogue | covered (check) |
+| AEF119 | [code] contour-lines: topographic contour lines with accent index lines (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
 | AEF120 | [code] dotted-globe: dotted globe with real continents and arcs (named only; WebGL and 2D). | grounds-and-effects.md §Named grounds | covered |
 | AEF121 | [code] ridgeline: stacked thin lines rising into peaks, one accent line (named only; 2D and WebGL). | grounds-and-effects.md §Named grounds | covered |
 | AEF122 | [code] fluted-glass: ribbed glass whose ribs bend what is behind (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
-| AEF123 | [code] silk-folds: satin folds in one colour with a sheen (WebGL). | grounds-and-effects.md §Effects catalogue | covered (check) |
+| AEF123 | [code] silk-folds: satin folds in one colour with a sheen (WebGL). | grounds-and-effects.md §Effects catalogue | covered |
 | AEF124 | [code] duotone-grade: section photograph graded to two or three tones with grain (named only; WebGL). | grounds-and-effects.md §Named grounds | covered |
 
 ### icons/ (index.json, icon.css, demo.html, demo/)
@@ -2490,14 +2490,14 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | ALA130 | [rule] A place hero is never dealt; place always prints hero-place; other types are weighted in heroes.json. | layout-and-heroes.md §Place hero | covered |
 | ALA131 | [table] heroes.json: 11 hero layouts: place, split, photo, product, editorial, collage, word, film, statement, triptych, centred. | layout-and-heroes.md §Hero catalogue | covered |
 | ALA132 | [code] hero-place: photograph under the header, words beneath (Recipe 3). | layout-and-heroes.md §Picking a hero | covered |
-| ALA133 | [code] hero-split: words left, picture on the right. | layout-and-heroes.md §Hero catalogue | covered (check) |
+| ALA133 | [code] hero-split: words left, picture on the right. | layout-and-heroes.md §Hero catalogue | covered |
 | ALA134 | [code] hero-photo: full-bleed photograph, words on its calm side. | layout-and-heroes.md §Hero catalogue | covered |
 | ALA135 | [code] hero-product: product stage with one object. | page-plans.md §Product | covered |
 | ALA136 | [code] hero-editorial: large type with pictures set in the line. | layout-and-heroes.md §Type sizes | covered |
-| ALA137 | [code] hero-collage: UI collage cut by its frame. | layout-and-heroes.md §Hero catalogue | covered (check) |
+| ALA137 | [code] hero-collage: UI collage cut by its frame. | layout-and-heroes.md §Hero catalogue | covered |
 | ALA138 | [code] hero-word: oversized headline with one live word that rotates every two seconds (layout.js). | layout-and-heroes.md §Hero catalogue | covered |
 | ALA139 | [code] hero-film: cinema frame with the film poster and the words on it. | layout-and-heroes.md §Hero catalogue | covered |
-| ALA140 | [code] hero-statement: quiet statement over a ground. | layout-and-heroes.md §Hero catalogue | covered (check) |
+| ALA140 | [code] hero-statement: quiet statement over a ground. | layout-and-heroes.md §Hero catalogue | covered |
 | ALA141 | [code] hero-triptych: headline, collage and button, Figma-style hero. | layout-and-heroes.md §Hero catalogue | covered |
 | ALA142 | [code] hero-centred: centred headline over one window, x.ai-style hero. | layout-and-heroes.md §Hero catalogue | covered |
 | ALA143 | [technique] CSS grid and clamp() type; layout.js adds letter weight near the pointer on variable-font axes. | layout-and-heroes.md §Type sizes | covered |
@@ -2537,20 +2537,20 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | # | Source item | Our file § | Status |
 |---|---|---|---|
 | AOB164 | [code] print-cup: porcelain cup and saucer, halftone or engraving print; rings run on click (WebGL raymarch). | objects.md §Families | covered |
-| AOB165 | [code] print-wheel: road wheel with 24 spokes, halftone; spins up on click. | objects.md §Families | covered (check) |
-| AOB166 | [code] print-lamp: balanced-arm desk lamp, halftone; switches on when clicked. | objects.md §Families | covered (check) |
-| AOB167 | [code] print-globe: desk globe with coastlines, engraving; spins on its own. | objects.md §Families | covered (check) |
-| AOB168 | [code] print-cards: playing cards, ace of diamonds up; halftone; fan out on click. | objects.md §Families | covered (check) |
-| AOB169 | [code] photo-halftone: photograph as round dots on a 45 degree screen; loupe shows colour. | objects.md §Client renders | covered (check) |
-| AOB170 | [code] photo-engraving: photograph as diagonal engraved lines that part around the pointer. | objects.md §Families | covered (check) |
+| AOB165 | [code] print-wheel: road wheel with 24 spokes, halftone; spins up on click. | objects.md §Families | covered |
+| AOB166 | [code] print-lamp: balanced-arm desk lamp, halftone; switches on when clicked. | objects.md §Families | covered |
+| AOB167 | [code] print-globe: desk globe with coastlines, engraving; spins on its own. | objects.md §Families | covered |
+| AOB168 | [code] print-cards: playing cards, ace of diamonds up; halftone; fan out on click. | objects.md §Families | covered |
+| AOB169 | [code] photo-halftone: photograph as round dots on a 45 degree screen; loupe shows colour. | objects.md §Families | covered |
+| AOB170 | [code] photo-engraving: photograph as diagonal engraved lines that part around the pointer. | objects.md §Families | covered |
 | AOB171 | [code] photo-dither: photograph in a three-colour grain; photo develops under the pointer. | objects.md §Families | covered |
-| AOB172 | [code] split-reveal: one photograph half-printed as halftone with a draggable dividing line. | objects.md §Families | covered (check) |
-| AOB173 | [code] dither-sequence: two to six related photographs dithered and wiped one to the next. | objects.md §Families | covered (check) |
+| AOB172 | [code] split-reveal: one photograph half-printed as halftone with a draggable dividing line. | objects.md §Families | covered |
+| AOB173 | [code] dither-sequence: two to six related photographs dithered and wiped one to the next. | objects.md §Families | covered |
 | AOB174 | [code] dot-object: object cut from its … (shortened) | objects.md §Who gets an object | covered |
-| AOB175 | [code] exploded-layers: photograph split into four printed sheets in perspective; sheets open. | objects.md §Families | covered (check) |
-| AOB176 | [code] product-turntable: generic camera, chair, speaker … (shortened) | objects.md §Families | covered (check) |
+| AOB175 | [code] exploded-layers: photograph split into four printed sheets in perspective; sheets open. | objects.md §Families | covered |
+| AOB176 | [code] product-turntable: generic camera, chair, speaker … (shortened) | objects.md §Families | covered |
 | AOB177 | [code] product-render (folder): studio 3D render built from a JSON part spec; specs city-bike, desk-lamp, robot-arm. | objects.md §Building a product spec | covered |
-| AOB178 | [rule] _print-core, _scenes README rules: prints … (shortened) | objects.md §Families | covered (check) |
+| AOB178 | [rule] _print-core, _scenes README rules: prints … (shortened) | objects.md §Families | covered |
 | AOB179 | [rule] Product renders only when the … (shortened) | objects.md §Who gets an object | covered |
 | AOB180 | [rule] Object budgets: about two WebGL contexts for prints; scene contexts capped at two; page total kept at four. | objects.md §Budget | covered |
 | AOB181 | [technique] Shared runtimes _print-core (print3d.js raymarch with GLSL), _scenes (kit.js), photo-kit (photo.js); posters shown when WebGL fails. | later.md §Source kit | covered |
@@ -2559,11 +2559,11 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 
 | # | Source item | Our file § | Status |
 |---|---|---|---|
-| APH182 | [table] photos.json: 413 entries; 274 Unsplash (served via Lorem Picsum), 139 Wikimedia Commons. | photos.md §Where photos lead | covered (check) |
+| APH182 | [table] photos.json: 413 entries; 274 Unsplash (served via Lorem Picsum), 139 Wikimedia Commons. | later.md §Source kit (the source's photo library is not shipped; live search instead, photos.md §Sources, in order) | later |
 | APH183 | [table] Commons licences: CC0 53, CC BY-SA 4.0 39, CC BY 2.0 22, CC BY-SA 3.0 12, CC BY-SA 2.0 6, CC BY 4.0 2, Public Domain Mark 1.0 2, others 4. | photos.md §Stand-ins | covered |
-| APH184 | [link] https://unsplash.com/license - licence named for all Unsplash entries. | photos.md §Stand-ins | covered (check) |
+| APH184 | [link] https://unsplash.com/license - licence named for all Unsplash entries. | later.md §Source kit (goes with the photo library) | later |
 | APH185 | [link] https://picsum.photos - host serving the Unsplash photographs in the library. | photos.md §Where photos lead | covered |
-| APH186 | [table] 16 trades: cafe, hotel, bike, … (shortened) | photos.md §Sources, in order | covered (check) |
+| APH186 | [table] 16 trades: cafe, hotel, bike, … (shortened) | later.md §Source kit (goes with the photo library) | later |
 | APH187 | [rule] Library frames are stand-ins for detail slots only; never a client's room, product, shopfront or people. | photos.md §Stand-ins | covered |
 
 ### scenes/ (11 big scenes, scenes.js, scenes.css, lib.js, print.js, _demo/)
@@ -2572,10 +2572,10 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 |---|---|---|---|
 | ASC188 | [rule] Scenes are a function of scroll position, using transforms, opacity and clip-paths; no GSAP; page scrolls natively. | moments-and-scenes.md §Big scenes | covered |
 | ASC189 | [code] descend-through-weather: first screen sinks through clouds onto a place photograph below. | moments-and-scenes.md §Moments | covered |
-| ASC190 | [code] dot-becomes-the-full-stop: large dot drops and the claim grows word by word from it. | moments-and-scenes.md §Big scenes | covered (check) |
+| ASC190 | [code] dot-becomes-the-full-stop: large dot drops and the claim grows word by word from it. | moments-and-scenes.md §Big scenes | covered |
 | ASC191 | [code] fixed-hero-object: product stays fixed and turns with scroll as chapters pass beneath (WebGL). | moments-and-scenes.md §Moments | covered |
 | ASC192 | [code] fly-into-the-shape: brand mark clip holding the next photograph rises and fills the screen. | moments-and-scenes.md §Moments | covered |
-| ASC193 | [code] letter-bar-floods-the-ground: display statement with one straight letter; camera zooms on it (canvas mentioned). | moments-and-scenes.md §Moments | covered (check) |
+| ASC193 | [code] letter-bar-floods-the-ground: display statement with one straight letter; camera zooms on it (canvas mentioned). | moments-and-scenes.md §Big scenes | covered |
 | ASC194 | [code] letter-physics: bold claim breaks apart in 3D, letters flying off their own lines. | moments-and-scenes.md §Moments | covered |
 | ASC195 | [code] object-through-giant-type: quote in huge capitals with an object falling through it (WebGL). | moments-and-scenes.md §Moments | covered |
 | ASC196 | [code] parts-lock-into-the-whole: one huge word steps into the product's own interface. | moments-and-scenes.md §Big scenes | covered |
@@ -2588,51 +2588,52 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | # | Source item | Our file § | Status |
 |---|---|---|---|
 | AUI200 | [code] ui.js loads fragments into [data-ui-load] placeholders; cards.css gives feature-card panels. | cards-and-ui.md §Interface fragments | covered |
-| AUI201 | [code] window: product window with sidebar counts and a conversation list that updates rows. | cards-and-ui.md §Widths | covered (check) |
-| AUI202 | [code] chat: assistant answer typed word by word with two source chips. | later.md §Source kit | covered |
-| AUI203 | [code] cursor: drafted refund reply; pointer glides, clicks, status turns Sent. | cards-and-ui.md §Depth | covered (check) |
-| AUI204 | [code] notify: three notifications with avatars; a new one slides in. | cards-and-ui.md §Placements | covered (check) |
-| AUI205 | [code] toggles: titled rule list, one switch flips at a time. | cards-and-ui.md §Interface fragments | covered (check) |
+| AUI201 | [code] window: product window with sidebar counts and a conversation list that updates rows. | cards-and-ui.md §Interface fragments | covered |
+| AUI202 | [code] chat: assistant answer typed word by word with two source chips. | kit/ui/chat.html, static (the answer shows whole; no word-by-word typing) | covered |
+| AUI203 | [code] cursor: drafted refund reply; pointer glides, clicks, status turns Sent. | cards-and-ui.md §Interface fragments | covered |
+| AUI204 | [code] notify: three notifications with avatars; a new one slides in. | cards-and-ui.md §Interface fragments | covered |
+| AUI205 | [code] toggles: titled rule list, one switch flips at a time. | cards-and-ui.md §Interface fragments | covered |
 | AUI206 | [code] stat: dashboard card with one big number and 14 daily bars. | cards-and-ui.md §The card | covered |
-| AUI207 | [code] search: command bar with typed query and stepping selection. | later.md §Source kit | covered (check) |
-| AUI208 | [code] integrations: list of apps with real marks, what each does, and state. | cards-and-ui.md §Interface fragments | covered (check) |
+| AUI207 | [code] search: command bar with typed query and stepping selection. | cards-and-ui.md §Interface fragments | covered |
+| AUI208 | [code] integrations: list of apps with real marks, what each does, and state. | cards-and-ui.md §Interface fragments | covered |
 | AUI209 | [code] slider: design-tool property card with two sliders and a switch. | cards-and-ui.md §The card | covered |
 | AUI210 | [code] voice: call card with timer, orb and word-by-word captions. | cards-and-ui.md §The card | covered |
 | AUI211 | [code] files: status pill over a grid of real app file tiles. | cards-and-ui.md §Placements | covered |
 | AUI212 | [code] calendar: month with a dated range and key-date rows. | cards-and-ui.md §Calendar | covered |
-| AUI213 | [code] code: editor pane with two tabs and one highlighted line. | cards-and-ui.md §The card | covered (check) |
-| AUI214 | [code] diff-review: one pull-request file with +/- counts and line changes. | later.md §Video | covered (check) |
-| AUI215 | [code] terminal-run: terminal pane running tests with a thin progress meter. | cards-and-ui.md §Interface fragments | covered (check) |
-| AUI216 | [code] doc: document page with marked phrases and a note on the current one. | cards-and-ui.md §Interface fragments | covered (check) |
-| AUI217 | [code] checklist: five-step list whose steps tick in turn with a progress bar. | cards-and-ui.md §Widths | covered (check) |
+| AUI213 | [code] code: editor pane with two tabs and one highlighted line. | cards-and-ui.md §Interface fragments | covered |
+| AUI214 | [code] diff-review: one pull-request file with +/- counts and line changes. | cards-and-ui.md §Interface fragments | covered |
+| AUI215 | [code] terminal-run: terminal pane running tests with a thin progress meter. | cards-and-ui.md §Interface fragments | covered |
+| AUI216 | [code] doc: document page with marked phrases and a note on the current one. | cards-and-ui.md §Interface fragments | covered |
+| AUI217 | [code] checklist: five-step list whose steps tick in turn with a progress bar. | cards-and-ui.md §Interface fragments | covered |
 | AUI218 | [code] pipeline-board: CI run card with status chip, commit and cancel button. | cards-and-ui.md §The card | covered |
 | AUI219 | [code] apps: fourteen real app marks … (shortened) | cards-and-ui.md §Interface fragments | covered |
-| AUI220 | [table] ui/icons/icons-credits.json: 30 SVG marks, 29 CC0 and 1 MIT, sourced from gilbarbara/logos and simple-icons. | later.md §Source kit | covered (check) |
+| AUI220 | [table] ui/icons/icons-credits.json: 30 SVG marks, 29 CC0 and 1 MIT, sourced from gilbarbara/logos and simple-icons. | icons-and-diagrams.md §Icon sets | covered |
 
 ### Top-level assets
 
 | # | Source item | Our file § | Status |
 |---|---|---|---|
-| AT221 | [code] starter.html: page template; data-type, data-radius, data-ground, data-buttons, data-motion set on html; bracket placeholders like [Name]. | later.md §Source kit | covered (check) |
-| AT222 | [code] system.js: phone nav sheet, accordion, Escape, tabs, FAQ answers open, opening hours marked by time zone. | later.md §Source kit | covered (check) |
-| AT223 | [table] system.css palette: --p-bg, --p-surface, --p-ink, --p-muted, --p-accent, --p-accent-ink, --p-action, --p-action-ink, plus eight --p-inv-* inverse tokens. | later.md §Source kit | covered |
-| AT224 | [table] system.css lit ground: --ground-bg, --ground-surface, --ground-ink, --ground-muted, --ground-accent, set per data-ground. | later.md §Source kit | covered (check) |
+| AT221 | [code] starter.html: page template; data-type, data-radius, data-ground, data-buttons, data-motion set on html; bracket placeholders like [Name]. | system.md §One system | covered |
+| AT222 | [code] system.js: phone nav sheet, accordion, Escape, tabs, FAQ answers open, opening hours marked by time zone. | later.md §Source kit (behaviour script; our page parts each carry their own small script) | later |
+| AT223 | [table] system.css palette: --p-bg, --p-surface, --p-ink, --p-muted, --p-accent, --p-accent-ink, --p-action, --p-action-ink, plus eight --p-inv-* inverse tokens. | kit/system.css (later.md §Shipped kit) | covered |
+| AT224 | [table] system.css lit ground: --ground-bg, --ground-surface, --ground-ink, --ground-muted, --ground-accent, set per data-ground. | grounds-and-effects.md §Ground tokens | covered |
 | AT225 | [table] system.css fonts: --font-display, --font-text, --font-mono; … (shortened) | performance.md §Fonts | covered |
-| AT226 | [table] system.css type scale: --t-label 13, --t-small 14, --t-body 16, --t-lead 18, --t-card 18, --t-h3 24, --t-h2 30 to 48, --t-h1 38 to 72, --t-stat 28 to 38px. | later.md §Source kit | covered (check) |
-| AT227 | [table] system.css spacing: --s-1 to --s-10, … (shortened) | later.md §Source kit | covered (check) |
-| AT228 | [table] system.css radii: soft --r-sm 8, --r-md 12, --r-lg 20, --r-btn 8; sharp and round sets via data-radius. | later.md §Source kit | covered (check) |
-| AT229 | [table] system.css layout tokens: --container 1280px, … (shortened) | later.md §Source kit | covered |
-| AT230 | [table] system.css controls: --btn-h 44px, --btn-h-sm 36px, --icon 16px, --card-pad 16px, --card-gap 16px, --line and --line-strong via color-mix. | later.md §Source kit | covered (check) |
-| AT231 | [table] system.css motion: --ease cubic-bezier(.2, .8, .2, 1) (one curve), --dur 180ms. | later.md §Source kit | covered (check) |
+| AT226 | [table] system.css type scale: --t-label 13, --t-small 14, --t-body 16, --t-lead 18, --t-card 18, --t-h3 24, --t-h2 30 to 48, --t-h1 38 to 72, --t-stat 28 to 38px. | system.md §Type | covered |
+| AT227 | [table] system.css spacing: --s-1 to --s-10, … (shortened) | system.md §Spacing | covered |
+| AT228 | [table] system.css radii: soft --r-sm 8, --r-md 12, --r-lg 20, --r-btn 8; sharp and round sets via data-radius. | system.md §Radius | covered |
+| AT229 | [table] system.css layout tokens: --container 1280px, … (shortened) | kit/system.css (later.md §Shipped kit) | covered |
+| AT230 | [table] system.css controls: --btn-h 44px, --btn-h-sm 36px, --icon 16px, --card-pad 16px, --card-gap 16px, --line and --line-strong via color-mix. | system.md §Buttons | covered |
+| AT231 | [table] system.css motion: --ease cubic-bezier(.2, .8, .2, 1) (one curve), --dur 180ms. | motion.md §Tokens | covered |
 
 ## Totals
 
 | Status | Rows |
 |---|---|
-| covered | 1399 |
-| later | 154 |
-| covered (check) | 129 |
-| merged | 34 |
-| expanded | 24 |
+| covered | 1518 |
+| later | 157 |
+| merged | 36 |
+| expanded | 29 |
 
-Rows marked `covered (check)`: 129. They are the first place to look in a review.
+The 129 rows first matched only by keyword (`covered (check)`) were each reopened against the source and our files in the taste-2 pass: pointers now name the exact section; 5 became `expanded` (new rules on GLSL reserved words, hardware prints, the studio render, divider bands and logo sweeps), 2 `merged`, 11 `later`, 111 `covered` (source tooling, the photo library and notes with nothing to carry).
+
+Kit pass (taste-2 steps 2 to 6): 8 `later` rows became `covered` now that our own kit ships the piece (phone frame L26, icon page I32, diagram page D3, copy lint SX36, SX37, SX39, CT4, CV26), and 3 `covered` rows were repointed from `later.md` to the kit file (AT223, AT229, AUI202). The rest of the kit gap is listed in `later.md` § Source kit still to do.

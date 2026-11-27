@@ -11,7 +11,7 @@ Read when a page might show a modelled object: a printed or engraved object on a
 | Scene objects | photographs or a generic form run through a print and alive under the pointer (exploded layers, a dot object, a split reveal, a turntable, a dither sequence) | a kit gallery only; a turntable only when the form is the product's own |
 | Product render | any physical product composed from a spec of simple parts and lit in real materials | a product page whose brief asks for 3D |
 
-The source kit ships these as code (a print core, scene modules and a render builder). Their scripts are not part of this plugin (`later.md` § Source kit); the rules below apply to whatever renderer you use.
+The source kit ships these as code (a print core, scene modules and a render builder). Their scripts are not part of this plugin (`later.md` § Source kit still to do); the rules below apply to whatever renderer you use.
 
 ## Who gets an object
 
@@ -22,6 +22,8 @@ The source kit ships these as code (a print core, scene modules and a render bui
 - A render never shows a different kind of object, a drawn SVG, loose primitives, mood stock or another maker's product, and never leaves an order form alone in one half of a split hero.
 - **A game without art:** its name large over a stand-in photo of its setting; the world section is the widest photo, full bleed. No render unless the brief requests 3D.
 - **Software, AI and games with art:** a print object is placed on the card whose topic it shows (say, a globe on the card about regions), or the game's own world object holds a fixed hero.
+- **A hardware print** (say, a drone, a camera, a chair or a pair of headphones) appears only when the product is that very thing, once per page, with the heading naming it. A product none of them matches gets its own photographs, never the closest print.
+- **Use the print look, not the smooth "studio" shading, on a page.** Smooth shading sampled once per pixel leaves jagged edges, and beside real product photos its forms look like toys. Shops and product pages use the client's photographs instead.
 
 ## Placement
 

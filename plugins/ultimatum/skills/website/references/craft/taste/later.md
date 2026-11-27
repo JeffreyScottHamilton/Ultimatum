@@ -2,25 +2,37 @@
 
 Read when a rule elsewhere points here, or when planning what to build next. These items come from the source skill but are not shipped in this plugin yet; each says what it would take.
 
-## Source kit
+## Shipped kit
 
-The source ships ready-made front-end assets. We keep their rules (in the files named) but not their code, because rewriting them is real work and copying is not allowed.
+Our own code, written for this plugin, under `../../../../../data/craft/taste/kit/`. Paths below are relative to that folder. Each piece opens from `file://` with no build step and no network.
 
-| Asset family | What it holds | Rules live in | To ship it |
+| Piece | Files | Checked by |
+|---|---|---|
+| Page system | `system.css`, `starter.html` | `tools/taste_contrast.cjs` on the starter |
+| Named grounds, all 16 | `grounds.css`, `grounds.html`, `grain.svg` | `tools/taste_contrast.cjs grounds.html` (4.5:1 on real pixels, 1440 and 390) |
+| UI fragments, 19, and a phone frame | `ui/ui.css`, `ui/*.html`, `ui/index.html` | `tools/taste_ui_gallery.py --check` |
+| Icons: 16 glyphs and layout classes | `icons/glyphs.svg`, `icons/icons.css`, `icons/index.html` | `test_taste_icons.py` |
+| Diagrams: hub, fan-in (bow-tie), timeline, free | `diagrams/*.json`, `diagrams/diagram.css`, `diagrams/diagram.js`; generator `scripts/ultlib/diagram.py` | `test_diagram.py`, `tools/taste_diagram_gallery.py --check` |
+| Effects, 3 of 25: grain-gradient, orb-sphere, grid-pulse | `effects/effects.js`, `effects/effects.css`, `effects/index.html` | `test_taste_effects.py`, `tools/taste_fx_check.cjs effects/index.html` |
+| Copy lint | `scripts/ultlib/copylint.py` | `test_copylint.py` |
+
+- Each effect runs 8 s, then holds its last frame; a CSS poster stands in under reduced motion, below 700 px, without WebGL2 and when a shader fails. Budget per `performance.md` § WebGL.
+- `ult diagram` and `ult copylint` run as `python3 scripts/ultlib/<name>.py` until the toolbelt wires them in.
+- Copy only hero markup from a kit page and replace every word and picture. Never edit kit files to clear a check (`quality-gate.md` § Waivers).
+
+## Source kit still to do
+
+The rules for these live in the files named; the code does not exist here yet.
+
+| Asset family | What is left | Rules live in | To ship it |
 |---|---|---|---|
-| CSS grounds | 16 grounds with a picker and a contrast checker | `grounds-and-effects.md` § Named grounds | write our own CSS per ground and a pixel-contrast check |
-| Effects | 25 WebGL effects, gallery and parameter lab | `grounds-and-effects.md` § Effects catalogue | write shaders from scratch, one per effect; budget per `performance.md` § WebGL |
-| Effect parts | headline, stat and button fills, rings, charts, feature-card panels | `effect-parts.md` | same as effects |
-| Objects and prints | print objects, photo prints, scene objects, product-render builder and poster maker | `objects.md` | a small ray-marcher reading our own spec format, plus a still exporter |
+| Effects | 22 of the 25, the gallery palette switcher and the parameter lab | `grounds-and-effects.md` § Effects catalogue | one shader per effect on `effects/effects.js`, same budget and poster rule |
+| Effect parts | headline, stat and button fills, rings, charts, feature-card panels | `effect-parts.md` | small mounts on the effects runtime |
+| Objects and prints | print objects, photo prints, scene objects, product-render builder, poster maker | `objects.md` | a small ray-marcher reading our own spec format, plus a still exporter |
 | Moments and scenes | moment and scene modules with demos | `moments-and-scenes.md` | per-moment modules on the patterns there |
-| UI fragments | 19 interface fragments, among them an app window, chat, code, a diff review, a terminal run, a pipeline board, a calendar, search and integrations | `cards-and-ui.md` § Interface fragments | write as plain HTML and CSS partials |
-| Icons | resolver, local SVG folder, layouts CSS, demo page | `icons-and-diagrams.md` | a stdlib script that copies from pinned packages |
-| Diagrams | engine, 27 presets, builder lab | `icons-and-diagrams.md` § Diagrams | an SVG generator from a small JSON spec |
-| Page system | reset, tokens, layout and motion CSS, starter page | `system.md`, `layout-and-heroes.md` | one starter page and stylesheet |
-| Phone app showcase | a device-frame hero (about 280 × 570) | `layout-and-heroes.md` § Hero catalogue | a CSS device frame around a real screenshot |
-
-- Mount any kit piece exactly as its own docs say; copy only hero markup and replace every word and picture.
-- Never edit shared kit files to clear a check (`quality-gate.md` § Waivers).
+| Icons | a resolver for brand, file-type and tool icons; a brand-mark slot | `icons-and-diagrams.md` | a stdlib script that copies from pinned packages |
+| Diagrams | ring, tree, lanes, sync and grid layouts; 27 presets; a builder page; a phone layout (today the board scrolls sideways under 560 px) | `icons-and-diagrams.md` § Diagrams | more layouts in `diagram.py` |
+| Photo library | 413 vetted frames with credits | `photos.md` § Sources, in order | not planned; live search stays |
 
 ## Source tooling
 
@@ -30,17 +42,17 @@ The source runs its checks with Node scripts and a Stop hook. Under this plugin'
 |---|---|---|
 | finish gate + Stop hook (Claude Code, Codex, Antigravity) | blocked the agent from stopping until checks passed; rounds, waivers, exit codes | the manual loop in `quality-gate.md` § Rounds; hooks are a user setting, never added by a skill |
 | consistency checker | browser checks across layout, text, nav, buttons, motion, visuals, copy, wiring and contrast | `quality-gate.md` and `../../website/feel-bar.md` with Playwright |
-| copy lint | counted copy tells; failed on residue, worn words and stock lines | `copy.md` § Tells, read by hand or by a reviewer |
+| copy lint | counted copy tells; failed on residue, worn words and stock lines | `scripts/ultlib/copylint.py` (shipped; coined-name, cast-name and company-name checks still by hand) |
 | perf script | bytes, requests, fonts, images, contexts, paints, long tasks | the Playwright script in `performance.md` § Measure |
 | shoot | full-page and per-section screenshots with live effects | Playwright `page.screenshot({ fullPage: true })` |
 | deal / start | dealt heroes, palettes, fonts and grounds by kind and trade, with history | `page-plans.md` § Deal lists |
 | photos | searched and fetched licensed stand-ins, wrote credit lines | `photos.md` § Sources, in order (by hand) |
 | icons | found, fetched, scanned, checked and measured icons | `icons-and-diagrams.md` § Serving icons (by hand) |
-| ground picker and checker | dealt grounds per section; measured contrast from pixels | `grounds-and-effects.md` § Named grounds |
+| ground picker and checker | dealt grounds per section; measured contrast from pixels | picking by hand per `grounds-and-effects.md` § Named grounds; contrast by `tools/taste_contrast.cjs` (shipped, repo test tool) |
 | poster maker, shader lint | rendered product stills; flagged reserved words in shaders | `objects.md` § Client renders |
 | street-map baker | baked a still map from OpenStreetMap | `effect-parts.md` (street map row) |
 
-A stdlib Python copy lint and a contrast checker are the most useful next ports; both fit the toolbelt rules.
+The browser checks (`tools/taste_*.cjs`) are repo test tools that need Playwright; they are not part of the stdlib toolbelt. The perf script is the most useful next port.
 
 ## Video
 
