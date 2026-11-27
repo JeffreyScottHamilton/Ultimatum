@@ -16,6 +16,7 @@ Read when a website task needs a written brand guide, a token-based design syste
 - `token-architecture.md`: primitive, semantic and component layers, naming, dark mode by override, migration from flat CSS.
 - `token-templates.md`: the plain CSS and Tailwind v4 templates our generator writes, and how they were tested.
 - `states-and-variants.md`: which state wins, the attribute for each state, loading and errors, variants from local tokens.
+- `token-check.md`: proof that pages, components and brand assets use the tokens: raw colours, fonts and sizes, unknown names, embedding tokens in one-file pages, asset colours against the palette.
 - `component-specs.md`: the spec sheet format, filled in for button, field, card, badge, alert, dialog and table.
 
 ## UI styling
@@ -31,4 +32,4 @@ Read when a website task needs a written brand guide, a token-based design syste
 
 - `later.md`: what was left out and why (slides, banners, logo and identity design, icons, the source's scripts).
 
-Tools and data: `tools/build_tokens.py` builds CSS from `../../../../../data/design-own/tokens/starter.tokens.json` and checks every contrast pair.
+Tools and data: `tools/build_tokens.py` builds CSS from `../../../../../data/design-own/tokens/starter.tokens.json` and checks every contrast pair; `../../../../../data/design-own/tokens/token_check.py` checks that everything else uses them (`token-check.md`).

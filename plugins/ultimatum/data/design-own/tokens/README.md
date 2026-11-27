@@ -16,6 +16,13 @@ python3 tools/build_tokens.py --check   # exit 1 if they are stale or a contrast
 python3 tools/build_tokens.py --in path/to/brand.tokens.json --out-dir path/to/styles
 ```
 
+Check that pages, components and brand assets use the tokens (raw colours, fonts and sizes, unknown `var()` names, asset colours), and embed tokens into a one-file page:
+
+```
+python3 plugins/ultimatum/data/design-own/tokens/token_check.py scan --tokens path/to/tokens.css src/
+python3 plugins/ultimatum/data/design-own/tokens/token_check.py colors --tokens path/to/tokens.css logo.svg
+```
+
 Every pair in `pairs` is checked in light and dark mode; the build refuses to write when one falls below its floor (4.5:1 for text, 3:1 for control borders and focus rings, WCAG 2.2 SC 1.4.3 and 1.4.11).
 
 How the layers work and how to use the output: `skills/website/references/craft/ui-ux-pro-max/token-architecture.md` and `token-templates.md`. These files are not CSV tables, so the design search (`ult design`) does not read them.

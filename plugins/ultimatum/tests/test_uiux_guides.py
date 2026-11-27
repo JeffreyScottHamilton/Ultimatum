@@ -20,7 +20,7 @@ EXPECTED = {
     "brand-guidelines-template.md", "token-architecture.md", "token-templates.md",
     "states-and-variants.md", "component-specs.md", "shadcn-components.md", "shadcn-theming.md",
     "shadcn-accessibility.md", "tailwind-utilities.md", "tailwind-customisation.md", "canvas-design.md",
-    "later.md",
+    "token-check.md", "later.md",
 }
 # paths in a user's project, named in the guides as examples; they do not live in this repo
 PROJECT_EXAMPLES = {"BRAND.md", "docs/brand-guidelines.md", "design/tokens.json"}

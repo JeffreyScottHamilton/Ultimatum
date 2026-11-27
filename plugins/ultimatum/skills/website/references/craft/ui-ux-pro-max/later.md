@@ -19,20 +19,19 @@ Read when a task needs something the UI UX Pro Max guides in this folder do not 
 
 ## Source scripts not rebuilt
 
-None of the source's scripts were run or ported. Where a job matters, it is covered another way:
+None of the source's scripts were run or ported. Where a job matters, it is covered by our own tool or another way:
 
 | Source script's job | Our answer |
 |---|---|
 | generate CSS from a token file | `tools/build_tokens.py` (our own, stdlib only) |
-| validate tokens and find raw values in CSS | the generator's reference and contrast checks; a search for raw colours in CI (`token-architecture.md` § Moving a flat stylesheet to layers) |
-| embed tokens into HTML, validate HTML against tokens | not rebuilt; link the generated stylesheet instead |
+| validate tokens and find raw values in CSS | the generator's reference and contrast checks; `token_check.py scan` for raw values in CSS, HTML, SVG and components (`token-check.md`) |
+| embed tokens into HTML, validate HTML against tokens | `token_check.py embed` and `scan` (`token-check.md` § embed) |
 | sync brand values into tokens, inject brand context into prompts | by hand, following `brand-flow.md` § 3. Turn the guide into tokens |
-| extract colours from images, validate assets | not rebuilt; read values from the brand's own files (`../hallmark/brand-truth.md`) |
+| extract colours from images, validate assets | `token_check.py colors` for PNG, SVG, HTML and CSS against the palette (`token-check.md` § colors); JPEG and WebP not read |
 | add shadcn components, generate a Tailwind config | use the official CLIs: `npx shadcn@latest add`, and CSS-first Tailwind v4 config (`tailwind-customisation.md`) |
 | slide search, slide token validation, background image fetch | deck checking is done (`../decks/build.md`); slide search and image fetch stay out |
 
 ## Could come next
 
 - A DTCG import for `tools/build_tokens.py`, so a design tool's export can be the source directly.
-- A raw-value scanner in the toolbelt that flags colours outside the token file.
 - More filled component sheets (tabs, menu, toast, pagination) in `component-specs.md`.

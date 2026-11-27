@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.53] - 2026-11-27
+
+Token check for pages, components and brand assets
+
+- New `data/design-own/tokens/token_check.py` (standard library, no network). `scan` reads a token stylesheet and flags values that skip it in CSS, HTML, SVG and component files. Errors: `raw-color` and `unknown-var`. Warnings: `named-color`, `raw-font` and `off-scale`. A raw colour that equals a token gets the role as its fix, not the primitive behind it.
+- `embed` puts the tokens inside a one-file HTML page. Running it again replaces the block instead of adding another, and `--used` keeps only the tokens the page reads and the tokens those point to.
+- `colors` lists the colours in a PNG, SVG, HTML or CSS file and measures each against the nearest token in OKLab. A colour more than 2 away fails as `off-palette`. The PNG reader matched Pillow pixel for pixel on RGBA, RGB, palette and grey exports.
+- New guide `craft/ui-ux-pro-max/token-check.md`. `later.md`, the index, the tokens README, the coverage table and the comparison row are updated. Four upstream script rows (html-token-validator, embed-tokens, extract-colors and validate-asset) are now expanded, and the coverage counts were recounted.
+- New tests in `tests/test_token_check.py`.
+
 ## [0.0.52] - 2026-11-27
 
 Choice boards for questions better seen than read

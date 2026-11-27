@@ -1,6 +1,6 @@
 # UI UX Pro Max guides rebuild: coverage map
 
-Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/src/uiux` (MIT for the repository; Apache-2.0 for `ui-styling`, per its LICENSE.txt). Read only; none of its scripts were run. Ours: `plugins/ultimatum/skills/website/references/craft/ui-ux-pro-max/` (16 guides, `index.md`, `later.md`), `plugins/ultimatum/data/design-own/tokens/` and `tools/build_tokens.py`.
+Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/src/uiux` (MIT for the repository; Apache-2.0 for `ui-styling`, per its LICENSE.txt). Read only; none of its scripts were run. Ours: `plugins/ultimatum/skills/website/references/craft/ui-ux-pro-max/` (17 guides, `index.md`, `later.md`), `plugins/ultimatum/data/design-own/tokens/` (with `token_check.py`) and `tools/build_tokens.py`.
 
 ## How this map was made
 
@@ -29,10 +29,10 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `brand/references/update.md` | merged with brand-flow.md | `brand-flow.md` § 5. Updating an existing brand; its presets are in `later.md` |
 | `brand/references/visual-identity.md` | merged with ../hallmark/brand-truth.md | `brand-visual.md` and `../hallmark/brand-truth.md` |
 | `brand/references/voice-framework.md` | covered | `brand-voice.md` |
-| `brand/scripts/extract-colors.cjs` | later | `later.md` § Source scripts not rebuilt |
+| `brand/scripts/extract-colors.cjs` | expanded | `token_check.py colors` (our own, stdlib; PNG pixels and SVG/CSS values, nearest token in OKLab) |
 | `brand/scripts/inject-brand-context.cjs` | later | `later.md` § Source scripts not rebuilt |
 | `brand/scripts/sync-brand-to-tokens.cjs` | later | `later.md`; by hand in `brand-flow.md` § 3. Turn the guide into tokens |
-| `brand/scripts/validate-asset.cjs` | later | `later.md` § Source scripts not rebuilt |
+| `brand/scripts/validate-asset.cjs` | expanded | `token_check.py colors`, `off-palette` rule; `token-check.md` § colors |
 | `brand/templates/brand-guidelines-starter.md` | merged with brand-guidelines-template.md | `brand-guidelines-template.md` |
 | `design-system/SKILL.md` | expanded | `token-architecture.md`, `token-templates.md` |
 | `design-system/data/slide-backgrounds.csv` | later | `../decks/later.md` (background keywords) |
@@ -50,11 +50,11 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design-system/references/states-and-variants.md` | expanded | `states-and-variants.md` |
 | `design-system/references/tailwind-integration.md` | expanded | `token-templates.md` § Template 2: Tailwind CSS v4 theme (v3 config rebuilt as v4 `@theme`) |
 | `design-system/references/token-architecture.md` | expanded | `token-architecture.md` |
-| `design-system/scripts/embed-tokens.cjs` | later | `later.md` § Source scripts not rebuilt |
+| `design-system/scripts/embed-tokens.cjs` | expanded | `token_check.py embed`, idempotent, `--used` prunes to what the page reads |
 | `design-system/scripts/fetch-background.py` | later | `later.md` § Out of scope for this rebuild |
 | `design-system/scripts/generate-slide.py` | later | `../decks/later.md` (generator) |
 | `design-system/scripts/generate-tokens.cjs` | expanded | `tools/build_tokens.py` (our own stdlib generator; source not run) |
-| `design-system/scripts/html-token-validator.py` | later | `later.md` § Source scripts not rebuilt |
+| `design-system/scripts/html-token-validator.py` | expanded | `token_check.py scan`, 5 rules over CSS, HTML, SVG and component files |
 | `design-system/scripts/search-slides.py` | covered | `../decks/plan-check.md` (`deck_plan.py plan` and `check`) |
 | `design-system/scripts/slide-token-validator.py` | expanded | `data/craft/decks/deck_check.py`, 12 rules |
 | `design-system/scripts/slide_search_core.py` | later | `../decks/later.md` (lookup tables) |
@@ -116,4 +116,4 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `ui-styling/scripts/shadcn_add.py` | later | official `npx shadcn@latest add` in `shadcn-components.md` |
 | `ui-styling/scripts/tailwind_config_gen.py` | later | CSS-first config in `tailwind-customisation.md` |
 
-Counts: covered 17 / expanded 18 / merged 22 / later 43 (100 rows). Slides rows updated in 0.0.39; icon and banner rows in 0.0.40.
+Counts: covered 19 / expanded 22 / merged 22 / later 37 (100 rows, recounted in 0.0.53). Slides rows updated in 0.0.39; icon and banner rows in 0.0.40; four script rows in 0.0.53 (`token_check.py`).
