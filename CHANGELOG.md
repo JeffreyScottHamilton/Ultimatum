@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.40] - 2026-11-27
+
+Interface icons and banner sizes
+
+- New `craft/identity/icons.md`: choosing one icon library, drawing the few icons it lacks on a set grid, clean SVG export, accessibility.
+- New `data/craft/identity/icon_check.py`: stdlib checker for a folder of SVG icons with 12 rules (viewBox, canvas size, fixed colours, mixed stroke and caps, text, rasters, transforms, editor leftovers, out of bounds, complexity); refuses DOCTYPE and entities.
+- New `craft/identity/banners.md`: one-message banner rules, web ad sizes, dated social cover sizes, email headers, printed banners.
+- Closes the third gap in `docs/plans/comparison.md`; UI UX Pro Max icon and banner rows remapped in the coverage map.
+- Tests: `test_craft_identity_icons.py` (14).
+
 ## [0.0.39] - 2026-11-27
 
 Slide decks: story, layouts, charts, a template and a checker.

@@ -33,13 +33,13 @@ Five questions, each scored ours better / even / upstream better:
 | decks | 6 files, 1 script, 1 template | ui-ux-pro-max slides (MIT) | 6 (lookup tables, generator) | ours on checkability (`deck_check.py`) | Searchable layout and strategy tables |
 | superpowers | 10 files, 42 KB, 2 scripts | 925 KB | 9 (visual companion) | ours | Visual brainstorming companion |
 | taste | 21 files, 198 KB, 29 data | 557 KB | 160 | even | Long tail of style presets |
-| ui-ux-pro-max | 18 files, 107 KB | 1.2 MB | 48 | **upstream on coverage** (narrower) | Icon design, banner and ad sizes. Slides and decks fixed in 0.0.39 (`craft/decks/`, `deck_check.py`); logo and identity are in `craft/identity/` |
+| ui-ux-pro-max | 18 files, 107 KB | 1.2 MB | 43 (mostly generators, search tables, bundled fonts) | even (was upstream) | Searchable style tables and the long tail of presets. Decks fixed in 0.0.39 (`craft/decks/`, `deck_check.py`); icons and banners in 0.0.40 (`identity/icons.md`, `identity/banners.md`, `icon_check.py`); logo and identity in `craft/identity/` |
 
 ## What to fix, in order
 
 1. **A page linter** (hallmark and impeccable win). Done in 0.0.38. Stdlib script that reads HTML and CSS and flags the machine-checkable tells already written in `data/craft/hallmark/gates.csv` and `data/craft/design-review-qa/slop-tells.csv`. Turns two lists into a check.
 2. **Slides and decks** (ui-ux-pro-max wins). Done in 0.0.39. Nothing in the plugin covers building a deck; launch and business work needs one.
-3. **Icons and image sizes** (ui-ux-pro-max wins). Icon style rules and a size table for social cards, banners and favicons.
+3. **Icons and image sizes** (ui-ux-pro-max wins). Done in 0.0.40. Icon style rules and a size table for social cards, banners and favicons.
 4. Later, lower value: Expo motion recipes, a figure audit script, landing and settings page anatomy, a mockup comparison step.
 
 Each fix ships as its own release with tests, and this table is updated when it lands.

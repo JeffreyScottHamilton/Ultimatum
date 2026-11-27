@@ -7,15 +7,15 @@ Read when a task needs something the UI UX Pro Max guides in this folder do not 
 | Left out | Why | Go to instead |
 |---|---|---|
 | slide decks (the slides skill, the design system's slide tokens, layouts, copy formulas and slide search) | done in 0.0.39 as its own folder | `../decks/index.md` |
-| banner design (sizes and styles by platform) | a separate skill; platform sizes change often and need a dated source | each platform's own help pages, checked on the day |
+| banner design (sizes and styles by platform) | done in 0.0.40, with dated sizes | `../identity/banners.md` |
 | logo creation (prompting, styles, colour psychology) | another session owns the logo and identity guide | that guide, once merged |
 | corporate identity packs (stationery, deliverables, style guides) | same as above | that guide, once merged |
-| icon design | same as above | `brand-visual.md` § Imagery for choosing one set |
+| icon design | done in 0.0.40 | `../identity/icons.md` |
 | social photo design and design routing from the design skill | outside the three guides asked for | `../hallmark/imagery.md`, `../taste/photos.md` |
 | the bundled canvas fonts | fonts are linked or self-hosted with their licence, never shipped in this plugin | `../hallmark/fonts.md` |
 | AI image-generation prompts in the brand template | prompts for image services belong with the image tools that run them | a later imagery guide |
 | the brand update presets | the source's presets are its own picks; ours are the starter tokens | `../../../../../data/design-own/tokens/starter.tokens.json` |
-| platform size tables for logos and social avatars | change often; need a dated source | each platform's help pages |
+| platform size tables for logos and social avatars | change often; need a dated source | `../identity/banners.md` § 3. Social covers and headers, dated; then each platform's help pages |
 
 ## Source scripts not rebuilt
 

@@ -15,8 +15,8 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 
 | Source item | Status | Where |
 |---|---|---|
-| `banner-design/SKILL.md` | later | `later.md` § Out of scope for this rebuild |
-| `banner-design/references/banner-sizes-and-styles.md` | later | `later.md` § Out of scope for this rebuild |
+| `banner-design/SKILL.md` | covered | `../identity/banners.md` § 1 Rules for any banner |
+| `banner-design/references/banner-sizes-and-styles.md` | expanded | `../identity/banners.md` § 2–5 (dated sizes, print, email; check each platform's page) |
 | `brand/SKILL.md` | expanded | `brand-flow.md`, with `../hallmark/brand-truth.md` as the facts check |
 | `brand/references/approval-checklist.md` | covered | `brand-review.md` |
 | `brand/references/asset-organization.md` | covered | `brand-assets.md` |
@@ -65,17 +65,17 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design/data/cip/industries.csv` | later | `later.md` § Out of scope for this rebuild |
 | `design/data/cip/mockup-contexts.csv` | later | `later.md` § Out of scope for this rebuild |
 | `design/data/cip/styles.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design/data/icon/styles.csv` | later | `later.md` § Out of scope for this rebuild |
+| `design/data/icon/styles.csv` | merged with icon-design.md | `../identity/icons.md` § 1–2 (libraries by style, fill or line) |
 | `design/data/logo/colors.csv` | later | `later.md` § Out of scope for this rebuild |
 | `design/data/logo/industries.csv` | later | `later.md` § Out of scope for this rebuild |
 | `design/data/logo/styles.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/banner-sizes-and-styles.md` | later | `later.md` § Out of scope for this rebuild |
+| `design/references/banner-sizes-and-styles.md` | merged with banner-sizes-and-styles.md | `../identity/banners.md` |
 | `design/references/cip-deliverable-guide.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/cip-design.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/cip-prompt-engineering.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/cip-style-guide.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/design-routing.md` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/icon-design.md` | later | `later.md` § Out of scope for this rebuild |
+| `design/references/icon-design.md` | expanded | `../identity/icons.md`, with `icon_check.py` (12 rules) |
 | `design/references/logo-color-psychology.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/logo-design.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/logo-prompt-engineering.md` | later | `later.md` § Out of scope for this rebuild |
@@ -91,7 +91,7 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design/scripts/cip/generate.py` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/cip/render-html.py` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/cip/search.py` | later | `later.md` § Out of scope for this rebuild |
-| `design/scripts/icon/generate.py` | later | `later.md` § Out of scope for this rebuild |
+| `design/scripts/icon/generate.py` | later | `../identity/later.md` (generators that call paid image APIs) |
 | `design/scripts/logo/core.py` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/logo/generate.py` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/logo/search.py` | later | `later.md` § Out of scope for this rebuild |
@@ -116,4 +116,4 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `ui-styling/scripts/shadcn_add.py` | later | official `npx shadcn@latest add` in `shadcn-components.md` |
 | `ui-styling/scripts/tailwind_config_gen.py` | later | CSS-first config in `tailwind-customisation.md` |
 
-Counts: covered 16 / expanded 16 / merged 20 / later 48 (100 rows). Slides rows updated in 0.0.39.
+Counts: covered 17 / expanded 18 / merged 22 / later 43 (100 rows). Slides rows updated in 0.0.39; icon and banner rows in 0.0.40.
