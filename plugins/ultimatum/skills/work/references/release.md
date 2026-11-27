@@ -14,6 +14,8 @@ Goal: decide, with evidence, whether a change is ready to ship; prepare the arti
 2. List intended behavior: the spec, acceptance checks, ticket or PR descriptions in the range (`git log --oneline <prev>..HEAD`, `gh pr list --state merged --search "merged:>=<date>"`). If no spec exists, derive a short list of user-visible changes from the diff and confirm it with the user if it looks incomplete.
 3. Read the project's own release doc or checklist (`RELEASING.md`, `CONTRIBUTING`, `.github/workflows/release*.yml`); follow it over this file where they differ.
 
+Resumable ship order, version states and bisectable commits: `craft/gstack-eng/ship-pipeline.md`.
+
 ## 2. Verify behavior
 
 1. **Per intended behavior, a check that ran this session**: test name, command, or manual interaction with its result. Table: behavior -> evidence -> status (pass / fail / not verified).
@@ -30,6 +32,8 @@ Do only what the repo already does; do not start a changelog the project does no
 - **Version bump**: follow semver and the project's mechanism. Breaking public change -> major; new backward-compatible feature -> minor; fix -> patch. Update every place the version lives (manifest, lockfile root, package metadata, version constant, docs badges) found by searching for the current version string. Check that a marketplace/registry entry and the manifest agree if both exist.
 - **Deprecations**: announced with replacement and removal version.
 - Commit these as a release-prep commit only when asked; state the message.
+
+Doc coverage map over a diff: `craft/gstack-eng/docs-release.md`.
 
 ## 4. Migration and rollback plan
 

@@ -1,0 +1,5 @@
+- Added gstack engineering craft references: 9 short files under `skills/work/references/craft/gstack-eng/`, indexed, each with a "Read when" opener.
+- Covers product office hours, scope review with grow/pick/hold/cut stances, engineering plan review with design-twice and red flags, an error and rescue map, a two-pass pre-landing review with quoted evidence and confidence, a ship pipeline with version states and bisectable commits, a docs release pass, retros from git history, and deny/ask/allow safety modes with an edit boundary.
+- Adds what the source lacked: PR text and diffs treated as untrusted input, the security overlay on review and scope work, and the user's yes before scope changes, version bumps, pushes or hooks.
+- Adds two stdlib scripts in `data/craft/gstack-eng/`: `command_guard.py` (tiers a shell command or path, and answers as a pre-tool hook that fails closed) and `retro_stats.py` (sessions, sizes, hotspots, focus and streak from `git log --numstat`). Tests: `test_craft_gstack_eng.py`.
+- Investigate (absent at the pinned commit), specialist fan-out, helper binaries, hook installs and pitch coaching are listed in `later.md`, not shipped.

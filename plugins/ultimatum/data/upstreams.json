@@ -108,9 +108,9 @@
       "pin": "7dace1f",
       "licence": "MIT (some design text derives from Impeccable, Apache-2.0; see its NOTICE.md)",
       "decision": "adapt",
-      "modules": ["design", "website", "review"],
+      "modules": ["design", "website", "review", "work"],
       "reviewed": "2026-11-26",
-      "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; skip the browser daemon, mockup generator and outside-model review (see later.md)"
+      "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; office-hours, plan reviews, review, ship, document-release, retro and careful/freeze rebuilt as skills/work/references/craft/gstack-eng; skip the browser daemon, mockup generator, binaries and outside-model review (see later.md)"
     },
     {
       "id": "hallmark",
