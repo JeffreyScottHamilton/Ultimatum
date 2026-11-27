@@ -40,4 +40,4 @@ Read when a website build wants the Hallmark layer on top of Taste: one line per
 - `review-prompts.md`: What does a fresh-context reviewer get asked for the hero and the finished page?
 - `later.md`: Which source tools, assets and fixtures are not shipped, and what would each take?
 
-Data: `../../../../../data/craft/hallmark/` holds `gates.csv`, `compositions.csv`, `hero-postures.csv`, `page-shapes.csv` and `themes.csv`; its `README.md` lists the columns.
+Data: `../../../../../data/craft/hallmark/` holds `gates.csv`, `compositions.csv`, `hero-postures.csv`, `page-shapes.csv` and `themes.csv`; its `README.md` lists the columns. The checkable gates run by script: `../design-review-qa/page-lint.md`.

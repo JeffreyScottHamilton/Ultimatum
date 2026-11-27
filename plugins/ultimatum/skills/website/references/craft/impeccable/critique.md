@@ -7,7 +7,7 @@ The first-impression and page-mode passes are already in `../design-review-qa/fi
 ## Order of work
 
 1. Find the source of the target (a file path beats a URL), and look at it rendered at the sizes it ships.
-2. Form your own view before reading any automated detector output, so the tool does not anchor you.
+2. Form your own view before reading any automated detector output, so the tool does not anchor you. Our detector is `../design-review-qa/page-lint.md`.
 3. Answer one question first: **could another product use this unchanged?** If yes, that is the headline finding.
 4. Then run the three lenses below.
 5. Report in full. Questions to the user go last, and only ones whose answer changes a fix (Ultimatum rule: ask only questions that change the outcome).

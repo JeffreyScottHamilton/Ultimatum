@@ -6,7 +6,7 @@ These need tooling we do not ship (a native engine, a live browser bridge, hooks
 
 | Item | What it is | What it would take |
 |---|---|---|
-| Native detector engine (`crates/`) | a Rust rule engine that scans HTML and CSS for slop patterns | our own stdlib checker in `scripts/ultlib/`; the rule ideas are already in `../design-review-qa/slop-tells.md` |
+| Native detector engine (`crates/`) | a Rust rule engine that scans HTML and CSS for slop patterns | partly done: `../design-review-qa/page-lint.md` (stdlib, 18 rules); judged tells stay in `../design-review-qa/slop-tells.md` |
 | `live`, `live-setup` | a browser bridge that edits a running page and syncs back to source | an MCP or Playwright bridge; out of scope for a stdlib toolbelt |
 | `hooks` | edit-time hooks that run the detector on every write | a hook plus the checker above; project settings change, so the user's yes |
 | `doctor` | a health check of the install | only useful with the engine |

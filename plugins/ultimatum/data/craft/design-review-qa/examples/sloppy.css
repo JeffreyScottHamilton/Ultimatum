@@ -1,0 +1,10 @@
+.a { border-radius: 16px; }
+.b { border-radius: 16px; }
+.c { border-radius: 16px; }
+.d { border-radius: 16px; }
+.e { border-radius: 16px; }
+.f { border-radius: 16px; backdrop-filter: blur(12px); }
+.g { backdrop-filter: blur(12px); }
+.h { -webkit-backdrop-filter: blur(8px); }
+:root { --ink: #000; }
+html { font-family: system-ui, -apple-system, sans-serif; }

@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.38] - 2026-11-27
+
+A page linter for the checkable slop tells.
+
+- New `data/craft/design-review-qa/page_lint.py` (standard library, no network): reads HTML and CSS, follows local stylesheets, and flags 18 tells from `slop-tells.csv` and `gates.csv`: purple gradients, gradient text, pure black or white, system or default main font, one radius everywhere, left-border cards, glows, frosted glass, marquees, a flat type scale, emoji headings, stock copy, vague calls to action, eyebrow chips, nested cards, placeholders and images without alt. Has `--only`, `--json` and `--rules`. Sample pages are in `examples/`.
+- New guide `skills/website/references/craft/design-review-qa/page-lint.md`, linked from the design-review-qa index, `slop-tells.md`, and the hallmark and impeccable sets.
+- New `docs/plans/comparison.md`: each rebuilt guide set scored against its upstream, with a list of what to fix.
+- Tests: `test_page_lint.py`. The design-review-qa credential test now skips folders.
+
 ## [0.0.37] - 2026-11-27
 
 React performance pack, in our own words.

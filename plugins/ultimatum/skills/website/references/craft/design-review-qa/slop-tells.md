@@ -1,6 +1,6 @@
 # Slop tells: the generic-looking patterns and how to grade them
 
-Read when scoring category 9 of the audit (generic or machine-made look), or before a build to avoid the patterns. The test: would a good studio's designer put their name on it? The house version of this list is `../../website/design-rules.md` § 2; this file adds the audit-side detail and does not replace it. Where they overlap the house list wins and the audit just names the hit.
+Read when scoring category 9 of the audit (generic or machine-made look), or before a build to avoid the patterns. The test: would a good studio's designer put their name on it? The house version of this list is `../../website/design-rules.md` § 2; this file adds the audit-side detail and does not replace it. Where they overlap the house list wins and the audit just names the hit. Eighteen of these can be found by script first: `page-lint.md`.
 
 ## The eleven classic patterns
 
