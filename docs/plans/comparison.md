@@ -22,7 +22,7 @@ Five questions, each scored ours better / even / upstream better:
 | anthropic-method | 9 files, 29 KB, 6 scripts | 2.2 MB | 10 (eval viewer, packaging, office formats) | ours | Office-format skills, out of scope |
 | caveman | 6 files, 19 KB, 1 script | 880 KB | 16 (runtime, hooks, cloud) | ours | Hook-driven mode; runtime, out of scope |
 | coding-discipline | 5 files, 1 script | not read (no licence) | n/a | ours on checkability (`diff_scope.py`) | Unknown; text not read |
-| design-review-qa | 24 files, 97 KB, 3 tables | 13 MB (whole gstack) | 7 | even | Mockup comparison step ("show me a 10") |
+| design-review-qa | 25 files, 3 tables, 3 scripts | 13 MB (whole gstack) | 6 | ours (was even) | 0.0.47: `mockup_board.py` puts built HTML mockups side by side at 1280 and 390 with pick, ratings and comments, warns on near copies and missing axes, and reads the pick back; "show me the 10" is a built page beside `now`. Upstream generates pictures with a paid image service; ours needs none and the mockups can be linted and rendered |
 | emil-motion | 18 files, 89 KB, 5 tables | 339 KB | 4 (Expo, Swift) | ours for web | Expo and React Native recipes |
 | frontend-budget | 6 files, 16 KB, 1 script, plus 4 page guides (14 KB) in the website skill | 3.4 MB | 15 (identity flow, pack rulings) | ours on load cost; even on page anatomy (was upstream) | Fixed in 0.0.42: `website/references/craft/pages/` covers landing order, developer-product landings and settings areas. Upstream's still has more worked examples |
 | gstack-eng | 11 files, 34 KB, 2 scripts | 13 MB | 11 (runtime, YC coaching) | ours | Nothing in scope |
@@ -40,6 +40,6 @@ Five questions, each scored ours better / even / upstream better:
 1. **A page linter** (hallmark and impeccable win). Done in 0.0.38. Stdlib script that reads HTML and CSS and flags the machine-checkable tells already written in `data/craft/hallmark/gates.csv` and `data/craft/design-review-qa/slop-tells.csv`. Turns two lists into a check.
 2. **Slides and decks** (ui-ux-pro-max wins). Done in 0.0.39. Nothing in the plugin covers building a deck; launch and business work needs one.
 3. **Icons and image sizes** (ui-ux-pro-max wins). Done in 0.0.40. Icon style rules and a size table for social cards, banners and favicons.
-4. Later, lower value: Expo motion recipes, a mockup comparison step. The figure audit script landed in 0.0.41 and the landing and settings page anatomy in 0.0.42.
+4. Later, lower value: Expo motion recipes. The mockup comparison step landed in 0.0.47. The figure audit script landed in 0.0.41 and the landing and settings page anatomy in 0.0.42.
 
 Each fix ships as its own release with tests, and this table is updated when it lands.

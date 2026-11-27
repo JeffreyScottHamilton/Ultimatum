@@ -95,7 +95,7 @@ Status: covered, expanded (ours adds local-business, app, WCAG 2.2 or reduced-mo
 | plan: pre-review audit, UI scope detection, retrospective check | plan-review-passes.md | covered |
 | plan: design philosophy and 9 principles, Krug behaviour | plan-review-passes.md | covered |
 | plan: Step 0 (rating, design file status, leverage, focus) | plan-review-passes.md | covered |
-| plan: Step 0.5 mockups, design binary, comparison board, "show me a 10" | later.md | later |
+| plan: Step 0.5 mockups, design binary, comparison board, "show me a 10" | mockup-step.md, mockup_board.py | covered (built HTML mockups, not generated images) |
 | plan: 0-10 rating method, one question per issue, carry decisions | plan-review-passes.md | covered |
 | plan: passes 1-7 | plan-review-passes.md | expanded |
 | plan: required outputs, completion summary, score rule, unresolved decisions | plan-review-outputs.md | covered |

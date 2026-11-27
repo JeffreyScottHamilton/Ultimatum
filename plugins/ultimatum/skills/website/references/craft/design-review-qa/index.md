@@ -24,6 +24,7 @@ Read when you need to audit a design, review a plan, or test a site, API or job.
 - `qa-reports.md`: what do the QA reports contain?
 - `qa-fix-and-tests.md`: how do I fix QA findings and add regression tests?
 - `plan-review-passes.md`: how do I review a plan's design before the build?
+- `mockup-step.md`: how do I show two or three built mockups side by side, get a pick, and show what a 10 looks like?
 - `plan-review-outputs.md`: what goes in the plan review's output and score?
 - `second-opinion.md`: how do I get an independent design review?
 - `later.md`: what from the source is parked, and why?

@@ -21,7 +21,7 @@ Read the plan, `CLAUDE.md`, any `DESIGN.md` (every design decision is calibrated
 - **Existing leverage:** components and decisions already in the codebase that the plan should reuse.
 - **Focus areas:** tell the user the rating and the biggest gaps, and ask whether to focus on some instead of all seven passes. Wait.
 
-Text mockups are enough here. A generated image is optional; where we have no image tool, describe the screen in words or an ASCII layout (`later.md` lists the mockup generator).
+When the plan has UI, build two or three HTML mockups and let the user pick on a local board before the passes (`mockup-step.md`); a dimension under 7 can get a built 10 next to the current state. Without a browser, describe the screen in words or an ASCII layout.
 
 ## The rating method
 

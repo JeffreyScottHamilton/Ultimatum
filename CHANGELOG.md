@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.47] - 2026-11-27
+
+Mockup board for design reviews
+
+- New `data/craft/design-review-qa/mockup_board.py`: `build` lays two or more HTML mockups side by side on a local board, live at 1280 and 390 px, with a pick, a 1-5 rating and a comment per mockup and an overall note; the board saves `feedback.json` or shows it for copying. It warns when two mockups are 90% alike, when one has no axis, and when two claim the same axis. `--baseline` adds the current state as `now` for "show me the 10"; `--shots` saves PNGs (exit 3 with no browser). `read` checks the feedback against its board and prints the pick (exit 4 with none, 2 for another board or a bad file).
+- New `design-review-qa/mockup-step.md`: when to build mockups before the plan review, the brief, two or three directions on named axes, linting them, the board, reading the pick, and the built 10 for any dimension under 7. `plan-review-passes.md` Step 0 points to it; the parked image-generator row in `later.md` now names the board instead.
+- New `tests/test_mockup_board.py` (8 tests, one drives the board in Chromium and reads the saved pick back).
+
 ## [0.0.46] - 2026-11-27
 
 Feedback moves and UX laws
