@@ -40,7 +40,7 @@ Rules of thumb; search engines change, so check before relying on any specific r
 
 ## Schema markup basics
 
-Add JSON-LD structured data, with true values only: `LocalBusiness` (or a subtype such as `Restaurant`, `HairSalon`, `Dentist`) with name, address, phone, hours, geo, url, image and `sameAs` social links; `Service` for key services; `FAQPage` only where the page shows those questions; `Review` markup only for reviews shown on the page and about the business itself (guidelines: check before relying). Test with Google's Rich Results Test and fix errors.
+Add JSON-LD structured data, with true values only: `LocalBusiness` (or a subtype such as `Restaurant`, `HairSalon`, `Dentist`) with name, address, phone, hours, geo, url, image and `sameAs` social links; `Service` for key services; `FAQPage` only where the page shows those questions (Google now shows FAQ rich results only for well-known government and health sites); no `Review` or `aggregateRating` stars on your own business, which Google doesn't show (guidelines: check before relying; details in `craft/marketing/search.md` §4). Test with Google's Rich Results Test and fix errors.
 
 ## Accessibility basics
 

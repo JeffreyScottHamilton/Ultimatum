@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.57] - 2026-11-27
+
+Marketing for the site, rebuilt from marketingskills
+
+- New guide set `skills/website/references/craft/marketing/` (index plus six files): copy and proof, turning visitors into enquiries, offers and pricing, search and AI answers, tracking and A/B tests, launch and email. Written in our own words from the topics in Corey Haines's marketingskills (MIT); `tools/copy_check.py` finds 0 shared runs of 8+ words. Ads, outreach, sales, PR and app-store work are left out on purpose. The website skill's build step links the index.
+- New `ult market`, stdlib only. `page` checks title, description, h1, viewport, canonical, social tags, alt text, field labels, form length and JSON-LD (parse errors, required properties, self-serving review stars, FAQ and HowTo rich results that no longer show), plus repeated titles and descriptions across a site. `abtest plan` gives the visitors each version needs and a run length in whole weeks; `abtest read` gives rates, lift, p-value, a 95% interval and a verdict, and exits 1 on a broken traffic split. `events` checks a tracking plan for name shape, past tense, duplicates and personal data.
+- Fixed `pages-and-seo.md`: it suggested `Review` markup on the business's own page, which Google doesn't show as stars, and didn't say FAQ rich results are now limited to government and health sites.
+- Credits, `data/upstreams.json` (pin 2bf95ed, module website), a coverage map (`docs/plans/coverage/marketingskills.md`: 22 done, 9 partial, 22 out of scope) and a comparison row.
+- New tests in `tests/test_market.py` (17).
+
 ## [0.0.56] - 2026-11-27
 
 Ship flow, our take on Claude Ship

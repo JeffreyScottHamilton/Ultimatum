@@ -314,12 +314,12 @@
       "id": "marketingskills",
       "kind": "skill-source",
       "repo": "https://github.com/coreyhaines31/marketingskills",
-      "pin": "8fd2fca",
+      "pin": "2bf95ed",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["business", "social-media"],
-      "reviewed": "2026-11-24",
-      "note": "Ideas for the Business and Social Media roles (research, positioning, offers, tracking, content); own wording"
+      "modules": ["website", "business", "social-media"],
+      "reviewed": "2026-11-27",
+      "note": "Topics rebuilt in own words in website/references/craft/marketing (copy, conversion, offers, search, measurement, launch, email); ult market adds the checks upstream lacks; ads, outreach, sales and PR left out"
     }
   ]
 }
