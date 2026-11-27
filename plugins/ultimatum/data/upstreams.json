@@ -17,12 +17,12 @@
       "id": "impeccable",
       "kind": "skill-source",
       "repo": "https://github.com/pbakaus/impeccable",
-      "pin": "b49177d",
-      "licence": "Apache-2.0 (NOTICE adds MIT, MPL-2.0 and OFL-1.1 parts)",
-      "decision": "adapter",
-      "modules": ["design"],
-      "reviewed": "2026-11-24",
-      "note": "Optional adapter only: its launcher downloads a native engine at run time and runs it from hooks. Not vendored"
+      "pin": "3c5e75f",
+      "licence": "Apache-2.0 (NOTICE.md: iOS and Android notes MIT; component-review fonts OFL-1.1; MPL-2.0 not found in text at this pin)",
+      "decision": "adapt",
+      "modules": ["design", "website"],
+      "reviewed": "2026-11-26",
+      "note": "Rebuilt in own words as skills/website/references/craft/impeccable; skip the native engine, launcher, hooks, live bridge, image generation and fonts (see later.md)"
     },
     {
       "id": "ui-ux-pro-max",

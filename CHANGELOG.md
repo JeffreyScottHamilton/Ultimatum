@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.26] - 2026-11-27
+
+Impeccable rebuilt in our own words: website audit, critique, hardening and copy.
+
+- Website craft: new `impeccable` folder with 12 topics: audit scorecard, critique, hardening, microcopy, refine moves, adapting to contexts, native iOS and Android, direction process, surface details, delight and onboarding, and heavy browser techniques.
+- Pointers from Taste, Hallmark, Emil motion and design review QA to the deeper Impeccable topics, instead of second copies.
+- An example page for hardening (long text, right-to-left, Intl formats, top-layer popover, interrupted drag) with a 15-check Playwright script.
+- Source: pbakaus/impeccable at 3c5e75f, Apache-2.0; all wording and code are our own.
+
 ## [0.0.25] - 2026-11-27
 
 Taste part 2: the kit, effects and two new `ult` tools.

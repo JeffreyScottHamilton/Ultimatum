@@ -33,7 +33,7 @@ Thank you to the authors and maintainers of these projects.
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | `2c606141936f` | MIT (stated in README) | Think before coding, simplicity, surgical changes, verifiable success criteria |
 | [obra/superpowers](https://github.com/obra/superpowers) | `22f0b463e7a5` | MIT | Brainstorm/plan/execute flow, subagent-driven development, worktrees, systematic debugging, verification before completion |
 | [oraios/serena](https://github.com/oraios/serena) | `6e5c3776d4e6` | MIT (SolidLSP) / GPL-3.0-or-later (app) | Symbol-aware search and editing (ideas and optional MCP; GPL application code not used) |
-| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `3c5e75fa07be` | Apache-2.0 | Design critique and audit vocabulary, craft floor, detector-style anti-patterns |
+| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `3c5e75fa07be` | Apache-2.0 | Design critique and audit vocabulary, craft floor, detector-style anti-patterns; website craft references (audit scorecard, critique, hardening, microcopy, refine moves, adapting, native platforms, direction process) |
 | [rtk-ai/rtk](https://github.com/rtk-ai/rtk) | `08a261a0d081` | Apache-2.0 | Command-specific output filtering with raw-output recovery and exit-code preservation |
 | [semgrep/semgrep](https://github.com/semgrep/semgrep) | `692bfae4ca1b` | LGPL-2.1 | Static analysis (optional integration) |
 | [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | `8ab27715521c` | MIT | Registry-aware component reuse before building new components |

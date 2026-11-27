@@ -40,3 +40,5 @@ Buttons, primary nav and CTAs stay on one line from 320–1920. Fix order: short
 - Languages: logical properties, space for text that grows by a third or more, and locale-aware date and number formatting.
 
 Never: device sniffing, hover-only features, `px` breakpoints.
+
+Deeper: `../impeccable/adapt-contexts.md` covers input detection, print, email and touch checks for custom controls.

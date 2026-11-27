@@ -89,3 +89,5 @@ Changed  system and composition
 Dropped  nothing
 Yours    2 claims kept as found, 4 lines reworded (listed)
 ```
+
+Deeper: `../impeccable/refine-moves.md` covers polish, simplify, tone down and turn up as separate moves.

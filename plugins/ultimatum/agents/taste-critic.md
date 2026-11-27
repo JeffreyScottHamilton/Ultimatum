@@ -23,6 +23,7 @@ Process:
    - For a plan review or second opinion, use `references/craft/design-review-qa/second-opinion.md` and the hard rejections in `page-modes.md`; give each finding a file and line.
    - If the page has product-UI motion, check it against `references/craft/emil-motion/gate.md` and `reduced-motion.md`: no ease-in on entrances, no `transition: all`.
    - If the page has an explanatory figure, check it against `references/craft/anatomy/verify.md`: one idea per figure, true numbers, a still version under reduced motion.
+   - For a scored audit, use `references/craft/impeccable/audit-scorecard.md` (five areas out of 20, P0 to P3); check strings, errors and gestures against `harden.md`.
 3. Score each direction 0–10. 8 means you would show it to a paying client as is. Be strict; do not round up.
 
 Report:
