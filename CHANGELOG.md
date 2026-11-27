@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.42] - 2026-11-27
+
+Landing and settings page anatomy
+
+- New `website/references/craft/pages/`: `landing.md` (the questions a marketing page answers and their order, navigation, action pairs, explaining devices, a five-question first-screen test), `devtool-landing.md` (real code, catalogue, billing unit, path to a first request, text for coding agents) and `settings.md` (scopes, structure, save model, the row, danger actions, desktop, CLI and terminal UI settings, build order).
+- `website/craft.md` points to the folder; frontend-budget `later.md` and its coverage map now point to it.
+- Closes the frontend-budget gap in `docs/plans/comparison.md`.
+- Tests: `test_craft_pages.py` (9).
+
 ## [0.0.41] - 2026-11-27
 
 Anatomy figure audit

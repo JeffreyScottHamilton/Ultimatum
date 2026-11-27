@@ -51,9 +51,9 @@ Source: JaimeJunr/claude-code-frontend-skills at commit 7177def. Root `LICENSE` 
 | references: identity flow | later | later.md |
 | references: base paths | later | later.md; general rule in phase-routing.md § 4 |
 | references: reference gallery | later | later.md |
-| references: settings pages, landing anatomy, devtool landing | later | later.md |
+| references: settings pages, landing anatomy, devtool landing | expanded | website `craft/pages/` (landing, devtool-landing, settings) |
 | agents: design director, UI reviewer | later | later.md |
 | sync script, lock file, workflow | later | later.md |
 | hook binary, image scraper | later | skipped by the brief, never run |
 
-Counts: covered 17 / expanded 4 / merged 4 / later 16 (41 rows).
+Counts: covered 17 / expanded 5 / merged 4 / later 15 (41 rows).

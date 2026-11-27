@@ -9,7 +9,7 @@ Read when you wonder whether something from the frontend-stack plugin was left o
 | Identity flow (naming, reference board, concepts, brand, landing) | out of the brief's scope (load budget and precedence); the website skill's directions and critic cover the route |
 | Base paths for each broad complaint | the general rule lives in (`phase-routing.md` § 4); the per-area question lists are out of scope |
 | Reference gallery of inspected sites | a dated list of other companies' sites; it ages fast and is out of scope |
-| Settings-page flow, landing anatomy, developer-tool landing | page-type guides, out of the brief's scope |
+| Settings-page flow, landing anatomy, developer-tool landing | now in the website skill: `website/references/craft/pages/` (0.0.42) |
 | Design director and UI reviewer agents | Ultimatum has its own agents; changing `agents/*.md` is a shared-file edit |
 | Upstream sync script, lock file and its workflow | it downloads from the network; the toolbelt has no network access |
 | Token counting with an external tokenizer | needs a third-party package; `load_budget.py` gives a stdlib estimate |

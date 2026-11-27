@@ -24,7 +24,7 @@ Five questions, each scored ours better / even / upstream better:
 | coding-discipline | 5 files, 1 script | not read (no licence) | n/a | ours on checkability (`diff_scope.py`) | Unknown; text not read |
 | design-review-qa | 24 files, 97 KB, 3 tables | 13 MB (whole gstack) | 7 | even | Mockup comparison step ("show me a 10") |
 | emil-motion | 18 files, 89 KB, 5 tables | 339 KB | 4 (Expo, Swift) | ours for web | Expo and React Native recipes |
-| frontend-budget | 6 files, 16 KB, 1 script | 3.4 MB | 16 (identity flow, pack rulings, landing anatomy) | ours on load cost | Landing and settings page anatomy |
+| frontend-budget | 6 files, 16 KB, 1 script, plus 4 page guides (14 KB) in the website skill | 3.4 MB | 15 (identity flow, pack rulings) | ours on load cost; even on page anatomy (was upstream) | Fixed in 0.0.42: `website/references/craft/pages/` covers landing order, developer-product landings and settings areas. Upstream's still has more worked examples |
 | gstack-eng | 11 files, 34 KB, 2 scripts | 13 MB | 11 (runtime, YC coaching) | ours | Nothing in scope |
 | hallmark | 31 files, 172 KB, 5 tables | 685 KB | 20 (all scripts) | even (was upstream) | Fixed in 0.0.38: `page_lint.py` runs 18 of the tells; upstream's linter still covers more gates |
 | impeccable | 13 files, 57 KB | 12 MB | 21 (command menu, visualize) | even (was upstream) | Fixed in 0.0.38: `page_lint.py` is our scanner; upstream's detector also renders pages in a browser |
@@ -40,6 +40,6 @@ Five questions, each scored ours better / even / upstream better:
 1. **A page linter** (hallmark and impeccable win). Done in 0.0.38. Stdlib script that reads HTML and CSS and flags the machine-checkable tells already written in `data/craft/hallmark/gates.csv` and `data/craft/design-review-qa/slop-tells.csv`. Turns two lists into a check.
 2. **Slides and decks** (ui-ux-pro-max wins). Done in 0.0.39. Nothing in the plugin covers building a deck; launch and business work needs one.
 3. **Icons and image sizes** (ui-ux-pro-max wins). Done in 0.0.40. Icon style rules and a size table for social cards, banners and favicons.
-4. Later, lower value: Expo motion recipes, a figure audit script, landing and settings page anatomy, a mockup comparison step.
+4. Later, lower value: Expo motion recipes, a mockup comparison step. The figure audit script landed in 0.0.41 and the landing and settings page anatomy in 0.0.42.
 
 Each fix ships as its own release with tests, and this table is updated when it lands.
