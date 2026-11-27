@@ -9,7 +9,9 @@
       "pin": "64eb3de",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["motion"],
+      "modules": [
+        "motion"
+      ],
       "reviewed": "2026-11-24",
       "note": "Adapt the animation checklist in own words; skip write-swift and the Sonner skill"
     },
@@ -20,7 +22,10 @@
       "pin": "3c5e75f",
       "licence": "Apache-2.0 (NOTICE.md: iOS and Android notes MIT; component-review fonts OFL-1.1; MPL-2.0 not found in text at this pin)",
       "decision": "adapt",
-      "modules": ["design", "website"],
+      "modules": [
+        "design",
+        "website"
+      ],
       "reviewed": "2026-11-26",
       "note": "Rebuilt in own words as skills/website/references/craft/impeccable; skip the native engine, launcher, hooks, live bridge, image generation and fonts (see later.md)"
     },
@@ -31,7 +36,9 @@
       "pin": "a4fc248",
       "licence": "MIT (ui-styling folder is Apache-2.0)",
       "decision": "adapter",
-      "modules": ["design"],
+      "modules": [
+        "design"
+      ],
       "reviewed": "2026-11-24",
       "note": "Optional adapter for search; otherwise a small own search over a short table. Skip the logo, icon and CIP generators"
     },
@@ -42,7 +49,13 @@
       "pin": "e4bb5d9",
       "licence": "Apache-2.0 per skill folder (no root LICENSE; doc-coauthoring has no licence)",
       "decision": "adapt",
-      "modules": ["design", "mcp-build", "skill-author", "testing-web", "work"],
+      "modules": [
+        "design",
+        "mcp-build",
+        "skill-author",
+        "testing-web",
+        "work"
+      ],
       "reviewed": "2026-11-26",
       "note": "Adapt the method in own words; skill-creator, mcp-builder, webapp-testing and frontend-design rebuilt as skills/work/references/craft/anthropic-method; document skills go to the official document-skills plugin as an adapter. Skip brand-guidelines and canvas fonts (see later.md)"
     },
@@ -53,7 +66,10 @@
       "pin": "22f0b46",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["engineering", "work"],
+      "modules": [
+        "engineering",
+        "work"
+      ],
       "reviewed": "2026-11-26",
       "note": "Adapt the verify and debugging discipline and plan-task-review cycle; skip the SessionStart injection and the brainstorm server"
     },
@@ -64,7 +80,9 @@
       "pin": "5a37a63",
       "licence": "MIT (README statement only; no LICENSE file)",
       "decision": "adapt",
-      "modules": ["frontend"],
+      "modules": [
+        "frontend"
+      ],
       "reviewed": "2026-11-27",
       "note": "No LICENSE file, so no text is used: react.md is a short checklist in own words, and work/references/craft/react-performance adds our own worked fixes, measuring guide and react_scan.py; skip the token deploy skill and the 198 KB reference set"
     },
@@ -75,7 +93,10 @@
       "pin": "f6b7657",
       "licence": "MIT (photo and icon assets have mixed licences)",
       "decision": "adapt",
-      "modules": ["design", "website"],
+      "modules": [
+        "design",
+        "website"
+      ],
       "reviewed": "2026-11-26",
       "note": "Rebuilt in own words as skills/website/references/craft/taste; skip the kit code, Node scripts, Stop hook and photo and icon assets (see later.md)"
     },
@@ -86,7 +107,10 @@
       "pin": "1482e84",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["design", "website"],
+      "modules": [
+        "design",
+        "website"
+      ],
       "reviewed": "2026-11-26",
       "note": "Rebuilt in own words as skills/website/references/craft/anatomy; skip the kit code and scripts (see later.md)"
     },
@@ -97,7 +121,10 @@
       "pin": "715c180",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["design", "website"],
+      "modules": [
+        "design",
+        "website"
+      ],
       "reviewed": "2026-11-26",
       "note": "Rebuilt in own words as skills/website/references/craft/emil-motion; native, Expo and Swift material is in later.md"
     },
@@ -108,7 +135,12 @@
       "pin": "7dace1f",
       "licence": "MIT (some design text derives from Impeccable, Apache-2.0; see its NOTICE.md)",
       "decision": "adapt",
-      "modules": ["design", "website", "review", "work"],
+      "modules": [
+        "design",
+        "website",
+        "review",
+        "work"
+      ],
       "reviewed": "2026-11-26",
       "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; office-hours, plan reviews, review, ship, document-release, retro and careful/freeze rebuilt as skills/work/references/craft/gstack-eng; skip the browser daemon, mockup generator, binaries and outside-model review (see later.md)"
     },
@@ -119,7 +151,10 @@
       "pin": "04977e1",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["design", "website"],
+      "modules": [
+        "design",
+        "website"
+      ],
       "reviewed": "2026-11-26",
       "note": "Rebuilt in own words as skills/website/references/craft/hallmark and data/craft/hallmark; skip the Node linters, theme tool, photo library and theme pictures (see later.md)"
     },
@@ -141,7 +176,11 @@
       "pin": "7177def",
       "licence": "MIT (root LICENSE; bundled plugins carry their own and were not used)",
       "decision": "adapt",
-      "modules": ["components", "design", "work"],
+      "modules": [
+        "components",
+        "design",
+        "work"
+      ],
       "reviewed": "2026-11-26",
       "note": "Load budget, precedence and phase routing rebuilt in craft/frontend-budget with a stdlib load_budget.py; nothing vendored, hook binary and image scraper skipped"
     },
@@ -152,7 +191,9 @@
       "pin": "d13c610",
       "licence": "MIT",
       "decision": "adapter",
-      "modules": ["components"],
+      "modules": [
+        "components"
+      ],
       "reviewed": "2026-11-24",
       "note": "Verified alternative to React Bits and RareUI (permissive)"
     },
@@ -163,7 +204,9 @@
       "pin": "120f64f",
       "licence": "MIT",
       "decision": "adapter",
-      "modules": ["components"],
+      "modules": [
+        "components"
+      ],
       "reviewed": "2026-11-24",
       "note": "Verified alternative to React Bits and RareUI (permissive); npm latest 0.1.0 (2025-03-04)"
     },
@@ -174,7 +217,9 @@
       "pin": "1fa0e14",
       "licence": "MIT",
       "decision": "adapter",
-      "modules": ["motion"],
+      "modules": [
+        "motion"
+      ],
       "reviewed": "2026-11-24",
       "note": "Verified alternative to GSAP (React only)"
     },
@@ -185,7 +230,9 @@
       "pin": "01b81be",
       "licence": "MIT",
       "decision": "adapter",
-      "modules": ["motion"],
+      "modules": [
+        "motion"
+      ],
       "reviewed": "2026-11-24",
       "note": "Verified alternative to GSAP (framework-agnostic)"
     },
@@ -218,7 +265,9 @@
       "pin": "8cee295",
       "licence": "MIT",
       "decision": "adapter",
-      "modules": ["components"],
+      "modules": [
+        "components"
+      ],
       "reviewed": "2026-11-24",
       "note": "Verified alternative to Vaul (bottom sheets)"
     },
@@ -229,7 +278,9 @@
       "pin": "eb3a2b7",
       "licence": "MIT",
       "decision": "adapter",
-      "modules": ["components"],
+      "modules": [
+        "components"
+      ],
       "reviewed": "2026-11-24",
       "note": "Verified alternative to Vaul (dialog primitive to build a sheet on)"
     },
@@ -240,7 +291,9 @@
       "pin": "ca64f8b",
       "licence": "Apache-2.0",
       "decision": "adapter",
-      "modules": ["motion-graphics"],
+      "modules": [
+        "motion-graphics"
+      ],
       "reviewed": "2026-11-24",
       "note": "Preferred renderer when the user has it installed; story, sound and visual ideas adapted in own words; not bundled"
     },
@@ -251,7 +304,10 @@
       "pin": "afb68ac",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["website", "review"],
+      "modules": [
+        "website",
+        "review"
+      ],
       "reviewed": "2026-11-24",
       "note": "Planning, design-review and QA role ideas in own words"
     },
@@ -262,7 +318,11 @@
       "pin": "d653911",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["deep", "website", "work"],
+      "modules": [
+        "deep",
+        "website",
+        "work"
+      ],
       "reviewed": "2026-11-26",
       "note": "Requirements questions, small steps and TDD ideas in own words"
     },
@@ -273,7 +333,9 @@
       "pin": "055aa6b",
       "licence": "MIT",
       "decision": "adapter",
-      "modules": ["coding"],
+      "modules": [
+        "coding"
+      ],
       "reviewed": "2026-11-24",
       "note": "Reuse the project's installed components before building new ones; not bundled"
     },
@@ -284,7 +346,9 @@
       "pin": "14f35e3",
       "licence": "Apache-2.0 / MIT",
       "decision": "adapter",
-      "modules": ["search"],
+      "modules": [
+        "search"
+      ],
       "reviewed": "2026-11-24",
       "note": "Optional repo graph for one specific question after `ult map`; not bundled"
     },
@@ -295,7 +359,10 @@
       "pin": "47c61be",
       "licence": "Apache-2.0",
       "decision": "adapt",
-      "modules": ["shared", "work"],
+      "modules": [
+        "shared",
+        "work"
+      ],
       "reviewed": "2026-11-26",
       "note": "Terse voice levels, short commit/review forms, memory-file compression check, task stances; own wording (work/references/craft/caveman)"
     },
@@ -306,7 +373,9 @@
       "pin": "2c60614",
       "licence": "MIT stated in README; no LICENSE file at the pin",
       "decision": "skip",
-      "modules": ["work"],
+      "modules": [
+        "work"
+      ],
       "reviewed": "2026-11-27",
       "note": "No LICENSE file, so its text was not used; own guides on the same topics in work/references/craft/coding-discipline"
     },
@@ -317,9 +386,52 @@
       "pin": "2bf95ed",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["website", "business", "social-media"],
+      "modules": [
+        "website",
+        "business",
+        "social-media"
+      ],
       "reviewed": "2026-11-27",
       "note": "Topics rebuilt in own words in website/references/craft/marketing (copy, conversion, offers, search, measurement, launch, email); ult market adds the checks upstream lacks; ads, outreach, sales and PR left out"
+    },
+    {
+      "id": "expo-skills",
+      "kind": "skill-source",
+      "repo": "https://github.com/expo/skills",
+      "pin": "8f2b6c0",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": [
+        "app-store"
+      ],
+      "reviewed": "2026-11-27",
+      "note": "Topics only for the app-store skill (EAS Build profiles, app versions, EAS Submit, EAS Update, metadata); written in own words; ult appstore check is new code"
+    },
+    {
+      "id": "axiom",
+      "kind": "skill-source",
+      "repo": "https://github.com/CharlesWiltgen/Axiom",
+      "pin": "ffafd3b",
+      "licence": "MIT",
+      "decision": "adapt",
+      "modules": [
+        "app-store"
+      ],
+      "reviewed": "2026-11-27",
+      "note": "Topics only from its shipping skills (privacy manifest, review prep, rejections, TestFlight); written in own words"
+    },
+    {
+      "id": "swift-ios-skills",
+      "kind": "skill-source",
+      "repo": "https://github.com/dpearson2699/swift-ios-skills",
+      "pin": "8d90fd1",
+      "licence": "PolyForm Perimeter 1.0.0",
+      "decision": "adapt",
+      "modules": [
+        "app-store"
+      ],
+      "reviewed": "2026-11-27",
+      "note": "Topic list of the app-store-review skill compared against ours; no code or prose used (non-open licence)"
     }
   ]
 }

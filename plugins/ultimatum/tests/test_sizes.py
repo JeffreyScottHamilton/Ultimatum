@@ -8,7 +8,7 @@ from pathlib import Path
 P = Path(__file__).resolve().parents[1]
 SKILLS = P / "skills"
 REFS = SKILLS / "website" / "references"  # the website guides and shared notes
-WORKFLOWS = {"work", "website"}  # model-invocable workflows
+WORKFLOWS = {"work", "website", "app-store"}  # model-invocable workflows
 LOOKUPS = {"status", "doctor"}  # small read-only checks Claude may run when asked about the install
 
 
@@ -26,6 +26,10 @@ class SizeBudgets(unittest.TestCase):
 
     def test_website_skill_body_is_small(self):
         text = (SKILLS / "website" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertLessEqual(len(text.split("\n---\n", 1)[1].encode()), 4096)
+
+    def test_app_store_skill_body_is_small(self):
+        text = (SKILLS / "app-store" / "SKILL.md").read_text(encoding="utf-8")
         self.assertLessEqual(len(text.split("\n---\n", 1)[1].encode()), 4096)
 
     def test_team_guides_are_small(self):

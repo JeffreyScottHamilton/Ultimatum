@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.61] - 2026-11-27
+
+App Store workflow for Expo apps
+
+- New skill `skills/app-store/` takes an Expo (React Native) app from working code to an App Store submission: project setup (bundle ID, version and build number, icon, splash, permission text), EAS Build profiles with credentials kept by EAS, TestFlight and a two-size device checklist, a pre-submission review check that tells the reader to fetch the current App Review Guidelines (privacy manifest and required-reason APIs, nutrition labels, account deletion, sign-in, in-app purchase, demo account), the store listing with screenshot and App Preview specs, EAS Submit, rejections and Resolution Center replies, and EAS Update versus a new build. Third-party App Store Connect MCP servers are documented as an option only.
+- New `ult appstore check [--root .] [--config FILE] [--since REF] [--json]`: reads app.json or app.config.json, eas.json, package.json and the store config, and reports 52 kinds of finding (AS002 to AS093) such as a missing or placeholder bundle ID, a build number not raised since a git ref, missing or vague usage strings for installed permission packages, privacy manifest mistakes, icon size and alpha, production profiles that cannot be uploaded, missing privacy policy URL, listing limits, and signing files or secrets in the project. Standard library only, no network. Exit 0 clean, 1 findings, 2 bad input.
+- `ult route` adds `workflow: app-store` for App Store, TestFlight, App Review, EAS build, submit and update tasks (not on security routes); `work/SKILL.md` sends that line to the new skill.
+- Tests: `tests/test_appstore.py` with four small fixture projects (clean, risky, dynamic-only, bad JSON); signing-file cases are built in temp folders so no key-shaped file is in the repo.
+- Credits: expo/skills (MIT), CharlesWiltgen/Axiom (MIT) and dpearson2699/swift-ios-skills (PolyForm Perimeter, topics only) in `CREDITS.md`, `research/REVISIONS.md` and `data/upstreams.json`.
+
 ## [0.0.60] - 2026-11-27
 
 Anatomy: turned parts, coils, knurl and ticks

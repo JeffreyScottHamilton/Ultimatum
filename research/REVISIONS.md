@@ -10,7 +10,8 @@ Clones: `scratchpad/upstreams/<owner>__<repo>` (shallow, depth 1). License = fir
 | JuliusBrussee/caveman | `3dc497a7f858` | LICENSE |                                  Apache License |
 | Leonxlnx/taste-skill | `f6b76575f949` | LICENSE | MIT License |
 | OWASP/ASVS | `62981c68fd06` | LICENSE.md | Attribution-ShareAlike 4.0 International |
-| OWASP/wstg | `e493506b9cde` | LICENSE | Attribution-ShareAlike 4.0 International |
+| OWASP/wstg | `e493506b9cde` | LICENSE | Attribution-ShareAlike 4.0 International
+ |
 | anthropics/skills | `2c5958ecac7c` | NONE | — |
 | cloudflare/security-audit-skill | `c1c8a8c14710` | LICENSE | MIT License |
 | dequelabs/axe-core | `c50bf8e8933e` | LICENSE | Mozilla Public License, version 2.0 |
@@ -22,7 +23,8 @@ Clones: `scratchpad/upstreams/<owner>__<repo>` (shallow, depth 1). License = fir
 | google/osv-scanner | `02f96a40691c` | LICENSE |                                  Apache License |
 | hashicorp/agent-skills | `5e30fa5c867b` | LICENSE | Mozilla Public License Version 2.0 |
 | mattpocock/skills | `4ae2317ddb22` | LICENSE | MIT License |
-| microsoft/playwright-cli | `9166133dd68a` | LICENSE |                                  Apache License |
+| microsoft/playwright-cli | `9166133dd68a` | LICENSE |                                  Apache License
+ |
 | mksglu/context-mode | `3a3ef7d53c9a` | LICENSE | Elastic License 2.0 (ELv2) |
 | multica-ai/andrej-karpathy-skills | `2c606141936f` | NONE | — |
 | obra/superpowers | `22f0b463e7a5` | LICENSE | MIT License |
@@ -47,3 +49,16 @@ Clones: `scratchpad/upstreams/<owner>__<repo>` (shallow, depth 1). License = fir
 - semgrep: LGPL-2.1 engine; axe-core MPL-2.0; hashicorp/agent-skills MPL-2.0 — used only as optional external tools / ideas.
 
 Policy: Ultimatum ships original text and code only. No upstream file is copied. IDs (ASVS V-numbers, WSTG test IDs, CWE) are cited as references.
+
+## App Store workflow sources (inspected 2026-11-27)
+
+Clones: session scratchpad, shallow. Topics only; nothing copied into the plugin.
+
+| Repo | Revision | License file | First line |
+|---|---|---|---|
+| expo/skills | `8f2b6c0c6553` | LICENSE | The MIT License (MIT) |
+| CharlesWiltgen/Axiom | `ffafd3b3e0db` | LICENSE | MIT License |
+| dpearson2699/swift-ios-skills | `8d90fd121a26` | LICENSE | Required Notice: Copyright (c) 2025 dpearson2699 |
+
+- dpearson2699/swift-ios-skills: PolyForm Perimeter 1.0.0, not an open-source licence; used to compare topic coverage only, no code or prose.
+- Apple App Review Guidelines, App Store Connect Help and Expo docs: read as facts and linked by URL; section numbers cited, no text quoted. The skill tells readers to fetch the current guidelines.

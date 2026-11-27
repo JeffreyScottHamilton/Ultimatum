@@ -64,3 +64,16 @@ The full revision table and the license decisions are in `research/REVISIONS.md`
 | [Temzasse/react-modal-sheet](https://github.com/Temzasse/react-modal-sheet) | `8cee295` | MIT | Recommended as an optional install by `ult components`; not bundled |
 | [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | `ca64f8b` | Apache-2.0 | Preferred Motion Graphics renderer when installed (not bundled); story, sound and visual ideas in Ultimatum's own words |
 | [radix-ui/primitives](https://github.com/radix-ui/primitives) | `eb3a2b7` | MIT | Recommended as an optional install by `ult components`; not bundled |
+
+## Added for the App Store workflow (reviewed 2026-11-27)
+
+The `app-store` skill and `ult appstore check` are new text and code. These sources were read for topics only.
+
+| Project | Revision inspected | License | Use |
+|---|---|---|---|
+| [expo/skills](https://github.com/expo/skills) | `8f2b6c0c6553` | MIT | Topics: EAS Build profiles, app versions, EAS Submit, EAS Update and store metadata (official Expo skills) |
+| [CharlesWiltgen/Axiom](https://github.com/CharlesWiltgen/Axiom) | `ffafd3b3e0db` | MIT | Topics from its shipping skills: privacy manifest, review preparation, rejections, TestFlight |
+| [dpearson2699/swift-ios-skills](https://github.com/dpearson2699/swift-ios-skills) | `8d90fd121a26` | PolyForm Perimeter 1.0.0 | Topic list of its app-store-review skill compared with ours; no code or prose used |
+| [Apple App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) | page read 2026-11-27 | Apple terms | Section numbers cited as pointers; the skill tells readers to fetch the live text, nothing quoted |
+| [App Store Connect Help](https://developer.apple.com/help/app-store-connect/) | pages read 2026-11-27 | Apple terms | Screenshot and App Preview specifications, field limits, TestFlight; facts restated and linked |
+| [Expo documentation](https://docs.expo.dev/) | pages read 2026-11-27 | Expo terms | App config, eas.json, app versions, privacy manifests, EAS Submit and EAS Update; facts restated and linked |

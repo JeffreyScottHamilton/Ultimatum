@@ -28,6 +28,7 @@ UPSTREAM_PINS = {
     "mattpocock-skills": "d653911", "shadcn-ui": "055aa6b", "graphify": "14f35e3", "caveman": "47c61be",
     "anatomy": "1482e84", "emil-motion": "715c180", "design-review-qa": "7dace1f",
     "hallmark": "04977e1", "karpathy-guidelines": "2c60614", "marketingskills": "2bf95ed",
+    "expo-skills": "8f2b6c0", "axiom": "ffafd3b", "swift-ios-skills": "8d90fd1",
 }
 SPDX_PERMISSIVE = {"MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC"}
 COMPONENT_KEYS = {"id", "name", "package", "stacks", "categories", "keywords", "licence", "restricted",

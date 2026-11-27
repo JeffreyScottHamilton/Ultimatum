@@ -1,0 +1,12 @@
+{
+  "name": "demo",
+  "dependencies": {
+    "expo": "~55.0.0",
+    "react-native": "0.83.0",
+    "expo-image-picker": "~17.0.0",
+    "expo-location": "~19.0.0",
+    "expo-updates": "~29.0.0",
+    "@react-native-google-signin/google-signin": "^16.0.0",
+    "@stripe/stripe-react-native": "0.50.0"
+  }
+}

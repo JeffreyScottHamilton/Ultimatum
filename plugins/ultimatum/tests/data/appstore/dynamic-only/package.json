@@ -1,0 +1,6 @@
+{
+  "name": "dyn",
+  "dependencies": {
+    "expo": "~55.0.0"
+  }
+}

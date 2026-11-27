@@ -49,6 +49,12 @@ _SITE_UI_RE = re.compile(r"\b(menu|nav(?:bar|igation)?|header|footer|hero|navbar
 _SITE_DEPS = {"next", "react", "react-dom", "vue", "nuxt", "svelte", "@sveltejs/kit", "astro", "vite", "gatsby",
               "@remix-run/react", "solid-js", "@11ty/eleventy", "preact", "angular", "@angular/core"}
 _SITE_HTML = ("index.html", "public/index.html", "src/index.html", "site/index.html", "docs/index.html")
+# Shipping an iOS app through Apple's store; checked before website words.
+_APP_STORE_RE = re.compile(r"\b(app ?store(?! optimi[sz]ation)|testflight|app review|resolution center|privacy manifest|"
+                           r"(?:privacy )?nutrition labels?|eas (?:build|submit|update)|expo (?:build|submit)|"
+                           r"(?:submit|ship|publish|release)\w* (?:\w+ ){0,3}(?:to|on) (?:the )?(?:apple|ios)|"
+                           r"(?:ios|iphone) (?:release|submission|launch)|bundle (?:id|identifier)|"
+                           r"usage descriptions?|build number)\b", re.I)
 _PREFIX_RE = re.compile(r"^\s*(fast|deep)\s*:\s*", re.I)
 _EDIT_RE = re.compile(r"\b(add|change|rename|remove|fix|update|set|replace|move|delete|bump|make|drop|correct|edit)\b", re.I)
 _FILE_RE = re.compile(r"\b[\w./-]+\.(?:py|ts|tsx|js|jsx|mjs|md|json|css|scss|html|sql|go|rs|java|rb|ya?ml|toml|sh|txt)\b", re.I)
@@ -200,6 +206,8 @@ def website_flag(text: str, route: str, root: Path | None) -> bool:
 
 
 def workflow_for(text: str, route: str, root: Path | None) -> str:
+    if route not in SECURITY_ROUTES and _APP_STORE_RE.search(text):
+        return "app-store"
     return "website" if website_flag(text, route, root) else "default"
 
 
