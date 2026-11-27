@@ -65,8 +65,8 @@
       "licence": "MIT (README statement only; no LICENSE file)",
       "decision": "adapt",
       "modules": ["frontend"],
-      "reviewed": "2026-11-24",
-      "note": "Adapt a short React checklist in own words; skip the token deploy skill and the 198 KB reference set"
+      "reviewed": "2026-11-27",
+      "note": "No LICENSE file, so no text is used: react.md is a short checklist in own words, and work/references/craft/react-performance adds our own worked fixes, measuring guide and react_scan.py; skip the token deploy skill and the 198 KB reference set"
     },
     {
       "id": "taste",

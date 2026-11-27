@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.37] - 2026-11-27
+
+React performance pack, in our own words.
+
+- New `skills/work/references/craft/react-performance/`: ten worked before-and-after fixes (serial awaits, await in loops, streaming, client boundaries, dynamic imports, derived state, context values, deferred filtering, keys, pointer state), a measuring guide (build output, bundle analyzer, request timing, Profiler, Performance panel, Web Vitals, Lighthouse) and a guide to the scanner.
+- New `data/craft/react-performance/react_scan.py` (standard library): a line-pattern scan for eleven rules, each tied to a rule in `react.md`, with `--only`, `--json` and `--rules`. Example files in `examples/`.
+- These cover the topics of vercel-labs/agent-skills, which has no LICENSE file, so none of its text was used. `upstreams.json` and both CREDITS files say so.
+- `react.md` points to the new folder. Tests: `test_craft_react_performance.py`.
+
 ## [0.0.36] - 2026-11-27
 
 Coding discipline, in our own words.

@@ -42,7 +42,7 @@ Thank you to the authors and maintainers of these projects.
 | [trailofbits/skills](https://github.com/trailofbits/skills) | `e4dd0bb5b155` | CC BY-SA 4.0 | False-positive checks, differential review, variant analysis, patch validation, property-based testing (ideas only; CC BY-SA text not copied) |
 | [uditgoenka/autoresearch](https://github.com/uditgoenka/autoresearch) | `7bddd056dfd0` | MIT | Bounded optimization loops with a correctness guard |
 | [upstash/context7](https://github.com/upstash/context7) | `6e68ffcbad0e` | MIT | Version-targeted library documentation lookup (optional integration) |
-| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | `1a2c79d4e6c4` | MIT (stated in README) | React composition and performance priorities, web interface guidelines |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | `1a2c79d4e6c4` | MIT stated in README; no LICENSE file, so none of its text is used | Topics only: React composition and performance priorities in `work/references/react.md`, plus our own worked fixes, measuring guide and scanner in `work/references/craft/react-performance` |
 | [shadcn/ui skills docs](https://ui.shadcn.com/docs/skills) | docs page | MIT | See shadcn-ui/ui |
 
 The full revision table and the license decisions are in `research/REVISIONS.md`. Capability-by-capability coverage is in `docs/COVERAGE-MAP.md`.
