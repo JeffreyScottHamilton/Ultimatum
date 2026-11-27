@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.52] - 2026-11-27
+
+Choice boards for questions better seen than read
+
+- New `data/craft/superpowers/choice_board.py` (standard library): turns a JSON spec of visual questions into one offline HTML page. The user clicks cards and pastes back one answer line, and `read` checks that line against the spec. No server, no open port, and it works in cloud sessions.
+- `check` and `build` enforce ids, labels, inert local fragments (no scripts, handlers, frames or remote URLs), and local images up to 2 MB, and warn on more than four pick-one options or a question that shows nothing. The page allows only its own hashed script.
+- New guide `craft/superpowers/choice-board.md`: the seen-or-read test, the spec, the rules and the loop. The index, `shaping-conversation.md` and `later.md` point to it.
+- New tests in `test_craft_superpowers.py`: self-check, build with an embedded image, answer round trip and refusals, and the guide's rule table matched against the script.
+
 ## [0.0.51] - 2026-11-27
 
 Draw isometric figures and audit turning groups

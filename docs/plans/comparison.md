@@ -31,7 +31,7 @@ Five questions, each scored ours better / even / upstream better:
 | mattpocock | 9 files, 31 KB, 1 script | 697 KB | 3 | ours | Nothing in scope |
 | react-performance | 4 files, 1 script | not read (no licence) | n/a | ours on checkability (`react_scan.py`, measuring guide) | Unknown; text not read |
 | decks | 7 files, 2 scripts, 2 tables, 1 template, 2 examples | ui-ux-pro-max slides (MIT) | 4 (generator, background keywords) | ours (0.0.50: deck-type and layout tables the built deck is checked against, `deck_plan.py`) | A slide generator; ours prints marked skeletons instead |
-| superpowers | 10 files, 42 KB, 2 scripts | 925 KB | 9 (visual companion) | ours | Visual brainstorming companion |
+| superpowers | 11 files, 49 KB, 3 scripts | 925 KB | 7 (per-harness launch notes) | ours (0.0.52: `choice_board.py`, a serverless visual companion that also works in cloud sessions) | A live page that updates while the chat runs; ours is rebuilt per question |
 | taste | 21 files, 198 KB, 29 data, 2 preset tables | 557 KB | 159 | ours on checks, judged (was even) | 0.0.45: `ult design deal` deals palette, type, hero, parts and grounds by kind and trade with history. Upstream has more presets (64 palettes, 39 type sets against our 40 and 43) but does not test their contrast; every one of ours passes 7:1 ink and 4.5:1 muted and button text in `test_taste_deal.py` |
 | ui-ux-pro-max | 18 files, 107 KB | 1.2 MB | 43 (mostly generators, search tables, bundled fonts) | even (was upstream) | Searchable style tables and the long tail of presets. Decks fixed in 0.0.39 (`craft/decks/`, `deck_check.py`); icons and banners in 0.0.40 (`identity/icons.md`, `identity/banners.md`, `icon_check.py`); logo and identity in `craft/identity/` |
 

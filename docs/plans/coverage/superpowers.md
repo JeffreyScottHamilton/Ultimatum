@@ -30,8 +30,8 @@ Source: obra/superpowers at commit 22f0b46 (MIT, LICENSE read at that commit). O
 | brainstorming: builder check and three piles | covered | shaping-conversation.md § Write the design |
 | brainstorming: hard gate before building | covered | shaping-conversation.md § The build gate |
 | brainstorming: red flags | covered | shaping-conversation.md § Traps |
-| brainstorming: visual companion | later | later.md |
-| brainstorming: companion server, events, CSS classes, file naming, cleanup | later | later.md |
+| brainstorming: visual companion | expanded | choice-board.md (0.0.52: offline board, no server) |
+| brainstorming: companion server, events, CSS classes, file naming, cleanup | expanded | choice-board.md § The loop; `choice_board.py` (answer line instead of an event file) |
 | writing-plans: reader with no context | covered | plan-writing.md § Who reads it |
 | writing-plans: scope check | covered | plan-writing.md § Before the first task |
 | writing-plans: file structure | covered | plan-writing.md § Before the first task |
@@ -122,4 +122,4 @@ Source: obra/superpowers at commit 22f0b46 (MIT, LICENSE read at that commit). O
 | writing-skills | merged | skill-author.md; skill-evaluation.md |
 | diagnosing-superpowers | merged | skill-evaluation.md |
 
-Totals: covered 67, expanded 9, merged 23, later 9 (108 items)
+Totals: covered 67, expanded 11, merged 23, later 7 (108 items)

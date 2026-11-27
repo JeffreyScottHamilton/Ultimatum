@@ -10,9 +10,10 @@ Rebuilt from the ideas in obra/superpowers at commit 22f0b46 (MIT). All wording 
 - `debugging-moves.md`: tracing a bad value back to where it was made, guards at several layers, waiting on a condition instead of a sleep, and finding the test that leaves junk behind.
 - `test-judgement.md`: whether a test earns its place: name the break, derive the expected value by hand, mock rules and the mutation pass.
 - `review-rounds.md`: asking for a review with a clean brief, and taking review feedback without agreeing on reflex.
+- `choice-board.md`: when a question is better seen than read, and the offline board that shows the options and reads back the user's picks.
 - `done-claims.md`: which evidence each kind of "done" needs, and the wording that gives away a claim nobody checked.
 - `branch-close.md`: checking for an existing worktree, setting one up safely, and the end-of-branch choices with their cleanup rules.
 
-Scripts: `../../../../../data/craft/superpowers/` (`wait_until.py`, `find_polluter.py`).
+Scripts: `../../../../../data/craft/superpowers/` (`wait_until.py`, `find_polluter.py`, `choice_board.py`).
 
 Not rebuilt, with reasons: `later.md`.

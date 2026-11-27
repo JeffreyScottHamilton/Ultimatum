@@ -54,7 +54,7 @@ As soon as one part is clear (who it serves, how one piece behaves), describe it
 
 ## Show it
 
-When seeing beats reading, sketch in plain text: a few lines of what the screen or schedule would show. Keep sketches throwaway.
+When seeing beats reading, sketch in plain text: a few lines of what the screen or schedule would show. Keep sketches throwaway. When the choice is about look (layouts, colours, diagrams), build a choice board instead (`choice-board.md`).
 
 ## Lay out the approaches
 

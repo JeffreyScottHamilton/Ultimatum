@@ -121,6 +121,59 @@ class SuperpowersScripts(unittest.TestCase):
             none = self.run_py(tool, "--artifact", "absent", "--glob", "tests/test_*.py", "--", sys.executable, "runner.py", cwd=base)
             self.assertEqual(none.returncode, 1)
 
+    def test_choice_board_self_check(self):
+        done = self.run_py("-I", "-B", str(DATA / "choice_board.py"), "--self-check")
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        self.assertIn("0 problem(s)", done.stdout)
+
+    def test_choice_board_builds_reads_and_refuses(self):
+        import json
+        import tempfile
+        tool = str(DATA / "choice_board.py")
+        spec = {"title": "Pick a header", "questions": [
+            {"id": "header", "prompt": "Which header?", "options": [
+                {"id": "a", "label": "Tall", "show": "<svg viewBox='0 0 10 10'><rect width='10' height='6'/></svg>"},
+                {"id": "b", "label": "Short", "image": "b.png"}]},
+            {"id": "tone", "prompt": "Which tones?", "pick": "many", "options": [
+                {"id": "x", "label": "Warm", "show": "<b>warm</b>"}, {"id": "y", "label": "Cool", "show": "<b>cool</b>"}]}]}
+        png = bytes.fromhex("89504e470d0a1a0a0000000d4948445200000001000000010806000000"
+                            "1f15c4890000000d4944415478da63f8ffff3f0005fe02fea7d6a5c00000000049454e44ae426082")
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            (base / "b.png").write_bytes(png)
+            (base / "s.json").write_text(json.dumps(spec))
+            built = self.run_py("-I", "-B", tool, "build", str(base / "s.json"), "--out", str(base / "b.html"))
+            self.assertEqual(built.returncode, 0, built.stdout + built.stderr)
+            page = (base / "b.html").read_text()
+            self.assertIn("data:image/png;base64,", page)
+            self.assertIn('alt="Short"', page)
+            self.assertIn("script-src 'sha256-", page)
+            self.assertEqual(page.count('type="radio"'), 2)
+            self.assertEqual(page.count('type="checkbox"'), 2)
+            good = self.run_py("-I", "-B", tool, "read", str(base / "s.json"), "pick pick-a-header: header=b; tone=x,y")
+            self.assertEqual(good.returncode, 0, good.stdout)
+            self.assertEqual(json.loads(good.stdout)["labels"], {"header": ["Short"], "tone": ["Warm", "Cool"]})
+            for line in ("pick other-board: header=a", "header=a,b", "header=c", "colour=a"):
+                with self.subTest(line=line):
+                    self.assertEqual(self.run_py("-I", "-B", tool, "read", str(base / "s.json"), line).returncode, 1)
+            partial = json.loads(self.run_py("-I", "-B", tool, "read", str(base / "s.json"), "header=a").stdout)
+            self.assertEqual(partial["missing"], ["tone"])
+            spec["questions"][0]["options"][0]["show"] = "<img src='https://example.com/t.png'>"
+            spec["questions"][0]["options"][1]["image"] = "missing.png"
+            (base / "s.json").write_text(json.dumps(spec))
+            refused = self.run_py("-I", "-B", tool, "build", str(base / "s.json"), "--out", str(base / "c.html"))
+            self.assertEqual(refused.returncode, 1)
+            self.assertFalse((base / "c.html").exists())
+            self.assertIn("offline", refused.stdout)
+            self.assertIn("image", refused.stdout)
+            self.assertEqual(self.run_py("-I", "-B", tool, "build", str(base / "nope.json"), "--out", "x").returncode, 2)
+
+    def test_choice_board_guide_matches_rules(self):
+        guide = (CRAFT / "choice-board.md").read_text(encoding="utf-8")
+        in_guide = set(re.findall(r"^\| `([a-z-]+)` \|", guide, re.M))
+        listed = {line.split(":")[0] for line in self.run_py("-I", "-B", str(DATA / "choice_board.py"), "rules").stdout.splitlines()}
+        self.assertEqual(in_guide, listed)
+
 
 if __name__ == "__main__":
     unittest.main()
