@@ -66,6 +66,16 @@ export default async function AccountPage() {
 }
 ```
 
+## Five checks before an AI-written login ships
+
+Generated sign-in code usually works on the happy path and fails these. Run each one, against the preview URL, before the flows table counts as done.
+
+1. **No secret key in the code.** Only the publishable key belongs in the browser. The secret key (`sb_secret_...`, the old `service_role`), Stripe's `sk_` keys and AI provider keys live in server environment variables, never behind a `NEXT_PUBLIC_` or `VITE_` prefix, never in a commit. Test: run the two secret searches in `checklist.md` on the history and the built JS. A hit means the owner rotates the key now; deleting the line is not enough.
+2. **The server decides.** Who the user is comes from the server (`supabase.auth.getUser()` in server code), not from a user id, role, plan or price sent by the browser or kept in `localStorage`. Hiding a button protects nothing. Every API route and server action checks the user and their right to this record. Test: as user A, call the endpoint directly (curl or the browser console) with user B's record id and with `role: "admin"` in the body; expect 401, 403 or 404 and no change.
+3. **Every table locked.** Row-level security on for every exposed table, with a policy per action. Test: the second-user test and the SQL check in `supabase.md`; also try the publishable key from the console against each table while signed out.
+4. **Sign-out that really signs out.** Sign-out runs on the server and clears the session cookies; client caches of private data (query caches, service-worker caches) are cleared too; private pages send `Cache-Control: no-store`. Offer "sign out everywhere" (Supabase: `signOut({ scope: "global" })`) and use it after a password change. Access tokens stay valid until they expire, so keep the expiry short; confirm the provider's default. Test: copy the session cookie, sign out, replay a request with the old cookie, and press Back; neither shows private data.
+5. **One error message.** Wrong password and unknown email give the same text; so do sign-up with a taken email ("Check your email to continue") and password reset ("If that address has an account, we've sent a link"). Never show the provider's raw error. Test: compare the responses for a real and a made-up email; status, body and rough timing match.
+
 ## Redirects and OAuth
 
 - Add the live and preview URLs to the allowed redirect list in the auth settings; never accept an arbitrary `next=` URL. Only allow paths that start with a single `/`.

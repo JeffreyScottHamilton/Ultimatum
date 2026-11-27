@@ -11,6 +11,7 @@ Run after `../launch-checklist.md`, for sites with accounts, data or payments. T
 
 ## Sign-in
 - [ ] Every flow in `auth.md` tested on the preview URL, on a phone and a desktop.
+- [ ] The five checks in `auth.md` pass: no secret key in code, server decides, every table locked, real sign-out, one error message.
 - [ ] Each protected page and API route refuses a signed-out user and a lower role.
 - [ ] Redirect allowlist holds only the live and preview URLs; `next=` accepts paths only.
 - [ ] Custom SMTP sender set; confirm and reset emails land in the inbox, not spam.

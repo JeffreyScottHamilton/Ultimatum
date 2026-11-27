@@ -2,6 +2,13 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.35] - 2026-11-27
+
+Apps: five checks before an AI-written login ships.
+
+- `skills/website/references/app/auth.md` gains five checks, each with a test to run on the preview URL: no secret key in the code or bundle, the server decides who the user is and what they may touch, every table locked by row-level security, a sign-out that clears cookies and caches (with sign-out everywhere), and one error message for real and unknown emails.
+- `app/checklist.md` lists the five checks under Sign-in. Tests: `test_auth_five_checks.py`.
+
 ## [0.0.34] - 2026-11-27
 
 Apps: launch-day load and real-world conditions.
