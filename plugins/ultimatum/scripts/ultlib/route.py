@@ -55,6 +55,14 @@ _APP_STORE_RE = re.compile(r"\b(app ?store(?! optimi[sz]ation)|testflight|app re
                            r"(?:submit|ship|publish|release)\w* (?:\w+ ){0,3}(?:to|on) (?:the )?(?:apple|ios)|"
                            r"(?:ios|iphone) (?:release|submission|launch)|bundle (?:id|identifier)|"
                            r"usage descriptions?|build number)\b", re.I)
+# Social posts and channels; never website words such as social cards, share images or social proof.
+_SOCIAL_RE = re.compile(r"\b(social[ -]media(?! (?:icons?|links?|buttons?|share|login|sign[ -]?in|cards?|images?|previews?|"
+                        r"tags?|meta|embeds?|feeds?))|social (?:posts?|content|campaign|calendar|channels?|strategy)|"
+                        r"(?:instagram|insta|ig|tiktok|linkedin|facebook|fb|pinterest|threads|twitter|youtube|x) "
+                        r"(?:posts?|reels?|captions?|carousels?|content|campaign|calendar|strategy|hooks?|bio|pins?|"
+                        r"shorts?|threads?|videos?)|reels|tiktoks|tweets?|youtube shorts|content calendar|"
+                        r"posting (?:schedule|calendar|plan|rate)|hashtags?|hook (?:variants?|types?)|short[ -]form video)\b",
+                        re.I)
 _PREFIX_RE = re.compile(r"^\s*(fast|deep)\s*:\s*", re.I)
 _EDIT_RE = re.compile(r"\b(add|change|rename|remove|fix|update|set|replace|move|delete|bump|make|drop|correct|edit)\b", re.I)
 _FILE_RE = re.compile(r"\b[\w./-]+\.(?:py|ts|tsx|js|jsx|mjs|md|json|css|scss|html|sql|go|rs|java|rb|ya?ml|toml|sh|txt)\b", re.I)
@@ -208,6 +216,8 @@ def website_flag(text: str, route: str, root: Path | None) -> bool:
 def workflow_for(text: str, route: str, root: Path | None) -> str:
     if route not in SECURITY_ROUTES and _APP_STORE_RE.search(text):
         return "app-store"
+    if route not in SECURITY_ROUTES and _SOCIAL_RE.search(text):
+        return "social-media"
     return "website" if website_flag(text, route, root) else "default"
 
 

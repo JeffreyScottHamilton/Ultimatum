@@ -26,7 +26,7 @@ class Gates(UltCase):
         r = self.gate("status", "--json")
         self.assertEqual(r.code, 0, r.all)
         data = json.loads(r.out)
-        for item in ("brief", "mockup", "data-model", "publish", "deploy", "live-payments"):
+        for item in ("brief", "mockup", "data-model", "publish", "post", "deploy", "live-payments"):
             self.assertEqual(data[item]["state"], "waiting")
 
     def test_data_model_needs_the_schema_file(self):
@@ -44,6 +44,16 @@ class Gates(UltCase):
         r = self.gate("check", "data-model")
         self.assertEqual(r.code, 1)
         self.assertIn("changed", r.out)
+
+    def test_post_needs_the_plan_file_and_is_used_once(self):
+        r = self.gate("approve", "post", "Post week one")
+        self.assertEqual(r.code, 2)
+        self.assertIn("--file", r.err)
+        plan = self.write("social/plan.json", '[{"date": "2026-12-01", "channel": "linkedin"}]\n')
+        self.assertEqual(self.gate("approve", "post", "Post week one", "--file", str(plan)).code, 0)
+        self.assertEqual(self.gate("check", "post").code, 0)
+        self.assertEqual(self.gate("done", "post").code, 0)
+        self.assertEqual(self.gate("check", "post").code, 1)
 
     def test_live_payments_is_used_once(self):
         r = self.gate("approve", "live-payments", "Yes, switch Stripe to live")

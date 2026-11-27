@@ -2,6 +2,17 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.62] - 2026-11-27
+
+Social media workflow (no video styles yet)
+
+- New skill `skills/social-media/` plans, writes, checks and hands over social posts: scope questions, content pillars and cadence, a `social/plan.json` calendar, hooks, captions, hashtags, alt text, tracked links, dated platform limits, claims and disclosure review, the hand-over order and a 48-hour and weekly results loop. Video styles, editing and rendering are left out on purpose; it writes the script and checks the finished file.
+- New `ult posts plan FILE [--json]` checks a whole plan (P01 to P15): dates, channels, caption limits including the TikTok API limit, hook type, UTM tags matching the channel, one link, alt text on image posts, two posts on one channel in a day, hashtag counts, long first lines, missing disclosure on sponsored posts and missing AI labels (both blockers), missing files, duplicate captions and no next step. Exit 0 clean, 1 blockers, 2 bad input. Nothing is posted or scheduled.
+- `ult posts specs|check|calendar|variant` return: dated limits, file and caption checks (local ffprobe for video, if installed), ICS or CSV calendars, and hook variants ranked only by results the user enters. Pinterest description limit is now 800; Instagram hashtags 5.
+- New gate `ult gate approve post "<words>" --file social/plan.json`: needs the plan file, reopens if it changes, used once.
+- `ult route` adds `workflow: social-media` for posts, captions, calendars, hashtags and platform content, but not for footer icons, social cards, social login or security routes. `work/SKILL.md` sends that line to the new skill.
+- Tests: `tests/test_posts.py` (plan checks, routing, skill files), plus gate and size tests.
+
 ## [0.0.61] - 2026-11-27
 
 App Store workflow for Expo apps

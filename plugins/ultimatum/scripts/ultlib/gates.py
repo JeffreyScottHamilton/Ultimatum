@@ -1,4 +1,4 @@
-"""Approval gates the Manager keeps for the user: brief, mockup, data-model, publish,
+"""Approval gates the Manager keeps for the user: brief, mockup, data-model, publish, post,
 deploy, live-payments.
 
 State lives in .ultimatum/approvals.json next to the shared brief (.ultimatum/brief.md).
@@ -7,8 +7,9 @@ section (and of a file, when one is named). If the build brief or that file chan
 the approval, the item reads "changed since approval" and counts as not approved, so a
 resumed project never treats a newer draft as the approved one.
 
-A data-model approval must name the schema or migration file (--file), so any later edit to
-it reopens the gate. Publish, deploy and live-payments approvals are used once: `ult gate done ITEM` closes them after the action.
+A data-model approval must name the schema or migration file (--file), and a post approval the
+social plan file, so any later edit to it reopens the gate. Publish, post, deploy and
+live-payments approvals are used once: `ult gate done ITEM` closes them after the action.
 Local, stdlib only, no network.
 """
 from __future__ import annotations
@@ -23,13 +24,14 @@ from pathlib import Path
 from .common import project_root, state_dir, write_private
 from .website import brief_path
 
-ITEMS = ("brief", "mockup", "data-model", "publish", "deploy", "live-payments")
-NEEDS_FILE = ("data-model",)
+ITEMS = ("brief", "mockup", "data-model", "publish", "post", "deploy", "live-payments")
+NEEDS_FILE = ("data-model", "post")
 WHAT = {
     "brief": "build brief (shown to the user before the build starts)",
     "mockup": "website mockup (before production code)",
     "publish": "putting the site live (domain, hosting, listings)",
     "data-model": "app data model: tables, who may read and write each (before migrations run)",
+    "post": "posting, scheduling or sending one batch of social posts (the approved plan file)",
     "deploy": "deploying or releasing",
     "live-payments": "switching payments to live keys and real charges",
 }
@@ -111,7 +113,7 @@ def approve(root: Path, item: str, note: str, link: str | None = None, file: str
     if item == "brief" and not brief_section(root):
         raise ValueError(f"no '{BRIEF_HEAD}' section in {brief_path(root)}; Business drafts it first")
     if item in NEEDS_FILE and not file:
-        raise ValueError(f"{item}: name the schema or migration file the user approved with --file")
+        raise ValueError(f"{item}: name the file the user approved with --file (schema or migration, or the social plan)")
     if item == "brief":
         empty = [f for f in REQUIRED if re.search(rf"^- {f}:\s*$", brief_section(root), re.M | re.I)]
         if empty:
@@ -180,7 +182,7 @@ def register(sub):
     p.add_argument("action", choices=["status", "check", "approve", "revise", "done"])
     p.add_argument("rest", nargs="*", help="ITEM then the user's words")
     p.add_argument("--link", help="live link that was checked (publish, deploy)")
-    p.add_argument("--file", help="file the approval is for (mockup image, schema or migration, video export)")
+    p.add_argument("--file", help="file the approval is for (mockup image, schema or migration, social plan)")
     p.add_argument("--need-link", action="store_true", help="check: also require a checked live link")
     p.add_argument("--json", action="store_true")
     p.add_argument("--root", help="project directory (default: the current project)")

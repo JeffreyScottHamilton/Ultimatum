@@ -1,6 +1,6 @@
 ---
 name: work
-description: "Ultimatum's default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Covers questions and all software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI, security review and remediation, data and infra, releases, MCP servers and skills, handoff and resume. Website jobs go to the `website` skill; App Store, TestFlight and EAS shipping go to `app-store`."
+description: "Ultimatum's default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Covers questions and all software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI, security review and remediation, data and infra, releases, MCP servers and skills, handoff and resume. Website jobs go to the `website` skill; App Store, TestFlight and EAS shipping go to `app-store`; social posts and calendars go to `social-media`."
 argument-hint: "<task>"
 ---
 
@@ -12,7 +12,7 @@ Task: $ARGUMENTS
 
 ## 1. Route first
 
-Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them, don't re-read. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow: website` line (user did not type `/ultimatum:work`): switch to `${CLAUDE_PLUGIN_ROOT}/skills/website/SKILL.md`; `workflow: app-store`: `skills/app-store/SKILL.md`.
+Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow: website` line (user did not type `/ultimatum:work`): switch to `${CLAUDE_PLUGIN_ROOT}/skills/website/SKILL.md`; same for `app-store` and `social-media` (`skills/<name>/SKILL.md`).
 
 | Mode | Do |
 |---|---|

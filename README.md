@@ -27,14 +27,16 @@ Tell it about the business in plain chat. It asks a few questions, writes a one-
 
 ## What you get
 
-One plugin with two commands:
+One plugin with four commands:
 
 | Command | For |
 |---|---|
 | `/ultimatum:website` | New sites, redesigns and fixes, from small business and local service sites to web apps with sign-in, Supabase and Stripe |
+| `/ultimatum:app-store` | Taking an Expo app to the App Store: setup, EAS Build, TestFlight, review check, listing and submit |
+| `/ultimatum:social-media` | Planning, writing and checking social posts and calendars, with an approval before anything goes out |
 | `/ultimatum:work` | Short answers first, and everyday coding work: fixes, features, debugging, review and releases |
 
-Shops, apps, social media and video are not part of this version.
+Shops, video styles and video editing are not part of this version.
 
 ## Install
 

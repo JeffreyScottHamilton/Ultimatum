@@ -77,3 +77,14 @@ The `app-store` skill and `ult appstore check` are new text and code. These sour
 | [Apple App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) | page read 2026-11-27 | Apple terms | Section numbers cited as pointers; the skill tells readers to fetch the live text, nothing quoted |
 | [App Store Connect Help](https://developer.apple.com/help/app-store-connect/) | pages read 2026-11-27 | Apple terms | Screenshot and App Preview specifications, field limits, TestFlight; facts restated and linked |
 | [Expo documentation](https://docs.expo.dev/) | pages read 2026-11-27 | Expo terms | App config, eas.json, app versions, privacy manifests, EAS Submit and EAS Update; facts restated and linked |
+
+## Added for the social media workflow (reviewed 2026-11-27)
+
+The `social-media` skill and `ult posts` are new text and code. Platform limits were checked against these pages; facts are restated with their date, nothing is quoted.
+
+| Source | Read | Use |
+|---|---|---|
+| [Pinterest pin specs](https://help.pinterest.com/en/article/review-pin-specs) | 2026-11-27 | Pin sizes and the description limit |
+| [Metricool: Instagram limits](https://metricool.com/instagram-limits/) | 2026-11-27 | Instagram caption and hashtag limits (sources disagree; marked uncertain) |
+| [Business Today: Instagram hashtag limit](https://www.businesstoday.in/technology/news/story/no-more-hashtag-stuffing-instagram-limits-hashtag-usage-to-just-5-per-reel-and-post-507444-2025-12-19) | 2026-11-27 | Report of the five-hashtag limit (December 2025) |
+| [TikTok caption length guide](https://adaptlypost.com/blog/tiktok-caption-character-limit) | 2026-11-27 | App versus API caption length |
