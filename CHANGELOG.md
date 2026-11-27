@@ -2,6 +2,13 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.59] - 2026-11-27
+
+Taste: 66 contrast-checked palettes
+
+- 26 new palettes in `data/craft/taste/presets/palettes.json` (66 in all), for trades the first 40 missed, such as clinics, nurseries, mechanics, breweries, theatres, newsrooms, labs and food markets. Every one passes the same checks as the first set: text, muted and accent contrast in light and dark, and no clash with an existing trade or mood word.
+- `craft/taste/page-plans.md` and `later.md` give the new count. Closes the gap where taste-skill's palette list was longer than ours (`docs/plans/comparison.md`).
+
 ## [0.0.58] - 2026-11-27
 
 Deck builder: content file to checked HTML deck

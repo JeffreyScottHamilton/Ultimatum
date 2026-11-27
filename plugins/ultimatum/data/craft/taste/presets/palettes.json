@@ -979,5 +979,652 @@
   "accentInk": "#FFFFFF",
   "line": "#F2D9D9",
   "note": "Cherry red on pink-white; one loud colour, not five."
+ },
+ {
+  "id": "harbour-fog",
+  "mode": "light",
+  "kinds": [
+   "service",
+   "place"
+  ],
+  "trades": [
+   "marina",
+   "ferry",
+   "boatyard"
+  ],
+  "moods": [
+   "misty",
+   "unhurried"
+  ],
+  "bg": "#F2F5F6",
+  "surface": "#FFFFFF",
+  "ink": "#132126",
+  "muted": "#4E5F66",
+  "accent": "#0E6B78",
+  "accentInk": "#FFFFFF",
+  "line": "#D5DFE2",
+  "note": "Sea-glass teal on fog grey; the water does the talking."
+ },
+ {
+  "id": "brick-kiln",
+  "mode": "light",
+  "kinds": [
+   "service",
+   "hardware"
+  ],
+  "trades": [
+   "masonry",
+   "brickwork",
+   "chimney"
+  ],
+  "moods": [
+   "solid",
+   "honest"
+  ],
+  "bg": "#F8F3EE",
+  "surface": "#FFFFFF",
+  "ink": "#24160F",
+  "muted": "#62514A",
+  "accent": "#A63A1E",
+  "accentInk": "#FFFFFF",
+  "line": "#E8DCD3",
+  "note": "Fired-brick red, used for one action per screen."
+ },
+ {
+  "id": "tally-green",
+  "mode": "light",
+  "kinds": [
+   "software",
+   "service"
+  ],
+  "trades": [
+   "bookkeeping",
+   "invoicing",
+   "tax"
+  ],
+  "moods": [
+   "orderly",
+   "dependable"
+  ],
+  "bg": "#F5F7F4",
+  "surface": "#FFFFFF",
+  "ink": "#121A14",
+  "muted": "#4F5C52",
+  "accent": "#1F6B3A",
+  "accentInk": "#FFFFFF",
+  "line": "#D9E1DA",
+  "note": "Banker's green on paper; figures stay black."
+ },
+ {
+  "id": "midnight-ops",
+  "mode": "dark",
+  "kinds": [
+   "software"
+  ],
+  "trades": [
+   "incident",
+   "monitoring",
+   "devops"
+  ],
+  "moods": [
+   "alert",
+   "nightshift"
+  ],
+  "bg": "#0D1117",
+  "surface": "#161C25",
+  "ink": "#E8EDF3",
+  "muted": "#9AA6B5",
+  "accent": "#3FB98A",
+  "accentInk": "#06140E",
+  "line": "#263040",
+  "note": "Green for healthy, nothing else glows."
+ },
+ {
+  "id": "pollen",
+  "mode": "light",
+  "kinds": [
+   "product",
+   "place"
+  ],
+  "trades": [
+   "honey",
+   "apiary",
+   "beekeeping"
+  ],
+  "moods": [
+   "golden",
+   "busy"
+  ],
+  "bg": "#FFF9EC",
+  "surface": "#FFFFFF",
+  "ink": "#2B1E05",
+  "muted": "#66562F",
+  "accent": "#94600A",
+  "accentInk": "#FFFFFF",
+  "line": "#F0E2BF",
+  "note": "Honey amber, dark enough to carry white text."
+ },
+ {
+  "id": "chalkboard",
+  "mode": "dark",
+  "kinds": [
+   "service",
+   "place"
+  ],
+  "trades": [
+   "tutoring",
+   "classes",
+   "workshop"
+  ],
+  "moods": [
+   "studious",
+   "patient"
+  ],
+  "bg": "#1E2A26",
+  "surface": "#26352F",
+  "ink": "#F1F3EE",
+  "muted": "#B3BDB5",
+  "accent": "#F2C94C",
+  "accentInk": "#1E2A26",
+  "line": "#3A4B44",
+  "note": "Chalk on slate green; yellow chalk for the one thing to do."
+ },
+ {
+  "id": "clinic-mint",
+  "mode": "light",
+  "kinds": [
+   "service"
+  ],
+  "trades": [
+   "clinic",
+   "pharmacy",
+   "optician"
+  ],
+  "moods": [
+   "hygienic",
+   "kind"
+  ],
+  "bg": "#F3F8F7",
+  "surface": "#FFFFFF",
+  "ink": "#0F1F1C",
+  "muted": "#4A5E5A",
+  "accent": "#0B7A6B",
+  "accentInk": "#FFFFFF",
+  "line": "#D4E4E1",
+  "note": "Mint that reads clean, not cold; no red except for warnings."
+ },
+ {
+  "id": "velvet-curtain",
+  "mode": "dark",
+  "kinds": [
+   "place",
+   "game"
+  ],
+  "trades": [
+   "cinema",
+   "opera",
+   "cabaret"
+  ],
+  "moods": [
+   "dramatic",
+   "plush"
+  ],
+  "bg": "#160A10",
+  "surface": "#21111A",
+  "ink": "#F6EAF0",
+  "muted": "#BFA3B1",
+  "accent": "#E0457B",
+  "accentInk": "#160A10",
+  "line": "#3A2230",
+  "note": "Deep plum with one spotlight pink."
+ },
+ {
+  "id": "rockpool-teal",
+  "mode": "light",
+  "kinds": [
+   "product",
+   "place"
+  ],
+  "trades": [
+   "aquarium",
+   "surf",
+   "diving"
+  ],
+  "moods": [
+   "splashy",
+   "briny"
+  ],
+  "bg": "#F0F7F8",
+  "surface": "#FFFFFF",
+  "ink": "#0A1E24",
+  "muted": "#47606A",
+  "accent": "#00798C",
+  "accentInk": "#FFFFFF",
+  "line": "#CFE3E7",
+  "note": "Teal from the rock pool, sand left to the photos."
+ },
+ {
+  "id": "ironworks",
+  "mode": "dark",
+  "kinds": [
+   "hardware",
+   "service"
+  ],
+  "trades": [
+   "welding",
+   "fabrication",
+   "metalwork"
+  ],
+  "moods": [
+   "forged",
+   "heavy"
+  ],
+  "bg": "#121212",
+  "surface": "#1C1C1C",
+  "ink": "#EDEDED",
+  "muted": "#A3A3A3",
+  "accent": "#FF7A1A",
+  "accentInk": "#121212",
+  "line": "#2F2F2F",
+  "note": "Spark orange on near-black steel."
+ },
+ {
+  "id": "linen-press",
+  "mode": "light",
+  "kinds": [
+   "product",
+   "service"
+  ],
+  "trades": [
+   "laundry",
+   "tailoring",
+   "alterations"
+  ],
+  "moods": [
+   "neat",
+   "careful"
+  ],
+  "bg": "#F7F5F0",
+  "surface": "#FFFFFF",
+  "ink": "#1C1B17",
+  "muted": "#5C5A52",
+  "accent": "#3D5A80",
+  "accentInk": "#FFFFFF",
+  "line": "#E3DFD5",
+  "note": "Pressed linen with a navy thread."
+ },
+ {
+  "id": "orchard-dusk",
+  "mode": "dark",
+  "kinds": [
+   "product",
+   "place"
+  ],
+  "trades": [
+   "cider",
+   "brewery",
+   "distillery"
+  ],
+  "moods": [
+   "mellow",
+   "rustic"
+  ],
+  "bg": "#1A1410",
+  "surface": "#241C16",
+  "ink": "#F3EBE2",
+  "muted": "#B7A897",
+  "accent": "#E39B3B",
+  "accentInk": "#1A1410",
+  "line": "#3A2E25",
+  "note": "Barrel brown, lit by one amber lamp."
+ },
+ {
+  "id": "glacier-pass",
+  "mode": "light",
+  "kinds": [
+   "place",
+   "product"
+  ],
+  "trades": [
+   "ski",
+   "mountaineering",
+   "alpine"
+  ],
+  "moods": [
+   "crisp",
+   "high"
+  ],
+  "bg": "#F4F8FB",
+  "surface": "#FFFFFF",
+  "ink": "#0C1A26",
+  "muted": "#4A5B6B",
+  "accent": "#1B5FA8",
+  "accentInk": "#FFFFFF",
+  "line": "#D6E2EC",
+  "note": "Ice blue air, deep blue for the lift ticket."
+ },
+ {
+  "id": "garage-floor",
+  "mode": "light",
+  "kinds": [
+   "service",
+   "hardware"
+  ],
+  "trades": [
+   "mechanic",
+   "tyres",
+   "mot"
+  ],
+  "moods": [
+   "no-nonsense",
+   "quick"
+  ],
+  "bg": "#F4F4F2",
+  "surface": "#FFFFFF",
+  "ink": "#161616",
+  "muted": "#555552",
+  "accent": "#C2410C",
+  "accentInk": "#FFFFFF",
+  "line": "#DCDCD8",
+  "note": "Workshop grey with a safety-orange button."
+ },
+ {
+  "id": "rosewater",
+  "mode": "light",
+  "kinds": [
+   "service",
+   "product"
+  ],
+  "trades": [
+   "bridal",
+   "weddings",
+   "stationery"
+  ],
+  "moods": [
+   "tender",
+   "graceful"
+  ],
+  "bg": "#FCF6F6",
+  "surface": "#FFFFFF",
+  "ink": "#2A1619",
+  "muted": "#6B5357",
+  "accent": "#A23B5A",
+  "accentInk": "#FFFFFF",
+  "line": "#F0DFE1",
+  "note": "Blush page, deep rose for the enquiry."
+ },
+ {
+  "id": "pixel-night",
+  "mode": "dark",
+  "kinds": [
+   "game"
+  ],
+  "trades": [
+   "retro",
+   "platformer",
+   "roguelike"
+  ],
+  "moods": [
+   "chunky",
+   "nostalgic"
+  ],
+  "bg": "#110E1F",
+  "surface": "#1B1730",
+  "ink": "#F0EDFF",
+  "muted": "#A9A2C9",
+  "accent": "#7CF29A",
+  "accentInk": "#0B1A10",
+  "line": "#2D2850",
+  "note": "8-bit green on a purple night."
+ },
+ {
+  "id": "broadsheet",
+  "mode": "light",
+  "kinds": [
+   "service",
+   "software"
+  ],
+  "trades": [
+   "newsroom",
+   "publishing",
+   "journalism"
+  ],
+  "moods": [
+   "serious",
+   "informed"
+  ],
+  "bg": "#FAFAF7",
+  "surface": "#FFFFFF",
+  "ink": "#111111",
+  "muted": "#55554F",
+  "accent": "#B00020",
+  "accentInk": "#FFFFFF",
+  "line": "#E2E2DC",
+  "note": "Newsprint black and one masthead red."
+ },
+ {
+  "id": "canopy",
+  "mode": "light",
+  "kinds": [
+   "place",
+   "service"
+  ],
+  "trades": [
+   "arboretum",
+   "forestry",
+   "treecare"
+  ],
+  "moods": [
+   "leafy",
+   "shaded"
+  ],
+  "bg": "#F3F6F1",
+  "surface": "#FFFFFF",
+  "ink": "#142012",
+  "muted": "#4F5D4B",
+  "accent": "#2E6B2F",
+  "accentInk": "#FFFFFF",
+  "line": "#D7E0D3",
+  "note": "Leaf green, bark-dark ink, nothing neon."
+ },
+ {
+  "id": "quantum-lab",
+  "mode": "dark",
+  "kinds": [
+   "software",
+   "hardware"
+  ],
+  "trades": [
+   "biotech",
+   "quantum",
+   "lab"
+  ],
+  "moods": [
+   "exacting",
+   "futuristic"
+  ],
+  "bg": "#0A0F1A",
+  "surface": "#121A2A",
+  "ink": "#E6ECF7",
+  "muted": "#97A3BB",
+  "accent": "#8B7CFF",
+  "accentInk": "#0A0F1A",
+  "line": "#24304A",
+  "note": "Cool navy with one violet signal."
+ },
+ {
+  "id": "saffron-market",
+  "mode": "light",
+  "kinds": [
+   "place",
+   "product"
+  ],
+  "trades": [
+   "spices",
+   "curry",
+   "street food"
+  ],
+  "moods": [
+   "vivid",
+   "generous"
+  ],
+  "bg": "#FFF7EE",
+  "surface": "#FFFFFF",
+  "ink": "#2A1405",
+  "muted": "#69503B",
+  "accent": "#B54708",
+  "accentInk": "#FFFFFF",
+  "line": "#F2DEC8",
+  "note": "Saffron and turmeric warmth, kept to one accent."
+ },
+ {
+  "id": "dockside",
+  "mode": "dark",
+  "kinds": [
+   "service",
+   "hardware"
+  ],
+  "trades": [
+   "shipping",
+   "freight",
+   "warehousing"
+  ],
+  "moods": [
+   "robust",
+   "punctual"
+  ],
+  "bg": "#0F1519",
+  "surface": "#172027",
+  "ink": "#E9EEF1",
+  "muted": "#9DAAB3",
+  "accent": "#F5B700",
+  "accentInk": "#0F1519",
+  "line": "#26333C",
+  "note": "Container yellow on harbour night."
+ },
+ {
+  "id": "paper-crane",
+  "mode": "light",
+  "kinds": [
+   "product",
+   "place"
+  ],
+  "trades": [
+   "origami",
+   "stationers",
+   "gallery"
+  ],
+  "moods": [
+   "delicate",
+   "considered"
+  ],
+  "bg": "#FBFAF8",
+  "surface": "#FFFFFF",
+  "ink": "#1A1A1A",
+  "muted": "#5B5B58",
+  "accent": "#C23B22",
+  "accentInk": "#FFFFFF",
+  "line": "#E6E4DF",
+  "note": "White paper and a single vermilion fold."
+ },
+ {
+  "id": "night-market",
+  "mode": "dark",
+  "kinds": [
+   "place",
+   "product"
+  ],
+  "trades": [
+   "food hall",
+   "night market",
+   "noodles"
+  ],
+  "moods": [
+   "buzzing",
+   "lively"
+  ],
+  "bg": "#140F0A",
+  "surface": "#1F1812",
+  "ink": "#F7EEE5",
+  "muted": "#BBA996",
+  "accent": "#FF5A36",
+  "accentInk": "#140F0A",
+  "line": "#3A2D22",
+  "note": "Lantern red-orange in a warm dark street."
+ },
+ {
+  "id": "stoneware",
+  "mode": "light",
+  "kinds": [
+   "product",
+   "service"
+  ],
+  "trades": [
+   "pottery",
+   "kitchenware",
+   "homewares"
+  ],
+  "moods": [
+   "grounded",
+   "handmade"
+  ],
+  "bg": "#F5F2EE",
+  "surface": "#FFFFFF",
+  "ink": "#211C18",
+  "muted": "#5F5750",
+  "accent": "#7A5230",
+  "accentInk": "#FFFFFF",
+  "line": "#E2DAD1",
+  "note": "Clay brown and glaze grey, matte all through."
+ },
+ {
+  "id": "signal-flare",
+  "mode": "dark",
+  "kinds": [
+   "software",
+   "service"
+  ],
+  "trades": [
+   "cybersecurity",
+   "alarms",
+   "emergency"
+  ],
+  "moods": [
+   "vigilant",
+   "firm"
+  ],
+  "bg": "#0E0E10",
+  "surface": "#18181B",
+  "ink": "#F2F2F3",
+  "muted": "#A1A1A8",
+  "accent": "#DC2626",
+  "accentInk": "#FFFFFF",
+  "line": "#2A2A2F",
+  "note": "Red only for danger and the one call to act."
+ },
+ {
+  "id": "meadow-school",
+  "mode": "light",
+  "kinds": [
+   "service",
+   "place"
+  ],
+  "trades": [
+   "playgroup",
+   "childminder",
+   "forest school"
+  ],
+  "moods": [
+   "joyful",
+   "safe"
+  ],
+  "bg": "#F7FAF1",
+  "surface": "#FFFFFF",
+  "ink": "#17220F",
+  "muted": "#53604A",
+  "accent": "#3B7A1F",
+  "accentInk": "#FFFFFF",
+  "line": "#DEE7D2",
+  "note": "Grass green, sun-washed page, big friendly buttons."
  }
 ]

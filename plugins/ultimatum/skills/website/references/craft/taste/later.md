@@ -45,7 +45,7 @@ The source runs its checks with Node scripts and a Stop hook. Under this plugin'
 | copy lint | counted copy tells; failed on residue, worn words and stock lines | `scripts/ultlib/copylint.py` (shipped; coined-name, cast-name and company-name checks still by hand) |
 | perf script | bytes, requests, fonts, images, contexts, paints, long tasks | the Playwright script in `performance.md` § Measure |
 | shoot | full-page and per-section screenshots with live effects | Playwright `page.screenshot({ fullPage: true })` |
-| deal / start, done in 0.0.45 | dealt heroes, palettes, fonts and grounds by kind and trade, with history | `ult design deal` (`page-plans.md` § Deal lists): 40 own palettes checked for contrast by test, 43 type pairings, heroes, parts and non-clashing grounds, seeded, with history | nothing |
+| deal / start, done in 0.0.45 | dealt heroes, palettes, fonts and grounds by kind and trade, with history | `ult design deal` (`page-plans.md` § Deal lists): 66 own palettes (40 in 0.0.45, 26 more in 0.0.59) checked for contrast by test, 43 type pairings, heroes, parts and non-clashing grounds, seeded, with history | nothing |
 | photos | searched and fetched licensed stand-ins, wrote credit lines | `photos.md` § Sources, in order (by hand) |
 | icons | found, fetched, scanned, checked and measured icons | `icons-and-diagrams.md` § Serving icons (by hand) |
 | ground picker and checker | dealt grounds per section; measured contrast from pixels | picking by hand per `grounds-and-effects.md` § Named grounds; contrast by `tools/taste_contrast.cjs` (shipped, repo test tool) |
