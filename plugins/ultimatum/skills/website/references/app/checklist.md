@@ -1,6 +1,6 @@
 # App go-live checklist
 
-Run after `../launch-checklist.md`, for sites with accounts, data or payments. Tick each with evidence.
+Run after `../launch-checklist.md`, for sites with accounts, data or payments. Tick each with evidence. Then run `legal-risk.md` (data map, account deletion, children, cancelling, consent, trademark, keys and spend caps, uploads, licences).
 
 ## Data
 - [ ] Data model approved: `ult gate check data-model` passes (the migration hasn't changed since).

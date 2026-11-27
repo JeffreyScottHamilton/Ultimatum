@@ -12,6 +12,8 @@ Tick each item with evidence (a command, a screenshot or a live URL), not a gues
 - [ ] **Browser check** at 375, 768 and 1440 px; no horizontal scroll, no cut-off buttons.
 - [ ] **Analytics and events.** Page views plus events for call taps, booking clicks and form submits. Pick a tool and its tier by checking the vendor's page. Add a cookie or privacy notice if the tool needs one for the owner's country.
 - [ ] **Domain, SSL, email.** Domain resolves with and without `www`, one redirects to the other; HTTPS valid; business email sends and receives; SPF/DKIM set if the domain sends mail (ask before changing DNS).
+- [ ] **No tracking before a yes.** Ad pixels and non-essential analytics load only after consent where the owner's visitors need it; a fresh private window that declines sends no request to the ad or analytics hosts (`app/legal-risk.md` §6).
+- [ ] **Name and licences.** Trademark registers searched for the business name before the domain is bought; every font, image, icon, track and snippet has a licence you follow (`app/legal-risk.md` §7 and §10).
 - [ ] **Basics.** Title, description and preview image per page; 404 page; favicon; sitemap; privacy note if anything is collected; schema validates.
 - [ ] **Claims reviewed** by the `ultimatum:compliance-reviewer` agent; no open blockers in `ult loop`.
 - [ ] **Deploy approved** (`ult gate approve deploy`), `ult gate check deploy` passes, live URL checked.

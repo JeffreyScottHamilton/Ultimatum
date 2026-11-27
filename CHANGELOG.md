@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.22] - 2026-11-27
+
+Website: a legal-risk pass before launch.
+
+- New `skills/website/references/app/legal-risk.md`: ten checks before going live, each ending in evidence. It covers: a data map built from the code, with fields that are never used deleted; a privacy page that names every outside service; account deletion that really deletes; a signed-out public-key test; children under 13; cancelling as easily as subscribing; no ad pixels or analytics before consent; a trademark search before buying the domain; keys moved to the server, with an AI spend cap; safe uploads and XSS; and asset licences.
+- Says plainly that it is a risk check, not legal advice. Laws are named only as examples of what to look up for where the owner's users live.
+- Linked from the go-live step, `app/checklist.md` and `launch-checklist.md` (which gains consent, trademark and licence items). New `tests/test_legal_risk.py`.
+
 ## [0.0.21] - 2026-11-26
 
 Website design data: our own stack guideline tables.
