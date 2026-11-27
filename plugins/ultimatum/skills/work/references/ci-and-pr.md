@@ -1,6 +1,6 @@
 # CI and pull request loop
 
-Goal: get a PR to green, actionable CI and handled review feedback, without weakening any gate and without acting beyond what the user authorized. Loop basics: SKILL.md §3.
+Goal: get a PR to green, actionable CI and handled review feedback, without weakening any gate and without acting beyond what the user authorized. Loop basics: SKILL.md §3. The whole ship flow around this (self-review with severity tags, opening the PR, stewarding it, the observe-only approval report): `ship.md`.
 
 ## 0. Authorization
 

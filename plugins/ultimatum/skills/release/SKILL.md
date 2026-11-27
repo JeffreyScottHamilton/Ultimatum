@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Release
 
-Use only when the user asks to prepare something to ship. Details: `${CLAUDE_PLUGIN_ROOT}/skills/work/references/release.md`.
+Use only when the user asks to prepare something to ship. Details: `${CLAUDE_PLUGIN_ROOT}/skills/work/references/release.md`. Shipping a change as a pull request (self-review, open, steward, `ult approvals` observe-only report): `${CLAUDE_PLUGIN_ROOT}/skills/work/references/ship.md`.
 
 1. **Exact version:** the version string, tag and commit that would ship.
 2. **Tests and build:** run them through `ult run -- <cmd>` and quote the exit codes.

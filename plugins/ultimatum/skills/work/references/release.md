@@ -14,6 +14,8 @@ Goal: decide, with evidence, whether a change is ready to ship; prepare the arti
 2. List intended behavior: the spec, acceptance checks, ticket or PR descriptions in the range (`git log --oneline <prev>..HEAD`, `gh pr list --state merged --search "merged:>=<date>"`). If no spec exists, derive a short list of user-visible changes from the diff and confirm it with the user if it looks incomplete.
 3. Read the project's own release doc or checklist (`RELEASING.md`, `CONTRIBUTING`, `.github/workflows/release*.yml`); follow it over this file where they differ.
 
+Shipping one change as a pull request, from self-review to a stewarded PR and an `ult approvals` report: `ship.md`.
+
 Resumable ship order, version states and bisectable commits: `craft/gstack-eng/ship-pipeline.md`.
 
 ## 2. Verify behavior

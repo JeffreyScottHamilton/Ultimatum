@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.56] - 2026-11-27
+
+Ship flow, our take on Claude Ship
+
+- New `skills/work/references/ship.md`: shipping one change as a pull request. Review your own diff before the PR exists, open the PR only with a yes, steward it through failing checks, merge conflicts (merge, never rebase) and review comments, then report. It has named stops (merged or closed, user stop, 5 rounds, same failure twice, human gate) and a fixed list of things it never does: approve, merge, auto-merge, force-push, change branch rules, weaken tests. The pattern comes from Anthropic's Claude Ship (Code Review, PR Steward, Claude Approvals); the wording is ours.
+- New `ult approvals`, an observe-only approval-policy report. It reads `.claude/ultimatum-approvals.json` (rules with path globs, `if` conditions, overrides and the verdicts approve, comment, people N and block) and says what the policy would require for the current change, including uncommitted and untracked files. Path-based risk (low, medium, high) is built in. Files no rule decides always need a person, and approve holds only when the review found 0 Important issues. It never approves, comments or calls a network service. `--starter` prints a starting policy and `--check` validates one.
+- Reviews now tag each finding Important, Nit or Pre-existing (`review/SKILL.md`, `agents/reviewer.md`). `release/SKILL.md`, `release.md` and `ci-and-pr.md` link the ship guide.
+- New tests in `tests/test_approvals.py` (17).
+
 ## [0.0.55] - 2026-11-27
 
 Interaction kit, our take on Watermelon UI
