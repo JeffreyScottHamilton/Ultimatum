@@ -42,9 +42,9 @@
       "pin": "e4bb5d9",
       "licence": "Apache-2.0 per skill folder (no root LICENSE; doc-coauthoring has no licence)",
       "decision": "adapt",
-      "modules": ["design", "mcp-build", "skill-author", "testing-web"],
-      "reviewed": "2026-11-24",
-      "note": "Adapt the method in own words; document skills go to the official document-skills plugin as an adapter. Skip brand-guidelines and canvas fonts"
+      "modules": ["design", "mcp-build", "skill-author", "testing-web", "work"],
+      "reviewed": "2026-11-26",
+      "note": "Adapt the method in own words; skill-creator, mcp-builder, webapp-testing and frontend-design rebuilt as skills/work/references/craft/anthropic-method; document skills go to the official document-skills plugin as an adapter. Skip brand-guidelines and canvas fonts (see later.md)"
     },
     {
       "id": "superpowers",

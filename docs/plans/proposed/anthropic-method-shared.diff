@@ -1,0 +1,51 @@
+# Proposed edits to shared files for the Anthropic method rebuild. Not applied.
+
+--- a/plugins/ultimatum/skills/work/references/skill-author.md
++++ b/plugins/ultimatum/skills/work/references/skill-author.md
+@@ ## 3. The description is the trigger (end of section)
++Held-out trigger tuning with a split and repeated runs: `craft/anthropic-method/trigger-tuning.md`.
+@@ ## 5. Size budgets (end of section)
++Field limits, variant layout and a frontmatter lint: `craft/anthropic-method/skill-frontmatter.md`.
+@@ ## 6. Compare with and without (end of section)
++Iteration folders, baselines and grading records: `craft/anthropic-method/eval-workspace.md`.
+
+--- a/plugins/ultimatum/skills/work/references/skill-evaluation.md
++++ b/plugins/ultimatum/skills/work/references/skill-evaluation.md
+@@ ## 4. Measuring (end of section)
++Reviewer roles and a benchmark summary script: `craft/anthropic-method/eval-workspace.md`.
+
+--- a/plugins/ultimatum/skills/work/references/mcp-build.md
++++ b/plugins/ultimatum/skills/work/references/mcp-build.md
+@@ ## 1. Plan the tool surface (end of section)
++Tool names, hints, result shape, error channels and transport checks: `craft/anthropic-method/mcp-tool-design.md`.
+@@ ## 6. Tests (end of section)
++Stdio smoke client and eval question sets: `craft/anthropic-method/mcp-tool-design.md` § 8, `craft/anthropic-method/mcp-eval-set.md`.
+
+--- a/plugins/ultimatum/skills/work/references/browser-verification.md
++++ b/plugins/ultimatum/skills/work/references/browser-verification.md
+@@ ## 11. Without a browser (end of section)
++Servers around a Playwright script and the look-then-act recipe: `craft/anthropic-method/webapp-recipes.md`.
+
+--- a/plugins/ultimatum/data/upstreams.json
++++ b/plugins/ultimatum/data/upstreams.json
+@@ "id": "anthropic-skills"
+-      "modules": ["design", "mcp-build", "skill-author", "testing-web"],
+-      "reviewed": "2026-11-24",
+-      "note": "Adapt the method in own words; document skills go to the official document-skills plugin as an adapter. Skip brand-guidelines and canvas fonts"
++      "modules": ["design", "mcp-build", "skill-author", "testing-web", "work"],
++      "reviewed": "2026-11-26",
++      "note": "Adapt the method in own words; skill-creator, mcp-builder, webapp-testing and frontend-design rebuilt as skills/work/references/craft/anthropic-method; document skills go to the official document-skills plugin as an adapter. Skip brand-guidelines and canvas fonts (see later.md)"
+
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+@@
+-| [anthropics/skills](https://github.com/anthropics/skills) | `2c5958ecac7c` | Apache-2.0 (skill-creator `LICENSE.txt`) | Skill evaluation: with/without-skill comparisons, discriminating assertions, trigger tests (skill-creator, Apache-2.0) |
++| [anthropics/skills](https://github.com/anthropics/skills) | `e4bb5d9` | Apache-2.0 (per-folder `LICENSE.txt`) | Skill evaluation: with/without-skill comparisons, discriminating assertions, trigger tests (skill-creator, Apache-2.0); skill, eval, MCP and web app test references (craft/anthropic-method) |
+
+--- a/docs/CREDITS.md
++++ b/docs/CREDITS.md
+@@
+-| [anthropics/skills](https://github.com/anthropics/skills) | `2c5958ecac7c` | Apache-2.0 (skill-creator `LICENSE.txt`) | Skill evaluation: with/without-skill comparisons, discriminating assertions, trigger tests (skill-creator, Apache-2.0) |
++| [anthropics/skills](https://github.com/anthropics/skills) | `e4bb5d9` | Apache-2.0 (per-folder `LICENSE.txt`) | Skill evaluation: with/without-skill comparisons, discriminating assertions, trigger tests (skill-creator, Apache-2.0); skill, eval, MCP and web app test references (craft/anthropic-method) |
+
+# SKILL.md: no change needed (the craft folder is reached through the base references).
