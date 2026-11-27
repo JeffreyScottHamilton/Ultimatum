@@ -53,8 +53,8 @@
       "pin": "22f0b46",
       "licence": "MIT",
       "decision": "adapt",
-      "modules": ["engineering"],
-      "reviewed": "2026-11-24",
+      "modules": ["engineering", "work"],
+      "reviewed": "2026-11-26",
       "note": "Adapt the verify and debugging discipline and plan-task-review cycle; skip the SessionStart injection and the brainstorm server"
     },
     {

@@ -20,6 +20,8 @@ Do these in whatever order cuts the search space fastest; change one variable at
 
 Instrumentation rules: tag every temporary log with a unique prefix (`DBG_<id>`) so cleanup is `ult search DBG_<id>`; prefer a debugger or a failing assertion to log spam; never log secrets. For performance bugs, measure a baseline before changing anything.
 
+Deeper moves (tracing a bad value to its origin, layered guards, waiting on conditions, finding a polluting test): `craft/superpowers/debugging-moves.md`.
+
 ## 3. Hypotheses
 
 1. Write 3-5 ranked hypotheses before testing any. Each must be falsifiable: "if X is the cause, then changing Y makes the symptom vanish / this log shows Z".

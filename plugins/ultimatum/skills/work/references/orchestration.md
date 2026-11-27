@@ -70,6 +70,8 @@ Default for any parallel run: one worktree and branch per worker, even when the 
 5. Never dispatch parallel workers whose owned files overlap; sequence them instead.
 If the worker tool shares your checkout, parallel edits are only safe with disjoint ownership.
 
+One branch from worktree setup to merge or discard: `craft/superpowers/branch-close.md`.
+
 ## 6. Collect and verify
 
 For each report:
@@ -77,6 +79,8 @@ For each report:
 2. Rerun the acceptance command yourself via `ult run`. Quote the exit code and test count (ZERO_RUN is not a pass).
 3. On BLOCKED or NEEDS_CONTEXT, change something before retrying: more context, a stronger model, or a smaller slice. Never resend the same brief.
 4. Fix rounds: findings go back to the same worker for up to 3 rounds; then a fresh worker one tier up with a pointer to what was tried; after 5 rounds, you decide: park the item with a reason, or rule on the smallest change if later slices depend on it. Never fix worker output inside the manager session.
+
+Running a written plan task by task, with a ledger and rulings: `craft/superpowers/plan-execution.md`.
 
 ## 7. Integrate
 
@@ -91,6 +95,8 @@ After integration, one review of the whole diff against `BASE`, by `ultimatum:re
 1. **Spec axis:** brief = spec requirements + success checks + `git diff <BASE>`; asks: what is missing, extra, or wrong versus the spec (quote the spec line).
 2. **Standards axis:** brief = repo conventions (CONTRIBUTING, lint config, local patterns) + the diff; asks: duplicated helpers, dead code, inconsistent naming, untested paths, gates weakened.
 Triage findings: blocking only if it fails a test, breaks production behavior, loses data, or exposes a secret; everything else is non-blocking and gets one batched fix wave, not another review round. A finding needs `file:line` and a concrete input; discard ones without. Zero findings is a valid result. If the security overlay applied, the reviewer checks the negative test.
+
+Review briefs and handling the comments that come back: `craft/superpowers/review-rounds.md`.
 
 ## 9. Efficiency accounting
 

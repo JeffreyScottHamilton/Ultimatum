@@ -35,6 +35,8 @@ Goal: every new or fixed behavior is pinned by a test you watched fail for the r
 - One behavior per test; table-driven for many inputs of the same behavior.
 - Cover, per behavior: the main case, an empty or minimal input, a boundary, an invalid input, and the permission-denied case when auth applies.
 
+Judgement calls on expected values, mocks and test-only code: `craft/superpowers/test-judgement.md`.
+
 ## 5. Regression tests (bug fixes)
 
 A regression test is proven only by red-green-revert:

@@ -9,6 +9,8 @@ Goal: turn a request into a small, agreed spec and independently verifiable slic
 - **Slice**: §7. Each slice has an acceptance command that can fail.
 - **Verify**: run each slice's acceptance command as it lands, then the spec's success checks on the integrated result (§10). A final skim is not verification.
 
+The shaping conversation in detail: `craft/superpowers/shaping-conversation.md`; the plan document: `craft/superpowers/plan-writing.md`.
+
 ## 1. Size it first
 
 | Size | Signal | Do |

@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.28] - 2026-11-27
+
+Superpowers rebuilt in our own words: shaping, plans, debugging, review and branch close.
+
+- Added Superpowers craft references for the build loop: 8 short files under `skills/work/references/craft/superpowers/`, indexed, each with a "Read when" opener.
+- Covers the shaping conversation and build gate, writing and carrying out a plan (ledger, rulings, final review), deeper debugging moves, test judgement and mocks, review rounds, evidence per "done" claim, and worktree start and branch close.
+- Adds what the source lacked: the security overlay on review focus and layered guards, review text treated as untrusted input, and the user's own words for push, merge and PR.
+- Adds two stdlib scripts in `data/craft/superpowers/`: `wait_until.py` (poll with a timeout) and `find_polluter.py` (find the test that leaves a file behind; no shell). Tests: `test_craft_superpowers.py`.
+- The SessionStart bootstrap, the brainstorm server and the source shell scripts are listed in `later.md`, not shipped.
+
 ## [0.0.27] - 2026-11-27
 
 Caveman rebuilt in our own words: terse voice levels and memory-file compression.
