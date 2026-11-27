@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.27] - 2026-11-27
+
+Caveman rebuilt in our own words: terse voice levels and memory-file compression.
+
+- Work craft: new `caveman` folder: terse voice in three levels with a never-cut list and the cases that force full sentences; short commit, review and helper-report forms; compressing a memory file; task stances with stop rules.
+- `check_compressed.py`, a stdlib checker that fails a compressed memory file when code, URLs, headings, numbers or negations went missing, with a passing and a failing example.
+- Pointer from `context-efficiency.md` § 2 to the deeper terse-voice file.
+- Source: JuliusBrussee/caveman at 47c61be, Apache-2.0; all wording and code are our own.
+
 ## [0.0.26] - 2026-11-27
 
 Impeccable rebuilt in our own words: website audit, critique, hardening and copy.

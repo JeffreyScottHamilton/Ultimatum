@@ -295,9 +295,9 @@
       "pin": "47c61be",
       "licence": "Apache-2.0",
       "decision": "adapt",
-      "modules": ["shared"],
-      "reviewed": "2026-11-24",
-      "note": "Plain, terse answers that keep technical facts exact; own wording"
+      "modules": ["shared", "work"],
+      "reviewed": "2026-11-26",
+      "note": "Terse voice levels, short commit/review forms, memory-file compression check, task stances; own wording (work/references/craft/caveman)"
     },
     {
       "id": "karpathy-guidelines",

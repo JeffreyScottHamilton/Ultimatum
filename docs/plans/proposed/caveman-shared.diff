@@ -1,0 +1,28 @@
+# Proposed edits to shared files for the caveman rebuild (not applied; shared files are off limits on this branch)
+
+--- a/plugins/ultimatum/skills/work/references/context-efficiency.md
++++ b/plugins/ultimatum/skills/work/references/context-efficiency.md
+@@ ## 2. Terse voice (chat prose only)
+ - If the user asks for "caveman", "be brief", or "less tokens", go terser in prose. The table in §1 still applies.
++- Deeper: `craft/caveman/terse-voice.md` (levels, never-cut list, when to switch back), `craft/caveman/compress-memory.md` (shrinking a memory file, with a checker).
+
+--- a/plugins/ultimatum/data/upstreams.json
++++ b/plugins/ultimatum/data/upstreams.json
+@@ "id": "caveman"
+-      "modules": ["shared"],
+-      "reviewed": "2026-11-24",
+-      "note": "Plain, terse answers that keep technical facts exact; own wording"
++      "modules": ["shared", "work"],
++      "reviewed": "2026-11-26",
++      "note": "Terse voice levels, short commit/review forms, memory-file compression check, task stances; own wording (work/references/craft/caveman)"
+
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+-| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | `3dc497a7f858` | Apache-2.0 | Terse voice that keeps every technical fact, command compression, role-based model routing |
++| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | `47c61be` | Apache-2.0 | Terse voice levels that keep every technical fact, short commit and review forms, memory-file compression, task stances |
+
+--- a/docs/CREDITS.md
++++ b/docs/CREDITS.md
+(same row change as plugins/ultimatum/CREDITS.md)
+
+# SKILL.md: no change needed; work/SKILL.md already routes terse requests through context-efficiency.md.

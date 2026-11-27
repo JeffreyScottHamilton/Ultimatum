@@ -1,0 +1,4 @@
+- Work craft: new `caveman` folder: terse voice in three levels with a never-cut list and the cases that force full sentences; short commit, review and helper-report forms; compressing a memory file; task stances with stop rules.
+- `check_compressed.py`, a stdlib checker that fails a compressed memory file when code, URLs, headings, numbers or negations went missing, with a passing and a failing example.
+- Pointer from `context-efficiency.md` § 2 to the deeper terse-voice file (proposed).
+- Source: JuliusBrussee/caveman at 47c61be, Apache-2.0; all wording and code are our own.

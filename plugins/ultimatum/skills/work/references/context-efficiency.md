@@ -25,6 +25,7 @@ When you shorten output, say what was dropped and how to get it back. A gap in e
   - anything the user must decide
   - anything written into the repository (code, comments, docs, commit messages), which follows the project's style
 - If the user asks for "caveman", "be brief", or "less tokens", go terser in prose. The table in §1 still applies.
+- Deeper: `craft/caveman/terse-voice.md` (levels, never-cut list, when to switch back), `craft/caveman/compress-memory.md` (shrinking a memory file, with a checker).
 
 ## 3. Noisy commands: `ult run`
 

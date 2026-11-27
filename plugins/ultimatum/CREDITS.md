@@ -11,7 +11,7 @@ Thank you to the authors and maintainers of these projects.
 | [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) | `6b056c848a98` | Apache-2.0 | Browser performance traces, network, console, and memory inspection (optional integration) |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `96608e078b2d` | MIT | Reuse-first, minimal-diff implementation discipline |
 | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `5eedffa87476` | Apache-2.0 | Repository graphs with confidence-tagged edges, queried rather than dumped (`ult map`) |
-| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | `3dc497a7f858` | Apache-2.0 | Terse voice that keeps every technical fact, command compression, role-based model routing |
+| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | `47c61be` | Apache-2.0 | Terse voice levels that keep every technical fact, short commit and review forms, memory-file compression, task stances |
 | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `f6b76575f949` | MIT | Deliberate visual direction, anti-generic design rules, bounded critique gates; website craft references (page plans, heroes, sections, motion, grounds, quality gate) |
 | [nutlope/hallmark](https://github.com/nutlope/hallmark) | `04977e15f3df` | MIT | Website craft references: floor and gate tiers, page shapes, hero postures, compositions, themes (craft/hallmark) |
 | [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | `1482e84` | MIT | Explanatory isometric figures: craft, shading, motion, WebGL, print and publishing (website craft references) |
