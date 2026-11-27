@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.54] - 2026-11-27
+
+Solo by default, one Sonnet coder
+
+- `ultimatum:worker` now runs on Sonnet instead of Haiku. It is the one coder the session hands a bounded chunk to (payments, data wiring, an API, tests), while the session keeps the design-heavy work itself.
+- `work/SKILL.md`, `orchestration.md` and `context-efficiency.md` now start from solo: every helper starts cold and re-reads, so most jobs are cheapest done by the session alone. A large job gets one coder at most, a scout for wide reading and one review at the end. The old rule that the manager never edits files is gone, and fix rounds drop from five to two.
+- New tests in `tests/test_subagents.py`.
+
 ## [0.0.53] - 2026-11-27
 
 Token check for pages, components and brand assets

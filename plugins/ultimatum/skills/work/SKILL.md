@@ -39,7 +39,7 @@ Shipping (only when asked): `release/SKILL.md`; deploy or publish only on the us
 
 Locate with scoped search (`ult search`, `ult symbols`, `ult refs`) → state the check (beyond FAST) → minimal change (test first when testable) → verify with `ult run` → review `git diff` → report. Lost after two focused searches, or 3+ areas: `ult map`, then `code-map.md` (Graphify on big repos), then confirm in code.
 
-Small jobs stay solo. Use helpers only when they save time or rework: `ultimatum:scout` for wide sweeps; `ultimatum:worker` for one owned slice (Haiku; `model: sonnet` for judgment; brief: goal, guide, owned files, check, `ult` command; parallel workers own separate files; re-run its check); `ultimatum:reviewer` optional; `ultimatum:security-hunter`/`-verifier` for audits and high or critical findings. Redact secrets in briefs. You own the result.
+Solo is the default: every helper starts cold and re-reads, so it costs tokens. Use one only when it saves time or rework: `ultimatum:scout` for wide sweeps; one `ultimatum:worker` (the Sonnet coder) for a bounded slice such as payments or data wiring while you keep the design work, never several coders at once (brief: goal, guide, owned files, check, `ult` command; re-run its check); `ultimatum:reviewer` optional; `ultimatum:security-hunter`/`-verifier` for audits and high or critical findings. Redact secrets in briefs. You own the result.
 
 After a long task or a correction: `ult learn add "<lesson>" --scope project`. At milestones: `ult handoff write`.
 
