@@ -23,7 +23,9 @@ Ask which one before building if it is not clear; converting later loses layout.
 - colours and faces are CSS variables at the top; change them to the brand's and nothing else needs to change;
 - print styles put one slide on each 1920×1080 page, so the browser's print to PDF gives a clean file.
 
-Copy it into the project, rename it, then replace the sample slides with the agreed list from `story.md`. Keep one stylesheet in the file; add layout classes (from `slides.md`) as you need them rather than styling each slide by hand.
+Copy it into the project, rename it, then replace the sample slides with the agreed list from `story.md`.
+
+Or build it from content: `deck_build.py starter seed > deck.json` (any type in `deck-types.csv`) writes one entry per planned slide (beat, layout, empty fields; `deck_build.py fields` lists what each layout reads). Fill in the words, add a `theme` (`bg`, `ink`, `muted`, `accent`, `line` as `#rrggbb`, `display`, `body` as font lists; low-contrast colours are refused), then `deck_build.py build deck.json -o deck.html`. It escapes all text, refuses images without alt text, and runs both checkers on the result: exit 1 means it built but has findings to fix in the content. The layouts stay plain on purpose; give the brand's look through the theme and a few added classes, not by hand-editing each slide. Keep one stylesheet in the file; add layout classes (from `slides.md`) as you need them rather than styling each slide by hand.
 
 Fonts: link web fonts with a pinned URL, or use faces installed everywhere if the file must work offline. Embed images as files next to the deck, or as data URIs for a single-file hand-off; keep the file under about 20 MB so it emails.
 

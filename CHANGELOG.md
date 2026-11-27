@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.58] - 2026-11-27
+
+Deck builder: content file to checked HTML deck
+
+- New `data/craft/decks/deck_build.py` (stdlib only): `starter TYPE` prints a content file laid out from the deck type's plan; `build deck.json -o deck.html` renders all 18 layouts into the template frame (fit to window, keys, print to PDF), escapes every text field, refuses images without alt text, `javascript:` image paths, unknown theme keys and theme colours below contrast (ink 7:1, muted 4.5:1, accent 3:1), then runs `deck_check.py` and `deck_plan.py` on the result. Exit 1 when the built deck has findings.
+- `craft/decks/build.md` §2 explains the build route; `later.md` no longer lists the slide generator as left out. Closes the last gap where ui-ux-pro-max's slides beat ours (`docs/plans/comparison.md`).
+- Tests: `tests/test_deck_build.py` (self-check across all 8 deck types, frame kept, escaping, bad content refused, theme applied, CLI exit codes, stdlib only).
+
 ## [0.0.57] - 2026-11-27
 
 Marketing for the site, rebuilt from marketingskills
