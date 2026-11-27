@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.49] - 2026-11-27
+
+Base paths for vague UI requests
+
+- New `frontend-budget/vague-requests.md`: the four-step path for a request that names an area but no fault (match the area, ask once with at most four questions, measure one thing first, route on the answer), a table of 13 areas, four worked examples and what goes wrong.
+- New `data/craft/frontend-budget/vague-paths.csv`: per area, the words that point to it, the questions to ask, the guide each answer leads to, a first measurement and a fallback.
+- New `vague_path.py` (stdlib): `match TEXT` names the area, the questions and the routes, and exits 4 when no area matches so the agent asks which area instead of guessing; `check` proves every route file exists; `--self-check` runs sample complaints.
+- `phase-routing.md` § 4 points to the new guide; `later.md`, the coverage map and the comparison table are updated.
+- Tests: the script's self-check and route check, a JSON match, exit codes 4 and 2, and each worked example in the guide must match what the script says.
+
 ## [0.0.48] - 2026-11-27
 
 Expo and React Native motion

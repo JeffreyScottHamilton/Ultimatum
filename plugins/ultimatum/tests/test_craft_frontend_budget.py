@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 import os
 import re
 import subprocess
@@ -117,6 +118,45 @@ class Scripts(unittest.TestCase):
         self.assertEqual(self.run_script().returncode, 2)
         self.assertEqual(self.run_script("size", "/no/such/path").returncode, 2)
         self.assertEqual(self.run_script("plan", "/no/such/plan.json").returncode, 2)
+
+
+class VaguePaths(unittest.TestCase):
+    def run_script(self, *args):
+        return subprocess.run([sys.executable, "-I", str(DATA / "vague_path.py"), *args],
+                              capture_output=True, text=True, timeout=120)
+
+    def test_self_check_and_routes_exist(self):
+        r = self.run_script("--self-check")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        r = self.run_script("check")
+        self.assertEqual(r.returncode, 0, r.stdout)
+        self.assertIn("0 problem(s)", r.stdout)
+
+    def test_match_json(self):
+        r = self.run_script("match", "people get lost in the menu", "--json")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        out = json.loads(r.stdout)
+        self.assertEqual(out["area"], "navigation")
+        self.assertLessEqual(len(out["ask"]), 4)
+        self.assertTrue(out["first_check"])
+        for route in out["routes"]:
+            self.assertTrue((P / route["read"]).is_file(), route)
+
+    def test_no_area_exits_4_and_bad_usage_2(self):
+        r = self.run_script("match", "make it better")
+        self.assertEqual(r.returncode, 4, r.stdout)
+        self.assertIn("Which area", r.stdout)
+        self.assertEqual(self.run_script().returncode, 2)
+        self.assertEqual(self.run_script("nope").returncode, 2)
+
+    def test_guide_examples_match_the_script(self):
+        text = (CRAFT / "vague-requests.md").read_text(encoding="utf-8")
+        found = re.findall(r'## Worked example \d+: "([^"]+)"\n\n- \*\*Area:\*\* `([a-z-]+)`', text)
+        self.assertGreaterEqual(len(found), 3)
+        for quote, area in found:
+            with self.subTest(quote=quote):
+                r = self.run_script("match", quote, "--json")
+                self.assertEqual(json.loads(r.stdout)["area"], area)
 
 
 if __name__ == "__main__":

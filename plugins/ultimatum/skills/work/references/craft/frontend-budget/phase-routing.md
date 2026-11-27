@@ -38,6 +38,8 @@ Call a complaint vague if it points at no specific fault ("still bad", "improve 
 4. Before the answers: no critique, no direction, no prototype. One neutral line about what exists is fine.
 5. If the user says "you decide", run Diagnose with Direction on the main page, as for any complaint about looks.
 
+The question sets, routes and first measurement for each area, with worked examples, are in `vague-requests.md`.
+
 ## 5. Finish the same way
 
 For anything a user sees: desktop and mobile screenshots read back (`../../browser-verification.md` § 5), the review pack's checks, a motion review if the change moves, fix and recapture. Without a browser, say that the visual check did not run; do not report it as passed. Run one finish reviewer per page, not every pack's reviewer in turn.
