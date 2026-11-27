@@ -26,8 +26,8 @@ Five questions, each scored ours better / even / upstream better:
 | emil-motion | 18 files, 89 KB, 5 tables | 339 KB | 4 (Expo, Swift) | ours for web | Expo and React Native recipes |
 | frontend-budget | 6 files, 16 KB, 1 script, plus 4 page guides (14 KB) in the website skill | 3.4 MB | 15 (identity flow, pack rulings) | ours on load cost; even on page anatomy (was upstream) | Fixed in 0.0.42: `website/references/craft/pages/` covers landing order, developer-product landings and settings areas. Upstream's still has more worked examples |
 | gstack-eng | 11 files, 34 KB, 2 scripts | 13 MB | 11 (runtime, YC coaching) | ours | Nothing in scope |
-| hallmark | 31 files, 172 KB, 5 tables | 685 KB | 20 (all scripts) | even (was upstream) | Fixed in 0.0.38: `page_lint.py` runs 18 of the tells; upstream's linter still covers more gates |
-| impeccable | 13 files, 57 KB | 12 MB | 21 (command menu, visualize) | even (was upstream) | Fixed in 0.0.38: `page_lint.py` is our scanner; upstream's detector also renders pages in a browser |
+| hallmark | 31 files, 172 KB, 5 tables | 685 KB | 20 (all scripts) | ours on static checks (was upstream) | Fixed in 0.0.43: `page_lint.py` runs every machine-checkable gate and slop tell, reads components and Tailwind, resolves `var()` for contrast, takes reasoned waivers and prints CI annotations. Upstream still renders pages in a browser |
+| impeccable | 13 files, 57 KB | 12 MB | 21 (command menu, visualize) | ours on static checks (was upstream) | Fixed in 0.0.43: `page_lint.py` covers the detector's static rules plus genre exemptions and reasoned waivers. Upstream's detector also renders pages in a browser |
 | mattpocock | 9 files, 31 KB, 1 script | 697 KB | 3 | ours | Nothing in scope |
 | react-performance | 4 files, 1 script | not read (no licence) | n/a | ours on checkability (`react_scan.py`, measuring guide) | Unknown; text not read |
 | decks | 6 files, 1 script, 1 template | ui-ux-pro-max slides (MIT) | 6 (lookup tables, generator) | ours on checkability (`deck_check.py`) | Searchable layout and strategy tables |

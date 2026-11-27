@@ -6,7 +6,7 @@ Read when a rule elsewhere points here, or when planning what to build next. The
 
 | Source tool | Did | Stand-in now | To ship it |
 |---|---|---|---|
-| lint script (static), partly done | read stylesheets, markup and class strings against about 90 gates | `../design-review-qa/page-lint.md` checks the machine-checkable gates 2a, 2b and 7a and the matching slop tells; the rest stay with `gates.md` by hand or by a reviewer | more gates in `page_lint.py` |
+| lint script (static), done in 0.0.43 | read stylesheets, markup and class strings against about 90 gates | `../design-review-qa/page-lint.md`: every gate a script can check without rendering, plus the matching slop tells; judged gates stay with `gates.md` | nothing |
 | render lint | drove headless Chrome at 8 widths to catch overflow, wrapping, sticky stacking, contrast | Playwright by hand (`responsive.md`, `imagery.md`) | a Python Playwright script, run by the user |
 | theme tool | dealt, scaffolded, checked, drew, validated themes and logged picks | `themes.md` and `themes.csv`, choose and write by hand | a stdlib script filtering the CSV and emitting a token file |
 | capture script | started a product and screenshotted its screens | the Playwright snippet in `imagery.md` | a Python capture helper |

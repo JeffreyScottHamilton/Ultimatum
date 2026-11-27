@@ -21,8 +21,9 @@ def rules():
 
 
 class PageLint(unittest.TestCase):
-    def test_sloppy_page_flags_every_rule(self):
-        p = run(os.path.join(DATA, "examples", "sloppy.html"))
+    def test_sloppy_pages_flag_every_rule(self):
+        ex = os.path.join(DATA, "examples")
+        p = run(*[os.path.join(ex, n) for n in sorted(os.listdir(ex)) if n.startswith("sloppy") and not n.endswith(".css")])
         self.assertEqual(p.returncode, 1)
         for r in rules():
             self.assertIn(" %s [" % r, p.stdout, r)
@@ -55,6 +56,47 @@ class PageLint(unittest.TestCase):
         p = run(os.path.join(DATA, "examples", "sloppy.html"), "--json", "--only", "placeholder")
         rows = json.loads(p.stdout)
         self.assertTrue(rows and all(r["rule"] == "placeholder" for r in rows))
+
+    def test_component_file_reads_tailwind(self):
+        p = run(os.path.join(DATA, "examples", "sloppy-component.tsx"))
+        for r in ("purple-gradient", "gradient-text", "hero-vh", "focus-removed", "two-icon-libraries", "double-sticky"):
+            self.assertIn(" %s [" % r, p.stdout, r)
+
+    def _page(self, d, body):
+        page = os.path.join(d, "a.html")
+        with open(page, "w") as fh:
+            fh.write(body)
+        return page
+
+    def test_waiver_with_reason(self):
+        with tempfile.TemporaryDirectory() as d:
+            page = self._page(d, "<!-- page-lint: allow placeholder: demo fixture for a talk -->\n<p>Lorem ipsum</p>")
+            self.assertEqual(run(page).returncode, 0, run(page).stdout)
+
+    def test_waiver_without_reason_waives_nothing(self):
+        with tempfile.TemporaryDirectory() as d:
+            page = self._page(d, "<!-- page-lint: allow placeholder -->\n<p>Lorem ipsum</p>")
+            out = run(page).stdout
+            self.assertIn(" placeholder [", out)
+            self.assertIn(" waiver-no-reason [", out)
+
+    def test_genre_exempts(self):
+        css = os.path.join(DATA, "examples", "sloppy.css")
+        self.assertIn(" frosted-glass [", run(css).stdout)
+        self.assertNotIn(" frosted-glass [", run(css, "--genre", "atmospheric").stdout)
+
+    def test_github_format(self):
+        p = run(os.path.join(DATA, "examples", "sloppy.html"), "--format", "github", "--only", "placeholder")
+        self.assertTrue(p.stdout.startswith("::error file="), p.stdout)
+
+    def test_contrast(self):
+        with tempfile.TemporaryDirectory() as d:
+            bad = self._page(d, "<style>.n { color: #9a9a9a; background: #ffffff; }</style><p class=n>Open daily</p>")
+            self.assertIn(" low-contrast [", run(bad, "--only", "low-contrast").stdout)
+            ok = os.path.join(d, "b.html")
+            with open(ok, "w") as fh:
+                fh.write("<style>.n { color: #1a1a1a; background: #ffffff; }</style><p class=n>Open daily</p>")
+            self.assertEqual(run(ok, "--only", "low-contrast").returncode, 0)
 
 
 class PageLintGuide(unittest.TestCase):

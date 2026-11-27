@@ -1,11 +1,13 @@
 <!doctype html>
 <html><head><title>Northline Bikes</title>
 <style>
-:root { --ink: #1d2320; --paper: #f6f4ee; --accent: #c4512b; }
-body { font-family: "Fraunces", Georgia, serif; color: var(--ink); background: var(--paper); }
-h1 { font-size: 56px; }
+:root { --ink: #1a2421; --paper: #f1f5f2; --accent: #2d6a4f; --font-display: "Fraunces", Georgia, serif; }
+body { font-family: var(--font-display); color: var(--ink); background: var(--paper); }
+h1 { font-size: 56px; overflow-wrap: anywhere; }
 h2 { font-size: 32px; }
-.btn { border-radius: 4px; background: var(--accent); }
+.btn { border-radius: 4px; color: var(--paper); background: var(--accent); }
+.btn:active { transform: translateY(1px); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .panel { border-radius: 10px; }
 </style></head>
 <body>

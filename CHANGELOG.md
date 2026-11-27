@@ -2,6 +2,18 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.43] - 2026-11-27
+
+Page lint covers every static gate
+
+- `data/craft/design-review-qa/page_lint.py` rewritten: 87 rules (was 18) across colour, type, layout, effects, copy, motion, states, images and icons, each tied to a slop tell or a Hallmark gate.
+- Real CSS parsing (nesting, `@keyframes`, `@media`), `var()` resolved from token blocks, WCAG contrast for hex, rgb, hsl, oklch and named colours.
+- Reads component files (`.jsx`, `.tsx`, `.vue`, `.svelte`, `.astro`): class strings, `cn()`/`clsx()`, Tailwind utilities and variants, icon-library imports.
+- New: `--genre` exemptions, reasoned waivers (`page-lint: allow RULE: reason`; no reason waives nothing), `--format github` annotations, `--rules`.
+- New examples `sloppy-more.css`, `sloppy-more.html`, `sloppy-component.tsx`; together the sloppy examples trigger every rule and `clean.html` stays clean.
+- `page-lint.md` rewritten with the full rule table; comparison and Hallmark `later.md` updated.
+- Tests: `test_page_lint.py` (15).
+
 ## [0.0.42] - 2026-11-27
 
 Landing and settings page anatomy
