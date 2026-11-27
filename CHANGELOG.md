@@ -2,6 +2,17 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.50] - 2026-11-27
+
+Deck plan and structure check
+
+- New `data/craft/decks/deck-types.csv`: eight deck types (seed, growth, sales, launch, demo, update, talk, proposal) with their usual length, arc, beats in order with the layouts that carry each, and what changes when the deck is sent ahead.
+- New `data/craft/decks/layouts.csv`: 18 layouts with what each is for, the one thing it holds, its word budget and whether it resets attention.
+- New `deck_plan.py` (stdlib): `plan TYPE` prints the slide list to fill in (`--read` for decks sent ahead, `--html` for marked section skeletons); `check DECK --type TYPE` reports missing beats, beats out of order, layouts over their word budget, three same-layout slides in a row, seven slides without a reset, an ask that is not last, and an early agenda; `--self-check` checks every type's own plan.
+- `deck_check.py --type` takes the slide limit from the deck type. `template.html` is marked with beats and layouts, and a new `examples/seed-deck.html` passes both checks.
+- New guide `craft/decks/plan-check.md`; `build.md`, `index.md`, `later.md`, the coverage map and the comparison table are updated.
+- Tests: the self-check, the example passing both checks, each structural rule firing on a broken deck, plan output, the type limit, and the guide's rule table matching the script.
+
 ## [0.0.49] - 2026-11-27
 
 Base paths for vague UI requests

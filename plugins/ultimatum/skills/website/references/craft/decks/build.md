@@ -83,7 +83,7 @@ python3 ../../../../../data/craft/decks/deck_check.py deck.html
 | `no-notes` | no speaker notes on any slide |
 | `too-many-slides` | more slides than `--max-slides` |
 
-What it cannot see: whether the story holds, whether headlines read as a sequence, contrast on images, whether a chart matches its headline, or whether numbers are true. Those need a person, or the page linter (`../design-review-qa/page-lint.md`) for the visual tells, and a read through the headlines in order.
+For structure (beats, their order, word budgets per layout) run `deck_plan.py check` (`plan-check.md`). What neither can see: whether the story holds, whether headlines read as a sequence, contrast on images, whether a chart matches its headline, or whether numbers are true. Those need a person, or the page linter (`../design-review-qa/page-lint.md`) for the visual tells, and a read through the headlines in order.
 
 ## 6. Before hand-off
 

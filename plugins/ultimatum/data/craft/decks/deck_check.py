@@ -5,7 +5,7 @@ Each <section> is one slide (or each element with class "slide" if there are
 none). Text inside <aside class="notes"> is speaker notes and is not counted.
 Standard library only; reads local files and never fetches anything.
 
-Usage: deck_check.py DECK.html [--max-slides N] [--only RULE,...] [--json] [--rules]
+Usage: deck_check.py DECK.html [--type TYPE] [--max-slides N] [--only RULE,...] [--json] [--rules]
 Exit: 0 no findings, 1 findings, 2 bad arguments or unreadable file.
 """
 from __future__ import annotations
@@ -46,6 +46,8 @@ class Slide:
         self.tables: list[list[int]] = []
         self.img_no_alt: list[int] = []
         self.has_notes = False
+        self.beat = ""      # data-beat, read by deck_plan.py
+        self.layout = ""    # data-layout
 
 
 class DeckParser(HTMLParser):
@@ -81,6 +83,8 @@ class DeckParser(HTMLParser):
         opens = self.cur is None and self._is_slide(tag, attrs)
         if opens:
             self.cur = Slide(line)
+            self.cur.beat = (a.get("data-beat") or "").strip()
+            self.cur.layout = (a.get("data-layout") or "").strip()
             self.slides.append(self.cur)
         if tag not in VOID:
             self.stack.append((tag, opens))
@@ -212,10 +216,19 @@ def check(path, text, max_slides):
     return p.slides, found
 
 
+def deck_type_limits():
+    import csv
+    import os
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "deck-types.csv")
+    with open(path, encoding="utf-8", newline="") as fh:
+        return {r["type"]: int(r["max"]) for r in csv.DictReader(fh)}
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Check an HTML slide deck.")
     ap.add_argument("deck", nargs="?")
-    ap.add_argument("--max-slides", type=int, default=20)
+    ap.add_argument("--max-slides", type=int, default=None)
+    ap.add_argument("--type", default="", help="deck type from deck-types.csv; sets the slide limit")
     ap.add_argument("--only", default="")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--rules", action="store_true")
@@ -227,6 +240,14 @@ def main(argv=None):
     if not a.deck:
         ap.print_usage(sys.stderr)
         return 2
+    max_slides = a.max_slides or 20
+    if a.type:
+        limits = deck_type_limits()
+        if a.type not in limits:
+            print(f"unknown deck type {a.type!r}; one of: " + ", ".join(limits), file=sys.stderr)
+            return 2
+        if a.max_slides is None:
+            max_slides = limits[a.type]
     only = {r.strip() for r in a.only.split(",") if r.strip()}
     bad = only - set(RULES)
     if bad:
@@ -238,7 +259,7 @@ def main(argv=None):
     except OSError as e:
         print(f"cannot read {a.deck}: {e}", file=sys.stderr)
         return 2
-    slides, found = check(a.deck, text, a.max_slides)
+    slides, found = check(a.deck, text, max_slides)
     if only:
         found = [f for f in found if f["rule"] in only]
     found.sort(key=lambda f: (f["line"], f["rule"]))

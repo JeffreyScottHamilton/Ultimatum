@@ -39,7 +39,7 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design-system/data/slide-charts.csv` | covered | `../decks/charts.md` § Which chart |
 | `design-system/data/slide-color-logic.csv` | covered | `../decks/slides.md` § Colour and backgrounds |
 | `design-system/data/slide-copy.csv` | merged with slides/references/copywriting-formulas.md | `../decks/story.md` |
-| `design-system/data/slide-layout-logic.csv` | later | `../decks/later.md` (lookup tables) |
+| `design-system/data/slide-layout-logic.csv` | covered | `../decks/plan-check.md` (`deck-types.csv`, `layouts.csv`) |
 | `design-system/data/slide-layouts.csv` | merged with slides/references/layout-patterns.md | `../decks/slides.md` |
 | `design-system/data/slide-strategies.csv` | merged with slides/references/slide-strategies.md | `../decks/story.md` |
 | `design-system/data/slide-typography.csv` | covered | `../decks/slides.md` § Type that reads across a room |
@@ -55,7 +55,7 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design-system/scripts/generate-slide.py` | later | `../decks/later.md` (generator) |
 | `design-system/scripts/generate-tokens.cjs` | expanded | `tools/build_tokens.py` (our own stdlib generator; source not run) |
 | `design-system/scripts/html-token-validator.py` | later | `later.md` § Source scripts not rebuilt |
-| `design-system/scripts/search-slides.py` | later | `../decks/later.md` (lookup tables) |
+| `design-system/scripts/search-slides.py` | covered | `../decks/plan-check.md` (`deck_plan.py plan` and `check`) |
 | `design-system/scripts/slide-token-validator.py` | expanded | `data/craft/decks/deck_check.py`, 12 rules |
 | `design-system/scripts/slide_search_core.py` | later | `../decks/later.md` (lookup tables) |
 | `design-system/scripts/validate-tokens.cjs` | merged with tools/build_tokens.py | reference and contrast checks in `tools/build_tokens.py` |

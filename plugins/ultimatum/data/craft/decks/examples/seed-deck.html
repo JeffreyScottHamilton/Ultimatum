@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinic booking: seed pitch (example)</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --ink: #1d1b18; --muted: #6b665d; --accent: #c2410c; --line: #d9d4c9;
+    --display: Georgia, "Times New Roman", serif; --body: "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: #2a2824; }
+  .deck { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; }
+  .slide {
+    position: relative; width: 1920px; height: 1080px; padding: 80px;
+    background: var(--bg); color: var(--ink); font: 34px/1.35 var(--body);
+    scroll-snap-align: start; transform-origin: top left; overflow: hidden;
+  }
+  .slide h1, .slide h2 { font-family: var(--display); font-weight: 400; line-height: 1.1; }
+  .slide h1 { font-size: 120px; max-width: 18ch; }
+  .slide.title { display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding-bottom: 140px; }
+  .slide h2 { font-size: 64px; max-width: 26ch; margin-bottom: 48px; }
+  .slide p, .slide li { max-width: 40ch; }
+  .slide ul { padding-left: 1.1em; display: grid; gap: 20px; }
+  .label { font-size: 26px; color: var(--muted); }
+  .num { position: absolute; right: 80px; bottom: 48px; font-size: 24px; color: var(--muted); }
+  .big { font: 220px/1 var(--display); color: var(--accent); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .notes { display: none; }
+  @media print {
+    @page { size: 1920px 1080px; margin: 0; }
+    html, body { background: none; }
+    .deck { height: auto; overflow: visible; }
+    .slide { break-after: page; transform: none !important; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="deck">
+
+<section class="slide title" data-beat="title" data-layout="title">
+  <p class="label">Example company · Seed round · Month 2027</p>
+  <h1>Booking that fills the gaps in a small clinic's day</h1>
+  <aside class="notes">Who we are and the point in one sentence. Every name and number in this deck is invented for the example.</aside>
+</section>
+
+<section class="slide" data-beat="problem" data-layout="statement">
+  <h2>One appointment in six at a small clinic is a no-show</h2>
+  <span class="num">2</span>
+  <aside class="notes">Tell one clinic manager's week. Source the one-in-six figure in the real deck.</aside>
+</section>
+
+<section class="slide" data-beat="solution" data-layout="screenshot">
+  <h2>Patients rebook from a text in two taps, so the slot is filled again</h2>
+  <div class="shot" role="img" aria-label="The rebooking text on a phone, with the two buttons"></div>
+  <span class="num">3</span>
+  <aside class="notes">Show the text a patient receives, then the clinic's calendar filling in.</aside>
+</section>
+
+<section class="slide" data-beat="proof" data-layout="big-number">
+  <h2>Pilot clinics cut no-shows from 18% to 7% in three months</h2>
+  <p class="big">7%</p>
+  <p>No-show rate, down from 18%. Twelve pilot clinics.</p>
+  <span class="num">4</span>
+  <aside class="notes">How it was measured: same three months a year earlier, same clinics.</aside>
+</section>
+
+<section class="slide" data-beat="market" data-layout="big-number">
+  <h2>31,000 independent clinics still book by phone</h2>
+  <p class="big">31,000</p>
+  <p>Clinics × $149 a month = $55M a year. Counted from a public register.</p>
+  <span class="num">5</span>
+  <aside class="notes">Bottom-up count; say which register and the year.</aside>
+</section>
+
+<section class="slide" data-beat="model" data-layout="split">
+  <h2>Clinics pay $149 a month and earn it back in two saved visits</h2>
+  <div class="split"><p class="big">$149</p><p>A month per clinic, billed yearly. Two saved visits cover it.</p></div>
+  <span class="num">6</span>
+  <aside class="notes">Price, how often, who pays.</aside>
+</section>
+
+<section class="slide" data-beat="competition" data-layout="table">
+  <h2>Phone and paper are the real competition, and they cannot rebook</h2>
+  <table><tr><th></th><th>Phone</th><th>Big suites</th><th>Us</th></tr><tr><td>Rebooks</td><td>no</td><td>no</td><td>yes</td></tr><tr><td>Set up</td><td>none</td><td>weeks</td><td>a day</td></tr></table>
+  <span class="num">7</span>
+  <aside class="notes">Be fair to the big suites: they do more, and cost more.</aside>
+</section>
+
+<section class="slide" data-beat="go-to-market" data-layout="timeline">
+  <h2>The next 100 clinics come through two dental groups</h2>
+  <ol><li>Now: 40 clinics</li><li>Spring: group A, 30 clinics</li><li>Summer: group B, 60 clinics</li></ol>
+  <span class="num">8</span>
+  <aside class="notes">Name the stage each group is at.</aside>
+</section>
+
+<section class="slide" data-beat="team" data-layout="team">
+  <h2>We ran scheduling at a hospital chain for six years</h2>
+  <p>Two founders: product and engineering. One clinic manager advises.</p>
+  <span class="num">9</span>
+  <aside class="notes">Relevant facts only.</aside>
+</section>
+
+<section class="slide" data-beat="ask" data-layout="ask">
+  <h2>$2M takes us from 40 to 400 clinics in 18 months</h2>
+  <div class="split"><p class="big">$2M</p><p>18 months of runway. Contact: the founder's email.</p></div>
+  <span class="num">10</span>
+  <aside class="notes">Stop after the ask and take questions.</aside>
+</section>
+
+</main>
+<script>
+  // Fit each 1920x1080 slide to the window, and move with the arrow keys, space and page keys.
+  const slides = [...document.querySelectorAll('.slide')];
+  const deck = document.querySelector('.deck');
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    slides.forEach(el => { el.style.transform = `scale(${s})`; el.style.marginBottom = `${1080 * (s - 1)}px`; el.style.marginRight = `${1920 * (s - 1)}px`; });
+  }
+  function current() { return Math.round(deck.scrollTop / (deck.scrollHeight / slides.length)); }
+  addEventListener('resize', fit); fit();
+  addEventListener('keydown', e => {
+    const step = { ArrowRight: 1, ArrowDown: 1, PageDown: 1, ' ': 1, ArrowLeft: -1, ArrowUp: -1, PageUp: -1 }[e.key];
+    if (!step) return;
+    e.preventDefault();
+    const i = Math.max(0, Math.min(slides.length - 1, current() + step));
+    slides[i].scrollIntoView();
+  });
+</script>
+</body>
+</html>

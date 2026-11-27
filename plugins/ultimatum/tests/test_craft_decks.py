@@ -101,5 +101,112 @@ class DeckCheck(unittest.TestCase):
         self.assertNotRegex(src, r"urllib|http\.client|socket|requests")
 
 
+PLAN = DATA / "deck_plan.py"
+
+
+def plan(*args):
+    return subprocess.run([sys.executable, "-I", str(PLAN), *args], capture_output=True, text=True)
+
+
+def marked(slides):
+    """slides: (beat, layout, body) tuples -> a deck with one headline per slide."""
+    out = []
+    for i, (beat, layout, body) in enumerate(slides, 1):
+        out.append(f'<section class="slide" data-beat="{beat}" data-layout="{layout}">'
+                   f'<h2>Slide {i} states its own point plainly</h2><p>{body}</p>'
+                   f'<aside class="notes">n</aside></section>')
+    return "\n".join(out)
+
+
+class DeckPlan(unittest.TestCase):
+    def check_html(self, html, kind):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "deck.html"
+            f.write_text(html, encoding="utf-8")
+            p = plan("check", str(f), "--type", kind, "--json")
+        return p.returncode, {x["rule"] for x in json.loads(p.stdout)["findings"]}
+
+    def seed(self):
+        return [("title", "title", "Example"), ("problem", "statement", "x"), ("solution", "screenshot", "x"),
+                ("proof", "big-number", "7%"), ("market", "big-number", "31,000"), ("model", "split", "x"),
+                ("competition", "table", "x"), ("go-to-market", "timeline", "x"), ("team", "team", "x"),
+                ("ask", "ask", "$2M")]
+
+    def test_self_check(self):
+        p = plan("--self-check")
+        self.assertEqual(p.returncode, 0, p.stdout)
+
+    def test_example_passes_both_checks(self):
+        deck = str(DATA / "examples" / "seed-deck.html")
+        self.assertEqual(run(deck, "--type", "seed").returncode, 0)
+        p = plan("check", deck, "--type", "seed")
+        self.assertEqual(p.returncode, 0, p.stdout)
+
+    def test_clean_seed_passes(self):
+        self.assertEqual(self.check_html(marked(self.seed()), "seed"), (0, set()))
+
+    def test_each_structural_rule_fires(self):
+        s = self.seed()
+        cases = {
+            "missing-beat": s[:6] + s[7:],
+            "beat-order": [s[0], s[3], s[1], s[2]] + s[4:],
+            "ask-not-last": s[:-2] + [s[-1], s[-2]],
+            "over-budget": s[:1] + [("problem", "statement", " ".join(["word"] * 20))] + s[2:],
+            "same-layout-run": s[:3] + [("proof", "big-number", "1"), ("proof", "big-number", "2")] + s[4:],
+            "layout-fit": s[:1] + [("problem", "table", "x")] + s[2:],
+            "unknown-layout": s[:1] + [("problem", "hero-banner", "x")] + s[2:],
+            "agenda-early": s[:1] + [("agenda", "agenda", "x")] + s[1:],
+            "slide-count": s[:1] + s[-1:],
+            "no-reset": [s[0]] + [(b, "split", "x") for b in ("problem", "solution", "proof", "market", "model",
+                                                             "competition", "go-to-market")] + s[8:],
+        }
+        for rule, slides in cases.items():
+            with self.subTest(rule=rule):
+                code, rules = self.check_html(marked(slides), "seed")
+                self.assertEqual(code, 1)
+                self.assertIn(rule, rules)
+
+    def test_unmarked_deck_is_one_finding(self):
+        code, rules = self.check_html("<section><h2>One slide with a point</h2></section>", "demo")
+        self.assertEqual(rules, {"unmarked", "slide-count"})
+
+    def test_plan_outputs(self):
+        out = json.loads(plan("plan", "seed", "--json").stdout)
+        self.assertEqual([s["beat"] for s in out["slides"]][:2], ["title", "problem"])
+        self.assertEqual(out["slides"][-1]["layout"], "ask")
+        read = json.loads(plan("plan", "seed", "--read", "--json").stdout)
+        self.assertGreater(read["slides"][3]["max_words"], out["slides"][3]["max_words"])
+        self.assertTrue(read["read_ahead_note"])
+        self.assertEqual(plan("plan", "launch", "--html").stdout.count('data-beat="'), 7)
+        self.assertEqual(plan("plan", "nope").returncode, 2)
+        self.assertEqual(plan("check", "x.html", "--type", "nope").returncode, 2)
+        self.assertEqual(plan().returncode, 2)
+
+    def test_type_sets_deck_check_limit(self):
+        deck = marked(self.seed())
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "deck.html"
+            f.write_text(deck, encoding="utf-8")
+            self.assertIn("too-many-slides", run(str(f), "--type", "demo").stdout)
+            self.assertEqual(run(str(f), "--type", "seed").returncode, 0)
+            self.assertEqual(run(str(f), "--type", "nope").returncode, 2)
+
+    def test_guide_rule_table_matches_script(self):
+        guide = (CRAFT / "plan-check.md").read_text(encoding="utf-8")
+        in_guide = set(re.findall(r"^\| `([a-z-]+)` \|", guide, re.M))
+        src = PLAN.read_text(encoding="utf-8")
+        in_script = set(re.findall(r'^    "([a-z-]+)": \("(?:high|medium|low)"', src, re.M))
+        self.assertEqual(in_guide, in_script)
+
+    def test_tables_use_known_layouts(self):
+        import csv
+        with open(DATA / "layouts.csv", encoding="utf-8", newline="") as fh:
+            layouts = {r["layout"] for r in csv.DictReader(fh)}
+        layouts_md = (CRAFT / "slides.md").read_text(encoding="utf-8").lower()
+        for name in layouts - {"agenda", "demo", "appendix"}:
+            with self.subTest(layout=name):
+                self.assertIn("| " + name.replace("-", " ").replace("before after", "before and after"), layouts_md)
+
+
 if __name__ == "__main__":
     unittest.main()

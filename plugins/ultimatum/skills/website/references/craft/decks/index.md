@@ -8,6 +8,7 @@ Read when the task is a slide deck: an investor pitch, a sales or launch deck, a
 2. `slides.md`: the slide grid, type sizes for a room and for a screen share, the dozen layouts most decks need, and colour.
 3. `charts.md`: choosing a chart for one message, and making that message the first thing seen.
 4. `build.md`: building the deck as one HTML file, speaker notes, exporting to PDF or PowerPoint, and checking it with `deck_check.py`.
+5. `plan-check.md`: the deck-type and layout tables, the slide list they print, and the check that a built deck has every beat in order and stays within each layout's word budget.
 
 `later.md` lists what this folder leaves out and why.
 
