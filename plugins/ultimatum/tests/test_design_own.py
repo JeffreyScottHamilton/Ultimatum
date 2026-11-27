@@ -115,7 +115,7 @@ class TestOwnColors(UltCase):
         if not VAULT.is_dir():
             self.skipTest("upstream copy not present (git-ignored vault)")
         p = subprocess.run([sys.executable, str(REPO / "tools" / "copy_check.py"), str(OWN), str(VAULT),
-                            "--skip", "fonts-meta.json"],
+                            "--skip", "fonts-meta.json", "--skip", "fonts.csv"],
                            capture_output=True, text=True)
         self.assertEqual(p.returncode, 0, p.stdout[-2000:])
 

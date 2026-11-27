@@ -1,6 +1,6 @@
 {
   "name": "ultimatum",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Ultimatum's website builder and default way of working in Claude Code. Websites: interview, approved brief, three design directions, build, browser check, live only on your yes. Coding: short plain answers first, a local router for fixes, debugging, CI, review and releases, with checks run in the session.",
   "author": {
     "name": "Jeffrey Scott Hamilton"

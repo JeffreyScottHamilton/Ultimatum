@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.23] - 2026-11-27
+
+Our own Google Fonts catalogue.
+
+- `data/design-own/fonts.csv`: all 2,043 Google Fonts families, built by `tools/build_fonts.py` from Google Fonts' own METADATA.pb files and human-assessed tags (licence, kind, weights, italic, axes, scripts, designer, date added, specimen and CSS links); search words, mood and style columns and the quality score are ours.
+- `ult design search "<need>" --in font` searches it; ties go to the better-made families.
+- The website skill and `shared/design-skills.md` point to it.
+- `tests/test_design_own_fonts.py`: builder check, known facts, real requests.
+
 ## [0.0.22] - 2026-11-27
 
 Website: a legal-risk pass before launch.

@@ -140,3 +140,18 @@ framework's official docs. Each row has a Docs URL; the build fails on a non-htt
 that stack's allow-list (the framework's domain, plus Stripe's docs for stacks with a checkout recipe, plus
 W3C/MDN for html-tailwind). Columns: Category, Guideline, Applies To, Severity (Critical/High/Medium/Low),
 Description, Docs URL, Do, Don't, Code Good, Code Bad. `--check` fails if a CSV is out of date.
+
+## fonts.csv
+
+Every family on Google Fonts. Built by `tools/build_fonts.py --from <google/fonts checkout>` from each family's METADATA.pb and `tags/all/families.csv` in https://github.com/google/fonts (the script's docstring has the sparse-checkout commands); `--check` validates the file without network. Facts (licence, designer, weights, axes, scripts, dates) are Google's; Keywords, Mood, Style Tags and Quality are derived by our script. The copy check skips this file because shared runs are designer names and number lists.
+
+| Column | Meaning |
+|---|---|
+| Family, Kind | the name; sans serif, serif, display, handwriting, monospace, slab serif or symbols |
+| Keywords | our search words from kind, mood and style tags |
+| Mood, Style Tags | Google's expressive tags scoring 60+ and style tags scoring 50+ |
+| Weights, Italic, Axes | static weights or the variable range; yes, no or only; every variable axis |
+| Scripts, Primary Script | writing systems covered; the main one for non-Latin families |
+| Quality | mean of Google's four quality tags (0-100) |
+| Licence, Designer, Added | OFL-1.1, Apache-2.0 or UFL-1.0; who made it; when it joined |
+| Specimen URL, CSS URL | the family page and a working css2 link |

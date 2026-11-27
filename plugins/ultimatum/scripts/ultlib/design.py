@@ -57,6 +57,8 @@ DOMAINS: dict[str, tuple[str, tuple[str, ...], tuple[str, ...]]] = {
                "Accessibility Notes", "Library Recommendation")),
     "motion": ("motion.csv", ("Category", "Intensity Tier", "Keywords", "Trigger"),
                ("Category", "Intensity Tier", "Trigger", "Duration", "Easing", "Do", "Don't", "Performance Notes")),
+    "font": ("fonts.csv", ("Family", "Kind", "Keywords", "Style Tags", "Scripts"),
+             ("Family", "Kind", "Mood", "Weights", "Italic", "Scripts", "Licence", "Specimen URL", "CSS URL")),
     "icon": ("icons.csv", ("Category", "Icon Name", "Keywords", "Best For", "Library"),
              ("Icon Name", "Library", "Import Code", "Usage", "Best For")),
 }
@@ -152,6 +154,8 @@ def search(query: str, domain: str, n: int = 3) -> list[dict]:
     else:
         file, cols, show = DOMAINS[domain]
         rows = table(file)
+        if domain == "font":  # many families tie on keywords: better-made ones first
+            rows = sorted(rows, key=lambda r: -int(r.get("Quality") or 0))
         if domain in BY_BUSINESS:
             query = expand(query)
     return [dict({c: r.get(c, "") for c in show}, score=s) for s, r in rank(rows, cols, query, n)]
