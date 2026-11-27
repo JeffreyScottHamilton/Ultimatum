@@ -51,7 +51,7 @@ The full revision table and the license decisions are in `research/REVISIONS.md`
 
 | Project | Revision inspected | License | Use |
 |---|---|---|---|
-| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `3442615` | MIT (ui-styling folder is Apache-2.0, not taken) | Design tables bundled in `data/design/` with their MIT licence and changes listed in `NOTICE.md`; read by `ult design`. Still recommended as an optional install |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `3442615`, `a4fc248` | MIT (ui-styling folder is Apache-2.0) | Design tables bundled in `data/design/` with their MIT licence and changes listed in `NOTICE.md`; read by `ult design`. At `a4fc248`, the brand, design-system and ui-styling topics were rebuilt in our own words as `skills/website/references/craft/ui-ux-pro-max/` (no text, code or fonts taken). Still recommended as an optional install |
 | [remotion-dev/skills](https://github.com/remotion-dev/skills) | `89c8afa` | none | Reviewed and skipped (no licence); nothing used |
 | [JaimeJunr/claude-code-frontend-skills](https://github.com/JaimeJunr/claude-code-frontend-skills) | `7177def` | MIT (bundled plugins are Apache-2.0 or MIT) | Ideas for the 2.0 design and component modules; load budget, precedence and phase routing references (craft/frontend-budget) |
 | [magicuidesign/magicui](https://github.com/magicuidesign/magicui) | `d13c610` | MIT | Recommended as an optional install by `ult components`; not bundled |

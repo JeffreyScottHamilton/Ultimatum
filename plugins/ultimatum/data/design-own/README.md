@@ -155,3 +155,7 @@ Every family on Google Fonts. Built by `tools/build_fonts.py --from <google/font
 | Quality | mean of Google's four quality tags (0-100) |
 | Licence, Designer, Added | OFL-1.1, Apache-2.0 or UFL-1.0; who made it; when it joined |
 | Specimen URL, CSS URL | the family page and a working css2 link |
+
+## tokens/
+
+A starter token file in three layers (`starter.tokens.json`: primitives, semantic roles with light and dark values, component tokens, contrast pairs) and the two stylesheets built from it by `tools/build_tokens.py`: `starter.tokens.css` (plain custom properties) and `starter.theme.css` (Tailwind v4 `@theme`). Do not edit the CSS by hand; `--check` fails if it is stale, and the build fails if any listed pair is below its WCAG 2.2 floor. `ult design` reads only the CSV files here, so this folder does not change its results. Guides: `skills/website/references/craft/ui-ux-pro-max/`.

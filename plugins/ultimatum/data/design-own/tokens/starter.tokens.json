@@ -1,0 +1,91 @@
+{
+  "$description": "Ultimatum starter tokens: three layers (primitive, semantic, component). Edit values here, then run tools/build_tokens.py. Values are our own; replace the moss and ember families with the brand's.",
+  "primitive": {
+    "color": {
+      "ink": {
+        "50": "#f6f7f6", "100": "#eceeed", "200": "#d8dcda", "300": "#b9c0bd", "400": "#8f9894",
+        "500": "#6b7570", "600": "#535c58", "700": "#414845", "800": "#2c3230", "900": "#1c201f", "950": "#101312"
+      },
+      "moss": {
+        "100": "#e3efe7", "300": "#94c2a6", "400": "#6aa886", "500": "#3f8a62",
+        "600": "#2f6b4f", "700": "#255640", "800": "#1c4232"
+      },
+      "ember": { "100": "#fbe9dc", "300": "#f0a979", "500": "#d9682b", "700": "#9c4416" },
+      "red": { "300": "#f59a93", "600": "#c4322b", "700": "#a12822" },
+      "amber": { "300": "#f6c869", "500": "#e09a12" },
+      "green": { "300": "#8fd19e", "700": "#2d6e3a" },
+      "blue": { "300": "#9dbbf2", "700": "#2c58ad" },
+      "white": "#ffffff"
+    },
+    "font": {
+      "sans": "\"Public Sans\", system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "serif": "\"Source Serif 4\", Georgia, \"Times New Roman\", serif",
+      "mono": "\"JetBrains Mono\", ui-monospace, \"SFMono-Regular\", Menlo, monospace"
+    },
+    "text": {
+      "base": "1rem", "sm": "0.875rem", "lg": "1.25rem", "xl": "1.5625rem", "2xl": "1.9375rem", "4xl": "3.0625rem"
+    },
+    "spacing": "0.25rem",
+    "radius": "0.5rem",
+    "duration": { "fast": "120ms", "base": "180ms", "slow": "280ms" },
+    "ease": { "out": "cubic-bezier(0.2, 0.8, 0.2, 1)" },
+    "shadow": {
+      "sm": "0 1px 2px rgb(16 19 18 / 0.08)",
+      "md": "0 4px 12px -2px rgb(16 19 18 / 0.12)"
+    }
+  },
+  "semantic": {
+    "background": { "light": "{color.ink.50}", "dark": "{color.ink.950}" },
+    "foreground": { "light": "{color.ink.900}", "dark": "{color.ink.100}" },
+    "card": { "light": "{color.white}", "dark": "{color.ink.900}" },
+    "card-foreground": { "light": "{color.ink.900}", "dark": "{color.ink.100}" },
+    "muted": { "light": "{color.ink.100}", "dark": "{color.ink.800}" },
+    "muted-foreground": { "light": "{color.ink.600}", "dark": "{color.ink.300}" },
+    "primary": { "light": "{color.moss.600}", "dark": "{color.moss.400}" },
+    "primary-foreground": { "light": "{color.white}", "dark": "{color.ink.950}" },
+    "primary-hover": { "light": "{color.moss.700}", "dark": "{color.moss.300}" },
+    "accent": { "light": "{color.ember.100}", "dark": "{color.ember.700}" },
+    "accent-foreground": { "light": "{color.ember.700}", "dark": "{color.ember.100}" },
+    "destructive": { "light": "{color.red.600}", "dark": "{color.red.300}" },
+    "destructive-foreground": { "light": "{color.white}", "dark": "{color.ink.950}" },
+    "warning": { "light": "{color.amber.500}", "dark": "{color.amber.300}" },
+    "warning-foreground": { "light": "{color.ink.950}", "dark": "{color.ink.950}" },
+    "success": { "light": "{color.green.700}", "dark": "{color.green.300}" },
+    "success-foreground": { "light": "{color.white}", "dark": "{color.ink.950}" },
+    "info": { "light": "{color.blue.700}", "dark": "{color.blue.300}" },
+    "info-foreground": { "light": "{color.white}", "dark": "{color.ink.950}" },
+    "border": { "light": "{color.ink.200}", "dark": "{color.ink.800}" },
+    "input": { "light": "{color.ink.500}", "dark": "{color.ink.500}" },
+    "ring": { "light": "{color.moss.600}", "dark": "{color.moss.300}" }
+  },
+  "pairs": [
+    ["foreground", "background", 4.5],
+    ["card-foreground", "card", 4.5],
+    ["muted-foreground", "muted", 4.5],
+    ["muted-foreground", "background", 4.5],
+    ["primary-foreground", "primary", 4.5],
+    ["primary", "background", 4.5],
+    ["accent-foreground", "accent", 4.5],
+    ["destructive-foreground", "destructive", 4.5],
+    ["destructive", "background", 4.5],
+    ["warning-foreground", "warning", 4.5],
+    ["success-foreground", "success", 4.5],
+    ["info-foreground", "info", 4.5],
+    ["input", "background", 3.0],
+    ["ring", "background", 3.0]
+  ],
+  "component": {
+    "button": {
+      "bg": "{primary}", "fg": "{primary-foreground}", "bg-hover": "{primary-hover}",
+      "radius": "calc(var(--radius) - 2px)", "height": "2.75rem", "padding-x": "calc(var(--spacing) * 4)"
+    },
+    "field": {
+      "bg": "{card}", "fg": "{card-foreground}", "border": "{input}", "border-invalid": "{destructive}",
+      "radius": "calc(var(--radius) - 2px)", "height": "2.75rem"
+    },
+    "card": {
+      "bg": "{card}", "fg": "{card-foreground}", "border": "{border}", "radius": "var(--radius)",
+      "padding": "calc(var(--spacing) * 6)"
+    }
+  }
+}

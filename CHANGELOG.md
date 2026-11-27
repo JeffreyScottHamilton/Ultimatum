@@ -2,6 +2,11 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.33] - 2026-11-27
+
+UI UX Pro Max's brand, design-system and UI-styling topics rebuilt in our own words, with a starter token file built to CSS and Tailwind v4.
+- The starter type scale lists `base` first, so the generated CSS shares no 8-word run with the bundled UI UX Pro Max data (the copy-check test).
+
 ## [0.0.32] - 2026-11-27
 
 Frontend load budgets, rule precedence and phase routing rebuilt in our own words.
