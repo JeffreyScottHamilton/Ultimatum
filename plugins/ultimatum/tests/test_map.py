@@ -127,7 +127,7 @@ class TestMap(UltCase):
         # map stores source lines; a secret on a matched line should not be persisted/printed
         secret = "gh" + "p_" + "Q1w2E3r4T5" * 4
         self.write("auth_cfg.py", f"AUTH_TOKEN = login('{secret}')\n")
-        r = self.ult("map", "build")
+        self.ult("map", "build")
         m = (self.root / ".ultimatum" / "map.json").read_text()
         out = self.ult("map", "query", "login").out
         self.assertNotIn(secret, out)  # BUG: repomap.py:98 stores raw source lines; `ult map query` prints them unredacted (and map.json holds them)

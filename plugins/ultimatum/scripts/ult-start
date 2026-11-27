@@ -2,7 +2,7 @@
 """Ultimatum start check: a SessionStart hook. Local, stdlib only, changes nothing.
 
 When a new chat starts it shows one line to the user:
-  Ultimatum <version> ready · plugins: <installed heads> · context: <window>
+  Ultimatum <version> ready · context: <window>
 It checks that the work skill is there and that the toolbelt runs (a sample prompt
 is sorted the way the tests expect). The context part says whether this chat is
 held to 200K tokens; if it is not (a 1M model with no cap) it names the one
@@ -17,7 +17,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CAP = 200_000
-HEADS = ("website-launch", "ecommerce-launch", "app-launch", "event-launch", "social-media", "video")
 OFF = ("0", "false", "no", "off")
 
 
@@ -52,14 +51,6 @@ def problems() -> list:
     return out
 
 
-def heads(files: list) -> list:
-    on = {}
-    for f in files:  # later files override earlier ones, as in Claude Code
-        for key, val in (_json(f).get("enabledPlugins") or {}).items():
-            on[key.split("@", 1)[0]] = bool(val)
-    return [h for h in HEADS if on.get(f"ultimatum-{h}")]
-
-
 def context_note(model: str, files: list, env=os.environ) -> str:
     cap = env.get("CLAUDE_CODE_AUTO_COMPACT_WINDOW", "").strip()
     for f in files:
@@ -81,12 +72,10 @@ def message(data: dict, env=os.environ) -> str:
     if bad:
         return (f"Ultimatum {version()}: not working ({'; '.join(bad)}). "
                 "Reinstall with `/plugin install ultimatum@ultimatum`.")
-    installed = heads(files)
     model = data.get("model") or ""
     if isinstance(model, dict):
         model = model.get("id") or model.get("display_name") or ""
     parts = [f"Ultimatum {version()} ready",
-             "plugins: " + (", ".join(installed) if installed else "core only"),
              context_note(str(model), files, env)]
     return " · ".join(parts)
 

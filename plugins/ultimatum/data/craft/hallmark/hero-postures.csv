@@ -1,0 +1,9 @@
+name,height,content,use_for,rule
+settled,fills screen under nav,"centred; text six columns, visual six",a product or place photo that is the strongest asset,44a
+stage,fills screen under nav,"text five columns, visual seven at 60-75% height",a tall product visual that may bleed off the edge,44a
+banner,50-60% of screen,"head and line, first section above the fold","references, docs, utilities",44a
+ledge,fills screen,"tall field above, head at the base",image-led or poster-like pages,head grows to cap at 1920
+corridor,fills screen,a single centred column up to 44ch wide,"words-led pages, letters, essays",head larger than usual
+poster,92-100dvh,"full-bleed photo or canvas, text on its calm part","venues, events, photographic pages",never squeeze text into a corner
+counter,fills screen under nav,the action is the visual,"subscribe, booking, buy, download","shorter head, action large"
+index,fills screen under nav,the list is the visual,"menus, lineups, issues, projects",small head above

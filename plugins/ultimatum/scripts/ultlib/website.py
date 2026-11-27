@@ -12,6 +12,7 @@ import os
 import re
 from pathlib import Path
 
+from .designskill import line as design_line
 from .common import STATE_DIRNAME, project_root, state_dir, write_private
 from .route import cat_paths, plugin_file, decide, sanitize
 
@@ -127,7 +128,7 @@ def plan(task: str, root: Path | None = None) -> dict:
         ["builder", "browser check"] if small else ["builder", "reviewer", "manager"])
     load = ["shared/defaults.md"]
     if visual:
-        load.append("teams/website/planner.md")
+        load.append("skills/website/references/website/planner.md")
     if size == "large":
         load.append("skills/work/references/code-map.md")
     if designer:
@@ -151,6 +152,7 @@ def plan(task: str, root: Path | None = None) -> dict:
         "release": "asked (deploy only on the user's explicit yes)" if ship else "not asked",
         "load": load,
         "overlay": d["overlay"],
+        "design_skill": design_line(root or project_root(), "ui") if visual else None,
     }
 
 
@@ -161,8 +163,8 @@ def format_text(p: dict) -> str:
              f"release: {p['release']}",
              "load: " + ", ".join(p["load"])]
     if p.get("launch") not in (None, "approved"):
-        lines.append(f"launch: the build brief is {p['launch']}; the Launch Manager shows it to the user first "
-                     "(`ult gate check brief`); no Website work from it before that")
+        lines.append(f"brief: the build brief is {p['launch']}; show it to the user first "
+                     "(`ult gate check brief`); no build work from it before that")
     if p["size"] == "small":
         lines.append("scope: only the reported bug; findings that were there before your edit are reported, not fixed")
     elif p["approval"] == "waiting":
@@ -170,6 +172,8 @@ def format_text(p: dict) -> str:
                      "no production code before that (planner.md)")
     elif p["approval"] == "approved":
         lines.append("gate: approved; build from the brief's Approved direction, then browser review against it")
+    if p.get("design_skill"):
+        lines.append(p["design_skill"])
     if p["overlay"]:
         lines.append("overlay: security (skills/work/references/security/secure-implementation.md)")
     return "\n".join(lines)

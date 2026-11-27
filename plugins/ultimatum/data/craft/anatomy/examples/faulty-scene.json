@@ -1,0 +1,22 @@
+{
+  "min_gap": 0.5,
+  "parts": [
+    {"name": "base", "at": [0, 0, 0], "size": [10, 6, 1], "fixed": true},
+    {"name": "pump", "at": [1, 1, 1.4], "size": [3, 3, 3], "on": "base",
+     "ports": {"out": [4, 2.5, 3]}},
+    {"name": "tank", "at": [6, 1, 1], "size": [3, 3, 4], "on": "base", "fixed": true,
+     "ports": {"in": [6, 2.5, 3]}},
+    {"name": "valve", "at": [4.6, 2, 1], "size": [0.8, 1, 1.8], "on": "base"},
+    {"name": "filter", "at": [8.5, 3.5, 1], "size": [1, 1, 1], "on": "base"},
+    {"name": "label-box", "at": [1, 4.3, 1], "size": [1, 1, 1], "on": "base", "stand_in": true}
+  ],
+  "joins": [["base", "pump"], ["base", "tank"], ["base", "valve"], ["base", "filter"], ["base", "label-box"]],
+  "pipes": [
+    {"name": "feed", "from": "pump.out", "to": "tank.in", "radius": 0.2,
+     "points": [[4, 2.5, 3], [5, 2.5, 3], [4.2, 2.5, 3.1], [6, 2.6, 3.3]]},
+    {"name": "drain", "from": "tank.drain", "radius": 0.2,
+     "points": [[9, 2, 1.5], [9.5, 2, 1.5]]}
+  ],
+  "order": ["base", "tank", "pump", "valve", "filter", "label-box"],
+  "frames": [{"tank": [6, 1.2, 1]}]
+}

@@ -114,7 +114,7 @@ def cmd_budget(args) -> int:
     if not s["turns"]:
         print("[ult budget] transcript has no usage records yet")
         return 1
-    verdict = f" HIGH: run `ult handoff write` soon." if s["latest"] >= HIGH else ""
+    verdict = " HIGH: run `ult handoff write` soon." if s["latest"] >= HIGH else ""
     plural = "" if s["turns"] == 1 else "s"
     print(f"[ult budget] {s['turns']} turn{plural}; latest turn re-reads ~{s['latest']:,} tokens.{verdict}")
     print(f"cache read: {s['cache_share']}% of input-side tokens; output: {s['output']:,} tokens")

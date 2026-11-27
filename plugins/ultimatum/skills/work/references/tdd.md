@@ -2,6 +2,8 @@
 
 Goal: every new or fixed behavior is pinned by a test you watched fail for the right reason, then pass, with the evidence in this session. Loop context: SKILL.md §3 steps 3-4.
 
+Choosing the check for a request, and plans written as step and check: `craft/coding-discipline/checkable-goals.md`.
+
 ## 1. Cycle (one behavior at a time)
 
 1. **Pick one behavior** from the slice's acceptance list. Name the test after the behavior ("rejects expired token"), not the function.
@@ -12,6 +14,8 @@ Goal: every new or fixed behavior is pinned by a test you watched fail for the r
 4. **GREEN.** Write the least code that passes. Run the single test, then the file, then the nearest suite. Quote exit code 0 and the pass count.
 5. **REFACTOR.** Only while green. Remove duplication you introduced, rename, extract. Rerun the file after each step. No new behavior in this step.
 6. Repeat from 1. Do not write a batch of tests ahead of the code; one slice at a time keeps each failure interpretable.
+
+Agreeing seams first and client-shaped fakes: `craft/mattpocock/test-seams.md`; interface design: `craft/mattpocock/deep-modules.md`.
 
 ## 2. Stop conditions
 
@@ -34,6 +38,8 @@ Goal: every new or fixed behavior is pinned by a test you watched fail for the r
 - Expected values come from a literal, a worked example, or the spec. Never recompute the expected value with the production formula; that is a tautology.
 - One behavior per test; table-driven for many inputs of the same behavior.
 - Cover, per behavior: the main case, an empty or minimal input, a boundary, an invalid input, and the permission-denied case when auth applies.
+
+Judgement calls on expected values, mocks and test-only code: `craft/superpowers/test-judgement.md`.
 
 ## 5. Regression tests (bug fixes)
 

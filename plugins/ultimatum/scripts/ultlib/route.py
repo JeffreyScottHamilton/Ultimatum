@@ -21,26 +21,11 @@ from pathlib import Path
 from .common import project_root
 
 PLUGIN = Path(__file__).resolve().parents[2]
-# A head plugin that ships its own copy of this toolbelt keeps the core
-# files it needs under shared/core/, at the same relative paths as in the core plugin.
-CORE_COPY = PLUGIN / "shared" / "core"
 
 
 def plugin_file(rel: str) -> Path:
-    """A plugin file by its core-relative path: this plugin's own, else its shared/core copy.
-
-    `teams/<team>/<file>` names a shared team guide: a head plugin ships it under
-    skills/<head>/references/<team>/; in the repo it sits in the top-level teams/ folder.
-    """
-    if rel.startswith("teams/"):
-        rest = rel[len("teams/"):]
-        found = sorted(PLUGIN.glob(f"skills/*/references/{rest}"))
-        return found[0] if found else PLUGIN.parents[1] / rel
-    p = PLUGIN / rel
-    if p.exists():
-        return p
-    alt = CORE_COPY / rel
-    return alt if alt.exists() else p
+    """A plugin file by its plugin-relative path."""
+    return PLUGIN / rel
 
 
 MODULES_PATH = plugin_file("skills/work/modules.json")
@@ -58,63 +43,26 @@ WEBSITE_ROUTES = {"ui", "feature", "small", "large"}
 
 _RECOVERY_RE = re.compile(r"\b(resume|resuming|pick up (?:where|from|the work|again)|picking up (?:where|from)|after compaction|after the compaction|continue)\b", re.I)
 _DEEP_RE = re.compile(r"\b(audit|thorough|deep)\b", re.I)
-_WEBSITE_RE = re.compile(r"\b(websites?|web ?sites?|web ?pages?|landing ?pages?|home ?pages?|marketing (?:site|page)s?|portfolio (?:site|page)s?|personal site|static site|docs site|microsite)\b", re.I)
+_WEBSITE_RE = re.compile(r"\b(websites?|web ?sites?|web ?pages?|landing ?pages?|home ?pages?|marketing (?:site|page)s?|portfolio (?:site|page)s?|personal site|static site|docs site|microsite|(?:members?|membership|booking|client|online shop|online store) (?:sites?|areas?|portals?))\b", re.I)
 # Interface words that mean website work only inside a project that is a website.
 _SITE_UI_RE = re.compile(r"\b(menu|nav(?:bar|igation)?|header|footer|hero|navbar|hamburger|layout|responsive|mobile view|on (?:phones?|mobile)|css|styles?|styling|stylesheet|dark mode|font|colou?rs?|buttons?|sidebar|modal|carousel|gallery|landing|homepage|page)\b", re.I)
-# A standalone clip or video (motion graphics). Interface words keep it in Website or Work.
-_MOTION_RE = re.compile(
-    r"\b(?:motion\s+graphics?|motion\s+design|kinetic\s+typography|title\s+sequence|lower\s+thirds?|"
-    r"animated\s+(?:video|clip|intro|outro|logo|explainer|title|short|reel|ad|promo|lyric|text|teaser|trailer)|"
-    r"(?:logo|product|title|brand)\s+(?:reveal|animation|sting)|(?:explainer|promo|intro|outro|lyric|launch|teaser|"
-    r"hype|recap|product)\s+(?:video|clip|reel)|beat[- ]?(?:sync(?:ed)?|cut|matched|synced)|"
-    r"(?:video|clip|reel|short)\s+(?:for|to\s+post\s+on)\s+(?:instagram|tiktok|youtube|reels|shorts|linkedin)|"
-    r"(?:make|create|render|animate|cut|edit|produce|build)\s+(?:me\s+|us\s+)?(?:an?\s+|the\s+|my\s+|our\s+)?"
-    r"(?:[\w-]+\s+){0,3}(?:video|clip|reel|animation|sting|teaser|trailer|montage))\b", re.I)
-_MOTION_NOT_RE = re.compile(
-    r"\b(?:player|upload\w*|endpoint|component|api|thumbnail|bug|test|crash\w*|error|server|database|function|"
-    r"stream(?:ing)?|transcod\w*|encoder|decoder|pipeline|webhook|bitrate|codec|loading|spinner|skeleton|"
-    r"transition\s+between\s+(?:pages|routes|screens))\b", re.I)
-# An emotional, story-led brand film (people, a feeling, a turn), not animated graphics.
-_FILM_RE = re.compile(
-    r"\b(?:brand\s+films?|short\s+films?|mini[- ]?docs?|(?:documentary|doc)[- ]style\s+(?:ad|video|film|spot)|"
-    r"(?:emotional|cinematic|story[- ]?(?:driven|led|telling)|heartfelt|human|moving|tear[- ]?jerk\w*|feel[- ]good|"
-    r"manifesto|anthem\w*|testimonial)\s+(?:brand\s+)?(?:film|ad|video|spot|commercial|piece|story)s?|"
-    r"(?:film|ad|video|spot|commercial)s?\s+(?:that|which)\s+(?:makes?|will\s+make)\s+(?:people|viewers|them)\s+"
-    r"(?:feel|cry)|human[- ]moment|live[- ]action\s+(?:ad|video|spot|film))\b", re.I)
-# A whole launch: the Launch Manager runs Business, Website, Social and Motion from one chat.
-_LAUNCH_RE = re.compile(
-    r"\b(?:launch(?:ing)?|start(?:ing)?|open(?:ing)?)\s+(?:my|our|a|the|this)\s+(?:[a-z][\w'-]*\s+){0,3}?"
-    r"(?:business|company|brand|shop|store|startup|studio|practice|bakery|salon|cafe|caf\u00e9|agency|offer|service|course)\b|"
-    # Software products only with "launch": "start the app" is usually a dev-server command.
-    r"\blaunch(?:ing)?\s+(?:my|our)\s+(?:[a-z][\w'-]*\s+){0,3}?(?:saas|app|product|platform|software)\b"
-    r"(?!\s+(?:in|on|locally|with|from|server|build|page|fix|bug|test|container|emulator|simulator)\b)|"
-    r"\b(?:go[- ]to[- ]market|launch\s+plan|business\s+launch)\b", re.I)
-# A content plan or campaign, not a single post (one tweet is plain writing help).
-_PLATFORM = r"(?:social|tiktok|instagram|insta|ig|linkedin|facebook|fb|youtube|yt|twitter|threads|pinterest|snapchat)"
-_FORMATS = r"(?:posts|content|reels|tiktoks|captions|shorts|stories|carousels)"
-_SOCIAL_RE = re.compile(
-    r"\b(?:social\s+media\s+(?:plan|campaign|calendar|strategy|content|posts?)|content\s+(?:calendar|plan|strategy)|"
-    r"(?:week|month|series|batch|set|calendar|days?)\s+(?:worth\s+)?of\s+(?:" + _PLATFORM + r"\s+)?" + _FORMATS + r"|"
-    + _PLATFORM + r"\s+(?:campaign|strategy|calendar|plan|content\s+plan|posting\s+plan)|"
-    r"(?:plan|schedule|draft|write|brainstorm|outline|script)\s+(?:out\s+)?(?:our|my|the|a|some|a\s+few)?\s*(?:\d+\s+)?"
-    r"(?:(?:social|" + _PLATFORM + r")\s+)?(?:posts|reels|tiktoks|shorts|stories|carousels)|"
-    r"(?:\d+|three|five|ten|a\s+few|some)\s+(?:" + _PLATFORM + r"\s+)?(?:post|reel|tiktok|shorts?|video|content|hook)s?\s+ideas|"
-    + _PLATFORM + r"\s+(?:post|reel|shorts?|video|content|hook)s?\s+ideas)\b", re.I)
-# Business questions: customers, offers, competitors, conversions.
-_BUSINESS_RE = re.compile(
-    r"\b(?:what['\u2019]?s|what\s+is)\s+(?:stopping|keeping|holding\s+back)\s+(?:people|customers|visitors|clients|users)|"
-    r"why\s+(?:aren['\u2019]?t|don['\u2019]?t|do\s+not|are\s+not|won['\u2019]?t)\s+(?:more\s+)?(?:people|customers|visitors|clients)\s+"
-    r"(?:book|buy|sign|call|order|subscribe|convert|come\s+back|pay)|"
-    r"\b(?:customer|market)\s+research|competitor(?:s|\s+(?:analysis|research|profiles?))|ideal\s+customer|"
-    r"target\s+(?:audience|customer|market)|pricing\s+(?:strategy|page\s+copy)|price\s+my|positioning|"
-    r"(?:my|our)\s+offer\b|more\s+(?:bookings|customers|clients|sales|leads)|conversion\s+rate", re.I)
-# Code words that keep a business-sounding task in Work (tracking code, form bugs).
-_BUSINESS_NOT_RE = re.compile(
-    r"\b(?:fix|implement|install|wire|debug|refactor|bug|error|crash|test|endpoint|api|component|function|script|"
-    r"pixel|gtag|snippet|query|database|schema|migration|deploy)\b", re.I)
 _SITE_DEPS = {"next", "react", "react-dom", "vue", "nuxt", "svelte", "@sveltejs/kit", "astro", "vite", "gatsby",
               "@remix-run/react", "solid-js", "@11ty/eleventy", "preact", "angular", "@angular/core"}
 _SITE_HTML = ("index.html", "public/index.html", "src/index.html", "site/index.html", "docs/index.html")
+# Shipping an iOS app through Apple's store; checked before website words.
+_APP_STORE_RE = re.compile(r"\b(app ?store(?! optimi[sz]ation)|testflight|app review|resolution center|privacy manifest|"
+                           r"(?:privacy )?nutrition labels?|eas (?:build|submit|update)|expo (?:build|submit)|"
+                           r"(?:submit|ship|publish|release)\w* (?:\w+ ){0,3}(?:to|on) (?:the )?(?:apple|ios)|"
+                           r"(?:ios|iphone) (?:release|submission|launch)|bundle (?:id|identifier)|"
+                           r"usage descriptions?|build number)\b", re.I)
+# Social posts and channels; never website words such as social cards, share images or social proof.
+_SOCIAL_RE = re.compile(r"\b(social[ -]media(?! (?:icons?|links?|buttons?|share|login|sign[ -]?in|cards?|images?|previews?|"
+                        r"tags?|meta|embeds?|feeds?))|social (?:posts?|content|campaign|calendar|channels?|strategy)|"
+                        r"(?:instagram|insta|ig|tiktok|linkedin|facebook|fb|pinterest|threads|twitter|youtube|x) "
+                        r"(?:posts?|reels?|captions?|carousels?|content|campaign|calendar|strategy|hooks?|bio|pins?|"
+                        r"shorts?|threads?|videos?)|reels|tiktoks|tweets?|youtube shorts|content calendar|"
+                        r"posting (?:schedule|calendar|plan|rate)|hashtags?|hook (?:variants?|types?)|short[ -]form video)\b",
+                        re.I)
 _PREFIX_RE = re.compile(r"^\s*(fast|deep)\s*:\s*", re.I)
 _EDIT_RE = re.compile(r"\b(add|change|rename|remove|fix|update|set|replace|move|delete|bump|make|drop|correct|edit)\b", re.I)
 _FILE_RE = re.compile(r"\b[\w./-]+\.(?:py|ts|tsx|js|jsx|mjs|md|json|css|scss|html|sql|go|rs|java|rb|ya?ml|toml|sh|txt)\b", re.I)
@@ -265,41 +213,12 @@ def website_flag(text: str, route: str, root: Path | None) -> bool:
     return bool(_SITE_UI_RE.search(text)) and site_project(root)
 
 
-def motion_flag(text: str, route: str) -> bool:
-    """A standalone animated clip or video; animation inside a site or app stays with that work."""
-    if route in SECURITY_ROUTES or not _MOTION_RE.search(text):
-        return False
-    return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text) or _SITE_UI_RE.search(text))
-
-
-def film_flag(text: str, route: str) -> bool:
-    """An emotional, story-led brand film; checked before motion graphics."""
-    if route in SECURITY_ROUTES or not _FILM_RE.search(text):
-        return False
-    return not (_MOTION_NOT_RE.search(text) or _WEBSITE_RE.search(text))
-
-
-def launch_flag(text: str, route: str) -> str:
-    """Launch, Social Media or Business: the non-code workflows. Empty when none fits."""
-    if route in SECURITY_ROUTES:
-        return ""
-    if _LAUNCH_RE.search(text):
-        return "launch"
-    if _SOCIAL_RE.search(text):
-        return "social"
-    if _BUSINESS_RE.search(text) and not _BUSINESS_NOT_RE.search(text):
-        return "business"
-    return ""
-
-
 def workflow_for(text: str, route: str, root: Path | None) -> str:
-    if website_flag(text, route, root):
-        return "website"
-    if film_flag(text, route):
-        return "film"
-    if motion_flag(text, route):
-        return "motion"
-    return launch_flag(text, route) or "default"
+    if route not in SECURITY_ROUTES and _APP_STORE_RE.search(text):
+        return "app-store"
+    if route not in SECURITY_ROUTES and _SOCIAL_RE.search(text):
+        return "social-media"
+    return "website" if website_flag(text, route, root) else "default"
 
 
 def decide(task: str, root: Path | None = None, use_deps: bool = True, lessons_on: bool = True) -> dict:
@@ -455,7 +374,7 @@ def run_eval(path: Path, root: Path | None) -> tuple[str, bool]:
             try:
                 cases.append(json.loads(line))
             except ValueError as e:
-                raise SystemExit(f"[ult route] {path}:{n}: bad JSON ({e})")
+                raise SystemExit(f"[ult route] {path}:{n}: bad JSON ({e})") from None
     total = len(cases)
     r_ok = o_ok = a_ok = 0
     m_total = m_ok = 0
@@ -521,7 +440,7 @@ def cat_paths(paths: list[Path]) -> str:
     out = []
     for p in paths:
         if p.is_file():
-            base = CORE_COPY if CORE_COPY in p.parents else PLUGIN
+            base = PLUGIN
             body = p.read_text(encoding="utf-8").rstrip()
             body = body.replace("${CLAUDE_PLUGIN_ROOT}/scripts/", str(PLUGIN / "scripts") + "/")
             body = body.replace("${CLAUDE_PLUGIN_ROOT}", str(base))

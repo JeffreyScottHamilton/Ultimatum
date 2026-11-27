@@ -25,6 +25,7 @@ When you shorten output, say what was dropped and how to get it back. A gap in e
   - anything the user must decide
   - anything written into the repository (code, comments, docs, commit messages), which follows the project's style
 - If the user asks for "caveman", "be brief", or "less tokens", go terser in prose. The table in §1 still applies.
+- Deeper: `craft/caveman/terse-voice.md` (levels, never-cut list, when to switch back), `craft/caveman/compress-memory.md` (shrinking a memory file, with a checker).
 
 ## 3. Noisy commands: `ult run`
 
@@ -73,8 +74,8 @@ Stop searching once you have the anchor you need. Repeating the same broad searc
 
 ## 6. Delegation economics
 
-- All edits are delegated (SKILL.md §1 rule 7), which keeps file contents and edit churn out of the main chat. The cost is the brief and the report, so keep both short:
-  - a small change gets a brief of a few lines and one worker
+- Solo is cheapest for most jobs: a helper re-reads files you already hold. Delegate a bounded chunk to the one Sonnet coder only when it keeps a large amount of reading or churn out of the main chat. The cost is the brief and the report, so keep both short:
+  - a bounded chunk gets a brief of a few lines and the one coder
   - a broad scan where you need only the conclusion goes to `ultimatum:scout` (fast model)
   - a review or verification gets a fresh context, because that is the point
 - Give each worker the minimum it needs:
@@ -84,7 +85,7 @@ Stop searching once you have the anchor you need. Repeating the same broad searc
   - the acceptance command
   - the reply format
 - Leave out the conversation history, unrelated files, and secrets.
-- Model by role: fast/cheap for read-only scouting, mid-tier for implementation slices and hunting, and inherit (the session model) for verification and final review.
+- Model by role: fast for read-only scouting, Sonnet for the coder and hunting, the session model for design-heavy work, verification and final review.
 - Spot-check any "no match" or "no issues" a worker reports before relying on it. Ask for the queries it ran.
 - Any efficiency measurement counts every subagent's tokens, plus retries and cache reads. See `skill-evaluation.md`.
 

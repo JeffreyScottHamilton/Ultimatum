@@ -9,6 +9,12 @@ Goal: turn a request into a small, agreed spec and independently verifiable slic
 - **Slice**: §7. Each slice has an acceptance command that can fail.
 - **Verify**: run each slice's acceptance command as it lands, then the spec's success checks on the integrated result (§10). A final skim is not verification.
 
+The shaping conversation in detail: `craft/superpowers/shaping-conversation.md`; the plan document: `craft/superpowers/plan-writing.md`.
+
+Assumptions, the two-readings test and when to ask before the first edit: `craft/coding-discipline/think-first.md`; keeping new code and the diff to what was asked: `craft/coding-discipline/smallest-change.md`, `craft/coding-discipline/surgical-diff.md`.
+
+Product questioning before a plan: `craft/gstack-eng/office-hours.md`; scope stances: `craft/gstack-eng/scope-review.md`; engineering review of a plan: `craft/gstack-eng/plan-eng-review.md`.
+
 ## 1. Size it first
 
 | Size | Signal | Do |
@@ -35,6 +41,8 @@ Ask only when the answer changes what gets built and neither the repo nor the re
 - If the user is unavailable or says "your call", take the defaults, record each in the rulings log (§7), and continue.
 - Do not ask for permission to proceed on a Normal or Trivial feature once defaults are stated. Stop for approval only on: irreversible data changes, security-sensitive behavior, anything that spends money or contacts an external service.
 
+Many linked decisions, or an expert who is not in the chat: `craft/mattpocock/question-rounds.md`.
+
 ## 4. Vocabulary and model
 
 Trigger: the request or code uses a term two ways, or two terms for one thing (for example "account" vs "workspace").
@@ -43,6 +51,8 @@ Trigger: the request or code uses a term two ways, or two terms for one thing (f
 3. Where the project keeps a glossary or ADRs, add the entry there. Otherwise keep it in the spec's Terms section. Do not create a glossary file in a repo that has none without asking.
 4. If the change adds or alters stored data, write the entity list with fields, ownership, and lifecycle (created, updated, deleted by whom) before any code. Route it to `data-and-infra.md` for migrations.
 
+Challenging terms, glossary entries and when a decision earns an ADR: `craft/mattpocock/domain-language.md`.
+
 ## 5. Prototype only to settle a real uncertainty
 
 Allowed when a specific question blocks the design and reading cannot answer it: does this library support X, is this query fast enough, does this layout fit.
@@ -50,6 +60,8 @@ Allowed when a specific question blocks the design and reading cannot answer it:
 2. Build the smallest throwaway under a clearly named path (`.ultimatum/proto/<name>/` or a scratch dir). First line of every file: `THROWAWAY PROTOTYPE - delete before merge`.
 3. Run it, record the answer in the spec or rulings log, delete the prototype, then build the real thing from the slice plan. Never grow a prototype into the implementation.
 4. Stop after the question is answered. A prototype that answers nothing in one sitting means the question was wrong; restate it.
+
+Logic demos and layout variants in detail: `craft/mattpocock/prototypes.md`.
 
 ## 6. Spec
 
@@ -76,12 +88,16 @@ Self-check before moving on: every requirement has a success check; no requireme
 6. Wide mechanical refactors: expand (add new alongside old), migrate in batches, contract (remove old). Each batch keeps the suite green.
 7. Tracker: if `gh`/GitHub MCP is present and the user wants tickets, one issue per slice with the same fields. Otherwise keep the list in the spec. Creating remote issues needs the user's say-so.
 
+Ticket graphs with blocking edges, refactor batches and publishing: `craft/mattpocock/spec-and-tickets.md`.
+
 ## 8. Rulings log
 
 When the spec is silent or wrong, decide instead of stalling: authority is the spec, then the repo's conventions, then the least surprising behavior.
 - Record in the spec's end section or `ult note --kind decision --title "<topic>" --body "Ruling: <what> - because <why> - cost if wrong: <x>"`.
 - Surface all rulings in the final report.
 - Stop and ask instead of ruling when the choice is irreversible, security-relevant, touches an external system, or every option is a guess.
+
+When two design skills disagree on a frontend task: `craft/frontend-budget/precedence.md`.
 
 ## 9. Escalate to `orchestration.md`
 

@@ -10,18 +10,13 @@ from pathlib import Path
 ULT = str(Path(__file__).resolve().parent.parent / "scripts" / "ult")
 SCRIPTS = str(Path(ULT).parent)
 PY = sys.executable
-# Every head plugin ships an exact copy of this toolbelt (tools/sync_plugins.py);
-# the launch tests run the Website Launch copy, and the team guides come from teams/.
 REPO = Path(__file__).resolve().parents[3]
 CORE = REPO / "plugins" / "ultimatum"
-TEAMS = REPO / "teams"
-LAUNCH = REPO / "plugins" / "ultimatum-website-launch"
-LAUNCH_SCRIPTS = str(LAUNCH / "scripts")
-LAUNCH_ULT = str(LAUNCH / "scripts" / "ult")
+WEB_REFS = CORE / "skills" / "website" / "references"
 
 
 def pick_hooks(prompt, cwd, scopes=("core",), env=None):
-    """Run core's UserPromptSubmit picker, as Claude Code would. Head plugins have no hook."""
+    """Run the UserPromptSubmit picker, as Claude Code would."""
     import json
     e = dict(os.environ if env is None else env)
     if env is None:
@@ -29,8 +24,7 @@ def pick_hooks(prompt, cwd, scopes=("core",), env=None):
     data = json.dumps({"hook_event_name": "UserPromptSubmit", "prompt": prompt, "cwd": str(cwd)})
     out = ""
     for scope in scopes:
-        scripts = SCRIPTS if scope == "core" else LAUNCH_SCRIPTS
-        cp = subprocess.run([PY, os.path.join(scripts, "ult-pick"), "--scope", scope], input=data,
+        cp = subprocess.run([PY, os.path.join(SCRIPTS, "ult-pick"), "--scope", scope], input=data,
                             capture_output=True, text=True, env=e, timeout=30)
         assert cp.returncode == 0, cp.stderr
         out += cp.stdout
@@ -49,7 +43,7 @@ class R:
 
 
 class UltCase(unittest.TestCase):
-    ULT = ULT  # LaunchCase points this at the launch plugin's copy
+    ULT = ULT
 
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="ult-test-")).resolve()
@@ -59,6 +53,7 @@ class UltCase(unittest.TestCase):
     def env(self):
         e = dict(os.environ)
         e["ULTIMATUM_ROOT"] = str(self.root)
+        e.setdefault("ULTIMATUM_SKILL_DIRS", "")  # don't see the machine's installed skills
         return e
 
     def ult(self, *args, cwd=None, input=None, timeout=120):
@@ -92,9 +87,3 @@ class UltCase(unittest.TestCase):
         self.git("config", "user.email", "t@example.com")
         self.git("config", "user.name", "t")
         self.git("config", "commit.gpgsign", "false")
-
-
-class LaunchCase(UltCase):
-    """Runs the Website Launch head's copy of `ult`, which reads that plugin's team guides."""
-    ULT = LAUNCH_ULT
-

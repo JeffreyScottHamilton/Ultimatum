@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck title</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --ink: #1d1b18; --muted: #6b665d; --accent: #c2410c; --line: #d9d4c9;
+    --display: Georgia, "Times New Roman", serif; --body: "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: #2a2824; }
+  .deck { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; }
+  .slide {
+    position: relative; width: 1920px; height: 1080px; padding: 80px;
+    background: var(--bg); color: var(--ink); font: 34px/1.35 var(--body);
+    scroll-snap-align: start; transform-origin: top left; overflow: hidden;
+  }
+  .slide h1, .slide h2 { font-family: var(--display); font-weight: 400; line-height: 1.1; }
+  .slide h1 { font-size: 120px; max-width: 18ch; }
+  .slide.title { display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding-bottom: 140px; }
+  .slide h2 { font-size: 64px; max-width: 26ch; margin-bottom: 48px; }
+  .slide p, .slide li { max-width: 40ch; }
+  .slide ul { padding-left: 1.1em; display: grid; gap: 20px; }
+  .label { font-size: 26px; color: var(--muted); }
+  .num { position: absolute; right: 80px; bottom: 48px; font-size: 24px; color: var(--muted); }
+  .big { font: 220px/1 var(--display); color: var(--accent); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .notes { display: none; }
+  @media print {
+    @page { size: 1920px 1080px; margin: 0; }
+    html, body { background: none; }
+    .deck { height: auto; overflow: visible; }
+    .slide { break-after: page; transform: none !important; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="deck">
+
+<section class="slide title" data-beat="title" data-layout="title">
+  <p class="label">Company name · Month 2027</p>
+  <h1>One line a stranger understands</h1>
+  <aside class="notes">Say who you are and the point of the deck in one sentence.</aside>
+</section>
+
+<section class="slide" data-beat="problem" data-layout="three-ideas">
+  <h2>The problem, stated as a finding with a number</h2>
+  <ul>
+    <li>Who has it and how often</li>
+    <li>What it costs them today</li>
+    <li>What they do about it now</li>
+  </ul>
+  <span class="num">2</span>
+  <aside class="notes">Tell one real customer's story here.</aside>
+</section>
+
+<section class="slide" data-beat="proof" data-layout="big-number">
+  <h2>The one metric that proves people want it</h2>
+  <p class="big">7%</p>
+  <p>No-show rate in pilot clinics, down from 18% in three months.</p>
+  <p class="label">Source: pilot data, 12 clinics, Jan–Mar. Placeholder: replace with real figures.</p>
+  <span class="num">3</span>
+  <aside class="notes">Explain how the number was measured.</aside>
+</section>
+
+<section class="slide" data-beat="ask" data-layout="ask">
+  <h2>The ask: what you want, and what it buys</h2>
+  <div class="split">
+    <p class="big">$2M</p>
+    <ul>
+      <li>18 months of runway</li>
+      <li>From 40 to 400 clinics</li>
+      <li>Contact: your name and email</li>
+    </ul>
+  </div>
+  <span class="num">4</span>
+  <aside class="notes">Stop talking after the ask and take questions.</aside>
+</section>
+
+</main>
+<script>
+  // Fit each 1920x1080 slide to the window, and move with the arrow keys, space and page keys.
+  const slides = [...document.querySelectorAll('.slide')];
+  const deck = document.querySelector('.deck');
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    slides.forEach(el => { el.style.transform = `scale(${s})`; el.style.marginBottom = `${1080 * (s - 1)}px`; el.style.marginRight = `${1920 * (s - 1)}px`; });
+  }
+  function current() { return Math.round(deck.scrollTop / (deck.scrollHeight / slides.length)); }
+  addEventListener('resize', fit); fit();
+  addEventListener('keydown', e => {
+    const step = { ArrowRight: 1, ArrowDown: 1, PageDown: 1, ' ': 1, ArrowLeft: -1, ArrowUp: -1, PageUp: -1 }[e.key];
+    if (!step) return;
+    e.preventDefault();
+    const i = Math.max(0, Math.min(slides.length - 1, current() + step));
+    slides[i].scrollIntoView();
+  });
+</script>
+</body>
+</html>

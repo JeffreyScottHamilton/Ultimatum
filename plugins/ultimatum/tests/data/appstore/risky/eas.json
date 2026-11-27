@@ -1,0 +1,22 @@
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "production": {
+      "distribution": "internal",
+      "env": {
+        "STRIPE_SECRET_KEY": "sk_test_not_a_real_key",
+        "EXPO_PUBLIC_API_TOKEN": "abc123"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascApiKeyPath": "./keys/AuthKey_TEST.p8"
+      }
+    }
+  }
+}

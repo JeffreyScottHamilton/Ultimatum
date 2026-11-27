@@ -1,0 +1,38 @@
+diff --git a/plugins/ultimatum/CREDITS.md b/plugins/ultimatum/CREDITS.md
+index ad36738..f90cffc 100644
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+@@ -51,7 +51,7 @@ The full revision table and the license decisions are in `research/REVISIONS.md`
+ 
+ | Project | Revision inspected | License | Use |
+ |---|---|---|---|
+-| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `3442615` | MIT (ui-styling folder is Apache-2.0, not taken) | Design tables bundled in `data/design/` with their MIT licence and changes listed in `NOTICE.md`; read by `ult design`. Still recommended as an optional install |
++| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `3442615`, `a4fc248` | MIT (ui-styling folder is Apache-2.0) | Design tables bundled in `data/design/` with their MIT licence and changes listed in `NOTICE.md`; read by `ult design`. At `a4fc248`, the brand, design-system and ui-styling topics were rebuilt in our own words as `skills/website/references/craft/ui-ux-pro-max/` (no text, code or fonts taken). Still recommended as an optional install |
+ | [remotion-dev/skills](https://github.com/remotion-dev/skills) | `89c8afa` | none | Reviewed and skipped (no licence); nothing used |
+ | [JaimeJunr/claude-code-frontend-skills](https://github.com/JaimeJunr/claude-code-frontend-skills) | `7177def` | MIT (bundled plugins are Apache-2.0 or MIT) | Ideas for the 2.0 design and component modules |
+ | [magicuidesign/magicui](https://github.com/magicuidesign/magicui) | `d13c610` | MIT | Recommended as an optional install by `ult components`; not bundled |
+diff --git a/plugins/ultimatum/data/design-own/README.md b/plugins/ultimatum/data/design-own/README.md
+index 808964a..92ca230 100644
+--- a/plugins/ultimatum/data/design-own/README.md
++++ b/plugins/ultimatum/data/design-own/README.md
+@@ -155,3 +155,7 @@ Every family on Google Fonts. Built by `tools/build_fonts.py --from <google/font
+ | Quality | mean of Google's four quality tags (0-100) |
+ | Licence, Designer, Added | OFL-1.1, Apache-2.0 or UFL-1.0; who made it; when it joined |
+ | Specimen URL, CSS URL | the family page and a working css2 link |
++
++## tokens/
++
++A starter token file in three layers (`starter.tokens.json`: primitives, semantic roles with light and dark values, component tokens, contrast pairs) and the two stylesheets built from it by `tools/build_tokens.py`: `starter.tokens.css` (plain custom properties) and `starter.theme.css` (Tailwind v4 `@theme`). Do not edit the CSS by hand; `--check` fails if it is stale, and the build fails if any listed pair is below its WCAG 2.2 floor. `ult design` reads only the CSV files here, so this folder does not change its results. Guides: `skills/website/references/craft/ui-ux-pro-max/`.
+diff --git a/plugins/ultimatum/skills/website/SKILL.md b/plugins/ultimatum/skills/website/SKILL.md
+index f512224..f65de0d 100644
+--- a/plugins/ultimatum/skills/website/SKILL.md
++++ b/plugins/ultimatum/skills/website/SKILL.md
+@@ -18,7 +18,7 @@ Task: $ARGUMENTS (if empty, use the user's latest request)
+ 2. **Brief.** Write `.ultimatum/brief.md` as intake.md and `references/website/planner.md` show, show it, stop. Yes: `ult gate approve brief "<their words>"`. Changes: `ult gate revise brief "<their words>"`, fix, show again. Never approve for the user.
+ 3. **Route.** Read `references/route.md` (site size, host, domain); for accounts, saved data or payments also `references/app/route.md`, and the matching section of `references/by-business-type.md` (main action, pages, proof, mistakes to avoid). Check any paid tool, licence or price on the vendor's own page. Fill `brand/brand.md` as intake.md says.
+    App: plan the data model in `references/app/supabase.md`; on the owner's yes `ult gate approve data-model "<words>" --file <migration>`. Sign-in: `references/app/auth.md`. Payments: `references/app/stripe.md`, test mode only.
+-4. **Build.** Run `ult website "<task>" --root . --cat` and follow `references/website/guide.md`: three directions, the critic, the user's pick (`ult website --approve`), the build, the browser check. Use `references/pages-and-seo.md`, and draft copy with `references/copy.md`; the owner approves every claim. Design tables: `ult design system "<business type>"`; one font: `ult design search "<need>" --in font`.
++4. **Build.** Run `ult website "<task>" --root . --cat` and follow `references/website/guide.md`: three directions, the critic, the user's pick (`ult website --approve`), the build, the browser check. Use `references/pages-and-seo.md`, and draft copy with `references/copy.md`; the owner approves every claim. Design tables: `ult design system "<business type>"`; one font: `ult design search "<need>" --in font`. A written brand guide, design tokens, shadcn/ui or Tailwind v4: `references/craft/ui-ux-pro-max/index.md`.
+ 5. **Review loop.** `ult loop`. Run `ultimatum:compliance-reviewer` on every public page and `ultimatum:taste-critic` on designs. Fix, recheck. Open blockers stop delivery.
+ 6. **Go live.** Work through `references/launch-checklist.md` (apps: also `references/app/checklist.md` and `references/app/legal-risk.md`). Only on the user's yes: `ult gate approve publish "<words>" --link <checked live url>`, `ult gate check publish --need-link`, then `ult gate done publish`. Deploys: `ult gate approve deploy "<words>"` and follow `${CLAUDE_PLUGIN_ROOT}/skills/release/SKILL.md`. Real payments: only after `ult gate approve live-payments "<words>"`.
+ 7. **First 30 days.** The numbers from the checklist; bring them to the user to choose the next change.

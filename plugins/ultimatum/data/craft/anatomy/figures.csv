@@ -1,0 +1,29 @@
+name,kind,use_for,avoid_for,build,reduced_motion,file
+slab,part,boxes: bases plates frames,round parts,three polygons in four tones,static,craft-rules.md
+cylinder,part,drums dials hoppers,flat plates,gradient across width plus rim ring,static,craft-shading.md
+funnel,part,hoppers and chutes,tiny figures,cone with slant-following stops,static,craft-shading.md
+sphere-dome,part,lamps and domes,mechanical frames,radial gradient toward the light,static,craft-shading.md
+coil,part,springs and heaters,flat diagrams,front and back arcs in separate layers,compress with no tween,craft-shading.md
+pipe,part,flows and links,figures with no ports,path with 1.5 radii clearance and port ends,static flow marks,craft-rules.md
+collar-split,part,rings on rods,loose rings,front and back halves with the rod between,static,craft-rules.md
+knurl,texture,grips and dial edges,flat faces,ribs edge to edge,static,craft-shading.md
+tick-row,texture,scales and rulers,decorative lines,ticks start and end on real ends,static,craft-shading.md
+bolt-dots,texture,fixings on plates,random dots,even spacing on a line or circle,static,craft-shading.md
+grille-fade,texture,vents and mesh,full opaque grilles on curves,clip then fade near the edge,static,craft-shading.md
+spring-follow,motion,levers lids needles,constant-speed moves,real spring with stiffness and damping,jump to end,motion.md
+exp-follow,motion,sliders and readouts,events needing overshoot,value eases by 1 minus exp of rate times dt,jump to end,motion.md
+envelope,motion,lamps valves flashes,hard on-off,smooth rise burst or settle curve,final state only,motion.md
+exploded-view,motion,showing the parts,parts that cannot separate,staggered offset with reversed return,assembled and exploded stills,motion.md
+idle-tour,motion,first view demo,pages with motion limits,short timed pass that stops on input,no tour,motion.md
+shader-flame,effect,fire and heat,any decoration,ray-marched layer between two SVGs,one still frame,webgl.md
+shader-caustics,effect,water light,pages over the effect cap,ray-marched layer with tonemap and dither,one still frame,webgl.md
+ink-on-paper,effect,glows on light pages,dark pages,subtractive ink that grows with light,one still frame,webgl-light-theme.md
+turn-group,part,dials wheels and drums,concave pieces unsplit,fixed axis with convex pieces,static pose,turning-groups.md
+slide-group,part,pistons and drawers,tubes at the camera tilt,axis move with flush contact,end pose,turning-groups.md
+hinge-group,part,lids and flaps,gaps at the hinge line,swing about an edge,open and closed stills,turning-groups.md
+line-end-check,check,every line and tick row,none,probe endpoints against face borders,not applicable,verify.md
+audit-table,check,figures with pipes and rounds,none,one row per check with a zero count,not applicable,verify.md
+closeup-4x,check,joints and curves,none,4x device scale crops looked at one by one,not applicable,verify.md
+poster-sheet,format,wall or cover sheet,heavy detail,one page with pins and part lines,not applicable,print-sheets.md
+drawing-sheet,format,technical handout,casual pages,one page with spec and inset,not applicable,print-sheets.md
+detailed-sheet,format,manuals,quick handouts,two pages with close-ups and steps,not applicable,print-sheets.md

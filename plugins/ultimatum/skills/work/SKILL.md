@@ -1,6 +1,6 @@
 ---
 name: work
-description: "Ultimatum's default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Covers questions and all software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI, security review and remediation, data and infra, releases, MCP servers and skills, handoff and resume. Website, store, app, event, social and video jobs go to the matching Ultimatum plugin, or it says which one to install."
+description: "Ultimatum's default way of working: short plain answers first, deeper only when needed, helpers only when they save time. Covers questions and all software work in a repository: understanding code, fixes, features, bugs and failing tests, CI and PR feedback, UI, security review and remediation, data and infra, releases, MCP servers and skills, handoff and resume. Website jobs go to the `website` skill; App Store, TestFlight and EAS shipping go to `app-store`; social posts and calendars go to `social-media`."
 argument-hint: "<task>"
 ---
 
@@ -12,7 +12,7 @@ Task: $ARGUMENTS
 
 ## 1. Route first
 
-Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them, don't re-read. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow:` line (user did not type `/ultimatum:work`): a launch goes to `ultimatum-<kind>-launch:launch`, social to `ultimatum-social-media:social-media`, motion or film to `ultimatum-video:video`. Not installed: short answer plus `/plugin install <plugin>@ultimatum`.
+Question, nothing to change: CHAT. Obvious one-spot edit (typo, rename, stated one-liner): skip routing; FAST. Otherwise run `ult route "<task>" --root . --cat`. It prints mode, route, add-ons, overlay and files to read: follow them. A `do:` line is the deliverable contract. Override it if the task differs. `alt:`: pick the better fit. `lesson:` lines are hints. A `workflow: website` line (user did not type `/ultimatum:work`): switch to `${CLAUDE_PLUGIN_ROOT}/skills/website/SKILL.md`; same for `app-store` and `social-media` (`skills/<name>/SKILL.md`).
 
 | Mode | Do |
 |---|---|
@@ -39,7 +39,7 @@ Shipping (only when asked): `release/SKILL.md`; deploy or publish only on the us
 
 Locate with scoped search (`ult search`, `ult symbols`, `ult refs`) → state the check (beyond FAST) → minimal change (test first when testable) → verify with `ult run` → review `git diff` → report. Lost after two focused searches, or 3+ areas: `ult map`, then `code-map.md` (Graphify on big repos), then confirm in code.
 
-Small jobs stay solo. Use helpers only when they save time or rework: `ultimatum:scout` for wide sweeps; `ultimatum:worker` for one owned slice (Haiku; `model: sonnet` for judgment; brief: goal, guide, owned files, check, `ult` command; parallel workers own separate files; re-run its check); `ultimatum:reviewer` optional; `ultimatum:security-hunter`/`-verifier` for audits and high or critical findings. Redact secrets in briefs. You own the result.
+Solo is the default: every helper starts cold and re-reads, so it costs tokens. Use one only when it saves time or rework: `ultimatum:scout` for wide sweeps; one `ultimatum:worker` (the Sonnet coder) for a bounded slice such as payments or data wiring while you keep the design work, never several coders at once (brief: goal, guide, owned files, check, `ult` command; re-run its check); `ultimatum:reviewer` optional; `ultimatum:security-hunter`/`-verifier` for audits and high or critical findings. Redact secrets in briefs. You own the result.
 
 After a long task or a correction: `ult learn add "<lesson>" --scope project`. At milestones: `ult handoff write`.
 

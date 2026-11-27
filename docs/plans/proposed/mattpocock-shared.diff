@@ -1,0 +1,39 @@
+# Proposed edits to shared files for the Matt Pocock rebuild. Not applied.
+
+--- a/plugins/ultimatum/skills/work/references/feature-planning.md
++++ b/plugins/ultimatum/skills/work/references/feature-planning.md
+@@ ## 3. Questions (end of section)
++Many linked decisions, or an expert who is not in the chat: `craft/mattpocock/question-rounds.md`.
+@@ ## 4. Vocabulary and model (end of section)
++Challenging terms, glossary entries and when a decision earns an ADR: `craft/mattpocock/domain-language.md`.
+@@ ## 5. Prototype only to settle a real uncertainty (end of section)
++Logic demos and layout variants in detail: `craft/mattpocock/prototypes.md`.
+@@ ## 7. Slices and tickets (end of section)
++Ticket graphs with blocking edges, refactor batches and publishing: `craft/mattpocock/spec-and-tickets.md`.
+
+--- a/plugins/ultimatum/skills/work/references/tdd.md
++++ b/plugins/ultimatum/skills/work/references/tdd.md
+@@ ## 1. Cycle (one behavior at a time) (end of section)
++Agreeing seams first and client-shaped fakes: `craft/mattpocock/test-seams.md`; interface design: `craft/mattpocock/deep-modules.md`.
+
+--- a/plugins/ultimatum/data/upstreams.json
++++ b/plugins/ultimatum/data/upstreams.json
+@@ "id": "mattpocock-skills"
+-      "modules": ["deep", "website"],
+-      "reviewed": "2026-11-24",
++      "modules": ["deep", "website", "work"],
++      "reviewed": "2026-11-26",
+
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+@@
+-| [mattpocock/skills](https://github.com/mattpocock/skills) | `4ae2317ddb22` | MIT | Requirements interviews, domain modeling, prototyping, TDD, tickets, handoffs |
++| [mattpocock/skills](https://github.com/mattpocock/skills) | `d65391149dbb` | MIT | Requirements interviews, domain modeling, prototyping, TDD, tickets, handoffs; rebuilt as `skills/work/references/craft/mattpocock/` |
+
+--- a/docs/CREDITS.md
++++ b/docs/CREDITS.md
+@@
+-| [mattpocock/skills](https://github.com/mattpocock/skills) | `4ae2317ddb22` | MIT | Requirements interviews, domain modeling, prototyping, TDD, tickets, handoffs |
++| [mattpocock/skills](https://github.com/mattpocock/skills) | `d65391149dbb` | MIT | Requirements interviews, domain modeling, prototyping, TDD, tickets, handoffs; rebuilt as `skills/work/references/craft/mattpocock/` |
+
+# SKILL.md: no change needed (the craft folder is reached through the base references).

@@ -1,0 +1,36 @@
+Proposed edits to shared files for the Impeccable rebuild. Not applied (shared files are left to the lead).
+
+--- a/plugins/ultimatum/data/upstreams.json
++++ b/plugins/ultimatum/data/upstreams.json
+@@ impeccable entry
+-      "pin": "b49177d",
+-      "licence": "Apache-2.0 (NOTICE adds MIT, MPL-2.0 and OFL-1.1 parts)",
+-      "decision": "adapter",
+-      "modules": ["design"],
+-      "reviewed": "2026-11-24",
+-      "note": "Optional adapter only: its launcher downloads a native engine at run time and runs it from hooks. Not vendored"
++      "pin": "3c5e75f",
++      "licence": "Apache-2.0 (NOTICE.md: iOS and Android notes MIT; component-review fonts OFL-1.1; MPL-2.0 not found in text at this pin)",
++      "decision": "adapt",
++      "modules": ["design", "website"],
++      "reviewed": "2026-11-26",
++      "note": "Rebuilt in own words as skills/website/references/craft/impeccable; skip the native engine, launcher, hooks, live bridge, image generation and fonts (see later.md)"
+
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+-| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `3c5e75fa07be` | Apache-2.0 | Design critique and audit vocabulary, craft floor, detector-style anti-patterns |
++| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `3c5e75fa07be` | Apache-2.0 | Design critique and audit vocabulary, craft floor, detector-style anti-patterns; website craft references (audit scorecard, critique, hardening, microcopy, refine moves, adapting, native platforms, direction process) |
+
+--- a/docs/CREDITS.md
++++ b/docs/CREDITS.md
+(same one-line change as plugins/ultimatum/CREDITS.md)
+
+--- a/plugins/ultimatum/skills/website/references/website/craft.md
++++ b/plugins/ultimatum/skills/website/references/website/craft.md
+@@ after the anatomy line
++For audits with a score, critique, hardening, interface copy, refine moves, adapting to other contexts and native iOS or Android rules, read `../craft/impeccable/index.md`.
+
+--- a/plugins/ultimatum/agents/taste-critic.md
++++ b/plugins/ultimatum/agents/taste-critic.md
+@@ after the anatomy check
++   - For a scored audit, use `references/craft/impeccable/audit-scorecard.md` (five areas out of 20, P0 to P3); check strings, errors and gestures against `harden.md`.

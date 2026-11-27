@@ -1,0 +1,45 @@
+id,kind,tell,instead,severity,file
+classic-purple-gradient,classic,"Purple, violet or indigo gradient background",One flat brand colour from the palette,medium,slop-tells.md
+classic-three-column-grid,classic,"Three-column icon, title, blurb feature grid",Vary weight and shape to suit the content,medium,slop-tells.md
+classic-icon-circles,classic,Icons in coloured circles as decoration,Drop the icon or use a real image,medium,slop-tells.md
+classic-all-centred,classic,Every heading and card centred,"Left-align text, centre only a short hero",medium,slop-tells.md
+classic-uniform-radius,classic,One bubbly radius on everything,Pick radii by element role,medium,slop-tells.md
+classic-blobs-waves,classic,"Blobs, floating circles, wavy dividers",Better content; plain section edges,medium,slop-tells.md
+classic-emoji-design,classic,Emoji as headings or bullets,Real icons or none,medium,slop-tells.md
+classic-left-border-card,classic,Coloured left border on cards,Plain card or a real status mark,medium,slop-tells.md
+classic-generic-hero-copy,classic,"Welcome to X, Unlock the power of, all-in-one solution",Say what it is and who it is for,high,slop-tells.md
+classic-same-rhythm,classic,"Hero, three features, testimonials, pricing, call to action with equal bands",Order sections by what the visitor needs,medium,slop-tells.md
+classic-system-font,classic,System font stack as the main face,"A chosen, named pairing",medium,slop-tells.md
+border-accent-on-rounded,rule,Accent border on a rounded card,Plain card,medium,slop-tells.md
+overused-font,rule,Overused display font,A chosen display face,medium,slop-tells.md
+flat-type-hierarchy,rule,Sizes too close to read as levels,Use a scale with real steps,medium,slop-tells.md
+gradient-text,rule,Gradient-filled text,One solid colour,medium,slop-tells.md
+cream-palette,rule,Cream default palette,Colour from the brand and use scene,medium,slop-tells.md
+nested-cards,rule,Cards inside cards,Flatten with spacing and rules,medium,slop-tells.md
+shape-assembled-illustration,rule,Art built from basic shapes,Real imagery or none,medium,slop-tells.md
+dark-glow,rule,Glow on a dark surface,Plain contrast,medium,slop-tells.md
+radial-halo,rule,Radial halo behind content,Plain background,medium,slop-tells.md
+radial-spotlight-glow,rule,Spotlight glow,Plain background,medium,slop-tells.md
+marquee,rule,Scrolling logo strip,"A static row of real customers, or cut",medium,slop-tells.md
+icon-tile-stack,rule,Icon tile above every heading,Headings alone,medium,slop-tells.md
+italic-serif-display,rule,Italic serif for display,A face chosen for the brand,medium,slop-tells.md
+hero-eyebrow-chip,rule,Chip or pill above the hero heading,Cut it,medium,slop-tells.md
+kicker-above-heading,rule,Small label above every heading,Only where it adds information,medium,slop-tells.md
+marketing-buzzword,rule,Buzzword copy,Concrete nouns and verbs,medium,slop-tells.md
+aphoristic-cadence,rule,Short punchy fragments for rhythm,Plain sentences,medium,slop-tells.md
+oversized-h1,rule,Headline too big for its job,Size to the content,medium,slop-tells.md
+theater-slop-phrase,rule,Stage-whisper phrases,Say the thing,medium,slop-tells.md
+judge-gradient-button,judgement,Gradient button for the main action,Flat palette colour,medium,slop-tells.md
+judge-stock-hero,judgement,Stock photo or grey box as hero,Real product or nothing,high,slop-tells.md
+judge-card-everything,judgement,Rounded shadowed cards for all content,A real layout,medium,slop-tells.md
+judge-fake-testimonials,judgement,"Avatars, stars and quotes nobody said","Real names and claims, or cut",high,slop-tells.md
+judge-default-hero,judgement,"Headline left, screenshot right, two buttons",A hero composed for this page,medium,slop-tells.md
+judge-vague-cta,judgement,Get started and Learn more as only actions,Name what the click buys,medium,slop-tells.md
+judge-fake-stats,judgement,Three big numbers with tiny labels,Only facts the owner supplied,high,slop-tells.md
+judge-uniform-cards,judgement,Same-shaped cards for unequal content,Size by weight,medium,slop-tells.md
+judge-frosted-glass,judgement,Frosted glass as default surface,One layer where depth is explained,medium,slop-tells.md
+judge-mascots,judgement,Generated doodles and mascots,Art direction,medium,slop-tells.md
+judge-modal-secondary,judgement,Every secondary action in a modal,Inline where possible,medium,slop-tells.md
+judge-filler-widgets,judgement,"Sparklines, rings and fake avatars as filler",Real content,medium,slop-tells.md
+judge-theme-by-cliche,judgement,"Dark for developer tools, light for health",The use-scene test,medium,slop-tells.md
+judge-happy-path-only,judgement,Only the happy path designed,"Empty, loading, error, long states",high,slop-tells.md

@@ -1,0 +1,13 @@
+kind,name,meaning,example,score_effect
+severity,critical,"Blocks a core workflow, loses data, crashes or exposes private data",Checkout broken; delete with no confirmation,-25
+severity,high,A major feature is broken with no workaround,Search wrong; silent upload failure,-15
+severity,medium,Works with a noticeable problem and a workaround,Over 5 s load; layout broken on phones only,-8
+severity,low,Cosmetic or polish,Typo in footer; 1 px misalignment,-3
+category,visual,"Overlap, clipping, broken images, alignment, dark-mode problems",Sideways scroll bar on phones,weight 10
+category,functional,"Broken links, dead buttons, validation, redirects, lost state",Submit does nothing,weight 20
+category,ux,"Confusing navigation, dead ends, no feedback, vague errors",No confirmation before delete,weight 15
+category,content,"Typos, stale text, placeholder text, cut-off text, empty states",Lorem ipsum left in,weight 5
+category,performance,"Slow load, janky scroll, layout shift, heavy images",Over 50 requests,weight 10
+category,console,"Uncaught errors, failed requests, mixed content",Unhandled promise rejection,weight 15
+category,accessibility,"Alt text, labels, keyboard, focus, ARIA, contrast",Unlabelled input,weight 15
+category,links,Broken links (scored by count),404 on a nav link,weight 10

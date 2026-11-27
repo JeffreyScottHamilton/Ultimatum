@@ -1,4 +1,5 @@
-"""Approval gates the Manager keeps for the user: brief, mockup, storyboard, video, publish, deploy.
+"""Approval gates the Manager keeps for the user: brief, mockup, data-model, publish, post,
+deploy, live-payments.
 
 State lives in .ultimatum/approvals.json next to the shared brief (.ultimatum/brief.md).
 Each approval stores the user's words, the time, and a fingerprint of the "## Build brief"
@@ -6,7 +7,9 @@ section (and of a file, when one is named). If the build brief or that file chan
 the approval, the item reads "changed since approval" and counts as not approved, so a
 resumed project never treats a newer draft as the approved one.
 
-Publish and deploy approvals are used once: `ult gate done ITEM` closes them after the action.
+A data-model approval must name the schema or migration file (--file), and a post approval the
+social plan file, so any later edit to it reopens the gate. Publish, post, deploy and
+live-payments approvals are used once: `ult gate done ITEM` closes them after the action.
 Local, stdlib only, no network.
 """
 from __future__ import annotations
@@ -21,17 +24,16 @@ from pathlib import Path
 from .common import project_root, state_dir, write_private
 from .website import brief_path
 
-ITEMS = ("brief", "mockup", "storyboard", "story", "sourcing", "animatic", "video", "publish", "deploy")
+ITEMS = ("brief", "mockup", "data-model", "publish", "post", "deploy", "live-payments")
+NEEDS_FILE = ("data-model", "post")
 WHAT = {
-    "brief": "build brief (Launch Manager shows it before Website starts)",
+    "brief": "build brief (shown to the user before the build starts)",
     "mockup": "website mockup (before production code)",
-    "storyboard": "motion storyboard (before production animation)",
-    "story": "brand film story: logline, beats, sub-genre (before any footage is sourced)",
-    "sourcing": "brand film footage plan, spend and consent (before anything is bought, generated or shot)",
-    "animatic": "brand film rough cut or animatic (before paid generation or the final edit)",
-    "video": "finished video (before it is delivered or the style guide is saved)",
-    "publish": "posting or sending the campaign",
+    "publish": "putting the site live (domain, hosting, listings)",
+    "data-model": "app data model: tables, who may read and write each (before migrations run)",
+    "post": "posting, scheduling or sending one batch of social posts (the approved plan file)",
     "deploy": "deploying or releasing",
+    "live-payments": "switching payments to live keys and real charges",
 }
 BRIEF_HEAD = "## Build brief"
 REQUIRED = ("Audience", "Offer", "Main visitor action")
@@ -110,6 +112,8 @@ def _record(root: Path, item: str, rec: dict) -> None:
 def approve(root: Path, item: str, note: str, link: str | None = None, file: str | None = None) -> str:
     if item == "brief" and not brief_section(root):
         raise ValueError(f"no '{BRIEF_HEAD}' section in {brief_path(root)}; Business drafts it first")
+    if item in NEEDS_FILE and not file:
+        raise ValueError(f"{item}: name the file the user approved with --file (schema or migration, or the social plan)")
     if item == "brief":
         empty = [f for f in REQUIRED if re.search(rf"^- {f}:\s*$", brief_section(root), re.M | re.I)]
         if empty:
@@ -135,7 +139,7 @@ def cmd_gate(args) -> int:
             print(json.dumps({i: {"state": s, "detail": d} for i, (s, d) in rows.items()}, indent=2))
             return 0
         for i, (s, d) in rows.items():
-            print(f"{i:<11}{s:<9}{d if s != 'waiting' else WHAT[i]}")
+            print(f"{i:<15}{s:<9}{d if s != 'waiting' else WHAT[i]}")
         return 0
     if not rest or rest[0] not in ITEMS:
         print(f"name one of: {', '.join(ITEMS)}", file=sys.stderr)
@@ -174,11 +178,11 @@ def cmd_gate(args) -> int:
 
 
 def register(sub):
-    p = sub.add_parser("gate", help="user approvals: brief, mockup, storyboard, video, publish, deploy")
+    p = sub.add_parser("gate", help="user approvals: " + ", ".join(ITEMS))
     p.add_argument("action", choices=["status", "check", "approve", "revise", "done"])
     p.add_argument("rest", nargs="*", help="ITEM then the user's words")
     p.add_argument("--link", help="live link that was checked (publish, deploy)")
-    p.add_argument("--file", help="file the approval is for (mockup image, video export)")
+    p.add_argument("--file", help="file the approval is for (mockup image, schema or migration, social plan)")
     p.add_argument("--need-link", action="store_true", help="check: also require a checked live link")
     p.add_argument("--json", action="store_true")
     p.add_argument("--root", help="project directory (default: the current project)")

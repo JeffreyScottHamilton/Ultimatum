@@ -1,0 +1,3 @@
+{"id": "hub", "layout": "hub", "size": "card", "pulse": true, "lines": "straight",
+ "title": "Ledgerline sends each paid invoice to Xero, Stripe, Slack, HubSpot and Google Sheets",
+ "core": "Ledgerline", "nodes": ["Xero", "Stripe", "Slack", "HubSpot", "Google Sheets"]}

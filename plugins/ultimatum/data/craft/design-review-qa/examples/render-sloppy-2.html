@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render sloppy two</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font: 18px/1.5 Georgia, serif; color: #1a1a1a; background: #fafafa; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.hero { min-height: 1100px; background: #6d28d9; color: #fff; padding-top: 80px; }
+.hero h1 { font-size: 56px; margin: 0 0 16px; }
+.hero p { margin: 0; }
+.reveal { opacity: 0; transform: translateY(20px); }
+section.band { padding: 128px 0; }
+img { display: block; width: 100%; height: auto; margin: 0 0 24px; }
+</style></head>
+<body>
+<section class="hero"><div class="wrap"><h1>A tall purple hero</h1><p>One short line, then nothing until far below the fold.</p></div></section>
+<section class="band"><div class="wrap">
+<p class="reveal">This paragraph waits for a scroll script that never runs, so it stays invisible to every visitor and to every screen reader that respects opacity.</p>
+<p class="reveal">So does this one, along with the next, and the reader sees a blank band where the explanation of the product should have been.</p>
+<p class="reveal">A third hidden paragraph that pushes the hidden share of the page well past a quarter of all the words on it.</p>
+<p>Only this paragraph is visible.</p>
+<img alt="Gallery one" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23999'/%3E%3C/svg%3E"><img alt="Gallery two" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23999'/%3E%3C/svg%3E"><img alt="Gallery three" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23999'/%3E%3C/svg%3E">
+</div></section>
+</body></html>

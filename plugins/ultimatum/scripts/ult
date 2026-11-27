@@ -17,6 +17,7 @@
   ult improve ...           propose / apply / measure / keep or roll back a workflow change
   ult route "<task>"        mode + modules + files to read for a task (offline, deterministic)
   ult components "<need>"   offline UI component-library lookup with licences
+  ult design search|system|domains|deal   offline design tables; deal a page's palette, type and parts
   ult learn ...             local lessons: observe / add / list / relevant / propose / prune
   ult budget                tokens per turn and top costs for this chat
   ult sync export|import    copy lessons to or from a private folder you choose
@@ -24,15 +25,15 @@
   ult arch [check|baseline]  architecture checks: cycles, duplication, size, stubs, naming, drift
   ult update status|setup   installed vs available version; auto-update setup
   ult website "<task>"      Website workflow plan: size, team, designer, roles, files to load
-  ult motion "<task>"       Motion Graphics plan: size, roles, storyboard gate, renderer, files to load
-  ult film "<task>"         Brand Film plan: sub-genre, gates, roles; --check the footage manifest and voiceover pace
-  ult beats FILE            suggested beats (librosa) or possible cues (ffmpeg) to check by ear
-  ult media FILE            check a video export: duration, size, fps, codecs, audio, loudness
   ult loop add|triage|fixed|recheck|status   review loop: blockers hold delivery, minor ones don't
   ult board add|move|show|card              card board for big projects; `show` first after lost context
   ult notes add|show|list|links            linked [[name]] notes (opens as an Obsidian vault)
-  ult gate status|check|approve|revise|done ITEM   user approvals (brief, mockup, storyboard, story, sourcing, animatic, video, publish, deploy)
-  ult launch | ult business "<task>" | ult social "<task>"   Launch Manager board, Business and Social Media plans
+  ult gate status|check|approve|revise|done ITEM   user approvals (brief, mockup, publish, post, deploy)
+  ult approvals [--check|--starter]   observe only: what an approval policy would decide for this change
+  ult market page|abtest|events   search, schema and form basics; A/B test maths; tracking plans
+  ult appstore check [--root .]   Expo app App Store readiness: IDs, builds, usage strings, privacy, secrets
+  ult posts plan|check|specs|calendar|variant   social posts: plan check, file and caption limits, calendar
+  ult kitlint PATH...       React interaction components: reduced motion, tokens, labels, press scale
   ult style status|apply|remove  opt-in shared answer style in ~/.claude/CLAUDE.md
 """
 import argparse
@@ -45,7 +46,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from ultlib import context, doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
 MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
-for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "motion", "film", "media", "loop", "board", "style", "gates", "teams"):
+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "loop", "board", "style", "gates", "design", "copylint", "kitlint", "diagram", "approvals", "market", "appstore", "posts"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
     except ImportError:

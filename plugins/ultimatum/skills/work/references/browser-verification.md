@@ -104,6 +104,8 @@ console.log(await page.evaluate(() => Object.keys(localStorage)));
 
 State "not browser-verified". Do the cheap substitutes: run the component/unit tests, lint, type-check, build, and read the CSS for the states in `ui.md` section 4. Describe the exact manual steps for the user (URL, viewport, what to press, expected result). Do not describe visual outcomes as observed.
 
+Servers around a Playwright script and the look-then-act recipe: `craft/anthropic-method/webapp-recipes.md`.
+
 ## 12. Reporting
 
 `ULT-BROWSER: <line>` verbatim; viewports and steps run; engine (axe or fallback); what the screenshots showed; waivers in the `ui.md` format; not verified (perf, memory, real devices, screen reader). Keep `report.json` path so findings can be re-read with `ult`.

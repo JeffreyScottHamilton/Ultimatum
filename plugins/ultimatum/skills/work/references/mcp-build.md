@@ -9,6 +9,8 @@ Goal: a small, safe server that gives a client a few clear tools. Load for "buil
 - Name tools verb-first with one prefix per server (`issue_search`, `issue_create`).
 - Keep read-only tools separate from writes. Mark destructive tools in their description and require explicit confirmation from the user before calling them.
 
+Tool names, hints, result shape, error channels and transport checks: `craft/anthropic-method/mcp-tool-design.md`.
+
 ## 2. Transport
 
 - stdio: a local server the client starts itself. The default for a single user reading local files or local CLIs.
@@ -45,6 +47,8 @@ Goal: a small, safe server that gives a client a few clear tools. Load for "buil
 - Run the MCP Inspector against the server: list tools, call each with valid and invalid arguments, and check the schemas and error text. Run it locally, and do not give a hosted inspector real credentials.
 - Add one end-to-end session: initialize, list tools, call one tool, check the result.
 - Register the server in a throwaway client config and run one real task before calling it done.
+
+Stdio smoke client and eval question sets: `craft/anthropic-method/mcp-tool-design.md` § 8, `craft/anthropic-method/mcp-eval-set.md`.
 
 ## 7. Ship
 

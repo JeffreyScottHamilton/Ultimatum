@@ -147,6 +147,24 @@
       "note": "LICENSE.md is MIT (checked in a shallow clone); repo active 2026-11-24, CLI last released 2024-07-08; review copied code, accessibility not established"
     },
     {
+      "id": "watermelon-ui",
+      "name": "Watermelon UI",
+      "package": "shadcn",
+      "stacks": ["react"],
+      "categories": ["interactions", "marketing-sections", "dashboards"],
+      "keywords": ["interaction", "micro", "tactile", "toast", "split", "dock", "otp", "blocks", "dashboard", "wallet", "tailwind", "shadcn"],
+      "licence": "MIT",
+      "restricted": false,
+      "maintained": true,
+      "last_release": "2026-11-26",
+      "install": "npx shadcn@latest add https://registry.watermelon.sh/r/<slug>.json",
+      "fit": "131 interaction components, 189 page blocks and 12 dashboards from a shadcn registry",
+      "alternatives_to": ["magic-ui"],
+      "source": "https://github.com/WatermelonCorp/watermelon-platform",
+      "verified": "2026-11-27",
+      "note": "LICENSE is MIT (checked in a clone at 8093ba0). Ultimatum's own interaction kit (data/craft/interaction-kit) covers 110 of the 131 components; ult kitlint found at least one failure in 130 of 131 of its components, so lint anything you install"
+    },
+    {
       "id": "aceternity-ui",
       "name": "Aceternity UI",
       "package": "aceternity-ui",

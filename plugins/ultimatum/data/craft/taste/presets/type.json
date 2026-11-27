@@ -1,0 +1,407 @@
+[
+ {
+  "pairing": "Console",
+  "kinds": [
+   "software",
+   "hardware"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Workspace",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.025em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Ledger App",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Metrics",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Launchpad",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.035em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Builder",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.03em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Assistant",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.025em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Secure",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Docs",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.015em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Notebook",
+  "kinds": [
+   "software"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Blueprint",
+  "kinds": [
+   "hardware",
+   "software"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Lab",
+  "kinds": [
+   "hardware",
+   "software",
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Product",
+  "kinds": [
+   "product",
+   "hardware",
+   "software"
+  ],
+  "tracking": "-0.03em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Arcade",
+  "kinds": [
+   "game"
+  ],
+  "tracking": "0em",
+  "scale": 1.414,
+  "case": "upper case for the title only"
+ },
+ {
+  "pairing": "Puzzle Box",
+  "kinds": [
+   "game"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Neon Grid",
+  "kinds": [
+   "game"
+  ],
+  "tracking": "0.01em",
+  "scale": 1.414,
+  "case": "upper case for the title only"
+ },
+ {
+  "pairing": "Poster",
+  "kinds": [
+   "game",
+   "product",
+   "place"
+  ],
+  "tracking": "0.01em",
+  "scale": 1.5,
+  "case": "upper case display"
+ },
+ {
+  "pairing": "Mixtape",
+  "kinds": [
+   "game",
+   "place"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Clubhouse",
+  "kinds": [
+   "game",
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Shopfront",
+  "kinds": [
+   "product"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Atelier",
+  "kinds": [
+   "product",
+   "service"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Maison",
+  "kinds": [
+   "product",
+   "place"
+  ],
+  "tracking": "0em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Marketplace",
+  "kinds": [
+   "product"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Catalogue",
+  "kinds": [
+   "product"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Doodle",
+  "kinds": [
+   "product",
+   "game"
+  ],
+  "tracking": "0em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Workshop",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Callout",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "0.005em",
+  "scale": 1.333,
+  "case": "upper case for short headings"
+ },
+ {
+  "pairing": "Fresh Start",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Main Street",
+  "kinds": [
+   "service",
+   "place"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Counsel",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Clinic",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Smile",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Coach",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Tutor",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "-0.015em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Agency",
+  "kinds": [
+   "service",
+   "product"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.414,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Civic",
+  "kinds": [
+   "service"
+  ],
+  "tracking": "0em",
+  "scale": 1.2,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Chair",
+  "kinds": [
+   "place",
+   "service"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Kneaded",
+  "kinds": [
+   "place"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Chalkboard",
+  "kinds": [
+   "place"
+  ],
+  "tracking": "0em",
+  "scale": 1.25,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Supper",
+  "kinds": [
+   "place"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Taproom",
+  "kinds": [
+   "place"
+  ],
+  "tracking": "0.01em",
+  "scale": 1.333,
+  "case": "upper case for short headings"
+ },
+ {
+  "pairing": "Wanderer",
+  "kinds": [
+   "place",
+   "service"
+  ],
+  "tracking": "-0.02em",
+  "scale": 1.333,
+  "case": "sentence case"
+ },
+ {
+  "pairing": "Property",
+  "kinds": [
+   "place",
+   "service"
+  ],
+  "tracking": "-0.01em",
+  "scale": 1.25,
+  "case": "sentence case"
+ }
+]

@@ -1,0 +1,2303 @@
+{
+ "Albert Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Andreas Rasmussen",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Albert Sans",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Alegreya": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Juan Pablo del Peral, HT Fonts",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Alegreya",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   900
+  ]
+ },
+ "Alegreya Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Juan Pablo del Peral, HT Fonts",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Alegreya Sans",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   100,
+   300,
+   400,
+   500,
+   700,
+   800,
+   900
+  ],
+  "wght": null
+ },
+ "Andika": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "SIL International",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Andika",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400,
+   700
+  ],
+  "wght": null
+ },
+ "Anton": {
+  "category": [
+   "DISPLAY"
+  ],
+  "designer": "Vernon Adams",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Anton",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Archivo": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Omnibus-Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Archivo",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Archivo Narrow": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Omnibus-Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Archivo Narrow",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   700
+  ]
+ },
+ "Atkinson Hyperlegible": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Braille Institute, Applied Design Works, Elliott Scott, Megan Eiswerth, Linus Boman, Theodore Petrosky",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Atkinson Hyperlegible",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400,
+   700
+  ],
+  "wght": null
+ },
+ "Baloo 2": {
+  "category": [
+   "DISPLAY"
+  ],
+  "designer": "Ek Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Baloo 2",
+  "subsets": [
+   "devanagari",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   800
+  ]
+ },
+ "Barlow": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Jeremy Tribby",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Barlow",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   800,
+   900
+  ],
+  "wght": null
+ },
+ "Barlow Condensed": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Jeremy Tribby",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Barlow Condensed",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   800,
+   900
+  ],
+  "wght": null
+ },
+ "Bebas Neue": {
+  "category": [
+   "DISPLAY",
+   "SANS_SERIF"
+  ],
+  "designer": "Ryoichi Tsunekawa",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Bebas Neue",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Big Shoulders Display": {
+  "category": [
+   "DISPLAY"
+  ],
+  "designer": "Patric King",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Big Shoulders Display",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Bodoni Moda": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Owen Earl",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Bodoni Moda",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "math",
+   "symbols"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   900
+  ]
+ },
+ "Bricolage Grotesque": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Mathieu Triay",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Bricolage Grotesque",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   800
+  ]
+ },
+ "Chakra Petch": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Cadson Demak",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Chakra Petch",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "thai",
+   "vietnamese"
+  ],
+  "weights": [
+   300,
+   400,
+   500,
+   600,
+   700
+  ],
+  "wght": null
+ },
+ "Commissioner": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Kostas Bartsokas",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Commissioner",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Cormorant": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Christian Thalmann",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Cormorant",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   700
+  ]
+ },
+ "Cormorant Garamond": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Christian Thalmann",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Cormorant Garamond",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   700
+  ]
+ },
+ "Crimson Pro": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Jacques Le Bailly",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Crimson Pro",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   900
+  ]
+ },
+ "DM Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Colophon Foundry",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "DM Sans",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   1000
+  ]
+ },
+ "DM Serif Display": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Colophon Foundry",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "DM Serif Display",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Darker Grotesque": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Gabriel Lam, Vi\u1ec7tAnh Nguy\u1ec5n",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Darker Grotesque",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   900
+  ]
+ },
+ "EB Garamond": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Georg Duffner, Octavio Pardo",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "EB Garamond",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   800
+  ]
+ },
+ "Epilogue": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Tyler Finck, ETC",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Epilogue",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Exo 2": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Natanael Gama",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Exo 2",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Familjen Grotesk": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Familjen STHLM AB",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Familjen Grotesk",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   700
+  ]
+ },
+ "Figtree": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Erik Kennedy",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Figtree",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   900
+  ]
+ },
+ "Frank Ruhl Libre": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Yanek Iontef",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Frank Ruhl Libre",
+  "subsets": [
+   "hebrew",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   900
+  ]
+ },
+ "Fraunces": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Undercase Type, Phaedra Charles, Flavia Zimbardi",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Fraunces",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Fredoka": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Milena Brand\u00e3o, Hafontia",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Fredoka",
+  "subsets": [
+   "hebrew",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   700
+  ]
+ },
+ "Geist": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Andr\u00e9s Briganti, Mateo Zaragoza, Guillermo Rauch, Evil Rabbit, Jos\u00e9 Rago, Facundo Santana",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Geist",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Gelasio": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Eben Sorkin",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Gelasio",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   700
+  ]
+ },
+ "Gloock": {
+  "category": [
+   "DISPLAY",
+   "SERIF"
+  ],
+  "designer": "Duarte Pinto",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Gloock",
+  "subsets": [
+   "cyrillic-ext",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Hanken Grotesk": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Alfredo Marco Pradil, Hanken Design Co.",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Hanken Grotesk",
+  "subsets": [
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "IBM Plex Mono": {
+  "category": [
+   "MONOSPACE"
+  ],
+  "designer": "Mike Abbink, Bold Monday",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "IBM Plex Mono",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "symbols2",
+   "vietnamese"
+  ],
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700
+  ],
+  "wght": null
+ },
+ "IBM Plex Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Mike Abbink, Bold Monday",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "IBM Plex Sans",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   700
+  ]
+ },
+ "IBM Plex Serif": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Mike Abbink, Bold Monday",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "IBM Plex Serif",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700
+  ],
+  "wght": null
+ },
+ "Instrument Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Rodrigo Fuenzalida, Jordan Egstad",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Instrument Sans",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   700
+  ]
+ },
+ "Instrument Serif": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Rodrigo Fuenzalida, Jordan Egstad",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Instrument Serif",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Inter": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Rasmus Andersson",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Inter",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Jost": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Owen Earl",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Jost",
+  "subsets": [
+   "cyrillic",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Karla": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Jonny Pinhorn",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Karla",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   800
+  ]
+ },
+ "Lexend": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, H\u00e9ctor G\u00f3mez, Superunion",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Lexend",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Libre Caslon Display": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Impallari Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Libre Caslon Display",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Libre Caslon Text": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Pablo Impallari",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Libre Caslon Text",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   700
+  ]
+ },
+ "Libre Franklin": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Impallari Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Libre Franklin",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Literata": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "TypeTogether",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Literata",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   900
+  ]
+ },
+ "Lora": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Cyreal",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Lora",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "math",
+   "symbols",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   700
+  ]
+ },
+ "Manrope": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Mikhail Sharanda",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Manrope",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   800
+  ]
+ },
+ "Marcellus": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Astigmatic",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Marcellus",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Merriweather": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Sorkin Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Merriweather",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   900
+  ]
+ },
+ "Merriweather Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Sorkin Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Merriweather Sans",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   800
+  ]
+ },
+ "Mukta": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Ek Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Mukta",
+  "subsets": [
+   "devanagari",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   800
+  ],
+  "wght": null
+ },
+ "Mulish": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Vernon Adams, Cyreal, Jacques Le Bailly",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Mulish",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   1000
+  ]
+ },
+ "Nanum Myeongjo": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Sandoll Communication",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Nanum Myeongjo",
+  "subsets": [
+   "korean",
+   "latin"
+  ],
+  "weights": [
+   400,
+   700,
+   800
+  ],
+  "wght": null
+ },
+ "Newsreader": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Production Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Newsreader",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   800
+  ]
+ },
+ "Noto Kufi Arabic": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Kufi Arabic",
+  "subsets": [
+   "arabic",
+   "latin",
+   "latin-ext",
+   "math",
+   "symbols"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Sans",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "devanagari",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Sans Arabic": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Sans Arabic",
+  "subsets": [
+   "arabic",
+   "latin",
+   "latin-ext",
+   "math",
+   "symbols"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Sans Hebrew": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Sans Hebrew",
+  "subsets": [
+   "cyrillic-ext",
+   "greek-ext",
+   "hebrew",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Sans JP": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Sans JP",
+  "subsets": [
+   "cyrillic",
+   "japanese",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Sans KR": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Sans KR",
+  "subsets": [
+   "cyrillic",
+   "korean",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Sans SC": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Sans SC",
+  "subsets": [
+   "chinese-simplified",
+   "cyrillic",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Sans Thai": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Sans Thai",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "thai"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Noto Serif JP": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Serif JP",
+  "subsets": [
+   "cyrillic",
+   "japanese",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   900
+  ]
+ },
+ "Noto Serif SC": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Serif SC",
+  "subsets": [
+   "chinese-simplified",
+   "cyrillic",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   900
+  ]
+ },
+ "Noto Serif Thai": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Google",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Noto Serif Thai",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "thai"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Nunito": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Vernon Adams, Cyreal, Jacques Le Bailly",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Nunito",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   1000
+  ]
+ },
+ "Nunito Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Vernon Adams, Jacques Le Bailly, Manvel Shmavonyan, Alexei Vanyashin",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Nunito Sans",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   1000
+  ]
+ },
+ "Onest": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Dmitri Voloshin, Andrey Kudryavtsev",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Onest",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "math",
+   "symbols",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Open Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Steve Matteson",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Open Sans",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "hebrew",
+   "latin",
+   "latin-ext",
+   "math",
+   "symbols",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   800
+  ]
+ },
+ "Orbitron": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Matt McInerney",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Orbitron",
+  "subsets": [
+   "latin"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   900
+  ]
+ },
+ "Outfit": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Smartsheet Inc, Rodrigo Fuenzalida",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Outfit",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Petrona": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Ringo R. Seeber",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Petrona",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Playfair Display": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Claus Eggers S\u00f8rensen",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Playfair Display",
+  "subsets": [
+   "cyrillic",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   900
+  ]
+ },
+ "Plus Jakarta Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Tokotype",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Plus Jakarta Sans",
+  "subsets": [
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   800
+  ]
+ },
+ "Press Start 2P": {
+  "category": [
+   "DISPLAY"
+  ],
+  "designer": "CodeMan38",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Press Start 2P",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Public Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "USWDS, Dan Williams, Pablo Impallari, Rodrigo Fuenzalida",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Public Sans",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Red Hat Display": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "MCKL",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Red Hat Display",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   900
+  ]
+ },
+ "Red Hat Mono": {
+  "category": [
+   "SANS_SERIF",
+   "MONOSPACE"
+  ],
+  "designer": "MCKL",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Red Hat Mono",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   700
+  ]
+ },
+ "Red Hat Text": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "MCKL",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Red Hat Text",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   700
+  ]
+ },
+ "Rethink Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Hans Thiessen",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Rethink Sans",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   800
+  ]
+ },
+ "Righteous": {
+  "category": [
+   "DISPLAY"
+  ],
+  "designer": "Astigmatic",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Righteous",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Roboto": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Christian Robertson, ParaType, Font Bureau",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Roboto",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "math",
+   "symbols",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Roboto Slab": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Christian Robertson",
+  "dir": "apache",
+  "license": "APACHE2",
+  "name": "Roboto Slab",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Rubik": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Hubert and Fischer, Meir Sadan, Cyreal, Daniel Grumer, Omaima Dajani",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Rubik",
+  "subsets": [
+   "arabic",
+   "cyrillic",
+   "cyrillic-ext",
+   "hebrew",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   900
+  ]
+ },
+ "Saira": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Omnibus-Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Saira",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Schibsted Grotesk": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Bakken & B\u00e6ck, Henrik Kongsvoll",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Schibsted Grotesk",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   900
+  ]
+ },
+ "Shantell Sans": {
+  "category": [
+   "DISPLAY"
+  ],
+  "designer": "Shantell Martin, Arrow Type, Anya Danilova",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Shantell Sans",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   800
+  ]
+ },
+ "Sometype Mono": {
+  "category": [
+   "MONOSPACE"
+  ],
+  "designer": "Ryoichi Tsunekawa",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Sometype Mono",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   700
+  ]
+ },
+ "Sora": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Jonathan Barnbrook, Juli\u00e1n Moncada",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Sora",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   800
+  ]
+ },
+ "Source Sans 3": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Paul D. Hunt",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Source Sans 3",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "greek-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   900
+  ]
+ },
+ "Source Serif 4": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Frank Grie\u00dfhammer",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Source Serif 4",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "greek",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   900
+  ]
+ },
+ "Space Grotesk": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Florian Karsten",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Space Grotesk",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   300,
+   700
+  ]
+ },
+ "Spectral": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Production Type",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Spectral",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   800
+  ],
+  "wght": null
+ },
+ "Syne": {
+  "category": [
+   "DISPLAY",
+   "SANS_SERIF"
+  ],
+  "designer": "Bonjour Monde, Lucas Descroix, George Triantafyllakos",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Syne",
+  "subsets": [
+   "greek",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   800
+  ]
+ },
+ "Tenor Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Denis Masharov",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Tenor Sans",
+  "subsets": [
+   "cyrillic",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Tiro Devanagari Hindi": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Tiro Typeworks, John Hudson, Fiona Ross, Paul Hanslow",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Tiro Devanagari Hindi",
+  "subsets": [
+   "devanagari",
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Unbounded": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "NaN",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Unbounded",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   200,
+   900
+  ]
+ },
+ "Wix Madefor Display": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Dalton Maag",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Wix Madefor Display",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   400,
+   800
+  ]
+ },
+ "Wix Madefor Text": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Dalton Maag",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Wix Madefor Text",
+  "subsets": [
+   "cyrillic",
+   "cyrillic-ext",
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400,
+   500,
+   600,
+   700,
+   800
+  ],
+  "wght": [
+   400,
+   800
+  ]
+ },
+ "Work Sans": {
+  "category": [
+   "SANS_SERIF"
+  ],
+  "designer": "Wei Huang",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Work Sans",
+  "subsets": [
+   "latin",
+   "latin-ext",
+   "vietnamese"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": [
+   100,
+   900
+  ]
+ },
+ "Young Serif": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Bastien Sozeau",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Young Serif",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   400
+  ],
+  "wght": null
+ },
+ "Zilla Slab": {
+  "category": [
+   "SERIF"
+  ],
+  "designer": "Typotheque",
+  "dir": "ofl",
+  "license": "OFL",
+  "name": "Zilla Slab",
+  "subsets": [
+   "latin",
+   "latin-ext"
+  ],
+  "weights": [
+   300,
+   400,
+   500,
+   600,
+   700
+  ],
+  "wght": null
+ }
+}

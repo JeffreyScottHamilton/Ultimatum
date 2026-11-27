@@ -12,7 +12,6 @@ from _harness import SCRIPTS, UltCase
 
 sys.path.insert(0, SCRIPTS)
 from ultlib import components as comp  # noqa: E402
-from ultlib import upstreams as ups  # noqa: E402
 
 DATA_DIR = Path(SCRIPTS).parent / "data"
 MOD_FILES = [Path(SCRIPTS) / "ultlib" / "components.py", Path(SCRIPTS) / "ultlib" / "upstreams.py"]
@@ -23,11 +22,13 @@ REGISTRY_IDS = {
 }
 RESTRICTED_IDS = {"react-bits", "rareui", "gsap"}
 UPSTREAM_PINS = {
-    "emil": "64eb3de", "impeccable": "b49177d", "ui-ux-pro-max": "a4fc248", "anthropic-skills": "e4bb5d9",
-    "superpowers": "22f0b46", "vercel-agent-skills": "5a37a63", "taste": "6c0b5c7", "remotion": "89c8afa",
+    "emil": "64eb3de", "impeccable": "3c5e75f", "ui-ux-pro-max": "a4fc248", "anthropic-skills": "e4bb5d9",
+    "superpowers": "22f0b46", "vercel-agent-skills": "5a37a63", "taste": "f6b7657", "remotion": "89c8afa",
     "jaimejunr-frontend-skills": "7177def", "hyperframes": "ca64f8b", "gstack": "afb68ac",
     "mattpocock-skills": "d653911", "shadcn-ui": "055aa6b", "graphify": "14f35e3", "caveman": "47c61be",
-    "karpathy-guidelines": "2c60614", "marketingskills": "8fd2fca",
+    "anatomy": "1482e84", "emil-motion": "715c180", "design-review-qa": "7dace1f",
+    "hallmark": "04977e1", "karpathy-guidelines": "2c60614", "marketingskills": "2bf95ed",
+    "expo-skills": "8f2b6c0", "axiom": "ffafd3b", "swift-ios-skills": "8d90fd1",
 }
 SPDX_PERMISSIVE = {"MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC"}
 COMPONENT_KEYS = {"id", "name", "package", "stacks", "categories", "keywords", "licence", "restricted",
@@ -80,7 +81,7 @@ class TestComponentData(unittest.TestCase):
                 self.assertTrue(e["install"].strip())
                 self.assertTrue(0 < len(e["fit"]) <= 100)
                 self.assertTrue(e["source"] is None or e["source"].startswith("https://"))
-                self.assertEqual(e["verified"], "2026-11-24")
+                self.assertTrue(_is_date(e["verified"]) and e["verified"] >= "2026-11-24", e["verified"])
 
     def test_licence_is_spdx_or_marked_restricted(self):
         for e in self.entries:

@@ -2,6 +2,8 @@
 
 Read after `ui.md` when the project uses React or Next. Rules are ordered by usual payoff: fix the earlier ones before polishing the later ones. Measure before micro-optimizing; a rule is a prior, not a verdict.
 
+Deeper: before-and-after code, how to measure each fix, and a pattern scanner (`react_scan.py`) are in `craft/react-performance/`.
+
 ## A. Composition
 
 1. **Prefer composition to boolean flags.** A component with `isCompact`, `withIcon`, `isDanger`, `hasFooter` grows combinatorial states nobody tests. Use `children`/slots and a small `variant` union.

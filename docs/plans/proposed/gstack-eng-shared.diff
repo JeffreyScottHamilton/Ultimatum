@@ -1,0 +1,40 @@
+# Proposed edits to shared files for the gstack engineering rebuild. Not applied.
+
+--- a/plugins/ultimatum/skills/review/SKILL.md
++++ b/plugins/ultimatum/skills/review/SKILL.md
+@@ (end of the review procedure)
++Two-pass pre-landing review with quoted evidence and fix-first batching: `../work/references/craft/gstack-eng/pre-landing-review.md`.
+
+--- a/plugins/ultimatum/skills/work/references/release.md
++++ b/plugins/ultimatum/skills/work/references/release.md
+@@ ## 1. Define what "ready" means (end of section)
++Resumable ship order, version states and bisectable commits: `craft/gstack-eng/ship-pipeline.md`.
+@@ ## 3. Documentation and metadata (end of section)
++Doc coverage map over a diff: `craft/gstack-eng/docs-release.md`.
+
+--- a/plugins/ultimatum/skills/work/references/feature-planning.md
++++ b/plugins/ultimatum/skills/work/references/feature-planning.md
+@@ ## 0. Flow: brainstorm, plan, slice, verify (end of section)
++Product questioning before a plan: `craft/gstack-eng/office-hours.md`; scope stances: `craft/gstack-eng/scope-review.md`; engineering review of a plan: `craft/gstack-eng/plan-eng-review.md`.
+
+--- a/plugins/ultimatum/data/upstreams.json
++++ b/plugins/ultimatum/data/upstreams.json
+@@ "repo": "https://github.com/garrytan/gstack", "pin": "7dace1f"
+-      "modules": ["design", "website", "review"],
++      "modules": ["design", "website", "review", "work"],
+-      "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; skip the browser daemon, mockup generator and outside-model review (see later.md)"
++      "note": "Design-review, plan-design-review, qa and qa-only rebuilt in own words as skills/website/references/craft/design-review-qa; office-hours, plan reviews, review, ship, document-release, retro and careful/freeze rebuilt as skills/work/references/craft/gstack-eng; skip the browser daemon, mockup generator, binaries and outside-model review (see later.md)"
+
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+@@
+-| [garrytan/gstack](https://github.com/garrytan/gstack) | `7dace1fdeabc` | MIT | Ship, review, QA, release, and post-deploy workflows; website design review and QA references (craft/design-review-qa) |
++| [garrytan/gstack](https://github.com/garrytan/gstack) | `7dace1fdeabc` | MIT | Ship, review, QA, release, and post-deploy workflows; website design review and QA references (craft/design-review-qa); engineering references (craft/gstack-eng) |
+
+--- a/docs/CREDITS.md
++++ b/docs/CREDITS.md
+@@
+-| [garrytan/gstack](https://github.com/garrytan/gstack) | `7dace1fdeabc` | MIT | Ship, review, QA, release, and post-deploy workflows; website design review and QA references (craft/design-review-qa) |
++| [garrytan/gstack](https://github.com/garrytan/gstack) | `7dace1fdeabc` | MIT | Ship, review, QA, release, and post-deploy workflows; website design review and QA references (craft/design-review-qa); engineering references (craft/gstack-eng) |
+
+# SKILL.md: no change needed (the craft folder is reached through the base references).

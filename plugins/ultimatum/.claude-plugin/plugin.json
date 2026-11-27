@@ -1,7 +1,7 @@
 {
   "name": "ultimatum",
-  "version": "1.0.0",
-  "description": "Ultimatum's default way of working in Claude Code: short plain answers first, deeper work only when needed, helpers only when they save time. A local router handles coding, debugging, CI, interface work, security review and releases with checks run in the session, and points website, store, app, event, social and video jobs to the matching Ultimatum plugin.",
+  "version": "0.5.0",
+  "description": "Ultimatum for Claude Code: one plugin for websites, App Store releases of Expo apps, social media posts and everyday coding. Each workflow asks first, writes a brief you approve, runs its own local checks, and publishes, submits or posts only on your yes.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },
@@ -9,16 +9,19 @@
   "repository": "https://github.com/JeffreyScottHamilton/Ultimatum",
   "license": "MIT",
   "keywords": [
+    "website",
+    "web-design",
+    "small-business",
+    "design",
     "code-review",
     "debugging",
-    "design",
     "handoff",
-    "motion",
     "security-audit",
-    "self-improvement",
-    "tdd",
     "token-efficiency",
     "ui",
-    "workflow"
+    "workflow",
+    "app-store",
+    "expo",
+    "social-media"
   ]
 }

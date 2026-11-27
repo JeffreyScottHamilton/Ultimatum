@@ -1,0 +1,31 @@
+# Proposed edits to shared files for the frontend-budget rebuild. Not applied.
+
+--- a/plugins/ultimatum/skills/work/references/skill-author.md
++++ b/plugins/ultimatum/skills/work/references/skill-author.md
+@@ ## 5. Size budgets (end of section)
++How many skills to load at once, and a stdlib cost estimate: `craft/frontend-budget/load-budget.md`.
+
+--- a/plugins/ultimatum/skills/work/references/feature-planning.md
++++ b/plugins/ultimatum/skills/work/references/feature-planning.md
+@@ ## 8. Rulings log (end of section)
++When two design skills disagree on a frontend task: `craft/frontend-budget/precedence.md`.
+
+--- a/plugins/ultimatum/data/upstreams.json
++++ b/plugins/ultimatum/data/upstreams.json
+@@ "id": "jaimejunr-frontend-skills"
+-      "licence": "MIT (bundled plugins are Apache-2.0 or MIT)",
++      "licence": "MIT (root LICENSE; bundled plugins carry their own and were not used)",
+       "decision": "adapt",
+-      "modules": ["components", "design"],
+-      "reviewed": "2026-11-24",
+-      "note": "Adapt the load budget and precedence idea for ui; nothing vendored, skip the prebuilt hook binary and the image scraper"
++      "modules": ["components", "design", "work"],
++      "reviewed": "2026-11-26",
++      "note": "Load budget, precedence and phase routing rebuilt in craft/frontend-budget with a stdlib load_budget.py; nothing vendored, hook binary and image scraper skipped"
+
+--- a/plugins/ultimatum/CREDITS.md
++++ b/plugins/ultimatum/CREDITS.md
+-| [JaimeJunr/claude-code-frontend-skills](https://github.com/JaimeJunr/claude-code-frontend-skills) | `7177def` | MIT (bundled plugins are Apache-2.0 or MIT) | Ideas for the 2.0 design and component modules |
++| [JaimeJunr/claude-code-frontend-skills](https://github.com/JaimeJunr/claude-code-frontend-skills) | `7177def` | MIT (bundled plugins are Apache-2.0 or MIT) | Ideas for the 2.0 design and component modules; load budget, precedence and phase routing references (craft/frontend-budget) |
+
+# SKILL.md: no change needed.

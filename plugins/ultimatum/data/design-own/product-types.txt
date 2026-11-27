@@ -1,0 +1,224 @@
+SaaS (General)
+Micro SaaS
+E-commerce
+E-commerce Luxury
+B2B Service
+Financial Dashboard
+Analytics Dashboard
+Healthcare App
+Educational App
+Creative Agency
+Portfolio/Personal
+Gaming
+Government/Public Service
+Fintech/Crypto
+Social Media App
+Productivity Tool
+Design System/Component Library
+AI/Chatbot Platform
+NFT/Web3 Platform
+Creator Economy Platform
+Remote Work/Collaboration Tool
+Mental Health App
+Pet Tech App
+Smart Home/IoT Dashboard
+EV/Charging Ecosystem
+Subscription Box Service
+Podcast Platform
+Dating App
+Micro-Credentials/Badges Platform
+Knowledge Base/Documentation
+Hyperlocal Services
+Beauty/Spa/Wellness Service
+Luxury/Premium Brand
+Restaurant/Food Service
+Fitness/Gym App
+Real Estate/Property
+Travel/Tourism Agency
+Hotel/Hospitality
+Wedding/Event Planning
+Legal Services
+Insurance Platform
+Banking/Traditional Finance
+Online Course/E-learning
+Non-profit/Charity
+Music Streaming
+Video Streaming/OTT
+Job Board/Recruitment
+Marketplace (P2P)
+Logistics/Delivery
+Agriculture/Farm Tech
+Construction/Architecture
+Automotive/Car Dealership
+Photography Studio
+Coworking Space
+Home Services (Plumber/Electrician)
+Childcare/Daycare
+Senior Care/Elderly
+Medical Clinic
+Pharmacy/Drug Store
+Dental Practice
+Veterinary Clinic
+Florist/Plant Shop
+Bakery/Cafe
+Brewery/Winery
+Airline
+News/Media Platform
+Magazine/Blog
+Freelancer Platform
+Marketing Agency
+Event Management
+Membership/Community
+Newsletter Platform
+Digital Products/Downloads
+Church/Religious Organization
+Sports Team/Club
+Museum/Gallery
+Theater/Cinema
+Language Learning App
+Coding Bootcamp
+Cybersecurity Platform
+Developer Tool / IDE
+Biotech / Life Sciences
+Space Tech / Aerospace
+Architecture / Interior
+Quantum Computing Interface
+Biohacking / Longevity App
+Autonomous Drone Fleet Manager
+Generative Art Platform
+Spatial Computing OS / App
+Sustainable Energy / Climate Tech
+Personal Finance Tracker
+Chat & Messaging App
+Notes & Writing App
+Habit Tracker
+Food Delivery / On-Demand
+Ride Hailing / Transportation
+Recipe & Cooking App
+Meditation & Mindfulness
+Weather App
+Diary & Journal App
+CRM & Client Management
+Inventory & Stock Management
+Flashcard & Study Tool
+Booking & Appointment App
+Invoice & Billing Tool
+Grocery & Shopping List
+Timer & Pomodoro
+Parenting & Baby Tracker
+Scanner & Document Manager
+Calendar & Scheduling App
+Password Manager
+Expense Splitter / Bill Split
+Voice Recorder & Memo
+Bookmark & Read-Later
+Translator App
+Calculator & Unit Converter
+Alarm & World Clock
+File Manager & Transfer
+Email Client
+Casual Puzzle Game
+Trivia & Quiz Game
+Card & Board Game
+Idle & Clicker Game
+Word & Crossword Game
+Arcade & Retro Game
+Photo Editor & Filters
+Short Video Editor
+Drawing & Sketching Canvas
+Music Creation & Beat Maker
+Meme & Sticker Maker
+AI Photo & Avatar Generator
+Link-in-Bio Page Builder
+Wardrobe & Outfit Planner
+Plant Care Tracker
+Book & Reading Tracker
+Couple & Relationship App
+Family Calendar & Chores
+Mood Tracker
+Gift & Wishlist
+Running & Cycling GPS
+Yoga & Stretching Guide
+Sleep Tracker
+Calorie & Nutrition Counter
+Period & Cycle Tracker
+Medication & Pill Reminder
+Water & Hydration Reminder
+Fasting & Intermittent Timer
+Anonymous Community / Confession
+Local Events & Discovery
+Study Together / Virtual Coworking
+Coding Challenge & Practice
+Kids Learning (ABC & Math)
+Music Instrument Learning
+Parking Finder
+Public Transit Guide
+Road Trip Planner
+VPN & Privacy Tool
+Emergency SOS & Safety
+Wallpaper & Theme App
+White Noise & Ambient Sound
+Home Decoration & Interior Design
+Academic Journal / Scholarly Publishing
+API Developer Portal
+Forum / Discussion Board
+Directory / Listing Site
+Status Page / Incident Management
+Wiki / Encyclopedia
+Auction Platform
+Changelog / Release Notes
+Citizen Science Platform
+Classifieds / Buy-Sell
+Conference / Symposium Landing Page
+Crowdfunding Platform
+Digital Signage / Kiosk
+E-signature / Document Workflow
+Feature Flag / Config Management
+Government Portal / Civic Services
+Grant / Funding Portal
+LMS (Learning Management System)
+No-code / Low-code Builder
+Open Source Project Landing
+Patient Portal / Health Records
+Patent / IP Database
+Q&A Community Platform
+Research Lab / University Department
+Resume / CV Builder
+Review Platform
+RPA / Automation Dashboard
+Survey / Form Builder
+Telemedicine Platform
+Testimonial & Social Proof Widget
+Ticketing / Box Office
+GIS / Web Map Dashboard
+Earth Observation / Satellite Imagery Viewer
+Hair Salon / Barber
+Nail Salon
+Tattoo Studio
+Massage Therapy
+Physiotherapy Clinic
+Chiropractor
+Optician / Eye Care
+Cleaning Service
+Landscaping / Gardening
+Roofing Contractor
+HVAC / Heating and Cooling
+Locksmith
+Moving Company
+Auto Repair / Mechanic
+Pest Control
+Painter / Decorator
+Handyman
+Tutoring Service
+Driving School
+Personal Trainer
+Accountant / Bookkeeper
+Tax Preparation
+Consultant / Coach
+Life Coach
+Therapist / Counsellor
+Caterer
+Food Truck
+Farm Shop / Market Stall
+Wedding Photographer
+Music Teacher

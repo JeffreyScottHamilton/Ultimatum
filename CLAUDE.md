@@ -5,7 +5,8 @@
 - Validation: `claude plugin validate . --strict` and `claude plugin validate plugins/ultimatum --strict`
 - The toolbelt (`scripts/ult`, `scripts/ultlib/`) is Python standard library only, with no network access.
 - Any change to the plugin bumps `version` in `plugins/ultimatum/.claude-plugin/plugin.json` and adds a `CHANGELOG.md` entry, otherwise installs don't update.
-- Original wording and code only; never copy upstream text (`research/REVISIONS.md`).
+- Original wording and code only; never copy upstream text (`research/REVISIONS.md`). One exception, approved by the user: `plugins/ultimatum/data/design/` ships UI UX Pro Max's MIT data with its LICENSE and `NOTICE.md`; keep both with it.
 - Claim only what was run. Live evals (`evals/live/run_live.py`) cost money; ask before running them.
 
 ## Learned
+- 0.5.0 is the first combined release on `main` (website, App Store, social media, coding). After it: one patch release per major change (0.5.1, 0.5.2, ...), with one CHANGELOG entry per release. Pushing a release to `main` still needs the user's yes.

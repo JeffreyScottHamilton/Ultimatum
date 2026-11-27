@@ -249,7 +249,7 @@ def check_naming(sources) -> list[Finding]:
         st = _style(stem)
         if st:
             by_dir[p.parent.as_posix()].append((rel, st))
-    for d, items in sorted(by_dir.items()):
+    for _d, items in sorted(by_dir.items()):
         tally = Counter(st for _, st in items)
         top, n = tally.most_common(1)[0]
         if n >= 3 and n / len(items) >= 0.75:

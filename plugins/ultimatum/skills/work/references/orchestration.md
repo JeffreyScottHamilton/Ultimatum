@@ -4,15 +4,23 @@ Goal: split a large feature into independent slices, run workers safely, integra
 
 ## 1. When to parallelize
 
-The manager never edits project files; every edit is a worker's (SKILL.md §1 rule 7). The only choice is parallel or in sequence. Run workers in parallel only if all hold:
+Start from solo. A helper starts with an empty context and re-reads what it needs, so every one adds tokens; a team that is cheaper in your chat can still be dearer in total (§9). The default shape, the one Claude Code's own subagents follow, is a lead that plans and holds the picture plus one coder for self-contained jobs:
+
+| Job | Shape |
+|---|---|
+| Small or medium, any kind | Solo. You do everything. |
+| Large, with a separable chunk (payments, auth and data wiring, an API, a test suite, a mechanical change across many files) | You build the foundation and the design-heavy parts (layout, motion, the look); one `ultimatum:worker`, the Sonnet coder, takes the chunk in its own files. |
+| Wide reading where only the conclusion matters | `ultimatum:scout` (fast model, read-only). |
+| End of a large job | One `ultimatum:reviewer` pass; security agents only when money, logins or personal data are touched. |
+
+Keep the taste-heavy work yourself: a coder handed "make the hero feel premium" returns something generic, and the fix rounds cost more than doing it. One coder at a time is the rule; a second runs in parallel only when the user asks for speed over cost and all of these hold:
 - Each slice is independently verifiable by a command that can fail.
 - Slices touch disjoint files (or you can fence them; §5).
 - Interfaces between slices can be fixed in advance.
-Otherwise run one worker per slice in blocker order. Use `ultimatum:scout` (read-only) for broad searches whatever the size.
 
 Dispatch rules:
 - Launch all independent workers in one message. If you have nothing else to do meanwhile, run them in the foreground. Never sleep or poll for their files.
-- Once a slice is delegated, do not edit its owned files yourself; wait for the result.
+- Once a slice is delegated, do not edit its owned files yourself; work on your own part meanwhile.
 
 ## 2. Manager preparation (before any dispatch)
 
@@ -41,14 +49,14 @@ OUT OF SCOPE: <tempting extras>
 RULES: test first (tdd.md); no new dependencies; no push/merge/publish;
   do not delete or weaken tests; do not spawn other agents; secrets are redacted.
 IF BLOCKED: stop, report exactly what change you need and in which file.
-MODEL: <haiku|sonnet|opus, chosen by manager>
+MODEL: sonnet for `ultimatum:worker` (the default); say so if you override it
 REPLY (<= 15 lines): STATUS, files changed, acceptance command + exit code +
   tests ran, concerns, questions. Put the long report in .ultimatum/briefs/<slice>.report.md
 ```
 
 Status vocabulary (exact words): **DONE**, **DONE_WITH_CONCERNS** (finished; lists doubts), **BLOCKED** (cannot proceed; says why), **NEEDS_CONTEXT** (a named fact is missing). Escalating is always acceptable; silent guessing is the failure.
 
-Model choice: set it explicitly (an omitted model inherits the manager's). Mechanical edits and searches: haiku via `ultimatum:scout`/simple slices; normal implementation: sonnet via `ultimatum:worker`; ambiguous design, security-sensitive, or cross-cutting slices: the strongest model. Reviewers use at least sonnet.
+Model choice: `ultimatum:worker` runs on Sonnet, which is strong enough for real coding; read-only searches use `ultimatum:scout` on the fast model. Ambiguous design, security-sensitive or cross-cutting work stays with you on the session model rather than going to a stronger worker. Reviewers use at least Sonnet.
 
 Workers do not spawn workers. State it in every brief.
 
@@ -70,13 +78,17 @@ Default for any parallel run: one worktree and branch per worker, even when the 
 5. Never dispatch parallel workers whose owned files overlap; sequence them instead.
 If the worker tool shares your checkout, parallel edits are only safe with disjoint ownership.
 
+One branch from worktree setup to merge or discard: `craft/superpowers/branch-close.md`.
+
 ## 6. Collect and verify
 
 For each report:
 1. Treat it as a claim. Inspect `git -C <worktree> diff <BASE>..HEAD --stat` and the diff itself. Files outside "YOU OWN" are a violation; investigate.
 2. Rerun the acceptance command yourself via `ult run`. Quote the exit code and test count (ZERO_RUN is not a pass).
 3. On BLOCKED or NEEDS_CONTEXT, change something before retrying: more context, a stronger model, or a smaller slice. Never resend the same brief.
-4. Fix rounds: findings go back to the same worker for up to 3 rounds; then a fresh worker one tier up with a pointer to what was tried; after 5 rounds, you decide: park the item with a reason, or rule on the smallest change if later slices depend on it. Never fix worker output inside the manager session.
+4. Fix rounds: findings go back to the same worker for up to 2 rounds, since it already holds the context. After that, fix it yourself when the change is small, or park the item with a reason.
+
+Running a written plan task by task, with a ledger and rulings: `craft/superpowers/plan-execution.md`.
 
 ## 7. Integrate
 
@@ -91,6 +103,8 @@ After integration, one review of the whole diff against `BASE`, by `ultimatum:re
 1. **Spec axis:** brief = spec requirements + success checks + `git diff <BASE>`; asks: what is missing, extra, or wrong versus the spec (quote the spec line).
 2. **Standards axis:** brief = repo conventions (CONTRIBUTING, lint config, local patterns) + the diff; asks: duplicated helpers, dead code, inconsistent naming, untested paths, gates weakened.
 Triage findings: blocking only if it fails a test, breaks production behavior, loses data, or exposes a secret; everything else is non-blocking and gets one batched fix wave, not another review round. A finding needs `file:line` and a concrete input; discard ones without. Zero findings is a valid result. If the security overlay applied, the reviewer checks the negative test.
+
+Review briefs and handling the comments that come back: `craft/superpowers/review-rounds.md`.
 
 ## 9. Efficiency accounting
 

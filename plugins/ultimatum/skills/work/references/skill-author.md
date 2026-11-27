@@ -22,6 +22,8 @@ Goal: a skill that triggers on the right requests, loads only what it needs, and
 - Add an exclusion only when a near miss would otherwise trigger wrongly.
 - Check the description against the near-miss prompts before touching the body.
 
+Held-out trigger tuning with a split and repeated runs: `craft/anthropic-method/trigger-tuning.md`.
+
 ## 4. Progressive disclosure
 
 - Body: the workflow as numbered steps, plus the rules that always apply. Short enough to read in one pass.
@@ -35,12 +37,18 @@ Goal: a skill that triggers on the right requests, loads only what it needs, and
 - Frontmatter uses only allowed keys. The description is short, since it costs tokens on every session.
 - Measure with `wc -c` on each file. Report the on-invoke cost: body plus the files a typical run reads.
 
+Field limits, variant layout and a frontmatter lint: `craft/anthropic-method/skill-frontmatter.md`.
+
+How many skills to load at once, and a stdlib cost estimate: `craft/frontend-budget/load-budget.md`.
+
 ## 6. Compare with and without
 
 - Run each test prompt twice in the same setup: once with the skill, once without (the baseline). Same model, same tools, same starting state.
 - Grade blind where you can: the grader sees the outputs, not which arm made them.
 - Record pass rate, failed checks, time and tokens per arm. Repeat noisy cases at least three times.
 - Ship only if the skill wins on the checks that matter and loses none of the must-pass checks.
+
+Iteration folders, baselines and grading records: `craft/anthropic-method/eval-workspace.md`.
 
 ## 7. Iterate
 

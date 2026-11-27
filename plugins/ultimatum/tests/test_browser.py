@@ -1,6 +1,5 @@
 """ult-browser tests: real Playwright run against the ui-app fixture and a deliberately broken page."""
 import json
-import os
 import shutil
 import socket
 import subprocess

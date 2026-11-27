@@ -1,0 +1,35 @@
+/* Taste kit: diagrams drawn by `ult diagram` (scripts/ultlib/diagram.py).
+   Lines are hairlines in the text colour; the pulse is a short accent dash with a glow
+   that runs along each line in a ripple (icons-and-diagrams.md § Diagram motion).
+   It runs once (one 3.2 s cycle) and stops, so it needs no pause control; hovering
+   the card or tabbing into it runs it again (diagram.js). Pulses are for tech pages;
+   product and service pages leave "pulse" out of the spec. */
+
+.dg { color: var(--muted, #5a616a); display: block; font-family: var(--font-body, system-ui, sans-serif); height: auto; width: 100%; }
+/* Labels stay at 11px or more: below 480px wide the drawing keeps its size and the card scrolls sideways. */
+.dg { min-inline-size: 480px; }
+.dg-card { overflow-x: auto; }
+.dg text { font-weight: 500; }
+.dg-core text { font-weight: 600; }
+
+.dg-pulse use {
+  animation: dg-run 3.2s linear var(--d, 0s) 1 both;
+  filter: drop-shadow(0 0 3px var(--accent, #0b6e69));
+  stroke: var(--accent, #0b6e69);
+  stroke-dasharray: 16 1200;
+  stroke-dashoffset: 16;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+@keyframes dg-run {
+  0% { stroke-dashoffset: 16; }
+  45%, 100% { stroke-dashoffset: -420; }
+}
+
+/* diagram.js sets .dg-restart for one frame to run the pulse again. */
+.dg-restart .dg-pulse use { animation: none; }
+
+/* Held still on phones, without hover, under reduced motion, and once paused. */
+@media (prefers-reduced-motion: reduce), (hover: none), (max-width: 699px) {
+  .dg-pulse { display: none; }
+}

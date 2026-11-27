@@ -1,6 +1,5 @@
 import hashlib
 import subprocess
-import os
 import stat
 import unittest
 
@@ -47,7 +46,7 @@ class TestRun(UltCase):
         self.assertIn(b"err line", raw)
 
     def test_raw_log_binary_bytes_preserved(self):
-        r = self.ult(*pyc("import sys; sys.stdout.buffer.write(b'ok\\n\\xff\\xfe\\x00bin\\n')"))
+        self.ult(*pyc("import sys; sys.stdout.buffer.write(b'ok\\n\\xff\\xfe\\x00bin\\n')"))
         meta = self.last_meta()
         raw = (self.logs_dir() / f"{meta['id']}.log").read_bytes()
         self.assertEqual(raw, b"ok\n\xff\xfe\x00bin\n")
@@ -56,7 +55,7 @@ class TestRun(UltCase):
     def test_log_raw_exact_with_odd_line_separators(self):
         # BUG: splitlines() treats \x0c, \x1c,  , \r as line breaks, so `ult log --raw`
         # is not exact for such output (and line numbers diverge from `wc -l`).
-        r = self.ult(*pyc("import sys; sys.stdout.write('a\\x0cb\\r\\nc\\n')"))
+        self.ult(*pyc("import sys; sys.stdout.write('a\\x0cb\\r\\nc\\n')"))
         meta = self.last_meta()
         raw = (self.logs_dir() / f"{meta['id']}.log").read_bytes()
         got = subprocess.run([PY, ULT, "log", meta["id"], "--raw"], cwd=str(self.root), env=self.env(),
@@ -171,7 +170,7 @@ class TestRun(UltCase):
         self.assertLess(len(r.out.splitlines()), 60, len(r.out.splitlines()))
 
     def test_stderr_interleaved_into_log(self):
-        r = self.ult("run", "--shell", "--", "echo out; echo err 1>&2")
+        self.ult("run", "--shell", "--", "echo out; echo err 1>&2")
         raw = (self.logs_dir() / f"{self.last_meta()['id']}.log").read_text()
         self.assertIn("out", raw)
         self.assertIn("err", raw)

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Isometric slabs: projection and depth order</title>
+<meta name="viewport" content="width=device-width">
+<meta charset="utf-8">
+<style>
+  body { margin: 0; font: 16px/1.5 system-ui, sans-serif; background: #ffffff; color: #1d1d1b; }
+  figure { margin: 2rem auto; max-width: 560px; }
+  svg { width: 100%; height: auto; display: block; }
+  figcaption { font-size: 0.9rem; }
+  input[type=range] { width: 100%; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<figure>
+  <svg id="fig" viewBox="0 0 400 300" role="img" aria-label="Three stacked blocks on a base plate, drawn in isometric view"></svg>
+  <label for="lift">Lift the top block</label>
+  <input id="lift" type="range" min="0" max="40" value="0" aria-valuetext="0 units">
+  <figcaption>Fig 1. Each block is three polygons. Faces are lit by one fixed direction, and blocks are drawn far to near.</figcaption>
+</figure>
+<script>
+// World axes: x to the right-front, y to the left-front, z up. Azimuth 45 deg, elevation 30 deg.
+const AZ = Math.PI / 4, EL = Math.PI / 6, S = 2.6, OX = 200, OY = 215;
+function project(x, y, z) {
+  const u = (x - y) * Math.cos(AZ);
+  const d = (x + y) * Math.sin(AZ);
+  return [OX + S * u, OY + S * (d * Math.sin(EL) - z * Math.cos(EL))];
+}
+const pts = (arr) => arr.map((p) => project(...p).map((n) => n.toFixed(1)).join(",")).join(" ");
+// Four tones from one light: top, left face, right face, edge line.
+const tone = (h, s, l) => ({ top: `hsl(${h} ${s}% ${l + 18}%)`, left: `hsl(${h} ${s}% ${l}%)`, right: `hsl(${h} ${s}% ${l - 14}%)`, line: `hsl(${h} ${s}% ${l - 30}%)` });
+function slab(x, y, z, w, d, h, c) {
+  const t = tone(...c);
+  const top = [[x, y, z + h], [x + w, y, z + h], [x + w, y + d, z + h], [x, y + d, z + h]];
+  const left = [[x, y + d, z], [x + w, y + d, z], [x + w, y + d, z + h], [x, y + d, z + h]];
+  const right = [[x + w, y, z], [x + w, y + d, z], [x + w, y + d, z + h], [x + w, y, z + h]];
+  const f = (p, fill) => `<polygon points="${pts(p)}" fill="${fill}" stroke="${t.line}" stroke-width="0.8" stroke-linejoin="round"/>`;
+  return f(left, t.left) + f(right, t.right) + f(top, t.top);
+}
+const base = { x: -40, y: -40, z: 0, w: 80, d: 80, h: 8, c: [210, 12, 62] };
+const mid = { x: -26, y: -26, z: 8, w: 52, d: 52, h: 18, c: [210, 30, 52] };
+const topB = { x: -14, y: -14, z: 26, w: 28, d: 28, h: 14, c: [24, 85, 55] };
+function draw(lift) {
+  // Painter's order: sort by the depth of each block's centre (x + y + z), far first.
+  const blocks = [base, mid, { ...topB, z: topB.z + lift }];
+  blocks.sort((a, b) => (a.x + a.w / 2 + a.y + a.d / 2 + a.z) - (b.x + b.w / 2 + b.y + b.d / 2 + b.z));
+  document.getElementById("fig").innerHTML = blocks.map((b) => slab(b.x, b.y, b.z, b.w, b.d, b.h, b.c)).join("");
+}
+const input = document.getElementById("lift");
+input.addEventListener("input", () => {
+  input.setAttribute("aria-valuetext", `${input.value} units`);
+  draw(+input.value);
+});
+draw(0);
+</script>
+</body>
+</html>

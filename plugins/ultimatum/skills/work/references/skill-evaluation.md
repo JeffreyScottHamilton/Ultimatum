@@ -46,6 +46,8 @@ Record in this order, and do not skip ahead:
 4. Capture duration and tokens when each run finishes; they cannot be recovered later.
 5. Report the delta between arms with variance (mean ± stdev, n runs). If the difference is within the spread, say "no measurable difference".
 
+Reviewer roles and a benchmark summary script: `craft/anthropic-method/eval-workspace.md`.
+
 ## 5. Regression gates
 
 - Classify against the previous recorded baseline: green to red counts as a regression; red to red is unchanged; new failing cases are new; flakes within the baseline's own noise are classified, not blamed.

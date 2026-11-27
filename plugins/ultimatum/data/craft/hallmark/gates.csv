@@ -1,0 +1,91 @@
+gate,tier,check,group,the_tell,the_fix
+2a,Floor,M,colour,"Gradients that run purple into blue or pink, or cyan over dark, wherever they appear, text clipping included.",Choose one anchor hue and solid ink.
+2b,Reflex,M,colour,"Gradient text in any other hue, unless it is one hue ramp within 40 degrees of token stops.",Solid ink; use weight or a display face for emphasis.
+7a,Floor,M,colour,"Pure black or white (hex, or OKLCH at 0% or 100% lightness) used as a colour beyond the token block.",Shade it toward the anchor hue with at least 0.005 chroma.
+7b,Reflex,M,colour,A surface token resolving to pure black or white unless the stamp says so; plain white paper is acceptable on modern-minimal.,Tint the paper.
+22,Reflex,M,colour,Zero-chroma neutrals on a page that has an anchor hue (modern-minimal exempt).,Every neutral gets chroma of at least 0.005.
+23,Reflex,M/R,colour,"No posture declared, yet accent covers over about 5% of a viewport; the render check fails above 8% (30% on atmospheric).","Declare the colour posture in the stamp, or pull the accent back."
+29,Reflex,M/J,colour,"Glows and washes: aurora blobs or mesh behind text, blurred floating orbs, chromatic halos, coloured glow shadows with zero offset on dark. Atmospheric pages may keep two still, fixed radial blooms.",Solid or grained surface; depth by lightness and offset shadows.
+65,Reflex,M/J,colour,"The named look on a custom build: cream paper, high-contrast serif display and a clay or terracotta accent together, unless the prompt pins it.","Move one axis: accent first, paper second, display last."
+74,Reflex,M,colour,"A framework default swatch (such as indigo-500, violet-600 or slate-900) used as a token or utility, unless the project already relies on it.",Mix a colour for the page in OKLCH.
+1,Reflex,M,type,"A system font, Inter, Roboto, Open Sans, Poppins or Lato serving as the display face.",A display face from the theme or the font notes.
+25,Reflex,M/R,type,"Running prose wider than 75ch or narrower than 45ch, or rendered lines of about 88 characters over three lines. A short lede or caption may start at 28ch.",max-width of about 65ch.
+37,Reflex,M,type,More than three font families (a declared font slot with a stand-in is the guard).,"Display, body and at most one outlier."
+38i,Floor,M,type,A single italic word within an upright heading.,"Break the line, or set the whole heading in one style."
+38ii,Reflex,M,type,"An italic display system, unless declared on the display token with true italics and font-synthesis off.",Roman display.
+38iii,Reflex,M/J,type,"The accented word: a heading word singled out through colour, weight, highlight or underline. Allowed only where the theme's signature is this, once, in the hero.","Style the heading uniformly, or break the line, or add a second line at another size."
+55a,Floor,M,type,An uppercase display heading that may wrap while its line-height is under 1.0.,"Line-height 1.0 or more, 1.02 to 1.08 preferred."
+55b,Reflex,M,type,"A single-line caps lockup with line-height under 1.02, unless it cannot wrap at 320px.",Leave the leading at 1.02 or more.
+64,Reflex,M,type,"Mono as costume: monospace applied to labels, captions, meta or table heads whose content is neither code, a figure nor a measurement.",Body face a step smaller in normal case.
+75,Reflex,R,type,"Strained text: running text below 12px, functional text below 11px, multi-line prose leaded below 1.3.",16px body leaded 1.5 to 1.65.
+67,Floor,M,type,"Tracked-caps label: any caption, label, table head, nav link, tag, chip or text of 15px or less in uppercase, small caps or spacing past 0.03em. Wordmarks and controls under an uppercase display (0.04em or less) pass.","Use the body face one step down, in sentence case with no tracking."
+3,Reflex,M/R,layout,"Card tells: three equal tiles with an icon above a heading, an icon inside a rounded tile, a thick coloured stripe down one side of a card.",Vary widths and heights; keep icons inline; use a hairline or no border.
+4,Floor,M,layout,A card nested in a card.,Keep a single containment layer.
+6a,Floor,M,layout,A hero sized with vh.,Use dvh or svh.
+6b,Reflex,J,layout,"A hero at 92dvh or taller with no stamped posture, or a title, lede, action and mark stacked on one centred axis. Atmospheric and playful pages may centre by default.",Centre two elements at most; break one alignment.
+8,Reflex,J,layout,"The AI template, meaning hero, three features, call to action, footer. Also a repeat of the shape from any of the last three logged builds.",Read the log and build differently.
+9,Reflex,J,layout,Each section divided from the next the same way with an identical gap.,Use different rungs of the surface ladder at different seams.
+24a,Floor,M,layout,"A raw padding, margin or gap value where a spacing token is available.",Use the token.
+24b,Reflex,M,layout,Off-scale spacing; three optical nudges are tolerated.,Return to the scale.
+34,Floor,M/R,layout,Horizontal scroll at any width from 320 to 1920; no overflow-x on html and body; widths of 100vw.,Set overflow-x: clip on both and use width: 100%.
+44a,Reflex,R/J,layout,"Hero content off-centre for its posture. Settled, Banner, Corridor and Stage: space beneath the content should be 1.0-1.5 times the space above. Ledge inverts; Poster waives.",Centre the content within its screen.
+44b,Floor,R/J,layout,"At 1280 x 800, the headline, lede, primary action and focal point of the visual are not all in view.","Smaller display clamp, tighter leading, two-line lede, less padding."
+44c,Reflex,R/J,layout,"At 1440 x 900 the following section starts higher than y 760 or lower than y 900, or the hero visual drifts over 60px from the text block's centre or sits over 120px away from the text.","Place the visual beside the text, so the hero fills its screen and nothing else."
+44d,Floor,M/R,layout,"At 1920 x 1080: a container with no max-width, gutters narrower than 120px, a grid that gains columns, or a hero that stops fitting.","Cap the container between 1360 and 1520, centre it, keep column counts, and cap vw-sized visuals."
+50,Floor,M,layout,"A grid track holding images set to bare 1fr, or a display heading missing overflow-wrap: break-word together with min-width: 0.","Use minmax(0, 1fr), and apply break-word nowhere else."
+53,Floor,M,layout,CSS-only radio tabs positioned absolute at top 0 without a script guard (the page jumps when clicked).,"Keep radios in flow at zero size, or add a handler using preventScroll."
+56,Floor,M/R,layout,Two elements with position: sticky; top: 0 (a section head sliding beneath the nav).,Second one at top: var(--banner-height); nav z-index above sticky.
+58,Floor,M/R,layout,"Roughly 80 or more words within a 900px window at 1440, or a hero where more than two text blocks precede the actions.","A headline, one sentence, then actions; sections run as a head block followed by a composition."
+59,Reflex,M/R,layout,"Gaps narrower than 120px between sections at 1440 (64px when the paper changes), or every gap equal; dense shapes that divide with rules are exempt.","Use 120px or more, and vary it."
+71,Reflex,R,layout,The crowded head: a heading closer to what comes before it than to what it introduces (space above under 0.75 of the space below).,Leave at least twice as much room above a heading as below it.
+72,Reflex,R,layout,"The cramped box: text set in a side-bordered or filled box nearer than max(8px, 0.5em) sideways or max(4px, 0.3em) above and below; running text inside 8px of a phone edge.",Pad the box; keep a 16px gutter.
+77,Reflex,R,layout,"The thin section: beneath the hero, a body under three quarters of the container that is neither a statement nor massive.","Widen to ten columns, add a visual, make it a statement, or fold sections together."
+78,Reflex,R,layout,"Section heads too small: median h2 under 40px at 1440 (long-document, letter and photographic shapes exempt).",h2 at the section size token; item titles at the title size.
+79,Reflex,R,layout,The dead band: more than 160px of empty space from the hero's lowest content down to the fold at 1440 x 900 (Ledge and Poster exempt).,"Centre the content, then enlarge the visual or the heading rather than adding copy."
+80,Reflex,R/J,layout,"Drawn art showing a scene, building, person, animal, plant, product or object above icon size. Charts, maps and real-system diagrams labelled as such pass.","A photograph, the built product, or type at scale."
+81,Reflex,R,layout,The empty picture: a slot or a gradient block of 300 x 200px or more showing only a wash.,"Use the user's image, a library photo or the product at full fidelity."
+82,Reflex,R,layout,The counting device: a row of 24 or more identical marks that stands for a quantity.,Write the number in type.
+83,Reflex,R,layout,The photo wall: photographs fill more than a third of the page under the hero (45% on photographic or portfolio shapes); a gallery of the user's own work is exempt.,Keep the strongest pictures large and make the rest from the theme's material.
+84,Reflex,J,layout,"The fake product: a built mock of something that could have been captured, or a drawn interface in a screenshot's place.","Run it, capture a telling state, and frame the capture in the theme."
+85,Reflex,R,layout,"The stock close: the final section or footer is an email sign-up although the page's job is not to subscribe, join, attend, listen or visit.","Finish on the thing the visitor came for, or on the last strong section."
+19,Floor,M,chrome and copy,"Copy tells: placeholder names, startup clichés, buzzwords, rebuttal cadence, em or en dashes, filler openers, a stock second action beside the primary. Stock footer lines are a warning.",Describe what the product does using its own nouns.
+20,Floor,M,chrome and copy,The Hallmark-style stamp is missing from the first lines of CSS.,Write it.
+42,Reflex,M,chrome and copy,"Chrome by reflex: a nav with wordmark left, inline links and a button right above a hairline, or a four-column footer with a social row, when the choice is not named.","Decide, name the choice, or build another shape."
+46a,Floor,M,chrome and copy,"A made-up metric, testimonial, logo wall or tally of case studies.","Use the user's number or a text slot, or leave it out."
+46b,Reflex,J,chrome and copy,"A bare figure as the entire hero headline, unless the user supplied and labelled it.",Add the line that explains what the figure means.
+47a,Floor,M,chrome and copy,A hand-drawn browser bar or an OS window title bar.,"Use a real screenshot inside a figure, with no chrome."
+47b,Reflex,M,chrome and copy,"A phone, laptop, terminal or editor frame; one frame with real content inside is the guard.",One frame or none.
+47c,Reflex,J,chrome and copy,"Imitation material: a hero UI made of styled divs outside a slot, a many-vertex clip-path faking a photo edge, CSS bevels faking an object, a decorative grid with nothing under it.","Build the product inside a slot, use a real asset, or leave it out."
+54,Floor,M,chrome and copy,"The eyebrow: brief inert type above a heading that already says it, in any geometry.",Start the section another way (see `craft-copy.md` § Opening a section for options).
+63,Floor,M/J,chrome and copy,"Template punctuation: middle-dot meta strings, an arrow attached to link text, decorative status dots, WORD - fragment labels.","Use a verb as the label, or line breaks, columns and hairlines."
+66,Reflex,J,chrome and copy,"Decoration text: vertical rotated text, scroll cues, version or BETA pills, weather or locale strips, mono-caps strips, credit captions under stand-ins, 01 / 4 counts on tiles.",Delete it; a fact that disappears becomes a caption or footer line.
+68,Reflex,M,chrome and copy,The wireframe page: over five empty slots on a page," or four or more in a single row.,Set that group in type; keep only slots that hold a photo or the product."
+69,Reflex,M/J,chrome and copy,"The echo: one fact repeated in four or more sections, or a section closing on a restatement of its heading.","State each fact once, in the place it works."
+70,Floor,M/J,chrome and copy,"The fake send: a form that shows success though nothing was sent, or confirms an offer the prompt never made.","Empty endpoint attribute, no success state until wired; name the endpoint in the handoff."
+10a,Floor,M,motion,"Using transition: all, or animating top, left, width or height.",Name the properties; stay with transform and opacity.
+10b,Reflex,M,motion,Transitioning margin or padding (a morph with fixed outer height is the guard).,transform.
+11,Reflex,M/J,motion,"Hover faults: an identical lift or scale on each card, several effects on one element, images that scale or rotate, hover on a non-interactive element.","Give each element a single signal, placed on the container."
+12,Reflex,M,motion,Bounce or overshoot easing on UI state (a playful page whose declared spring posture allows it on the primary action).,Ease out exponentially.
+15,Floor,M,motion,A focus ring that fades in.,Show it instantly.
+16,Reflex,J,motion,A celebratory toast announcing an effect that is already visible.,Succeed silently.
+17,Floor,M,motion,A tooltip whose focus delay matches its hover delay.,Delay hover 800 to 1000ms; focus gets none.
+18,Floor,M,motion,"Auto-rotating content that does not pause on hover and focus, or that lacks a visible pause control beyond 5 seconds.",Add both.
+26a,Floor,M/R,motion,"An interactive element lacking a focus-visible style, a ring below 3:1, or an outline removed without a replacement.","Provide a ring of 3:1 or better, shown instantly."
+26b,Reflex,M,motion,Missing :active or :disabled styles (non-form-control with no aria-disabled is the guard).,All eight states.
+27,Floor,M,motion,A keyframe or transform transition with no prefers-reduced-motion fallback.,Add it.
+28a,Floor,M,motion,A video that autoplays with no muted attribute; loading=lazy placed on the LCP element.,"Autoplay with muted, loop and playsinline; give an LCP image fetchpriority=high and an LCP video a preloaded poster."
+28b,Reflex,M,motion,Video with no poster or priority hint (below the fold and not LCP is exempt).,Add them.
+39a,Floor,M,motion,"Broken input states: shifting border width, a focus ring made from the border, an input whose height differs from its button, disabled shown by opacity alone.","Keep the border constant, use outline, share one height, give disabled three signals."
+39b,Reflex,M,motion,A control height beyond 44 to 52px on a marketing page (app UI at 32 to 40px with a bigger hit area is the guard).,Use the stated range.
+62,Floor,M,motion,"Content hidden at rest: a reveal class that sets opacity 0 or visibility hidden and relies on script, so the page ships blank when the script fails.","Visible by default; hide it only under a script class, animate from visible, or use @starting-style."
+30a,Floor,M,assets,An emoji used in place of an icon.,"Use one icon library, a custom SVG, or type."
+30b,Reflex,M,assets,Two icon libraries on one page (a brand mark in up to two slots is exempt).,Pick one library.
+33,Floor,M,assets,"A decorative svg, canvas or piece of CSS art that has no aria-hidden and no label.","Hide it from assistive tech, or give it a name."
+76,Floor,M/R,assets,A broken image; a library photo uncredited on the page; a paid stock photo.,"Supply the real file, or credit the library photo in the footer."
+73,Floor,R,assets,"Text painted beneath another element (a box, image or other text covering it; sticky chrome excepted).","Give the text a space of its own, or raise its surface over the cover."
+40,Floor,M/R,assets,"Text, icon, focus ring or field edge below its contrast threshold: body needs 4.5:1 or APCA Lc 60, while large text, icons, rings and field edges need 3:1 or Lc 45.",Correct the pair; field edges take the muted token.
+41,Floor,M/R,assets,Button text within 5% lightness and 0.05 chroma of its fill; no accent-ink token; a dark panel that does not switch its text colour; grey text over a coloured surface.,Use the matching ink token.
+48,Floor,M,assets,A colour or font-family literal placed outside the token block.,Lift it up into the tokens.
+49a,Floor,M/R,assets,A button label or primary nav link that wraps at any width from 320 to 1920.,"Shorten it, and set white-space: nowrap."
+49b,Reflex,M/R,assets,"A footer link, tab or breadcrumb wrapping (two lines at most is the guard for a real phrase).",Shorten it.
+32,Ledger,J,assets,"Section compositions repeating a logged build's order, or a fingerprint matching a logged entry on more than three of six axes.",Alter a composition or the order and state the delta in the stamp.

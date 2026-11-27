@@ -1,0 +1,16 @@
+{"rows": [
+["lucide","accessibility","Accessibility","accessibility a11y inclusive disability assistive access options statement","Accessibility statement links","Link to a real statement with contact details.","Link named 'Accessibility statement'"],
+["lucide","languages","Accessibility","language translate switch english welsh multilingual locale","Language switcher","Show language names in their own language.","Button named 'Change language'"],
+["lucide","sun","Accessibility","light mode day bright theme sun weather sunny","Light theme and weather","Pair with the moon icon in a theme switch.","Button named 'Switch to light theme'"],
+["lucide","moon","Accessibility","dark mode night theme sleep evening lights off","Dark theme switch","Respect the system setting before the user chooses.","Button named 'Switch to dark theme'"],
+["phosphor","translate","Accessibility","translate language interpret text translation multilingual","Translation features","Use for machine or manual translation prompts.","Button named 'Translate this page'"],
+["phosphor","fingerprint","Accessibility","fingerprint biometric passkey sign in touch id identity","Passkeys and biometric sign-in","Offer a fallback sign-in method.","Button named 'Sign in with a passkey'"],
+["lucide","globe","Accessibility","website web world global international internet site address","Website links and global reach","Not the best choice for language; use languages.","Link named 'Website'"],
+["lucide","smartphone","Device","phone mobile device app handset cell responsive","Mobile app and device messages","Use for apps; phone is for calling.","Decorative beside the heading"],
+["lucide","laptop","Device","laptop computer desktop device work online remote","Desktop and remote work","Use for computers and online services.","Decorative beside the heading"],
+["lucide","wifi","Device","wifi internet connection online network wireless broadband","Wi-Fi information","Show the network name as text.","Decorative beside the network name"],
+["phosphor","battery-charging","Device","battery charging power charge phone charger energy","Charging points and battery state","Say where chargers are, in text.","Decorative beside the text"],
+["phosphor","lightbulb","Device","idea tip hint bright suggestion tips lightbulb advice","Tips and ideas","Use for friendly tips; info is for facts.","Decorative beside the tip"],
+["lucide","circle-user","Account","avatar profile picture account user circle member","Avatar placeholder in a circle","Use the real photo when you have one.","Button named 'Account menu'"],
+["phosphor","users-three","Account","community group members team staff people crowd customers","Communities and group sizes","Pair with a number from your own records.","Decorative beside the number"]
+]}
