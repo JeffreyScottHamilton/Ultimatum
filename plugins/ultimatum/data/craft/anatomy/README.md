@@ -4,6 +4,8 @@
 
 `iso-slabs.html` is a small own example: isometric projection, three blocks, four tones, depth sort, and an operable slider. It was opened in Chromium with Playwright and checked for polygon counts, value text and page errors.
 
+`figure_audit.py` counts the static audit table on a JSON scene (`audit.md`). `figure_draw.py` draws that scene to an accessible SVG at any camera and pose, and sweeps its turn, slide and hinge groups for collisions, crowding, depth-order cycles and torn pipes (`draw.md`). Both are standard-library Python with a `--self-check`. `examples/` holds a clean scene, a faulty one for the static audit, and `turning-scene.json`, whose lid and lead fail the motion audit on purpose.
+
 Written in our own words from the ideas in the MIT-licensed Anatomy skill (commit 1482e84). No source text or code is copied.
 
 ## Columns

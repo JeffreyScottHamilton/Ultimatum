@@ -5,7 +5,7 @@ Read when a website, app or docs build might need an explanatory isometric figur
 ## Reading order
 
 1. `when-and-sizing.md` → `workflow.md` → `craft-rules.md` → `craft-shading.md` → `parts-recipes.md` → `craft-card.md`.
-2. Then only what the figure needs: `motion.md`, `webgl.md`, `react.md`, `turning-groups.md`.
+2. Then only what the figure needs: `motion.md`, `webgl.md`, `react.md`, `turning-groups.md`, `draw.md`.
 3. Before hand-over: `verify.md` with `audit.md`, `accessibility-and-limits.md`.
 
 ## Files
@@ -19,6 +19,7 @@ Read when a website, app or docs build might need an explanatory isometric figur
 - `iso-math.md`: How do I project, fit and order parts, with a runnable sketch?
 - `kit-api.md`: What does the source kit do, and what do we use instead?
 - `audit.md`: How do I count the audit table with `figure_audit.py` from the figure's JSON scene?
+- `draw.md`: How do I draw the SVG from that scene at any camera or pose, and prove moving parts never collide?
 - `motion.md`: How does a figure move, stay light, and respect reduced motion?
 - `webgl.md`: How does a shader effect sit inside an SVG figure?
 - `webgl-light-theme.md`: How is a glow or flame drawn on a light page?
@@ -32,4 +33,4 @@ Read when a website, app or docs build might need an explanatory isometric figur
 - `accessibility-and-limits.md`: What must a figure do for access, reduced motion and the business?
 - `later.md`: Which source tools and modules are set aside, and why?
 
-Data: `../../../../../data/craft/anatomy/` holds `figures.csv` (named techniques) and `iso-slabs.html`, a runnable sketch.
+Data: `../../../../../data/craft/anatomy/` holds `figures.csv` (named techniques) `iso-slabs.html`, a runnable sketch, `figure_audit.py` and `figure_draw.py`, with example scenes in `examples/`.

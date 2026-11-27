@@ -2,7 +2,7 @@
 
 Read when a figure's parts must rotate or shift in 3D, or the camera orbits, and the 2D painter's order is no longer enough.
 
-The source labels this area beta. Treat it as a design guide for hand-built work; we do not ship its engine (`later.md`).
+The source labels this area beta. Treat it as a design guide. Our own `figure_draw.py` turns, slides and hinges groups of boxes and cylinders and audits every pose and camera (`draw.md`); curved profiles and free motion stay by hand (`later.md`).
 
 ## Group kinds
 

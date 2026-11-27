@@ -108,9 +108,9 @@ Source: Anatomy at commit 1482e84 (MIT, checked). Ours: `plugins/ultimatum/skill
 | KIT14 | The WebGL layer | webgl.md §The camera contract | covered |
 | KIT15 | Tools | later.md §Source tooling | later |
 | KIT16 | Turning groups (kit/turn.mjs, | turning-groups.md §Group kinds | covered |
-| KIT17 | turning(P, { recorder, | kit-api.md §What the upstream kit offers | later (module, see later.md §Kit modules) |
-| KIT18 | TURN (runtime) | kit-api.md §What the upstream kit offers | later (module, see later.md §Kit modules) |
-| KIT19 | Orbit audit (kit/turn-audit.mjs) | turning-groups.md §Orbit audit | covered |
+| KIT17 | turning(P, { recorder, | kit-api.md §What the upstream kit offers | expanded (`figure_draw.py`, 0.0.51, `draw.md`) |
+| KIT18 | TURN (runtime) | kit-api.md §What the upstream kit offers | expanded (`figure_draw.py`, 0.0.51, `draw.md`) |
+| KIT19 | Orbit audit (kit/turn-audit.mjs) | turning-groups.md §Orbit audit | expanded (`figure_draw.py turn --orbit`, 0.0.51) |
 
 ### references/motion.md
 

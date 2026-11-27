@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.51] - 2026-11-27
+
+Draw isometric figures and audit turning groups
+
+- New `data/craft/anatomy/figure_draw.py` (standard library): draws a figure's JSON scene to an accessible SVG at any camera and pose, with four tones from one light, cylinders, pipes, labels with leaders, and exact depth order for convex parts from separating planes.
+- `figure_draw.py turn` sweeps each turn, slide and hinge group (and, with `--orbit`, the camera) and reports collision, crowding, order-cycle, tether and fixed-in-group faults at the first pose where each shows.
+- New guide `craft/anatomy/draw.md` and example `examples/turning-scene.json`, which fails the motion audit on purpose; index, kit-api, turning-groups, later and the data README point to it.
+- New tests `test_craft_anatomy_draw.py`: SVG structure and tones, camera and pose, bad input, the example's faults, a fixed scene that passes with the orbit, and the guide's check table against the script.
+
 ## [0.0.50] - 2026-11-27
 
 Deck plan and structure check
