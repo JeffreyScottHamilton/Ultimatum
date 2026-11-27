@@ -2,6 +2,8 @@
 
 Goal: every new or fixed behavior is pinned by a test you watched fail for the right reason, then pass, with the evidence in this session. Loop context: SKILL.md §3 steps 3-4.
 
+Choosing the check for a request, and plans written as step and check: `craft/coding-discipline/checkable-goals.md`.
+
 ## 1. Cycle (one behavior at a time)
 
 1. **Pick one behavior** from the slice's acceptance list. Name the test after the behavior ("rejects expired token"), not the function.

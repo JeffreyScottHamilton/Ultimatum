@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.36] - 2026-11-27
+
+Coding discipline, in our own words.
+
+- New `skills/work/references/craft/coding-discipline/`: think first (assumptions out loud, the two-readings test, when to ask, when to push back), smallest change (what not to build yet, a size test, a worked example), surgical diff (every changed line traces to the request) and checkable goals (a check that fails now, plans as step and check, when to stop looping).
+- New `data/craft/coding-discipline/diff_scope.py` (standard library): reads `git diff -U0` and flags whitespace-only, quote-only, comment-only and reorder-only hunks and files outside an allow list.
+- These cover the topics of multica-ai/andrej-karpathy-skills, which has no LICENSE file, so none of its text was read into or used in them. `upstreams.json` and both CREDITS files say so.
+- `feature-planning.md` and `tdd.md` point to the new files. Tests: `test_craft_coding_discipline.py`.
+
 ## [0.0.35] - 2026-11-27
 
 Apps: five checks before an AI-written login ships.

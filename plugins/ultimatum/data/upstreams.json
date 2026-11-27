@@ -304,11 +304,11 @@
       "kind": "skill-source",
       "repo": "https://github.com/multica-ai/andrej-karpathy-skills",
       "pin": "2c60614",
-      "licence": "MIT (stated in README)",
-      "decision": "adapt",
-      "modules": ["shared"],
-      "reviewed": "2026-11-24",
-      "note": "Plan before acting, verifiable success; own wording (moved from forrestchang/andrej-karpathy-skills)"
+      "licence": "MIT stated in README; no LICENSE file at the pin",
+      "decision": "skip",
+      "modules": ["work"],
+      "reviewed": "2026-11-27",
+      "note": "No LICENSE file, so its text was not used; own guides on the same topics in work/references/craft/coding-discipline"
     },
     {
       "id": "marketingskills",

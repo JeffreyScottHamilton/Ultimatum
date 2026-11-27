@@ -11,6 +11,8 @@ Goal: turn a request into a small, agreed spec and independently verifiable slic
 
 The shaping conversation in detail: `craft/superpowers/shaping-conversation.md`; the plan document: `craft/superpowers/plan-writing.md`.
 
+Assumptions, the two-readings test and when to ask before the first edit: `craft/coding-discipline/think-first.md`; keeping new code and the diff to what was asked: `craft/coding-discipline/smallest-change.md`, `craft/coding-discipline/surgical-diff.md`.
+
 Product questioning before a plan: `craft/gstack-eng/office-hours.md`; scope stances: `craft/gstack-eng/scope-review.md`; engineering review of a plan: `craft/gstack-eng/plan-eng-review.md`.
 
 ## 1. Size it first
