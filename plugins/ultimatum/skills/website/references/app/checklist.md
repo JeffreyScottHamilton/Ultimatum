@@ -22,6 +22,10 @@ Run after `../launch-checklist.md`, for sites with accounts, data or payments. T
 - [ ] Refund, cancellation and contact details on the site.
 - [ ] Live payments approved (`ult gate check live-payments`), switch done, one real purchase refunded, gate closed.
 
+## Load and real-world conditions
+- [ ] The 20 items in `launch-load.md` recorded (spend limit that pauses, pooler, indexes, pagination, load test, phone alerts, rollback tried).
+- [ ] The 11 cases in `field-conditions.md` handled and tested on the preview build (`data/app/field-check.cjs` pattern).
+
 ## Secrets and privacy
 - [ ] `git log -p | grep -E "sk_live|sk_test|sb_secret|whsec_|service_role"` finds nothing.
 - [ ] Browser bundle contains no secret key (search the built JS for the same patterns).

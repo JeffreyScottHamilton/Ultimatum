@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.34] - 2026-11-27
+
+Apps: launch-day load and real-world conditions.
+
+- New `skills/website/references/app/launch-load.md`: 20 launch-day items in five groups (spend limits that pause, attack protection, free-plan limits, pooler, region, indexes, pagination, N+1, CDN caching, images, signed uploads, background jobs, AI and email and SMS limits, live connections, a 10x load test on staging, phone alerts, rollback). Vendor names and numbers are marked to confirm on the vendor's page.
+- New `skills/website/references/app/field-conditions.md`: 11 situations real users hit (network switch, slow 3G, captive portals, 30-second APIs, AI provider down, double submits, expired login, broken images, blank-screen errors, deleted deep links, no signal after paying), each with what to build and how to test.
+- Worked example `data/app/field-demo.html` and `data/app/field-check.cjs`: Playwright against a local server, 12 checks, run in the tests when node and Playwright are present.
+- `app/checklist.md` gains a load and real-world conditions section. Tests: `test_app_launch_guides.py`.
+
 ## [0.0.33] - 2026-11-27
 
 UI UX Pro Max's brand, design-system and UI-styling topics rebuilt in our own words, with a starter token file built to CSS and Tailwind v4.

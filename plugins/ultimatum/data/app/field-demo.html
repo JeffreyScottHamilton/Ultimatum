@@ -1,0 +1,33 @@
+<!doctype html><meta charset="utf-8"><title>demo</title>
+<main id="app"><p id="status">loading</p><button id="save">Save</button><img id="pic" src="/img/cat.webp" width="200" height="120" alt="Cat on a chair"></main>
+<script>
+const status = t => document.getElementById('status').textContent = t;
+async function getJSON(url, ms = 8000) {
+  const r = await fetch(url, { signal: AbortSignal.timeout(ms) });
+  if (r.status === 401) { location.assign('/login?next=' + encodeURIComponent(location.pathname)); throw new Error('signed out'); }
+  if (r.status === 429) throw new Error('busy');
+  if (!r.ok) throw new Error('http ' + r.status);
+  if (!(r.headers.get('content-type') || '').includes('application/json')) throw new Error('not json');
+  return r.json();
+}
+async function load() {
+  try { const d = await getJSON('/api/post'); status(d.deleted ? 'This post is no longer available.' : d.title); }
+  catch (e) {
+    status(e.name === 'TimeoutError' ? 'Taking too long. Try again.' :
+           e.message === 'busy' ? 'We are busy. Try again in a minute.' :
+           !navigator.onLine ? 'You are offline. We will retry when you are back.' :
+           e.message === 'not json' ? 'This network is blocking us. Try mobile data.' : 'Something went wrong. Try again.');
+  }
+}
+let pending = false;
+document.getElementById('save').onclick = async () => {
+  if (pending) return; pending = true; save.disabled = true;
+  const key = crypto.randomUUID();
+  try { await fetch('/api/save', { method: 'POST', headers: { 'Idempotency-Key': key } }); }
+  finally { pending = false; save.disabled = false; }
+};
+document.getElementById('pic').onerror = e => { e.target.replaceWith(Object.assign(document.createElement('div'), { className: 'img-fallback', textContent: e.target.alt })); };
+window.addEventListener('online', load);
+window.addEventListener('error', () => status('Something went wrong. Reload to try again.'));
+load();
+</script>
