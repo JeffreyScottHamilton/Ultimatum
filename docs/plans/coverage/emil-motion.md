@@ -110,8 +110,8 @@ Total 348,614 bytes. Source skills are grouped by their folder in the table belo
 | ask-sonner | Setup, call picker, recipes, styling ladder, troubleshooting | libraries-and-toasts.md § Toasts | covered |
 | ask-sonner | API reference (props, options, functions) | libraries-and-toasts.md § API reference (link to docs) | covered |
 | mobile-native | Hard rules, symptom table, eleven fixes, baseline, never ship, hardware testing | mobile-web.md | expanded |
-| animate-expo | Tool ladder, properties, timing or spring, UI thread, press, haptics, reduced motion, 120 fps | later.md § Expo and React Native | later |
-| animate-expo | Ten recipes (RECIPES.md) | later.md § Expo and React Native | later |
+| animate-expo | Tool ladder, properties, timing or spring, UI thread, press, haptics, reduced motion, 120 fps | expo-motion.md | covered |
+| animate-expo | Ten recipes (RECIPES.md) | expo-recipes.md, expo-motion.md (press, screens) | covered |
 | write-swift | Sixteen Swift topics | later.md § Swift | later |
 | README | Install notes and skill list | none (no rule content) | not website-related |
 | LICENSE | MIT licence, checked | data/craft/emil-motion/README.md credit line | covered |

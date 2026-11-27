@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.48] - 2026-11-27
+
+Expo and React Native motion
+
+- New `emil-motion/expo-motion.md`: the native tool ladder (native navigation first, then layout animations, shared values, gestures, scroll and keyboard, Lottie, Skia), what may animate, worklet and UI-thread rules, timing versus spring with numbers, press instead of hover, haptics, reduced motion with `useReducedMotion` and `ReduceMotion.System`, native-stack screen and sheet options, the 120 fps setting, and a device checklist.
+- New `emil-motion/expo-recipes.md`: drag-to-close sheet with rubber band and release velocity, swipe-to-delete row, collapsing header on transform only, capped list entrance, keyboard-riding composer, measured tab indicator, toast, and a fire-once threshold for haptics. All code is our own, type-checked in strict mode against react-native 0.81 and Reanimated 4.8; none has been run on a device yet.
+- New `tests/test_expo_recipes.py`: every tsx block type-checks when `EXPO_TYPES_DIR` points at the type packages (skipped otherwise), and no gesture callback sets React state. The Expo rows leave `later.md`.
+
 ## [0.0.47] - 2026-11-27
 
 Mockup board for design reviews

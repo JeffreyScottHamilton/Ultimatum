@@ -23,7 +23,7 @@ Five questions, each scored ours better / even / upstream better:
 | caveman | 6 files, 19 KB, 1 script | 880 KB | 16 (runtime, hooks, cloud) | ours | Hook-driven mode; runtime, out of scope |
 | coding-discipline | 5 files, 1 script | not read (no licence) | n/a | ours on checkability (`diff_scope.py`) | Unknown; text not read |
 | design-review-qa | 25 files, 3 tables, 3 scripts | 13 MB (whole gstack) | 6 | ours (was even) | 0.0.47: `mockup_board.py` puts built HTML mockups side by side at 1280 and 390 with pick, ratings and comments, warns on near copies and missing axes, and reads the pick back; "show me the 10" is a built page beside `now`. Upstream generates pictures with a paid image service; ours needs none and the mockups can be linted and rendered |
-| emil-motion | 18 files, 89 KB, 5 tables | 339 KB | 4 (Expo, Swift) | ours for web | Expo and React Native recipes |
+| emil-motion | 20 files, 112 KB, 5 tables | 339 KB | 2 (Swift) | ours (was ours for web only) | 0.0.48: `expo-motion.md` and `expo-recipes.md` cover the native tool ladder, UI-thread rules, press, haptics, reduced motion, 120 fps and ten recipes; every code block is type-checked in strict mode by `test_expo_recipes.py` when the types are installed. Not yet run on a device. Upstream still has Swift |
 | frontend-budget | 6 files, 16 KB, 1 script, plus 4 page guides (14 KB) in the website skill | 3.4 MB | 15 (identity flow, pack rulings) | ours on load cost; even on page anatomy (was upstream) | Fixed in 0.0.42: `website/references/craft/pages/` covers landing order, developer-product landings and settings areas. Upstream's still has more worked examples |
 | gstack-eng | 11 files, 34 KB, 2 scripts | 13 MB | 11 (runtime, YC coaching) | ours | Nothing in scope |
 | hallmark | 31 files, 172 KB, 5 tables | 685 KB | 20 (all scripts) | ours on checks, judged (was upstream) | 0.0.43: `page_lint.py` runs every machine-checkable gate. 0.0.44: `render_check.py` opens the page in Chromium at the same 8 widths and measures 28 rendered rules, blocks remote requests by default, takes reasoned waivers. On upstream's own four exemplar pages it reports one edge-text and three low sign-up questions (remote photos blocked) |
@@ -40,6 +40,6 @@ Five questions, each scored ours better / even / upstream better:
 1. **A page linter** (hallmark and impeccable win). Done in 0.0.38. Stdlib script that reads HTML and CSS and flags the machine-checkable tells already written in `data/craft/hallmark/gates.csv` and `data/craft/design-review-qa/slop-tells.csv`. Turns two lists into a check.
 2. **Slides and decks** (ui-ux-pro-max wins). Done in 0.0.39. Nothing in the plugin covers building a deck; launch and business work needs one.
 3. **Icons and image sizes** (ui-ux-pro-max wins). Done in 0.0.40. Icon style rules and a size table for social cards, banners and favicons.
-4. Later, lower value: Expo motion recipes. The mockup comparison step landed in 0.0.47. The figure audit script landed in 0.0.41 and the landing and settings page anatomy in 0.0.42.
+4. Later, lower value: done. Expo motion recipes landed in 0.0.48. The mockup comparison step landed in 0.0.47. The figure audit script landed in 0.0.41 and the landing and settings page anatomy in 0.0.42.
 
 Each fix ships as its own release with tests, and this table is updated when it lands.

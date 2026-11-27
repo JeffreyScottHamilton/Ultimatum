@@ -2,18 +2,13 @@
 
 Read when a rule elsewhere points here, or when planning what to build next. These items come from the source skills but are not web work, so they are not in the other files. Nothing is dropped: each row says what would be needed to ship it. All of this is for native or cross-platform apps; none of it belongs in a website build unless the work moves to a mobile app.
 
-## Expo and React Native motion (source skill: animate-expo)
+## Expo and React Native motion
 
-| Item | What it covers | To ship it |
-|---|---|---|
-| Tool ladder for mobile | state change via CSS-style transitions, keyframe loops, mount and unmount layout animation, gesture-driven shared values, native stack for screens, form sheet for sheets, native tabs, native menus and peek, native large titles, pull to refresh, keyboard-tracking, Lottie for illustration only, a canvas library for huge scenes | A `mobile-motion` craft folder, written from the Reanimated, Gesture Handler and Expo Router docs, with an Expo project to run examples |
-| Properties, timing versus spring, keep off the JS thread | same gate as web, plus worklets and UI-thread rules | Same folder |
-| Press instead of hover, haptics, reduced motion, 120 fps setup | platform feedback rules (the web side is in `reduced-motion.md` and `apple-fluid.md`) | Same folder, needs a device to verify |
-| Recipes: press feedback, drag-down sheet, swipe-away row, collapsing header, list entrances, keyboard-following UI, tab indicator, screen transitions, toast, fire-once at a threshold | ten native recipes | Rewrite with our own code and run on a simulator |
+Done in 0.0.48: `expo-motion.md` and `expo-recipes.md`, type-checked, not yet run on a device. Left here: Lottie and Skia recipes, and shared-element screen transitions (still experimental upstream in Reanimated).
 
 ## Feeling native on iOS in an app (source skill: mobile-native, native half)
 
-The web half is in `mobile-web.md`. The installed-app half (standalone web app behaviour, native haptics) would join the mobile folder above.
+The web half is in `mobile-web.md`. The installed-app half (standalone web app behaviour, native haptics) is covered in `expo-motion.md` (haptics, press); standalone web app behaviour is still open.
 
 ## Swift (source skill: write-swift)
 

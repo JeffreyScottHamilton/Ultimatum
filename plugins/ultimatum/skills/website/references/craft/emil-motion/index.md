@@ -21,4 +21,6 @@ Written in our own words from the ideas in the MIT-licensed emilkowalski/skills 
 - `prototype-variants.md`: how do I show several different versions and let the user pick?
 - `libraries-and-toasts.md`: which library fits, and how do toasts work and fail?
 - `feedback-and-laws.md`: did my click land, where did that panel come from, and why does this target, menu or wait feel wrong (Fitts, Hick, Doherty)?
-- `later.md`: what is left for native apps, Swift and tooling?
+- `expo-motion.md`: in an Expo or React Native app, which tool, what may animate, how to stay off the JS thread, press, haptics, reduced motion and screen transitions?
+- `expo-recipes.md`: how do I build a drag-to-close sheet, swipe-to-delete row, collapsing header, list entrance, keyboard-riding composer, tab indicator, toast or fire-once haptic in React Native?
+- `later.md`: what is left for Swift and tooling?
