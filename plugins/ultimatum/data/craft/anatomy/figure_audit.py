@@ -3,7 +3,9 @@
 
 The scene is a JSON file that the figure is drawn from (build the geometry
 once, draw it, and audit the same data). Parts are axis-aligned boxes in world
-units; pipes are polylines with a radius that run between named ports. The
+units (turned and round parts are checked by their box); pipes are polylines
+with a radius that run between named ports, and a "coil" pipe is first turned
+into points by `figure_draw.py` beside this file. The
 checks match the audit table in `skills/website/references/craft/anatomy/verify.md`.
 Standard library only; reads one local file and never fetches anything.
 
@@ -179,6 +181,25 @@ def audit(scene):
     return faults
 
 
+def with_coils(scene):
+    """Turn "coil" pipes into points with the drawer's own helix (figure_draw.py beside this file)."""
+    if not isinstance(scene, dict) or not any(isinstance(q, dict) and "coil" in q and "points" not in q
+                                              for q in scene.get("pipes", [])):
+        return scene, None
+    import importlib.util
+    import os
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figure_draw.py")
+    spec = importlib.util.spec_from_file_location("ult_figure_draw", path)
+    fd = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(fd)
+    for q in scene["pipes"]:
+        if isinstance(q, dict) and "coil" in q and "points" not in q:
+            err = fd.check_coil(q)
+            if err:
+                return scene, f"pipe {q.get('name')}: {err}"
+    return dict(scene, pipes=fd.expand_pipes(scene)), None
+
+
 def validate(scene):
     if not isinstance(scene, dict) or not isinstance(scene.get("parts"), list):
         return "scene needs a list of parts"
@@ -219,7 +240,8 @@ def main(argv=None):
     except (OSError, ValueError) as e:
         print(f"cannot read {a.scene}: {e}", file=sys.stderr)
         return 2
-    err = validate(scene)
+    scene, err = with_coils(scene)
+    err = err or validate(scene)
     if err:
         print(f"bad scene: {err}", file=sys.stderr)
         return 2

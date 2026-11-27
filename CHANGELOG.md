@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.60] - 2026-11-27
+
+Anatomy: turned parts, coils, knurl and ticks
+
+- `figure_draw.py` draws `"shape": "lathe"` parts from a `[radius, height]` profile (kettle bodies, knobs, bottles, domes) as convex frusta with the joins left unpainted, so depth order and the move checks stay exact; refuses profiles that are too wide, go down or reach a zero radius.
+- Pipes may give a `"coil"` (centre, radius, pitch, turns) instead of points: heater elements, springs, wound cables. Each segment is ordered on its own, so the back half hides behind the part it wraps. Coils whose turns would touch are refused, and `figure_audit.py` reads coils with the same helix.
+- Cylinders take `"knurl"` (grip ridges) and `"ticks"` (a ring of marks on the top rim); both turn with the part's group and only the facing ridges are drawn.
+- New example `examples/turned-scene.json`; `draw.md` and `later.md` updated. Closes the gap where the upstream anatomy kit had lathe, coil, knurl and tick helpers and ours did not (`docs/plans/comparison.md`).
+- Tests: five new checks in `tests/test_craft_anatomy_draw.py` (pieces and segments drawn, coil hidden behind the body, true-shape turn audit with no order cycle round the orbit, bad profiles, coils and marks refused, static audit reads coils); the self-check covers the kettle.
+
 ## [0.0.59] - 2026-11-27
 
 Taste: 66 contrast-checked palettes

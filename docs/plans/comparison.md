@@ -18,7 +18,7 @@ Five questions, each scored ours better / even / upstream better:
 
 | Set | Ours | Upstream | Gaps | Verdict | Where upstream still wins |
 |---|---|---|---|---|---|
-| anatomy | 23 files, 61 KB, 2 scripts | 392 KB | 36 (kit modules) | even (was upstream on tooling) | `figure_audit.py` (0.0.41) runs the ten static checks; `figure_draw.py` (0.0.51) draws the scene at any camera with exact convex depth order and audits turning groups and the orbit. Upstream still has lathe, coil and canvas helpers |
+| anatomy | 23 files, 61 KB, 2 scripts | 392 KB | 36 (kit modules) | ours (was upstream on tooling) | `figure_audit.py` (0.0.41) runs the ten static checks; `figure_draw.py` (0.0.51) draws the scene at any camera with exact convex depth order and audits turning groups and the orbit. 0.0.60 adds turned parts (lathe profiles), coils, knurl and tick rings, drawn and turn-audited with the true shape. Upstream still has canvas output and smoothly bent tubes |
 | anthropic-method | 9 files, 29 KB, 6 scripts | 2.2 MB | 10 (eval viewer, packaging, office formats) | ours | Office-format skills, out of scope |
 | caveman | 6 files, 19 KB, 1 script | 880 KB | 16 (runtime, hooks, cloud) | ours | Hook-driven mode; runtime, out of scope |
 | coding-discipline | 5 files, 1 script | not read (no licence) | n/a | ours on checkability (`diff_scope.py`) | Unknown; text not read |

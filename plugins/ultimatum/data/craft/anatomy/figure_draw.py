@@ -2,8 +2,10 @@
 """Draw an isometric figure from its JSON scene, and audit parts that move.
 
 The scene is the same file `figure_audit.py` reads: parts are boxes (or
-upright cylinders with "shape": "cylinder") in world units, pipes are
-polylines with a radius. This script adds two things:
+upright cylinders with "shape": "cylinder", or turned shapes with
+"shape": "lathe" and a "profile" of [radius, height] points) in world
+units, pipes are polylines with a radius, or springs and heater coils
+given as "coil" instead of points. This script adds two things:
 
   draw   writes an SVG: visible faces only, four tones from one light,
          depth order settled by separating planes, pipes, and labels with
@@ -90,11 +92,16 @@ def rotate(p, pivot, axis, deg):
 class Solid:
     """A convex polyhedron: vertices and faces (index lists, outward order)."""
 
-    def __init__(self, name, verts, faces, color, kind="part"):
+    def __init__(self, name, verts, faces, color, kind="part", part=None, hidden=(), marks=()):
         self.name, self.verts, self.faces, self.color, self.kind = name, verts, faces, color, kind
+        self.part = part or name  # the scene part this piece belongs to (a lathe has several)
+        self.hidden = frozenset(hidden)  # faces never painted: joins inside one turned part
+        self.marks = list(marks)  # (kind, start, end, start + outward normal): knurl and ticks
 
     def moved(self, fn):
-        return Solid(self.name, [fn(v) for v in self.verts], self.faces, self.color, self.kind)
+        marks = [(k, fn(a), fn(b), fn(t)) for k, a, b, t in self.marks]
+        return Solid(self.name, [fn(v) for v in self.verts], self.faces, self.color, self.kind,
+                     self.part, self.hidden, marks)
 
     def normal(self, f):
         a, b, c = (self.verts[i] for i in self.faces[f][:3])
@@ -135,6 +142,120 @@ def cylinder_solid(name, at, size, color, sides=20):
     return Solid(name, v, faces, color)
 
 
+def lathe_solids(name, at, size, color, profile, sides=20):
+    """A turned part: the profile revolved round the upright centre line of its box.
+
+    Each pair of profile points with a rise becomes one frustum, which is convex, so
+    depth order and the separating-axis checks stay exact. A pair at the same height
+    is a step (a shoulder or a lip): the cap of the frustum below or above shows it.
+    """
+    x, y, z = at
+    w, d, _ = size
+    cx, cy = x + w / 2, y + d / 2
+    rings = [(math.cos(2 * math.pi * i / sides), math.sin(2 * math.pi * i / sides)) for i in range(sides)]
+    pts = [(float(r), float(h)) for r, h in profile]
+    out = []
+    spans = [k for k in range(len(pts) - 1) if pts[k + 1][1] > pts[k][1] + TOL]
+    for n, k in enumerate(spans):
+        (r0, z0), (r1, z1) = pts[k], pts[k + 1]
+        v = [[cx + r0 * c, cy + r0 * s_, z + z0] for c, s_ in rings] + \
+            [[cx + r1 * c, cy + r1 * s_, z + z1] for c, s_ in rings]
+        faces = [list(range(sides - 1, -1, -1)), list(range(sides, 2 * sides))]
+        faces += [[i, (i + 1) % sides, sides + (i + 1) % sides, sides + i] for i in range(sides)]
+        hidden = set()
+        if n > 0 and spans[n - 1] == k - 1:
+            hidden.add(0)  # the piece below meets this one at the same ring
+        if n + 1 < len(spans) and spans[n + 1] == k + 1:
+            hidden.add(1)
+        out.append(Solid(name if n == 0 else f"{name}#{n}", v, faces, color, part=name, hidden=hidden))
+    return out
+
+
+def coil_points(coil):
+    """Points along a helix round an upright axis: {"at": [x, y, z] (centre of the
+    bottom), "radius": R, "pitch": rise per turn, "turns": N, "start": degrees,
+    "steps": points per turn (default 16)}."""
+    cx, cy, cz = (float(v) for v in coil["at"])
+    rad, pitch, turns = float(coil["radius"]), float(coil["pitch"]), float(coil["turns"])
+    steps = int(coil.get("steps", 16))
+    a0 = math.radians(float(coil.get("start", 0)))
+    n = max(2, round(turns * steps))
+    out = []
+    for i in range(n + 1):
+        t = turns * i / n
+        a = a0 + 2 * math.pi * t
+        out.append([cx + rad * math.cos(a), cy + rad * math.sin(a), cz + pitch * t])
+    return out
+
+
+def expand_pipes(scene):
+    """The scene's pipes with every coil turned into its points (the scene is not changed)."""
+    out = []
+    for pipe in scene.get("pipes", []):
+        if "coil" in pipe and "points" not in pipe:
+            pipe = dict(pipe, points=coil_points(pipe["coil"]))
+        out.append(pipe)
+    return out
+
+
+def check_lathe(p):
+    prof = p.get("profile")
+    w, d, h = (float(v) for v in p["size"])
+    if not isinstance(prof, list) or len(prof) < 2 or any(not isinstance(q, list) or len(q) != 2 for q in prof):
+        return "a lathe needs a profile of two or more [radius, height] points"
+    try:
+        pts = [(float(r), float(z)) for r, z in prof]
+    except (TypeError, ValueError):
+        return "profile values must be numbers"
+    if any(r <= 0 for r, _ in pts):
+        return "profile radii must be above zero (use a small radius for a point)"
+    if any(b[1] < a[1] for a, b in zip(pts, pts[1:])):
+        return "profile heights must not go down"
+    if pts[0][1] < -TOL or pts[-1][1] > h + TOL:
+        return f"profile heights must lie within 0 and the part's height {h:g}"
+    if max(r for r, _ in pts) > min(w, d) / 2 + TOL:
+        return f"profile radius {max(r for r, _ in pts):g} is wider than the part's box allows ({min(w, d) / 2:g})"
+    if pts[-1][1] - pts[0][1] <= TOL:
+        return "the profile must rise"
+    return None
+
+
+def check_coil(pipe):
+    c = pipe["coil"]
+    if not isinstance(c, dict) or len(c.get("at", [])) != 3:
+        return "a coil needs at [x, y, z]"
+    try:
+        rad, pitch, turns = float(c["radius"]), float(c["pitch"]), float(c["turns"])
+        steps = int(c.get("steps", 16))
+    except (KeyError, TypeError, ValueError):
+        return "a coil needs number radius, pitch and turns"
+    wire = float(pipe.get("radius", 0.2))
+    if rad <= wire or turns <= 0 or not 6 <= steps <= 64:
+        return "a coil needs radius above the wire's, turns above zero and steps 6 to 64"
+    if pitch <= 2 * wire:
+        return f"pitch {pitch:g} lets the turns touch; it must be more than the wire's thickness {2 * wire:g}"
+    return None
+
+
+def cylinder_marks(at, size, knurl=0, ticks=0):
+    """Knurl ridges up the side and tick marks round the top rim of an upright cylinder."""
+    x, y, z = at
+    w, d, h = size
+    cx, cy, rx, ry = x + w / 2, y + d / 2, w / 2, d / 2
+    out = []
+    for i in range(int(knurl)):
+        a = 2 * math.pi * (i + 0.5) / knurl
+        c, s_ = math.cos(a), math.sin(a)
+        foot = [cx + rx * c, cy + ry * s_, z + 0.15 * h]
+        out.append(("knurl", foot, [foot[0], foot[1], z + 0.85 * h], add(foot, [c, s_, 0])))
+    for i in range(int(ticks)):
+        a = 2 * math.pi * i / ticks
+        c, s_ = math.cos(a), math.sin(a)
+        inner = [cx + 0.72 * rx * c, cy + 0.72 * ry * s_, z + h]
+        out.append(("tick", inner, [cx + 0.92 * rx * c, cy + 0.92 * ry * s_, z + h], add(inner, [0, 0, 1])))
+    return out
+
+
 def segment_solid(name, p, q, r, color):
     """A square prism round a pipe segment, used to order the pipe, not to paint it."""
     d = unit(sub(q, p)) or [1.0, 0.0, 0.0]
@@ -157,12 +278,27 @@ def validate(scene):
             return "each part needs a name, at [x, y, z] and size [w, d, h]"
         if p["name"] in names:
             return f"duplicate part name {p['name']}"
-        if p.get("shape", "box") not in ("box", "cylinder"):
-            return f"part {p['name']}: shape must be box or cylinder"
+        if p.get("shape", "box") not in ("box", "cylinder", "lathe"):
+            return f"part {p['name']}: shape must be box, cylinder or lathe"
+        if p.get("shape") == "lathe":
+            err = check_lathe(p)
+            if err:
+                return f"part {p['name']}: {err}"
+        for mark, lo in (("knurl", 6), ("ticks", 4)):
+            if mark in p:
+                if p.get("shape") != "cylinder":
+                    return f"part {p['name']}: {mark} needs a cylinder"
+                if not isinstance(p[mark], int) or isinstance(p[mark], bool) or not lo <= p[mark] <= 120:
+                    return f"part {p['name']}: {mark} must be a whole number from {lo} to 120"
         names.add(p["name"])
     for pipe in scene.get("pipes", []):
+        if isinstance(pipe, dict) and "coil" in pipe and "points" not in pipe:
+            err = check_coil(pipe)
+            if err:
+                return f"pipe {pipe.get('name')}: {err}"
+            continue
         if "name" not in pipe or len(pipe.get("points", [])) < 2 or any(len(pt) != 3 for pt in pipe["points"]):
-            return "each pipe needs a name and two or more [x, y, z] points"
+            return "each pipe needs a name and two or more [x, y, z] points, or a coil"
     for g in scene.get("groups", []):
         if g.get("kind") not in ("turn", "hinge", "slide"):
             return f"group {g.get('name')}: kind must be turn, hinge or slide"
@@ -195,11 +331,18 @@ def posed(scene, pose):
         moves["group:" + g["name"]] = fn
     solids = []
     for p in scene["parts"]:
-        make = cylinder_solid if p.get("shape") == "cylinder" else box_solid
-        s = make(p["name"], p["at"], p["size"], p.get("color", "#8c9bab"))
-        solids.append(s.moved(moves[p["name"]]) if p["name"] in moves else s)
+        color = p.get("color", "#8c9bab")
+        if p.get("shape") == "lathe":
+            pieces = lathe_solids(p["name"], p["at"], p["size"], color, p["profile"])
+        elif p.get("shape") == "cylinder":
+            pieces = [cylinder_solid(p["name"], p["at"], p["size"], color)]
+            pieces[0].marks = cylinder_marks(p["at"], p["size"], p.get("knurl", 0), p.get("ticks", 0))
+        else:
+            pieces = [box_solid(p["name"], p["at"], p["size"], color)]
+        fn = moves.get(p["name"])
+        solids += [s.moved(fn) for s in pieces] if fn else pieces
     pipes = []
-    for pipe in scene.get("pipes", []):
+    for pipe in expand_pipes(scene):
         fn = moves.get("group:" + pipe.get("group", ""))
         pts = [fn(pt) for pt in pipe["points"]] if fn else [list(pt) for pt in pipe["points"]]
         pipes.append((pipe, pts))
@@ -373,8 +516,7 @@ def draw(scene, pose=None, az=45.0, el=30.0, size=(640, 480), title=None):
         u, v = cam.screen(p)
         return ox + s * u, oy + s * v
 
-    curved = {p["name"]: p.get("shape") == "cylinder" for p in scene["parts"]}
-    curved.update({o.name: False for o in order_solids if o.kind == "pipe"})
+    curved = {p["name"]: p.get("shape") in ("cylinder", "lathe") for p in scene["parts"]}
     title = title or scene.get("title", "Isometric figure")
     names = ", ".join(p["name"] for p in scene["parts"])
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" '
@@ -397,32 +539,40 @@ def draw(scene, pose=None, az=45.0, el=30.0, size=(640, 480), title=None):
         faces = []
         for f in range(len(sol.faces)):
             n = sol.normal(f)
-            if dot(n, cam.toward) <= 1e-9:
+            if f in sol.hidden or dot(n, cam.toward) <= 1e-9:
                 continue
             pts = " ".join(f"{x:.2f},{y:.2f}" for x, y in (to_px(sol.verts[i]) for i in sol.faces[f]))
             fill = t[face_tone(n)]
-            seam = curved[sol.name] and len(sol.faces[f]) == 4  # a cylinder's side strip: no seam line
+            seam = curved.get(sol.part, False) and len(sol.faces[f]) == 4  # a cylinder's side strip: no seam line
             faces.append(f'<polygon points="{pts}" fill="{fill}" stroke="{fill if seam else t["edge"]}" '
                          f'stroke-width="{0.6 if seam else 1}" stroke-linejoin="round"/>')
-        out.append(f'<g data-part="{escape(sol.name)}">' + "".join(faces) + "</g>")
+        for kind, a, b, tip in sol.marks:
+            if dot(sub(tip, a), cam.toward) <= 0.05:
+                continue  # on the far side, or edge-on
+            (x1, y1), (x2, y2) = to_px(a), to_px(b)
+            faces.append(f'<line data-mark="{kind}" x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" '
+                         f'stroke="{t["edge"]}" stroke-width="1" stroke-linecap="round"/>')
+        piece = f' data-piece="{escape(sol.name)}"' if sol.name != sol.part else ""
+        out.append(f'<g data-part="{escape(sol.part)}"{piece}>' + "".join(faces) + "</g>")
 
     if labels:
-        by_name = {s.name: s for s in solids}
         anchors = []
         for p in labels:
-            sol = by_name[p["name"]]
+            pieces = [s for s in solids if s.part == p["name"]]
             covered = any(q.get("on") == p["name"] for q in scene["parts"])
             best, best_area = None, -1.0
-            for f in range(len(sol.faces)):
-                n = sol.normal(f)
-                if dot(n, cam.toward) <= 1e-9 or (covered and n[2] > 0.9):
-                    continue  # hidden, or a top another part sits on
-                pts = [to_px(sol.verts[i]) for i in sol.faces[f]]
-                area = abs(sum(pts[i][0] * pts[i - 1][1] - pts[i - 1][0] * pts[i][1] for i in range(len(pts)))) / 2
-                if area > best_area:
-                    best_area, best = area, pts
+            for sol in pieces:
+                for f in range(len(sol.faces)):
+                    n = sol.normal(f)
+                    if f in sol.hidden or dot(n, cam.toward) <= 1e-9 or (covered and n[2] > 0.9):
+                        continue  # hidden, or a top another part sits on
+                    pts = [to_px(sol.verts[i]) for i in sol.faces[f]]
+                    area = abs(sum(pts[i][0] * pts[i - 1][1] - pts[i - 1][0] * pts[i][1]
+                                   for i in range(len(pts)))) / 2
+                    if area > best_area:
+                        best_area, best = area, pts
             spot = (sum(x for x, _ in best) / len(best), sum(y for _, y in best) / len(best)) if best else \
-                to_px(sol.centre())
+                to_px(pieces[0].centre())
             anchors.append((spot[1], spot, p))
         anchors.sort(key=lambda a: a[0])
         col = W - room + 12
@@ -468,12 +618,12 @@ def turn_audit(scene, steps=24, orbit=False):
         moving = set(g["parts"])
         for value in samples(g["range"][0], g["range"][1], steps):
             solids, pipes, ports = posed(scene, {g["name"]: value})
-            by = {s.name: s for s in solids}
-            for m in moving:
-                for other in by:
+            for ms in (s for s in solids if s.part in moving):
+                for os_ in solids:
+                    m, other = ms.part, os_.part
                     if other in moving or frozenset((m, other)) in joined:
                         continue
-                    sep, _ = separation(by[m], by[other])
+                    sep, _ = separation(ms, os_)
                     pair = " / ".join(sorted((m, other)))
                     if sep < -1e-6:
                         note("collision", pair, f"{g['name']} at {value:g}")
@@ -539,8 +689,92 @@ def demo_scene():
     }
 
 
-def self_check():
+def turned_scene():
+    """A kettle: a turned body with a shoulder, a heater coil, and a lid arm that swings."""
+    return {
+        "title": "Kettle with a turned body and a heater coil",
+        "min_gap": 0.2,
+        "parts": [
+            {"name": "base", "at": [-1, -1, 0], "size": [8, 8, 0.5], "fixed": True},
+            {"name": "body", "at": [0, 0, 0.5], "size": [6, 6, 6], "shape": "lathe", "label": "Body",
+             "profile": [[2.4, 0], [3, 1], [3, 4], [2.2, 5], [1.2, 5], [1.2, 6]], "color": "#a7b4c2"},
+            {"name": "arm", "at": [3.5, 2.6, 6.2], "size": [4, 0.8, 0.4], "label": "Arm", "color": "#b08d57"},
+            {"name": "knob", "at": [-0.5, 5.6, 0.5], "size": [1.2, 1.2, 0.8], "shape": "cylinder",
+             "knurl": 24, "ticks": 12, "color": "#5f6b78"},
+        ],
+        "joins": [["base", "body"]],
+        "pipes": [{"name": "heater", "radius": 0.12, "passes": ["body"], "color": "#c0623f",
+                   "coil": {"at": [3, 3, 1.5], "radius": 3.4, "pitch": 0.6, "turns": 3}}],
+        "groups": [{"name": "arm-swing", "kind": "hinge", "parts": ["arm"], "axis": [0, 1, 0],
+                    "pivot": [7.5, 3, 6.2], "range": [0, 60]},
+                   {"name": "knob-turn", "kind": "turn", "parts": ["knob"], "axis": [0, 0, 1],
+                    "pivot": [0.1, 6.2, 0.5], "range": [0, 270]}],
+    }
+
+
+def turned_check():
     problems = []
+    sc = turned_scene()
+    if validate(sc):
+        return ["turned scene invalid: " + validate(sc)]
+    solids, pipes, _ = posed(sc, {})
+    body = [s for s in solids if s.part == "body"]
+    if len(body) != 4:
+        problems.append(f"the body profile has four rises and should make four pieces, got {len(body)}")
+    pts = pipes[0][1]
+    if len(pts) != 49 or abs(pts[-1][2] - (1.5 + 0.6 * 3)) > TOL or abs(math.dist(pts[0][:2], [3, 3]) - 3.4) > TOL:
+        problems.append("the coil should have 3 x 16 steps, rise pitch x turns and keep its radius")
+    svg, cycles = draw(sc)
+    root = ET.fromstring(svg)
+    ns = "{http://www.w3.org/2000/svg}"
+    parts = [g.get("data-part") for g in root.iter(ns + "g") if g.get("data-part")]
+    if parts.count("body") != 4 or len([g for g in root.iter(ns + "g") if g.get("data-pipe") == "heater"]) != 48:
+        problems.append("the drawing should hold four body pieces and 48 heater segments")
+    if len([g for g in root.iter(ns + "g") if g.get("data-label")]) != 2:
+        problems.append("expected two labels on the kettle")
+    knob = next(g for g in root.iter(ns + "g") if g.get("data-part") == "knob")
+    knurl = [ln for ln in knob if ln.get("data-mark") == "knurl"]
+    ticks = [ln for ln in knob if ln.get("data-mark") == "tick"]
+    if not 8 <= len(knurl) <= 14 or len(ticks) != 12:
+        problems.append(f"the knob should show about half its 24 ridges and all 12 ticks, got {len(knurl)} and {len(ticks)}")
+    turned = ET.fromstring(draw(sc, {"knob-turn": 15})[0])
+    knob2 = next(g for g in turned.iter(ns + "g") if g.get("data-part") == "knob")
+    first = [(ln.get("x1"), ln.get("y1")) for ln in ticks]
+    if first == [(ln.get("x1"), ln.get("y1")) for ln in knob2 if ln.get("data-mark") == "tick"]:
+        problems.append("ticks should turn with the knob")
+    if cycles:
+        problems.append(f"unexpected order cycle on the kettle {cycles}")
+    faults = {(f["check"], f["what"]) for f in turn_audit(sc, steps=12)}
+    if ("collision", "arm / body") not in faults:
+        problems.append("the arm cutting into the turned body was not found")
+    sc["groups"][0]["range"] = [0, 10]
+    sc["parts"][2]["at"] = [3.5, 2.6, 7]
+    if any(c in ("collision", "crowding") for c, _ in {(f["check"], f["what"]) for f in turn_audit(sc, steps=12)}):
+        problems.append("a short swing clear of the body should be clean")
+    bad = [
+        ({"profile": [[2, 0], [4, 3]]}, "wider than"),
+        ({"profile": [[2, 2], [2, 1]]}, "must not go down"),
+        ({"profile": [[0, 0], [2, 3]]}, "above zero"),
+        ({"profile": [[2, 1]]}, "two or more"),
+    ]
+    for change, words in bad:
+        b = turned_scene()
+        b["parts"][1].update(change)
+        if words not in (validate(b) or ""):
+            problems.append(f"a bad profile {change} should be refused with '{words}'")
+    flat = turned_scene()
+    flat["parts"][2]["knurl"] = 12
+    if "needs a cylinder" not in (validate(flat) or ""):
+        problems.append("knurl on a box should be refused")
+    tight = turned_scene()
+    tight["pipes"][0]["coil"]["pitch"] = 0.2
+    if "turns touch" not in (validate(tight) or ""):
+        problems.append("a coil whose turns touch should be refused")
+    return problems
+
+
+def self_check():
+    problems = turned_check()
     sc = demo_scene()
     if validate(sc):
         problems.append("demo scene invalid: " + validate(sc))

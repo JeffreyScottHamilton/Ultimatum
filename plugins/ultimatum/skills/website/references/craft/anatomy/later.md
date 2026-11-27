@@ -8,8 +8,8 @@ Nothing below is installed or run. The upstream kit is Node code; our toolbelt i
 
 | Module (upstream) | Size | What it does | Our stand-in now | To ship it |
 |---|---|---|---|---|
-| iso kit (.mjs and .ts) | 35 KB | solids, ticks, coils, SVG output | partly done: `figure_draw.py` draws boxes, upright cylinders and pipes to SVG (`draw.md`) | ticks, knurl and coils are still by hand |
-| lathe | 48 KB | revolved profiles | gradient rules in `craft-shading.md` | own revolve helper with a ring and band test |
+| iso kit (.mjs and .ts) | 35 KB | solids, ticks, coils, SVG output | done: `figure_draw.py` draws boxes, upright cylinders with knurl and ticks, turned parts, pipes and coils to SVG (`draw.md`, 0.0.60) | canvas output (`webgl.md`) |
+| lathe | 48 KB | revolved profiles | done: `"shape": "lathe"` with a profile, drawn as convex frusta and audited by `figure_draw.py turn` (0.0.60) | tilted turned parts; bands and ribs are profile steps |
 | tube | 14 KB | pipes with gaps and rings | clearance rules in `craft-rules.md` | own tube path builder plus clearance probe |
 | audit | 93 KB | records parts, checks clearance, folds, loose ends, depth | done: `figure_audit.py` runs the ten checks on a JSON scene (`audit.md`) | curved parts are not modelled; turning groups are audited by `figure_draw.py turn` |
 | turn, turn build, turn fixed, turn audit | 140 KB, 66 KB, 147 KB, 57 KB | turning groups and their audit | partly done: `figure_draw.py turn` sweeps turn, slide and hinge groups and the camera orbit (`draw.md`) | free groups, nesting, curved parts |

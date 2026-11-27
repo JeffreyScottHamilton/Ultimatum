@@ -133,6 +133,81 @@ class TurnAudit(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stdout)
 
 
+TURNED = DATA / "examples" / "turned-scene.json"
+
+
+def scene_file(d, scene):
+    f = Path(d) / "s.json"
+    f.write_text(json.dumps(scene), encoding="utf-8")
+    return f
+
+
+class TurnedParts(unittest.TestCase):
+    def test_lathe_coil_knurl_and_ticks_are_drawn(self):
+        r, svg = drawn(TURNED)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        root, groups = parts(svg)
+        names = [g.get("data-part") for g in groups]
+        self.assertEqual(names.count("body"), 4)  # one convex piece per rise in the profile
+        self.assertEqual(len([g for g in root.iter(NS + "g") if g.get("data-pipe") == "heater"]), 48)
+        knob = next(g for g in groups if g.get("data-part") == "knob")
+        self.assertEqual(len([m for m in knob if m.get("data-mark") == "tick"]), 12)
+        self.assertGreater(len([m for m in knob if m.get("data-mark") == "knurl"]), 0)
+
+    def test_coil_back_half_hides_behind_the_body(self):
+        _, svg = drawn(TURNED)
+        order = [g.get("data-part") or g.get("data-pipe") for g in ET.fromstring(svg).iter(NS + "g")
+                 if g.get("data-part") or g.get("data-pipe")]
+        first_body, last_body = order.index("body"), len(order) - 1 - order[::-1].index("body")
+        heater = [i for i, n in enumerate(order) if n == "heater"]
+        self.assertTrue(any(i < first_body for i in heater), "some coil drawn before the body")
+        self.assertTrue(any(i > last_body for i in heater), "some coil drawn over the body")
+
+    def test_true_shape_in_the_turn_audit_and_orbit(self):
+        r = run("turn", str(TURNED), "--json", "--orbit", "--steps", "12")
+        out = json.loads(r.stdout)
+        self.assertIn(("collision", "arm / body"), {(f["check"], f["what"]) for f in out["faults"]})
+        self.assertEqual(out["counts"]["order-cycle"], 0)
+        scene = json.loads(TURNED.read_text(encoding="utf-8"))
+        scene["parts"][2]["at"] = [3.5, 2.6, 7]
+        scene["groups"][0]["range"] = [0, 10]
+        with tempfile.TemporaryDirectory() as d:
+            r = run("turn", str(scene_file(d, scene)), "--json", "--steps", "12")
+        self.assertEqual(r.returncode, 0, r.stdout)
+
+    def test_bad_profiles_coils_and_marks_are_refused(self):
+        changes = [
+            ("parts", 1, {"profile": [[2, 0], [4, 3]]}),
+            ("parts", 1, {"profile": [[2, 2], [2, 1]]}),
+            ("parts", 1, {"profile": [[0, 0], [2, 3]]}),
+            ("parts", 2, {"ticks": 12}),
+            ("parts", 3, {"knurl": 2}),
+            ("parts", 3, {"knurl": True}),
+        ]
+        for key, i, change in changes:
+            scene = json.loads(TURNED.read_text(encoding="utf-8"))
+            scene[key][i].update(change)
+            with self.subTest(change=change), tempfile.TemporaryDirectory() as d:
+                r = run("turn", str(scene_file(d, scene)))
+                self.assertEqual(r.returncode, 2, r.stdout)
+                self.assertIn("bad scene", r.stderr)
+        scene = json.loads(TURNED.read_text(encoding="utf-8"))
+        scene["pipes"][0]["coil"]["pitch"] = 0.2
+        with tempfile.TemporaryDirectory() as d:
+            f = scene_file(d, scene)
+            for cmd in ([str(DRAW), "turn", str(f)], [str(DATA / "figure_audit.py"), str(f)]):
+                r = subprocess.run([sys.executable, "-I", *cmd], capture_output=True, text=True, timeout=120)
+                self.assertEqual(r.returncode, 2)
+                self.assertIn("turns touch", r.stderr)
+
+    def test_static_audit_reads_coils(self):
+        r = subprocess.run([sys.executable, "-I", str(DATA / "figure_audit.py"), str(TURNED), "--json"],
+                           capture_output=True, text=True, timeout=120)
+        out = json.loads(r.stdout)
+        self.assertIn(("overlaps", "arm / body"), {(f["check"], f["what"]) for f in out["faults"]})
+        self.assertEqual(out["counts"]["folds"], 0)  # 16 steps a turn bend 22.5 degrees each
+
+
 class DrawGuide(unittest.TestCase):
     def test_guide_lists_every_turn_check(self):
         guide = (CRAFT / "draw.md").read_text(encoding="utf-8")

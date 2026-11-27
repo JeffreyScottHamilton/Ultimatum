@@ -7,6 +7,9 @@ Read when a figure is described as a JSON scene and you want the SVG drawn from 
 ## What it draws
 
 - **Parts.** Boxes by default; `"shape": "cylinder"` makes an upright cylinder filling the part's box in plan. Each part is a convex solid, so it shows only the faces turned toward the camera.
+- **Turned parts.** `"shape": "lathe"` with `"profile": [[radius, height], ...]` revolves the profile round the upright centre line of the part's box: a kettle body, a knob, a bottle, a dome. Heights run from the bottom of the box and must not go down; two points at the same height make a step (a shoulder or a lip). Each rise becomes one frustum, which keeps depth order and the move checks exact, and the joins between frusta are not painted, so a smooth profile reads as one surface. The script refuses a profile wider than the box, one that goes down, or a radius of zero.
+- **Coils.** A pipe may give `"coil": {"at": [x, y, z], "radius": R, "pitch": P, "turns": N}` instead of points (optional `"start"` in degrees and `"steps"` per turn, default 16): a heater element, a spring, a wound cable. `at` is the centre of the bottom of the helix. The script refuses a pitch that lets the turns touch. The back half of a coil wound round a part is hidden by it and the front half drawn over it, because every segment is ordered on its own.
+- **Knurl and ticks.** On a cylinder, `"knurl": 24` draws 24 grip ridges up the side and `"ticks": 12` a ring of 12 marks round the top rim (whole numbers, 6 to 120 ridges, 4 to 120 ticks). They turn with the part, so a dial's ticks follow its turn group, and only the ridges facing the camera are drawn. Each is a `<line data-mark="knurl">` or `data-mark="tick"` inside the part's group.
 - **Four tones from one light.** Every face gets a lit, mid or dark fill from its angle to a single light, and every edge the part's edge tone (`craft-rules.md` § Four tones). Set the base with `"color"`; the other three are derived from it. Cylinder sides hide their seams so the band reads as one curved surface.
 - **Depth order.** Two parts that overlap on screen are ordered by a plane that separates them: whichever side the camera sits on is drawn last. This is exact for convex solids at any camera angle, which a centre sort is not (`iso-math.md` § Drawing order). Pipes are ordered the same way, one segment at a time.
 - **Pipes.** Each pipe is a round-capped stroke as wide as its radius, with an edge stroke behind it.
@@ -70,7 +73,7 @@ Sampling sees only the poses it lands on. A thin part moving fast between two sa
 
 ## What it does not do
 
-- Curved profiles beyond the upright cylinder (lathe shapes, coils, knurling, tubes that bend smoothly). Draw those by hand with `craft-shading.md` and `parts-recipes.md`; they are not in the audit.
+- Tubes that bend smoothly, knurl or ticks on a turned part, and turned parts on a tilted axis (a hinge group can tilt one, but the scene stores it upright). Draw those by hand with `craft-shading.md` and `parts-recipes.md`. `figure_audit.py` checks a turned or round part by its box, so its clearance and crowding counts near a curve err on the cautious side; `figure_draw.py turn` uses the true shape.
 - Leaders that cross other parts. The label column is placed, but whether a leader runs across a part is a judgement; look at it (`verify.md`).
 - Animation. The drawer writes one pose. A motion loop re-runs the projection per frame in the page (`motion.md`); the stored scene and `data-part` names make that a small step.
 - Canvas or WebGL output (`webgl.md`).
