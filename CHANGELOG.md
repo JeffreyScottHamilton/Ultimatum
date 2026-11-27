@@ -2,6 +2,16 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.39] - 2026-11-27
+
+Slide decks: story, layouts, charts, a template and a checker.
+
+- New `skills/website/references/craft/decks/`: `story.md` (audience, point and ask, deck types, arcs, a seed pitch slide by slide, headlines as sentences, copy patterns), `slides.md` (1920x1080 grid, type sizes for a room and a screen, fifteen layouts, bullets, colour, images, motion), `charts.md` (one message per chart, which chart, making the point visible) and `build.md` (format choice, PDF export, speaker notes, checking).
+- New `data/craft/decks/template.html`: a four-slide HTML deck with keyboard navigation, hidden speaker notes and print styles that export one 1920x1080 page per slide.
+- New `data/craft/decks/deck_check.py` (standard library, no network): twelve rules for headlines, word and bullet counts, nested bullets, big tables, missing alt text, small type, missing notes and deck length, with `--only`, `--json`, `--rules` and `--max-slides`.
+- Topics checked against UI UX Pro Max's slides references (MIT); none of its text, data or scripts are used. The coverage map and `docs/plans/comparison.md` are updated; `craft.md` points to the new folder.
+- Tests: `test_craft_decks.py`.
+
 ## [0.0.38] - 2026-11-27
 
 A page linter for the checkable slop tells.

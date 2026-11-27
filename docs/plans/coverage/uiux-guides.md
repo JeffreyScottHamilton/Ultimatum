@@ -35,14 +35,14 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `brand/scripts/validate-asset.cjs` | later | `later.md` § Source scripts not rebuilt |
 | `brand/templates/brand-guidelines-starter.md` | merged with brand-guidelines-template.md | `brand-guidelines-template.md` |
 | `design-system/SKILL.md` | expanded | `token-architecture.md`, `token-templates.md` |
-| `design-system/data/slide-backgrounds.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/data/slide-charts.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/data/slide-color-logic.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/data/slide-copy.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/data/slide-layout-logic.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/data/slide-layouts.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/data/slide-strategies.csv` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/data/slide-typography.csv` | later | `later.md` § Out of scope for this rebuild |
+| `design-system/data/slide-backgrounds.csv` | later | `../decks/later.md` (background keywords) |
+| `design-system/data/slide-charts.csv` | covered | `../decks/charts.md` § Which chart |
+| `design-system/data/slide-color-logic.csv` | covered | `../decks/slides.md` § Colour and backgrounds |
+| `design-system/data/slide-copy.csv` | merged with slides/references/copywriting-formulas.md | `../decks/story.md` |
+| `design-system/data/slide-layout-logic.csv` | later | `../decks/later.md` (lookup tables) |
+| `design-system/data/slide-layouts.csv` | merged with slides/references/layout-patterns.md | `../decks/slides.md` |
+| `design-system/data/slide-strategies.csv` | merged with slides/references/slide-strategies.md | `../decks/story.md` |
+| `design-system/data/slide-typography.csv` | covered | `../decks/slides.md` § Type that reads across a room |
 | `design-system/references/component-specs.md` | expanded | `component-specs.md` |
 | `design-system/references/component-tokens.md` | merged with token-architecture.md | `token-architecture.md` § Layer 3: component tokens |
 | `design-system/references/primitive-tokens.md` | merged with token-architecture.md | `token-architecture.md` § Layer 1: primitives |
@@ -52,12 +52,12 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design-system/references/token-architecture.md` | expanded | `token-architecture.md` |
 | `design-system/scripts/embed-tokens.cjs` | later | `later.md` § Source scripts not rebuilt |
 | `design-system/scripts/fetch-background.py` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/scripts/generate-slide.py` | later | `later.md` § Out of scope for this rebuild |
+| `design-system/scripts/generate-slide.py` | later | `../decks/later.md` (generator) |
 | `design-system/scripts/generate-tokens.cjs` | expanded | `tools/build_tokens.py` (our own stdlib generator; source not run) |
 | `design-system/scripts/html-token-validator.py` | later | `later.md` § Source scripts not rebuilt |
-| `design-system/scripts/search-slides.py` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/scripts/slide-token-validator.py` | later | `later.md` § Out of scope for this rebuild |
-| `design-system/scripts/slide_search_core.py` | later | `later.md` § Out of scope for this rebuild |
+| `design-system/scripts/search-slides.py` | later | `../decks/later.md` (lookup tables) |
+| `design-system/scripts/slide-token-validator.py` | expanded | `data/craft/decks/deck_check.py`, 12 rules |
+| `design-system/scripts/slide_search_core.py` | later | `../decks/later.md` (lookup tables) |
 | `design-system/scripts/validate-tokens.cjs` | merged with tools/build_tokens.py | reference and contrast checks in `tools/build_tokens.py` |
 | `design-system/templates/design-tokens-starter.json` | expanded | `data/design-own/tokens/starter.tokens.json` (our own values, contrast pairs checked) |
 | `design/SKILL.md` | later | `later.md` § Out of scope for this rebuild |
@@ -80,12 +80,12 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design/references/logo-design.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/logo-prompt-engineering.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/references/logo-style-guide.md` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/slides-copywriting-formulas.md` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/slides-create.md` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/slides-html-template.md` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/slides-layout-patterns.md` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/slides-strategies.md` | later | `later.md` § Out of scope for this rebuild |
-| `design/references/slides.md` | later | `later.md` § Out of scope for this rebuild |
+| `design/references/slides-copywriting-formulas.md` | merged with slides/references/copywriting-formulas.md | `../decks/story.md` |
+| `design/references/slides-create.md` | merged with slides/references/create.md | `../decks/story.md` |
+| `design/references/slides-html-template.md` | merged with slides/references/html-template.md | `../decks/build.md` |
+| `design/references/slides-layout-patterns.md` | merged with slides/references/layout-patterns.md | `../decks/slides.md` |
+| `design/references/slides-strategies.md` | merged with slides/references/slide-strategies.md | `../decks/story.md` |
+| `design/references/slides.md` | merged with slides/SKILL.md | `../decks/index.md` |
 | `design/references/social-photos-design.md` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/cip/core.py` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/cip/generate.py` | later | `later.md` § Out of scope for this rebuild |
@@ -95,12 +95,12 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `design/scripts/logo/core.py` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/logo/generate.py` | later | `later.md` § Out of scope for this rebuild |
 | `design/scripts/logo/search.py` | later | `later.md` § Out of scope for this rebuild |
-| `slides/SKILL.md` | later | `later.md` § Out of scope for this rebuild |
-| `slides/references/copywriting-formulas.md` | later | `later.md` § Out of scope for this rebuild |
-| `slides/references/create.md` | later | `later.md` § Out of scope for this rebuild |
-| `slides/references/html-template.md` | later | `later.md` § Out of scope for this rebuild |
-| `slides/references/layout-patterns.md` | later | `later.md` § Out of scope for this rebuild |
-| `slides/references/slide-strategies.md` | later | `later.md` § Out of scope for this rebuild |
+| `slides/SKILL.md` | covered | `../decks/index.md` |
+| `slides/references/copywriting-formulas.md` | expanded | `../decks/story.md` § Headlines are sentences, § Copy patterns |
+| `slides/references/create.md` | expanded | `../decks/story.md` § Write three lines, § The slide list |
+| `slides/references/html-template.md` | expanded | `data/craft/decks/template.html`, `../decks/build.md` (PDF export, notes) |
+| `slides/references/layout-patterns.md` | covered | `../decks/slides.md` § Layouts most decks need |
+| `slides/references/slide-strategies.md` | covered | `../decks/story.md` § Pick the deck type, § Arcs that work |
 | `ui-styling/LICENSE.txt` | covered | Apache-2.0 noted in `index.md` and the proposed CREDITS line |
 | `ui-styling/SKILL.md` | covered | `index.md` § UI styling |
 | `ui-styling/canvas-fonts/ (81 font and OFL files)` | later | `later.md`; fonts are linked, never bundled |
@@ -116,4 +116,4 @@ Source: nextlevelbuilder/ui-ux-pro-max-skill at commit a4fc248, read from `/tmp/
 | `ui-styling/scripts/shadcn_add.py` | later | official `npx shadcn@latest add` in `shadcn-components.md` |
 | `ui-styling/scripts/tailwind_config_gen.py` | later | CSS-first config in `tailwind-customisation.md` |
 
-Counts: covered 10 / expanded 12 / merged 11 / later 67 (100 rows).
+Counts: covered 16 / expanded 16 / merged 20 / later 48 (100 rows). Slides rows updated in 0.0.39.

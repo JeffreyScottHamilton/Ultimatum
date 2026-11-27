@@ -9,6 +9,7 @@ For motion on product UI (timing, springs, gestures, review, mobile web), read `
 For explanatory isometric figures (how a product or process works), read `../craft/anatomy/index.md`.
 For audits with a score, critique, hardening, interface copy, refine moves, adapting to other contexts and native iOS or Android rules, read `../craft/impeccable/index.md`.
 For a logo, favicons, app icons and a small identity kit (cards, signs, social images), read `../craft/identity/index.md`.
+For a slide deck (pitch, sales, launch, update or talk), read `../craft/decks/index.md`.
 
 ## 1. Pick an extreme, then commit
 

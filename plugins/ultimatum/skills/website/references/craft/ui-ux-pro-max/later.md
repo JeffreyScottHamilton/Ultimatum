@@ -6,7 +6,7 @@ Read when a task needs something the UI UX Pro Max guides in this folder do not 
 
 | Left out | Why | Go to instead |
 |---|---|---|
-| slide decks (the slides skill, the design system's slide tokens, layouts, copy formulas and slide search) | a separate skill and job | the Slides artifact type, or `../../website/design-rules.md` for the look |
+| slide decks (the slides skill, the design system's slide tokens, layouts, copy formulas and slide search) | done in 0.0.39 as its own folder | `../decks/index.md` |
 | banner design (sizes and styles by platform) | a separate skill; platform sizes change often and need a dated source | each platform's own help pages, checked on the day |
 | logo creation (prompting, styles, colour psychology) | another session owns the logo and identity guide | that guide, once merged |
 | corporate identity packs (stationery, deliverables, style guides) | same as above | that guide, once merged |
@@ -29,7 +29,7 @@ None of the source's scripts were run or ported. Where a job matters, it is cove
 | sync brand values into tokens, inject brand context into prompts | by hand, following `brand-flow.md` § 3. Turn the guide into tokens |
 | extract colours from images, validate assets | not rebuilt; read values from the brand's own files (`../hallmark/brand-truth.md`) |
 | add shadcn components, generate a Tailwind config | use the official CLIs: `npx shadcn@latest add`, and CSS-first Tailwind v4 config (`tailwind-customisation.md`) |
-| slide search, slide token validation, background image fetch | out of scope with slides |
+| slide search, slide token validation, background image fetch | deck checking is done (`../decks/build.md`); slide search and image fetch stay out |
 
 ## Could come next
 
