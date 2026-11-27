@@ -9,6 +9,7 @@ Read when you need to audit a design, review a plan, or test a site, API or job.
 - `checklist-behaviour.md`: what to inspect for interaction, motion, responsive, copy and accessibility?
 - `slop-tells.md`: which patterns make a page look machine-made, and how to grade them?
 - `page-lint.md`: which checkable tells does a built page show, by script, before the review?
+- `render-check.md`: what does the built page measure in a real browser at eight widths (overflow, wrapping, contrast, the first screen)?
 - `design-audit-recipes.md`: how do I measure the checkable rules with a Playwright script?
 - `flows-and-consistency.md`: how do I review a multi-step flow and consistency across pages?
 - `scoring-and-baseline.md`: how are scores, the baseline file and regressions worked out?

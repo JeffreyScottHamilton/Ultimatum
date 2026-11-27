@@ -2,6 +2,18 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.44] - 2026-11-27
+
+Render pass in a real browser
+
+- New `data/craft/design-review-qa/render_check.py`: opens built pages in headless Chromium at 320 to 1920 wide and measures 28 rules a static lint cannot see: sideways scroll, wrapped buttons, painted contrast, tiny or tight text, line length, first-screen fit and dead bands, section spacing, covered text, text hidden at rest, broken images and script errors.
+- Local pages only: non-local URLs are refused and requests to other hosts are blocked unless `--allow-remote` is passed. No browser means exit 3 and a skip line, never a pass.
+- Reasoned waivers (`render-check: allow RULE: reason`), `--genre`, `--format github`, `--json`, `--shots` for a full-page PNG per width, `--rules`.
+- Tuned against Hallmark's four exemplar pages: visually hidden text, hanging punctuation, manual line breaks, overlays and a declared full-palette posture no longer trip it.
+- New examples `render-clean.html` (clean), `render-sloppy.html` and `render-sloppy-2.html` (together trigger every rule).
+- New guide `render-check.md`; `page-lint.md`, the comparison and Hallmark `later.md` point at it.
+- Tests: `test_render_check.py` (browser tests skip when no browser is found).
+
 ## [0.0.43] - 2026-11-27
 
 Page lint covers every static gate

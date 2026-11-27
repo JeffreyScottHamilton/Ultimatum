@@ -142,7 +142,7 @@ Aggregate rules (`uniform-radius`, `frosted-glass`, `colour-literal`, `off-scale
 ## What it cannot see
 
 - Anything judged: whether a testimonial is real, a default hero layout, cards for unequal content, the happy path only, theme by cliche. Those stay in the review.
-- Layout after rendering: overflow at 320px, overlaps, real line lengths, tap target sizes, what the first screen shows. Check those in a browser with the Playwright recipes in `design-audit-recipes.md`.
+- Layout after rendering: overflow at 320px, overlaps, real line lengths, tap target sizes, what the first screen shows. Run `render-check.md` for those; it measures them in a real browser at eight widths.
 - Styles built at run time (CSS-in-JS objects, class names from variables) and pages built by script after load. Lint a saved, rendered copy for those.
 - Contrast where the background is an image, a gradient or set on an ancestor in another file; it compares only a rule's own colour and background, or body text against the page colour.
 

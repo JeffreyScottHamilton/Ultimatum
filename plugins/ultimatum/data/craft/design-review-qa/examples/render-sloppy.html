@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render sloppy one</title>
+<!-- render-check: allow photo-wall -->
+<style>
+body { margin: 0; font: 14px/1.4 Arial, sans-serif; color: #222; background: #fff; }
+section { margin: 0; padding: 10px 0; }
+.wide { width: 2000px; height: 4px; background: #222; }
+.hero h1 { font-size: 48px; margin: 0; }
+.hero .spacer { height: 760px; }
+.btn { display: inline-block; background: #222; color: #fff; padding: 10px; }
+.narrow-btn { width: 70px; }
+footer a { display: inline-block; width: 60px; }
+.faint { color: #b5b5b5; }
+.tiny { font-size: 10px; }
+.tight { line-height: 1.05; max-width: 300px; }
+h2 { font-size: 24px; margin: 4px 0 48px; }
+.prev { margin: 0; }
+.note { background: #e8e8e8; padding: 2px; }
+.wash { width: 420px; height: 260px; background: linear-gradient(135deg, #ddd, #bbb); }
+.dot { display: inline-block; width: 8px; height: 8px; margin: 2px; background: #222; border-radius: 50%; }
+.cover-wrap { position: relative; }
+.cover { position: absolute; inset: 0; background: #fff; }
+.clip { width: 120px; overflow: hidden; white-space: nowrap; }
+.straggle { width: 600px; font: 700 36px/1.2 "DejaVu Sans Mono", monospace; text-wrap: wrap; }
+</style></head>
+<body>
+<section class="hero">
+<h1>Ship faster today</h1>
+<div class="spacer"></div>
+<p>A lede that the visitor will never see on the first screen because the spacer pushed it down.</p>
+<a class="btn" href="#">Get started</a>
+</section>
+<div class="wide"></div>
+<section>
+<button class="narrow-btn">Start your free trial</button>
+<p class="faint">This grey text is too light to read against the white page behind it.</p>
+<p class="tiny">Ten pixel running text that nobody over forty will read without zooming in on it.</p>
+<p class="tight">Leading this tight makes the lines of a paragraph run into each other, so the eye loses its place when it returns to the start of the next line and reading slows down.</p>
+<p>This paragraph has no measure at all, so on a wide screen it runs from one side of the window to the other, far past the length at which a reader can comfortably track from the end of one line back to the start of the next; it keeps going with more words so it spans several lines at every desktop width we test, and then it carries on for a while longer still, adding clause after clause about nothing in particular, simply so that the line count stays above three even on the widest window in the run.</p>
+</section>
+<section>
+<p class="prev">The paragraph before a heading that crowds it.</p>
+<h2>A heading that sits on the paragraph above</h2>
+<p>The text this heading introduces sits far below it.</p>
+<h2 class="straggle">Plans that grow with every team</h2>
+<div class="note">A filled note box whose text touches the edge of its fill.</div>
+<div class="wash"></div>
+<div class="row"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+<div class="cover-wrap"><p>Important pricing detail hidden under a white panel.</p><div class="cover"></div></div>
+<div class="clip">A label far too long for its box gets cut off</div>
+<img src="missing-photo.jpg" alt="Our team">
+</section>
+<footer>
+<form><input type="email" placeholder="Your email"><button class="btn">Subscribe</button></form>
+<a href="/terms">Terms of service and privacy policy</a>
+</footer>
+<script>notDefinedAnywhere();</script>
+</body></html>

@@ -7,7 +7,7 @@ Read when a rule elsewhere points here, or when planning what to build next. The
 | Source tool | Did | Stand-in now | To ship it |
 |---|---|---|---|
 | lint script (static), done in 0.0.43 | read stylesheets, markup and class strings against about 90 gates | `../design-review-qa/page-lint.md`: every gate a script can check without rendering, plus the matching slop tells; judged gates stay with `gates.md` | nothing |
-| render lint | drove headless Chrome at 8 widths to catch overflow, wrapping, sticky stacking, contrast | Playwright by hand (`responsive.md`, `imagery.md`) | a Python Playwright script, run by the user |
+| render lint, done in 0.0.44 | drove headless Chrome at 8 widths to catch overflow, wrapping, sticky stacking, contrast | `../design-review-qa/render-check.md`: 28 measured rules at 8 widths, local pages only | nothing |
 | theme tool | dealt, scaffolded, checked, drew, validated themes and logged picks | `themes.md` and `themes.csv`, choose and write by hand | a stdlib script filtering the CSV and emitting a token file |
 | capture script | started a product and screenshotted its screens | the Playwright snippet in `imagery.md` | a Python capture helper |
 | picture script | rendered each theme's reference picture | none | Python plus Playwright |
