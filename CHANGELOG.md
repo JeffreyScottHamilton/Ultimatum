@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.5.0] - 2026-11-27
+
+One plugin, first combined release on `main`
+
+- `main` now carries the single `ultimatum` plugin with four workflows: `/ultimatum:website`, `/ultimatum:app-store`, `/ultimatum:social-media` and `/ultimatum:work`, plus its setup, status, doctor, review, release and other helper skills. It replaces the multi-plugin 1.0.0 layout that was on `main` (app, e-commerce, event, social media, video and website launch plugins); that history stays in git.
+- No feature changes since 0.0.62; the plugin and marketplace descriptions now name all four workflows.
+- Users who installed 1.0.0: the version number goes down to 0.5.0, so reinstall or update the plugin by hand once.
+
 ## [0.0.62] - 2026-11-27
 
 Social media workflow (no video styles yet)

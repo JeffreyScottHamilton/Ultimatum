@@ -1,7 +1,7 @@
 {
   "name": "ultimatum",
-  "version": "0.0.62",
-  "description": "Ultimatum's website builder and default way of working in Claude Code. Websites: interview, approved brief, three design directions, build, browser check, live only on your yes. Coding: short plain answers first, a local router for fixes, debugging, CI, review and releases, with checks run in the session.",
+  "version": "0.5.0",
+  "description": "Ultimatum for Claude Code: one plugin for websites, App Store releases of Expo apps, social media posts and everyday coding. Each workflow asks first, writes a brief you approve, runs its own local checks, and publishes, submits or posts only on your yes.",
   "author": {
     "name": "Jeffrey Scott Hamilton"
   },
@@ -19,6 +19,9 @@
     "security-audit",
     "token-efficiency",
     "ui",
-    "workflow"
+    "workflow",
+    "app-store",
+    "expo",
+    "social-media"
   ]
 }

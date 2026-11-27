@@ -4,20 +4,22 @@
     "name": "Jeffrey Scott Hamilton"
   },
   "metadata": {
-    "description": "Ultimatum for Claude Code: a website builder for small business, local, portfolio and creator sites, plus a coding helper for everyday software work."
+    "description": "Ultimatum for Claude Code: websites, App Store releases, social media and everyday coding in one plugin."
   },
   "plugins": [
     {
       "name": "ultimatum",
       "source": "./plugins/ultimatum",
-      "description": "A website builder for Claude Code: a short interview, a one-page brief you approve, three design directions, the build, a browser check, and going live only on your yes. Also handles everyday coding, debugging, review and releases with checks run in the session.",
+      "description": "One plugin for websites (interview, approved brief, three design directions, build, browser check), Expo apps to the App Store, social media plans and posts, and everyday coding, debugging, review and releases. Checks run in the session; nothing goes live without your yes.",
       "category": "development",
       "tags": [
         "website",
         "web-design",
         "small-business",
         "workflow",
-        "code-review"
+        "code-review",
+        "app-store",
+        "social-media"
       ]
     }
   ]

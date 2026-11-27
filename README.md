@@ -7,7 +7,7 @@
 Tell it about the business in plain chat. It asks a few questions, writes a one-page brief you approve, shows three design directions, builds the one you pick, checks it in a real browser, and puts nothing live until you say yes.
 
 [![CI](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml/badge.svg)](https://github.com/JeffreyScottHamilton/Ultimatum/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.0.60-111111)
+![Version](https://img.shields.io/badge/version-0.5.0-111111)
 ![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-FF5A1F)
 [![License: MIT](https://img.shields.io/badge/license-MIT-111111)](LICENSE)
 
@@ -140,7 +140,7 @@ research/                         upstream notes, pinned revisions and architect
 tools/                            maintenance scripts (design-data import)
 ```
 
-Earlier versions also shipped e-commerce, app, event, social media and video plugins. They were removed in 0.0.5 and can be restored from git (commit `9643d69`).
+Earlier versions also shipped separate e-commerce, app, event, social media and video plugins. They were removed in 0.0.5 (restorable from commit `9643d69`); 0.5.0 folds apps and social media back into the one plugin.
 
 ## Development
 

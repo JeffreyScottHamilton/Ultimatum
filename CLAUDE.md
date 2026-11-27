@@ -9,4 +9,4 @@
 - Claim only what was run. Live evals (`evals/live/run_live.py`) cost money; ask before running them.
 
 ## Learned
-- Versioning restarted at 0.0.1: one patch release per major change (0.0.2, 0.0.3, ...), applied to every plugin the change touches, with one CHANGELOG entry per release. Pushing a release to `main` still needs the user's yes.
+- 0.5.0 is the first combined release on `main` (website, App Store, social media, coding). After it: one patch release per major change (0.5.1, 0.5.2, ...), with one CHANGELOG entry per release. Pushing a release to `main` still needs the user's yes.
