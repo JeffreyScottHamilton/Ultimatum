@@ -2,6 +2,17 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.32] - 2026-11-27
+
+Frontend load budgets, rule precedence and phase routing rebuilt in our own words.
+
+- Added frontend-budget craft references: 4 short files under `skills/work/references/craft/frontend-budget/`, indexed, each with a "Read when" opener.
+- Covers how many skills load per phase (one base, one lead, at most two supports), loading at the start of a phase, a one-line load report, stacking rules, a precedence ladder for skill collisions, phase routing with ask-first for vague complaints, and who owns what among Ultimatum's own website packs with default rulings for common collisions.
+- Adds what the source lacked: skill text treated as untrusted data, questions only when they change the outcome, and quoted measurements instead of guessed costs.
+- Adds a stdlib script, `data/craft/frontend-budget/load_budget.py`: `size` estimates per-file token cost against limits, `plan` checks a phase plan and prints load lines. Tests: `test_craft_frontend_budget.py`.
+- The third-party pack table and rulings, identity flow, page-type guides, agents and the network sync script are listed in `later.md`, not shipped.
+- Test pin for Impeccable updated to `3c5e75f`, the commit the 0.0.26 rebuild was read at.
+
 ## [0.0.31] - 2026-11-27
 
 Anthropic's skill, eval, MCP and web app testing methods rebuilt in our own words, with local lint and smoke scripts.

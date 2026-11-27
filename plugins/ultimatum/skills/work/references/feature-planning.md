@@ -95,6 +95,8 @@ When the spec is silent or wrong, decide instead of stalling: authority is the s
 - Surface all rulings in the final report.
 - Stop and ask instead of ruling when the choice is irreversible, security-relevant, touches an external system, or every option is a guess.
 
+When two design skills disagree on a frontend task: `craft/frontend-budget/precedence.md`.
+
 ## 9. Escalate to `orchestration.md`
 
 Switch when any holds: three or more slices have no shared files and can run at once; the work exceeds what fits comfortably in one context; the user asks for parallel agents. Before switching, the spec's Interfaces section must be complete, because workers see only their slice. Otherwise give the slices to one worker at a time in blocker order, one test-first slice each (`tdd.md`).

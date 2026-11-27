@@ -53,7 +53,7 @@ The full revision table and the license decisions are in `research/REVISIONS.md`
 |---|---|---|---|
 | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `3442615` | MIT (ui-styling folder is Apache-2.0, not taken) | Design tables bundled in `data/design/` with their MIT licence and changes listed in `NOTICE.md`; read by `ult design`. Still recommended as an optional install |
 | [remotion-dev/skills](https://github.com/remotion-dev/skills) | `89c8afa` | none | Reviewed and skipped (no licence); nothing used |
-| [JaimeJunr/claude-code-frontend-skills](https://github.com/JaimeJunr/claude-code-frontend-skills) | `7177def` | MIT (bundled plugins are Apache-2.0 or MIT) | Ideas for the 2.0 design and component modules |
+| [JaimeJunr/claude-code-frontend-skills](https://github.com/JaimeJunr/claude-code-frontend-skills) | `7177def` | MIT (bundled plugins are Apache-2.0 or MIT) | Ideas for the 2.0 design and component modules; load budget, precedence and phase routing references (craft/frontend-budget) |
 | [magicuidesign/magicui](https://github.com/magicuidesign/magicui) | `d13c610` | MIT | Recommended as an optional install by `ult components`; not bundled |
 | [ibelick/motion-primitives](https://github.com/ibelick/motion-primitives) | `120f64f` | MIT | Recommended as an optional install by `ult components`; not bundled |
 | [motiondivision/motion](https://github.com/motiondivision/motion) | `1fa0e14` | MIT | Recommended as an optional install by `ult components`; not bundled |

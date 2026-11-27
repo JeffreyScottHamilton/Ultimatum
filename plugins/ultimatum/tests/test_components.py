@@ -22,7 +22,7 @@ REGISTRY_IDS = {
 }
 RESTRICTED_IDS = {"react-bits", "rareui", "gsap"}
 UPSTREAM_PINS = {
-    "emil": "64eb3de", "impeccable": "b49177d", "ui-ux-pro-max": "a4fc248", "anthropic-skills": "e4bb5d9",
+    "emil": "64eb3de", "impeccable": "3c5e75f", "ui-ux-pro-max": "a4fc248", "anthropic-skills": "e4bb5d9",
     "superpowers": "22f0b46", "vercel-agent-skills": "5a37a63", "taste": "f6b7657", "remotion": "89c8afa",
     "jaimejunr-frontend-skills": "7177def", "hyperframes": "ca64f8b", "gstack": "afb68ac",
     "mattpocock-skills": "d653911", "shadcn-ui": "055aa6b", "graphify": "14f35e3", "caveman": "47c61be",

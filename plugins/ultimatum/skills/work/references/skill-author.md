@@ -39,6 +39,8 @@ Held-out trigger tuning with a split and repeated runs: `craft/anthropic-method/
 
 Field limits, variant layout and a frontmatter lint: `craft/anthropic-method/skill-frontmatter.md`.
 
+How many skills to load at once, and a stdlib cost estimate: `craft/frontend-budget/load-budget.md`.
+
 ## 6. Compare with and without
 
 - Run each test prompt twice in the same setup: once with the skill, once without (the baseline). Same model, same tools, same starting state.

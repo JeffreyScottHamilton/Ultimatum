@@ -139,11 +139,11 @@
       "kind": "skill-source",
       "repo": "https://github.com/JaimeJunr/claude-code-frontend-skills",
       "pin": "7177def",
-      "licence": "MIT (bundled plugins are Apache-2.0 or MIT)",
+      "licence": "MIT (root LICENSE; bundled plugins carry their own and were not used)",
       "decision": "adapt",
-      "modules": ["components", "design"],
-      "reviewed": "2026-11-24",
-      "note": "Adapt the load budget and precedence idea for ui; nothing vendored, skip the prebuilt hook binary and the image scraper"
+      "modules": ["components", "design", "work"],
+      "reviewed": "2026-11-26",
+      "note": "Load budget, precedence and phase routing rebuilt in craft/frontend-budget with a stdlib load_budget.py; nothing vendored, hook binary and image scraper skipped"
     },
     {
       "id": "magic-ui",
