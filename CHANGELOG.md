@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.46] - 2026-11-27
+
+Feedback moves and UX laws
+
+- New `emil-motion/feedback-and-laws.md`: five feedback moves (pulse to confirm, grow from the same element, icon swap with blur, rubber band past the edge, mask reveal), each with numbers, a never, CSS or JS and a still version for reduced motion.
+- The same guide adds staging the focus and the three laws we had not named: Fitts's law (44 px touch, 24 px WCAG 2.2 floor, distance and edges), Hick's law (one primary action, grouped long menus, defaults) and the Doherty threshold (a response in 100 ms, progress past 400 ms, steps past 10 s), each with a check that measures it.
+- Listed in `emil-motion/index.md`.
+
 ## [0.0.45] - 2026-11-27
 
 Dealt page presets

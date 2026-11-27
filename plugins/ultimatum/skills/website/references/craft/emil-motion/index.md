@@ -20,4 +20,5 @@ Written in our own words from the ideas in the MIT-licensed emilkowalski/skills 
 - `worst-case-data.md`: how do I stress a component with realistic worst-case data?
 - `prototype-variants.md`: how do I show several different versions and let the user pick?
 - `libraries-and-toasts.md`: which library fits, and how do toasts work and fail?
+- `feedback-and-laws.md`: did my click land, where did that panel come from, and why does this target, menu or wait feel wrong (Fitts, Hick, Doherty)?
 - `later.md`: what is left for native apps, Swift and tooling?
