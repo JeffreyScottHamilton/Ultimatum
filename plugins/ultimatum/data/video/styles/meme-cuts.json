@@ -1,0 +1,23 @@
+{
+  "id": "meme-cuts",
+  "name": "Fast meme cuts",
+  "feel": "Loud, quick and self-aware: sub-second cuts, punch-ins, a sound effect on each joke and captions you read at a glance.",
+  "best_for": ["tiktok", "reels", "shorts"],
+  "duration": [6, 30],
+  "hook_by": 0.8,
+  "shot": {"min": 0.25, "max": 1.6, "avg": [0.4, 1.0]},
+  "cut_on": "beat",
+  "pace_wps": [2.0, 4.5],
+  "captions": {"mode": "word", "words_per_card": 2, "font": "Inter", "size": 0.08, "y": 0.5,
+               "upper": true, "color": "#FFFFFF", "highlight": "#FFFFFF", "outline": 9, "pop": true},
+  "zoom": {"every": 2, "scale": 1.25},
+  "look": {"contrast": 1.12, "saturation": 1.2, "brightness": 0.0, "gamma": 1.0, "warmth": 0.0, "grain": 0, "vignette": false},
+  "audio": {"music": "lead", "music_db": -10, "lufs": -14, "peak": -1.0},
+  "transitions": "hard cuts, punch-ins and the odd freeze frame; no dissolves",
+  "rules": [
+    "The joke or the payoff is set up in the first second.",
+    "A sound effect on each punchline, a little quieter than the voice.",
+    "Use only sounds and clips you have the rights to; trending audio is added in the app, not burned in.",
+    "Loop it: the last frame should lead back into the first."
+  ]
+}

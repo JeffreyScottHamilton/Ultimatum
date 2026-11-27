@@ -1,6 +1,6 @@
 ---
 name: social-media
-description: "Ultimatum's social media workflow: plans, writes, checks and hands over posts for one channel at a time (Instagram, TikTok, Reels, Shorts, LinkedIn, X, Facebook, Pinterest). Covers scope questions, content pillars, a dated calendar, hooks and captions, hashtags, alt text and tracked links, platform limits, disclosure and AI labels, the approval gate before anything is posted or scheduled, and the 48-hour results loop. Video styles and editing are not covered yet: it writes the script and checks the finished file. Use it in plain chat or with /ultimatum:social-media."
+description: "Ultimatum's social media workflow: plans, writes, checks and hands over posts for one channel at a time (Instagram, TikTok, Reels, Shorts, LinkedIn, X, Facebook, Pinterest): scope, pillars, a dated calendar, hooks, captions, alt text, tracked links, platform limits, disclosure and AI labels, approval before posting, and the 48-hour results loop. Edits short videos in a named style (talking head, kinetic text, story film, meme cuts, or one measured from a reference) with local ffmpeg, with style samples first and a feel check after. Use it in plain chat or with /ultimatum:social-media."
 argument-hint: "<what you need: plan, posts, captions, calendar, check, results>"
 ---
 
@@ -13,7 +13,7 @@ Task: $ARGUMENTS
 ## 0. What this skill does and does not do
 
 - **Does:** scope the job, plan one channel, write posts, captions and video scripts, build `social/plan.json`, run `ult posts plan` and `ult posts check`, hand over a CSV or calendar file, read results the user gives.
-- **Not yet:** video or visual styles, editing, rendering slides or burning captions. For a video, write the script (`references/writing.md`) and check the file the user exports. Say so once; do not improvise a style.
+- **Video:** edit in a named style with `ult video` (`references/video.md`, styles in `references/styles.md`). Show samples before the full render. Paid AI footage only on the user's yes.
 - **Ask first, every time:** posting, scheduling, sending, boosting or spending, connecting an account, and any reply posted as the user. Show the batch and wait for a yes.
 - **Never:** put tokens or passwords in the repo, prompts or logs; post through an account the user did not connect and authorize; copy a competitor's words, footage or audio; invent numbers.
 
@@ -26,6 +26,7 @@ Read `brand/brand.md` and `.ultimatum/brief.md` if they exist. Then pick the ste
 | 1. Scope | job size, channel, format, first date and the one action are known | `references/scope.md` |
 | 2. Plan | pillars, cadence and a dated `social/plan.json` with a hook type per post | `references/plan.md` |
 | 3. Write | every post has a hook, one idea, one next step, alt text and a tracked link | `references/writing.md` |
+| 3b. Edit video | samples picked, `ult video check` clean, rendered, `ult video feel` clean or 3 rounds tried | `references/video.md`, `references/styles.md` |
 | 4. Check | `ult posts plan` has no blockers; finished files pass `ult posts check`; review list done | `references/review.md`, `references/platforms.md` |
 | 5. Approve and hand over | the user said yes to this batch; calendar or drafts handed over | `references/publish.md` |
 | 6. Results | numbers read at about 48 hours, next hook chosen, learning logged | `references/results.md` |

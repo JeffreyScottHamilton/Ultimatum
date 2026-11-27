@@ -36,7 +36,7 @@ Caption: <first line repeats the hook>
 Sound: <voiceover, or a sound the user picks inside the app; licensed music only>
 ```
 
-This is the script only. Filming, editing and the look are the user's, until the video styles are added.
+This is the script only. Filming is the user's; for the cut, captions and look, see `video.md` and `styles.md`.
 
 ## Blog or article for social
 

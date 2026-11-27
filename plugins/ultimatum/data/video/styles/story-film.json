@@ -1,0 +1,25 @@
+{
+  "id": "story-film",
+  "name": "Story film",
+  "feel": "Quiet and human: one person, one small want, a held moment of near-silence, then a turn that lands with the music. The product arrives late and helps.",
+  "best_for": ["reels", "shorts", "tiktok", "linkedin", "facebook", "x"],
+  "duration": [15, 90],
+  "hook_by": 2.0,
+  "shot": {"min": 2.0, "max": 10.0, "avg": [2.5, 6.0]},
+  "cut_on": "phrase",
+  "pace_wps": [0.0, 1.8],
+  "captions": {"mode": "line", "words_per_card": 8, "font": "Inter", "size": 0.042, "y": 0.72,
+               "upper": false, "color": "#F4EFE6", "highlight": "#F4EFE6", "outline": 3, "pop": false},
+  "zoom": {"every": 0, "scale": 1.0},
+  "look": {"contrast": 0.96, "saturation": 0.86, "brightness": -0.02, "gamma": 1.02, "warmth": 0.05, "grain": 7, "vignette": true},
+  "audio": {"music": "lead", "music_db": -6, "lufs": -14, "peak": -1.0},
+  "transitions": "hard cuts on musical phrases; one fade from or to black at most",
+  "story": {"product_after": 0.6, "hold_min": 2.0},
+  "rules": [
+    "Write a one-line logline first: one person, one want, one obstacle.",
+    "Setup in the first fifth, friction to about 60%, a held near-silent beat, the turn at 65-80%, brand last.",
+    "Cut on the music's 4- or 8-bar phrases, not on every beat.",
+    "Real people are filmed, not generated; generated shots are for places and objects and get the AI label.",
+    "Honest warmth, not engineered tears."
+  ]
+}

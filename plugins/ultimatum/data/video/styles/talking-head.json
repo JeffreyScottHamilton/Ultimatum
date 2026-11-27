@@ -1,0 +1,23 @@
+{
+  "id": "talking-head",
+  "name": "Talking head with bold captions",
+  "feel": "Close, quick and direct: one person speaking to camera, every pause cut out, big words on screen so it works with the sound off.",
+  "best_for": ["tiktok", "reels", "shorts"],
+  "duration": [15, 60],
+  "hook_by": 1.5,
+  "shot": {"min": 0.8, "max": 6.0, "avg": [1.5, 3.5]},
+  "cut_on": "speech",
+  "pace_wps": [2.2, 3.6],
+  "captions": {"mode": "word", "words_per_card": 3, "font": "Inter", "size": 0.068, "y": 0.66,
+               "upper": true, "color": "#FFFFFF", "highlight": "#FFE14D", "outline": 7, "pop": true},
+  "zoom": {"every": 3, "scale": 1.12},
+  "look": {"contrast": 1.05, "saturation": 1.08, "brightness": 0.0, "gamma": 1.0, "warmth": 0.0, "grain": 0, "vignette": false},
+  "audio": {"music": "under", "music_db": -22, "lufs": -14, "peak": -1.0},
+  "transitions": "hard cuts only",
+  "rules": [
+    "Cut every breath and filler word; leave a few frames after the last syllable.",
+    "Punch in on the face every third cut, and on the line that matters most.",
+    "Highlight the one word in each card that carries the meaning.",
+    "The first spoken line is the hook; no logo or greeting before it."
+  ]
+}

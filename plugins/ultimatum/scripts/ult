@@ -33,6 +33,7 @@
   ult market page|abtest|events   search, schema and form basics; A/B test maths; tracking plans
   ult appstore check [--root .]   Expo app App Store readiness: IDs, builds, usage strings, privacy, secrets
   ult posts plan|check|specs|calendar|variant   social posts: plan check, file and caption limits, calendar
+  ult video styles|check|render|sample|feel|measure|jumpcuts   short videos in a named style, feel check (ffmpeg)
   ult kitlint PATH...       React interaction components: reduced motion, tokens, labels, press scale
   ult style status|apply|remove  opt-in shared answer style in ~/.claude/CLAUDE.md
 """
@@ -46,7 +47,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from ultlib import context, doctor, handoff, repomap, run, search, store, usage  # noqa: E402
 
 MODULES = [run, search, repomap, store, handoff, doctor, usage, context]
-for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "loop", "board", "style", "gates", "design", "copylint", "kitlint", "diagram", "approvals", "market", "appstore", "posts"):
+for optional in ("scan", "findings", "route", "components", "learn", "budget", "sync", "upstreams", "update", "arch", "audit", "website", "loop", "board", "style", "gates", "design", "copylint", "kitlint", "diagram", "approvals", "market", "appstore", "posts", "video"):
     try:
         MODULES.append(__import__(f"ultlib.{optional}", fromlist=["register"]))
     except ImportError:

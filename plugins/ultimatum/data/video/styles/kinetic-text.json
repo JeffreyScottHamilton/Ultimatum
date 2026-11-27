@@ -1,0 +1,23 @@
+{
+  "id": "kinetic-text",
+  "name": "Kinetic text",
+  "feel": "Words are the picture: short lines snap on in time with the music on flat, bold colour, like a poster that talks.",
+  "best_for": ["tiktok", "reels", "shorts", "linkedin", "x"],
+  "duration": [7, 30],
+  "hook_by": 1.0,
+  "shot": {"min": 0.5, "max": 3.0, "avg": [0.8, 1.8]},
+  "cut_on": "beat",
+  "pace_wps": [1.5, 3.5],
+  "captions": {"mode": "word", "words_per_card": 2, "font": "Inter", "size": 0.11, "y": 0.45,
+               "upper": true, "color": "#FFFFFF", "highlight": "#FFE14D", "outline": 0, "pop": true},
+  "zoom": {"every": 0, "scale": 1.0},
+  "look": {"contrast": 1.0, "saturation": 1.0, "brightness": 0.0, "gamma": 1.0, "warmth": 0.0, "grain": 0, "vignette": false},
+  "audio": {"music": "lead", "music_db": -8, "lufs": -14, "peak": -1.0},
+  "transitions": "hard cuts on the beat; the background colour changes on bar lines",
+  "rules": [
+    "One to three words on screen at a time; never a full sentence.",
+    "Two background colours and one accent at most, from the brand palette.",
+    "Change cards on beats; change background colour on the bar line.",
+    "The last card holds for at least a second and says the one next step."
+  ]
+}

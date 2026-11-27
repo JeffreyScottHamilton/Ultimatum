@@ -36,7 +36,7 @@ One plugin with four commands:
 | `/ultimatum:social-media` | Planning, writing and checking social posts and calendars, with an approval before anything goes out |
 | `/ultimatum:work` | Short answers first, and everyday coding work: fixes, features, debugging, review and releases |
 
-Shops, video styles and video editing are not part of this version.
+Social media also edits short videos in four styles (talking head, kinetic text, story film, fast meme cuts) with your local ffmpeg, and checks the finished video's feel. Shops are not part of this version.
 
 ## Install
 

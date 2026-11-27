@@ -2,6 +2,14 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.5.1] - 2026-11-27
+
+Video styles and editing for the social media workflow
+
+- New `ult video` (needs a local ffmpeg; nothing is downloaded): `styles` lists the four built-in recipes (talking head, kinetic text, story film, fast meme cuts) plus any in `social/styles/`; `check` tests an edit (`social/edit.json`) against its style and platform before rendering; `render` cuts, captions, grades and mixes it to -14 LUFS; `sample` renders a few seconds in several styles for the user to pick; `measure` reads cuts, loudness and colour from any video and can write a draft recipe from a reference; `feel` checks the finished file against the edit and style and writes frames to look at; `jumpcuts` cuts pauses from a talking clip using Whisper-style word times.
+- Captions are burned in word by word or by line from the recipe; caption text cannot carry subtitle override tags. Every media and output path must stay inside the project (no `..`, outside absolute paths or symlinks).
+- Social media skill: new step 3b and guides `references/video.md` (edit, check, sample, render, feel with up to three fix rounds, music rights, AI labels) and `references/styles.md` (the four styles and "make it feel like this").
+
 ## [0.5.0] - 2026-11-27
 
 One plugin, first combined release on `main`
