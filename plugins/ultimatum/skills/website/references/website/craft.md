@@ -7,6 +7,7 @@ For floor and gate checks, page shapes, hero postures and themes, read `../craft
 For design audits, plan reviews and QA runs, read `../craft/design-review-qa/index.md`.
 For motion on product UI (timing, springs, gestures, review, mobile web), read `../craft/emil-motion/index.md`.
 For explanatory isometric figures (how a product or process works), read `../craft/anatomy/index.md`.
+For a logo, favicons, app icons and a small identity kit (cards, signs, social images), read `../craft/identity/index.md`.
 
 ## 1. Pick an extreme, then commit
 

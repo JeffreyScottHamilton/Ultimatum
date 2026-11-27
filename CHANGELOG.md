@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.24] - 2026-11-27
+
+Logo and identity guide, in our own words.
+
+- New `skills/website/references/craft/identity/`: `logo.md` (kinds of mark, brief, drawing, lockups, tests, hand-over files, accessible SVG), `logo-colour.md` (one-colour first, contrast, a WCAG ratio snippet), `ai-logo.md` (prompting image models, copyright and trademark risks), `identity-kit.md` (favicons, manifest and app icons, social images, print sizes, file layout), `index.md` and `later.md`.
+- `website/craft.md` points to it.
+- New `tests/test_craft_identity.py`: shape, index, references, https links and the pointer.
+- The topic list was checked against UI UX Pro Max's logo and identity references; none of its text or generators are used (copy check exit 0).
+
 ## [0.0.23] - 2026-11-27
 
 Our own Google Fonts catalogue.
