@@ -80,7 +80,7 @@ class TestComponentData(unittest.TestCase):
                 self.assertTrue(e["install"].strip())
                 self.assertTrue(0 < len(e["fit"]) <= 100)
                 self.assertTrue(e["source"] is None or e["source"].startswith("https://"))
-                self.assertEqual(e["verified"], "2026-11-24")
+                self.assertTrue(_is_date(e["verified"]) and e["verified"] >= "2026-11-24", e["verified"])
 
     def test_licence_is_spdx_or_marked_restricted(self):
         for e in self.entries:

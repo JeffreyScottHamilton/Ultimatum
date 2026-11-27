@@ -11,6 +11,7 @@ For audits with a score, critique, hardening, interface copy, refine moves, adap
 For a logo, favicons, app icons and a small identity kit (cards, signs, social images), read `../craft/identity/index.md`.
 For what a landing page, a developer-product landing or a settings area must contain and in what order, read `../craft/pages/index.md`.
 For a slide deck (pitch, sales, launch, update or talk), read `../craft/decks/index.md`.
+For ready interactive parts (press, copy, tabs, toasts, sheets, palettes, counters, reveals, drag) and `ult kitlint`, read `../craft/interaction-kit/index.md`.
 
 ## 1. Pick an extreme, then commit
 

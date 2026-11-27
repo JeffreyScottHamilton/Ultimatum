@@ -1,0 +1,132 @@
+id,name,category,what_it_does,when_to_use,our_component,install
+aave-swap-component,Aave Swap Component,micro-interaction,A token swap panel with two amount fields and a flip control.,Crypto or currency exchange screens.,ScrubNumber,https://registry.watermelon.sh/r/aave-swap-component.json
+activities-card,Activities Card,disclosure,A card listing recent activity that grows to show more rows.,Feeds and dashboards with a short preview list.,Accordion,https://registry.watermelon.sh/r/activities-card.json
+adaptive-slider,Adaptive Slider,sliders,A slider whose fill colour changes with the value it holds.,"A single value where the level itself means something, like intensity.",ScrubNumber,https://registry.watermelon.sh/r/adaptive-slider.json
+add-cash-disclosure,Add Cash Disclosure,disclosure,A panel that unfolds limits and fees before a top-up.,Money flows that must show terms before confirming.,Accordion,https://registry.watermelon.sh/r/add-cash-disclosure.json
+budget-card,Budget Card,cards,"A card with spent, limit and remaining amounts and a bar.",Finance overviews.,NumberTicker,https://registry.watermelon.sh/r/budget-card.json
+calendar-widget,Calendar Widget,widgets,A small month view with soft fades at the scroll edges.,Compact date glance in a dashboard.,,https://registry.watermelon.sh/r/calendar-widget.json
+card-cue,Card Cue,micro-interaction,A card that nudges to hint it can be acted on.,"Teaching a gesture once, during onboarding.",SwipeDeck,https://registry.watermelon.sh/r/card-cue.json
+card-split-accordian,Card Split Accordian,accordian,Stacked cards that pull apart to reveal the open one's detail.,FAQ or settings groups where each row is a card.,Accordion,https://registry.watermelon.sh/r/card-split-accordian.json
+card-swipe,Card Swipe,interaction,"A stack of cards you fling left or right, with speed deciding the throw.","Triage, review queues, pick-or-pass choices.",SwipeDeck,https://registry.watermelon.sh/r/card-swipe.json
+carousel-navigator,Carousel Navigator,micro-interaction,A slider whose page background follows the current slide.,Showcases where each slide has its own colour.,Carousel,https://registry.watermelon.sh/r/carousel-navigator.json
+carousel-slider,Carousel Slider,interaction,Cards that rotate slightly as you drag through them.,Playful galleries and product cards.,Carousel,https://registry.watermelon.sh/r/carousel-slider.json
+changeable-pricing-section,Changeable Pricing Section,marketing,Price cards with a monthly or yearly switch that animates the figures.,Pricing pages with two billing periods.,SegmentedControl,https://registry.watermelon.sh/r/changeable-pricing-section.json
+collection-grid-disclosure,Collection Grid Disclosure,micro-interaction,A grid that opens to show the items beyond the first row.,Collections with a long tail.,Accordion,https://registry.watermelon.sh/r/collection-grid-disclosure.json
+command-search,Command Search,navigation,A keyboard search box grouped into sections.,Apps with many pages or actions.,CommandPalette,https://registry.watermelon.sh/r/command-search.json
+compose-email-card,Compose Email Card,cards,"A compact form for to, subject and message.",Quick send without leaving the page.,FloatingInput,https://registry.watermelon.sh/r/compose-email-card.json
+contextual-ai-bar,Contextual AI Bar,micro-interaction,A toolbar that swaps its icons for an AI prompt field.,Editors with an assistant mode.,MorphPopover,https://registry.watermelon.sh/r/contextual-ai-bar.json
+continuous-pagination,Continuous Pagination,pagination,Page numbers with a highlight that slides between them.,Long lists split into pages.,SegmentedControl,https://registry.watermelon.sh/r/continuous-pagination.json
+continuous-tabs,Continuous Tabs,tabs,Tabs styled as buttons with one pill that slides under the active one.,Two to five sibling views.,Tabs,https://registry.watermelon.sh/r/continuous-tabs.json
+copy-confirm,Copy Confirm,micro-interaction,A copy button that confirms with a tick.,"Code, keys, links, anything to paste elsewhere.",CopyButton,https://registry.watermelon.sh/r/copy-confirm.json
+create-community,Create Community,dialog,A dialog for naming and setting up a group.,Creation flows with a few fields.,ExpandableCards,https://registry.watermelon.sh/r/create-community.json
+create-new-disclosure,Create New Disclosure,disclosure,A small pill that grows into a menu of things to create.,A single create entry with several types.,MorphPopover,https://registry.watermelon.sh/r/create-new-disclosure.json
+credit-usage-card,Credit Usage Card,cards,A meter of credits used against a limit.,Usage-billed products.,NumberTicker,https://registry.watermelon.sh/r/credit-usage-card.json
+deployment-card,Deployment Card,cards,"A card with build status, progress, duration and commit.",Developer dashboards.,Stepper,https://registry.watermelon.sh/r/deployment-card.json
+dialog-stack,Dialog Stack,dialog,"Dialogs that layer on top of each other, older ones shrinking behind.",Multi-step tasks inside a modal.,Drawer,https://registry.watermelon.sh/r/dialog-stack.json
+discrete-tabs,Discrete Tabs,tabs,Tabs where the active label changes shape as it is chosen.,Small sets of views with icons.,Tabs,https://registry.watermelon.sh/r/discrete-tabs.json
+dock,Dock Component,micro-interaction,A row of icons that grow as the pointer passes over them.,App-like launchers and portfolio nav.,Dock,https://registry.watermelon.sh/r/dock.json
+draw-signature,Draw Signature,inputs,A pad for drawing a signature with smooth strokes.,Consent and contract steps.,,https://registry.watermelon.sh/r/draw-signature.json
+dropdown-disclosure,Dropdown Disclosure,micro-interaction,A menu whose trigger stretches into the open list.,Menus that should feel attached to their button.,MorphPopover,https://registry.watermelon.sh/r/dropdown-disclosure.json
+edit-badge,Edit Badge,interaction,A badge that turns into a small text field when clicked.,Labels people rename often.,TagInput,https://registry.watermelon.sh/r/edit-badge.json
+edit-profile,Edit Profile,dialog,"A dialog with profile fields, checks and a save button.",Account settings.,FloatingInput,https://registry.watermelon.sh/r/edit-profile.json
+editable-chip,Editable Chip,micro-interaction,A chip you can click to rename in place.,Filters and tags that change often.,TagInput,https://registry.watermelon.sh/r/editable-chip.json
+emoji-spree-choice-chips,Emoji Spree Choice Chips,choice-chips,Multi-pick chips that burst small emoji when chosen.,Playful preference pickers.,,https://registry.watermelon.sh/r/emoji-spree-choice-chips.json
+event-reminders,Event Reminders,micro-interaction,A list of reminders with quick time choices.,Calendars and event pages.,,https://registry.watermelon.sh/r/event-reminders.json
+expand-details,Expand Details,micro-interaction,A row that opens to show more detail.,Dense tables and lists.,Accordion,https://registry.watermelon.sh/r/expand-details.json
+expandable-event-card,Expandable Event Card,cards,A card that opens into a full-screen view of the event.,"Event, concert or feature showcases.",ExpandableCards,https://registry.watermelon.sh/r/expandable-event-card.json
+expandable-profile-card,Expandable Profile Card,cards,A card that opens into a wide two-column profile.,Team and people pages.,ExpandableCards,https://registry.watermelon.sh/r/expandable-profile-card.json
+extended-toolbar,Extended Toolbar,micro-interaction,A toolbar that reveals extra tools as it widens.,Editors with a core set plus extras.,,https://registry.watermelon.sh/r/extended-toolbar.json
+family-receive-button,Family Receive Button,buttons,A button that becomes a full confirm screen for receiving funds.,Wallet receive flows.,MorphPopover,https://registry.watermelon.sh/r/family-receive-button.json
+family-wallet,Family Wallet,micro-interaction,Stacked wallet cards that fan apart on selection.,Multi-account finance apps.,ExpandableCards,https://registry.watermelon.sh/r/family-wallet.json
+feature-tour,Feature Tour,micro-interaction,Step-by-step tips with blurred backdrop and a moving title shine.,First-run product tours.,Stepper,https://registry.watermelon.sh/r/feature-tour.json
+feedback,Feedback,micro-interaction,A feedback form whose icons change with the chosen mood.,Collecting sentiment with an optional note.,QuickFeedback,https://registry.watermelon.sh/r/feedback.json
+feedback-action,Feedback Action,micro-interaction,A small control to send a quick reaction.,End of an article or help page.,QuickFeedback,https://registry.watermelon.sh/r/feedback-action.json
+filter-disclosure,Filter Disclosure,filters,A filter bar that opens and shows how many filters are on.,Lists with several filter options.,Accordion,https://registry.watermelon.sh/r/filter-disclosure.json
+floating-disclosure,Floating Disclosure,popover,A small menu that resizes smoothly between its states.,Compact action menus.,MorphPopover,https://registry.watermelon.sh/r/floating-disclosure.json
+floating-input,Floating Input,inputs,A text field whose label moves up when you type.,Forms that need to save vertical space.,FloatingInput,https://registry.watermelon.sh/r/floating-input.json
+fluid-tabs,Fluid Tabs,tabs,Tabs with a springy floating indicator and icons.,Mobile-style tab bars.,Tabs,https://registry.watermelon.sh/r/fluid-tabs.json
+fractional-picker,Fractional Picker,micro-interaction,A ruler you drag to choose a number.,"Weights, heights and other measured values.",ScrubNumber,https://registry.watermelon.sh/r/fractional-picker.json
+frequency-selector,Frequency Selector,tabs,"Choose how often something repeats, with options for each choice.",Recurring payments or schedules.,SegmentedControl,https://registry.watermelon.sh/r/frequency-selector.json
+fund-widget,Fund Widget,widgets,A finance tile with depth and soft blur.,Investment dashboards.,TiltCard,https://registry.watermelon.sh/r/fund-widget.json
+gooey-menu,Gooey Menu,tooltip,A logo badge that stretches into a tooltip with details.,Playful brand or tech badges.,MorphPopover,https://registry.watermelon.sh/r/gooey-menu.json
+inline-action,Inline Action,action,Quick edit buttons that appear on the row itself.,Editing list items without a new page.,,https://registry.watermelon.sh/r/inline-action.json
+inline-disclosure-menu,Inline Disclosure Menu,dropdown,A row of actions that opens in place beside its trigger.,"Few actions tied to one item, no room for a full menu.",SplitButton,https://registry.watermelon.sh/r/inline-disclosure-menu.json
+inline-edit,Inline Edit,micro-interaction,Text that switches between read view and an edit field.,Titles and names people change in place.,FloatingInput,https://registry.watermelon.sh/r/inline-edit.json
+inline-overflow,Inline Overflow,disclosure,A more button that slides out the hidden actions.,Rows with more actions than room.,SplitButton,https://registry.watermelon.sh/r/inline-overflow.json
+inline-table-control,Inline Table Control,micro-interaction,Row controls for editing table cells in place.,Admin tables.,,https://registry.watermelon.sh/r/inline-table-control.json
+inline-toast,Inline Toast,micro-interaction,"A small message that appears in place, with a copy action.",Confirming an action right where it happened.,ToastProvider,https://registry.watermelon.sh/r/inline-toast.json
+integration-card,Integration Card,cards,A card for a connected service with status and actions.,Integration and settings pages.,,https://registry.watermelon.sh/r/integration-card.json
+invite-disclosure,Invite Disclosure,disclosure,A panel that opens to manage invites.,Team and sharing settings.,MorphPopover,https://registry.watermelon.sh/r/invite-disclosure.json
+journal-navigation,Journal Navigation,navigation,Section links that move a highlight as you switch.,Long documents and journals.,Tabs,https://registry.watermelon.sh/r/journal-navigation.json
+knob-slider,Knob Slider,sliders,A round dial you turn to set a value.,Audio-style or hardware-style controls.,ScrubNumber,https://registry.watermelon.sh/r/knob-slider.json
+labeled-progress-indicator,Labeled Progress Indicator,micro-interaction,A progress bar with a label that updates as it fills.,Uploads and long tasks.,NumberTicker,https://registry.watermelon.sh/r/labeled-progress-indicator.json
+layered-progressive-disclosure,Layered Progressive Disclosure,interaction,Layers of settings that open one after another.,Advanced settings hidden behind basics.,Accordion,https://registry.watermelon.sh/r/layered-progressive-disclosure.json
+licence-key,Licence Key,micro-interaction,A masked key you can reveal and copy.,API keys and licence codes.,CopyButton,https://registry.watermelon.sh/r/licence-key.json
+list-stack,List Stack,micro-interaction,A stacked list that fans open to show all items.,Notifications or grouped items.,ReorderList,https://registry.watermelon.sh/r/list-stack.json
+macos-sidebar,macOS Sidebar,navigation,A sidebar that springs between collapsed and wide.,Desktop-style apps.,,https://registry.watermelon.sh/r/macos-sidebar.json
+meeting-card,Meeting Card,cards,"A meeting summary with time, people and join button.",Calendars and team tools.,,https://registry.watermelon.sh/r/meeting-card.json
+minimal-carousel,Minimal Carousel,carousel,Wallet-like cards that open with a layout move.,Few items shown one at a time.,Carousel,https://registry.watermelon.sh/r/minimal-carousel.json
+morphing-button,Morphing Button,buttons,A button that grows into a bigger panel.,One action that needs a little more input.,MorphPopover,https://registry.watermelon.sh/r/morphing-button.json
+morphing-discovery-bar,Morphing Discovery Bar,tabs,Category tabs that turn into a search field.,Browse-or-search headers.,Tabs,https://registry.watermelon.sh/r/morphing-discovery-bar.json
+morphing-sidebar-controls,Morphing Sidebar Controls,interaction,A side panel whose controls reshape step by step.,Configuration tools.,,https://registry.watermelon.sh/r/morphing-sidebar-controls.json
+onboarding-checklist,Onboarding Checklist,cards,A setup checklist with progress.,New-account activation.,Stepper,https://registry.watermelon.sh/r/onboarding-checklist.json
+onboarding-screen,Onboarding Screen,cards,A welcome screen with setup steps.,First run of an app.,Stepper,https://registry.watermelon.sh/r/onboarding-screen.json
+onboarding-setup,Onboarding Setup,cards,A card walking through first settings.,Short guided setup.,Stepper,https://registry.watermelon.sh/r/onboarding-setup.json
+pagination,Pagination,pagination,Prev and next arrows with a page number that rolls digit by digit.,Paged lists that want a little life.,NumberTicker,https://registry.watermelon.sh/r/pagination.json
+pin-item,Pin Item,lists,A list where pinned items move to the top with a layout move.,Favourites and pinned chats.,ReorderList,https://registry.watermelon.sh/r/pin-item.json
+pop-stepper,Pop Stepper,micro-interaction,Plus and minus buttons with a popping count.,Quantities in a cart.,ScrubNumber,https://registry.watermelon.sh/r/pop-stepper.json
+predictive-text,Predictive Text,micro-interaction,A field that suggests the next word as you type.,Writing aids and search.,,https://registry.watermelon.sh/r/predictive-text.json
+pricing-widget,Pricing Widget,widgets,A price that animates when options change.,Calculators and plan pickers.,NumberTicker,https://registry.watermelon.sh/r/pricing-widget.json
+profile-card,Profile Card,cards,A small card with a person and quick actions.,Directories and comments.,TiltCard,https://registry.watermelon.sh/r/profile-card.json
+progressive-input-stack,Progressive Input Stack,widgets,Form fields that appear one by one as you finish each.,Long forms that should feel short.,Stepper,https://registry.watermelon.sh/r/progressive-input-stack.json
+quick-feedback,Quick Feedback,micro-interaction,One-tap feedback with a gentle response.,Was this helpful prompts.,QuickFeedback,https://registry.watermelon.sh/r/quick-feedback.json
+quick-option-picker,Quick Option Picker,micro-interaction,A picker whose options roll into place.,Choosing one of a few values.,SegmentedControl,https://registry.watermelon.sh/r/quick-option-picker.json
+quick-paste,Quick Paste,micro-interaction,A shortcut-driven paste with a small confirmation.,Fields people fill from the clipboard.,CopyButton,https://registry.watermelon.sh/r/quick-paste.json
+quick-switcher,Quick Switcher,micro-interaction,An action bar that flips between two modes.,Switching context fast.,CommandPalette,https://registry.watermelon.sh/r/quick-switcher.json
+radial-carousel,Radial Carousel,carousel,Items placed on a circle that you drag to spin.,Showpiece galleries.,Carousel,https://registry.watermelon.sh/r/radial-carousel.json
+range-selection-slider,Range Selection Slider,widgets,A slider with two handles for a range.,Price or date ranges.,,https://registry.watermelon.sh/r/range-selection-slider.json
+returns-calculator-snippet,Returns Calculator Snippet,cards,A card estimating returns from a few inputs.,Finance marketing pages.,NumberTicker,https://registry.watermelon.sh/r/returns-calculator-snippet.json
+reveal-copy,Reveal Copy,micro-interaction,Hidden text that uncovers before copying.,Secrets and codes.,CopyButton,https://registry.watermelon.sh/r/reveal-copy.json
+revealing-cards,Revealing Cards,micro-interaction,Cards that uncover their content on interaction.,Teasers and reveals.,SpotlightCard,https://registry.watermelon.sh/r/revealing-cards.json
+run-action-button,Run Action Button,buttons,A button that runs through several steps with visible state.,"Deploy, sync or other multi-step actions.",PressButton,https://registry.watermelon.sh/r/run-action-button.json
+run-widget,Run Widget,widgets,A tile with a counting distance figure.,Fitness and stats.,NumberTicker,https://registry.watermelon.sh/r/run-widget.json
+save-toggle,Save Toggle,buttons,A save button that moves through saving and saved.,Bookmarks and drafts.,PressButton,https://registry.watermelon.sh/r/save-toggle.json
+schedule-button,Schedule Button,interaction,A button that opens date and time choices for later.,Scheduling posts or messages.,SplitButton,https://registry.watermelon.sh/r/schedule-button.json
+schedule-date,Schedule Date,scheduler,A dialog with a calendar and time picker.,Booking and reminders.,,https://registry.watermelon.sh/r/schedule-date.json
+scroll-island,Scroll Island,micro-interaction,A floating pill with scroll progress and actions.,Long reading pages.,,https://registry.watermelon.sh/r/scroll-island.json
+scrub-slider,Scrub Slider,micro-interaction,A value you set by dragging across it.,Fine numeric tuning.,ScrubNumber,https://registry.watermelon.sh/r/scrub-slider.json
+select-ai-agent,Select AI Agent,micro-interaction,A picker for choosing an assistant.,AI apps with several agents or models.,CommandPalette,https://registry.watermelon.sh/r/select-ai-agent.json
+send-money,Send Money,micro-interaction,"A send flow with confirm, status and result.",Payments and transfers.,HoldToConfirm,https://registry.watermelon.sh/r/send-money.json
+share-sheet,share sheet,widgets,A sheet that rises with people to share with.,Sharing on mobile layouts.,Drawer,https://registry.watermelon.sh/r/share-sheet.json
+shimmer-button,Shimmer Button,buttons,A button with a light sweep on hover.,One primary call to action.,ShimmerText,https://registry.watermelon.sh/r/shimmer-button.json
+show-qr,Show QR,widgets,A tile that shows a QR code.,Sharing links between devices.,,https://registry.watermelon.sh/r/show-qr.json
+shuffle-pinned-item,Shuffle Pinned List,lists,Pinned items lift into a header you can shuffle.,Highlighting a few favourites.,ReorderList,https://registry.watermelon.sh/r/shuffle-pinned-item.json
+slot-picker,Slot Picker,interaction,A list of time slots with springy selection.,Booking calls.,SegmentedControl,https://registry.watermelon.sh/r/slot-picker.json
+split-actions,Split Actions,micro-interaction,One button split into a main action and a side menu.,A default action with alternatives.,SplitButton,https://registry.watermelon.sh/r/split-actions.json
+split-button,Split Button,buttons,A split button whose menu opens with a layout move.,Primary action with variants.,SplitButton,https://registry.watermelon.sh/r/split-button.json
+split-to-edit,Split To edit,micro-interaction,A field that splits into parts you can edit separately.,"Codes, dates and phone numbers.",OtpInput,https://registry.watermelon.sh/r/split-to-edit.json
+status-picker,Status Picker,micro-interaction,A picker that moves between states with a smooth change.,Task and ticket status.,SegmentedControl,https://registry.watermelon.sh/r/status-picker.json
+step-indicator,Step Indicator,micro-interaction,Step dots with a tooltip on the current one.,Multi-step forms.,Stepper,https://registry.watermelon.sh/r/step-indicator.json
+step-pager,Step Pager,micro-interaction,A pager that highlights the current step.,Onboarding slides.,Stepper,https://registry.watermelon.sh/r/step-pager.json
+stepper,stepper,buttons,A number with plus and minus buttons.,Quantities and counts.,ScrubNumber,https://registry.watermelon.sh/r/stepper.json
+subscription-calendar,Subscription Calendar,cards,A calendar showing renewal dates.,Subscription trackers.,,https://registry.watermelon.sh/r/subscription-calendar.json
+swap-currency-card,Swap Currency Card,widgets,A card for swapping between two currencies.,Money transfer apps.,ScrubNumber,https://registry.watermelon.sh/r/swap-currency-card.json
+swap-form,Swap Form,interaction,A form that changes between sign in and sign up.,Auth pages with both modes.,SegmentedControl,https://registry.watermelon.sh/r/swap-form.json
+switch-disclosure,Switch Disclosure,disclosure,A switch that opens extra options when turned on.,Settings with dependent options.,ThemeToggle,https://registry.watermelon.sh/r/switch-disclosure.json
+switch-mode,Switch Mode,toggle,A light and dark switch with a sliding knob.,Theme switching.,ThemeToggle,https://registry.watermelon.sh/r/switch-mode.json
+tags,Tags,interaction,Tags you add and remove with layout moves.,Labels and filters.,TagInput,https://registry.watermelon.sh/r/tags.json
+task-widget-disclosure,Task Widget Disclosure,disclosure,A task tile that opens to its details.,To-do widgets.,Accordion,https://registry.watermelon.sh/r/task-widget-disclosure.json
+time-undo-action,Timed Undo Action,buttons,A countdown that lets you undo before it commits.,Deletes and sends that can be taken back.,HoldToConfirm,https://registry.watermelon.sh/r/time-undo-action.json
+tooltip-navbar,Tooltip Navbar,tooltip,Nav icons with animated tooltips.,Icon-only bars.,Dock,https://registry.watermelon.sh/r/tooltip-navbar.json
+trade-summary,Trade Summary,cards,A summary of positions and performance.,Trading dashboards.,NumberTicker,https://registry.watermelon.sh/r/trade-summary.json
+transaction-list,Transaction List,micro-interaction,Transactions that open to show details.,Banking and order history.,Accordion,https://registry.watermelon.sh/r/transaction-list.json
+tree-menu,Tree-menu,navigation,A nested menu that slides between levels.,Deep hierarchies on small screens.,,https://registry.watermelon.sh/r/tree-menu.json
+uniswap-dialog,Uniswap Dialog,dialog,A dialog with a searchable country list.,Region and country pickers.,CommandPalette,https://registry.watermelon.sh/r/uniswap-dialog.json
+vertical-tooltip-navbar,Vertical Tooltip Navbar,tooltip,A vertical icon bar with clipped tooltip reveals.,Side rails.,Dock,https://registry.watermelon.sh/r/vertical-tooltip-navbar.json
+view-on-map,View On Map,map,"A map tile with pins, zoom and directions.",Locations and stores.,,https://registry.watermelon.sh/r/view-on-map.json
+voice-chat-disclosure,Voice Chat Disclosure,interaction,A voice chat pill showing who is talking.,Live rooms and calls.,MorphPopover,https://registry.watermelon.sh/r/voice-chat-disclosure.json
+voice-note,Voice Note,micro-interaction,"Record, play back and manage short audio.",Messaging apps.,,https://registry.watermelon.sh/r/voice-note.json
+voice-transcribe,Voice Transcribe,micro-interaction,Turns speech into text as you talk.,Dictation and notes.,,https://registry.watermelon.sh/r/voice-transcribe.json
+waveform-scrub,Waveform Scrub,media,A waveform you drag to seek audio.,Podcasts and voice messages.,ScrubNumber,https://registry.watermelon.sh/r/waveform-scrub.json
+weight-widget,Weight Widget,widgets,A sliding scale for picking a weight.,Health and fitness logging.,ScrubNumber,https://registry.watermelon.sh/r/weight-widget.json
+wiggling-cards,Wiggling Cards,carousel,Cards that wiggle as you move between them.,Playful galleries.,Carousel,https://registry.watermelon.sh/r/wiggling-cards.json

@@ -2,6 +2,17 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.55] - 2026-11-27
+
+Interaction kit, our take on Watermelon UI
+
+- New `data/craft/interaction-kit/`: 32 React components (press, copy, tabs, segmented control, split button, hold to confirm, toast, drawer, morph popover, expandable cards, command palette, number ticker, text reveal, marquee, carousel, swipe deck, scrub number, tag input, OTP input, reorder list, rating, stepper, dock, theme toggle, tilt and spotlight cards, and more). They use theme tokens only, honour reduced motion, have keyboard paths and labelled icons, and depend on `react` and `motion` only. Written new; the ideas come from Watermelon UI (MIT).
+- `catalog.csv` describes all 131 Watermelon UI components in our words and maps 110 of them to a kit part; `blocks.csv` points to their 189 page blocks and 12 dashboards.
+- New `ult kitlint`, which checks components for missing reduced motion, `transition-all`, raw colours, squashed press scales, clickable divs, unnamed icon buttons, hidden focus and replaying presence. On the kit it reports 0 findings in 32 files. On Watermelon UI's components it reports at least one failure in 130 of 131 files (both variants).
+- `gallery/` renders every component and checks it in Chromium at phone and desktop sizes, with reduced motion and in dark mode, covering overflow, keyboard paths, focus return and axe. All four views pass with 0 violations.
+- New guides in `website/references/craft/interaction-kit/` (choosing, components, details), linked from `website/craft.md`. Watermelon UI is added to `data/components.json`, CREDITS.md and the comparison table.
+- New tests in `tests/test_craft_interaction_kit.py`.
+
 ## [0.0.54] - 2026-11-27
 
 Solo by default, one Sonnet coder
