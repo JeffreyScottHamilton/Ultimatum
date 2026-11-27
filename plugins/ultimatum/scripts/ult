@@ -17,7 +17,7 @@
   ult improve ...           propose / apply / measure / keep or roll back a workflow change
   ult route "<task>"        mode + modules + files to read for a task (offline, deterministic)
   ult components "<need>"   offline UI component-library lookup with licences
-  ult design search|system|domains   offline design tables (styles, palettes, fonts, page patterns, UX checks)
+  ult design search|system|domains|deal   offline design tables; deal a page's palette, type and parts
   ult learn ...             local lessons: observe / add / list / relevant / propose / prune
   ult budget                tokens per turn and top costs for this chat
   ult sync export|import    copy lessons to or from a private folder you choose

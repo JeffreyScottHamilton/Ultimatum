@@ -32,7 +32,7 @@ Five questions, each scored ours better / even / upstream better:
 | react-performance | 4 files, 1 script | not read (no licence) | n/a | ours on checkability (`react_scan.py`, measuring guide) | Unknown; text not read |
 | decks | 6 files, 1 script, 1 template | ui-ux-pro-max slides (MIT) | 6 (lookup tables, generator) | ours on checkability (`deck_check.py`) | Searchable layout and strategy tables |
 | superpowers | 10 files, 42 KB, 2 scripts | 925 KB | 9 (visual companion) | ours | Visual brainstorming companion |
-| taste | 21 files, 198 KB, 29 data | 557 KB | 160 | even | Long tail of style presets |
+| taste | 21 files, 198 KB, 29 data, 2 preset tables | 557 KB | 159 | ours on checks, judged (was even) | 0.0.45: `ult design deal` deals palette, type, hero, parts and grounds by kind and trade with history. Upstream has more presets (64 palettes, 39 type sets against our 40 and 43) but does not test their contrast; every one of ours passes 7:1 ink and 4.5:1 muted and button text in `test_taste_deal.py` |
 | ui-ux-pro-max | 18 files, 107 KB | 1.2 MB | 43 (mostly generators, search tables, bundled fonts) | even (was upstream) | Searchable style tables and the long tail of presets. Decks fixed in 0.0.39 (`craft/decks/`, `deck_check.py`); icons and banners in 0.0.40 (`identity/icons.md`, `identity/banners.md`, `icon_check.py`); logo and identity in `craft/identity/` |
 
 ## What to fix, in order

@@ -9,6 +9,7 @@ Standard library only; nothing is fetched.
   ult design search "<query>" [--in DOMAIN] [-n N] [--json]
   ult design system "<what you are making>" [--stack NAME] [--out FILE] [--json]
   ult design domains
+  ult design deal "<trade or brief>" [--kind KIND] ...   (see deal.py)
 """
 from __future__ import annotations
 
@@ -296,6 +297,9 @@ def _print_rows(rows: list[dict]) -> None:
 
 
 def cmd_design(args) -> int:
+    if args.action == "deal":
+        from . import deal
+        return deal.cmd_deal(args)
     if args.action == "domains":
         for name, (file, _, _) in DOMAINS.items():
             mark = "  (ours)" if source(file).parent == OWN else ""
@@ -332,7 +336,7 @@ def cmd_design(args) -> int:
 
 def register(sub):
     p = sub.add_parser("design", help="offline design tables: search, or a starting design system")
-    p.add_argument("action", choices=("search", "system", "domains"))
+    p.add_argument("action", choices=("search", "system", "domains", "deal"))
     p.add_argument("text", nargs="*", help="query, or what you are making")
     p.add_argument("--in", dest="domain", default="style",
                    help=f"search domain: {', '.join(DOMAINS)}, or stack:NAME (default style)")
@@ -340,4 +344,6 @@ def register(sub):
     p.add_argument("--stack", default="", help="add that stack's high-severity checks to `system`")
     p.add_argument("--out", default="", help="write `system` output to this file")
     p.add_argument("--json", action="store_true", help="machine-readable output")
+    from . import deal
+    deal.add_arguments(p)
     p.set_defaults(func=cmd_design)

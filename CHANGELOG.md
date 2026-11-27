@@ -2,6 +2,15 @@
 
 All notable changes to Ultimatum are listed here. Versions follow [Semantic Versioning](https://semver.org/); the version in `plugins/ultimatum/.claude-plugin/plugin.json` is the source of truth and must be bumped for installs to update.
 
+## [0.0.45] - 2026-11-27
+
+Dealt page presets
+
+- New `ult design deal "<trade or brief>" --kind KIND`: deals a palette, a type pairing, a hero, the page parts (nav, footer, close, rhythm, buttons, radius) and, for tech kinds, two section grounds that never clash plus a page ground.
+- New `data/craft/taste/presets/`: 40 original palettes tagged by kind, trade and mood, and 43 type sets drawn from our own font table. Every palette is tested for 7:1 ink, 4.5:1 muted and button text, and 3:1 accent; the deal says whether the accent may also be link text.
+- Brief words steer the deal toward matching trades and moods; a history in `.ultimatum/deal-history.json` keeps each pick out of the next few pages of the same kind. `--seed`, `--fresh`, `--no-save`, `--no-photos` (swaps photo-led parts), `--footage` (allows the film hero), `--css` (writes the tokens), `--json`.
+- `page-plans.md` § Deal lists now points at the command; the taste `later.md` row and the comparison table are updated. New `tests/test_taste_deal.py` (17 tests).
+
 ## [0.0.44] - 2026-11-27
 
 Render pass in a real browser

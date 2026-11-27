@@ -746,7 +746,7 @@ Source: Leonxlnx/taste-skill at commit f6b7657 (MIT). Ours: `plugins/ultimatum/s
 | S50 | Step 3: plan as screens, one line per section | principles.md §Order of work | covered |
 | S51 | Plan line fields: id, idea, picture, kind, screens, moment | principles.md §Order of work | covered |
 | S52 | Step 4: deal, don't pick by taste; keep history so pages differ | principles.md §Deal | merged with design-rules.md §4 |
-| S53 | Deal commands (hero, palette, fonts, brand, moment) | later.md §Source tooling | later (tooling) |
+| S53 | Deal commands (hero, palette, fonts, brand, moment) | page-plans.md §Deal lists (`ult design deal`, 0.0.45; brand mark and moment still dealt by hand) | covered |
 | S54 | Deal lists per kind for nav, footer, close, rhythm, buttons, mark | page-plans.md §Deal lists | covered |
 | S55 | Product without photos deals photo heroes, object only for renders | page-plans.md §Product | covered |
 | S56 | Game without art: setting hero; place hero fixed; product heroes limited | page-plans.md | covered |

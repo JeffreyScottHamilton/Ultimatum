@@ -18,3 +18,10 @@ Written in our own words from the ideas in the MIT-licensed Taste skill (Leonxln
 
 - Effects, recipes and scenes are for tech pages only (software, gaming, hardware). Grounds beyond the page's three tokens are tech only too.
 - UTF-8, comma-separated, a header row, no empty cells. `tests/test_craft_taste.py` checks this.
+
+## Presets
+
+`presets/` holds what `ult design deal` (`scripts/ultlib/deal.py`) deals from. Both are original; no upstream palette, name or hex set is reused (`tests/test_taste_deal.py` compares them when the source checkout is present).
+
+- `palettes.json`: one object per palette with `id`, `mode` (`light` or `dark`), `kinds`, `trades`, `moods`, colours `bg`, `surface`, `ink`, `muted`, `accent`, `accentInk`, `line` (#RRGGBB), and a one-line `note` on how to use it. Every palette must pass: ink 7:1 and muted 4.5:1 on `bg` and `surface`, `accentInk` 4.5:1 on `accent`, `accent` 3:1 on `bg`.
+- `type.json`: one object per type set with `pairing` (a `Pairing` in `data/design-own/typography.csv`, which holds the fonts, weights and licence), `kinds`, display `tracking`, modular `scale` and heading `case`.

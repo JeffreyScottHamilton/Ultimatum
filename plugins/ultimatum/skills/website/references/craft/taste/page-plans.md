@@ -47,20 +47,15 @@ Fields per line: id, idea in plain words, the picture, the section recipe, scree
 
 ## Deal lists
 
-Deal, don't choose by taste: pick at random from the kind's list, write the result on plan line 2, and keep a history so consecutive pages differ. Re-deal one part only when its recipe's use doesn't fit, and note why.
+Deal, don't choose by taste. Run:
 
-```js
-// Deal one option per part, avoiding the previous page's picks where possible.
-function deal(lists, previous = {}) {
-  const out = {};
-  for (const [part, options] of Object.entries(lists)) {
-    const fresh = options.filter(o => o !== previous[part]);
-    const pool = fresh.length ? fresh : options;
-    out[part] = pool[Math.floor(Math.random() * pool.length)];
-  }
-  return out;
-}
 ```
+ult design deal "<trade or brief>" --kind software|game|product|hardware|service|place [--no-photos] [--footage] [--css tokens.css]
+```
+
+It deals one palette from 40 contrast-checked presets (body text at 7:1 and secondary text at 4.5:1 on both page and card, button labels at 4.5:1, the accent at 3:1 against the page; it says whether the accent may also be link text), one type pairing from the font table, a hero the kind allows, the parts below, and for tech kinds two section grounds that never clash plus a page ground. Brief words steer the palette and type toward matching trades and moods; a history in `.ultimatum/deal-history.json` keeps each pick out of the next few pages of the same kind. `--seed N` repeats a deal; `--fresh` ignores the history. `--no-photos` swaps photo-led parts as in the fallbacks below; the film hero is dealt only with `--footage`.
+
+Write the result on plan line 2. Re-deal one part only when its use doesn't fit, and note why. The table is what the script deals from:
 
 | Part | Software | Gaming | Product | Service | Place |
 |---|---|---|---|---|---|
